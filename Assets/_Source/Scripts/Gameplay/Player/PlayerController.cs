@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField, Min(0f)] private float _moveSpeed = 20f;
-    [SerializeField, Min(0f)] private float _rotationSpeed = 0.1f;
+    [SerializeField, Min(0f)] private float _moveSpeed = 95f;
+    [SerializeField, Min(0f)] private float _rotationSpeed = 10f;
     [SerializeField] private Transform _verticalRotationTransform;
     [SerializeField] private Camera _camera;
     [SerializeField] private Rigidbody _rigidbody;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     //     _rigidbody.MoveRotation(cameraRotation);
     // }
 
-    private void RotateCamera(Vector2 rotationInput)
+    private void RotateVertical(Vector2 rotationInput)
     {
         _verticalRotationTransform.Rotate(Vector3.right, -rotationInput.y * _rotationSpeed);
 
