@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class PlayerCharacter : MonoBehaviour
+namespace ITCafe
 {
+    public class PlayerCharacter : MonoBehaviour
+    {
+    }
 }
