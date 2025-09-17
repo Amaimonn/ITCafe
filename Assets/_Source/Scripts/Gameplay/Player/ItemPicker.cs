@@ -12,7 +12,7 @@ namespace ITCafe
         [SerializeField] private InputActionReference _dropAction;
 
         private readonly ReactiveProperty<bool> _isHoldingItem = new(false);
-        private BaseItem _currentItem;
+        private IItem _currentItem;
 
         private void OnEnable()
         {
@@ -25,18 +25,16 @@ namespace ITCafe
         }
 
 
-        public void TryPickUp(BaseItem item)
+        public void TryPickUp(IItem item)
         {
-            if (_isHoldingItem.Value || _currentItem != null)
+            if (_isHoldingItem.Value || _currentItem != null || item == null || !item.CanTake())
                 return;
 
-            Debug.Log("Picked up " + item.name);
             _currentItem = item;
             _currentItem.transform.parent = _holdingPoint;
             _currentItem.transform.localPosition = Vector3.zero;
-            _currentItem.PickUp();
+            _currentItem.Take();
             _isHoldingItem.Value = true;
-
         }
 
         public void TryDrop()

@@ -4,7 +4,9 @@ namespace ITCafe
 {
     public abstract class BaseItem : MonoBehaviour, IItem
     {
-        public abstract void PickUp();
+        public abstract bool CanTake();
+        public abstract void Take();
         public abstract void Drop();
+
     }
 }

@@ -6,14 +6,13 @@ namespace ITCafe
 {
     public class Interactor : MonoBehaviour
     {
-        public Observable<BaseItem> OnItemInteracted => _onItemInteracted;
+        public Observable<IItem> OnItemInteracted => _onItemInteracted;
         [SerializeField] private InputActionReference _interactAction;
         [SerializeField] private float _interactDistance;
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _interactableLayers;
 
-        private readonly RaycastHit[] _hitCache = new RaycastHit[1];
-        private readonly Subject<BaseItem> _onItemInteracted = new();
+        private readonly Subject<IItem> _onItemInteracted = new();
 
         #region MonoBehaviour
         private void Start()
@@ -42,17 +41,18 @@ namespace ITCafe
         {
             var ray = new Ray(_camera.transform.position, _camera.transform.forward);
             Debug.DrawRay(ray.origin, ray.direction * _interactDistance, Color.red, 0.5f);
-            if (Physics.RaycastNonAlloc(ray, _hitCache, _interactDistance, _interactableLayers) > 0)
+            
+            if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers))
             {
                 Debug.Log("Hit");
-                if (_hitCache[0].transform.gameObject.TryGetComponent<ProductItem>(out var item))
+                if (hit.transform.gameObject.TryGetComponent<IItem>(out var item))
                 {
                     Debug.Log("Interacted");
                     _onItemInteracted.OnNext(item);
                 }
                 else
                 {
-                    Debug.Log($"{_hitCache[0].transform.gameObject.name} Not an item");
+                    Debug.Log($"{hit.transform.gameObject.name} Not an item");
                 }
             }
             else
