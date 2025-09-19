@@ -4,15 +4,25 @@ using UnityEngine.InputSystem;
 
 namespace ITCafe
 {
-    public class ItemPicker : MonoBehaviour
+    public interface IItemPicker
     {
+        public ReadOnlyReactiveProperty<IItem> CurrentItem { get; }
+        public Observable<bool> IsHoldingItem { get; }
+
+        public void TryPickUp(IItem item);
+    }
+
+    public class ItemPicker : MonoBehaviour, IItemPicker
+    {
+        public ReadOnlyReactiveProperty<IItem> CurrentItem => _currentItem;
         public Observable<bool> IsHoldingItem => _isHoldingItem;
+
         [SerializeField] private Transform _holdingPoint;
         [SerializeField] private Transform _dropPoint;
         [SerializeField] private InputActionReference _dropAction;
 
         private readonly ReactiveProperty<bool> _isHoldingItem = new(false);
-        private IItem _currentItem;
+        private readonly ReactiveProperty<IItem> _currentItem = new();
 
         private void OnEnable()
         {
@@ -24,16 +34,14 @@ namespace ITCafe
             _dropAction.action.started -= OnDrop;
         }
 
-
         public void TryPickUp(IItem item)
         {
-            if (_isHoldingItem.Value || _currentItem != null || item == null || !item.CanTake())
+            if (_isHoldingItem.Value || _currentItem.Value != null || item == null)
                 return;
 
-            _currentItem = item;
-            _currentItem.transform.parent = _holdingPoint;
-            _currentItem.transform.localPosition = Vector3.zero;
-            _currentItem.Take();
+            _currentItem.Value = item;
+            _currentItem.Value.transform.parent = _holdingPoint;
+            _currentItem.Value.transform.localPosition = Vector3.zero;
             _isHoldingItem.Value = true;
         }
 
@@ -42,10 +50,10 @@ namespace ITCafe
             if (!_isHoldingItem.Value || _currentItem == null)
                 return;
 
-            _currentItem.transform.parent = null;
-            _currentItem.transform.position = _dropPoint.position;
-            _currentItem.Drop();
-            _currentItem = null;
+            _currentItem.Value.transform.parent = null;
+            _currentItem.Value.transform.position = _dropPoint.position;
+            _currentItem.Value.Drop();
+            _currentItem.Value = null;
             _isHoldingItem.Value = false;
         }
 

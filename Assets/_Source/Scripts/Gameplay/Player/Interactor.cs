@@ -1,6 +1,7 @@
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace ITCafe
 {
@@ -13,6 +14,8 @@ namespace ITCafe
         [SerializeField] private LayerMask _interactableLayers;
 
         private readonly Subject<IItem> _onItemInteracted = new();
+        private IItem _targetedItem;
+        [Inject] private readonly PlayerContext _playerContext;
 
         #region MonoBehaviour
         private void Start()
@@ -30,35 +33,71 @@ namespace ITCafe
         {
             _interactAction.action.started -= OnInteract;
         }
+
+        private void Update()
+        {
+            FindInteractables();
+        }
         #endregion
 
         private void OnInteract(InputAction.CallbackContext context)
         {
-            TryInteract();
+            InteractWithTarget();
         }
 
-        private void TryInteract()
+        private void InteractWithTarget()
+        {
+            if (_targetedItem != null)
+            {
+                _targetedItem.Interact(_playerContext);
+                _onItemInteracted.OnNext(_targetedItem);
+            }
+        }
+
+        private void FindInteractables()
         {
             var ray = new Ray(_camera.transform.position, _camera.transform.forward);
             Debug.DrawRay(ray.origin, ray.direction * _interactDistance, Color.red, 0.5f);
-            
+
             if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers))
             {
-                Debug.Log("Hit");
                 if (hit.transform.gameObject.TryGetComponent<IItem>(out var item))
                 {
-                    Debug.Log("Interacted");
-                    _onItemInteracted.OnNext(item);
+                    if (_targetedItem != item)
+                    {
+                        if (item.CanInteract(_playerContext))
+                        {
+                            ChangeFocus(item);
+                        }
+                        else
+                            RemoveFocus();
+                    }
                 }
                 else
                 {
-                    Debug.Log($"{hit.transform.gameObject.name} Not an item");
+                    RemoveFocus();
                 }
             }
             else
             {
-                Debug.Log("No hit");
+                RemoveFocus();
             }
+        }
+
+        private void RemoveFocus()
+        {
+            if (_targetedItem != null)
+            {
+                _targetedItem.UnFocus();
+                _targetedItem = null;
+            }
+        }
+
+        private void ChangeFocus(IItem item)
+        {
+            _targetedItem?.UnFocus();
+            item.Focus();
+            _targetedItem = item;
         }
     }
 }

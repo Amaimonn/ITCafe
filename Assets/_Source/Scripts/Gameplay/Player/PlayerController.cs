@@ -9,7 +9,6 @@ namespace ITCafe
         [SerializeField] private Camera _camera;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private InputActionReference _moveAction;
-        [SerializeField] private InputActionReference _rotationAction;
 
         private Vector2 _moveInput;
 
