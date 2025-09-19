@@ -4,14 +4,6 @@ using UnityEngine.InputSystem;
 
 namespace ITCafe
 {
-    public interface IItemPicker
-    {
-        public ReadOnlyReactiveProperty<IItem> CurrentItem { get; }
-        public Observable<bool> IsHoldingItem { get; }
-
-        public void TryPickUp(IItem item);
-    }
-
     public class ItemPicker : MonoBehaviour, IItemPicker
     {
         public ReadOnlyReactiveProperty<IItem> CurrentItem => _currentItem;

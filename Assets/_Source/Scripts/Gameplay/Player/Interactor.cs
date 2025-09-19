@@ -59,23 +59,17 @@ namespace ITCafe
             var ray = new Ray(_camera.transform.position, _camera.transform.forward);
             Debug.DrawRay(ray.origin, ray.direction * _interactDistance, Color.red, 0.5f);
 
-            if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers))
+            if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers) &&
+                hit.collider.TryGetComponent<IItem>(out var item))
             {
-                if (hit.transform.gameObject.TryGetComponent<IItem>(out var item))
+                if (_targetedItem != item)
                 {
-                    if (_targetedItem != item)
+                    if (item.CanInteract(_playerContext))
                     {
-                        if (item.CanInteract(_playerContext))
-                        {
-                            ChangeFocus(item);
-                        }
-                        else
-                            RemoveFocus();
+                        ChangeFocus(item);
                     }
-                }
-                else
-                {
-                    RemoveFocus();
+                    else
+                        RemoveFocus();
                 }
             }
             else

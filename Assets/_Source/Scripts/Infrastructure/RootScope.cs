@@ -29,11 +29,7 @@ namespace ITCafe
 
             _disposables = new();
 
-            var playerContext = Container.Resolve<PlayerContext>();
-            
-            // _playerInteractor.OnItemInteracted.Subscribe(_playerItemPicker.TryPickUp).AddTo(_disposables);
             _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: x")).AddTo(_disposables);
-            _playerItemPicker.CurrentItem.Subscribe(x => playerContext.CurrentItem = x).AddTo(_disposables);
         }
 
         protected override void OnDestroy()
