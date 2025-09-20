@@ -9,6 +9,7 @@ namespace ITCafe
         [SerializeField] protected Collider _collider;
         [SerializeField] protected Rigidbody _rigidbody;
         [SerializeField] protected Camera _camera;
+        [SerializeField] protected Outline _outline;
 
         #region MonoBehaviour
         private void OnValidate()
@@ -19,18 +20,27 @@ namespace ITCafe
             if (_rigidbody == null)
                 _rigidbody = gameObject.GetOrAddComponent<Rigidbody>();
 
+            if (_outline == null)
+                _outline = gameObject.GetOrAddComponent<Outline>();
+
             if (_camera == null)
-                _camera = Camera.main;
+                    _camera = Camera.main;
+        }
+        private void Awake()
+        {
+            _outline.enabled = false;
         }
         #endregion
 
         public virtual void Focus()
         {
+            _outline.enabled = true;
             Debug.Log($"Focus: {name}");
         }
 
         public virtual void UnFocus()
         {
+            _outline.enabled = false;
             Debug.Log($"Unfocus: {name}");
         }
 

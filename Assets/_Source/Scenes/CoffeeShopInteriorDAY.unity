@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 2130232}
   - component: {fileID: 2130231}
   - component: {fileID: 2130230}
+  - component: {fileID: 2130236}
   m_Layer: 7
   m_Name: Burger (2)
   m_TagString: Untagged
@@ -249,6 +250,7 @@ MonoBehaviour:
   _collider: {fileID: 2130231}
   _rigidbody: {fileID: 2130232}
   _camera: {fileID: 654921932}
+  _outline: {fileID: 2130236}
 --- !u!65 &2130231
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -365,6 +367,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.96006113, g: 1, b: 0.11635202, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &8049924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16417,6 +16437,7 @@ GameObject:
   - component: {fileID: 1251554872}
   - component: {fileID: 1251554871}
   - component: {fileID: 1251554870}
+  - component: {fileID: 1251554876}
   m_Layer: 7
   m_Name: Burger (1)
   m_TagString: Untagged
@@ -16439,6 +16460,7 @@ MonoBehaviour:
   _collider: {fileID: 1251554871}
   _rigidbody: {fileID: 1251554872}
   _camera: {fileID: 654921932}
+  _outline: {fileID: 1251554876}
 --- !u!65 &1251554871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16555,6 +16577,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1251554876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251554869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.96006113, g: 1, b: 0.11635202, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1253736271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28961,6 +29001,7 @@ GameObject:
   - component: {fileID: 1923305351}
   - component: {fileID: 1923305350}
   - component: {fileID: 1923305349}
+  - component: {fileID: 1923305355}
   m_Layer: 7
   m_Name: Burger
   m_TagString: Untagged
@@ -28983,6 +29024,7 @@ MonoBehaviour:
   _collider: {fileID: 1923305350}
   _rigidbody: {fileID: 1923305351}
   _camera: {fileID: 654921932}
+  _outline: {fileID: 1923305355}
 --- !u!65 &1923305350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29099,6 +29141,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1923305355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923305348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.96006113, g: 1, b: 0.11635202, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1923528355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30671,6 +30731,7 @@ GameObject:
   - component: {fileID: 1999141863}
   - component: {fileID: 1999141862}
   - component: {fileID: 1999141861}
+  - component: {fileID: 1999141866}
   m_Layer: 7
   m_Name: Apple
   m_TagString: Untagged
@@ -30687,7 +30748,7 @@ Transform:
   m_GameObject: {fileID: 1999141859}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.87411267, y: -5.9487915, z: 1.1362916}
+  m_LocalPosition: {x: -0.1433, y: -5.9487915, z: 1.0516}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -30708,6 +30769,7 @@ MonoBehaviour:
   _collider: {fileID: 1999141863}
   _rigidbody: {fileID: 1999141862}
   _camera: {fileID: 654921932}
+  _outline: {fileID: 1999141866}
 --- !u!54 &1999141862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -30809,6 +30871,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999141859}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1999141866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999141859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.96006113, g: 1, b: 0.11635202, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2000348888
 PrefabInstance:
   m_ObjectHideFlags: 0
