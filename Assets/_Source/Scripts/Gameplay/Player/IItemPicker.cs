@@ -6,7 +6,9 @@ namespace ITCafe
     {
         public ReadOnlyReactiveProperty<IItem> CurrentItem { get; }
         public Observable<bool> IsHoldingItem { get; }
-
-        public void TryPickUp(IItem item);
+        
+        public bool CanTake();
+        public void Take(IItem item);
+        public bool TryTake(IItem item);
     }
 }

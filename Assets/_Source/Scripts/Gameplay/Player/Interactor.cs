@@ -14,7 +14,7 @@ namespace ITCafe
         [SerializeField] private LayerMask _interactableLayers;
 
         private readonly Subject<IItem> _onItemInteracted = new();
-        private IItem _targetedItem;
+        private IInteractable _target;
         [Inject] private readonly PlayerContext _playerContext;
 
         #region MonoBehaviour
@@ -47,10 +47,11 @@ namespace ITCafe
 
         private void InteractWithTarget()
         {
-            if (_targetedItem != null)
+            if (_target != null)
             {
-                _targetedItem.Interact(_playerContext);
-                _onItemInteracted.OnNext(_targetedItem);
+                _target.Interact(_playerContext);
+                if (_target is IItem item)
+                    _onItemInteracted.OnNext(item);
             }
         }
 
@@ -60,9 +61,9 @@ namespace ITCafe
             Debug.DrawRay(ray.origin, ray.direction * _interactDistance, Color.red, 0.5f);
 
             if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers) &&
-                hit.collider.TryGetComponent<IItem>(out var item))
+                hit.collider.TryGetComponent<IInteractable>(out var item))
             {
-                if (_targetedItem != item)
+                if (_target != item)
                 {
                     if (item.CanInteract(_playerContext))
                     {
@@ -80,18 +81,18 @@ namespace ITCafe
 
         private void RemoveFocus()
         {
-            if (_targetedItem != null)
+            if (_target != null)
             {
-                _targetedItem.UnFocus();
-                _targetedItem = null;
+                _target.UnFocus();
+                _target = null;
             }
         }
 
-        private void ChangeFocus(IItem item)
+        private void ChangeFocus(IInteractable item)
         {
-            _targetedItem?.UnFocus();
+            _target?.UnFocus();
             item.Focus();
-            _targetedItem = item;
+            _target = item;
         }
     }
 }

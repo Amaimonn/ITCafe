@@ -18,7 +18,7 @@ namespace ITCafe
             _rigidbody.angularVelocity = Vector3.zero;
             _rigidbody.isKinematic = true;
             
-            context.ItemPicker.TryPickUp(this);
+            context.ItemPicker.TryTake(this);
         }
     }
 }

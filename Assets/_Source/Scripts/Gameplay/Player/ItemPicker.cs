@@ -26,15 +26,26 @@ namespace ITCafe
             _dropAction.action.started -= OnDrop;
         }
 
-        public void TryPickUp(IItem item)
+        public bool CanTake()
         {
-            if (_isHoldingItem.Value || _currentItem.Value != null || item == null)
-                return;
+            return !_isHoldingItem.Value && _currentItem.Value == null;
+        }
 
+        public void Take(IItem item)
+        {
             _currentItem.Value = item;
             _currentItem.Value.transform.parent = _holdingPoint;
             _currentItem.Value.transform.localPosition = Vector3.zero;
             _isHoldingItem.Value = true;
+        }
+
+        public bool TryTake(IItem item)
+        {
+            if (!CanTake() || item == null)
+                return false;
+
+            Take(item);
+            return true;
         }
 
         public void TryDrop()

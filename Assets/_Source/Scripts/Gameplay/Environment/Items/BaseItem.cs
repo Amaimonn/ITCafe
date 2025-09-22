@@ -4,48 +4,29 @@ using UnityEngine;
 namespace ITCafe
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class BaseItem : MonoBehaviour, IItem
+    public abstract class BaseItem : BaseInteractable, IItem
     {
         [SerializeField] protected Collider _collider;
         [SerializeField] protected Rigidbody _rigidbody;
         [SerializeField] protected Camera _camera;
-        [SerializeField] protected Outline _outline;
 
         #region MonoBehaviour
-        private void OnValidate()
+
+        protected override void OnValidate()
         {
+            base.OnValidate();
+
             if (_collider == null)
                 _collider = GetComponent<Collider>();
 
             if (_rigidbody == null)
                 _rigidbody = gameObject.GetOrAddComponent<Rigidbody>();
 
-            if (_outline == null)
-                _outline = gameObject.GetOrAddComponent<Outline>();
-
             if (_camera == null)
-                    _camera = Camera.main;
+                _camera = Camera.main;
         }
-        private void Awake()
-        {
-            _outline.enabled = false;
-        }
+
         #endregion
-
-        public virtual void Focus()
-        {
-            _outline.enabled = true;
-            Debug.Log($"Focus: {name}");
-        }
-
-        public virtual void UnFocus()
-        {
-            _outline.enabled = false;
-            Debug.Log($"Unfocus: {name}");
-        }
-
-        public abstract bool CanInteract(PlayerContext context);
-        public abstract void Interact(PlayerContext context);
 
         public virtual void Drop()
         {
