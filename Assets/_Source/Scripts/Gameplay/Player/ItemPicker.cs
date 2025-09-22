@@ -15,6 +15,7 @@ namespace ITCafe
 
         private readonly ReactiveProperty<bool> _isHoldingItem = new(false);
         private readonly ReactiveProperty<IItem> _currentItem = new();
+        private bool _wasTakenThisFrame = false;
 
         private void OnEnable()
         {
@@ -33,10 +34,13 @@ namespace ITCafe
 
         public void Take(IItem item)
         {
+            Debug.Log($"Taking item {item.transform.name}");
             _currentItem.Value = item;
             _currentItem.Value.transform.parent = _holdingPoint;
             _currentItem.Value.transform.localPosition = Vector3.zero;
             _isHoldingItem.Value = true;
+            _wasTakenThisFrame = true;
+            Observable.NextFrame().Subscribe(_ => _wasTakenThisFrame = false);
         }
 
         public bool TryTake(IItem item)
@@ -50,9 +54,10 @@ namespace ITCafe
 
         public void TryDrop()
         {
-            if (!_isHoldingItem.Value || _currentItem == null)
+            if (!_isHoldingItem.Value || _currentItem == null || _wasTakenThisFrame)
                 return;
-
+            
+            Debug.Log("Dropping item");
             _currentItem.Value.transform.parent = null;
             _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value.Drop();

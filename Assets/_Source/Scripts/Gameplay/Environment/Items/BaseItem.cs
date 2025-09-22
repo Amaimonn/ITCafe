@@ -30,10 +30,26 @@ namespace ITCafe
 
         public virtual void Drop()
         {
-            _collider.enabled = true;
-            _rigidbody.useGravity = true;
-            _rigidbody.isKinematic = false;
+            SetPhysicsEnabled(true);
             _rigidbody.AddForce(_camera.transform.forward * 1.2f, ForceMode.Impulse);
+        }
+
+        public void SetPhysicsEnabled(bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                _collider.enabled = true;
+                _rigidbody.useGravity = true;
+                _rigidbody.isKinematic = false;
+            }
+            else
+            {
+                _collider.enabled = false;
+                _rigidbody.useGravity = false;
+                _rigidbody.linearVelocity = Vector3.zero;
+                _rigidbody.angularVelocity = Vector3.zero;
+                _rigidbody.isKinematic = true;
+            }
         }
     }
 }

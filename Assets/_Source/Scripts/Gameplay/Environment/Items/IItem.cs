@@ -6,5 +6,6 @@ namespace ITCafe
     {
         public Transform transform { get; }
         public void Drop();
+        public void SetPhysicsEnabled(bool isEnabled);
     }
 }

@@ -63,14 +63,19 @@ namespace ITCafe
             if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers) &&
                 hit.collider.TryGetComponent<IInteractable>(out var item))
             {
+                var canInteract = item.CanInteract(_playerContext);
                 if (_target != item)
                 {
-                    if (item.CanInteract(_playerContext))
+                    if (canInteract)
                     {
                         ChangeFocus(item);
                     }
                     else
                         RemoveFocus();
+                }
+                else if (!canInteract)
+                {
+                    RemoveFocus();
                 }
             }
             else

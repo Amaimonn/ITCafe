@@ -10,7 +10,7 @@ namespace ITCafe
 
         public override bool CanInteract(PlayerContext context)
         {
-            Debug.Log("CanInteract: " + context.ItemPicker.CanTake());
+            // Debug.Log("CanInteract: " + context.ItemPicker.CanTake());
             return context.ItemPicker.CanTake();
         }
 
@@ -18,8 +18,9 @@ namespace ITCafe
         {
             var itemObject = Instantiate(_itemPrefab);
             var item = itemObject.GetComponent<IItem>();
-            Debug.Log("Spawner: item was taken");
+            item.SetPhysicsEnabled(false);
             context.ItemPicker.Take(item);
+            Debug.Log("Spawner: item was taken");
         }
     }
 }
