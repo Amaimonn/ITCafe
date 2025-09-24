@@ -2888,7 +2888,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 203180419}
-  - component: {fileID: 203180418}
   m_Layer: 0
   m_Name: StaticLightingSky
   m_TagString: Untagged
@@ -2896,18 +2895,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &203180418
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203180417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &203180419
 Transform:
   m_ObjectHideFlags: 1
@@ -12242,6 +12229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1030971897, guid: abc00000000007818038014052980379, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14924,6 +14915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1030971897, guid: abc00000000007818038014052980379, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16962,7 +16957,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186059641}
-  - component: {fileID: 1186059640}
   m_Layer: 0
   m_Name: SceneIDMap
   m_TagString: Untagged
@@ -16970,18 +16964,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1186059640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186059639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1783167668}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1186059641
 Transform:
   m_ObjectHideFlags: 19
@@ -20409,7 +20391,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387658195}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 455a5a152b1b4b3479bc2f907702485d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -26267,7 +26249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1030973930, guid: abc00000000011195635789104536157, type: 3}
       propertyPath: m_LocalScale.x
-      value: -1.144698
+      value: 1.144698
       objectReference: {fileID: 0}
     - target: {fileID: 1030973930, guid: abc00000000011195635789104536157, type: 3}
       propertyPath: m_LocalScale.y
@@ -28137,21 +28119,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030974129, guid: abc00000000003309920583990705351, type: 3}
   m_PrefabInstance: {fileID: 1782818539}
   m_PrefabAsset: {fileID: 0}
---- !u!115 &1783167668
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 2
-  m_ExecutionOrder: 0
-  m_ClassName: SceneObjectIDMapSceneAsset
-  m_Namespace: UnityEngine.Rendering.HighDefinition
-  m_AssemblyName: 
 --- !u!1001 &1786995922
 PrefabInstance:
   m_ObjectHideFlags: 0
