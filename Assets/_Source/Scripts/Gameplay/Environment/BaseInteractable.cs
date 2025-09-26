@@ -24,13 +24,15 @@ namespace ITCafe
 
         public virtual void Focus()
         {
-            _outline.enabled = true;
+            if (_outline != null)
+                _outline.enabled = true;
             Debug.Log($"Focus: {name}");
         }
 
         public virtual void UnFocus()
         {
-            _outline.enabled = false;
+            if (_outline != null)
+                _outline.enabled = false;
             Debug.Log($"Unfocus: {name}");
         }
 

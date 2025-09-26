@@ -28,6 +28,8 @@ namespace ITCafe
             Container.Inject(_playerInteractor);
 
             _disposables = new();
+            // Нельзя выбрасывать предмет без соответствия логике взаимодействия
+            _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
 
             _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: x")).AddTo(_disposables);
         }

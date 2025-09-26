@@ -7,14 +7,18 @@ namespace ITCafe
 {
     public class Interactor : MonoBehaviour
     {
+        public Observable<IInteractable> CurrentTarget => _target;
+        public Observable<bool> CanInteract => _canInteract;
         public Observable<IItem> OnItemInteracted => _onItemInteracted;
+        
         [SerializeField] private InputActionReference _interactAction;
         [SerializeField] private float _interactDistance;
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _interactableLayers;
 
         private readonly Subject<IItem> _onItemInteracted = new();
-        private IInteractable _target;
+        private readonly ReactiveProperty<bool> _canInteract = new(false);
+        private readonly ReactiveProperty<IInteractable> _target = new();
         [Inject] private readonly PlayerContext _playerContext;
 
         #region MonoBehaviour
@@ -47,10 +51,10 @@ namespace ITCafe
 
         private void InteractWithTarget()
         {
-            if (_target != null)
+            if (_target.Value != null)
             {
-                _target.Interact(_playerContext);
-                if (_target is IItem item)
+                _target.Value.Interact(_playerContext);
+                if (_target.Value is IItem item)
                     _onItemInteracted.OnNext(item);
             }
         }
@@ -64,7 +68,9 @@ namespace ITCafe
                 hit.collider.TryGetComponent<IInteractable>(out var item))
             {
                 var canInteract = item.CanInteract(_playerContext);
-                if (_target != item)
+                _canInteract.Value = canInteract;
+                
+                if (_target.Value != item)
                 {
                     if (canInteract)
                     {
@@ -80,24 +86,25 @@ namespace ITCafe
             }
             else
             {
+                _canInteract.Value = false;
                 RemoveFocus();
             }
         }
 
         private void RemoveFocus()
         {
-            if (_target != null)
+            if (_target.Value != null)
             {
-                _target.UnFocus();
-                _target = null;
+                _target.Value.UnFocus();
+                _target.Value = null;
             }
         }
 
         private void ChangeFocus(IInteractable item)
         {
-            _target?.UnFocus();
+            _target.Value?.UnFocus();
             item.Focus();
-            _target = item;
+            _target.Value = item;
         }
     }
 }

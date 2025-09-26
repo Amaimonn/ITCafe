@@ -10,5 +10,7 @@ namespace ITCafe
         public bool CanTake();
         public void Take(IItem item);
         public bool TryTake(IItem item);
+        public void Drop();
+        public void Release();
     }
 }

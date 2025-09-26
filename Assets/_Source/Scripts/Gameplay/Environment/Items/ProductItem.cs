@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace ITCafe
 {
     public class ProductItem : BaseItem

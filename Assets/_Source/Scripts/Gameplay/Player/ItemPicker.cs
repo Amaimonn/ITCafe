@@ -8,6 +8,7 @@ namespace ITCafe
     {
         public ReadOnlyReactiveProperty<IItem> CurrentItem => _currentItem;
         public Observable<bool> IsHoldingItem => _isHoldingItem;
+        public bool IsDroppingBlocked = false;
 
         [SerializeField] private Transform _holdingPoint;
         [SerializeField] private Transform _dropPoint;
@@ -54,13 +55,26 @@ namespace ITCafe
 
         public void TryDrop()
         {
-            if (!_isHoldingItem.Value || _currentItem == null || _wasTakenThisFrame)
+            if (!_isHoldingItem.Value || _currentItem == null || _wasTakenThisFrame || IsDroppingBlocked)
                 return;
-            
+
+            Drop();
+        }
+
+        public void Drop()
+        {
             Debug.Log("Dropping item");
             _currentItem.Value.transform.parent = null;
             _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value.Drop();
+            _currentItem.Value = null;
+            _isHoldingItem.Value = false;
+        }
+
+        public void Release()
+        {
+            _currentItem.Value.transform.parent = null;
+            _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value = null;
             _isHoldingItem.Value = false;
         }
