@@ -36,9 +36,9 @@ namespace ITCafe
         public void Take(IItem item)
         {
             Debug.Log($"Taking item {item.transform.name}");
+            item.transform.parent = _holdingPoint;
+            item.transform.SetLocalPositionAndRotation(-item.CenterOffset, Quaternion.identity);
             _currentItem.Value = item;
-            _currentItem.Value.transform.parent = _holdingPoint;
-            _currentItem.Value.transform.localPosition = Vector3.zero;
             _isHoldingItem.Value = true;
             _wasTakenThisFrame = true;
             Observable.NextFrame().Subscribe(_ => _wasTakenThisFrame = false);

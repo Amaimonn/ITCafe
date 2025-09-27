@@ -22,13 +22,8 @@ namespace ITCafe.Gameplay.Orders.Clients
 
         public override bool CanInteract(PlayerContext context)
         {
-            if (!_isCompleted && context.CurrentItem.CurrentValue is IMenuItem menuItem &&
-                _order.IsCorresponds(menuItem.GetItemHash()))
-            {
-                return true;
-            }
-
-            return false;
+            return !_isCompleted && context.CurrentItem.CurrentValue is IMenuItem menuItem &&
+                   _order.IsCorresponds(menuItem.GetItemHash());
         }
 
         public override void Interact(PlayerContext context)
