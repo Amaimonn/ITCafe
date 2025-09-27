@@ -1,4 +1,4 @@
-namespace ITCafe.Gameplay.Orders
+namespace ITCafe.CafeBusiness
 {
     public interface IMenuItem : IEquatableItem
     {

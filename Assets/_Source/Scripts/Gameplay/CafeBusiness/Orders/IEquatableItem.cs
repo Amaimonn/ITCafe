@@ -1,11 +1,12 @@
-namespace ITCafe.Gameplay.Orders
+namespace ITCafe.CafeBusiness
 {
     public interface IEquatableItem
     {
         public bool CheckEqual(IEquatableItem other)
         {
-            return GetItemHash() ==  other.GetItemHash();
+            return GetItemHash() == other.GetItemHash();
         }
+
         public int GetItemHash();
     }
 }

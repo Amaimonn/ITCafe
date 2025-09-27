@@ -1,7 +1,7 @@
 using System;
-using ITCafe.Gameplay.Orders;
+using ITCafe.CafeBusiness;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     public struct BurgerItemInfo : IEquatable<BurgerItemInfo>, IEquatableItem
     {

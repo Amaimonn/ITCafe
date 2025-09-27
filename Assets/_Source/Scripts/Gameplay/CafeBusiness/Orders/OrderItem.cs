@@ -1,10 +1,5 @@
-namespace ITCafe.Gameplay.Orders
+namespace ITCafe.CafeBusiness
 {
-    public interface IOrderItem
-    {
-        public int OrderedItemHash { get; }
-    }
-
     public class OrderItem : IOrderItem, IOrder
     {
         public int OrderHash => OrderedItemHash;
@@ -14,6 +9,5 @@ namespace ITCafe.Gameplay.Orders
         {
             OrderedItemHash = orderedItemHash;
         }
-
     }
 }

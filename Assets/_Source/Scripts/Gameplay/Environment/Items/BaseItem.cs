@@ -1,7 +1,7 @@
 using Flopin.Utils;
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     [RequireComponent(typeof(Collider))]
     public abstract class BaseItem : BaseInteractable, IItem

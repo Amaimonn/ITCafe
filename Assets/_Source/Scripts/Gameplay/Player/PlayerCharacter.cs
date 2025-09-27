@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Player
 {
     public class PlayerCharacter : MonoBehaviour
     {

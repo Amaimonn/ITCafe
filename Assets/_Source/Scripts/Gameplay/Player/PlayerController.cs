@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ITCafe
+namespace ITCafe.Player
 {
     public class PlayerController : MonoBehaviour
     {

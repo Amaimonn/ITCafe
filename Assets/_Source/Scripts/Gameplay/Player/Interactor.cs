@@ -1,9 +1,10 @@
+using ITCafe.Environment;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
 
-namespace ITCafe
+namespace ITCafe.Player
 {
     public class Interactor : MonoBehaviour
     {

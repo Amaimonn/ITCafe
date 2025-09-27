@@ -1,8 +1,9 @@
+using ITCafe.Environment;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ITCafe
+namespace ITCafe.Player
 {
     public class ItemPicker : MonoBehaviour, IItemPicker
     {

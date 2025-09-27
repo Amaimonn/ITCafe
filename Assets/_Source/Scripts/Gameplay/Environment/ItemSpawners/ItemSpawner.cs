@@ -1,6 +1,7 @@
+using ITCafe.Player;
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     public class ItemSpawner : BaseInteractable
     {

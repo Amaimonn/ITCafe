@@ -1,7 +1,8 @@
 using Flopin.Utils;
+using ITCafe.Player;
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {

@@ -1,4 +1,6 @@
-namespace ITCafe
+using ITCafe.Player;
+
+namespace ITCafe.Environment
 {
     public interface IInteractable
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     public interface IItem : IInteractable
     {

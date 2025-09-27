@@ -1,7 +1,8 @@
-using System.Collections.Generic;
+using ITCafe.Environment;
+using ITCafe.Player;
 using UnityEngine;
 
-namespace ITCafe.Gameplay.Orders.Clients
+namespace ITCafe.CafeBusiness
 {
     public class ClientCharacter : BaseInteractable
     {

@@ -1,18 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace ITCafe.Gameplay.Orders
+namespace ITCafe.CafeBusiness
 {
-    public interface IOrder
-    {
-        public int OrderHash { get; }
-
-        public bool IsCorresponds(int hash)
-        {
-            return OrderHash == hash;
-        }
-    }
-
     public class OrderMap : IOrder
     {
         public IReadOnlyDictionary<IOrderItem, int> OrderedItemsMap => _orderedItemsMap;

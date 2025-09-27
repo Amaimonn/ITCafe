@@ -1,7 +1,6 @@
-using ITCafe.Gameplay.Orders;
-using UnityEngine;
+using ITCafe.CafeBusiness;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     public class BurgerItem : ProductItem, IMenuItem
     {
