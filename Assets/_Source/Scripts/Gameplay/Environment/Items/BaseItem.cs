@@ -24,6 +24,8 @@ namespace ITCafe.Environment
             if (_rigidbody == null)
                 _rigidbody = gameObject.GetOrAddComponent<Rigidbody>();
 
+            _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
             if (_camera == null)
                 _camera = Camera.main;
         }
