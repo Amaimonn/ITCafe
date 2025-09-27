@@ -14,6 +14,9 @@ namespace ITCafe.Environment
         {
             if (_outline == null)
                 _outline = gameObject.GetOrAddComponent<Outline>();
+
+            _outline.outlineColor = new Color(1f, 10.6283679f, 0.45f, 1);
+            _outline.outlineWidth = 7f;
         }
 
         protected virtual void Awake()

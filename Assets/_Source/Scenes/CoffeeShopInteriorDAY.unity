@@ -298,7 +298,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!23 &2130233
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.9568628, b: 0.11764706, a: 1}
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
   outlineWidth: 7
   precomputeOutline: 0
   bakeKeys: []
@@ -6726,7 +6726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.95686275, b: 0.11764706, a: 1}
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
   outlineWidth: 7
   precomputeOutline: 0
   bakeKeys: []
@@ -8273,7 +8273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.9568628, b: 0.11764706, a: 1}
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
   outlineWidth: 7
   precomputeOutline: 0
   bakeKeys: []
@@ -13973,7 +13973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.9568628, b: 0.11764706, a: 1}
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
   outlineWidth: 7
   precomputeOutline: 0
   bakeKeys: []
@@ -17977,7 +17977,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!23 &1251554873
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18059,7 +18059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0.9568628, b: 0.11764706, a: 1}
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
   outlineWidth: 7
   precomputeOutline: 0
   bakeKeys: []
@@ -35075,6 +35075,26 @@ PrefabInstance:
     - target: {fileID: 6000649212412820298, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
       propertyPath: m_Name
       value: TrayItemContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652373983043803132, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652373983043803132, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
+      propertyPath: outlineColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652373983043803132, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
+      propertyPath: outlineColor.b
+      value: 0.47086665
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652373983043803132, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
+      propertyPath: outlineColor.g
+      value: 4.628368
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652373983043803132, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
+      propertyPath: outlineColor.r
+      value: 4.8301888
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
