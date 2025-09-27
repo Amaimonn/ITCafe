@@ -2,7 +2,7 @@ using ITCafe.CafeBusiness;
 
 namespace ITCafe.Environment
 {
-    public class BurgerItem : ProductItem, IMenuItem
+    public class BurgerItem : PickUpItem, IMenuItem
     {
         public string Id { get; set; }
 
