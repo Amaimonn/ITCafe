@@ -1,3 +1,4 @@
+using System;
 using ITCafe.Environment;
 using R3;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace ITCafe.Player
         public Observable<IInteractable> CurrentTarget => _target;
         public Observable<bool> CanInteract => _canInteract;
         public Observable<IItem> OnItemInteracted => _onItemInteracted;
-        
+
         [SerializeField] private InputActionReference _interactAction;
         [SerializeField] private float _interactDistance;
         [SerializeField] private Camera _camera;
@@ -21,8 +22,13 @@ namespace ITCafe.Player
         private readonly ReactiveProperty<bool> _canInteract = new(false);
         private readonly ReactiveProperty<IInteractable> _target = new();
         [Inject] private readonly PlayerContext _playerContext;
+        [Inject] private readonly InputService _inputService;
+
+        private Action<InputAction.CallbackContext> _onInteract;
+        private IDisposable _interactSubscription;
 
         #region MonoBehaviour
+
         private void Start()
         {
             if (_camera == null)
@@ -31,23 +37,29 @@ namespace ITCafe.Player
 
         private void OnEnable()
         {
-            _interactAction.action.started += OnInteract;
+            _onInteract = OnInteract; //_inputService.MediateAction(_interactAction, OnInteract);
+            var inputEntry = new InputEntry(() => _interactAction.action.started += _onInteract,
+                () => _interactAction.action.started -= _onInteract, 90);
+            _interactSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_interactAction.action, "started"),
+                inputEntry);
         }
 
         private void OnDisable()
         {
-            _interactAction.action.started -= OnInteract;
+            _interactSubscription.Dispose();
         }
 
         private void Update()
         {
             FindInteractables();
         }
+
         #endregion
 
         private void OnInteract(InputAction.CallbackContext context)
         {
             InteractWithTarget();
+            // _inputService.StopPropagating(_interactAction);
         }
 
         private void InteractWithTarget()
@@ -70,7 +82,7 @@ namespace ITCafe.Player
             {
                 var canInteract = item.CanInteract(_playerContext);
                 _canInteract.Value = canInteract;
-                
+
                 if (_target.Value != item)
                 {
                     if (canInteract)

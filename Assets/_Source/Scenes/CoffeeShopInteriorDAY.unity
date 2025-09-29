@@ -8460,7 +8460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87badd171562554b8494761fe461c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDroppingBlocked: 0
   _holdingPoint: {fileID: 244574348}
   _dropPoint: {fileID: 1588764704}
   _dropAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -17319,7 +17318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _path: C:\Users\aleks\Pictures\Saved Frames
-  _fileName: Screenshot
+  _imageName: Screenshot
 --- !u!4 &1193631006
 Transform:
   m_ObjectHideFlags: 0
