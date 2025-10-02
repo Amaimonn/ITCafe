@@ -1,14 +1,16 @@
 using Flopin.Utils;
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     [RequireComponent(typeof(Collider))]
     public abstract class BaseItem : BaseInteractable, IItem
     {
+        public Vector3 CenterOffset => _centerOffset;
         [SerializeField] protected Collider _collider;
         [SerializeField] protected Rigidbody _rigidbody;
         [SerializeField] protected Camera _camera;
+        private Vector3 _centerOffset;
 
         #region MonoBehaviour
 
@@ -22,8 +24,16 @@ namespace ITCafe
             if (_rigidbody == null)
                 _rigidbody = gameObject.GetOrAddComponent<Rigidbody>();
 
+            _rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
             if (_camera == null)
                 _camera = Camera.main;
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _centerOffset = transform.InverseTransformPoint(GetComponent<Renderer>().bounds.center);
         }
 
         #endregion

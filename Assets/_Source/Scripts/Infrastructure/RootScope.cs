@@ -1,3 +1,4 @@
+using ITCafe.Player;
 using R3;
 using UnityEngine;
 using VContainer;
@@ -17,6 +18,7 @@ namespace ITCafe
             base.Configure(builder);
             builder.RegisterComponent<IItemPicker>(_playerItemPicker);
             builder.Register<PlayerContext>(Lifetime.Singleton);
+            builder.Register<InputService>(Lifetime.Singleton);
         }
 
         protected override void Awake()
@@ -28,8 +30,11 @@ namespace ITCafe
             Container.Inject(_playerInteractor);
 
             _disposables = new();
-
-            _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: x")).AddTo(_disposables);
+            {
+                // Нельзя выбрасывать предмет без соответствия логике взаимодействия
+                // _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
+                _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: x"));
+            }
         }
 
         protected override void OnDestroy()

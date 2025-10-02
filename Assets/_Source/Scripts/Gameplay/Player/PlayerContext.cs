@@ -1,6 +1,7 @@
+using ITCafe.Environment;
 using R3;
 
-namespace ITCafe
+namespace ITCafe.Player
 {
     public class PlayerContext
     {

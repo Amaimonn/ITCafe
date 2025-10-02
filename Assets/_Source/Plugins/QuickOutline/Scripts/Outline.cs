@@ -66,10 +66,10 @@ public class Outline : MonoBehaviour
   private Mode outlineMode;
 
   [SerializeField, ColorUsage(true, true)]
-  private Color outlineColor = Color.white;
+  public Color outlineColor = Color.white;
 
   [SerializeField, Range(0f, 10f)]
-  private float outlineWidth = 2f;
+  public float outlineWidth = 2f;
 
   [Header("Optional")]
   [SerializeField, Tooltip("Precompute enabled: Per-vertex calculations are performed in the editor and serialized with the object. "

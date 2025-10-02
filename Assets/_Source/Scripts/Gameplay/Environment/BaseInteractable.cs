@@ -1,7 +1,8 @@
 using Flopin.Utils;
+using ITCafe.Player;
 using UnityEngine;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {
@@ -13,6 +14,31 @@ namespace ITCafe
         {
             if (_outline == null)
                 _outline = gameObject.GetOrAddComponent<Outline>();
+
+            _outline.outlineColor = new Color(1f, 10.6283679f, 0.45f, 1);
+            _outline.outlineWidth = 7f;
+        }
+
+        public static Color ComposeHdrColor(Color32 baseLinearColor, float exposure)
+        {
+            if (exposure == 0f)
+            {
+                return new Color(
+                    baseLinearColor.r / 255f,
+                    baseLinearColor.g / 255f,
+                    baseLinearColor.b / 255f
+                );
+            }
+            else
+            {
+                var scaleFactor = 255f / Mathf.Pow(2f, exposure);
+                
+                var r = baseLinearColor.r / scaleFactor;
+                var g = baseLinearColor.g / scaleFactor;
+                var b = baseLinearColor.b / scaleFactor;
+                
+                return new Color(r, g, b);
+            }
         }
 
         protected virtual void Awake()
@@ -24,13 +50,15 @@ namespace ITCafe
 
         public virtual void Focus()
         {
-            _outline.enabled = true;
+            if (_outline != null)
+                _outline.enabled = true;
             Debug.Log($"Focus: {name}");
         }
 
         public virtual void UnFocus()
         {
-            _outline.enabled = false;
+            if (_outline != null)
+                _outline.enabled = false;
             Debug.Log($"Unfocus: {name}");
         }
 

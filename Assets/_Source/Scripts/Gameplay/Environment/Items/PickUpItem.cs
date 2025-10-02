@@ -1,12 +1,12 @@
-using UnityEngine;
+using ITCafe.Player;
 
-namespace ITCafe
+namespace ITCafe.Environment
 {
-    public class ProductItem : BaseItem
+    public class PickUpItem : BaseItem
     {
         public override bool CanInteract(PlayerContext context)
         {
-            return context.CurrentItem.CurrentValue == null;
+            return context.ItemPicker.CanTake();
         }
 
         public override void Interact(PlayerContext context)
