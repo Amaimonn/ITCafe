@@ -12,7 +12,7 @@ namespace ITCafe.CafeBusiness
         protected override void Awake()
         {
             base.Awake();
-            
+
             _order = new OrderItem(new BurgerItemInfo()
             {
                 IsDoubleCheese = false,
@@ -23,16 +23,35 @@ namespace ITCafe.CafeBusiness
 
         public override bool CanInteract(PlayerContext context)
         {
-            return !_isCompleted && context.CurrentItem.CurrentValue is IMenuItem menuItem &&
-                   _order.IsCorresponds(menuItem.GetItemHash());
+            if (_isCompleted)
+                return false;
+            
+            if (context.CurrentItem.CurrentValue is IEquatableItem equatableItem)
+            {
+                var code = equatableItem.GetItemHash();
+                Debug.Log($"item: {code}, order: {_order.OrderHash} ");
+
+                if (_order.IsCorresponds(code))
+                    return true;
+                else if (context.CurrentItem.CurrentValue is IItemsContainer container)
+                    return container.ContainsHash(_order.OrderHash);
+            }
+
+            return false;
         }
 
         public override void Interact(PlayerContext context)
         {
             var item = context.CurrentItem.CurrentValue;
-            context.ItemPicker.Release();
+
+            if (item is IItemsContainer container)
+                item = container.ExtractItem(_order.OrderHash);
+            else
+                context.ItemPicker.Release();
+
             Destroy(item.transform.gameObject);
             _isCompleted = true;
+            Destroy(gameObject);
         }
     }
 }

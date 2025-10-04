@@ -5,7 +5,7 @@ namespace ITCafe.Environment
 {
     public class ItemStub : IItem
     {
-        public static ItemStub Default = new ItemStub();
+        public static ItemStub Default = new();
         public Transform transform { get; }
         public Vector3 CenterOffset { get; }
         

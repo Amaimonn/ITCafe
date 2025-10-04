@@ -46,6 +46,9 @@ namespace ITCafe.Environment
 
         public void SetPhysicsEnabled(bool isEnabled)
         {
+            if (_collider.enabled == isEnabled)
+                return;
+                
             if (isEnabled)
             {
                 _collider.enabled = true;

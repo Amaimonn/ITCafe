@@ -6,12 +6,26 @@ namespace ITCafe.Environment
     public class ItemSpawner : BaseInteractable
     {
         [SerializeField] private GameObject _itemPrefab;
-        // [SerializeField] private int _maxSpawnedItemsAmount;
 
+        // [SerializeField] private int _maxSpawnedItemsAmount;
+        private IItem _coreItem;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            var itemObject = Instantiate(_itemPrefab);
+            _coreItem = itemObject.GetComponent<IItem>();
+            itemObject.SetActive(false);
+        }
 
         public override bool CanInteract(PlayerContext context)
         {
-            return context.ItemPicker.CanTake();
+            var picker = context.ItemPicker;
+            return picker.CanTake(_coreItem);
+            //     ||
+            // (picker.CurrentItem.CurrentValue is IItemsContainer itemsContainer &&
+            //  itemsContainer.CanTake(_coreItem));
         }
 
         public override void Interact(PlayerContext context)

@@ -4,7 +4,9 @@ namespace ITCafe.Environment
 {
     public interface IItemsContainer : IEquatableItem, IItem
     {
-        public bool CanTake();
+        public bool ContainsHash(int hash);
+        public IItem ExtractItem(int hash);
+        public bool CanTake(IItem item);
         public void Take(IMenuItem item); // собирает только готовые блюда, а не ингредиенты
     }
 }
