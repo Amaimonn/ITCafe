@@ -29,7 +29,6 @@ namespace ITCafe.Player
         
         private void Awake()
         {
-            // Начинаем с пустых рук
             ChangeState(new EmptyHandsState(this));
         }
         

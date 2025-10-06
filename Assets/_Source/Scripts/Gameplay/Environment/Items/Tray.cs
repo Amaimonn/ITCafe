@@ -9,6 +9,7 @@ namespace ITCafe.Environment
     public class Tray : PickUpItem, IItemsContainer
     {
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;
+        [SerializeField, Min(0)] private float _itemsOffsetY = 0.15f;
         private List<IMenuItem> _currentItems = new();
         private int _currentItemsAmount = 0;
 
@@ -38,15 +39,16 @@ namespace ITCafe.Environment
 
         public bool CanTake(IItem item)
         {
-            return item is IMenuItem && _currentItemsAmount < _maxItemsCapacity;
+            return _currentItemsAmount < _maxItemsCapacity;
         }
 
         public void Take(IMenuItem item)
         {
             item.SetPhysicsEnabled(false);
             item.transform.SetParent(transform);
-            item.transform.SetLocalPositionAndRotation(new Vector3(0, _currentItemsAmount * 0.15f, 0),
+            item.transform.SetLocalPositionAndRotation(new Vector3(0, _currentItemsAmount * _itemsOffsetY, 0),
                 Quaternion.identity);
+                
             _currentItems.Add(item);
             _currentItemsAmount++;
         }
@@ -69,7 +71,7 @@ namespace ITCafe.Environment
                 if (item.GetItemHash() == hash)
                 {
                     for (var j = i + 1; j < _currentItemsAmount; j++)
-                        _currentItems[j].transform.localPosition -= new Vector3(0, 0.15f, 0);
+                        _currentItems[j].transform.localPosition -= new Vector3(0, _itemsOffsetY, 0);
 
                     _currentItems.Remove(item);
                     _currentItemsAmount--;

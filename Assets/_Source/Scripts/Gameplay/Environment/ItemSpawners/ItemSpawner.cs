@@ -8,7 +8,7 @@ namespace ITCafe.Environment
         [SerializeField] private GameObject _itemPrefab;
 
         // [SerializeField] private int _maxSpawnedItemsAmount;
-        private IItem _coreItem;
+        private IItem _coreItem; // вспомогательный объект
 
         protected override void Awake()
         {
@@ -33,7 +33,9 @@ namespace ITCafe.Environment
             var itemObject = Instantiate(_itemPrefab);
             var item = itemObject.GetComponent<IItem>();
             item.SetPhysicsEnabled(false);
+
             context.ItemPicker.Take(item);
+
             Debug.Log("Spawner: item has been taken");
         }
     }

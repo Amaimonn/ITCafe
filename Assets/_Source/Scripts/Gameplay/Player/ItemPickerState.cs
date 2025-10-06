@@ -42,7 +42,6 @@ namespace ITCafe.Player
 
         public override void Take(IItem item)
         {
-           
         }
     }
 
@@ -90,7 +89,7 @@ namespace ITCafe.Player
 
         public override void Take(IItem item)
         {
-            if (!CanTake(item) || item is not IMenuItem menuItem)
+            if (item is not IMenuItem menuItem)
                 return;
 
             Debug.Log($"Placing item {item.transform.name} on tray");

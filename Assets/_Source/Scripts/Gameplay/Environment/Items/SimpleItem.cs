@@ -1,13 +1,14 @@
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
+using UnityEngine;
 
 namespace ITCafe.Environment
 {
-    public class BurgerItem : PickUpItem, IMenuItem
+    public class SimpleItem : PickUpItem, IMenuItem
     {
         public string Id { get; set; }
 
-        private BurgerItemInfo _info = new();
+        [SerializeField] private SimpleItemInfo _info = new();
 
         public int GetItemHash()
         {
