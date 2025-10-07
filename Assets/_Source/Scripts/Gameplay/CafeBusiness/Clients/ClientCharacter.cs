@@ -6,22 +6,23 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.CafeBusiness
 {
-    public class ClientCharacter : BaseInteractable
+    public class ClientCharacter : BaseInteractable, IItemHandler
     {
         [SerializeField] private UIDocument _worldDocument;
         [SerializeField] private ItemInfoSO _itemInfoSO;
         [SerializeField] private Transform _uiHolder;
-        
+
+        private bool IsCompleted => _order.IsCompleted;
+
         private Camera _camera;
         private IOrder _order;
-        private bool _isCompleted = false;
 
         protected override void Awake()
         {
             base.Awake();
             _camera = Camera.main;
             _order = new OrderItem(_itemInfoSO.ItemInfo.GetItemHash());
-            Debug.Log($"OrderHash: {_order.OrderHash}");
+            Debug.Log($"OrderHash: {_order.OrderHashes}");
         }
 
         private void Start()
@@ -42,21 +43,15 @@ namespace ITCafe.CafeBusiness
             _uiHolder.transform.LookAt(_camera.transform);
         }
 
+#region IInteractable
         public override bool CanInteract(PlayerContext context)
         {
-            if (_isCompleted)
+            if (IsCompleted)
                 return false;
 
-            if (context.CurrentItem.CurrentValue is IEquatableItem equatableItem)
-            {
-                var code = equatableItem.GetItemHash();
-                Debug.Log($"item: {code}, order: {_order.OrderHash} ");
-
-                if (_order.IsCorresponds(code))
-                    return true;
-                else if (context.CurrentItem.CurrentValue is IItemsContainer container)
-                    return container.ContainsHash(_order.OrderHash);
-            }
+            var item = context.CurrentItem.CurrentValue;
+            if (item != null)
+                return item.CanHandle(this, context);
 
             return false;
         }
@@ -64,15 +59,68 @@ namespace ITCafe.CafeBusiness
         public override void Interact(PlayerContext context)
         {
             var item = context.CurrentItem.CurrentValue;
+            item.Handle(this, context);
+        }
+#endregion
 
-            if (item is IItemsContainer container)
-                item = container.ExtractItem(_order.OrderHash);
-            else
-                context.ItemPicker.Release();
+#region IItemHandler
+        public bool CanHandle(IItem item, PlayerContext context)
+        {
+            if (item is IEquatableItem equatableItem)
+            {
+                var code = equatableItem.GetItemHash();
 
+                if (_order.IsCorresponds(code))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
+        {
+            foreach (var hash in _order.OrderHashes)
+            {
+                if (container.ContainsHash(hash))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public void Handle(IItem item, PlayerContext context)
+        {
+            if (item is IEquatableItem equatableItem)
+            {
+                var hash = equatableItem.GetItemHash();
+                if (_order.TryHandOver(hash))
+                {
+                    context.ItemPicker.Release();
+                    ConsumeItem(item);
+                }
+            }
+        }
+
+        public void HandleContainer(IItemsContainer container, PlayerContext context)
+        {
+            foreach (var hash in _order.OrderHashes)
+            {
+                var item = container.ExtractItem(hash);
+                if (item != null)
+                {
+                    if (_order.TryHandOver(item.GetItemHash()))
+                        ConsumeItem(item);
+                }
+            }
+        }
+#endregion
+
+        private void ConsumeItem(IItem item)
+        {
             Destroy(item.transform.gameObject);
-            _isCompleted = true;
-            Destroy(gameObject);
+
+            if (IsCompleted)
+                Destroy(gameObject);
         }
     }
 }

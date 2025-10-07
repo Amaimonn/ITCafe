@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ITCafe.Data;
 using ITCafe.Data.Items;
 using UnityEditor;
 using UnityEditor.UIElements;

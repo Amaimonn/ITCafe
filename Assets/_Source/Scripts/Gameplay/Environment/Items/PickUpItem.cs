@@ -12,7 +12,7 @@ namespace ITCafe.Environment
         public override void Interact(PlayerContext context)
         {
             SetPhysicsEnabled(false);
-            context.ItemPicker.TryTake(this);
+            context.ItemPicker.Take(this);
         }
     }
 }

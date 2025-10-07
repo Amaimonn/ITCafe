@@ -1,12 +1,18 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace ITCafe.CafeBusiness
 {
     public interface IOrder
     {
-        public int OrderHash { get; }
+        public bool IsCompleted { get; }
+        public IEnumerable<int> OrderHashes { get; }
 
         public bool IsCorresponds(int hash)
         {
-            return OrderHash == hash;
+            return OrderHashes.Contains(hash);
         }
+
+        public bool TryHandOver(int hash);
     }
 }

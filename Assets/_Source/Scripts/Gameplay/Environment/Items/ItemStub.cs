@@ -5,6 +5,9 @@ namespace ITCafe.Environment
 {
     public class ItemStub : IItem
     {
+        public bool CanHandle(IItemHandler handler, PlayerContext context) => throw new System.NotImplementedException();
+        public void Handle(IItemHandler handler, PlayerContext context) => throw new System.NotImplementedException();
+        
         public static ItemStub Default = new();
         public Transform transform { get; }
         public Vector3 CenterOffset { get; }
