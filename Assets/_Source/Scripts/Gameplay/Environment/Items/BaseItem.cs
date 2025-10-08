@@ -1,4 +1,5 @@
 using Flopin.Utils;
+using ITCafe.Player;
 using UnityEngine;
 
 namespace ITCafe.Environment
@@ -6,14 +7,15 @@ namespace ITCafe.Environment
     [RequireComponent(typeof(Collider))]
     public abstract class BaseItem : BaseInteractable, IItem
     {
-        public Vector3 CenterOffset => _centerOffset;
+        public virtual bool CanHandle(IItemHandler handler, PlayerContext context) => handler.CanHandle(this, context);
+        public virtual void Handle(IItemHandler handler, PlayerContext context) => handler.Handle(this, context);
+        public Vector3 CenterOffset { get; private set; }
+
         [SerializeField] protected Collider _collider;
         [SerializeField] protected Rigidbody _rigidbody;
         [SerializeField] protected Camera _camera;
-        private Vector3 _centerOffset;
 
-        #region MonoBehaviour
-
+#region MonoBehaviour
         protected override void OnValidate()
         {
             base.OnValidate();
@@ -33,10 +35,9 @@ namespace ITCafe.Environment
         protected override void Awake()
         {
             base.Awake();
-            _centerOffset = transform.InverseTransformPoint(GetComponent<Renderer>().bounds.center);
+            CenterOffset = transform.InverseTransformPoint(GetComponent<Renderer>().bounds.center);
         }
-
-        #endregion
+#endregion
 
         public virtual void Drop()
         {
@@ -46,6 +47,9 @@ namespace ITCafe.Environment
 
         public void SetPhysicsEnabled(bool isEnabled)
         {
+            if (_collider.enabled == isEnabled)
+                return;
+
             if (isEnabled)
             {
                 _collider.enabled = true;

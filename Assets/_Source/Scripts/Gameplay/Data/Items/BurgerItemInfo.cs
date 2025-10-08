@@ -1,19 +1,18 @@
 using System;
-using ITCafe.CafeBusiness;
 
-namespace ITCafe.Environment
+namespace ITCafe.Data.Items
 {
-    public struct BurgerItemInfo : IEquatable<BurgerItemInfo>, IEquatableItem
+    public class BurgerItemInfo : BaseItemInfo<BurgerItemInfo>
     {
         public bool IsDoubleCheese;
         public bool IsDoublePatty;
 
-        public bool Equals(BurgerItemInfo other)
+        public override bool Equals(BurgerItemInfo other)
         {
             return IsDoubleCheese == other.IsDoubleCheese && IsDoublePatty == other.IsDoublePatty;
         }
 
-        public int GetItemHash()
+        public override int GetItemHash()
         {
             return HashCode.Combine(typeof(BurgerItemInfo), IsDoubleCheese, IsDoublePatty);
         }

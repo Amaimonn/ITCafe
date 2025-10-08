@@ -6,13 +6,13 @@ namespace ITCafe.Environment
     {
         public override bool CanInteract(PlayerContext context)
         {
-            return context.ItemPicker.CanTake();
+            return context.ItemPicker.CanTake(this);
         }
 
         public override void Interact(PlayerContext context)
         {
             SetPhysicsEnabled(false);
-            context.ItemPicker.TryTake(this);
+            context.ItemPicker.Take(this);
         }
     }
 }

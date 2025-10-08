@@ -1,4 +1,5 @@
 using ITCafe.CafeBusiness;
+using ITCafe.Data.Items;
 
 namespace ITCafe.Environment
 {
@@ -6,7 +7,7 @@ namespace ITCafe.Environment
     {
         public string Id { get; set; }
 
-        private BurgerItemInfo _info;
+        private BurgerItemInfo _info = new();
 
         public int GetItemHash()
         {
