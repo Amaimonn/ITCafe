@@ -1,5 +1,6 @@
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
+using UnityEngine;
 
 namespace ITCafe.Environment
 {
@@ -7,7 +8,7 @@ namespace ITCafe.Environment
     {
         public string Id { get; set; }
 
-        private BurgerItemInfo _info = new();
+        [SerializeField] private BurgerItemInfo _info = new();
 
         public int GetItemHash()
         {

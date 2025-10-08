@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Editor
 {
-    [CustomPropertyDrawer(typeof(BaseItemInfo), true)]
+    [CustomPropertyDrawer(typeof(ItemTypeSelectorAttribute), true)]
     public class BaseItemInfoDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

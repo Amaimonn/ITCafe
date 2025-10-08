@@ -2,6 +2,7 @@ using System;
 
 namespace ITCafe.Data.Items
 {
+    [Serializable]
     public class BurgerItemInfo : BaseItemInfo<BurgerItemInfo>
     {
         public bool IsDoubleCheese;

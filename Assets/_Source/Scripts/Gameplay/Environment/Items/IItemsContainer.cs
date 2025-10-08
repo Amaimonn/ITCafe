@@ -7,6 +7,6 @@ namespace ITCafe.Environment
         public bool ContainsHash(int hash);
         public IMenuItem ExtractItem(int hash);
         public bool CanTake(IItem item);
-        public void Take(IMenuItem item); // собирает только готовые блюда
+        public void Take(IMenuItem item);
     }
 }

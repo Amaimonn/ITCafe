@@ -23,9 +23,6 @@ namespace ITCafe.Environment
         {
             var picker = context.ItemPicker;
             return picker.CanTake(_coreItem);
-            //     ||
-            // (picker.CurrentItem.CurrentValue is IItemsContainer itemsContainer &&
-            //  itemsContainer.CanTake(_coreItem));
         }
 
         public override void Interact(PlayerContext context)

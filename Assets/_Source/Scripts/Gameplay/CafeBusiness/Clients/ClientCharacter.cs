@@ -22,7 +22,7 @@ namespace ITCafe.CafeBusiness
             base.Awake();
             _camera = Camera.main;
             _order = new OrderItem(_itemInfoSO.ItemInfo.GetItemHash());
-            Debug.Log($"OrderHash: {_order.OrderHashes}");
+            // Debug.Log($"OrderHash: {_order.OrderHashes}");
         }
 
         private void Start()

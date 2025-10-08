@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
-  m_Name: FriesInfoSO
+  m_Name: ItemInfoSO
   m_EditorClassIdentifier: 
-  <Image>k__BackingField: {fileID: 21300004, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
+  <Image>k__BackingField: {fileID: 0}
   ItemInfo:
-    rid: 8553649809306419273
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 8553649809306419273
-      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
-      data:
-        ItemTag: 3
+    - rid: -2
+      type: {class: , ns: , asm: }

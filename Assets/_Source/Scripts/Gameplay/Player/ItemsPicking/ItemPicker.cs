@@ -49,7 +49,6 @@ namespace ITCafe.Player
         public bool CanTake(IItem item)
         {
             return _currentState.Value?.CanTake(item) ?? false;
-            // return !_isHoldingItem.Value && _currentItem.Value == null;
         }
 
         public void ChangeState(ItemPickerState newState)
@@ -70,12 +69,6 @@ namespace ITCafe.Player
             _currentState.Value?.Take(item);
             _wasTakenThisFrame = true;
             Observable.NextFrame().Subscribe(_ => _wasTakenThisFrame = false);
-            // item.transform.parent = _holdingPoint;
-            // item.transform.SetLocalPositionAndRotation(-item.CenterOffset, Quaternion.identity);
-            // _currentItem.Value = item;
-            // _isHoldingItem.Value = true;
-            // _wasTakenThisFrame = true;
-            // Observable.NextFrame().Subscribe(_ => _wasTakenThisFrame = false);
         }
 
         public bool TryTake(IItem item)
