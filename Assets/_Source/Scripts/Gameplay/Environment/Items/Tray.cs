@@ -7,6 +7,8 @@ namespace ITCafe.Environment
 {
     public class Tray : ContainerItem
     {
+        public override IEnumerable<IMenuItem> Items => _currentItems;
+        
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;
         [SerializeField, Min(0)] private float _itemsOffsetY = 0.15f;
 

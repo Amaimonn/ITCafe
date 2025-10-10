@@ -126,9 +126,9 @@ namespace ITCafe.CafeBusiness
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
-            foreach (var hash in _order.OrderHashes)
+            foreach (var item in container.Items)
             {
-                if (container.ContainsHash(hash))
+                if (_order.IsCorresponds(item.GetItemHash()))
                     return true;
             }
 
@@ -150,13 +150,21 @@ namespace ITCafe.CafeBusiness
 
         public void HandleContainer(IItemsContainer container, PlayerContext context)
         {
-            var orderHashes = _order.OrderHashes.ToArray();
-            foreach (var hash in orderHashes)
+            // var orderHashes = _order.OrderHashes.ToArray();
+            var items = container.Items.ToArray();
+            foreach (var it in items)
             {
-                var item = container.ExtractItem(hash);
-                Debug.Log($"Extract {hash}");
-                if (item != null && _order.TryHandOver(hash))
-                    ConsumeItem(item, hash);
+                if (_order.IsCompleted)
+                    break;
+
+                var hash = it.GetItemHash();
+                if (_order.IsCorresponds(hash))
+                {
+                    var item = container.ExtractItem(hash);
+                    Debug.Log($"Extract {hash}");
+                    if (item != null && _order.TryHandOver(hash))
+                        ConsumeItem(item, hash);
+                }
             }
         }
         #endregion
