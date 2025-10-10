@@ -35,7 +35,10 @@ namespace ITCafe.Environment
         protected override void Awake()
         {
             base.Awake();
-            CenterOffset = transform.InverseTransformPoint(GetComponent<Renderer>().bounds.center);
+            if (!TryGetComponent<Renderer>(out var renderer))
+                renderer = GetComponentInChildren<Renderer>();
+           
+            CenterOffset = transform.InverseTransformPoint(renderer.bounds.center);
         }
 #endregion
 
