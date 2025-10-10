@@ -18,10 +18,12 @@ namespace ITCafe.Editor
             var itemInfoTypes = GetItemInfoTypes();
             var typeNames = itemInfoTypes.Select(t => t.Name).ToList();
             typeNames.Insert(0, "None");
-            
-            var dropdown = new PopupField<string>("Item Info Type", typeNames, 0);
-            dropdown.tooltip = "Select the type of item info";
-            
+
+            var dropdown = new PopupField<string>("Item Info Type", typeNames, 0)
+            {
+                tooltip = "Select the type of item info"
+            };
+
             var currentType = GetCurrentType(property);
             var currentIndex = currentType != null ? typeNames.IndexOf(currentType.Name) : 0;
             

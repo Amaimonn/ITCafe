@@ -1,3 +1,4 @@
+using ITCafe.CafeBusiness;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -32,8 +33,8 @@ namespace ITCafe.Environment
             item.SetPhysicsEnabled(false);
 
             context.ItemPicker.Take(item);
-
-            Debug.Log("Spawner: item has been taken");
+            if (item is IEquatableItem eqItem) // TODO: Remove
+                Debug.Log($"Spawner: {eqItem.GetItemHash()} item");
         }
     }
 }

@@ -52,14 +52,14 @@ namespace ITCafe.Environment
         {
             if (_outline != null)
                 _outline.enabled = true;
-            Debug.Log($"Focus: {name}");
+            // Debug.Log($"Focus: {name}");
         }
 
         public virtual void UnFocus()
         {
             if (_outline != null)
                 _outline.enabled = false;
-            Debug.Log($"Unfocus: {name}");
+            // Debug.Log($"Unfocus: {name}");
         }
 
         public abstract bool CanInteract(PlayerContext context);
