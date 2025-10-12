@@ -6,12 +6,8 @@ namespace ITCafe.CafeBusiness
     public interface IOrder
     {
         public bool IsCompleted { get; }
-        public IEnumerable<int> OrderHashes { get; } // Remove It
 
-        public bool IsCorresponds(int hash)
-        {
-            return OrderHashes.Contains(hash); // Make abstract
-        }
+        public abstract bool IsCorresponds(int hash);
 
         public bool TryHandOver(int hash);
     }

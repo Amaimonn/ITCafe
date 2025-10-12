@@ -5,13 +5,16 @@ namespace ITCafe.CafeBusiness
     public class OrderItem : IOrderItem, IOrder
     {
         public bool IsCompleted { get; private set; }
-        public IEnumerable<int> OrderHashes { get; }
-        public int OrderedItemHash { get; set; }
+        public int OrderedItemHash { get; }
 
         public OrderItem(int orderedItemHash)
         {
             OrderedItemHash = orderedItemHash;
-            OrderHashes = new[] { orderedItemHash };
+        }
+
+        public bool IsCorresponds(int hash)
+        {
+            return OrderedItemHash == hash;
         }
 
         public bool TryHandOver(int hash)
@@ -20,7 +23,7 @@ namespace ITCafe.CafeBusiness
                 return false;
 
             IsCompleted = true;
-            
+
             return true;
         }
     }

@@ -57,15 +57,9 @@ namespace ITCafe.CafeBusiness
                     foreach (var so in _itemInfoSO)
                     {
                         var hash = so.ItemInfo.GetItemHash();
-                        if (orderedItemsMap.ContainsKey(hash))
+                        if (!orderedItemsMap.TryAdd(hash, 1))
                             orderedItemsMap[hash] += 1;
-                        else
-                            orderedItemsMap[hash] = 1;
                         AddImage(so.Image, hash);
-                    }
-                    foreach (var item in orderedItemsMap)
-                    {
-                        Debug.Log($"Item {item.Key} count {item.Value}");
                     }
                     _order = new OrderMap(orderedItemsMap);
                 }
@@ -90,7 +84,7 @@ namespace ITCafe.CafeBusiness
             }
         }
 
-        #region IInteractable
+#region IInteractable
         public override bool CanInteract(PlayerContext context)
         {
             if (IsCompleted)
@@ -108,9 +102,9 @@ namespace ITCafe.CafeBusiness
             var item = context.CurrentItem.CurrentValue;
             item.Handle(this, context);
         }
-        #endregion
+#endregion
 
-        #region IItemHandler
+#region IItemHandler
         public bool CanHandle(IItem item, PlayerContext context)
         {
             if (item is IEquatableItem equatableItem)
@@ -167,7 +161,7 @@ namespace ITCafe.CafeBusiness
                 }
             }
         }
-        #endregion
+#endregion
 
         private void ConsumeItem(IItem item, int hash)
         {

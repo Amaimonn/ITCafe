@@ -7,21 +7,17 @@ namespace ITCafe.CafeBusiness
     {
         public IReadOnlyDictionary<int, int> OrderedItemsMap => _orderedItemsMap;
         public bool IsCompleted { get; private set; }
-        public IEnumerable<int> OrderHashes => _orderHashes;
 
         private Dictionary<int, int> _orderedItemsMap; // key: hash, value: amount
-        private List<int> _orderHashes;
 
         public OrderMap(Dictionary<IOrderItem, int> orderedItemsMap)
         {
             _orderedItemsMap = orderedItemsMap.ToDictionary(kvp => kvp.Key.OrderedItemHash, kvp => kvp.Value);
-            InitHashesCollection();
         }
 
         public OrderMap(Dictionary<int, int> orderedItemsMap)
         {
             _orderedItemsMap = orderedItemsMap;
-            InitHashesCollection();
         }
 
         public static OrderMap FromEnumerable<T>(IEnumerable<T> orderedItems) where T : IOrderItem
@@ -31,13 +27,16 @@ namespace ITCafe.CafeBusiness
             foreach (var orderedItem in orderedItems)
             {
                 var hash = orderedItem.OrderedItemHash;
-                if (orderedItemsMap.ContainsKey(hash))
+                if (!orderedItemsMap.TryAdd(hash, 1))
                     orderedItemsMap[hash] += 1;
-                else
-                    orderedItemsMap[hash] = 1;
             }
 
             return new OrderMap(orderedItemsMap);
+        }
+
+        public bool IsCorresponds(int hash)
+        {
+            return _orderedItemsMap.ContainsKey(hash);
         }
 
         public bool TryHandOver(int hash)
@@ -56,17 +55,7 @@ namespace ITCafe.CafeBusiness
             else
                 _orderedItemsMap[hash] -= 1;
 
-            _orderHashes.Remove(hash);
             return true;
-        }
-
-        private void InitHashesCollection()
-        {
-            _orderHashes = new List<int>();
-
-            foreach (var orderedItem in _orderedItemsMap)
-                for (var i = 0; i < orderedItem.Value; i++)
-                    _orderHashes.Add(orderedItem.Key);
         }
     }
 }
