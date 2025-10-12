@@ -1,4 +1,7 @@
+using ITCafe.CafeBusiness;
+using ITCafe.Data.Items;
 using ITCafe.Player;
+using ITCafe.Solutions;
 using R3;
 using UnityEngine;
 using VContainer;
@@ -8,8 +11,13 @@ namespace ITCafe
 {
     public class RootScope : LifetimeScope
     {
+        [Header("Player")]
         [SerializeField] private Interactor _playerInteractor;
         [SerializeField] private ItemPicker _playerItemPicker;
+
+        [Header("Clients"), Space(4)]
+        [SerializeField] private ClientCharacter _clientPrefab;
+        [SerializeField] private ItemInfoSO[] _itemInfoConfigs;
 
         private CompositeDisposable _disposables;
 
@@ -18,6 +26,8 @@ namespace ITCafe
             builder.RegisterComponent<IItemPicker>(_playerItemPicker);
             builder.Register<PlayerContext>(Lifetime.Singleton);
             builder.Register<InputService>(Lifetime.Singleton);
+            builder.Register<IFactory<ClientCharacter>>(x => new ClientsFactory(_itemInfoConfigs, _clientPrefab),
+                Lifetime.Singleton);
         }
 
         protected override void Awake()

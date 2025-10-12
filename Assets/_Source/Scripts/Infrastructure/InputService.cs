@@ -25,7 +25,7 @@ namespace ITCafe
         {
             return MakeOrderedSub(inputId, entry.Sub, entry.Unsub, entry.Order);
         }
-        
+
         public IDisposable MakeOrderedSub(int inputId, Action sub, Action unsub, int order = int.MaxValue)
         {
             var registeredEntry = new InputEntry(sub, unsub, order);

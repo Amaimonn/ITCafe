@@ -1,12 +1,24 @@
-using System;
+using System.Collections.Generic;
 using ITCafe.Data.Items;
-using UnityEngine;
+using ITCafe.Solutions;
+using Object = UnityEngine.Object;
 
 namespace ITCafe.CafeBusiness
 {
-    public class ClientsFactory
+    public class ClientsFactory : IFactory<ClientCharacter>
     {
-        [SerializeField] private ItemInfoSO[] _itemConfigs;
-        
+        private readonly IEnumerable<ItemInfoSO> _itemConfigs;
+        private readonly ClientCharacter _clientPrefab;
+
+        public ClientsFactory(IEnumerable<ItemInfoSO> itemConfigs, ClientCharacter clientPrefab)
+        {
+            _itemConfigs = itemConfigs;
+            _clientPrefab = clientPrefab;
+        }
+
+        public ClientCharacter Create()
+        {
+            return Object.Instantiate(_clientPrefab);
+        }
     }
 }
