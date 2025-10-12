@@ -52,9 +52,9 @@ namespace ITCafe
             }
 
             var clientsFactory = Container.Resolve<IFactory<ClientCharacter>>();
-            clientsFactory.Create().transform.position = new Vector3(8f,-6f,-4f);
-            clientsFactory.Create().transform.position = new Vector3(8f,-6f,-3.3f);
-            clientsFactory.Create().transform.position = new Vector3(8f,-6f,-2.6f);
+            clientsFactory.Create().transform.SetPositionAndRotation(new Vector3(8f, 0, -4f), Quaternion.Euler(0, 90, 0));
+            clientsFactory.Create().transform.SetPositionAndRotation(new Vector3(8f, 0, -3.3f), Quaternion.Euler(0, 90, 0));
+            clientsFactory.Create().transform.SetPositionAndRotation(new Vector3(8f, 0, -2.6f), Quaternion.Euler(0, 90, 0));
         }
 
         protected override void OnDestroy()

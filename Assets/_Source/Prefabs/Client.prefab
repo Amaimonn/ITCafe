@@ -238,7 +238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outline: {fileID: 6307389492471734364}
   <OrderUI>k__BackingField: {fileID: 896260506231733881}
-  _itemInfoSO: []
 --- !u!114 &6307389492471734364
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ namespace ITCafe.Environment
 
             _outline.outlineColor = new Color(1f, 10.6283679f, 0.45f, 1);
             _outline.outlineWidth = 7f;
+            _outline.outlineMode = Outline.Mode.OutlineAndSilhouette;
         }
 
         public static Color ComposeHdrColor(Color32 baseLinearColor, float exposure)
