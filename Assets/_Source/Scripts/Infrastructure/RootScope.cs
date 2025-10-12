@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
+using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Player;
 using ITCafe.Solutions;
 using R3;
@@ -17,17 +20,21 @@ namespace ITCafe
 
         [Header("Clients"), Space(4)]
         [SerializeField] private ClientCharacter _clientPrefab;
-        [SerializeField] private ItemInfoSO[] _itemInfoConfigs;
+        [SerializeField] private AllItemInfoSO _allItemsInfoSO;
 
         private CompositeDisposable _disposables;
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterInstance<ClientCharacter>(_clientPrefab);
+            builder.Register<OrderGenerator>(Lifetime.Singleton);
+            builder.RegisterInstance<ItemInfoSO[]>(_allItemsInfoSO.AllInfo).AsSelf().As<IEnumerable<ItemInfoSO>>();
+            builder.Register<Dictionary<int, ItemInfoSO>>(x =>
+                _allItemsInfoSO.AllInfo.ToDictionary(y => y.ItemInfo.GetItemHash()), Lifetime.Singleton);
             builder.RegisterComponent<IItemPicker>(_playerItemPicker);
             builder.Register<PlayerContext>(Lifetime.Singleton);
             builder.Register<InputService>(Lifetime.Singleton);
-            builder.Register<IFactory<ClientCharacter>>(x => new ClientsFactory(_itemInfoConfigs, _clientPrefab),
-                Lifetime.Singleton);
+            builder.Register<ClientsFactory>(Lifetime.Singleton).As<IFactory<ClientCharacter>>();
         }
 
         protected override void Awake()
@@ -43,6 +50,11 @@ namespace ITCafe
                 _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
                 _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: x"));
             }
+
+            var clientsFactory = Container.Resolve<IFactory<ClientCharacter>>();
+            clientsFactory.Create().transform.position = new Vector3(8f,-6f,-4f);
+            clientsFactory.Create().transform.position = new Vector3(8f,-6f,-3.3f);
+            clientsFactory.Create().transform.position = new Vector3(8f,-6f,-2.6f);
         }
 
         protected override void OnDestroy()

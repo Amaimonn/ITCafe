@@ -1,14 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using R3;
 
 namespace ITCafe.CafeBusiness
 {
-    public class OrderMap : IOrder
+    public class OrderMap : BaseOrder
     {
         public IReadOnlyDictionary<int, int> OrderedItemsMap => _orderedItemsMap;
-        public bool IsCompleted { get; private set; }
 
-        private Dictionary<int, int> _orderedItemsMap; // key: hash, value: amount
+
+        private readonly Dictionary<int, int> _orderedItemsMap; // key: hash, value: amount
 
         public OrderMap(Dictionary<IOrderItem, int> orderedItemsMap)
         {
@@ -34,12 +36,19 @@ namespace ITCafe.CafeBusiness
             return new OrderMap(orderedItemsMap);
         }
 
-        public bool IsCorresponds(int hash)
+        public override bool IsCorresponds(int hash)
         {
             return _orderedItemsMap.ContainsKey(hash);
         }
 
-        public bool TryHandOver(int hash)
+        public override void PropagateHashes(Action<int> onPropagate)
+        {
+            foreach (var orderPair in _orderedItemsMap)
+                for (var i = 0; i < orderPair.Value; i++)
+                    onPropagate(orderPair.Key);
+        }
+
+        public override bool TryHandOver(int hash)
         {
             if (!_orderedItemsMap.TryGetValue(hash, out var amount))
                 return false;
@@ -54,6 +63,8 @@ namespace ITCafe.CafeBusiness
             }
             else
                 _orderedItemsMap[hash] -= 1;
+
+            _onHashRemoved.OnNext(hash);
 
             return true;
         }

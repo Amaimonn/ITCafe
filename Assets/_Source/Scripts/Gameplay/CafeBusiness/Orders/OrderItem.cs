@@ -1,10 +1,9 @@
-using System.Collections.Generic;
+using System;
 
 namespace ITCafe.CafeBusiness
 {
-    public class OrderItem : IOrderItem, IOrder
+    public class OrderItem : BaseOrder, IOrderItem
     {
-        public bool IsCompleted { get; private set; }
         public int OrderedItemHash { get; }
 
         public OrderItem(int orderedItemHash)
@@ -12,12 +11,17 @@ namespace ITCafe.CafeBusiness
             OrderedItemHash = orderedItemHash;
         }
 
-        public bool IsCorresponds(int hash)
+        public override bool IsCorresponds(int hash)
         {
             return OrderedItemHash == hash;
         }
 
-        public bool TryHandOver(int hash)
+        public override void PropagateHashes(Action<int> onPropagate)
+        {
+            onPropagate(OrderedItemHash);
+        }
+
+        public override bool TryHandOver(int hash)
         {
             if (hash != OrderedItemHash)
                 return false;

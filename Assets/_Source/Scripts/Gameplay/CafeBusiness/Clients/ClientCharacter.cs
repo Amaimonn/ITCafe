@@ -1,87 +1,22 @@
-using System.Collections.Generic;
 using System.Linq;
-using ITCafe.Data.Items;
 using ITCafe.Environment;
+using ITCafe.Gameplay.UI.World;
 using ITCafe.Player;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace ITCafe.CafeBusiness
 {
     public class ClientCharacter : BaseInteractable, IItemHandler
     {
-        [SerializeField] private UIDocument _worldDocument;
-        [SerializeField] private ItemInfoSO[] _itemInfoSO;
-        [SerializeField] private Transform _uiHolder;
+        [field: SerializeField] public OrderCloudWorldUI OrderUI { get; private set; }
 
         private bool IsCompleted => _order.IsCompleted;
 
-        private Camera _camera;
         private IOrder _order;
-        private VisualElement _imagesContainer;
-        private List<(int hash, VisualElement image)> _images = new();
 
-        protected override void Awake()
+        public void Init(IOrder order)
         {
-            base.Awake();
-            _camera = Camera.main;
-            InitOrder();
-        }
-
-        private void Update()
-        {
-            _uiHolder.transform.LookAt(_camera.transform);
-        }
-
-        private void InitOrder()
-        {
-            var root = _worldDocument.rootVisualElement;
-            _imagesContainer = root.Q<VisualElement>(name: "ImagesContainer");
-            _imagesContainer.Clear();
-
-            var orderCount = _itemInfoSO.Length;
-            if (orderCount > 0)
-            {
-                if (orderCount == 1)
-                {
-                    var itemSO = _itemInfoSO[0];
-                    var itemHash = itemSO.ItemInfo.GetItemHash();
-
-                    _order = new OrderItem(itemHash);
-                    AddImage(itemSO.Image, itemHash);
-                }
-                else
-                {
-                    Dictionary<int, int> orderedItemsMap = new();
-
-                    foreach (var so in _itemInfoSO)
-                    {
-                        var hash = so.ItemInfo.GetItemHash();
-                        if (!orderedItemsMap.TryAdd(hash, 1))
-                            orderedItemsMap[hash] += 1;
-                        AddImage(so.Image, hash);
-                    }
-                    _order = new OrderMap(orderedItemsMap);
-                }
-            }
-            else
-            {
-                Debug.LogError($"No items in order {gameObject.name}");
-                _order = new OrderItem(-1);
-            }
-
-            void AddImage(Sprite sprite, int hash)
-            {
-                var image = new VisualElement()
-                {
-                    style = { backgroundImage = new StyleBackground(sprite) },
-                    name = hash.ToString()
-                };
-                Debug.Log($"Add image {hash}");
-                image.AddToClassList("order-cloud__item-image");
-                _imagesContainer.Add(image);
-                _images.Add((hash, image));
-            }
+            _order = order;
         }
 
 #region IInteractable
@@ -144,7 +79,6 @@ namespace ITCafe.CafeBusiness
 
         public void HandleContainer(IItemsContainer container, PlayerContext context)
         {
-            // var orderHashes = _order.OrderHashes.ToArray();
             var items = container.Items.ToArray();
             foreach (var it in items)
             {
@@ -155,7 +89,7 @@ namespace ITCafe.CafeBusiness
                 if (_order.IsCorresponds(hash))
                 {
                     var item = container.ExtractItem(hash);
-                    Debug.Log($"Extract {hash}");
+                    // Debug.Log($"Extract {hash}");
                     if (item != null && _order.TryHandOver(hash))
                         ConsumeItem(item, hash);
                 }
@@ -166,23 +100,9 @@ namespace ITCafe.CafeBusiness
         private void ConsumeItem(IItem item, int hash)
         {
             Destroy(item.transform.gameObject);
-            RemoveImage(hash);
 
             if (IsCompleted)
                 Destroy(gameObject);
-        }
-
-        private void RemoveImage(int hash)
-        {
-            var imageToRemove = _images.FirstOrDefault(x => x.hash == hash);
-            if (imageToRemove != default)
-            {
-                _imagesContainer.Remove(imageToRemove.image);
-                _images.Remove(imageToRemove);
-            }
-            // imageToRemove.RemoveFromHierarchy();
-            else
-                Debug.LogError($"Image {hash} not found");
         }
     }
 }

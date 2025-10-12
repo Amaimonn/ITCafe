@@ -14,7 +14,7 @@ namespace ITCafe.Environment
         protected override void Awake()
         {
             base.Awake();
-            
+
             var itemObject = Instantiate(_itemPrefab);
             _coreItem = itemObject.GetComponent<IItem>();
             itemObject.SetActive(false);
@@ -33,8 +33,10 @@ namespace ITCafe.Environment
             item.SetPhysicsEnabled(false);
 
             context.ItemPicker.Take(item);
+#if UNITY_EDITOR
             if (item is IEquatableItem eqItem) // TODO: Remove
                 Debug.Log($"Spawner: {eqItem.GetItemHash()} item");
+#endif
         }
     }
 }
