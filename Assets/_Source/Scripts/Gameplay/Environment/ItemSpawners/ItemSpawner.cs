@@ -22,6 +22,7 @@ namespace ITCafe.Environment
 
         public override bool CanInteract(PlayerContext context)
         {
+            // TODO: max items
             var picker = context.ItemPicker;
             return picker.CanTake(_coreItem);
         }

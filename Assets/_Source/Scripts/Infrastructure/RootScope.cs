@@ -19,22 +19,30 @@ namespace ITCafe
         [SerializeField] private ItemPicker _playerItemPicker;
 
         [Header("Clients"), Space(4)]
-        [SerializeField] private ClientCharacter _clientPrefab;
+        [SerializeField] private ClientCharacter[] _clientPrefabs;
         [SerializeField] private AllItemInfoSO _allItemsInfoSO;
+        [SerializeField] private Transform[] _clientSpawnPoints;
 
         private CompositeDisposable _disposables;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterInstance<ClientCharacter>(_clientPrefab);
+            builder.RegisterInstance<ClientCharacter[]>(_clientPrefabs)
+                .As<IEnumerable<ClientCharacter>>()
+                .As<ICollection<ClientCharacter>>()
+                .As<IList<ClientCharacter>>()
+                .AsSelf();
             builder.Register<OrderGenerator>(Lifetime.Singleton);
-            builder.RegisterInstance<ItemInfoSO[]>(_allItemsInfoSO.AllInfo).AsSelf().As<IEnumerable<ItemInfoSO>>();
+            builder.RegisterInstance<ItemInfoSO[]>(_allItemsInfoSO.AllInfo)
+                .AsSelf()
+                .As<IEnumerable<ItemInfoSO>>();
             builder.Register<Dictionary<int, ItemInfoSO>>(x =>
                 _allItemsInfoSO.AllInfo.ToDictionary(y => y.ItemInfo.GetItemHash()), Lifetime.Singleton);
             builder.RegisterComponent<IItemPicker>(_playerItemPicker);
             builder.Register<PlayerContext>(Lifetime.Singleton);
             builder.Register<InputService>(Lifetime.Singleton);
-            builder.Register<ClientsFactory>(Lifetime.Singleton).As<IFactory<ClientCharacter>>();
+            builder.Register<ClientsFactory>(Lifetime.Singleton)
+                .As<IFactory<ClientCharacter>>();
         }
 
         protected override void Awake()
@@ -52,9 +60,8 @@ namespace ITCafe
             }
 
             var clientsFactory = Container.Resolve<IFactory<ClientCharacter>>();
-            clientsFactory.Create().transform.SetPositionAndRotation(new Vector3(8f, 0, -4f), Quaternion.Euler(0, 90, 0));
-            clientsFactory.Create().transform.SetPositionAndRotation(new Vector3(8f, 0, -3.3f), Quaternion.Euler(0, 90, 0));
-            clientsFactory.Create().transform.SetPositionAndRotation(new Vector3(8f, 0, -2.6f), Quaternion.Euler(0, 90, 0));
+            foreach (var spawnPoint in _clientSpawnPoints)
+                clientsFactory.Create().transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
         }
 
         protected override void OnDestroy()
