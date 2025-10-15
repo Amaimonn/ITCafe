@@ -1,9 +1,6 @@
-using System;
 using ITCafe.Environment;
 using R3;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using VContainer;
 
 namespace ITCafe.Player
 {
@@ -16,36 +13,17 @@ namespace ITCafe.Player
 
         [SerializeField] private Transform _holdingPoint;
         [SerializeField] private Transform _dropPoint;
-        [SerializeField] private InputActionReference _dropAction;
 
-        [Inject] InputService _inputService;
         private readonly ReactiveProperty<bool> _isHoldingItem = new(false);
         private readonly ReactiveProperty<IItem> _currentItem = new();
         private readonly ReactiveProperty<ItemPickerState> _currentState = new();
         private bool _wasTakenThisFrame = false;
 
-        private Action<InputAction.CallbackContext> _onDrop;
-        private IDisposable _dropSubscription;
-        
         private void Awake()
         {
             ChangeState(new EmptyHandsState(this));
         }
         
-        private void OnEnable()
-        {
-            _onDrop = OnDrop;//_inputService.MediateAction(_dropAction, OnDrop);
-            var inputEntry = new InputEntry(() => _dropAction.action.started += _onDrop,
-                () => _dropAction.action.started -= _onDrop, 80);
-            _dropSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_dropAction.action, "started"),
-                inputEntry);
-        }
-
-        private void OnDisable()
-        {
-            _dropSubscription.Dispose();
-        }
-
         public bool CanTake(IItem item)
         {
             return _currentState.Value?.CanTake(item) ?? false;
@@ -80,13 +58,16 @@ namespace ITCafe.Player
             return true;
         }
 
-        public void TryDrop()
+        public bool Execute() 
+            => TryDrop();
+
+        public bool TryDrop()
         {
             if (_currentItem.Value == null || _wasTakenThisFrame || IsDroppingBlocked)
-                return;
+                return false;
 
             Drop();
-            // _inputService.StopPropagating(_dropAction);
+            return true;
         }
 
         public void Drop()
@@ -107,11 +88,6 @@ namespace ITCafe.Player
             _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value = null;
             _isHoldingItem.Value = false;
-        }
-
-        private void OnDrop(InputAction.CallbackContext _)
-        {
-            TryDrop();
         }
     }
 }

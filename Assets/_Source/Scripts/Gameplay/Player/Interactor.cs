@@ -1,8 +1,6 @@
-using System;
 using ITCafe.Environment;
 using R3;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using VContainer;
 
 namespace ITCafe.Player
@@ -13,7 +11,6 @@ namespace ITCafe.Player
         public Observable<bool> CanInteract => _canInteract;
         public Observable<IItem> OnItemInteracted => _onItemInteracted;
 
-        [SerializeField] private InputActionReference _interactAction;
         [SerializeField] private float _interactDistance;
         [SerializeField] private Camera _camera;
         [SerializeField] private LayerMask _interactableLayers;
@@ -22,10 +19,6 @@ namespace ITCafe.Player
         private readonly ReactiveProperty<bool> _canInteract = new(false);
         private readonly ReactiveProperty<IInteractable> _target = new();
         [Inject] private readonly PlayerContext _playerContext;
-        [Inject] private readonly InputService _inputService;
-
-        private Action<InputAction.CallbackContext> _onInteract;
-        private IDisposable _interactSubscription;
 
         #region MonoBehaviour
 
@@ -35,20 +28,6 @@ namespace ITCafe.Player
                 _camera = Camera.main;
         }
 
-        private void OnEnable()
-        {
-            _onInteract = OnInteract; //_inputService.MediateAction(_interactAction, OnInteract);
-            var inputEntry = new InputEntry(() => _interactAction.action.started += _onInteract,
-                () => _interactAction.action.started -= _onInteract, 90);
-            _interactSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_interactAction.action, "started"),
-                inputEntry);
-        }
-
-        private void OnDisable()
-        {
-            _interactSubscription.Dispose();
-        }
-
         private void Update()
         {
             FindInteractables();
@@ -56,20 +35,21 @@ namespace ITCafe.Player
 
         #endregion
 
-        private void OnInteract(InputAction.CallbackContext context)
-        {
-            InteractWithTarget();
-            // _inputService.StopPropagating(_interactAction);
-        }
+        public bool Execute() 
+            => TryInteractWithTarget();
 
-        private void InteractWithTarget()
+        private bool TryInteractWithTarget()
         {
             if (_target.Value != null)
             {
                 _target.Value.Interact(_playerContext);
                 if (_target.Value is IItem item)
                     _onItemInteracted.OnNext(item);
+               
+                return true;
             }
+            
+            return false;
         }
 
         private void FindInteractables()

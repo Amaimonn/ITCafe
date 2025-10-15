@@ -8,6 +8,7 @@ namespace ITCafe
 {
     public class RootScope : LifetimeScope
     {
+        [SerializeField] private PlayerHands _playerHands;
         [SerializeField] private Interactor _playerInteractor;
         [SerializeField] private ItemPicker _playerItemPicker;
 
@@ -26,6 +27,7 @@ namespace ITCafe
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
+            Container.Inject(_playerHands);
             Container.Inject(_playerInteractor);
 
             _disposables = new();
