@@ -27,6 +27,7 @@ namespace ITCafe.CafeBusiness
                 return false;
 
             IsCompleted = true;
+            _onHashRemoved.OnNext(OrderedItemHash);
 
             return true;
         }
