@@ -1,46 +1,22 @@
-using ITCafe.Data.Items;
+using System.Linq;
 using ITCafe.Environment;
+using ITCafe.Gameplay.UI.World;
 using ITCafe.Player;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace ITCafe.CafeBusiness
 {
     public class ClientCharacter : BaseInteractable, IItemHandler
     {
-        [SerializeField] private UIDocument _worldDocument;
-        [SerializeField] private ItemInfoSO _itemInfoSO;
-        [SerializeField] private Transform _uiHolder;
+        [field: SerializeField] public OrderCloudWorldUI OrderUI { get; private set; }
 
         private bool IsCompleted => _order.IsCompleted;
 
-        private Camera _camera;
         private IOrder _order;
 
-        protected override void Awake()
+        public void Init(IOrder order)
         {
-            base.Awake();
-            _camera = Camera.main;
-            _order = new OrderItem(_itemInfoSO.ItemInfo.GetItemHash());
-            // Debug.Log($"OrderHash: {_order.OrderHashes}");
-        }
-
-        private void Start()
-        {
-            var root = _worldDocument.rootVisualElement;
-            var imagesContainer = root.Q<VisualElement>(name: "ImagesContainer");
-            imagesContainer.Clear();
-            var image = new VisualElement()
-            {
-                style = { backgroundImage = new StyleBackground(_itemInfoSO.Image) }
-            };
-            image.AddToClassList("order-cloud__item-image");
-            imagesContainer.Add(image);
-        }
-
-        private void Update()
-        {
-            _uiHolder.transform.LookAt(_camera.transform);
+            _order = order;
         }
 
 #region IInteractable
@@ -79,9 +55,9 @@ namespace ITCafe.CafeBusiness
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
-            foreach (var hash in _order.OrderHashes)
+            foreach (var item in container.Items)
             {
-                if (container.ContainsHash(hash))
+                if (_order.IsCorresponds(item.GetItemHash()))
                     return true;
             }
 
@@ -96,26 +72,32 @@ namespace ITCafe.CafeBusiness
                 if (_order.TryHandOver(hash))
                 {
                     context.ItemPicker.Release();
-                    ConsumeItem(item);
+                    ConsumeItem(item, hash);
                 }
             }
         }
 
         public void HandleContainer(IItemsContainer container, PlayerContext context)
         {
-            foreach (var hash in _order.OrderHashes)
+            var items = container.Items.ToArray();
+            foreach (var it in items)
             {
-                var item = container.ExtractItem(hash);
-                if (item != null)
+                if (_order.IsCompleted)
+                    break;
+
+                var hash = it.GetItemHash();
+                if (_order.IsCorresponds(hash))
                 {
-                    if (_order.TryHandOver(item.GetItemHash()))
-                        ConsumeItem(item);
+                    var item = container.ExtractItem(hash);
+                    // Debug.Log($"Extract {hash}");
+                    if (item != null && _order.TryHandOver(hash))
+                        ConsumeItem(item, hash);
                 }
             }
         }
 #endregion
 
-        private void ConsumeItem(IItem item)
+        private void ConsumeItem(IItem item, int hash)
         {
             Destroy(item.transform.gameObject);
 

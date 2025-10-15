@@ -5,6 +5,7 @@ namespace ITCafe.Data.Items
         Muffin,
         Croissant,
         Onigiri,
-        Fries
+        Fries,
+        ChocolateDonut
     }
 }

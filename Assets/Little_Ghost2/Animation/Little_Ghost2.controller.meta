@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8d8723631e475824fbfad41470d720be
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229325
+  packageName: Little Ghost 2
+  packageVersion: 1.0
+  assetPath: Assets/Little_Ghost2/Animation/Little_Ghost2.controller
+  uploadId: 517522

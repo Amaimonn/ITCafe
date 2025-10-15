@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ITCafe.CafeBusiness;
 using ITCafe.Player;
 
@@ -5,6 +6,8 @@ namespace ITCafe.Environment
 {
     public abstract class ContainerItem : PickUpItem, IItemsContainer, IItemHandler
     {
+        public abstract IEnumerable<IMenuItem> Items { get; }
+        
         public override bool CanHandle(IItemHandler handler, PlayerContext context) =>
             handler.CanHandleContainer(this, context);
 

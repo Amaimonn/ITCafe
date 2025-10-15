@@ -1,3 +1,4 @@
+using ITCafe.CafeBusiness;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace ITCafe.Environment
         protected override void Awake()
         {
             base.Awake();
-            
+
             var itemObject = Instantiate(_itemPrefab);
             _coreItem = itemObject.GetComponent<IItem>();
             itemObject.SetActive(false);
@@ -21,6 +22,7 @@ namespace ITCafe.Environment
 
         public override bool CanInteract(PlayerContext context)
         {
+            // TODO: max items
             var picker = context.ItemPicker;
             return picker.CanTake(_coreItem);
         }
@@ -32,8 +34,10 @@ namespace ITCafe.Environment
             item.SetPhysicsEnabled(false);
 
             context.ItemPicker.Take(item);
-
-            Debug.Log("Spawner: item has been taken");
+#if UNITY_EDITOR
+            if (item is IEquatableItem eqItem) // TODO: Remove
+                Debug.Log($"Spawner: {eqItem.GetItemHash()} item");
+#endif
         }
     }
 }

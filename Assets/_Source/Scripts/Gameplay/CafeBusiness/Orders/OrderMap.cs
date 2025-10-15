@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using R3;
 
 namespace ITCafe.CafeBusiness
 {
-    public class OrderMap : IOrder
+    public class OrderMap : BaseOrder
     {
         public IReadOnlyDictionary<int, int> OrderedItemsMap => _orderedItemsMap;
-        public bool IsCompleted { get; private set; }
-        public IEnumerable<int> OrderHashes => _orderedItemsMap.Keys;
+
 
         private readonly Dictionary<int, int> _orderedItemsMap; // key: hash, value: amount
 
@@ -16,7 +17,38 @@ namespace ITCafe.CafeBusiness
             _orderedItemsMap = orderedItemsMap.ToDictionary(kvp => kvp.Key.OrderedItemHash, kvp => kvp.Value);
         }
 
-        public bool TryHandOver(int hash)
+        public OrderMap(Dictionary<int, int> orderedItemsMap)
+        {
+            _orderedItemsMap = orderedItemsMap;
+        }
+
+        public static OrderMap FromEnumerable<T>(IEnumerable<T> orderedItems) where T : IOrderItem
+        {
+            Dictionary<int, int> orderedItemsMap = new();
+
+            foreach (var orderedItem in orderedItems)
+            {
+                var hash = orderedItem.OrderedItemHash;
+                if (!orderedItemsMap.TryAdd(hash, 1))
+                    orderedItemsMap[hash] += 1;
+            }
+
+            return new OrderMap(orderedItemsMap);
+        }
+
+        public override bool IsCorresponds(int hash)
+        {
+            return _orderedItemsMap.ContainsKey(hash);
+        }
+
+        public override void PropagateHashes(Action<int> onPropagate)
+        {
+            foreach (var orderPair in _orderedItemsMap)
+                for (var i = 0; i < orderPair.Value; i++)
+                    onPropagate(orderPair.Key);
+        }
+
+        public override bool TryHandOver(int hash)
         {
             if (!_orderedItemsMap.TryGetValue(hash, out var amount))
                 return false;
@@ -29,6 +61,10 @@ namespace ITCafe.CafeBusiness
                 if (_orderedItemsMap.Count == 0)
                     IsCompleted = true;
             }
+            else
+                _orderedItemsMap[hash] -= 1;
+
+            _onHashRemoved.OnNext(hash);
 
             return true;
         }
