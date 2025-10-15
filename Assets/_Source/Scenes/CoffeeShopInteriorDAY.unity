@@ -4036,7 +4036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &261903677
 Transform:
   m_ObjectHideFlags: 0
@@ -10234,7 +10234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &644359589
 Transform:
   m_ObjectHideFlags: 0
@@ -11694,7 +11694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &746525395
 Transform:
   m_ObjectHideFlags: 0
@@ -13919,6 +13919,10 @@ PrefabInstance:
       value: SM_CeilingLamp_14
       objectReference: {fileID: 0}
     - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -14454,6 +14458,10 @@ PrefabInstance:
     - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
       propertyPath: m_Name
       value: SM_CeilingLamp_149
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -19355,6 +19363,10 @@ PrefabInstance:
       value: SM_CeilingLamp_140
       objectReference: {fileID: 0}
     - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -21533,7 +21545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1317926034
 Transform:
   m_ObjectHideFlags: 0
@@ -23905,7 +23917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1426540806
 Transform:
   m_ObjectHideFlags: 0
@@ -24077,6 +24089,10 @@ PrefabInstance:
     - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
       propertyPath: m_Name
       value: SM_CeilingLamp_142
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1030976217, guid: abc00000000002479619014130354975, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -33136,7 +33152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1862849360
 Transform:
   m_ObjectHideFlags: 0
