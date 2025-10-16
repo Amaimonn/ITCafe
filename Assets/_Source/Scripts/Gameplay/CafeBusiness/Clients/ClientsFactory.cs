@@ -26,7 +26,7 @@ namespace ITCafe.CafeBusiness
 
         public ClientCharacter Create()
         {
-            var order = _orderGenerator.CreateOrder();
+            var order = _orderGenerator.Create();
             var randomClient = _clientPrefabs[Random.Range(0, _clientPrefabsAmount)];
             var client = Object.Instantiate(randomClient);
             client.Init(order);

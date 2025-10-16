@@ -2,28 +2,29 @@ using System.Collections.Generic;
 using System.Linq;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
+using ITCafe.Solutions;
 using UnityEngine;
 
 namespace ITCafe.Gameplay.CafeBusiness
 {
-    public class OrderGenerator
+    public class OrderGenerator : IFactory<IOrder>
     {
         private readonly List<ItemInfoSO> _itemInfos;
-        private int _maxOrderSize = 5;
+        private int _maxOrderSizeExclusive = 5;
 
         public OrderGenerator(IEnumerable<ItemInfoSO> itemInfos)
         {
             _itemInfos = itemInfos.ToList();
         }
         
-        public IOrder CreateOrder()
+        public IOrder Create()
         {
             IOrder order;
             var itemCount = _itemInfos.Count;
             
             if (itemCount > 0)
             {
-                int orderSize = Random.Range(1, _maxOrderSize);
+                int orderSize = Random.Range(1, _maxOrderSizeExclusive);
                 
                 if (orderSize == 1)
                 {
@@ -31,7 +32,6 @@ namespace ITCafe.Gameplay.CafeBusiness
                     var itemHash = randomItem.ItemInfo.GetItemHash();
 
                     order = new OrderItem(itemHash);
-                    // OrderUI.AddImage(randomItem.Image, itemHash);
                 }
                 else
                 {
@@ -44,7 +44,6 @@ namespace ITCafe.Gameplay.CafeBusiness
                         
                         if (!orderedItemsMap.TryAdd(hash, 1))
                             orderedItemsMap[hash] += 1;
-                        // OrderUI.AddImage(randomItem.Image, hash);
                     }
                     
                     order = new OrderMap(orderedItemsMap);

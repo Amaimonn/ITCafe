@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using R3;
 
 namespace ITCafe.CafeBusiness
 {
     public class OrderMap : BaseOrder
     {
         public IReadOnlyDictionary<int, int> OrderedItemsMap => _orderedItemsMap;
-
 
         private readonly Dictionary<int, int> _orderedItemsMap; // key: hash, value: amount
 
