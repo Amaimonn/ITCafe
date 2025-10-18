@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -22,11 +25,16 @@ namespace ITCafe
         [SerializeField] private ClientCharacter[] _clientPrefabs;
         [SerializeField] private AllItemInfoSO _allItemsInfoSO;
         [SerializeField] private Transform[] _clientSpawnPoints;
+        [SerializeField] private Transform[] _clientOrderPoints;
+
+        private Dictionary<Transform, bool> _orderAvailabilityMap;
 
         private CompositeDisposable _disposables;
+        private CancellationToken _destroyToken;
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterInstance<TableService>(new TableService(_clientSpawnPoints));
             builder.RegisterInstance<ClientCharacter[]>(_clientPrefabs)
                 .As<IEnumerable<ClientCharacter>>()
                 .As<ICollection<ClientCharacter>>()
@@ -48,8 +56,12 @@ namespace ITCafe
         protected override void Awake()
         {
             base.Awake();
+            
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            _destroyToken = destroyCancellationToken;
+            _orderAvailabilityMap = _clientOrderPoints.ToDictionary(x => x, _ => true);
 
             Container.Inject(_playerInteractor);
 
@@ -60,8 +72,55 @@ namespace ITCafe
             }
 
             var clientsFactory = Container.Resolve<IFactory<ClientCharacter>>();
-            foreach (var spawnPoint in _clientSpawnPoints)
-                clientsFactory.Create().transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+            var tableService = Container.Resolve<TableService>();
+            RunClientsLifeCycle(clientsFactory, tableService, _destroyToken).Forget();
+            // foreach (var spawnPoint in _clientSpawnPoints)
+            //     clientsFactory.Create().transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        }
+
+        private async UniTaskVoid RunClientsLifeCycle(IFactory<ClientCharacter> clientsFactory,
+            TableService tableService, CancellationToken token)
+        {
+            try
+            {
+                await UniTask.Delay(1000, cancellationToken: token);
+            }
+            catch
+            {
+            }
+            
+            while (!token.IsCancellationRequested)
+            {
+                if (tableService.HasFreeTable)
+                {
+                    foreach (var orderTransform in _clientOrderPoints)
+                    {
+                        if (_orderAvailabilityMap.TryGetValue(orderTransform, out var isAvailable))
+                        {
+                            if (isAvailable)
+                            {
+                                var client = clientsFactory.Create();
+                                client.transform.SetPositionAndRotation(orderTransform.position,
+                                    orderTransform.rotation);
+                                _orderAvailabilityMap[orderTransform] = false;
+                                // TODO: Watch out for client subscription this time
+                                Observable.Merge(client.OnLeft, client.OnOrdered)
+                                    .Take(1)
+                                    .Subscribe(x => _orderAvailabilityMap[orderTransform] = true);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                try
+                {
+                    await UniTask.Delay(2500, cancellationToken: token);
+                }
+                catch
+                {
+                }
+            }
         }
 
         protected override void OnDestroy()

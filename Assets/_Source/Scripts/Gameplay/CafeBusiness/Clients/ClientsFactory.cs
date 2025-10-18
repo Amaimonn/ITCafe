@@ -13,15 +13,19 @@ namespace ITCafe.CafeBusiness
         private readonly Dictionary<int, ItemInfoSO> _itemInfoMap;
         private readonly IList<ClientCharacter> _clientPrefabs;
         private readonly OrderGenerator _orderGenerator;
+        private readonly TableService _tableService;
         private readonly int _clientPrefabsAmount;
 
-        public ClientsFactory(Dictionary<int, ItemInfoSO> itemInfoMap, IList<ClientCharacter> clientPrefabs,
-            OrderGenerator orderGenerator)
+        public ClientsFactory(Dictionary<int, ItemInfoSO> itemInfoMap, 
+            IList<ClientCharacter> clientPrefabs,
+            OrderGenerator orderGenerator, 
+            TableService tableService)
         {
             _itemInfoMap = itemInfoMap;
             _clientPrefabs = clientPrefabs;
             _clientPrefabsAmount = _clientPrefabs.Count;
             _orderGenerator = orderGenerator;
+            _tableService = tableService;
         }
 
         public ClientCharacter Create()
@@ -29,13 +33,13 @@ namespace ITCafe.CafeBusiness
             var order = _orderGenerator.Create();
             var randomClient = _clientPrefabs[Random.Range(0, _clientPrefabsAmount)];
             var client = Object.Instantiate(randomClient);
-            client.Init(order);
+            client.Init(order, _tableService);
             
             var orderUI = client.OrderUI;
             orderUI.Init();
             
             order.PropagateHashes(x => orderUI.AddImage(_itemInfoMap[x].Image, x));
-            order.OnHashRemoved.Subscribe(x => orderUI.RemoveImage(x)); // отписка не требуется
+            order.OnHashRemoved.Subscribe(x => orderUI.RemoveImage(x)); // dispose is redundant
             
             return client;
         }

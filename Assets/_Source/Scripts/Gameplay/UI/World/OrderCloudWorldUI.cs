@@ -12,15 +12,17 @@ namespace ITCafe.Gameplay.UI.World
 
         private Transform _lookAtTarget;
         private VisualElement _imagesContainer;
+        private VisualElement _root;
 
         private List<(int hash, VisualElement image)> _images = new();
-
+        
         public void Init()
         {
             _lookAtTarget = Camera.main.transform;
-            var root = _worldDocument.rootVisualElement;
-            _imagesContainer = root.Q<VisualElement>(name: "ImagesContainer");
+            _root = _worldDocument.rootVisualElement;
+            _imagesContainer = _root.Q<VisualElement>(name: "ImagesContainer");
             _imagesContainer.Clear();
+            Hide();
         }
 
 #region MonoBehaviour
@@ -29,6 +31,16 @@ namespace ITCafe.Gameplay.UI.World
             _uiHolder.transform.LookAt(_lookAtTarget);
         }
 #endregion
+
+        public void Show()
+        {
+            _root.style.display = DisplayStyle.Flex;
+        }
+
+        public void Hide()
+        {
+            _root.style.display = DisplayStyle.None;
+        }
 
         public void AddImage(Sprite sprite, int hash)
         {
