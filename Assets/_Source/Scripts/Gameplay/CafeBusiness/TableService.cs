@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using VContainer;
 
 namespace ITCafe.CafeBusiness
 {
@@ -10,9 +11,10 @@ namespace ITCafe.CafeBusiness
 
         private readonly HashSet<Transform> _availableTables;
 
-        public TableService(IEnumerable<Transform> tableSpots)
+        public TableService([Key(Constants.CLIENT_SEATS)] IEnumerable<Transform> tableSpots)
         {
             _availableTables = new HashSet<Transform>(tableSpots);
+            Debug.Log($"TableService has {_availableTables.Count} available tables");
         }
 
         public Transform GetFreeTable()

@@ -12,35 +12,10 @@ namespace ITCafe.Editor
         
         static IdeSetuper()
         {
-            // Срабатывает при загрузке редактора Unity
-            EditorApplication.delayCall += OnProjectOpened;
-            EditorApplication.quitting += OnProjectClosing;
-            
-            // Альтернативный способ - через изменение состояния проекта
-            // EditorApplication.projectChanged += OnProjectChanged;
+            EditorApplication.quitting += UseVSCode;
         }
         
-        private static void OnProjectOpened()
-        {
-            EditorApplication.delayCall += () =>
-            {
-                UseRider();
-            };
-        }
-        
-        private static void OnProjectClosing()
-        {
-            UseVSCode();
-        }
-        
-        private static void OnProjectChanged()
-        {
-            if (!EditorApplication.isPlayingOrWillChangePlaymode)
-            {
-                UseRider();
-            }
-        }
-        
+        [InitializeOnLoadMethod]
         public static void UseRider()
         {
             if (System.IO.File.Exists(RIDER_PATH))

@@ -13,13 +13,16 @@ namespace ITCafe.CafeBusiness
     {
         public Observable<Unit> OnLeft => _onLeft;
         public Observable<Unit> OnOrdered => _onOrdered;
+        public Observable<Unit> OnCompleted => _onCompleted;
+        
         public ClientState CurrentState { get; private set; } = ClientState.WaitingForOrder;
 
         [field: SerializeField] public OrderCloudWorldUI OrderUI { get; private set; }
         [SerializeField] private NavMeshAgent _agent;
 
-        private Subject<Unit> _onLeft = new();
-        private Subject<Unit> _onOrdered = new();
+        private readonly Subject<Unit> _onLeft = new();
+        private readonly Subject<Unit> _onOrdered = new();
+        private readonly Subject<Unit> _onCompleted = new();
 
         public enum ClientState
         {
@@ -95,7 +98,10 @@ namespace ITCafe.CafeBusiness
             Destroy(item.transform.gameObject);
 
             if (IsCompleted)
+            {
+                _onCompleted.OnNext(Unit.Default);
                 LeaveCafe();
+            }
         }
 
 #region IInteractable
@@ -147,13 +153,7 @@ namespace ITCafe.CafeBusiness
             if (CurrentState != ClientState.WaitingForFood)
                 return false;
 
-            foreach (var item in container.Items)
-            {
-                if (_order.IsCorresponds(item.GetItemHash()))
-                    return true;
-            }
-
-            return false;
+            return container.Items.Any(item => _order.IsCorresponds(item.GetItemHash()));
         }
 
         public void Handle(IItem item, PlayerContext context)
