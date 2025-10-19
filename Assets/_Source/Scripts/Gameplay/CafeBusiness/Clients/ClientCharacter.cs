@@ -15,6 +15,9 @@ namespace ITCafe.CafeBusiness
         public Observable<Unit> OnOrdered => _onOrdered;
         public Observable<Unit> OnCompleted => _onCompleted;
         
+        public IOrder CurrentOrder { get; private set; }
+
+        public bool IsCompleted => CurrentOrder.IsCompleted;
         public ClientState CurrentState { get; private set; } = ClientState.WaitingForOrder;
 
         [field: SerializeField] public OrderCloudWorldUI OrderUI { get; private set; }
@@ -33,15 +36,13 @@ namespace ITCafe.CafeBusiness
             Leaving
         }
 
-        private bool IsCompleted => _order.IsCompleted;
-        private IOrder _order;
         private Transform _targetTable;
         private TableService _tableService;
         private const int AfterOrderDelayMs = 1333;
 
         public void Init(IOrder order, TableService tableService)
         {
-            _order = order;
+            CurrentOrder = order;
             _tableService = tableService;
             _agent = GetComponent<NavMeshAgent>();
             _targetTable = _tableService.GetFreeTable();
@@ -142,7 +143,7 @@ namespace ITCafe.CafeBusiness
             if (item is IEquatableItem equatableItem)
             {
                 var code = equatableItem.GetItemHash();
-                return _order.IsCorresponds(code);
+                return CurrentOrder.IsCorresponds(code);
             }
 
             return false;
@@ -153,7 +154,7 @@ namespace ITCafe.CafeBusiness
             if (CurrentState != ClientState.WaitingForFood)
                 return false;
 
-            return container.Items.Any(item => _order.IsCorresponds(item.GetItemHash()));
+            return container.Items.Any(item => CurrentOrder.IsCorresponds(item.GetItemHash()));
         }
 
         public void Handle(IItem item, PlayerContext context)
@@ -161,7 +162,7 @@ namespace ITCafe.CafeBusiness
             if (item is IEquatableItem equatableItem)
             {
                 var hash = equatableItem.GetItemHash();
-                if (_order.TryHandOver(hash))
+                if (CurrentOrder.TryHandOver(hash))
                 {
                     context.ItemPicker.Release();
                     ConsumeItem(item);
@@ -174,14 +175,14 @@ namespace ITCafe.CafeBusiness
             var items = container.Items.ToArray();
             foreach (var it in items)
             {
-                if (_order.IsCompleted)
+                if (CurrentOrder.IsCompleted)
                     break;
 
                 var hash = it.GetItemHash();
-                if (_order.IsCorresponds(hash))
+                if (CurrentOrder.IsCorresponds(hash))
                 {
                     var item = container.ExtractItem(hash);
-                    if (item != null && _order.TryHandOver(hash))
+                    if (item != null && CurrentOrder.TryHandOver(hash))
                         ConsumeItem(item);
                 }
             }

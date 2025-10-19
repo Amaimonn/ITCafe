@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -10,7 +8,6 @@ using ITCafe.Player;
 using ITCafe.Solutions;
 using R3;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -27,7 +24,6 @@ namespace ITCafe
         [SerializeField] private AllItemInfoSO _allItemsInfoSO;
         [SerializeField] private Transform[] _clientSeatPoints;
         [SerializeField] private Transform[] _clientOrderPoints;
-
 
         private CompositeDisposable _disposables;
         private CancellationToken _destroyToken;
@@ -71,6 +67,8 @@ namespace ITCafe
                 .As<IFactory<ClientCharacter>>();
             
             builder.Register<CafeRunner>(Lifetime.Singleton);
+            
+            builder.Register<WorkProgressService>(Lifetime.Singleton);
         }
 
         protected override void Awake()

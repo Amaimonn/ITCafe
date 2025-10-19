@@ -49,7 +49,6 @@ namespace ITCafe.Gameplay.UI.World
                 style = { backgroundImage = new StyleBackground(sprite) },
                 name = hash.ToString()
             };
-            Debug.Log($"Add image {hash}");
             image.AddToClassList("order-cloud__item-image");
             _imagesContainer.Add(image);
             _images.Add((hash, image));
@@ -64,7 +63,7 @@ namespace ITCafe.Gameplay.UI.World
                 _images.Remove(imageToRemove);
             }
             else
-                Debug.LogError($"Image {hash} not found");
+                Debug.LogWarning($"Image {hash} not found");
         }
     }
 }
