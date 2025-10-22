@@ -10,14 +10,14 @@ using VContainer;
 
 namespace ITCafe.CafeBusiness
 {
-    public class CafeRunner
+    public class ClientsRunner
     {
         private readonly IFactory<ClientCharacter> _clientsFactory;
         private readonly TableService _tableService;
         private readonly WorkProgressService _progressService;
         private readonly Dictionary<Transform, bool> _orderAvailabilityMap;
 
-        public CafeRunner(
+        public ClientsRunner(
             IFactory<ClientCharacter> clientsFactory,
             TableService tableService,
             WorkProgressService progressService,
@@ -29,9 +29,9 @@ namespace ITCafe.CafeBusiness
             _orderAvailabilityMap = clientOrderPoints.ToDictionary(x => x, _ => true);
         }
 
-        public async UniTaskVoid RunClientsLifeCycle(CancellationToken token)
+        public async UniTaskVoid RunClientsLifeCycleAsync(CancellationToken token)
         {
-            Debug.Log("[CafeRunner] Running clients lifecycle");
+            Debug.Log($"[{nameof(ClientsRunner)}]: Running clients lifecycle");
             try
             {
                 await UniTask.Delay(1000, cancellationToken: token);
@@ -61,7 +61,7 @@ namespace ITCafe.CafeBusiness
                     }
                     else
                     {
-                        Debug.Log($"[{nameof(CafeRunner)}]: No free table available");
+                        Debug.Log($"[{nameof(ClientsRunner)}]: No free table available");
                     }
 
                     await UniTask.Delay(2500, cancellationToken: token);
@@ -69,10 +69,11 @@ namespace ITCafe.CafeBusiness
             }
             catch (OperationCanceledException) when (token.IsCancellationRequested)
             {
+                Debug.Log($"[{nameof(ClientsRunner)}]: Operation cancelled");
             }
             finally
             {
-                Debug.Log($"[{nameof(CafeRunner)}]: Clients lifecycle stopped");
+                Debug.Log($"[{nameof(ClientsRunner)}]: Clients lifecycle stopped");
             }
         }
     }

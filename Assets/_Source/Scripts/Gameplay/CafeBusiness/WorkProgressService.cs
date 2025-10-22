@@ -20,16 +20,11 @@ namespace ITCafe.CafeBusiness
         private int _successfulOrders = 0;
         private int _failedOrders = 0;
         private float _totalServiceTime = 0f;
-        private DateTime _dayStartTime;
+        private DateTime _dayStartTime = DateTime.Now;
 
         private readonly Subject<int> _onClientServed = new();
         private readonly Subject<int> _onOrderTaken = new();
         private readonly Subject<Unit> _onDayCompleted = new();
-
-        public WorkProgressService()
-        {
-            _dayStartTime = DateTime.Now;
-        }
 
         public void RegisterClient(ClientCharacter client)
         {

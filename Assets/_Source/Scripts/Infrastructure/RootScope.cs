@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Cysharp.Threading.Tasks;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -33,7 +35,7 @@ namespace ITCafe
             builder.RegisterInstance<ClientCharacter[]>(_clientPrefabs)
                 .As<IEnumerable<ClientCharacter>>()
                 .As<ICollection<ClientCharacter>>()
-                .As<IList<ClientCharacter>>()
+                .As<IReadOnlyList<ClientCharacter>>()
                 .AsSelf();
             
             builder.RegisterInstance<Transform[]>(_clientSeatPoints)
@@ -66,7 +68,7 @@ namespace ITCafe
             builder.Register<ClientsFactory>(Lifetime.Singleton)
                 .As<IFactory<ClientCharacter>>();
             
-            builder.Register<CafeRunner>(Lifetime.Singleton);
+            builder.Register<ClientsRunner>(Lifetime.Singleton);
             
             builder.Register<WorkProgressService>(Lifetime.Singleton);
         }
@@ -85,12 +87,14 @@ namespace ITCafe
             _disposables = new();
             {
                 _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
-                _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: x"));
+                _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: {x}"));
             }
 
-            var cafeRunner = Container.Resolve<CafeRunner>();
-            cafeRunner.RunClientsLifeCycle(_destroyToken).Forget();
+            var cafeRunner = Container.Resolve<ClientsRunner>();
+            cafeRunner.RunClientsLifeCycleAsync(_destroyToken).Forget();
         }
+
+        
 
         protected override void OnDestroy()
         {

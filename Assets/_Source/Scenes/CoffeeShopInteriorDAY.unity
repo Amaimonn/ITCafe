@@ -20383,7 +20383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 783364f0359a7814a8b4dea6f641debf, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 33a5a83767803524ea1ee52c29b039e9, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: aa01347a583181d4fbb0c713ab368b12, type: 3}
   m_SortingOrder: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -22801,7 +22801,7 @@ MonoBehaviour:
   - {fileID: 353381090113085243, guid: 81170a5be13d0e2449a33eefd05f6e39, type: 3}
   - {fileID: 1979498699636639764, guid: 58aa49a411d423b49a64c82e6dc6b3fc, type: 3}
   _allItemsInfoSO: {fileID: 11400000, guid: 141fde6b68e4349409867a8ff4a74662, type: 2}
-  _clientSpawnPoints:
+  _clientSeatPoints:
   - {fileID: 2146833225}
   - {fileID: 1112174119}
   - {fileID: 304834303}
@@ -33808,7 +33808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1876225428}
   m_Layer: 0
-  m_Name: ClientSpawnPoints
+  m_Name: ClientSitPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
