@@ -1,7 +1,10 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using R3;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 namespace ITCafe.CafeBusiness
 {
@@ -14,18 +17,17 @@ namespace ITCafe.CafeBusiness
         {
             _workProgressService = workProgressService;
         }
-        
+
         public async UniTaskVoid RunSessionAsync(CancellationToken token)
         {
             _cts = new();
-            var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(token);
+            var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
+            
             try
             {
+                Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
                 await UniTask.Delay(TimeSpan.FromMinutes(3), cancellationToken: linkedTokenSource.Token);
-                _workProgressService.CompleteDay();
-                var report = _workProgressService.GetDailyReport();
-                Debug.Log(report);
-                
+                CompleteSession();
             }
             catch (OperationCanceledException) when (token.IsCancellationRequested)
             {
@@ -33,8 +35,15 @@ namespace ITCafe.CafeBusiness
             }
             finally
             {
-                Debug.Log($"[{nameof(GameSessionRunner)}]: Clients lifecycle stopped");
+                Debug.Log($"[{nameof(GameSessionRunner)}]: Game session stopped");
             }
+        }
+
+        public void CompleteSession()
+        {
+            _workProgressService.CompleteDay();
+            var report = _workProgressService.GetDailyReport();
+            Debug.Log(report);
         }
 
         public void Dispose()

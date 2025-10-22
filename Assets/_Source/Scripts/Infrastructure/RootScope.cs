@@ -10,6 +10,7 @@ using ITCafe.Player;
 using ITCafe.Solutions;
 using R3;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
 
@@ -70,6 +71,8 @@ namespace ITCafe
             
             builder.Register<ClientsRunner>(Lifetime.Singleton);
             
+            builder.Register<GameSessionRunner>(Lifetime.Singleton);
+            
             builder.Register<WorkProgressService>(Lifetime.Singleton);
         }
 
@@ -92,6 +95,20 @@ namespace ITCafe
 
             var cafeRunner = Container.Resolve<ClientsRunner>();
             cafeRunner.RunClientsLifeCycleAsync(_destroyToken).Forget();
+            
+            var sessionRunner = Container.Resolve<GameSessionRunner>();
+            sessionRunner.RunSessionAsync(_destroyToken).Forget();
+            
+#if UNITY_EDITOR
+            Observable.EveryUpdate().Where(_ => Keyboard.current.digit0Key.wasPressedThisFrame)
+                .Take(1)
+                .Subscribe(_ =>
+                {
+                    sessionRunner.CompleteSession();
+                    cafeRunner.Dispose();
+                    sessionRunner.Dispose();
+                });
+#endif
         }
 
         
