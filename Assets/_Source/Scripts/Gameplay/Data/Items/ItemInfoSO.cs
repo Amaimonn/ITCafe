@@ -6,8 +6,8 @@ namespace ITCafe.Data.Items
     public class ItemInfoSO : ScriptableObject
     {
         [field: SerializeField] public Sprite Image { get; protected set; }
-        
-        [ItemTypeSelector, SerializeReference]  
+
+        [ItemTypeSelector, SerializeReference]
         public BaseItemInfo ItemInfo;
     }
 }

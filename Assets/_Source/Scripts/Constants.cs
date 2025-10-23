@@ -4,11 +4,14 @@ namespace ITCafe
 {
     public static class Constants
     {
-        #region Outline config
-
+#region Outline config
         public const float OUTLINE_WIDTH = 7f;
-        public static Color OUTLINE_COLOR = new Color(245, 255, 30);
+        public static Color OUTLINE_COLOR = new (1f, 10.6283679f, 0.45f, 1);
+#endregion
 
-        #endregion
+#region Registration Keys
+        public const string CLIENT_SEATS = nameof(CLIENT_SEATS);
+        public const string CLIENT_ORDER_PLACES = nameof(CLIENT_ORDER_PLACES);
+#endregion
     }
 }

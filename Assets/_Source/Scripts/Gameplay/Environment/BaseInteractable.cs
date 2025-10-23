@@ -8,15 +8,14 @@ namespace ITCafe.Environment
     {
         [SerializeField] protected Outline _outline;
 
-        #region MonoBehaviour
-
+#region MonoBehaviour
         protected virtual void OnValidate()
         {
             if (_outline == null)
                 _outline = gameObject.GetOrAddComponent<Outline>();
 
-            _outline.outlineColor = new Color(1f, 10.6283679f, 0.45f, 1);
-            _outline.outlineWidth = 7f;
+            _outline.outlineColor = Constants.OUTLINE_COLOR;
+            _outline.outlineWidth = Constants.OUTLINE_WIDTH;
             _outline.outlineMode = Outline.Mode.OutlineAndSilhouette;
         }
 
@@ -33,11 +32,11 @@ namespace ITCafe.Environment
             else
             {
                 var scaleFactor = 255f / Mathf.Pow(2f, exposure);
-                
+
                 var r = baseLinearColor.r / scaleFactor;
                 var g = baseLinearColor.g / scaleFactor;
                 var b = baseLinearColor.b / scaleFactor;
-                
+
                 return new Color(r, g, b);
             }
         }
@@ -46,8 +45,7 @@ namespace ITCafe.Environment
         {
             _outline.enabled = false;
         }
-
-        #endregion
+#endregion
 
         public virtual void Focus()
         {

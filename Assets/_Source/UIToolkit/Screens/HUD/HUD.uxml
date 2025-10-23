@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles" />
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="TopBar" picking-mode="Ignore" style="flex-grow: 1;">
+            <ui:Label text="00:00" name="Timer" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" picking-mode="Ignore" class="hud__timer" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

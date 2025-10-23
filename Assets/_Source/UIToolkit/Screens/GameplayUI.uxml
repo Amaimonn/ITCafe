@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Aim" src="project://database/Assets/_Source/UIToolkit/Screens/Aim.uxml?fileID=9197481963319205126&amp;guid=33a5a83767803524ea1ee52c29b039e9&amp;type=3#Aim" />
+    <ui:Template name="HUD" src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUD.uxml?fileID=9197481963319205126&amp;guid=f1347106c76b55f4c8bb9795c0fe1a8a&amp;type=3#HUD" />
+    <ui:Instance template="Aim" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%;" />
+    <ui:Instance template="HUD" style="flex-grow: 1;" />
+</ui:UXML>

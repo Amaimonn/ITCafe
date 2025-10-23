@@ -12,15 +12,17 @@ namespace ITCafe.Gameplay.UI.World
 
         private Transform _lookAtTarget;
         private VisualElement _imagesContainer;
+        private VisualElement _root;
 
         private List<(int hash, VisualElement image)> _images = new();
-
+        
         public void Init()
         {
             _lookAtTarget = Camera.main.transform;
-            var root = _worldDocument.rootVisualElement;
-            _imagesContainer = root.Q<VisualElement>(name: "ImagesContainer");
+            _root = _worldDocument.rootVisualElement;
+            _imagesContainer = _root.Q<VisualElement>(name: "ImagesContainer");
             _imagesContainer.Clear();
+            Hide();
         }
 
 #region MonoBehaviour
@@ -30,6 +32,16 @@ namespace ITCafe.Gameplay.UI.World
         }
 #endregion
 
+        public void Show()
+        {
+            _root.style.display = DisplayStyle.Flex;
+        }
+
+        public void Hide()
+        {
+            _root.style.display = DisplayStyle.None;
+        }
+
         public void AddImage(Sprite sprite, int hash)
         {
             var image = new VisualElement
@@ -37,7 +49,6 @@ namespace ITCafe.Gameplay.UI.World
                 style = { backgroundImage = new StyleBackground(sprite) },
                 name = hash.ToString()
             };
-            Debug.Log($"Add image {hash}");
             image.AddToClassList("order-cloud__item-image");
             _imagesContainer.Add(image);
             _images.Add((hash, image));
@@ -52,7 +63,7 @@ namespace ITCafe.Gameplay.UI.World
                 _images.Remove(imageToRemove);
             }
             else
-                Debug.LogError($"Image {hash} not found");
+                Debug.LogWarning($"Image {hash} not found");
         }
     }
 }
