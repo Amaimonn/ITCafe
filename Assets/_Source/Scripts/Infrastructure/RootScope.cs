@@ -110,9 +110,7 @@ namespace ITCafe
                 });
 #endif
         }
-
         
-
         protected override void OnDestroy()
         {
             _disposables.Dispose();
