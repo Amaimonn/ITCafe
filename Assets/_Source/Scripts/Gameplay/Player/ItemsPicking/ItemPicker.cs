@@ -32,19 +32,19 @@ namespace ITCafe.Player
             ChangeState(new EmptyHandsState(this));
         }
         
-        private void OnEnable()
-        {
-            _onDrop = OnDrop;//_inputService.MediateAction(_dropAction, OnDrop);
-            var inputEntry = new InputEntry(() => _dropAction.action.started += _onDrop,
-                () => _dropAction.action.started -= _onDrop, 80);
-            _dropSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_dropAction.action, "started"),
-                inputEntry);
-        }
-
-        private void OnDisable()
-        {
-            _dropSubscription.Dispose();
-        }
+        // private void OnEnable()
+        // {
+        //     _onDrop = OnDrop;//_inputService.MediateAction(_dropAction, OnDrop);
+        //     var inputEntry = new InputEntry(() => _dropAction.action.started += _onDrop,
+        //         () => _dropAction.action.started -= _onDrop, 80);
+        //     _dropSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_dropAction.action, "started"),
+        //         inputEntry);
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     _dropSubscription.Dispose();
+        // }
 
         public bool CanTake(IItem item)
         {
