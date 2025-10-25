@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using ITCafe.Environment;
 using ITCafe.Gameplay.UI.World;
@@ -14,7 +15,7 @@ namespace ITCafe.CafeBusiness
         public Observable<Unit> OnLeft => _onLeft;
         public Observable<Unit> OnOrdered => _onOrdered;
         public Observable<Unit> OnCompleted => _onCompleted;
-        
+
         public IOrder CurrentOrder { get; private set; }
 
         public bool IsCompleted => CurrentOrder.IsCompleted;
@@ -26,6 +27,7 @@ namespace ITCafe.CafeBusiness
         private readonly Subject<Unit> _onLeft = new();
         private readonly Subject<Unit> _onOrdered = new();
         private readonly Subject<Unit> _onCompleted = new();
+        private CancellationToken _destroyToken;
 
         public enum ClientState
         {
@@ -33,6 +35,7 @@ namespace ITCafe.CafeBusiness
             OrderDelay,
             MovingToTable,
             WaitingForFood,
+            CanTakeFood = WaitingForFood | OrderDelay | MovingToTable,
             Leaving
         }
 
@@ -44,10 +47,16 @@ namespace ITCafe.CafeBusiness
         {
             CurrentOrder = order;
             _tableService = tableService;
-            _agent = GetComponent<NavMeshAgent>();
             _targetTable = _tableService.GetFreeTable();
 
             CurrentState = ClientState.WaitingForOrder;
+        }
+
+#region MonoBehaviour
+        protected override void Awake()
+        {
+            base.Awake();
+            _destroyToken = destroyCancellationToken;
         }
 
         private void Update()
@@ -66,6 +75,7 @@ namespace ITCafe.CafeBusiness
             //     LeaveCafe();
             // }
         }
+#endregion
 
         private void MoveToTable()
         {
@@ -86,12 +96,13 @@ namespace ITCafe.CafeBusiness
         {
             OrderUI.Show();
             CurrentState = ClientState.OrderDelay;
+            _onOrdered.OnNext(Unit.Default);
 
-            await UniTask.Delay(AfterOrderDelayMs);
+            if (!IsCompleted)
+                await UniTask.Delay(AfterOrderDelayMs, cancellationToken: _destroyToken);
 
             CurrentState = ClientState.MovingToTable;
             MoveToTable();
-            _onOrdered.OnNext(Unit.Default);
         }
 
         private void ConsumeItem(IItem item)
@@ -137,7 +148,7 @@ namespace ITCafe.CafeBusiness
 #region IItemHandler
         public bool CanHandle(IItem item, PlayerContext context)
         {
-            if (CurrentState != ClientState.WaitingForFood)
+            if (!CheckCanTakeFood())
                 return false;
 
             if (item is IEquatableItem equatableItem)
@@ -151,7 +162,7 @@ namespace ITCafe.CafeBusiness
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
-            if (CurrentState != ClientState.WaitingForFood)
+            if (!CheckCanTakeFood())
                 return false;
 
             return container.Items.Any(item => CurrentOrder.IsCorresponds(item.GetItemHash()));
@@ -188,5 +199,7 @@ namespace ITCafe.CafeBusiness
             }
         }
 #endregion
+
+        private bool CheckCanTakeFood() => ClientState.CanTakeFood.HasFlag(CurrentState);
     }
 }

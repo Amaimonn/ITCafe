@@ -1,9 +1,219 @@
-.hud__timer {
+Label {
+    text-shadow: 1px 1px 0 rgb(0, 0, 0);
+}
+
+.hud__root {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.hud__top-bar {
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(30, 30, 30, 0.8);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 400px;
     align-self: center;
-    font-size: 40px;
+}
+
+.hud__timer {
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    align-items: center;
+    position: relative;
+    flex-grow: 1;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    text-shadow: 1px 1px 0 rgb(0, 0, 0);
+    flex-shrink: 1;
+}
+
+.hud__points {
+    font-size: 24px;
+    color: rgb(255, 215, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    flex-grow: 1;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    text-shadow: 1px 1px 0 rgb(0, 0, 0);
+    flex-shrink: 1;
+}
+
+.hud__day {
+    font-size: 24px;
+    color: rgb(200, 200, 255);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-text-align: middle-center;
+}
+
+.hud__orders-panel {
+    flex-direction: column;
+    background-color: rgba(40, 40, 40, 0.9);
+    border-color: rgb(90, 90, 90);
+    border-width: 2px;
+    border-radius: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.hud__widget-title {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 2px;
+    margin-top: 4px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.hud__order {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(60, 60, 60, 0.8);
+    border-color: rgb(106, 106, 106);
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: flex-end;
+    width: 134px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.hud__stats-panel {
+    position: relative;
+    width: 200px;
+    flex-direction: column;
+    background-color: rgba(40, 40, 40, 0.9);
+    border-color: rgb(90, 90, 90);
+    border-width: 2px;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.hud__stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.hud__stat-label {
+    font-size: 14px;
+    color: rgb(200, 200, 200);
+    -unity-text-align: upper-left;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.hud__stat-value {
+    font-size: 16px;
     color: rgb(255, 255, 255);
     -unity-text-outline-width: 1px;
     -unity-text-outline-color: rgb(0, 0, 0);
     -unity-font-style: bold;
-    -unity-font-definition: url("project://database/Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Fonts/PerfectDOSVGA437.ttf?fileID=12800000&guid=74a5091d8707f334b9a5c31ef71a64ba&type=3#PerfectDOSVGA437");
+    -unity-text-align: upper-right;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.hud__bottom-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    flex-direction: row;
+    background-color: rgba(30, 30, 30, 0.8);
+    border-color: rgb(74, 74, 74);
+    border-width: 2px;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.hud__action-button {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(80, 80, 80, 0.8);
+    border-color: rgb(106, 106, 106);
+    border-width: 2px;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.hud__action-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(120, 120, 120, 0.5);
+    align-self: center;
+}
+
+.hud__top-bar-item {
+    flex-grow: 1;
+    height: 100%;
+    width: 50%;
 }
