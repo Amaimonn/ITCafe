@@ -108,10 +108,12 @@ namespace ITCafe
                 _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
                 _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: {x}"));
             }
-
-            var cafeRunner = Container.Resolve<ClientsRunner>();
-            cafeRunner.RunClientsLifeCycleAsync(_destroyToken).Forget();
-
+            
+            var progressService = Container.Resolve<WorkProgressService>();
+            var hudViewModel = Container.Resolve<HUDViewModel>();
+            progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
+            progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
+            
             var sessionRunner = Container.Resolve<GameSessionRunner>();
             sessionRunner.RunSessionAsync(_destroyToken).Forget();
 
@@ -119,12 +121,7 @@ namespace ITCafe
 #if UNITY_EDITOR
             Observable.EveryUpdate().Where(_ => Keyboard.current.digit0Key.wasPressedThisFrame)
                 .Take(1)
-                .Subscribe(_ =>
-                {
-                    sessionRunner.CompleteSession();
-                    cafeRunner.Dispose();
-                    sessionRunner.Dispose();
-                });
+                .Subscribe(_ => sessionRunner.CompleteSession());
 #endif
         }
 

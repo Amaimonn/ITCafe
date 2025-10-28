@@ -15,17 +15,21 @@
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; align-items: flex-start; margin-top: 20px;">
                 <ui:VisualElement name="StatsPanel" class="hud__stats-panel">
                     <ui:Label text="СТАТИСТИКА" class="hud__widget-title" />
-                    <ui:VisualElement name="SatisfactionStat" class="hud__stat-item">
-                        <ui:Label text="Довольные:" class="hud__stat-label" />
-                        <ui:Label text="12" name="SatisfactionValue" class="hud__stat-value" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="OrdersStat" class="hud__stat-item">
+                    <ui:VisualElement name="OrderStat" class="hud__stat-item">
                         <ui:Label text="Заказы:" class="hud__stat-label" />
-                        <ui:Label text="8/15" name="OrdersValue" class="hud__stat-value" />
+                        <ui:Label text="0" name="OrderValue" class="hud__stat-value" style="-unity-text-outline-width: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="SatisfactionStat" class="hud__stat-item">
+                        <ui:Label text="Выполнено:" class="hud__stat-label" />
+                        <ui:Label text="0" name="SatisfactionValue" class="hud__stat-value" style="color: rgb(79, 226, 18); -unity-text-outline-width: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="FailedStat" class="hud__stat-item">
+                        <ui:Label text="Упущено:" class="hud__stat-label" />
+                        <ui:Label text="0" name="FailedValue" class="hud__stat-value" style="color: rgb(226, 51, 18); -unity-text-outline-width: 0;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="RatingStat" class="hud__stat-item">
                         <ui:Label text="Рейтинг:" class="hud__stat-label" />
-                        <ui:Label text="4.5" name="RatingValue" class="hud__stat-value" />
+                        <ui:Label text="0.0" name="RatingValue" class="hud__stat-value" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

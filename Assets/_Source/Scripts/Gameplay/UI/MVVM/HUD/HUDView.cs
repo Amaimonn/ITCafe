@@ -14,9 +14,15 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _timerName = "Timer";
         [SerializeField] private string _pointsLabelName = "PointsLabel";
         [SerializeField] private string _ordersContainerName = "OrdersContainer";
+        [SerializeField] private string _ordersTakenValueName = "OrderValue";
+        [SerializeField] private string _ordersCompletedValueName = "SatisfactionValue";
+        [SerializeField] private string _ordersFailedValueName = "FailedValue";
 
         private Label _timerLabel;
         private Label _pointsLabel;
+        private Label _ordersTakenLabel;
+        private Label _ordersCompletedLabel;
+        private Label _ordersFailedLabel;
         private VisualElement _ordersContainer;
 
         private CompositeDisposable _disposables;
@@ -26,9 +32,14 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected override void OnInit()
         {
-            _timerLabel = Root.Q<Label>(_timerName);
-            _pointsLabel = Root.Q<Label>(_pointsLabelName);
-            _ordersContainer = Root.Q<VisualElement>(_ordersContainerName);
+            _timerLabel = Root.Q<Label>(name: _timerName);
+            _pointsLabel = Root.Q<Label>(name: _pointsLabelName);
+            _ordersContainer = Root.Q<VisualElement>(name: _ordersContainerName);
+            
+            _ordersTakenLabel =  Root.Q<Label>(name: _ordersTakenValueName);
+            _ordersCompletedLabel = Root.Q<Label>(name: _ordersCompletedValueName);
+            _ordersFailedLabel = Root.Q<Label>(name: _ordersFailedValueName);
+            
             _ordersContainer.Clear();
         }
 
@@ -36,11 +47,15 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             _disposables = new CompositeDisposable
             {
-                viewModel.TimerText.Subscribe(x => _timerLabel.text = x),
-                viewModel.PointsText.Subscribe(x => _pointsLabel.text = x),
+                viewModel.TimerText.Subscribe(x => _timerLabel.text = x.ToString()),
+                viewModel.PointsAmount.Subscribe(x => _pointsLabel.text = x.ToString()),
 
                 viewModel.ActiveOrders.ObserveAdd().Subscribe(x => OnOrderAdded(x.Value)),
                 viewModel.ActiveOrders.ObserveRemove().Subscribe(x => OnOrderRemoved(x.Value)),
+                
+                viewModel.OrdersTaken.Subscribe(x => _ordersTakenLabel.text = x.ToString()),
+                viewModel.OrdersCompleted.Subscribe(x => _ordersCompletedLabel.text = x.ToString()),
+                viewModel.OrdersFailed.Subscribe(x => _ordersFailedLabel.text = x.ToString()),
             };
         }
         
@@ -104,8 +119,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public override void Dispose()
         {
-            _disposables?.Dispose();
-            _disposables = null;
+            Disposes.ClearDispose(ref _disposables);
             base.Dispose();
         }
     }

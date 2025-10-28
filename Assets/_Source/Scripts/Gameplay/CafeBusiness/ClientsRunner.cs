@@ -59,9 +59,9 @@ namespace ITCafe.CafeBusiness
                                 _progressService.RegisterClient(client);
 
                                 // TODO: Watch out for client subscription this time
-                                client.OnOrdered.Subscribe(_ => _hudViewModel.ActiveOrders.Add(client.CurrentOrder));
+                                client.OnOrdered.Subscribe(_ => _hudViewModel.AddOrderInfo(client.CurrentOrder));
                                 Observable.Merge(client.OnLeft).Take(1).Subscribe(_ =>
-                                    _hudViewModel.ActiveOrders.Remove(client.CurrentOrder));
+                                    _hudViewModel.RemoveOrderInfo(client.CurrentOrder));
                                 Observable.Merge(client.OnLeft, client.OnOrdered)
                                     .Take(1)
                                     .Subscribe(x => _orderAvailabilityMap[orderTransform] = true);
@@ -90,12 +90,7 @@ namespace ITCafe.CafeBusiness
 
         public void Dispose()
         {
-            if (_cts != null)
-            {
-                _cts.Cancel();
-                _cts.Dispose();
-                _cts = null;
-            }
+            Disposes.ClearCts(ref _cts);
         }
     }
 }
