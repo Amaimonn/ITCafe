@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Solutions;
 using R3;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace ITCafe.CafeBusiness
         private readonly IFactory<ClientCharacter> _clientsFactory;
         private readonly TableService _tableService;
         private readonly WorkProgressService _progressService;
+        private readonly HUDViewModel _hudViewModel;
         private readonly Dictionary<Transform, bool> _orderAvailabilityMap;
         private CancellationTokenSource _cts;
 
@@ -22,11 +24,13 @@ namespace ITCafe.CafeBusiness
             IFactory<ClientCharacter> clientsFactory,
             TableService tableService,
             WorkProgressService progressService,
-            [Key(Constants.CLIENT_ORDER_PLACES)] IEnumerable<Transform> clientOrderPoints)
+            [Key(Constants.CLIENT_ORDER_PLACES)] IEnumerable<Transform> clientOrderPoints,
+            HUDViewModel hudViewModel)
         {
             _clientsFactory = clientsFactory;
             _tableService = tableService;
             _progressService = progressService;
+            _hudViewModel = hudViewModel;
             _orderAvailabilityMap = clientOrderPoints.ToDictionary(x => x, _ => true);
         }
 
@@ -35,7 +39,7 @@ namespace ITCafe.CafeBusiness
             _cts = new();
             var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
             Debug.Log($"[{nameof(ClientsRunner)}]: Running clients lifecycle");
-            
+
             try
             {
                 await UniTask.Delay(1000, cancellationToken: linkedTokenSource.Token);
@@ -55,6 +59,9 @@ namespace ITCafe.CafeBusiness
                                 _progressService.RegisterClient(client);
 
                                 // TODO: Watch out for client subscription this time
+                                client.OnOrdered.Subscribe(_ => _hudViewModel.AddOrderInfo(client.CurrentOrder));
+                                Observable.Merge(client.OnLeft).Take(1).Subscribe(_ =>
+                                    _hudViewModel.RemoveOrderInfo(client.CurrentOrder));
                                 Observable.Merge(client.OnLeft, client.OnOrdered)
                                     .Take(1)
                                     .Subscribe(x => _orderAvailabilityMap[orderTransform] = true);
@@ -83,12 +90,7 @@ namespace ITCafe.CafeBusiness
 
         public void Dispose()
         {
-            if (_cts != null)
-            {
-                _cts.Cancel();
-                _cts.Dispose();
-                _cts = null;
-            }
+            Disposes.ClearCts(ref _cts);
         }
     }
 }

@@ -8,7 +8,6 @@ namespace ITCafe.Environment
     {
         [SerializeField] private GameObject _itemPrefab;
 
-        // [SerializeField] private int _maxSpawnedItemsAmount;
         private IItem _coreItem; // вспомогательный объект
 
         protected override void Awake()
@@ -22,7 +21,6 @@ namespace ITCafe.Environment
 
         public override bool CanInteract(PlayerContext context)
         {
-            // TODO: max items
             var picker = context.ItemPicker;
             return picker.CanTake(_coreItem);
         }

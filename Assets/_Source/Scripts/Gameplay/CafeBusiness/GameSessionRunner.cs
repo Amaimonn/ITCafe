@@ -1,21 +1,25 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using R3;
+using ITCafe.Gameplay.UI.MVVM;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 namespace ITCafe.CafeBusiness
 {
     public class GameSessionRunner : IDisposable
     {
         private readonly WorkProgressService _workProgressService;
-        private CancellationTokenSource _cts;
+        private readonly HUDViewModel _hudViewModel;
+        private readonly ClientsRunner _clientsRunner;
 
-        public GameSessionRunner(WorkProgressService workProgressService)
+        private CancellationTokenSource _cts;
+        private readonly TimeSpan _sessionDuration = TimeSpan.FromMinutes(3);
+
+        public GameSessionRunner(WorkProgressService workProgressService, HUDViewModel hudViewModel, ClientsRunner clientsRunner)
         {
             _workProgressService = workProgressService;
+            _hudViewModel = hudViewModel;
+            _clientsRunner = clientsRunner;
         }
 
         public async UniTaskVoid RunSessionAsync(CancellationToken token)
@@ -26,7 +30,11 @@ namespace ITCafe.CafeBusiness
             try
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
+                _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
+                _hudViewModel.StartSessionTimer(_sessionDuration);
+                
                 await UniTask.Delay(TimeSpan.FromMinutes(3), cancellationToken: linkedTokenSource.Token);
+                
                 CompleteSession();
             }
             catch (OperationCanceledException) when (token.IsCancellationRequested)
@@ -36,11 +44,14 @@ namespace ITCafe.CafeBusiness
             finally
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Game session stopped");
+                _hudViewModel.StopSessionTimer();
             }
         }
 
         public void CompleteSession()
         {
+            Dispose();
+            _clientsRunner.Dispose();
             _workProgressService.CompleteDay();
             var report = _workProgressService.GetDailyReport();
             Debug.Log(report);
@@ -48,12 +59,7 @@ namespace ITCafe.CafeBusiness
 
         public void Dispose()
         {
-            if (_cts != null)
-            {
-                _cts.Cancel();
-                _cts.Dispose();
-                _cts = null;
-            }
+            Disposes.ClearCts(ref _cts);
         }
     }
 }
