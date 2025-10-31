@@ -1,0 +1,3 @@
+[submodule "Assets/_Source/Plugins/DevKit"]
+	path = Assets/_Source/Plugins/DevKit
+	url = https://github.com/Amaimonn/DevKit.git

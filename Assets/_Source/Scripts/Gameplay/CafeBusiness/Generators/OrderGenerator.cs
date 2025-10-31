@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using DevKit.Solutions;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
-using ITCafe.Solutions;
-using Unity.CodeEditor;
 using UnityEngine;
 
 namespace ITCafe.Gameplay.CafeBusiness
@@ -16,7 +15,6 @@ namespace ITCafe.Gameplay.CafeBusiness
         public OrderGenerator(IEnumerable<ItemInfoSO> itemInfos)
         {
             _itemInfos = itemInfos.ToList();
-            // UnityEditor.EditorPrefs.GetString();
         }
         
         public IOrder Create()

@@ -1,4 +1,4 @@
-using MiUI.MVVM;
+using DevKit.UI.MVVM;
 using UnityEngine;
 using UnityEngine.UIElements;
 using R3;
