@@ -1,0 +1,71 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Results/ResultsStyles.uss?fileID=7433441132597879392&amp;guid=b280a6aba7c9f5845b1f0dc49547865b&amp;type=3#ResultsStyles" />
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="results__root" style="flex-grow: 1;">
+        <ui:VisualElement name="ReceiptContainer" class="results__receipt">
+            <ui:VisualElement name="ReceiptHeader" class="results__receipt-header">
+                <ui:Label text="IT CAFE" class="results__cafe-name" />
+                <ui:Label text="ЧЕК #AF3242" class="results__receipt-number" />
+                <ui:Label text="Результаты дня" class="results__day-title" />
+            </ui:VisualElement>
+            <ui:VisualElement name="StarsContainer" class="results__stars-container">
+                <ui:VisualElement name="Star1" class="results__star results__star--filled" />
+                <ui:VisualElement name="Star2" class="results__star results__star--filled" />
+                <ui:VisualElement name="Star3" class="results__star results__star--empty" />
+                <ui:VisualElement name="Star4" class="results__star results__star--empty" />
+                <ui:VisualElement name="Star5" class="results__star results__star--empty" />
+            </ui:VisualElement>
+            <ui:VisualElement name="StatsSection" class="results__stats-section">
+                <ui:VisualElement name="StatRow1" class="results__stat-row">
+                    <ui:Label text="Заказов принято:" class="results__stat-label" />
+                    <ui:Label text="15" name="OrdersTakenValue" class="results__stat-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StatRow2" class="results__stat-row">
+                    <ui:Label text="Успешно выполнено:" class="results__stat-label" />
+                    <ui:Label text="12" name="OrdersCompletedValue" class="results__stat-value results__stat-value--success" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StatRow3" class="results__stat-row">
+                    <ui:Label text="Провалено:" class="results__stat-label" />
+                    <ui:Label text="3" name="OrdersFailedValue" class="results__stat-value results__stat-value--failed" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Divider" class="results__divider" />
+                <ui:VisualElement name="StatRow4" class="results__stat-row">
+                    <ui:Label text="Общий доход:" class="results__stat-label" />
+                    <ui:Label text="1 250" name="TotalIncomeValue" class="results__stat-value results__stat-value--income" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StatRow5" class="results__stat-row">
+                    <ui:Label text="Чаевые:" class="results__stat-label" />
+                    <ui:Label text="180" name="TipsValue" class="results__stat-value results__stat-value--tips" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Divider2" class="results__divider" />
+                <ui:VisualElement name="StatRow6" class="results__stat-row results__stat-row--total">
+                    <ui:Label text="ИТОГО:" class="results__stat-label results__stat-label--total" />
+                    <ui:Label text="1 430" name="TotalValue" class="results__stat-value results__stat-value--total" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="BonusSection" class="results__bonus-section">
+                <ui:VisualElement name="TimeRow" class="results__bonus-row">
+                    <ui:Label text="Время работы:" class="results__bonus-label" />
+                    <ui:Label text="03:00" name="TimeWorkedValue" class="results__bonus-value" />
+                </ui:VisualElement>
+                <ui:VisualElement name="BonusRow" class="results__bonus-row">
+                    <ui:Label text="Бонус за скорость:" class="results__bonus-label" />
+                    <ui:Label text="+50" name="SpeedBonusValue" class="results__bonus-value results__bonus-value--positive" />
+                </ui:VisualElement>
+                <ui:VisualElement name="RatingRow" class="results__bonus-row">
+                    <ui:Label text="Рейтинг кафе:" class="results__bonus-label" />
+                    <ui:Label text="4.2/5.0" name="CafeRatingValue" class="results__bonus-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ReceiptFooter" class="results__receipt-footer">
+                <ui:Label text="Спасибо за работу!" class="results__thank-you" />
+                <ui:Label text="-------------------" class="results__divider-line" />
+                <ui:Label text="Завтра новый день!" class="results__next-day" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ActionsContainer" class="results__actions">
+            <ui:Button name="ContinueButton" text="ПРОДОЛЖИТЬ" class="results__button results__button--primary" />
+            <ui:Button name="RestartButton" text="ПОВТОРИТЬ ДЕНЬ" class="results__button results__button--secondary" />
+            <ui:Button name="MenuButton" text="В МЕНЮ" class="results__button results__button--secondary" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
