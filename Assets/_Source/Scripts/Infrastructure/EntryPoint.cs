@@ -23,9 +23,11 @@ namespace ITCafe
             
             IEnumerator LoadEntryScene()
             {
-                var rootUI = Resources.Load<GameObject>("RootUIBinder");
-                Object.DontDestroyOnLoad(rootUI);
-                var loadingScreen = rootUI.GetComponentInChildren<LoadingScreen>();
+                var rootUIPrefab = Resources.Load<GameObject>("RootUIBinder");
+                var rootUIBinder = Object.Instantiate(rootUIPrefab);
+                Object.DontDestroyOnLoad(rootUIBinder);
+                
+                var loadingScreen = rootUIBinder.GetComponentInChildren<LoadingScreen>();
                 var sceneLoader = new SceneLoader(monoHook, loadingScreen);
                 
                 yield return sceneLoader.LoadStartScene();
