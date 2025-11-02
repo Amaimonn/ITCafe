@@ -13,5 +13,6 @@ namespace ITCafe
         public const string CLIENT_SEATS = nameof(CLIENT_SEATS);
         public const string CLIENT_ORDER_PLACES = nameof(CLIENT_ORDER_PLACES);
 #endregion
+        public const string MAIN_MENU_EXIT_SIGNAL =  nameof(MAIN_MENU_EXIT_SIGNAL);
     }
 }

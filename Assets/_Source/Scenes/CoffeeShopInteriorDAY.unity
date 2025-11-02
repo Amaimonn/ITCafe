@@ -12331,6 +12331,9 @@ MonoBehaviour:
   _timerName: Timer
   _pointsLabelName: PointsLabel
   _ordersContainerName: OrdersContainer
+  _ordersTakenValueName: OrderValue
+  _ordersCompletedValueName: SatisfactionValue
+  _ordersFailedValueName: FailedValue
 --- !u!1001 &771641631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22883,7 +22886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentReference:
     TypeName: 
-  autoRun: 1
+  autoRun: 0
   autoInjectGameObjects: []
   _playerInteractor: {fileID: 604675099}
   _playerItemPicker: {fileID: 604675100}

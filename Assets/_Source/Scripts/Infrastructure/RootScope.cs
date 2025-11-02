@@ -84,15 +84,9 @@ namespace ITCafe
             builder.Register<WorkProgressService>(Lifetime.Singleton);
         }
 
-        private void RegisterUI(IContainerBuilder builder)
+        public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
         {
-            builder.RegisterComponent<HUDView>(_hudView);
-            builder.Register<HUDViewModel>(Lifetime.Singleton);
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
+            Build();
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -106,27 +100,40 @@ namespace ITCafe
                 _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
                 _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: {x}"));
             }
-            
+
             var progressService = Container.Resolve<WorkProgressService>();
             var hudViewModel = Container.Resolve<HUDViewModel>();
             progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
             progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
-            
+
             var sessionRunner = Container.Resolve<GameSessionRunner>();
             sessionRunner.RunSessionAsync(_destroyToken).Forget();
-
 
 #if UNITY_EDITOR
             Observable.EveryUpdate().Where(_ => Keyboard.current.digit0Key.wasPressedThisFrame)
                 .Take(1)
                 .Subscribe(_ => sessionRunner.CompleteSession());
 #endif
+
+            var exitSignal = new Subject<Unit>(); // untyped signal
+
+            var mainMenuEnterContext = new MainMenuEnterContext();
+            var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
+            var gameplayExitSignal = exitSignal.Select(_ => gameplayExitContext);
+
+            return gameplayExitSignal;
+        }
+        
+        private void RegisterUI(IContainerBuilder builder)
+        {
+            builder.RegisterComponent<HUDView>(_hudView);
+            builder.Register<HUDViewModel>(Lifetime.Singleton);
         }
 
         private void Start()
         {
             _uiDocument.rootVisualElement.Clear();
-            
+
             var aimElement = _aimAsset.CloneTree();
             aimElement.pickingMode = PickingMode.Ignore;
             aimElement.style.position = Position.Absolute;

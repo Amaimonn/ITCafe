@@ -1,4 +1,3 @@
-/* Основные стили */
 .main-menu__root {
     flex-direction: column;
     width: 100%;
@@ -11,7 +10,6 @@
     padding-right: 40px;
 }
 
-/* Фоновый декор */
 .main-menu__background {
     position: absolute;
     width: 100%;
@@ -58,7 +56,6 @@
     left: 12%;
 }
 
-/* Основной контент */
 .main-menu__content {
     flex-direction: column;
     align-items: center;
@@ -66,7 +63,6 @@
     flex-grow: 1;
 }
 
-/* Заголовок */
 .main-menu__header {
     flex-direction: column;
     align-items: center;
@@ -91,7 +87,6 @@
     letter-spacing: 1px;
 }
 
-/* Кнопки меню */
 .main-menu__buttons {
     flex-direction: column;
     align-items: center;
@@ -135,7 +130,6 @@
     border-color: rgb(140, 140, 160);
 }
 
-/* Статистика */
 .main-menu__stats {
     flex-direction: column;
     background-color: rgba(40, 40, 50, 0.7);
@@ -178,7 +172,6 @@
     color: rgb(76, 175, 80);
 }
 
-/* Быстрые действия */
 .main-menu__quick-actions {
     flex-direction: row;
     justify-content: center;
