@@ -27,15 +27,7 @@ namespace ITCafe.Player
         private Action<InputAction.CallbackContext> _onInteract;
         private IDisposable _interactSubscription;
 
-        #region MonoBehaviour
-
-        private void Start()
-        {
-            if (_camera == null)
-                _camera = Camera.main;
-        }
-
-        private void OnEnable()
+        public void Init()
         {
             _onInteract = OnInteract; //_inputService.MediateAction(_interactAction, OnInteract);
             var inputEntry = new InputEntry(() => _interactAction.action.started += _onInteract,
@@ -44,17 +36,23 @@ namespace ITCafe.Player
                 inputEntry);
         }
 
-        private void OnDisable()
+#region MonoBehaviour
+        private void Start()
         {
-            _interactSubscription.Dispose();
+            if (_camera == null)
+                _camera = Camera.main;
         }
-
+        
         private void Update()
         {
             FindInteractables();
         }
 
-        #endregion
+        private void OnDestroy()
+        {
+            _interactSubscription?.Dispose();
+        }
+#endregion
 
         private void OnInteract(InputAction.CallbackContext context)
         {

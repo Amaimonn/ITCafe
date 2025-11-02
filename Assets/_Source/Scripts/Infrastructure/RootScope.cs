@@ -94,6 +94,7 @@ namespace ITCafe
             _destroyToken = destroyCancellationToken;
 
             Container.Inject(_playerInteractor);
+            _playerInteractor.Init();
 
             _disposables = new();
             {
