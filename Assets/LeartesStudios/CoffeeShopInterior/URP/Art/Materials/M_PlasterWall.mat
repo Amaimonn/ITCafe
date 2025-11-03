@@ -208,13 +208,13 @@ Material:
     - Boolean_d085fda90b1947349720bbc4f8ec8902: 0
     - Boolean_d6564e6d0cbe4e1194d4c4a23260af1f: 0
     - Vector1_1: 0.4
-    - Vector1_119DBA34: 1
+    - Vector1_119DBA34: -2
     - Vector1_12fe0cb484434e1bb9fbb72624870f7b: 1
     - Vector1_1ecf8adf107543b697e04962611a6572: 1
     - Vector1_2: 2
     - Vector1_33e14fa7ae4c48918431e8f177be52da: 5
     - Vector1_3d93f9a0aa3c4be2ba3dec68934e9a7e: 1
-    - Vector1_4B28F8D1: 1
+    - Vector1_4B28F8D1: 0.5
     - Vector1_8e90199dbb7c44488328cc843c1ee912: 0.2
     - Vector1_AF65C65C: 0
     - Vector1_BDF4927C: 0.3
@@ -275,6 +275,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1
@@ -325,6 +326,7 @@ Material:
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8
     - _StencilRefDistortionVec: 4
