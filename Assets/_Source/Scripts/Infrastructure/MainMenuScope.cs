@@ -1,3 +1,4 @@
+using DevKit.UI.MVVM;
 using ITCafe.Gameplay.UI.MVVM;
 using R3;
 using UnityEngine;
@@ -10,13 +11,12 @@ namespace ITCafe
     public class MainMenuScope : LifetimeScope
     {
         [SerializeField] private MainMenuView _mainMenuView;
-        [SerializeField] private UIDocument _uiDocument;
         private MainMenuEnterContext _mainMenuEnterContext;
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<Subject<Unit>>(Lifetime.Scoped).Keyed(Constants.MAIN_MENU_EXIT_SIGNAL);
-            builder.RegisterComponent<MainMenuView>(_mainMenuView);
+            builder.RegisterInstance<MainMenuView>(_mainMenuView);
             builder.Register<MainMenuViewModel>(Lifetime.Scoped);
         }
         
@@ -27,8 +27,9 @@ namespace ITCafe
             
             var mainMenuViewModel = Container.Resolve<MainMenuViewModel>();
             var mainMenuElement = _mainMenuView.InitAndGetRoot();
-            _uiDocument.rootVisualElement.Add(mainMenuElement);
+            var rootUIBinder = Container.Resolve<RootUIBinder>();
             _mainMenuView.Bind(mainMenuViewModel);
+            rootUIBinder.SetView(_mainMenuView);
             
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.MAIN_MENU_EXIT_SIGNAL); // for MainMenuViewModel
             // define context in UI

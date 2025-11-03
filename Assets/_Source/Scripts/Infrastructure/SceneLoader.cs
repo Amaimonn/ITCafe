@@ -1,7 +1,7 @@
 using System.Collections;
+using DevKit.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using VContainer.Unity;
 using R3;
 
 namespace ITCafe
@@ -11,13 +11,13 @@ namespace ITCafe
         public Observable<Unit> OnLoadingStarted => _onLoadingStarted;
         public Observable<Unit> OnLoadingFinished => _onLoadingFinished;
 
-        private readonly MonoBehaviour _monoHook;
+        private readonly MonoBehaviourHook _monoHook;
         private readonly LoadingScreen _loadingScreen;
         private readonly Subject<Unit> _onLoadingStarted = new();
         private readonly Subject<Unit> _onLoadingFinished = new();
         private const float MIN_LOADING_TIME = 1f;
 
-        public SceneLoader(MonoBehaviour hook, LoadingScreen loadingScreen)
+        public SceneLoader(MonoBehaviourHook hook, LoadingScreen loadingScreen)
         {
             _monoHook = hook;
             _loadingScreen = loadingScreen;

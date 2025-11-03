@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using DevKit.Solutions;
+using DevKit.UI.MVVM;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -30,8 +31,7 @@ namespace ITCafe
         [SerializeField] private Transform[] _clientOrderPoints;
 
         [Header("UI")]
-        [SerializeField] private UIDocument _uiDocument;
-        [SerializeField] private VisualTreeAsset _aimAsset;
+        [SerializeField] private AimView _aimView;
         [SerializeField] private HUDView _hudView;
 
         private CompositeDisposable _disposables;
@@ -134,19 +134,18 @@ namespace ITCafe
             var hudViewModel = Container.Resolve<HUDViewModel>();
             progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
             progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
+            
+            var uiBinder = Container.Resolve<RootUIBinder>();
 
-            _uiDocument.rootVisualElement.Clear();
-
-            var aimElement = _aimAsset.CloneTree();
+            var aimElement = _aimView.InitAndGetRoot();
             aimElement.pickingMode = PickingMode.Ignore;
             aimElement.style.position = Position.Absolute;
             aimElement.style.width = Length.Percent(100);
             aimElement.style.height = Length.Percent(100);
-            _uiDocument.rootVisualElement.Add(aimElement);
 
             var hudElement = _hudView.InitAndGetRoot();
             _hudView.Bind(hudViewModel);
-            _uiDocument.rootVisualElement.Add(hudElement);
+            uiBinder.SetViews(_hudView, _aimView);
         }
 
         protected override void OnDestroy()
