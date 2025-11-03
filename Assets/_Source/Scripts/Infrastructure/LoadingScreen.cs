@@ -30,12 +30,27 @@ namespace ITCafe
         }
 #endregion
 
-        public void Show(bool showText = true)
+        public IEnumerator ShowWithInstantlyCoroutine(bool isInstant)
+        {
+            if (isInstant)
+                Show();
+            else
+                yield return ShowCoroutine();
+        }
+        
+        public IEnumerator HideWithInstantlyCoroutine(bool isInstant)
+        {
+            if (isInstant)
+                Hide();
+            else
+                yield return HideCoroutine();
+        }
+        
+        public void Show()
         {
             _loadingGameObject.SetActive(true);
             _loadingStub.SetActive(true);
-            if (showText)
-                _loadingText.SetActive(true);
+
             SetOverlayFillProgress(1);
             _onStarted.OnNext(Unit.Default);
         }

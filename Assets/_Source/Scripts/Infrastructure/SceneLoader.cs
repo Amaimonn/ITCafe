@@ -28,17 +28,17 @@ namespace ITCafe
             var currentScene = SceneManager.GetActiveScene().name;
 #if UNITY_EDITOR
             if (currentScene == Scenes.MAIN_MENU)
-                yield return LoadMainMenu();
+                yield return LoadMainMenu(showLoadingImmediately: true);
             else if (currentScene == Scenes.GAMEPLAY)
-                yield return LoadGameplay();
+                yield return LoadGameplay(immediateLoading: true);
 #else
-            yield return LoadMainMenu()
+            yield return LoadMainMenu(immediateLoading: true)
 #endif
         }
 
-        private IEnumerator LoadMainMenu(MainMenuEnterContext mainMenuEnterContext = null)
+        private IEnumerator LoadMainMenu(MainMenuEnterContext mainMenuEnterContext = null, bool showLoadingImmediately = false)
         {
-            _loadingScreen.Show();
+            yield return _loadingScreen.ShowWithInstantlyCoroutine(showLoadingImmediately);
             var startTime = Time.time;
             _onLoadingStarted.OnNext(Unit.Default);
 
@@ -59,9 +59,9 @@ namespace ITCafe
             yield return _loadingScreen.HideCoroutine();
         }
 
-        private IEnumerator LoadGameplay(GameplayEnterContext gameplayEnterContext = null)
+        private IEnumerator LoadGameplay(GameplayEnterContext gameplayEnterContext = null, bool immediateLoading = false)
         {
-            yield return _loadingScreen.ShowCoroutine();
+            yield return _loadingScreen.ShowWithInstantlyCoroutine(immediateLoading);
 
             var startTime = Time.time;
             _onLoadingStarted.OnNext(Unit.Default);
@@ -70,7 +70,7 @@ namespace ITCafe
 
             Debug.Log("Gameplay scene loaded");
 
-            var gameplayBootstrap = Object.FindAnyObjectByType<RootScope>();
+            var gameplayBootstrap = Object.FindAnyObjectByType<GameplayScope>();
             var gameplayExitSignal = gameplayBootstrap.Boot(gameplayEnterContext);
 
             gameplayExitSignal.Take(1).Subscribe(gameplayExitContext =>
