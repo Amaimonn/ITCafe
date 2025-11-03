@@ -1,6 +1,9 @@
 using System.Collections;
+using DevKit.UI.MVVM;
 using DevKit.Utils;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace ITCafe
 {
@@ -17,19 +20,28 @@ namespace ITCafe
 
         private void Run()
         {
-            var monoHook = new GameObject("EntryMonoHook").AddComponent<MonoBehaviourHook>();
-            Object.DontDestroyOnLoad(monoHook);
-            monoHook.StartCoroutine(LoadEntryScene());
+            VContainerSettings.LoadInstanceFromPreloadAssets();
+            var vSettings = VContainerSettings.Instance;
+            var rootScope = vSettings.GetOrCreateRootLifetimeScopeInstance();
+            rootScope.Build();
             
+            var rootContainer = rootScope.Container;
+            var monoHook = rootContainer.Resolve<MonoBehaviourHook>();
+            var loadingScreen = rootContainer.Resolve<LoadingScreen>();
+            loadingScreen.Show();
+            
+            monoHook.StartCoroutine(LoadEntryScene());
+
             IEnumerator LoadEntryScene()
             {
-                var rootUIPrefab = Resources.Load<GameObject>("RootUIBinder");
-                var rootUIBinder = Object.Instantiate(rootUIPrefab);
-                Object.DontDestroyOnLoad(rootUIBinder);
-                
-                var loadingScreen = rootUIBinder.GetComponentInChildren<LoadingScreen>();
-                var sceneLoader = new SceneLoader(monoHook, loadingScreen);
-                
+                // var rootUIPrefab = Resources.Load<RootUIBinder>("RootUIBinder");
+                // var rootUIBinder = Object.Instantiate(rootUIPrefab);
+                // Object.DontDestroyOnLoad(rootUIBinder);
+                //
+                // var loadingScreen = rootUIBinder.GetComponentInChildren<LoadingScreen>();
+
+                var sceneLoader = rootContainer.Resolve<SceneLoader>();
+
                 yield return sceneLoader.LoadStartScene();
             }
         }

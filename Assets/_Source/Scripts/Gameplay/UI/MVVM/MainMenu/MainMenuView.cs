@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class MainMenuView : ToolkitView<MainMenuViewModel>
+    public class MainMenuView : ToolkitAttach<MainMenuViewModel>
     {
         [SerializeField] private string _playButtonName = "PlayButton";
         [SerializeField] private string _exitButtonName = "ExitButton";
