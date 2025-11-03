@@ -21,6 +21,7 @@
     flex-direction: row;
     align-self: flex-start;
     padding-right: 2px;
+    translate: 50% 0;
 }
 
 .order-cloud__item-image {
