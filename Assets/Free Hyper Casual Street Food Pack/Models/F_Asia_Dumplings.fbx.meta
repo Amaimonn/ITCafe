@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 33919b05fd31afb44a2e499f87c397bb
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283755
+  packageName: Free Hyper Casual Street Food Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Free Hyper Casual Street Food Pack/Models/F_Asia_Dumplings.fbx
+  uploadId: 660701
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -21,8 +28,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -37,7 +42,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -112,10 +117,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 283755
-  packageName: Free Hyper Casual Street Food Pack
-  packageVersion: 1.0.0
-  assetPath: Assets/Free Hyper Casual Street Food Pack/Models/F_Asia_Dumplings.fbx
-  uploadId: 660701

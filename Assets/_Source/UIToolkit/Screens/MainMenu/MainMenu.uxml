@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/MainMenu/MainMenuStyles.uss?fileID=7433441132597879392&amp;guid=b72b6d07834039643a1308ab69eea901&amp;type=3#MainMenuStyles" />
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="main-menu__root">
+        <ui:VisualElement name="ContentContainer" class="main-menu__content">
+            <ui:VisualElement name="MenuPanel" style="flex-grow: 1; justify-content: center;">
+                <ui:VisualElement name="HeaderSection" class="main-menu__header">
+                    <ui:Label text="IT Cafe" class="main-menu__title" />
+                    <ui:Label text="Но есть нюансы..." class="main-menu__subtitle" />
+                </ui:VisualElement>
+                <ui:VisualElement name="MenuButtons" class="main-menu__buttons">
+                    <ui:Button name="PlayButton" text="ИГРАТЬ" class="main-menu__button main-menu__button--primary" />
+                    <ui:Button name="SettingsButton" text="НАСТРОЙКИ" class="main-menu__button main-menu__button--secondary" />
+                    <ui:Button name="ExitButton" text="ВЫХОД" class="main-menu__button main-menu__button--secondary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Footer" class="main-menu__footer">
+            <ui:Label text="© 2025 Emil Alekseev" class="main-menu__copyright" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

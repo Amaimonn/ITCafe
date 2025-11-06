@@ -1,0 +1,218 @@
+.main-menu__root {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(25, 25, 35);
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.main-menu__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.main-menu__coffee-cup {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(139, 69, 19, 0.1);
+    border-color: rgba(160, 82, 45, 0.3);
+    border-width: 2px;
+    border-radius: 20px;
+}
+
+.main-menu__coffee-cup--1 {
+    top: 15%;
+    left: 10%;
+}
+
+.main-menu__coffee-cup--2 {
+    bottom: 20%;
+    right: 8%;
+}
+
+.main-menu__coffee-bean {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background-color: rgba(101, 67, 33, 0.3);
+    border-radius: 50%;
+}
+
+.main-menu__coffee-bean--1 {
+    top: 30%;
+    right: 15%;
+}
+
+.main-menu__coffee-bean--2 {
+    bottom: 35%;
+    left: 12%;
+}
+
+.main-menu__content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.main-menu__header {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.main-menu__title {
+    font-size: 48px;
+    color: rgb(255, 215, 0);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 3px;
+}
+
+.main-menu__subtitle {
+    font-size: 18px;
+    color: rgb(200, 200, 220);
+    -unity-text-align: middle-center;
+    -unity-font-style: italic;
+    letter-spacing: 1px;
+}
+
+.main-menu__buttons {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.main-menu__button {
+    width: 280px;
+    height: 55px;
+    background-color: rgba(60, 60, 80, 0.8);
+    border-color: rgb(100, 100, 120);
+    border-width: 2px;
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    -unity-font-style: bold;
+    font-size: 16px;
+    color: rgb(220, 220, 240);
+    transition: all 0.2s ease;
+}
+
+.main-menu__button--primary {
+    background-color: rgba(139, 69, 19, 0.9);
+    border-color: rgb(160, 82, 45);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.main-menu__button--secondary {
+    background-color: rgba(80, 80, 100, 0.7);
+    border-color: rgb(120, 120, 140);
+}
+
+.main-menu__button--primary:hover {
+    background-color: rgba(160, 82, 45, 0.95);
+    border-color: rgb(180, 95, 55);
+}
+
+.main-menu__button--secondary:hover {
+    background-color: rgba(100, 100, 120, 0.8);
+    border-color: rgb(140, 140, 160);
+}
+
+.main-menu__stats {
+    flex-direction: column;
+    background-color: rgba(40, 40, 50, 0.7);
+    border-color: rgb(70, 70, 90);
+    border-width: 1px;
+    border-radius: 8px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 40px;
+}
+
+.main-menu__stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.main-menu__stat-label {
+    font-size: 14px;
+    color: rgb(180, 180, 200);
+    -unity-text-align: upper-left;
+}
+
+.main-menu__stat-value {
+    font-size: 15px;
+    color: rgb(220, 220, 240);
+    -unity-text-align: upper-right;
+    -unity-font-style: bold;
+}
+
+.main-menu__stat-value--money {
+    color: rgb(255, 215, 0);
+}
+
+.main-menu__stat-value--rating {
+    color: rgb(76, 175, 80);
+}
+
+.main-menu__quick-actions {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.main-menu__quick-button {
+    height: 35px;
+    background-color: rgba(60, 60, 80, 0.6);
+    border-color: rgb(90, 90, 110);
+    border-width: 1px;
+    border-radius: 6px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 12px;
+    color: rgb(180, 180, 200);
+}
+
+.main-menu__quick-button:hover {
+    background-color: rgba(80, 80, 100, 0.7);
+    border-color: rgb(110, 110, 130);
+}
+
+.main-menu__footer {
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-menu__version {
+    font-size: 11px;
+    color: rgb(120, 120, 140);
+    -unity-text-align: middle-center;
+    margin-bottom: 5px;
+}
+
+.main-menu__copyright {
+    font-size: 11px;
+    color: rgb(100, 100, 120);
+    -unity-text-align: middle-center;
+}

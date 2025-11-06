@@ -9,7 +9,7 @@ using ObservableCollections;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class HUDView : ToolkitView<HUDViewModel>
+    public class HUDView : ToolkitAttach<HUDViewModel>
     {
         [SerializeField] private string _timerName = "Timer";
         [SerializeField] private string _pointsLabelName = "PointsLabel";
