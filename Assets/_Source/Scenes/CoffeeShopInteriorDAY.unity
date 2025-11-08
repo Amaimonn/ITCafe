@@ -12256,57 +12256,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1322542069}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &768429955
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 768429956}
-  - component: {fileID: 768429957}
-  m_Layer: 0
-  m_Name: HUDView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &768429956
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768429955}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1355671832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &768429957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768429955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc4787c53444ac0a48dfc3e4320f0cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiAsset: {fileID: 9197481963319205126, guid: f1347106c76b55f4c8bb9795c0fe1a8a, type: 3}
-  _timerName: Timer
-  _pointsLabelName: PointsLabel
-  _ordersContainerName: OrdersContainer
-  _ordersTakenValueName: OrderValue
-  _ordersCompletedValueName: SatisfactionValue
-  _ordersFailedValueName: FailedValue
 --- !u!1001 &771641631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22735,7 +22684,7 @@ MonoBehaviour:
   - {fileID: 1884332591}
   - {fileID: 1089090169}
   _aimView: {fileID: 1442608047}
-  _hudView: {fileID: 768429957}
+  _hudViewPrefab: {fileID: 3779760820142183007, guid: ed584786dce5b384898647c19138c671, type: 3}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0
@@ -22749,7 +22698,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 768429956}
   - {fileID: 1442608048}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

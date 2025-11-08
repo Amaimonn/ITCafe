@@ -1,20 +1,24 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
+using DevKit.UI.MVVM.Bases;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Player;
 using R3;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using VContainer;
 using VContainer.Unity;
 using Cursor = UnityEngine.Cursor;
+using Unit = R3.Unit;
 
 namespace ITCafe
 {
@@ -32,7 +36,7 @@ namespace ITCafe
 
         [Header("UI")]
         [SerializeField] private AimView _aimView;
-        [SerializeField] private HUDView _hudView;
+        [SerializeField] private HUDView _hudViewPrefab;
 
         private CompositeDisposable _disposables;
         private CancellationToken _destroyToken;
@@ -124,18 +128,26 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterComponent<HUDView>(_hudView);
+            builder.RegisterInstance<HUDView>(_hudViewPrefab); // prefab registration
             builder.Register<HUDViewModel>(Lifetime.Singleton);
+            builder.Register<LazyAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
+                .As<AttachBinder<HUDView, HUDViewModel>>();
+            builder.Register<Func<HUDViewModel>>(x => () =>
+            {
+                var hudViewModel = x.Resolve<HUDViewModel>();
+                var progressService = Container.Resolve<WorkProgressService>();
+                progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
+                progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
+                return hudViewModel;
+            }, Lifetime.Singleton);
         }
 
         private void InitUI()
         {
-            var progressService = Container.Resolve<WorkProgressService>();
-            var hudViewModel = Container.Resolve<HUDViewModel>();
-            progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
-            progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
-            
-            var uiBinder = Container.Resolve<RootUIBinder>();
+            var hudBinder = Container.Resolve<AttachBinder<HUDView, HUDViewModel>>();
+            var uiBinder = Container.Resolve<IRootUIBinder>();
+            uiBinder.ClearViews();
+            hudBinder.Open();
 
             var aimElement = _aimView.InitAndGetRoot();
             aimElement.pickingMode = PickingMode.Ignore;
@@ -143,9 +155,7 @@ namespace ITCafe
             aimElement.style.width = Length.Percent(100);
             aimElement.style.height = Length.Percent(100);
 
-            var hudElement = _hudView.InitAndGetRoot();
-            _hudView.Bind(hudViewModel);
-            uiBinder.SetViews(_hudView, _aimView);
+            uiBinder.AddView(_aimView);
         }
 
         protected override void OnDestroy()

@@ -27,7 +27,7 @@ namespace ITCafe
             
             var mainMenuViewModel = Container.Resolve<MainMenuViewModel>();
             var mainMenuElement = _mainMenuView.InitAndGetRoot();
-            var rootUIBinder = Container.Resolve<RootUIBinder>();
+            var rootUIBinder = Container.Resolve<IRootUIBinder>();
             _mainMenuView.Bind(mainMenuViewModel);
             rootUIBinder.SetView(_mainMenuView);
             

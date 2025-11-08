@@ -1,15 +1,15 @@
-using DevKit.UI.MVVM;
 using UnityEngine;
 using UnityEngine.UIElements;
 using R3;
 using System.Collections.Generic;
 using System.Linq;
+using DevKit.UI.MVVM.Bases;
 using ITCafe.CafeBusiness;
 using ObservableCollections;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class HUDView : ToolkitAttach<HUDViewModel>
+    public class HUDView : ScreenToolkitAttach<HUDViewModel>
     {
         [SerializeField] private string _timerName = "Timer";
         [SerializeField] private string _pointsLabelName = "PointsLabel";
@@ -25,8 +25,6 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Label _ordersFailedLabel;
         private VisualElement _ordersContainer;
 
-        private CompositeDisposable _disposables;
-
         private readonly Dictionary<VisualElement, List<(int, VisualElement)>> _orderContainerImagesMap = new();
         private readonly Dictionary<IOrder, VisualElement> _orderContainerMap = new();
 
@@ -35,30 +33,29 @@ namespace ITCafe.Gameplay.UI.MVVM
             _timerLabel = Root.Q<Label>(name: _timerName);
             _pointsLabel = Root.Q<Label>(name: _pointsLabelName);
             _ordersContainer = Root.Q<VisualElement>(name: _ordersContainerName);
-            
-            _ordersTakenLabel =  Root.Q<Label>(name: _ordersTakenValueName);
+
+            _ordersTakenLabel = Root.Q<Label>(name: _ordersTakenValueName);
             _ordersCompletedLabel = Root.Q<Label>(name: _ordersCompletedValueName);
             _ordersFailedLabel = Root.Q<Label>(name: _ordersFailedValueName);
-            
+
             _ordersContainer.Clear();
         }
 
         protected override void OnBind(HUDViewModel viewModel)
         {
-            _disposables = new CompositeDisposable
-            {
-                viewModel.TimerText.Subscribe(x => _timerLabel.text = x.ToString()),
-                viewModel.PointsAmount.Subscribe(x => _pointsLabel.text = x.ToString()),
+            base.OnBind(viewModel);
+            
+            viewModel.TimerText.Subscribe(x => _timerLabel.text = x.ToString()).AddTo(_disposables);
+            viewModel.PointsAmount.Subscribe(x => _pointsLabel.text = x.ToString()).AddTo(_disposables);
 
-                viewModel.ActiveOrders.ObserveAdd().Subscribe(x => OnOrderAdded(x.Value)),
-                viewModel.ActiveOrders.ObserveRemove().Subscribe(x => OnOrderRemoved(x.Value)),
-                
-                viewModel.OrdersTaken.Subscribe(x => _ordersTakenLabel.text = x.ToString()),
-                viewModel.OrdersCompleted.Subscribe(x => _ordersCompletedLabel.text = x.ToString()),
-                viewModel.OrdersFailed.Subscribe(x => _ordersFailedLabel.text = x.ToString()),
-            };
+            viewModel.ActiveOrders.ObserveAdd().Subscribe(x => OnOrderAdded(x.Value)).AddTo(_disposables);
+            viewModel.ActiveOrders.ObserveRemove().Subscribe(x => OnOrderRemoved(x.Value)).AddTo(_disposables);
+
+            viewModel.OrdersTaken.Subscribe(x => _ordersTakenLabel.text = x.ToString()).AddTo(_disposables);
+            viewModel.OrdersCompleted.Subscribe(x => _ordersCompletedLabel.text = x.ToString()).AddTo(_disposables);
+            viewModel.OrdersFailed.Subscribe(x => _ordersFailedLabel.text = x.ToString()).AddTo(_disposables);
         }
-        
+
         private void OnOrderAdded(IOrder order)
         {
             var orderContainer = new VisualElement();
