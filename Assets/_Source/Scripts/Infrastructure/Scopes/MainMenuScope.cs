@@ -1,7 +1,6 @@
 using System;
 using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
-using ITCafe.CafeBusiness;
 using ITCafe.Gameplay.UI.MVVM;
 using R3;
 using UnityEngine;
@@ -18,11 +17,12 @@ namespace ITCafe
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<Subject<Unit>>(Lifetime.Scoped).Keyed(Constants.MAIN_MENU_EXIT_SIGNAL);
+            
             builder.RegisterInstance<MainMenuView>(_mainMenuViewPrefab);
             builder.Register<MainMenuViewModel>(Lifetime.Scoped);
+            builder.Register<Func<MainMenuViewModel>>(x => () => x.Resolve<MainMenuViewModel>(), Lifetime.Singleton);
             builder.Register<LazyAttachBinder<MainMenuView, MainMenuViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<MainMenuView>>();
-            builder.Register<Func<MainMenuViewModel>>(x => () => x.Resolve<MainMenuViewModel>(), Lifetime.Singleton);
         }
 
         public Observable<MainMenuExitContext> Boot(MainMenuEnterContext mainMenuEnterContext = null)
