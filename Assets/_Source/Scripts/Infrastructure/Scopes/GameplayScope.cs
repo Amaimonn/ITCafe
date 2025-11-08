@@ -131,7 +131,7 @@ namespace ITCafe
             builder.RegisterInstance<HUDView>(_hudViewPrefab); // prefab registration
             builder.Register<HUDViewModel>(Lifetime.Singleton);
             builder.Register<LazyAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
-                .As<AttachBinder<HUDView, HUDViewModel>>();
+                .As<IViewBinder<HUDView>>();
             builder.Register<Func<HUDViewModel>>(x => () =>
             {
                 var hudViewModel = x.Resolve<HUDViewModel>();
@@ -144,7 +144,7 @@ namespace ITCafe
 
         private void InitUI()
         {
-            var hudBinder = Container.Resolve<AttachBinder<HUDView, HUDViewModel>>();
+            var hudBinder = Container.Resolve<IViewBinder<HUDView>>();
             var uiBinder = Container.Resolve<IRootUIBinder>();
             uiBinder.ClearViews();
             hudBinder.Open();

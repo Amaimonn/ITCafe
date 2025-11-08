@@ -1,10 +1,11 @@
 using DevKit.UI.MVVM;
+using DevKit.UI.MVVM.Bases;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class MainMenuView : ToolkitAttach<MainMenuViewModel>
+    public class MainMenuView : ScreenToolkitAttach<MainMenuViewModel>
     {
         [SerializeField] private string _playButtonName = "PlayButton";
         [SerializeField] private string _exitButtonName = "ExitButton";
@@ -14,6 +15,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected override void OnInit()
         {
+            base.OnInit();
             _playButton = Root.Q<Button>(name: _playButtonName);
             _exitButton = Root.Q<Button>(name: _exitButtonName);
         }

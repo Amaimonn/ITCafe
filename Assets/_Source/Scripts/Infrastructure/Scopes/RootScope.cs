@@ -16,7 +16,6 @@ namespace ITCafe
             var rootUIBinder = Instantiate(_rootUIBinderPrefab);
             DontDestroyOnLoad(rootUIBinder);
             builder.RegisterInstance<RootUIBinder>(rootUIBinder)
-                .AsSelf()
                 .As<IRootUIBinder>();
 
             var monoHook = new GameObject("EntryMonoHook").AddComponent<MonoBehaviourHook>();
