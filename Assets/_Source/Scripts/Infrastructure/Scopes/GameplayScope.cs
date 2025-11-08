@@ -35,7 +35,7 @@ namespace ITCafe
         [SerializeField] private Transform[] _clientOrderPoints;
 
         [Header("UI")]
-        [SerializeField] private AimView _aimView;
+        [SerializeField] private AimView _aimViewPrefab;
         [SerializeField] private HUDView _hudViewPrefab;
 
         private CompositeDisposable _disposables;
@@ -140,22 +140,24 @@ namespace ITCafe
                 progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
                 return hudViewModel;
             }, Lifetime.Singleton);
+            
+            builder.RegisterInstance<AimView>(_aimViewPrefab); // prefab registration
+            builder.Register<AimViewModel>(Lifetime.Singleton);
+            builder.Register<LazyAttachBinder<AimView, AimViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<AimView>>();
+            builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
         }
 
         private void InitUI()
         {
-            var hudBinder = Container.Resolve<IViewBinder<HUDView>>();
             var uiBinder = Container.Resolve<IRootUIBinder>();
             uiBinder.ClearViews();
+            
+            var hudBinder = Container.Resolve<IViewBinder<HUDView>>();
             hudBinder.Open();
-
-            var aimElement = _aimView.InitAndGetRoot();
-            aimElement.pickingMode = PickingMode.Ignore;
-            aimElement.style.position = Position.Absolute;
-            aimElement.style.width = Length.Percent(100);
-            aimElement.style.height = Length.Percent(100);
-
-            uiBinder.AddView(_aimView);
+            
+            var aimBinder = Container.Resolve<IViewBinder<AimView>>();
+            aimBinder.Open();
         }
 
         protected override void OnDestroy()

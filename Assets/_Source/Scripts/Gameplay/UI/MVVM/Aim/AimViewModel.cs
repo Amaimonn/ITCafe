@@ -2,7 +2,7 @@ using DevKit.UI.MVVM.Bases;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class AimView : ScreenToolkitAttach<AimViewModel>
+    public class AimViewModel : ScreenViewModel
     {
         
     }

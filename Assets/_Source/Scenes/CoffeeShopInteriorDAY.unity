@@ -22683,7 +22683,7 @@ MonoBehaviour:
   - {fileID: 850005171}
   - {fileID: 1884332591}
   - {fileID: 1089090169}
-  _aimView: {fileID: 1442608047}
+  _aimViewPrefab: {fileID: 8816156599924569486, guid: e1566505e9594f24c975eca06a4f37b4, type: 3}
   _hudViewPrefab: {fileID: 3779760820142183007, guid: ed584786dce5b384898647c19138c671, type: 3}
 --- !u!4 &1355671832
 Transform:
@@ -22697,8 +22697,7 @@ Transform:
   m_LocalPosition: {x: 2.9850254, y: -7.8510528, z: 14.884699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1442608048}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1361120324
@@ -25245,51 +25244,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030972114, guid: abc00000000014074132175009398553, type: 3}
   m_PrefabInstance: {fileID: 1439979594}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1442608046
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1442608048}
-  - component: {fileID: 1442608047}
-  m_Layer: 0
-  m_Name: AimView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1442608047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442608046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9019e4fcca90425784b93230d7a11e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.AimView
-  _uiAsset: {fileID: 9197481963319205126, guid: 33a5a83767803524ea1ee52c29b039e9, type: 3}
---- !u!4 &1442608048
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442608046}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1355671832}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1445845378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8684389532677264163, guid: 4cc60c1d84364a7459d7ce80ea270a8b, type: 3}
