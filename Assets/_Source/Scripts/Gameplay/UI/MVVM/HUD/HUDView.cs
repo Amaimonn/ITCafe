@@ -30,7 +30,6 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected override void OnInit()
         {
-            base.OnInit();
             _timerLabel = Root.Q<Label>(name: _timerName);
             _pointsLabel = Root.Q<Label>(name: _pointsLabelName);
             _ordersContainer = Root.Q<VisualElement>(name: _ordersContainerName);

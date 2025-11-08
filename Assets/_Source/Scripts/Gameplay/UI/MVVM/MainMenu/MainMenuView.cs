@@ -15,7 +15,6 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected override void OnInit()
         {
-            base.OnInit();
             _playButton = Root.Q<Button>(name: _playButtonName);
             _exitButton = Root.Q<Button>(name: _exitButtonName);
         }
