@@ -49,6 +49,7 @@ namespace ITCafe
         public void Show()
         {
             _loadingGameObject.SetActive(true);
+            _loadingText.SetActive(true);
             _loadingStub.SetActive(true);
 
             SetOverlayFillProgress(1);
