@@ -16,8 +16,9 @@ namespace ITCafe
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<Subject<Unit>>(Lifetime.Scoped).Keyed(Constants.MAIN_MENU_EXIT_SIGNAL);
-            
+            builder.Register<Subject<Unit>>(Lifetime.Scoped)
+                .Keyed(Constants.MAIN_MENU_EXIT_SIGNAL);
+
             builder.RegisterInstance<MainMenuView>(_mainMenuViewPrefab);
             builder.Register<MainMenuViewModel>(Lifetime.Scoped);
             builder.Register<Func<MainMenuViewModel>>(x => () => x.Resolve<MainMenuViewModel>(), Lifetime.Singleton);

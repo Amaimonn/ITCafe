@@ -9,12 +9,11 @@ using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.Gameplay.UI.MVVM.Results;
 using ITCafe.Player;
 using R3;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using VContainer;
 using VContainer.Unity;
 using Cursor = UnityEngine.Cursor;
@@ -25,6 +24,7 @@ namespace ITCafe
     public class GameplayScope : LifetimeScope
     {
         [Header("Player")]
+        [SerializeField] private InputActionAsset _inputActionAsset;
         [SerializeField] private Interactor _playerInteractor;
         [SerializeField] private ItemPicker _playerItemPicker;
 
@@ -37,6 +37,7 @@ namespace ITCafe
         [Header("UI")]
         [SerializeField] private AimView _aimViewPrefab;
         [SerializeField] private HUDView _hudViewPrefab;
+        [SerializeField] private ResultsView _resultsViewPrefab;
 
         private CompositeDisposable _disposables;
         private CancellationToken _destroyToken;
@@ -44,6 +45,11 @@ namespace ITCafe
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterUI(builder);
+
+            builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
+
+            builder.Register<Subject<Unit>>(Lifetime.Singleton)
+                .Keyed(Constants.GAMEPLAY_EXIT_SIGNAL);
 
             builder.RegisterInstance<ClientCharacter[]>(_clientPrefabs)
                 .As<IEnumerable<ClientCharacter>>()
@@ -91,6 +97,9 @@ namespace ITCafe
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
         {
             Build();
+            
+            var inputService = Container.Resolve<InputService>();
+            inputService.SetInputEnabled(true);
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -117,7 +126,7 @@ namespace ITCafe
 
             InitUI();
 
-            var exitSignal = new Subject<Unit>(); // untyped signal
+            var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
 
             var mainMenuEnterContext = new MainMenuEnterContext();
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
@@ -140,22 +149,28 @@ namespace ITCafe
                 progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
                 return hudViewModel;
             }, Lifetime.Singleton);
-            
+
             builder.RegisterInstance<AimView>(_aimViewPrefab); // prefab registration
             builder.Register<AimViewModel>(Lifetime.Singleton);
             builder.Register<LazyAttachBinder<AimView, AimViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<AimView>>();
             builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
+
+            builder.RegisterInstance<ResultsView>(_resultsViewPrefab); // prefab registration
+            builder.Register<ResultsViewModel>(Lifetime.Singleton);
+            builder.Register<LazyAttachBinder<ResultsView, ResultsViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<ResultsView>>();
+            builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
         }
 
         private void InitUI()
         {
             var uiBinder = Container.Resolve<IRootUIBinder>();
             uiBinder.ClearViews();
-            
+
             var hudBinder = Container.Resolve<IViewBinder<HUDView>>();
             hudBinder.Open();
-            
+
             var aimBinder = Container.Resolve<IViewBinder<AimView>>();
             aimBinder.Open();
         }

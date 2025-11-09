@@ -14,5 +14,6 @@ namespace ITCafe
         public const string CLIENT_ORDER_PLACES = nameof(CLIENT_ORDER_PLACES);
 #endregion
         public const string MAIN_MENU_EXIT_SIGNAL =  nameof(MAIN_MENU_EXIT_SIGNAL);
+        public const string GAMEPLAY_EXIT_SIGNAL =  nameof(GAMEPLAY_EXIT_SIGNAL);
     }
 }

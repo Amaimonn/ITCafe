@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Source/Scenes/MainMenu.unity
+    guid: 80feb6d236fd7d6408bcdb9fecbd99f3
+  - enabled: 1
     path: Assets/_Source/Scenes/CoffeeShopInteriorDAY.unity
     guid: 79b77b99f469ac04cb13088d83ea956d
   m_configObjects:
