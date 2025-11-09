@@ -17,8 +17,11 @@ namespace ITCafe.CafeBusiness
         private readonly TableService _tableService;
         private readonly WorkProgressService _progressService;
         private readonly HUDViewModel _hudViewModel;
+        
         private readonly Dictionary<Transform, bool> _orderAvailabilityMap;
+        private readonly int _maxActiveClients = 6;
         private CancellationTokenSource _cts;
+        private int _currentActiveClients = 0;
 
         public ClientsRunner(
             IFactory<ClientCharacter> clientsFactory,
@@ -36,7 +39,8 @@ namespace ITCafe.CafeBusiness
 
         public async UniTaskVoid RunClientsLifeCycleAsync(CancellationToken token)
         {
-            _cts = new();
+            _cts = new CancellationTokenSource();
+            
             var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
             Debug.Log($"[{nameof(ClientsRunner)}]: Running clients lifecycle");
 
@@ -46,7 +50,7 @@ namespace ITCafe.CafeBusiness
 
                 while (!token.IsCancellationRequested)
                 {
-                    if (_tableService.HasFreeTable)
+                    if (_tableService.HasFreeTable && _currentActiveClients < _maxActiveClients)
                     {
                         foreach (var (orderTransform, isAvailable) in _orderAvailabilityMap)
                         {
@@ -57,14 +61,20 @@ namespace ITCafe.CafeBusiness
                                     orderTransform.rotation);
                                 _orderAvailabilityMap[orderTransform] = false;
                                 _progressService.RegisterClient(client);
+                                _currentActiveClients++;
 
                                 // TODO: Watch out for client subscription this time
                                 client.OnOrdered.Subscribe(_ => _hudViewModel.AddOrderInfo(client.CurrentOrder));
-                                Observable.Merge(client.OnLeft).Take(1).Subscribe(_ =>
-                                    _hudViewModel.RemoveOrderInfo(client.CurrentOrder));
-                                Observable.Merge(client.OnLeft, client.OnOrdered)
+                                Observable.Merge(client.OnLeft)
                                     .Take(1)
-                                    .Subscribe(x => _orderAvailabilityMap[orderTransform] = true);
+                                    .Subscribe(_ =>
+                                    {
+                                        _hudViewModel.RemoveOrderInfo(client.CurrentOrder);
+                                        _currentActiveClients--;
+                                    });
+                                Observable.Merge(client.OnLeft, client.OnRegistrationLeft)
+                                    .Take(1)
+                                    .Subscribe(_ => _orderAvailabilityMap[orderTransform] = true);
 
                                 break;
                             }
