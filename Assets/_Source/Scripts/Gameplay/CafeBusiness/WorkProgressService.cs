@@ -95,7 +95,8 @@ namespace ITCafe.CafeBusiness
                 FailedOrders = _failedOrders,
                 SuccessRate = SuccessRate,
                 AverageServiceTime = AverageServiceTime,
-                ItemsServed = _itemsServedCountMap
+                ItemsServed = _itemsServedCountMap,
+                EarnedStars = 3 // TODO: Calc
             };
         }
     }

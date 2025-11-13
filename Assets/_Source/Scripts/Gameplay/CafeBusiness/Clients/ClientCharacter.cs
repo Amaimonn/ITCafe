@@ -14,6 +14,7 @@ namespace ITCafe.CafeBusiness
     {
         public Observable<Unit> OnLeft => _onLeft;
         public Observable<Unit> OnOrdered => _onOrdered;
+        public Observable<Unit> OnRegistrationLeft => _onRegistrationLeft;
         public Observable<Unit> OnCompleted => _onCompleted;
 
         public IOrder CurrentOrder { get; private set; }
@@ -26,6 +27,7 @@ namespace ITCafe.CafeBusiness
 
         private readonly Subject<Unit> _onLeft = new();
         private readonly Subject<Unit> _onOrdered = new();
+        private readonly Subject<Unit> _onRegistrationLeft = new();
         private readonly Subject<Unit> _onCompleted = new();
         private CancellationToken _destroyToken;
 
@@ -100,7 +102,8 @@ namespace ITCafe.CafeBusiness
 
             if (!IsCompleted)
                 await UniTask.Delay(AfterOrderDelayMs, cancellationToken: _destroyToken);
-
+            
+            _onRegistrationLeft.OnNext(Unit.Default);
             CurrentState = ClientState.MovingToTable;
             MoveToTable();
         }

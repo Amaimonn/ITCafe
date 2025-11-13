@@ -1,11 +1,11 @@
-using DevKit.UI.MVVM;
+using DevKit.UI.MVVM.Bases;
 using UnityEngine;
 using R3;
 using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class MainMenuViewModel : IViewModel
+    public class MainMenuViewModel : ScreenViewModel
     {
         private readonly Subject<Unit> _exitSubject;
 

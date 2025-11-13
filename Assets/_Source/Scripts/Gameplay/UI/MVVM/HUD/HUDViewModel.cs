@@ -6,10 +6,11 @@ using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ObservableCollections;
 using System.Threading;
+using DevKit.UI.MVVM.Bases;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class HUDViewModel : BaseViewModel
+    public class HUDViewModel : ScreenViewModel
     {
         public Observable<string> TimerText => _timerText;
         public Observable<int> PointsAmount => _pointsAmount;

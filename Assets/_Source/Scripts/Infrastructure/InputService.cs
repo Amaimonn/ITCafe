@@ -6,12 +6,21 @@ using UnityEngine.InputSystem;
 
 namespace ITCafe
 {
-    public class InputService
+    public class InputService : IDisposable
     {
         // private readonly Dictionary<InputAction, bool> _isPropagatingMap = new();
 
         // private readonly Dictionary<InputAction, double> _lastReadMap = new();
-        private readonly Dictionary<int, List<InputEntry>> _subscribtionsMap = new();
+        private readonly InputActionMap _inputActionMap;
+
+        private readonly Dictionary<int, List<InputEntry>> _subscriptionsMap = new();
+        private bool _isInputEnabled;
+
+        public InputService(InputActionMap inputActionMap)
+        {
+            _inputActionMap = inputActionMap;
+            _isInputEnabled = _inputActionMap.enabled;
+        }
 
         // private readonly
         //     Dictionary<Action<InputAction.CallbackContext>, List<(Action<InputAction.CallbackContext>, int)>>
@@ -21,6 +30,19 @@ namespace ITCafe
         // {
         //     _isPropagatingMap[actionRef] = false;
         // }
+
+        public void SetInputEnabled(bool enabled)
+        {
+            if (_isInputEnabled == enabled)
+                return;
+
+            _isInputEnabled = enabled;
+            if (_isInputEnabled)
+                _inputActionMap.Enable();
+            else
+                _inputActionMap.Disable();
+        }
+
         public IDisposable MakeOrderedSub(int inputId, InputEntry entry)
         {
             return MakeOrderedSub(inputId, entry.Sub, entry.Unsub, entry.Order);
@@ -29,10 +51,10 @@ namespace ITCafe
         public IDisposable MakeOrderedSub(int inputId, Action sub, Action unsub, int order = int.MaxValue)
         {
             var registeredEntry = new InputEntry(sub, unsub, order);
-            if (!_subscribtionsMap.TryGetValue(inputId, out var subsList))
+            if (!_subscriptionsMap.TryGetValue(inputId, out var subsList))
             {
                 subsList = new List<InputEntry> { registeredEntry };
-                _subscribtionsMap[inputId] = subsList;
+                _subscriptionsMap[inputId] = subsList;
                 sub();
             }
             else
@@ -131,5 +153,16 @@ namespace ITCafe
         //             callback(x);
         //     };
         // }
+        public void Dispose()
+        {
+            foreach (var subsList in _subscriptionsMap.Values)
+            {
+                if (subsList == null)
+                    continue;
+
+                foreach (var entry in subsList)
+                    entry.Unsub();
+            }
+        }
     }
 }
