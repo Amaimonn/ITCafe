@@ -72,7 +72,7 @@ namespace ITCafe
 
             while (_overlayFillProgress.Value < 1)
             {
-                var currentProgress = _overlayFillProgress.Value + Time.deltaTime / _overlayFillSeconds;
+                var currentProgress = _overlayFillProgress.Value + Time.unscaledDeltaTime / _overlayFillSeconds;
                 if (currentProgress > 1)
                     currentProgress = 1;
                 SetOverlayFillProgress(currentProgress);
@@ -88,7 +88,7 @@ namespace ITCafe
 
             while (_overlayFillProgress.Value > 0)
             {
-                var currentProgress = _overlayFillProgress.Value - Time.deltaTime / _overlayFillSeconds;
+                var currentProgress = _overlayFillProgress.Value - Time.unscaledDeltaTime / _overlayFillSeconds;
                 if (currentProgress < 0)
                     currentProgress = 0;
                 SetOverlayFillProgress(currentProgress);

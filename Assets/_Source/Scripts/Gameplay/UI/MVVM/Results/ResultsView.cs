@@ -7,7 +7,7 @@ using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ITCafe.Gameplay.UI.MVVM.Results
+namespace ITCafe.Gameplay.UI.MVVM
 {
     public class ResultsView : ScreenToolkitAttach<ResultsViewModel>
     {
@@ -64,6 +64,8 @@ namespace ITCafe.Gameplay.UI.MVVM.Results
 
         protected override void OnBind(ResultsViewModel viewModel)
         {
+            base.OnBind(viewModel);
+            
             _menuButton.SubscribeCallback<ClickEvent>(_ => viewModel.ExitToMainMenu());
             _restartButton.SubscribeCallback<ClickEvent>(_ => viewModel.Restart());
             _continueButton.SubscribeCallback<ClickEvent>(_ => viewModel.GoNextDay());

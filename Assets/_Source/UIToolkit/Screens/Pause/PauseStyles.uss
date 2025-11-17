@@ -1,0 +1,197 @@
+.pause__root {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 30, 0.85);
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.pause__container {
+    width: 450px;
+    flex-direction: column;
+    background-color: rgba(20, 25, 45, 0.95);
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 30px;
+    position: relative;
+}
+
+.pause__close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border-color: rgb(100, 120, 140);
+    border-width: 1px;
+    border-radius: 3px;
+    color: rgb(160, 180, 200);
+    font-size: 18px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin: 0;
+    padding: 0;
+    transition: all 0.2s ease;
+    padding-left: 1px;
+    padding-bottom: 1px;
+}
+
+.pause__close-button:hover {
+    background-color: rgba(231, 76, 60, 0.2);
+    border-color: rgb(231, 76, 60);
+    color: rgb(255, 150, 140);
+}
+
+.pause__close-button:active {
+    background-color: rgba(231, 76, 60, 0.3);
+    border-color: rgb(255, 100, 80);
+    color: rgb(255, 180, 170);
+}
+
+.pause__header {
+    flex-direction: column;
+    margin-bottom: 30px;
+    border-bottom-color: rgba(0, 184, 148, 0.3);
+    border-bottom-width: 1px;
+    padding-bottom: 20px;
+    padding-right: 40px;
+}
+
+.pause__title {
+    font-size: 28px;
+    color: rgb(0, 184, 148);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    letter-spacing: 3px;
+}
+
+.pause__subtitle {
+    font-size: 12px;
+    color: rgb(120, 200, 180);
+    -unity-text-align: middle-left;
+    letter-spacing: 1px;
+}
+
+.pause__stats-panel {
+    flex-direction: column;
+    background-color: rgba(15, 20, 35, 0.8);
+    border-color: rgba(0, 184, 148, 0.2);
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.pause__stats-title {
+    font-size: 11px;
+    color: rgb(100, 180, 160);
+    -unity-font-style: bold;
+    -unity-text-align: upper-left;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.pause__stats-grid {
+    flex-direction: column;
+}
+
+.pause__stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.pause__stat-label {
+    font-size: 13px;
+    color: rgb(180, 220, 210);
+    -unity-text-align: upper-left;
+}
+
+.pause__stat-value {
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-right;
+    -unity-font-style: bold;
+}
+
+.pause__stat-value--rating {
+    color: rgb(255, 215, 0);
+}
+
+.pause__actions {
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.pause__button {
+    height: 50px;
+    background-color: transparent;
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 3px;
+    -unity-font-style: bold;
+    font-size: 14px;
+    color: rgb(220, 240, 235);
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    margin-bottom: 12px;
+}
+
+.pause__button--primary {
+    background-color: rgba(0, 184, 148, 0.2);
+    border-color: rgb(0, 184, 148);
+}
+
+.pause__button--secondary {
+    background-color: rgba(45, 52, 74, 0.8);
+    border-color: rgb(70, 170, 200);
+    color: rgb(180, 220, 240);
+}
+
+.pause__button--exit {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-color: rgb(231, 76, 60);
+    color: rgb(255, 180, 170);
+}
+
+.pause__button--primary:hover {
+    background-color: rgba(0, 184, 148, 0.4);
+    border-color: rgb(0, 224, 178);
+}
+
+.pause__button--secondary:hover {
+    background-color: rgba(70, 170, 200, 0.3);
+    border-color: rgb(100, 200, 230);
+}
+
+.pause__button--exit:hover {
+    background-color: rgba(231, 76, 60, 0.3);
+    border-color: rgb(255, 100, 80);
+}
+
+.pause__footer {
+    flex-direction: column;
+    align-items: center;
+    border-top-color: rgba(0, 184, 148, 0.2);
+    border-top-width: 1px;
+    padding-top: 20px;
+}
+
+.pause__version {
+    font-size: 10px;
+    color: rgb(100, 150, 180);
+    -unity-text-align: middle-center;
+    margin-bottom: 8px;
+}
+
+.pause__hint {
+    font-size: 11px;
+    color: rgb(120, 180, 200);
+    -unity-text-align: middle-center;
+}

@@ -9,7 +9,6 @@ using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Gameplay.UI.MVVM;
-using ITCafe.Gameplay.UI.MVVM.Results;
 using ITCafe.Player;
 using R3;
 using UnityEngine;
@@ -27,6 +26,7 @@ namespace ITCafe
         [SerializeField] private InputActionAsset _inputActionAsset;
         [SerializeField] private Interactor _playerInteractor;
         [SerializeField] private ItemPicker _playerItemPicker;
+        [SerializeField] private InputActionReference _pauseActionRef;
 
         [Header("Clients"), Space(4)]
         [SerializeField] private ClientCharacter[] _clientPrefabs;
@@ -38,18 +38,24 @@ namespace ITCafe
         [SerializeField] private AimView _aimViewPrefab;
         [SerializeField] private HUDView _hudViewPrefab;
         [SerializeField] private ResultsView _resultsViewPrefab;
+        [SerializeField] private PauseView _pauseViewPrefab;
 
-        private CompositeDisposable _disposables;
+        private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
+        private IViewBinder<PauseView> _pauseBinder;
 
         protected override void Configure(IContainerBuilder builder)
         {
+            Time.timeScale = 1;
             RegisterUI(builder);
 
             builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
 
             builder.Register<Subject<Unit>>(Lifetime.Singleton)
                 .Keyed(Constants.GAMEPLAY_EXIT_SIGNAL);
+
+            builder.Register<Subject<Unit>>(Lifetime.Singleton)
+                .Keyed(Constants.RESTART_GAMEPLAY_SIGNAL);
 
             builder.RegisterInstance<ClientCharacter[]>(_clientPrefabs)
                 .As<IEnumerable<ClientCharacter>>()
@@ -97,26 +103,56 @@ namespace ITCafe
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
         {
             Build();
-            
+
             var inputService = Container.Resolve<InputService>();
-            inputService.SetInputEnabled(true);
+            inputService.SetInputEnabled(false);
+
+            InitUI();
+
+            var loadingScreen = Container.Resolve<LoadingScreen>();
+            loadingScreen.OnFinished.Take(1).Subscribe(_ => DelayedBoot());
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
+            var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);
+
+            var mainMenuEnterContext = new MainMenuEnterContext();
+            
+            var gameplayRestartContext = new GameplayExitContext(gameplayEnterContext ?? new GameplayEnterContext());
+            var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
+            var gameplayExitSignal = new Subject<GameplayExitContext>();
+
+            exitSignal.Take(1).Subscribe(_ => gameplayExitSignal.OnNext(gameplayExitContext))
+                .AddTo(_disposables);
+
+            restartSignal.Take(1).Subscribe(_ => gameplayExitSignal.OnNext(gameplayRestartContext))
+                .AddTo(_disposables);
+
+
+            return gameplayExitSignal;
+        }
+
+        private void DelayedBoot()
+        {
+            var inputService = Container.Resolve<InputService>();
+            inputService.SetInputEnabled(true);
 
             _destroyToken = destroyCancellationToken;
 
             Container.Inject(_playerInteractor);
             _playerInteractor.Init();
 
-            _disposables = new();
-            {
-                _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x);
-                _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: {x}"));
-            }
+            _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x)
+                .AddTo(_disposables);
+            _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: {x}"))
+                .AddTo(_disposables);
 
             var sessionRunner = Container.Resolve<GameSessionRunner>();
             sessionRunner.RunSessionAsync(_destroyToken).Forget();
+            sessionRunner.OnCompleted.Take(1).Subscribe(_ => UnsubscribePause())
+                .AddTo(_disposables);
 
 #if UNITY_EDITOR
             Observable.EveryUpdate().Where(_ => Keyboard.current.digit0Key.wasPressedThisFrame)
@@ -124,15 +160,7 @@ namespace ITCafe
                 .Subscribe(_ => sessionRunner.CompleteSession());
 #endif
 
-            InitUI();
-
-            var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
-
-            var mainMenuEnterContext = new MainMenuEnterContext();
-            var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
-            var gameplayExitSignal = exitSignal.Select(_ => gameplayExitContext);
-
-            return gameplayExitSignal;
+            SubscribePause();
         }
 
         private void RegisterUI(IContainerBuilder builder)
@@ -161,6 +189,12 @@ namespace ITCafe
             builder.Register<LazyAttachBinder<ResultsView, ResultsViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<ResultsView>>();
             builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
+
+            builder.RegisterInstance<PauseView>(_pauseViewPrefab); // prefab registration
+            builder.Register<PauseViewModel>(Lifetime.Singleton);
+            builder.Register<LazyAttachBinder<PauseView, PauseViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<PauseView>>();
+            builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
         }
 
         private void InitUI()
@@ -175,8 +209,25 @@ namespace ITCafe
             aimBinder.Open();
         }
 
+        private void SubscribePause()
+        {
+            _pauseBinder = Container.Resolve<IViewBinder<PauseView>>();
+            _pauseActionRef.action.started += Pause;
+        }
+
+        private void UnsubscribePause()
+        {
+            _pauseActionRef.action.started -= Pause;
+        }
+
+        private void Pause(InputAction.CallbackContext _)
+        {
+            _pauseBinder.Open();
+        }
+
         protected override void OnDestroy()
         {
+            UnsubscribePause();
             Disposes.ClearDispose(ref _disposables);
             base.OnDestroy();
         }

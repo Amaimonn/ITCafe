@@ -1,0 +1,43 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Pause/PauseStyles.uss?fileID=7433441132597879392&amp;guid=9e27a021c3203524b84dc5aee746f204&amp;type=3#PauseStyles"/>
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="pause__root" style="flex-grow: 1;">
+        <ui:VisualElement name="PauseContainer" class="pause__container">
+            <ui:Button name="CloseButton" text="&#215;" class="pause__close-button"/>
+            <ui:VisualElement name="Header" picking-mode="Ignore" class="pause__header">
+                <ui:Label text="// PAUSE_MENU" class="pause__title"/>
+                <ui:Label text="SYSTEM_SUSPENDED" class="pause__subtitle"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="StatsPanel" class="pause__stats-panel" style="display: none;">
+                <ui:Label text="CURRENT_SESSION_DATA" class="pause__stats-title"/>
+                <ui:VisualElement name="StatsGrid" class="pause__stats-grid">
+                    <ui:VisualElement name="Stat1" class="pause__stat-item">
+                        <ui:Label text="ACTIVE_ORDERS:" class="pause__stat-label"/>
+                        <ui:Label text="3" name="ActiveOrdersValue" class="pause__stat-value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Stat2" class="pause__stat-item">
+                        <ui:Label text="CUSTOMERS_WAITING:" class="pause__stat-label"/>
+                        <ui:Label text="2" name="CustomersWaitingValue" class="pause__stat-value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Stat3" class="pause__stat-item">
+                        <ui:Label text="TIME_ELAPSED:" class="pause__stat-label"/>
+                        <ui:Label text="1:45" name="TimeElapsedValue" class="pause__stat-value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Stat4" class="pause__stat-item">
+                        <ui:Label text="CAFE_RATING:" class="pause__stat-label"/>
+                        <ui:Label text="4.3/5.0" name="CafeRatingValue" class="pause__stat-value pause__stat-value--rating"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ActionsContainer" class="pause__actions">
+                <ui:Button name="ResumeButton" text="RESUME_SYSTEM" class="pause__button pause__button--primary"/>
+                <ui:Button name="RestartButton" text="RESTART_SHIFT" class="pause__button pause__button--secondary"/>
+                <ui:Button name="SettingsButton" text="SYSTEM_SETTINGS" class="pause__button pause__button--secondary" style="display: none;"/>
+                <ui:Button name="ExitButton" text="EXIT_TO_MAINFRAME" class="pause__button pause__button--exit"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Footer" class="pause__footer">
+                <ui:Label text="IT_CAFE" class="pause__version"/>
+                <ui:Label text="PRESS_ESC_TO_CONTINUE" class="pause__hint"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
