@@ -28,16 +28,16 @@
                     <ui:Label text="3" name="OrdersFailedValue" class="results__stat-value results__stat-value--failed"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="Divider" class="results__divider"/>
-                <ui:VisualElement name="StatRow4" class="results__stat-row">
+                <ui:VisualElement name="StatRow4" class="results__stat-row" style="display: none;">
                     <ui:Label text="&#1054;&#1041;&#1065;&#1048;&#1049;_&#1044;&#1054;&#1061;&#1054;&#1044;:" class="results__stat-label"/>
                     <ui:Label text="1 250" name="TotalIncomeValue" class="results__stat-value results__stat-value--income"/>
                 </ui:VisualElement>
-                <ui:VisualElement name="StatRow5" class="results__stat-row">
+                <ui:VisualElement name="StatRow5" class="results__stat-row" style="display: none;">
                     <ui:Label text="&#1063;&#1040;&#1045;&#1042;&#1067;&#1045;:" class="results__stat-label"/>
                     <ui:Label text="180" name="TipsValue" class="results__stat-value results__stat-value--tips"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="Divider2" class="results__divider"/>
-                <ui:VisualElement name="StatRow6" class="results__stat-row results__stat-row--total">
+                <ui:VisualElement name="StatRow6" class="results__stat-row results__stat-row--total" style="display: none;">
                     <ui:Label text="&#1048;&#1058;&#1054;&#1043;&#1054;_&#1047;&#1040;&#1056;&#1040;&#1041;&#1054;&#1058;&#1040;&#1053;&#1054;:" class="results__stat-label results__stat-label--total"/>
                     <ui:Label text="1 430" name="TotalValue" class="results__stat-value results__stat-value--total"/>
                 </ui:VisualElement>
@@ -47,11 +47,11 @@
                     <ui:Label text="&#1042;&#1056;&#1045;&#1052;&#1071;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1067;:" class="results__bonus-label"/>
                     <ui:Label text="03:00" name="TimeWorkedValue" class="results__bonus-value"/>
                 </ui:VisualElement>
-                <ui:VisualElement name="BonusRow" class="results__bonus-row">
+                <ui:VisualElement name="BonusRow" class="results__bonus-row" style="display: none;">
                     <ui:Label text="&#1041;&#1054;&#1053;&#1059;&#1057;_&#1047;&#1040;_&#1057;&#1050;&#1054;&#1056;&#1054;&#1057;&#1058;&#1068;:" class="results__bonus-label"/>
                     <ui:Label text="+50" name="SpeedBonusValue" class="results__bonus-value results__bonus-value--positive"/>
                 </ui:VisualElement>
-                <ui:VisualElement name="RatingRow" class="results__bonus-row">
+                <ui:VisualElement name="RatingRow" class="results__bonus-row" style="display: none;">
                     <ui:Label text="&#1056;&#1045;&#1049;&#1058;&#1048;&#1053;&#1043;_&#1050;&#1040;&#1060;&#1045;:" class="results__bonus-label"/>
                     <ui:Label text="4.2/5.0" name="CafeRatingValue" class="results__bonus-value"/>
                 </ui:VisualElement>

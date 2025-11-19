@@ -34,9 +34,11 @@ namespace ITCafe.CafeBusiness
             var randomClient = _clientPrefabs[Random.Range(0, _clientPrefabsAmount)];
             var client = Object.Instantiate(randomClient);
             client.Init(order, _tableService);
-            
             var orderUI = client.OrderUI;
             orderUI.Init();
+
+            client.WaitingTimeNormalized.Subscribe(orderUI.SetRemainingTime);
+            order.RemainingTimeNormalized.Skip(1).Subscribe(orderUI.SetRemainingTime);
             
             order.PropagateHashes(x => orderUI.AddImage(_itemInfoMap[x].Image, x));
             order.OnHashRemoved.Subscribe(x => orderUI.RemoveImage(x)); // dispose is redundant

@@ -175,6 +175,7 @@ namespace ITCafe
                 var progressService = Container.Resolve<WorkProgressService>();
                 progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
                 progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
+                progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed());
                 return hudViewModel;
             }, Lifetime.Singleton);
 

@@ -13,14 +13,16 @@ namespace ITCafe.Gameplay.UI.World
         private Transform _lookAtTarget;
         private VisualElement _imagesContainer;
         private VisualElement _root;
+        private VisualElement _timeBar;
 
         private List<(int hash, VisualElement image)> _images = new();
-        
+
         public void Init()
         {
             _lookAtTarget = Camera.main.transform;
             _root = _worldDocument.rootVisualElement;
             _imagesContainer = _root.Q<VisualElement>(name: "ImagesContainer");
+            _timeBar = _root.Q<VisualElement>(name: "RemainingTimeNormalized");
             _imagesContainer.Clear();
             Hide();
         }
@@ -32,14 +34,19 @@ namespace ITCafe.Gameplay.UI.World
         }
 #endregion
 
+        public void SetRemainingTime(float remainingTimeNormalized)
+        {
+            _timeBar.style.width = Length.Percent(remainingTimeNormalized * 100f);
+        }
+
         public void Show()
         {
-            _root.style.display = DisplayStyle.Flex;
+            _imagesContainer.style.display = DisplayStyle.Flex;
         }
 
         public void Hide()
         {
-            _root.style.display = DisplayStyle.None;
+            _imagesContainer.style.display = DisplayStyle.None;
         }
 
         public void AddImage(Sprite sprite, int hash)
