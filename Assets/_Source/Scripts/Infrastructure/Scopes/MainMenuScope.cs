@@ -28,6 +28,7 @@ namespace ITCafe
 
         public Observable<MainMenuExitContext> Boot(MainMenuEnterContext mainMenuEnterContext = null)
         {
+            Time.timeScale = 1;
             _mainMenuEnterContext = mainMenuEnterContext;
             Build();
 

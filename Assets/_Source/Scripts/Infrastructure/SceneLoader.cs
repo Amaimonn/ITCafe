@@ -36,7 +36,8 @@ namespace ITCafe
 #endif
         }
 
-        private IEnumerator LoadMainMenu(MainMenuEnterContext mainMenuEnterContext = null, bool showLoadingImmediately = false)
+        private IEnumerator LoadMainMenu(MainMenuEnterContext mainMenuEnterContext = null,
+            bool showLoadingImmediately = false)
         {
             yield return _loadingScreen.ShowWithInstantlyCoroutine(showLoadingImmediately);
             var startTime = Time.time;
@@ -75,7 +76,20 @@ namespace ITCafe
 
             gameplayExitSignal.Take(1).Subscribe(gameplayExitContext =>
             {
-                _monoHook.StartCoroutine(LoadMainMenu(gameplayExitContext.MainMenuEnterContext));
+                var enterContext = gameplayExitContext.EnterContext;
+                switch (enterContext.SceneName)
+                {
+                    case Scenes.MAIN_MENU:
+                        _monoHook.StartCoroutine(LoadMainMenu((MainMenuEnterContext)enterContext));
+                        break;
+                    case Scenes.GAMEPLAY:
+                        _monoHook.StartCoroutine(LoadGameplay((GameplayEnterContext)enterContext));
+                        break;
+                    default:
+                        FLogger.LogError<SceneLoader>("Unhandled scene enter context");
+                        _monoHook.StartCoroutine(LoadMainMenu());
+                        break;
+                }
             });
 
             _onLoadingFinished.OnNext(Unit.Default);

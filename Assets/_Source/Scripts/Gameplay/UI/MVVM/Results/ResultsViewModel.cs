@@ -3,7 +3,7 @@ using ITCafe.CafeBusiness;
 using R3;
 using VContainer;
 
-namespace ITCafe.Gameplay.UI.MVVM.Results
+namespace ITCafe.Gameplay.UI.MVVM
 {
     public class ResultsViewModel : ScreenViewModel
     {

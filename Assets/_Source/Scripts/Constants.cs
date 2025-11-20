@@ -15,5 +15,6 @@ namespace ITCafe
 #endregion
         public const string MAIN_MENU_EXIT_SIGNAL =  nameof(MAIN_MENU_EXIT_SIGNAL);
         public const string GAMEPLAY_EXIT_SIGNAL =  nameof(GAMEPLAY_EXIT_SIGNAL);
+        public const string RESTART_GAMEPLAY_SIGNAL =  nameof(RESTART_GAMEPLAY_SIGNAL);
     }
 }

@@ -10,17 +10,17 @@ namespace ITCafe.CafeBusiness
 
         private readonly Dictionary<int, int> _orderedItemsMap; // key: hash, value: amount
 
-        public OrderMap(Dictionary<IOrderItem, int> orderedItemsMap)
+        public OrderMap(Dictionary<IOrderItem, int> orderedItemsMap, float totalTime) :  base(totalTime)
         {
             _orderedItemsMap = orderedItemsMap.ToDictionary(kvp => kvp.Key.OrderedItemHash, kvp => kvp.Value);
         }
 
-        public OrderMap(Dictionary<int, int> orderedItemsMap)
+        public OrderMap(Dictionary<int, int> orderedItemsMap, float totalTime) :  base(totalTime)
         {
             _orderedItemsMap = orderedItemsMap;
         }
 
-        public static OrderMap FromEnumerable<T>(IEnumerable<T> orderedItems) where T : IOrderItem
+        public static OrderMap FromEnumerable<T>(IEnumerable<T> orderedItems, float totalTime) where T : IOrderItem
         {
             Dictionary<int, int> orderedItemsMap = new();
 
@@ -31,7 +31,7 @@ namespace ITCafe.CafeBusiness
                     orderedItemsMap[hash] += 1;
             }
 
-            return new OrderMap(orderedItemsMap);
+            return new OrderMap(orderedItemsMap, totalTime);
         }
 
         public override bool IsCorresponds(int hash)

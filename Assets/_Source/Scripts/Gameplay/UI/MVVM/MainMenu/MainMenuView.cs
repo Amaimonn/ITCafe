@@ -1,4 +1,3 @@
-using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -21,6 +20,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected override void OnBind(MainMenuViewModel viewModel)
         {
+            base.OnBind(viewModel);
             _playButton.RegisterCallbackOnce<ClickEvent>(StartGameplay);
             _exitButton.RegisterCallbackOnce<ClickEvent>(_ => Application.Quit());
         }

@@ -24,9 +24,8 @@ namespace ITCafe
 
             var loadingScreen = rootUIBinder.gameObject.GetComponentInChildren<LoadingScreen>(includeInactive: true);
             if (loadingScreen == null)
-            {
                 FLogger.LogError("Loading Screen not found");
-            }
+
             builder.RegisterComponent<LoadingScreen>(loadingScreen);
 
             builder.Register<SceneLoader>(Lifetime.Singleton);

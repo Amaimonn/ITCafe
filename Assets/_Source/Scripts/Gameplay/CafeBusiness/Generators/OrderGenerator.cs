@@ -10,49 +10,52 @@ namespace ITCafe.Gameplay.CafeBusiness
     public class OrderGenerator : IFactory<IOrder>
     {
         private readonly List<ItemInfoSO> _itemInfos;
-        private int _maxOrderSizeExclusive = 5;
+        private const int MAX_ORDER_SIZE_EXCLUSIVE = 5;
+        private const float BASE_ORDER_TIME = 60f;
 
         public OrderGenerator(IEnumerable<ItemInfoSO> itemInfos)
         {
             _itemInfos = itemInfos.ToList();
         }
-        
+
         public IOrder Create()
         {
             IOrder order;
             var itemCount = _itemInfos.Count;
-            
+
             if (itemCount > 0)
             {
-                int orderSize = Random.Range(1, _maxOrderSizeExclusive);
-                
+                var orderSize = Random.Range(1, MAX_ORDER_SIZE_EXCLUSIVE);
+                var totalTime = BASE_ORDER_TIME;
+
                 if (orderSize == 1)
                 {
                     var randomItem = _itemInfos[Random.Range(0, itemCount)];
                     var itemHash = randomItem.ItemInfo.GetItemHash();
 
-                    order = new OrderItem(itemHash);
+                    order = new OrderItem(itemHash, totalTime);
                 }
                 else
                 {
                     Dictionary<int, int> orderedItemsMap = new();
+                    totalTime *= 1f + 0.1f * orderSize;
 
-                    for (int i = 0; i < orderSize; i++)
+                    for (var i = 0; i < orderSize; i++)
                     {
                         var randomItem = _itemInfos[Random.Range(0, itemCount)];
                         var hash = randomItem.ItemInfo.GetItemHash();
-                        
+
                         if (!orderedItemsMap.TryAdd(hash, 1))
                             orderedItemsMap[hash] += 1;
                     }
-                    
-                    order = new OrderMap(orderedItemsMap);
+
+                    order = new OrderMap(orderedItemsMap, totalTime);
                 }
             }
             else
             {
                 Debug.LogError($"No items available for order generation");
-                order = new OrderItem(-1);
+                order = new OrderItem(-1, 1f);
             }
 
             return order;

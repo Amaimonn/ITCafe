@@ -12,10 +12,12 @@ namespace ITCafe.CafeBusiness
 {
     public class ClientCharacter : BaseInteractable, IItemHandler
     {
+        public Observable<float> WaitingTimeNormalized => _waitingTimeNormalized;
         public Observable<Unit> OnLeft => _onLeft;
         public Observable<Unit> OnOrdered => _onOrdered;
         public Observable<Unit> OnRegistrationLeft => _onRegistrationLeft;
         public Observable<Unit> OnCompleted => _onCompleted;
+        public Observable<Unit> OnFailed => _onFailed;
 
         public IOrder CurrentOrder { get; private set; }
 
@@ -29,7 +31,11 @@ namespace ITCafe.CafeBusiness
         private readonly Subject<Unit> _onOrdered = new();
         private readonly Subject<Unit> _onRegistrationLeft = new();
         private readonly Subject<Unit> _onCompleted = new();
+        private readonly Subject<Unit> _onFailed = new();
         private CancellationToken _destroyToken;
+        private readonly ReactiveProperty<float> _waitingTimeNormalized = new();
+        private float _remainingWaitingTime;
+        private const float WAITING_FOR_ORDER_TIME = 60f;
 
         public enum ClientState
         {
@@ -48,6 +54,8 @@ namespace ITCafe.CafeBusiness
         public void Init(IOrder order, TableService tableService)
         {
             CurrentOrder = order;
+            _waitingTimeNormalized.Value = 1f;
+            _remainingWaitingTime = WAITING_FOR_ORDER_TIME;
             _tableService = tableService;
             _targetTable = _tableService.GetFreeTable();
 
@@ -76,8 +84,36 @@ namespace ITCafe.CafeBusiness
             // {
             //     LeaveCafe();
             // }
+
+            TickOrder();
         }
 #endregion
+
+        private void TickOrder()
+        {
+            if (CurrentOrder == null)
+                return;
+
+            if (CurrentState == ClientState.WaitingForOrder)
+            {
+                _remainingWaitingTime = Mathf.Max(0f, _remainingWaitingTime - Time.deltaTime);
+                _waitingTimeNormalized.Value = _remainingWaitingTime / WAITING_FOR_ORDER_TIME;
+
+                if (_remainingWaitingTime == 0f)
+                {
+                    _onFailed.OnNext(Unit.Default);
+                    LeaveCafe();
+                }
+                return;
+            }
+
+            CurrentOrder.TickTime(Time.deltaTime);
+            if (CurrentOrder.RemainingTime.CurrentValue == 0f)
+            {
+                _onFailed.OnNext(Unit.Default);
+                LeaveCafe();
+            }
+        }
 
         private void MoveToTable()
         {
@@ -102,7 +138,7 @@ namespace ITCafe.CafeBusiness
 
             if (!IsCompleted)
                 await UniTask.Delay(AfterOrderDelayMs, cancellationToken: _destroyToken);
-            
+
             _onRegistrationLeft.OnNext(Unit.Default);
             CurrentState = ClientState.MovingToTable;
             MoveToTable();

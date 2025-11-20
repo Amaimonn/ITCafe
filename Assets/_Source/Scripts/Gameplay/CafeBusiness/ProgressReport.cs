@@ -6,8 +6,7 @@ namespace ITCafe.CafeBusiness
     public struct ProgressReport
     {
         public DateTime DayStartTime;
-        public int ClientsServed;
-        public int OrdersTaken;
+        public int ClientsCount;
         public int SuccessfulOrders;
         public int FailedOrders;
         public float SuccessRate;
@@ -17,7 +16,7 @@ namespace ITCafe.CafeBusiness
 
         public override string ToString()
         {
-            return $"Clients: {ClientsServed}, Success: {SuccessRate:P2}, Avg Time: {AverageServiceTime:F2}s";
+            return $"Clients: {ClientsCount}, Success: {SuccessRate:P2}, Avg Time: {AverageServiceTime:F2}s";
         }
     }
 }

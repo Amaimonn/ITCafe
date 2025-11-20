@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DevKit.Utils;
 using R3;
 using UnityEngine;
 
@@ -7,59 +8,58 @@ namespace ITCafe.CafeBusiness
 {
     public class WorkProgressService
     {
-        public Observable<int> OnClientServed => _onClientServed;
         public Observable<int> OnOrderTaken => _onOrderTaken;
+        public Observable<int> OnClientServed => _onClientServed;
+        public Observable<int> OnClientFailed => _onClientFailed;
         public Observable<Unit> OnDayCompleted => _onDayCompleted;
         
-        public float SuccessRate => _totalOrdersTaken > 0 ? (float)_successfulOrders / _totalOrdersTaken : 0f;
-        public float AverageServiceTime => _totalClientsServed > 0 ? _totalServiceTime / _totalClientsServed : 0f;
+        public float SuccessRate => _totalClientsCount > 0 ? (float)_successfulOrders / _totalClientsCount : 0f;
+        public float AverageServiceTime => _totalClientsCount > 0 ? _totalServiceTime / _totalClientsCount : 0f;
 
         private readonly Dictionary<int, int> _itemsServedCountMap = new();
-        private int _totalClientsServed = 0;
-        private int _totalOrdersTaken = 0;
+        private int _totalClientsCount = 0;
         private int _successfulOrders = 0;
         private int _failedOrders = 0;
         private float _totalServiceTime = 0f;
         private DateTime _dayStartTime = DateTime.Now;
 
-        private readonly Subject<int> _onClientServed = new();
         private readonly Subject<int> _onOrderTaken = new();
+        private readonly Subject<int> _onClientServed = new();
+        private readonly Subject<int> _onClientFailed = new();
         private readonly Subject<Unit> _onDayCompleted = new();
 
         public void RegisterClient(ClientCharacter client)
         {
             // TODO: watch out for subscriptions in object pool case
             client.OnOrdered.Subscribe(_ => OnOrderTakenHandler());
-            client.OnCompleted.Subscribe(_ => OnOrderCompletedHandler(true)); // TODO: failure
-            
+            client.OnCompleted.Subscribe(_ => OnOrderCompletedHandler());
+            client.OnFailed.Subscribe(_ => OnOrderFailedHandler());
             client.CurrentOrder.OnHashRemoved.Subscribe(RecordItemServed);
         }
 
         private void OnOrderTakenHandler()
         {
-            _totalOrdersTaken++;
-            _onOrderTaken.OnNext(_totalOrdersTaken);
+            _totalClientsCount++;
+            _onOrderTaken.OnNext(_totalClientsCount);
 
-            Debug.Log($"[Progress] Order taken. Total: {_totalOrdersTaken}");
+            FLogger.Log<WorkProgressService>($"Order has been taken. Total clients: {_totalClientsCount}");
         }
 
-        private void OnOrderCompletedHandler(bool success)
+        private void OnOrderCompletedHandler()
         {
-            if (success)
-            {
-                _successfulOrders++;
-                _totalClientsServed++;
-                _onClientServed.OnNext(_totalClientsServed);
+            _successfulOrders++;
+            _onClientServed.OnNext(_successfulOrders);
 
-                // _totalServiceTime += serviceTime;
+            // _totalServiceTime += serviceTime;
 
-                Debug.Log($"[{nameof(WorkProgressService)}]: Order completed successfully. Total served: {_totalClientsServed}");
-            }
-            else
-            {
-                _failedOrders++;
-                Debug.Log($"[{nameof(WorkProgressService)}]: Order failed. Failed: {_failedOrders}");
-            }
+            FLogger.Log<WorkProgressService>($"Order completed successfully. Successful: {_successfulOrders}");
+        }
+
+        private void OnOrderFailedHandler()
+        {
+            _failedOrders++;
+            _onClientFailed.OnNext(_failedOrders);
+            FLogger.Log<WorkProgressService>($"Order failed. Failed: {_failedOrders}");
         }
 
         public void RecordItemServed(int itemHash)
@@ -75,8 +75,7 @@ namespace ITCafe.CafeBusiness
 
         public void ResetDailyStats()
         {
-            _totalClientsServed = 0;
-            _totalOrdersTaken = 0;
+            _totalClientsCount = 0;
             _successfulOrders = 0;
             _failedOrders = 0;
             _totalServiceTime = 0f;
@@ -89,8 +88,7 @@ namespace ITCafe.CafeBusiness
             return new ProgressReport
             {
                 DayStartTime = _dayStartTime,
-                ClientsServed = _totalClientsServed,
-                OrdersTaken = _totalOrdersTaken,
+                ClientsCount = _totalClientsCount,
                 SuccessfulOrders = _successfulOrders,
                 FailedOrders = _failedOrders,
                 SuccessRate = SuccessRate,

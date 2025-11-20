@@ -6,11 +6,11 @@ namespace ITCafe
     /// </summary>
     public class GameplayExitContext
     {
-        public MainMenuEnterContext MainMenuEnterContext { get; }
+        public SceneContext EnterContext { get; }
 
-        public GameplayExitContext(MainMenuEnterContext mainMenuEnterContext)
+        public GameplayExitContext(SceneContext enterContext)
         {
-            MainMenuEnterContext = mainMenuEnterContext;
+            EnterContext = enterContext;
         }
     }
 }

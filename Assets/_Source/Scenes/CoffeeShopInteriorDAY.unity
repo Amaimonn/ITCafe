@@ -22626,6 +22626,7 @@ MonoBehaviour:
   _inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _playerInteractor: {fileID: 604675099}
   _playerItemPicker: {fileID: 604675100}
+  _pauseActionRef: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _clientPrefabs:
   - {fileID: 1935830331690626689, guid: e723f90a8283e8648b5de2309d25d248, type: 3}
   - {fileID: 353381090113085243, guid: 81170a5be13d0e2449a33eefd05f6e39, type: 3}
@@ -22655,6 +22656,7 @@ MonoBehaviour:
   _aimViewPrefab: {fileID: 8816156599924569486, guid: e1566505e9594f24c975eca06a4f37b4, type: 3}
   _hudViewPrefab: {fileID: 3779760820142183007, guid: ed584786dce5b384898647c19138c671, type: 3}
   _resultsViewPrefab: {fileID: 3448940012858787566, guid: fea11616310c0f34b90844c0603a5473, type: 3}
+  _pauseViewPrefab: {fileID: 4498725754442676862, guid: d9cc55f8b889b5143b31f7d6abea57b9, type: 3}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0
@@ -28494,7 +28496,7 @@ MonoBehaviour:
         AccelTime: 0
         DecelTime: 0
   PlayerIndex: -1
-  AutoEnableInputs: 1
+  AutoEnableInputs: 0
 --- !u!114 &1589975954
 MonoBehaviour:
   m_ObjectHideFlags: 0

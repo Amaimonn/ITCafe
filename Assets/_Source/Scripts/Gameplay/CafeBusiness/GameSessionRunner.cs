@@ -3,13 +3,15 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.UI.MVVM;
 using ITCafe.Gameplay.UI.MVVM;
-using ITCafe.Gameplay.UI.MVVM.Results;
+using R3;
 using UnityEngine;
 
 namespace ITCafe.CafeBusiness
 {
     public class GameSessionRunner : IDisposable
     {
+        public Observable<Unit> OnCompleted => _onCompleted;
+        
         private readonly WorkProgressService _workProgressService;
         private readonly HUDViewModel _hudViewModel;
         private readonly ClientsRunner _clientsRunner;
@@ -18,6 +20,7 @@ namespace ITCafe.CafeBusiness
 
         private CancellationTokenSource _cts;
         private readonly TimeSpan _sessionDuration = TimeSpan.FromMinutes(3);
+        private readonly Subject<Unit> _onCompleted = new();
 
         public GameSessionRunner(WorkProgressService workProgressService,
             HUDViewModel hudViewModel,
@@ -69,6 +72,7 @@ namespace ITCafe.CafeBusiness
             
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            _onCompleted.OnNext(Unit.Default);
         }
 
         public void Dispose()

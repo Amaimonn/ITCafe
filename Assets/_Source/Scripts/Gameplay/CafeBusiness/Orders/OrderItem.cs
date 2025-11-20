@@ -6,7 +6,7 @@ namespace ITCafe.CafeBusiness
     {
         public int OrderedItemHash { get; }
 
-        public OrderItem(int orderedItemHash)
+        public OrderItem(int orderedItemHash, float totalTime) :  base(totalTime)
         {
             OrderedItemHash = orderedItemHash;
         }
