@@ -69,7 +69,7 @@ namespace ITCafe.CafeBusiness
             
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);
-            
+            Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _onCompleted.OnNext(Unit.Default);

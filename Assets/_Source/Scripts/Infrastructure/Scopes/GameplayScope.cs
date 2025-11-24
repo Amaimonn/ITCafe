@@ -81,7 +81,7 @@ namespace ITCafe
                 .AsSelf()
                 .As<IEnumerable<ItemInfoSO>>();
 
-            builder.Register<Dictionary<int, ItemInfoSO>>(x =>
+            builder.Register<IReadOnlyDictionary<int, ItemInfoSO>>(x =>
                 _allItemsInfoSO.AllInfo.ToDictionary(y => y.ItemInfo.GetItemHash()), Lifetime.Singleton);
 
             builder.RegisterComponent<IItemPicker>(_playerItemPicker);

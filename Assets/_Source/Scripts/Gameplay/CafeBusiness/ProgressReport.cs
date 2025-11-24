@@ -12,6 +12,7 @@ namespace ITCafe.CafeBusiness
         public float SuccessRate;
         public float AverageServiceTime;
         public IReadOnlyDictionary<int, int> ItemsServed;
+        public int Points;
         public int EarnedStars;
 
         public override string ToString()

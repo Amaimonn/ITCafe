@@ -9,5 +9,7 @@ namespace ITCafe.Data.Items
 
         [ItemTypeSelector, SerializeReference]
         public BaseItemInfo ItemInfo;
+
+        [field: SerializeField] public int Points { get; protected set; } = 10;
     }
 }

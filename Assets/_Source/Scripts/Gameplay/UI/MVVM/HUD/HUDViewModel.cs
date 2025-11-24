@@ -23,7 +23,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         public IObservableCollection<IOrder> ActiveOrders => _activeOrders;
         public IReadOnlyDictionary<int, ItemInfoSO> ItemInfoMap => _itemInfoMap;
 
-        private readonly Dictionary<int, ItemInfoSO> _itemInfoMap;
+        private readonly IReadOnlyDictionary<int, ItemInfoSO> _itemInfoMap;
         private readonly ObservableHashSet<IOrder> _activeOrders = new();
         private readonly ReactiveProperty<string> _timerText = new("00:00");
         private readonly ReactiveProperty<int> _pointsAmount = new(0);
@@ -38,7 +38,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private int _remainingSeconds;
         private IDisposable _timerSubscription;
 
-        public HUDViewModel(Dictionary<int, ItemInfoSO> itemInfoMap)
+        public HUDViewModel(IReadOnlyDictionary<int, ItemInfoSO> itemInfoMap)
         {
             _itemInfoMap = itemInfoMap;
         }

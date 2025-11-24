@@ -10,13 +10,13 @@ namespace ITCafe.CafeBusiness
 {
     public class ClientsFactory : IFactory<ClientCharacter>
     {
-        private readonly Dictionary<int, ItemInfoSO> _itemInfoMap;
+        private readonly IReadOnlyDictionary<int, ItemInfoSO> _itemInfoMap;
         private readonly IReadOnlyList<ClientCharacter> _clientPrefabs;
         private readonly OrderGenerator _orderGenerator;
         private readonly TableService _tableService;
         private readonly int _clientPrefabsAmount;
 
-        public ClientsFactory(Dictionary<int, ItemInfoSO> itemInfoMap, 
+        public ClientsFactory(IReadOnlyDictionary<int, ItemInfoSO> itemInfoMap, 
             IReadOnlyList<ClientCharacter> clientPrefabs,
             OrderGenerator orderGenerator, 
             TableService tableService)
