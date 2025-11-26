@@ -8,13 +8,13 @@ namespace ITCafe.Environment
         public override bool CanInteract(PlayerContext context)
         {
             var item = context.CurrentItem.CurrentValue;
-            return item != null && item.CanHandle(this, context); // TODO: Check Item is not important in future
+            return item != null && item.CanBeHandled(this, context); // TODO: Check Item is not important in future
         }
 
         public override void Interact(PlayerContext context)
         {
             var item = context.CurrentItem.CurrentValue;
-            item.Handle(this, context);
+            item.BecomeHandled(this, context);
         }
 #endregion
 

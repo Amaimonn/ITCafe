@@ -7,12 +7,14 @@ namespace ITCafe.Environment
     public abstract class ContainerItem : PickUpItem, IItemsContainer, IItemHandler
     {
         public abstract IEnumerable<IMenuItem> Items { get; }
-        
-        public override bool CanHandle(IItemHandler handler, PlayerContext context) =>
+
+#region IItem
+        public override bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
             handler.CanHandleContainer(this, context);
 
-        public override void Handle(IItemHandler handler, PlayerContext context) =>
+        public override void BecomeHandled(IItemHandler handler, PlayerContext context) =>
             handler.HandleContainer(this, context);
+#endregion
 
         public abstract int GetItemHash();
 
@@ -20,17 +22,20 @@ namespace ITCafe.Environment
 
         public abstract IMenuItem ExtractItem(int hash);
 
-        public abstract bool CanTake(IItem item);
+        public abstract bool CanTake(IMenuItem item);
 
         public abstract void Take(IMenuItem item);
-        
+
+#region IItemsHandler
         public virtual bool CanHandle(IItem item, PlayerContext context)
         {
+            // context is null (Picker State)
             return item is IMenuItem menuItem && CanTake(menuItem);
         }
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
+            // context is null (Picker State)
             return false;
         }
 
@@ -38,7 +43,7 @@ namespace ITCafe.Environment
         {
             if (item is not IMenuItem menuItem)
                 return;
-            
+
             Take(menuItem);
         }
 
@@ -46,5 +51,6 @@ namespace ITCafe.Environment
         {
             throw new System.NotImplementedException();
         }
+#endregion
     }
 }

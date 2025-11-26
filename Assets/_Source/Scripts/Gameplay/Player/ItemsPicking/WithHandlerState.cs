@@ -13,12 +13,12 @@ namespace ITCafe.Player
 
         public override bool CanTake(IItem item)
         {
-            return item.CanHandle(_handler, null);
+            return item.CanBeHandled(_handler, null);
         }
 
         public override void Take(IItem item)
         {
-            item.Handle(_handler, null);
+            item.BecomeHandled(_handler, null);
         }
     }
 }

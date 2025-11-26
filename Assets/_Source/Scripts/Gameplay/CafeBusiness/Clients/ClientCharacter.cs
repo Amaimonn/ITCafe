@@ -166,7 +166,7 @@ namespace ITCafe.CafeBusiness
 
             var item = context.CurrentItem.CurrentValue;
             if (item != null)
-                return item.CanHandle(this, context);
+                return item.CanBeHandled(this, context);
 
             return false;
         }
@@ -180,7 +180,7 @@ namespace ITCafe.CafeBusiness
             }
 
             var item = context.CurrentItem.CurrentValue;
-            item.Handle(this, context);
+            item.BecomeHandled(this, context);
         }
 #endregion
 

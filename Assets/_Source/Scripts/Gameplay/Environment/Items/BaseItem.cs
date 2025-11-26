@@ -7,8 +7,8 @@ namespace ITCafe.Environment
     [RequireComponent(typeof(Collider))]
     public abstract class BaseItem : BaseInteractable, IItem
     {
-        public virtual bool CanHandle(IItemHandler handler, PlayerContext context) => handler.CanHandle(this, context);
-        public virtual void Handle(IItemHandler handler, PlayerContext context) => handler.Handle(this, context);
+        public virtual bool CanBeHandled(IItemHandler handler, PlayerContext context) => handler.CanHandle(this, context);
+        public virtual void BecomeHandled(IItemHandler handler, PlayerContext context) => handler.Handle(this, context);
         public Vector3 CenterOffset { get; private set; }
 
         [SerializeField] protected Collider _collider;
