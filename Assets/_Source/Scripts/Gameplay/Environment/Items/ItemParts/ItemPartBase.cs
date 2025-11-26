@@ -1,10 +1,15 @@
 using System;
+using System.Collections.Generic;
 using ITCafe.Player;
 
 namespace ITCafe.Environment
 {
     public abstract class ItemPartBase : PickUpItem, IItemPart, IItemHandler
     {
+        public abstract ItemPartTag Tag { get; }
+        public IReadOnlyDictionary<ItemPartTag, int> PartsAmountMap => _partsAmountMap;
+        protected readonly Dictionary<ItemPartTag, int> _partsAmountMap = new();
+
 #region IItem
         public override bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
             handler.CanHandle(this, context);
@@ -14,7 +19,8 @@ namespace ITCafe.Environment
 #endregion
 
 #region IItemHandler
-        public abstract bool CanHandle(IItem item, PlayerContext context);
+        public virtual bool CanHandle(IItem item, PlayerContext context) =>
+            item is IItemPart itemPart && itemPart.CanBeUsedWith(this);
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context) => false;
 
@@ -25,7 +31,7 @@ namespace ITCafe.Environment
 #endregion
 
 #region IItemPart
-        public abstract bool CanBeUsedWith(int itemHash);
+        public abstract bool CanBeUsedWith(IItemPart itemPart);
 #endregion
     }
 }

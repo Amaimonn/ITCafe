@@ -1,16 +1,21 @@
+using System.Collections.Generic;
+
 namespace ITCafe.Environment
 {
     public enum ItemPartTag
     {
         BurgerBun,
         HotDogBun,
-        Patty, 
+        Patty,
         Cheese,
         Sausage
+        // Add modifications mb? (ex.: Hot, Cold, Packed, BunFried, PattyFried)
     }
-    
+
     public interface IItemPart
     {
-        public bool CanBeUsedWith(int itemHash); // IItemPart mb? + public dict<ItemPartTag, int "amount"> { get; }
+        public ItemPartTag Tag { get; }
+        public IReadOnlyDictionary<ItemPartTag, int> PartsAmountMap { get; }
+        public bool CanBeUsedWith(IItemPart itemPart);
     }
 }

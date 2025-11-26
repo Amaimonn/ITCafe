@@ -5,6 +5,7 @@ using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
+using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -22,6 +23,13 @@ namespace ITCafe
 {
     public class GameplayScope : LifetimeScope
     {
+        [Serializable]
+        public struct KeyedGameObject
+        {
+            public string Key;
+            public GameObject GameObject;
+        }
+        
         [Header("Player")]
         [SerializeField] private InputActionAsset _inputActionAsset;
         [SerializeField] private Interactor _playerInteractor;
@@ -39,6 +47,9 @@ namespace ITCafe
         [SerializeField] private HUDView _hudViewPrefab;
         [SerializeField] private ResultsView _resultsViewPrefab;
         [SerializeField] private PauseView _pauseViewPrefab;
+        
+        [Header("Items")]
+        [SerializeField] private KeyedGameObject[] _keyedItemPrefabs;
 
         private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
@@ -98,6 +109,10 @@ namespace ITCafe
             builder.Register<GameSessionRunner>(Lifetime.Singleton);
 
             builder.Register<WorkProgressService>(Lifetime.Singleton);
+            
+            builder.Register<ItemsCreator>(Lifetime.Singleton)
+                .AsSelf()
+                .As<IItemsCreator>();
         }
 
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
@@ -114,6 +129,10 @@ namespace ITCafe
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            
+            var itemsCreator = Container.Resolve<ItemsCreator>();
+            foreach (var entry in _keyedItemPrefabs)
+                itemsCreator.Register(entry.GameObject, entry.Key);
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);
@@ -143,6 +162,9 @@ namespace ITCafe
 
             Container.Inject(_playerInteractor);
             _playerInteractor.Init();
+            
+            var playerContext = Container.Resolve<PlayerContext>();
+            _playerItemPicker.Init(playerContext);
 
             _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x)
                 .AddTo(_disposables);
