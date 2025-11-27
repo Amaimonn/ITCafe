@@ -7,11 +7,13 @@ namespace ITCafe.Player
     {
         public ReadOnlyReactiveProperty<IItem> CurrentItem { get; }
         public IItemPicker ItemPicker { get; }
+        public IItemsCreator ItemsCreator { get; }
 
-        public PlayerContext(IItemPicker itemPicker)
+        public PlayerContext(IItemPicker itemPicker, IItemsCreator itemsCreator)
         {
             CurrentItem = itemPicker.CurrentItem;
             ItemPicker = itemPicker;
+            ItemsCreator = itemsCreator;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ITCafe.Environment
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;
         [SerializeField, Min(0)] private float _itemsOffsetY = 0.15f;
 
-        private List<IMenuItem> _currentItems = new();
+        private readonly List<IMenuItem> _currentItems = new();
         private int _currentItemsAmount = 0;
 
         public override int GetItemHash()
@@ -28,7 +28,7 @@ namespace ITCafe.Environment
             return hash.ToHashCode();
         }
 
-        public override bool CanTake(IItem item)
+        public override bool CanTake(IMenuItem item)
         {
             return _currentItemsAmount < _maxItemsCapacity;
         }

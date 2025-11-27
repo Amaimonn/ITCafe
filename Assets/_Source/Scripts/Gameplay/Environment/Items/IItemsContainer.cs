@@ -9,7 +9,7 @@ namespace ITCafe.Environment
         public IEnumerable<IMenuItem> Items { get; }
         public bool ContainsHash(int hash);
         public IMenuItem ExtractItem(int hash);
-        public bool CanTake(IItem item);
+        public bool CanTake(IMenuItem item);
         public void Take(IMenuItem item);
     }
 }

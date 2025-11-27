@@ -18,7 +18,9 @@ namespace ITCafe.Player
         [SerializeField] private Transform _dropPoint;
         [SerializeField] private InputActionReference _dropAction;
 
-        [Inject] InputService _inputService;
+        [Inject] private InputService _inputService;
+        private PlayerContext _playerContext;
+        
         private readonly ReactiveProperty<bool> _isHoldingItem = new(false);
         private readonly ReactiveProperty<IItem> _currentItem = new();
         private readonly ReactiveProperty<ItemPickerState> _currentState = new();
@@ -26,10 +28,11 @@ namespace ITCafe.Player
 
         private Action<InputAction.CallbackContext> _onDrop;
         private IDisposable _dropSubscription;
-        
-        private void Awake()
+
+        public void Init(PlayerContext playerContext)
         {
-            ChangeState(new EmptyHandsState(this));
+            _playerContext = playerContext;
+            ChangeState(new EmptyHandsState(this, _playerContext));
         }
         
         // private void OnEnable()
@@ -97,12 +100,12 @@ namespace ITCafe.Player
             _currentItem.Value.Drop();
             _currentItem.Value = null;
             _isHoldingItem.Value = false;
-            ChangeState(new EmptyHandsState(this));
+            ChangeState(new EmptyHandsState(this, _playerContext));
         }
 
         public void Release()
         {
-            _currentState.Value = new EmptyHandsState(this);
+            _currentState.Value = new EmptyHandsState(this, _playerContext);
             _currentItem.Value.transform.parent = null;
             _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value = null;

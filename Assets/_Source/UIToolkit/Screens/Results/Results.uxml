@@ -4,8 +4,8 @@
         <ui:VisualElement name="ReceiptContainer" class="results__receipt">
             <ui:VisualElement name="ReceiptHeader" class="results__receipt-header">
                 <ui:Label text="IT_CAFE" class="results__cafe-name"/>
-                <ui:Label text="&#1063;&#1045;&#1050;_#AF3242" class="results__receipt-number"/>
                 <ui:Label text="&#1054;&#1058;&#1063;&#1045;&#1058;_&#1047;&#1040;_&#1057;&#1052;&#1045;&#1053;&#1059;" class="results__day-title"/>
+                <ui:Label text="#AF3242" name="BillCodeLabel" class="results__receipt-number"/>
             </ui:VisualElement>
             <ui:VisualElement name="StarsContainer" class="results__stars-container">
                 <ui:VisualElement name="Star1" class="results__star results__star--filled"/>
@@ -17,20 +17,20 @@
             <ui:VisualElement name="StatsSection" class="results__stats-section">
                 <ui:VisualElement name="StatRow1" class="results__stat-row">
                     <ui:Label text="&#1055;&#1056;&#1048;&#1053;&#1071;&#1058;&#1054;_&#1047;&#1040;&#1050;&#1040;&#1047;&#1054;&#1042;:" class="results__stat-label"/>
-                    <ui:Label text="15" name="OrdersTakenValue" class="results__stat-value"/>
+                    <ui:Label text="0" name="OrdersTakenValue" class="results__stat-value"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="StatRow2" class="results__stat-row">
                     <ui:Label text="&#1042;&#1067;&#1055;&#1054;&#1051;&#1053;&#1045;&#1053;&#1054;_&#1059;&#1057;&#1055;&#1045;&#1064;&#1053;&#1054;:" class="results__stat-label"/>
-                    <ui:Label text="12" name="OrdersCompletedValue" class="results__stat-value results__stat-value--success"/>
+                    <ui:Label text="0" name="OrdersCompletedValue" class="results__stat-value results__stat-value--success"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="StatRow3" class="results__stat-row">
                     <ui:Label text="&#1057;&#1041;&#1054;&#1048;_&#1042;_&#1054;&#1041;&#1057;&#1051;&#1059;&#1046;&#1048;&#1042;&#1040;&#1053;&#1048;&#1048;:" class="results__stat-label"/>
-                    <ui:Label text="3" name="OrdersFailedValue" class="results__stat-value results__stat-value--failed"/>
+                    <ui:Label text="0" name="OrdersFailedValue" class="results__stat-value results__stat-value--failed"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="Divider" class="results__divider"/>
-                <ui:VisualElement name="StatRow4" class="results__stat-row" style="display: none;">
+                <ui:VisualElement name="StatRow4" class="results__stat-row">
                     <ui:Label text="&#1054;&#1041;&#1065;&#1048;&#1049;_&#1044;&#1054;&#1061;&#1054;&#1044;:" class="results__stat-label"/>
-                    <ui:Label text="1 250" name="TotalIncomeValue" class="results__stat-value results__stat-value--income"/>
+                    <ui:Label text="0" name="PointsValue" class="results__stat-value results__stat-value--income"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="StatRow5" class="results__stat-row" style="display: none;">
                     <ui:Label text="&#1063;&#1040;&#1045;&#1042;&#1067;&#1045;:" class="results__stat-label"/>
@@ -45,7 +45,7 @@
             <ui:VisualElement name="BonusSection" class="results__bonus-section">
                 <ui:VisualElement name="TimeRow" class="results__bonus-row">
                     <ui:Label text="&#1042;&#1056;&#1045;&#1052;&#1071;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1067;:" class="results__bonus-label"/>
-                    <ui:Label text="03:00" name="TimeWorkedValue" class="results__bonus-value"/>
+                    <ui:Label text="00:00" name="TimeWorkedValue" class="results__bonus-value"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="BonusRow" class="results__bonus-row" style="display: none;">
                     <ui:Label text="&#1041;&#1054;&#1053;&#1059;&#1057;_&#1047;&#1040;_&#1057;&#1050;&#1054;&#1056;&#1054;&#1057;&#1058;&#1068;:" class="results__bonus-label"/>

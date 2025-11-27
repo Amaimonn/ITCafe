@@ -1,75 +1,66 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements"
-         xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
-         editor-extension-mode="False">
-    <Style
-        src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles" />
-    <Style
-        src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles" />
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="hud__root" style="flex-grow: 1;">
-        <ui:VisualElement name="TopBar" picking-mode="Ignore" class="hud__top-bar">
+        <ui:VisualElement name="TopBar" picking-mode="Ignore" class="hud__top-bar" style="width: 200px;">
             <ui:VisualElement name="BarLeftItem" class="hud__top-bar-item">
-                <ui:Label text="00:00" name="Timer" class="hud__timer" />
+                <ui:Label text="00:00" name="Timer" class="hud__timer"/>
             </ui:VisualElement>
-            <ui:VisualElement
-                style="flex-grow: 0; height: 100%; width: 4px; position: absolute; left: 50%; translate: -50% 0; background-color: rgb(143, 143, 143);" />
-            <ui:VisualElement name="BarRightItem" class="hud__top-bar-item" style="flex-grow: 1;">
-                <ui:Label text="0" name="PointsLabel" class="hud__points" />
+            <ui:VisualElement style="flex-grow: 0; height: 100%; width: 4px; position: absolute; left: 50%; translate: -50% 0; background-color: rgb(143, 143, 143); display: none;"/>
+            <ui:VisualElement name="BarRightItem" class="hud__top-bar-item" style="flex-grow: 1; display: none;">
+                <ui:Label text="0" name="PointsLabel" class="hud__points"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: row;">
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; align-items: flex-start; margin-top: 20px;">
                 <ui:VisualElement name="StatsPanel" class="hud__stats-panel">
-                    <ui:Label text="СТАТИСТИКА" class="hud__widget-title" />
+                    <ui:Label text="&#1057;&#1058;&#1040;&#1058;&#1048;&#1057;&#1058;&#1048;&#1050;&#1040;" class="hud__widget-title"/>
                     <ui:VisualElement name="OrderStat" class="hud__stat-item">
-                        <ui:Label text="Заказы:" class="hud__stat-label" />
-                        <ui:Label text="0" name="OrderValue" class="hud__stat-value"
-                                  style="-unity-text-outline-width: 0;" />
+                        <ui:Label text="_&#1050;&#1051;&#1048;&#1045;&#1053;&#1058;&#1067;:" class="hud__stat-label" style="height: 20px;"/>
+                        <ui:Label text="0" name="OrderValue" class="hud__stat-value" style="-unity-text-outline-width: 0;"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="SatisfactionStat" class="hud__stat-item">
-                        <ui:Label text="Выполнено:" class="hud__stat-label" />
-                        <ui:Label text="0" name="SatisfactionValue" class="hud__stat-value"
-                                  style="color: rgb(79, 226, 18); -unity-text-outline-width: 0;" />
+                        <ui:Label text="_&#1042;&#1067;&#1055;&#1054;&#1051;&#1053;&#1045;&#1053;&#1054;:" class="hud__stat-label"/>
+                        <ui:Label text="0" name="SatisfactionValue" class="hud__stat-value" style="color: rgb(79, 226, 18); -unity-text-outline-width: 0;"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="FailedStat" class="hud__stat-item">
-                        <ui:Label text="Упущено:" class="hud__stat-label" />
-                        <ui:Label text="0" name="FailedValue" class="hud__stat-value"
-                                  style="color: rgb(226, 51, 18); -unity-text-outline-width: 0;" />
+                        <ui:Label text="_&#1057;&#1041;&#1054;&#1048;:" class="hud__stat-label"/>
+                        <ui:Label text="0" name="FailedValue" class="hud__stat-value" style="color: rgb(226, 51, 18); -unity-text-outline-width: 0;"/>
                     </ui:VisualElement>
-                    <ui:VisualElement name="RatingStat" class="hud__stat-item">
-                        <ui:Label text="Рейтинг:" class="hud__stat-label" />
-                        <ui:Label text="0.0" name="RatingValue" class="hud__stat-value" />
+                    <ui:VisualElement name="RatingStat" class="hud__stat-item" style="display: none;">
+                        <ui:Label text="&#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075;:" class="hud__stat-label"/>
+                        <ui:Label text="0.0" name="RatingValue" class="hud__stat-value"/>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="RightSide" style="flex-grow: 1; align-items: flex-end; margin-top: 20px;">
                 <ui:VisualElement name="OrdersPanel" class="hud__orders-panel">
-                    <ui:Label text="ЗАКАЗЫ" class="hud__widget-title" style="font-size: 18px;" />
+                    <ui:Label text="&#1041;&#1069;&#1050;&#1051;&#1054;&#1043;" class="hud__widget-title" style="font-size: 18px;"/>
                     <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
                         <ui:VisualElement name="OrderExample1" class="hud__order-item hud__order">
-                            <ui:VisualElement name="Order1Images"
-                                              class="hud__order-images order-cloud__images-container">
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image" />
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image" />
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image" />
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image" />
+                            <ui:VisualElement name="Order1Images" class="hud__order-images order-cloud__images-container">
+                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
+                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
+                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
+                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="OrderExample2" class="hud__order-item hud__order">
                             <ui:VisualElement name="Order2Images" class="hud__order-images">
-                                <ui:VisualElement name="TeaImage" class="hud__order-image" />
-                                <ui:VisualElement name="CookieImage" class="hud__order-image" />
+                                <ui:VisualElement name="TeaImage" class="hud__order-image"/>
+                                <ui:VisualElement name="CookieImage" class="hud__order-image"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="OrderExample3" class="hud__order-item hud__order">
                             <ui:VisualElement name="Order3Images" class="hud__order-images">
-                                <ui:VisualElement name="CoffeeImage2" class="hud__order-image" />
-                                <ui:VisualElement name="SandwichImage" class="hud__order-image" />
-                                <ui:VisualElement name="JuiceImage" class="hud__order-image" />
+                                <ui:VisualElement name="CoffeeImage2" class="hud__order-image"/>
+                                <ui:VisualElement name="SandwichImage" class="hud__order-image"/>
+                                <ui:VisualElement name="JuiceImage" class="hud__order-image"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="OrderExample4" class="hud__order-item hud__order">
                             <ui:VisualElement name="Order4Images" class="hud__order-images">
-                                <ui:VisualElement name="CoffeeImage3" class="hud__order-image" />
+                                <ui:VisualElement name="CoffeeImage3" class="hud__order-image"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>

@@ -5,8 +5,10 @@ namespace ITCafe.Player
 {
     public class EmptyHandsState : ItemPickerState
     {
-        public EmptyHandsState(IItemPicker picker) : base(picker)
+        private readonly PlayerContext _playerContext;
+        public EmptyHandsState(IItemPicker picker, PlayerContext playerContext) : base(picker)
         {
+            _playerContext = playerContext;
         }
 
         public override bool CanTake(IItem item)
@@ -22,7 +24,7 @@ namespace ITCafe.Player
             _picker.SetCurrentItem(item);
             
             if (item is IItemHandler handler)
-                _picker.ChangeState(new WithHandlerState(_picker, handler));
+                _picker.ChangeState(new WithHandlerState(_picker, handler, _playerContext));
             // else if (item is IItemsContainer container)
             //     _picker.ChangeState(new WithContainerState(_picker, container));
             else
