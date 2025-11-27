@@ -27,8 +27,7 @@ namespace ITCafe
         [Serializable]
         public struct KeyedGameObject
         {
-            [ItemKeyMenu]
-            public string Key;
+            public ItemTag KeyTag;
             public GameObject GameObject;
         }
         
@@ -134,7 +133,7 @@ namespace ITCafe
             
             var itemsCreator = Container.Resolve<ItemsCreator>();
             foreach (var entry in _keyedItemPrefabs)
-                itemsCreator.Register(entry.GameObject, entry.Key);
+                itemsCreator.Register(entry.GameObject, entry.KeyTag);
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);

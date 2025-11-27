@@ -15,10 +15,11 @@ MonoBehaviour:
   <Image>k__BackingField: {fileID: 21300000, guid: 368263ee150d3414ebbfc3e1df82cf53, type: 3}
   ItemInfo:
     rid: 8553649853818732788
+  <Points>k__BackingField: 10
   references:
     version: 2
     RefIds:
     - rid: 8553649853818732788
       type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
       data:
-        ItemTag: 4
+        ItemTag: 5
