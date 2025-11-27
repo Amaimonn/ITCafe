@@ -22874,8 +22874,14 @@ MonoBehaviour:
   _resultsViewPrefab: {fileID: 3448940012858787566, guid: fea11616310c0f34b90844c0603a5473, type: 3}
   _pauseViewPrefab: {fileID: 4498725754442676862, guid: d9cc55f8b889b5143b31f7d6abea57b9, type: 3}
   _keyedItemPrefabs:
-  - Key: burger
+  - Key: BURGER
     GameObject: {fileID: 8531517831877121445, guid: efc545ae2efa5294ca8d5faab10df624, type: 3}
+  - Key: ONIGIRI
+    GameObject: {fileID: 302401745315096189, guid: 91679a08b59b1a54fb52fbc820cb9df0, type: 3}
+  - Key: DONUT
+    GameObject: {fileID: 2865937386304091132, guid: d026775de00554444b0130583513db5e, type: 3}
+  - Key: FRIES
+    GameObject: {fileID: 2865937386304091132, guid: d026775de00554444b0130583513db5e, type: 3}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0

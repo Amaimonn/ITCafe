@@ -10,7 +10,7 @@ namespace ITCafe.Environment
         {
             var itemPicker = context.ItemPicker;
             itemPicker.Release();
-            var burger = context.ItemsCreator.Get<BurgerItem>("burger");
+            var burger = context.ItemsCreator.Get<BurgerItem>(Constants.BURGER);
             context.ItemPicker.Take(burger);
             Destroy(item.transform.gameObject);
             Destroy(gameObject);

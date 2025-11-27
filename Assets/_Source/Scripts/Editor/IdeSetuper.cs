@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using Unity.CodeEditor;
 using UnityEditor;
 using UnityEngine;
@@ -35,3 +36,4 @@ namespace ITCafe.Editor
         }
     }
 }
+#endif

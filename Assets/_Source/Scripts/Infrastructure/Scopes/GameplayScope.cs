@@ -9,6 +9,7 @@ using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
+using ITCafe.Gameplay.Data;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Player;
 using R3;
@@ -26,6 +27,7 @@ namespace ITCafe
         [Serializable]
         public struct KeyedGameObject
         {
+            [ItemKeyMenu]
             public string Key;
             public GameObject GameObject;
         }
