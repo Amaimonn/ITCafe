@@ -16,6 +16,22 @@ namespace ITCafe.Environment
             handler.HandleContainer(this, context);
 #endregion
 
+        public override void Focus()
+        {
+            base.Focus();
+            if (Items != null)
+                foreach (var item in Items)
+                    item?.Focus();
+        }
+
+        public override void UnFocus()
+        {
+            base.UnFocus();
+            if (Items != null)
+                foreach (var item in Items)
+                    item?.UnFocus();
+        }
+
         public abstract int GetItemHash();
 
         public abstract bool ContainsHash(int hash);

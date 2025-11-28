@@ -11,6 +11,18 @@ namespace ITCafe.Environment
         private bool IsBusy => _holdingItem != null;
         private IItem _holdingItem;
 
+        public override void Focus()
+        {
+            base.Focus();
+            _holdingItem?.Focus();
+        }
+        
+        public override void UnFocus()
+        {
+            base.UnFocus();
+            _holdingItem?.UnFocus();
+        }
+
 #region IInteractable
         public override bool CanInteract(PlayerContext context)
         {
@@ -53,12 +65,13 @@ namespace ITCafe.Environment
             item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             _holdingItem = item;
+            _holdingItem.Focus();
         }
 
         private void HandOver(PlayerContext context)
         {
-            FLogger.Log<PlacementSpot>("Hand over");
             context.ItemPicker.Take(_holdingItem);
+            _holdingItem.UnFocus();
             _holdingItem = null;
         }
     }
