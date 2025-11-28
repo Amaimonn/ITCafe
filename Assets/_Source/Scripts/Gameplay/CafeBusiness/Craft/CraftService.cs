@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Environment;
 using ITCafe.Gameplay.Data;
@@ -6,7 +7,7 @@ using ITCafe.Player;
 
 namespace ITCafe.CafeBusiness
 {
-    public class CraftService
+    public class CraftService : ICraftService
     {
         private readonly IEnumerable<RecipeSO> _recipes;
         private readonly IItemsCreator _itemsCreator;
@@ -16,42 +17,44 @@ namespace ITCafe.CafeBusiness
             _recipes = recipes;
             _itemsCreator = itemsCreator;
         }
-        
+
         public bool TryGetCraft(IItemPart itemPart1, IItemPart itemPart2, out CraftRequest craftRequest)
         {
             craftRequest = default;
 
-            foreach (var recipe in _recipes)
+            if (itemPart1.Tag == ItemTag.Combined || itemPart2.Tag == ItemTag.Combined)
             {
-                foreach (var requiredTag in recipe.RequiredParts)
+                // TODO: process ItemCombination
+                // check PartsAmountMap
+                // check amount
+            }
+            else
+            {
+                foreach (var recipe in _recipes)
                 {
-                    if (itemPart1.Tag == ItemTag.Combined)
+                    var firstSatisfied = false;
+                    var secondSatisfied = false;
+
+                    foreach (var requiredTag2 in recipe.RequiredParts)
                     {
-                        // TODO: process ItemCombination
-                        // check PartsAmountMap
-                        // ckeck amount
+                        if (firstSatisfied && secondSatisfied)
+                            break;
+
+                        if (itemPart1.Tag == requiredTag2 && !firstSatisfied)
+                            firstSatisfied = true;
+                        else if (itemPart2.Tag == requiredTag2)
+                            secondSatisfied = true;
                     }
-                    else
+                    
+                    if (firstSatisfied && secondSatisfied)
                     {
-                        var firstSatisfied = false;
-                        var secondSatisfied = false;
-
-                        foreach (var requiredTag2 in recipe.RequiredParts)
-                        {
-                            if (firstSatisfied && secondSatisfied)
-                            {
-                                craftRequest = new CraftRequest(itemPart1, itemPart2, recipe);
-                                return true;
-                            }
-
-                            if (requiredTag == requiredTag2)
-                                firstSatisfied = true;
-                            else if (requiredTag2 == requiredTag)
-                                secondSatisfied = true;
-                        }
+                        craftRequest = new CraftRequest(itemPart1, itemPart2, recipe);
+                        return true;
                     }
                 }
             }
+            
+            FLogger.Log<CraftService>("No Recipes found");
             return false;
         }
 
@@ -66,7 +69,7 @@ namespace ITCafe.CafeBusiness
 
             if (tags.Count == recipe.RequiredParts.Length)
             {
-                craftedItem = _itemsCreator.Get(recipe.CombinationTag);
+                craftedItem = _itemsCreator.Get(recipe.FinalTag);
             }
             else
             {

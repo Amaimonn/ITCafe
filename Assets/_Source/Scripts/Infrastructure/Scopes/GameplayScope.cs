@@ -51,6 +51,7 @@ namespace ITCafe
         
         [Header("Items")]
         [SerializeField] private KeyedGameObject[] _keyedItemPrefabs;
+        [SerializeField] private RecipeSO[] _recipes;
 
         private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
@@ -114,6 +115,13 @@ namespace ITCafe
             builder.Register<ItemsCreator>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IItemsCreator>();
+
+            builder.RegisterInstance<RecipeSO[]>(_recipes)
+                .AsSelf()
+                .As<IEnumerable<RecipeSO>>();
+            
+            builder.Register<CraftService>(Lifetime.Singleton)
+                .As<ICraftService>();;
         }
 
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)

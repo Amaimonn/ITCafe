@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Player;
@@ -11,9 +12,8 @@ namespace ITCafe.Environment
     {
         public abstract ItemTag Tag { get; }
         public IReadOnlyDictionary<ItemTag, int> PartsAmountMap => _partsAmountMap;
-        
+
         protected readonly Dictionary<ItemTag, int> _partsAmountMap = new();
-        [Inject] protected CraftService _craftService; // TODO: Inject
 
 #region IItem
         public override bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
@@ -24,19 +24,27 @@ namespace ITCafe.Environment
 #endregion
 
 #region IItemHandler
-        public virtual bool CanHandle(IItem item, PlayerContext context) =>
-            item is IItemPart itemPart && itemPart.CanBeUsedWith(this);
+        public virtual bool CanHandle(IItem item, PlayerContext context)
+        {
+            return item is IItemPart itemPart &&
+                   context.CraftService.TryGetCraft(itemPart, this, out _) &&
+                   itemPart.CanBeUsedWith(this);
+        }
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context) => false;
 
         public virtual void Handle(IItem item, PlayerContext context)
         {
-            if (!_craftService.TryGetCraft((IItemPart)item, this, out var craftRequest))
+            var craftService = context.CraftService;
+            if (!craftService.TryGetCraft((IItemPart)item, this, out var craftRequest))
+            {
+                FLogger.LogWarning<ItemPartBase>("No Recipe in Handle method");
                 return;
-            
+            }
+
             var itemPicker = context.ItemPicker;
             itemPicker.Release();
-            var craftedItem = _craftService.Craft(craftRequest);
+            var craftedItem = craftService.Craft(craftRequest);
             context.ItemPicker.Take(craftedItem);
             Destroy(item.transform.gameObject);
             Destroy(gameObject);
@@ -49,7 +57,7 @@ namespace ITCafe.Environment
 #region IItemPart
         public virtual bool CanBeUsedWith(IItemPart itemPart)
         {
-            return _craftService.TryGetCraft(itemPart, this, out _);
+            return true; // TODO: Check in service
         }
 #endregion
     }
