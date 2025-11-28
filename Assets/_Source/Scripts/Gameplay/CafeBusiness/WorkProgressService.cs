@@ -117,8 +117,8 @@ namespace ITCafe.CafeBusiness
         private int CalcPoints()
         {
             var points = _successfulOrders * SUCCESS_POINTS - _failedOrders * FAILURE_POINTS;
-            foreach (var (hash, config) in _itemConfigsMap)
-                points += config.Points * _itemsServedCountMap[hash];
+            foreach (var (hash, amount) in _itemsServedCountMap)
+                points += _itemConfigsMap[hash].Points * amount;
 
             return points;
         }
