@@ -12,13 +12,15 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class HUDViewModel : ScreenViewModel
     {
+        public int RemainingSeconds => _remainingSeconds;
+
         public Observable<string> TimerText => _timerText;
         public Observable<int> PointsAmount => _pointsAmount;
 
         public ReactiveProperty<int> OrdersTaken => _ordersTaken;
         public ReactiveProperty<int> OrdersCompleted => _ordersCompleted;
         public ReactiveProperty<int> OrdersFailed => _ordersFailed;
-        
+
 
         public IObservableCollection<IOrder> ActiveOrders => _activeOrders;
         public IReadOnlyDictionary<int, ItemInfoSO> ItemInfoMap => _itemInfoMap;
@@ -30,7 +32,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly ReactiveProperty<int> _ordersTaken = new(0);
         private readonly ReactiveProperty<int> _ordersCompleted = new(0);
         private readonly ReactiveProperty<int> _ordersFailed = new(0);
-        
+
 
         private CancellationTokenSource _timerCts;
         private DateTime _sessionStartTime;
@@ -61,12 +63,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             _ordersTaken.Value++;
         }
-        
+
         public void IncrementOrdersCompleted()
         {
             _ordersCompleted.Value++;
         }
-        
+
         public void IncrementOrdersFailed()
         {
             _ordersFailed.Value++;

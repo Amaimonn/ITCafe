@@ -11,11 +11,15 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private readonly ReactiveProperty<ProgressReport> _reported;
         private readonly Subject<Unit> _exitGameplaySignal;
+        private readonly Subject<Unit> _restartGameplaySignal;
 
         public ResultsViewModel(WorkProgressService workProgressService,
-            [Key(Constants.GAMEPLAY_EXIT_SIGNAL)] Subject<Unit> exitGameplaySignal)
+            [Key(Constants.GAMEPLAY_EXIT_SIGNAL)] Subject<Unit> exitGameplaySignal,
+            [Key(Constants.RESTART_GAMEPLAY_SIGNAL)] Subject<Unit> restartGameplaySignal)
         {
             _exitGameplaySignal = exitGameplaySignal;
+            _restartGameplaySignal = restartGameplaySignal;
+            
             var report = workProgressService.GetDailyReport();
             _reported = new ReactiveProperty<ProgressReport>(report);
         }
@@ -31,6 +35,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public void Restart()
         {
+            _restartGameplaySignal.OnNext(Unit.Default);
         }
     }
 }

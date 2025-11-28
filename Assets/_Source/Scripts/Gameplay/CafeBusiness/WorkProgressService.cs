@@ -21,6 +21,7 @@ namespace ITCafe.CafeBusiness
         private readonly IReadOnlyDictionary<int, ItemInfoSO> _itemConfigsMap;
 
         private readonly Dictionary<int, int> _itemsServedCountMap = new();
+        private TimeSpan _totalTime;
         private int _totalClientsCount = 0;
         private int _successfulOrders = 0;
         private int _failedOrders = 0;
@@ -47,6 +48,11 @@ namespace ITCafe.CafeBusiness
             client.OnCompleted.Subscribe(_ => OnOrderCompletedHandler());
             client.OnFailed.Subscribe(_ => OnOrderFailedHandler());
             client.CurrentOrder.OnHashRemoved.Subscribe(RecordItemServed);
+        }
+
+        public void SetTotalTime(TimeSpan totalTime)
+        {
+            _totalTime =  totalTime;
         }
 
         private void OnOrderTakenHandler()
@@ -87,6 +93,7 @@ namespace ITCafe.CafeBusiness
 
         public void ResetDailyStats()
         {
+            _totalTime = TimeSpan.Zero;
             _totalClientsCount = 0;
             _successfulOrders = 0;
             _failedOrders = 0;
@@ -102,6 +109,7 @@ namespace ITCafe.CafeBusiness
 
             return new ProgressReport
             {
+                WorkTime = _totalTime,
                 DayStartTime = _dayStartTime,
                 ClientsCount = _totalClientsCount,
                 SuccessfulOrders = _successfulOrders,

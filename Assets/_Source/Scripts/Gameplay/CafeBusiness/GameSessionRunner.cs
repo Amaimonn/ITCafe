@@ -11,7 +11,7 @@ namespace ITCafe.CafeBusiness
     public class GameSessionRunner : IDisposable
     {
         public Observable<Unit> OnCompleted => _onCompleted;
-        
+
         private readonly WorkProgressService _workProgressService;
         private readonly HUDViewModel _hudViewModel;
         private readonly ClientsRunner _clientsRunner;
@@ -19,7 +19,8 @@ namespace ITCafe.CafeBusiness
         private readonly InputService _inputService;
 
         private CancellationTokenSource _cts;
-        private readonly TimeSpan _sessionDuration = TimeSpan.FromMinutes(3);
+        private const int SESSION_DURATION_SECONDS = 180;
+        private readonly TimeSpan _sessionDuration = TimeSpan.FromSeconds(SESSION_DURATION_SECONDS);
         private readonly Subject<Unit> _onCompleted = new();
 
         public GameSessionRunner(WorkProgressService workProgressService,
@@ -65,8 +66,10 @@ namespace ITCafe.CafeBusiness
         {
             Dispose();
             _clientsRunner.Dispose();
+            _workProgressService.SetTotalTime(
+                TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _hudViewModel.RemainingSeconds));
             _workProgressService.CompleteDay();
-            
+
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);
             Time.timeScale = 0;
