@@ -60,11 +60,16 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var orderContainer = new VisualElement();
             orderContainer.AddToClassList("hud__order");
+            
+            var orderImagesContainer = new VisualElement();
+            orderImagesContainer.AddToClassList("order-cloud__images-container");
+            orderContainer.Add(orderImagesContainer);
+            
             _orderContainerMap[order] = orderContainer;
             _ordersContainer.Add(orderContainer);
 
-            order.PropagateHashes(x => AddOrderImage(orderContainer, ViewModel.ItemInfoMap[x].Image, x));
-            order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderContainer, x)); // dispose is redundant
+            order.PropagateHashes(x => AddOrderImage(orderImagesContainer, ViewModel.ItemInfoMap[x].Image, x));
+            order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderImagesContainer, x)); // dispose is redundant
         }
 
         private void RemoveOrderImage(VisualElement orderContainer, int hash)

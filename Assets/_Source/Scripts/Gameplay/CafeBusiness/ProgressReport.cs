@@ -5,15 +5,16 @@ namespace ITCafe.CafeBusiness
 {
     public struct ProgressReport
     {
-        public DateTime DayStartTime;
-        public int ClientsCount;
-        public int SuccessfulOrders;
-        public int FailedOrders;
-        public float SuccessRate;
-        public float AverageServiceTime;
-        public IReadOnlyDictionary<int, int> ItemsServed;
-        public int Points;
-        public int EarnedStars;
+        public TimeSpan WorkTime { get; set; }
+        public DateTime DayStartTime { get; set; }
+        public int ClientsCount { get; set; }
+        public int SuccessfulOrders { get; set; }
+        public int FailedOrders { get; set; }
+        public float SuccessRate { get; set; }
+        public float AverageServiceTime { get; set; }
+        public IReadOnlyDictionary<int, int> ItemsServed { get; set; }
+        public int Points { get; set; }
+        public int EarnedStars { get; set; }
 
         public override string ToString()
         {

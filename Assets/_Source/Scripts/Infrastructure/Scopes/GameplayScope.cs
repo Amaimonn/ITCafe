@@ -9,6 +9,7 @@ using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
+using ITCafe.Gameplay.Data;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Player;
 using R3;
@@ -26,7 +27,7 @@ namespace ITCafe
         [Serializable]
         public struct KeyedGameObject
         {
-            public string Key;
+            public ItemTag KeyTag;
             public GameObject GameObject;
         }
         
@@ -50,6 +51,7 @@ namespace ITCafe
         
         [Header("Items")]
         [SerializeField] private KeyedGameObject[] _keyedItemPrefabs;
+        [SerializeField] private RecipeSO[] _recipes;
 
         private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
@@ -113,6 +115,13 @@ namespace ITCafe
             builder.Register<ItemsCreator>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IItemsCreator>();
+
+            builder.RegisterInstance<RecipeSO[]>(_recipes)
+                .AsSelf()
+                .As<IEnumerable<RecipeSO>>();
+            
+            builder.Register<CraftService>(Lifetime.Singleton)
+                .As<ICraftService>();;
         }
 
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
@@ -132,7 +141,7 @@ namespace ITCafe
             
             var itemsCreator = Container.Resolve<ItemsCreator>();
             foreach (var entry in _keyedItemPrefabs)
-                itemsCreator.Register(entry.GameObject, entry.Key);
+                itemsCreator.Register(entry.GameObject, entry.KeyTag);
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);

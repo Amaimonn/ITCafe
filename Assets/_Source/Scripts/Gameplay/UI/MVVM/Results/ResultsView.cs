@@ -82,15 +82,9 @@ namespace ITCafe.Gameplay.UI.MVVM
             _ordersFailedLabel.text = report.FailedOrders.ToString();
             _pointsLabel.text = report.Points.ToString();
 
-            _timeWorkedValue.text = FormatTimeWorked(report.DayStartTime);
+            _timeWorkedValue.text = report.WorkTime.ToString(@"mm\:ss");
 
             UpdateStarsFromReport(report);
-        }
-
-        private string FormatTimeWorked(DateTime dayStartTime)
-        {
-            var timeWorked = DateTime.Now - dayStartTime;
-            return $"{(int)timeWorked.TotalMinutes:00}:{timeWorked.Seconds:00}";
         }
 
         private void UpdateStarsFromReport(ProgressReport report)

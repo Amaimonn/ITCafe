@@ -5,7 +5,7 @@ namespace ITCafe.Data.Items
     [Serializable]
     public class SimpleItemInfo : BaseItemInfo<SimpleItemInfo>
     {
-        public ItemTags ItemTag;
+        public ItemTag ItemTag;
 
         public override bool Equals(SimpleItemInfo other)
         {

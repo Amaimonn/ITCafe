@@ -37,8 +37,8 @@
                 <ui:VisualElement name="OrdersPanel" class="hud__orders-panel">
                     <ui:Label text="&#1041;&#1069;&#1050;&#1051;&#1054;&#1043;" class="hud__widget-title" style="font-size: 18px;"/>
                     <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
-                        <ui:VisualElement name="OrderExample1" class="hud__order-item hud__order">
-                            <ui:VisualElement name="Order1Images" class="hud__order-images order-cloud__images-container">
+                        <ui:VisualElement name="OrderExample1" class="hud__order">
+                            <ui:VisualElement name="Order1Images" class="order-cloud__images-container">
                                 <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
                                 <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
                                 <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>

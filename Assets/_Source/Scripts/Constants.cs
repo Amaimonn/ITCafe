@@ -1,3 +1,4 @@
+using ITCafe.Gameplay.Data;
 using UnityEngine;
 
 namespace ITCafe
@@ -16,5 +17,13 @@ namespace ITCafe
         public const string MAIN_MENU_EXIT_SIGNAL =  nameof(MAIN_MENU_EXIT_SIGNAL);
         public const string GAMEPLAY_EXIT_SIGNAL =  nameof(GAMEPLAY_EXIT_SIGNAL);
         public const string RESTART_GAMEPLAY_SIGNAL =  nameof(RESTART_GAMEPLAY_SIGNAL);
+
+#region Item Keys
+        [ItemKey] public const string BURGER = nameof(BURGER);
+        [ItemKey] public const string ONIGIRI = nameof(ONIGIRI);
+        [ItemKey] public const string HOT_DOG = nameof(HOT_DOG);
+        [ItemKey] public const string DONUT = nameof(DONUT);
+        [ItemKey] public const string FRIES = nameof(FRIES);
+#endregion
     }
 }

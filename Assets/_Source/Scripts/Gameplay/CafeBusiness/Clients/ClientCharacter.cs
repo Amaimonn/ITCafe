@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -36,7 +37,8 @@ namespace ITCafe.CafeBusiness
         private readonly ReactiveProperty<float> _waitingTimeNormalized = new();
         private float _remainingWaitingTime;
         private const float WAITING_FOR_ORDER_TIME = 60f;
-
+        
+        [Flags]
         public enum ClientState
         {
             WaitingForOrder,

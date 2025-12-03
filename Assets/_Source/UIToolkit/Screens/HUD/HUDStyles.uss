@@ -81,6 +81,7 @@ Label {
     padding-bottom: 6px;
     padding-left: 6px;
     padding-right: 6px;
+    min-width: 151px;
 }
 
 .hud__widget-title {
@@ -113,7 +114,7 @@ Label {
     padding-left: 0;
     padding-right: 0;
     justify-content: flex-end;
-    width: 134px;
+    width: auto;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
