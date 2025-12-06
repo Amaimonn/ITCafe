@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Environment;
@@ -7,17 +8,27 @@ using ITCafe.Player;
 
 namespace ITCafe.CafeBusiness
 {
+    /// <summary>
+    /// Current limitations:
+    /// 1) 2 different recipes must contain a maximum of 1 common atomic part (otherwise, these parts should form their
+    /// own сombined part (with Tag), which should be a priority when crafting).
+    /// </summary>
     public class CraftService : ICraftService
     {
         private readonly IEnumerable<RecipeSO> _recipes;
         private readonly IItemsCreator _itemsCreator;
+        private readonly Dictionary<RecipeSO, ItemTag[]> _recipeOrderedMap;
+        private Dictionary<ItemTag, List<RecipeSO>> _firstEntryRecipeMap;
 
-        private readonly CraftCache _craftCache = new ();
+        private readonly CraftCache _craftCache = new();
 
         public CraftService(IEnumerable<RecipeSO> recipes, IItemsCreator itemsCreator)
         {
             _recipes = recipes;
             _itemsCreator = itemsCreator;
+
+            _recipeOrderedMap = recipes.ToDictionary(k => k, v => v.RequiredParts.OrderBy(p => p).ToArray());
+            BuildFirstEntryRecipeMap();
         }
 
         public bool TryGetCraft(ICraftPart craftPart1, ICraftPart craftPart2, out CraftRequest craftRequest)
@@ -27,14 +38,49 @@ namespace ITCafe.CafeBusiness
                 _craftCache.GetFromCache(out var isPossible, out craftRequest);
                 return isPossible;
             }
-            
+
             craftRequest = default;
 
             if (craftPart1.IsCombination || craftPart2.IsCombination)
             {
-                // TODO: process ItemCombination
-                // check PartsAmountMap
-                // check amount
+                var orderedTags = GetOrderedTags(craftPart1, craftPart2);
+                if (_firstEntryRecipeMap.TryGetValue(orderedTags[0], out var possibleRecipes))
+                {
+                    foreach (var recipe in possibleRecipes)
+                    {
+                        if (_recipeOrderedMap.TryGetValue(recipe, out var orderedRecipeTags))
+                        {
+                            if (orderedTags.Count > orderedRecipeTags.Length)
+                                continue;
+
+                            var satisfied = true;
+                            for (var i = 0; i < orderedTags.Count; i++)
+                            {
+                                if (orderedTags[i] != orderedRecipeTags[i])
+                                {
+                                    satisfied = false;
+                                    break;
+                                }
+                            }
+
+                            if (satisfied)
+                            {
+                                craftRequest = new CraftRequest(craftPart1, craftPart2, recipe);
+                                _craftCache.CacheResult(craftPart1, craftPart2, craftRequest, true);
+
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            FLogger.LogError<CraftService>("Recipe tags are not registered in order map");
+                        }
+                    }
+                }
+                else
+                {
+                    FLogger.LogError<CraftService>("Craft part has no recipes registered.");
+                }
             }
             else
             {
@@ -58,7 +104,7 @@ namespace ITCafe.CafeBusiness
                     {
                         craftRequest = new CraftRequest(craftPart1, craftPart2, recipe);
                         _craftCache.CacheResult(craftPart1, craftPart2, craftRequest, true);
-                        
+
                         return true;
                     }
                 }
@@ -66,7 +112,7 @@ namespace ITCafe.CafeBusiness
 
             FLogger.Log<CraftService>("No Recipes found");
             _craftCache.CacheResult(craftPart1, craftPart2, craftRequest, false);
-            
+
             return false;
         }
 
@@ -91,6 +137,48 @@ namespace ITCafe.CafeBusiness
             }
 
             return craftedItem;
+        }
+
+        private void BuildFirstEntryRecipeMap()
+        {
+            _firstEntryRecipeMap = new Dictionary<ItemTag, List<RecipeSO>>();
+
+            foreach (var recipe in _recipes)
+            {
+                foreach (var tag in recipe.RequiredParts)
+                {
+                    if (!_firstEntryRecipeMap.ContainsKey(tag))
+                        _firstEntryRecipeMap[tag] = new List<RecipeSO> { recipe };
+                    else
+                        _firstEntryRecipeMap[tag].Add(recipe);
+                }
+            }
+        }
+
+        private List<ItemTag> GetOrderedTags(ICraftPart craftPart1, ICraftPart craftPart2)
+        {
+            List<ItemTag> orderedTags = new();
+
+            CollectTags(craftPart1, in orderedTags);
+            CollectTags(craftPart2, in orderedTags);
+
+            orderedTags.Sort();
+
+            return orderedTags;
+        }
+
+        private void CollectTags(ICraftPart craftPart, in List<ItemTag> list)
+        {
+            if (craftPart.IsCombination)
+            {
+                foreach (var (tag, amount) in craftPart.PartsAmountMap)
+                    for (var i = 0; i < amount; i++)
+                        list.Add(tag);
+            }
+            else
+            {
+                list.Add(craftPart.Tag);
+            }
         }
 
         private List<ItemTag> GetTagsFromParts(ICraftPart craftPart1, ICraftPart craftPart2)
