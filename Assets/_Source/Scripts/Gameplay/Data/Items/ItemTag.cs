@@ -15,7 +15,9 @@ namespace ITCafe.Data.Items
         Cheese = 10,
         Sausage = 11,
         
+        
         // Combinations
+        SimpleCombination = 1000,
         BurgerCombination = 1001,
         HotDogCombination = 1002,
     }
