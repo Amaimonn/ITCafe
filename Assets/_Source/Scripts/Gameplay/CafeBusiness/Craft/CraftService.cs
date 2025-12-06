@@ -12,10 +12,7 @@ namespace ITCafe.CafeBusiness
         private readonly IEnumerable<RecipeSO> _recipes;
         private readonly IItemsCreator _itemsCreator;
 
-        private ICraftPart _cachedPart1;
-        private ICraftPart _cachedPart2;
-        private bool _cachedCraftAnswer;
-        private CraftRequest _cachedCraftResult;
+        private readonly CraftCache _craftCache = new ();
 
         public CraftService(IEnumerable<RecipeSO> recipes, IItemsCreator itemsCreator)
         {
@@ -23,35 +20,11 @@ namespace ITCafe.CafeBusiness
             _itemsCreator = itemsCreator;
         }
 
-        private bool IsCached(ICraftPart craftPart1, ICraftPart craftPart2)
-        {
-            if (_cachedPart1 == null || _cachedPart2 == null)
-                return false;
-
-            return _cachedPart1.IsItemEqual(craftPart1) && _cachedPart2.IsItemEqual(craftPart2) ||
-                   _cachedPart1.IsItemEqual(craftPart2) && _cachedPart2.IsItemEqual(craftPart1);
-        }
-
-        private void CacheResult(ICraftPart craftPart1, ICraftPart craftPart2, CraftRequest craftRequest,
-            bool isPossible)
-        {
-            _cachedPart1 = craftPart1;
-            _cachedPart2 = craftPart2;
-            _cachedCraftResult = craftRequest;
-            _cachedCraftAnswer = isPossible;
-        }
-
-        private void GetFromCache(out bool isPossible, out CraftRequest craftRequest)
-        {
-            craftRequest = _cachedCraftResult;
-            isPossible = _cachedCraftAnswer;
-        }
-
         public bool TryGetCraft(ICraftPart craftPart1, ICraftPart craftPart2, out CraftRequest craftRequest)
         {
-            if (IsCached(craftPart1, craftPart2))
+            if (_craftCache.IsCached(craftPart1, craftPart2))
             {
-                GetFromCache(out var isPossible, out craftRequest);
+                _craftCache.GetFromCache(out var isPossible, out craftRequest);
                 return isPossible;
             }
             
@@ -84,7 +57,7 @@ namespace ITCafe.CafeBusiness
                     if (firstSatisfied && secondSatisfied)
                     {
                         craftRequest = new CraftRequest(craftPart1, craftPart2, recipe);
-                        CacheResult(craftPart1, craftPart2, craftRequest, true);
+                        _craftCache.CacheResult(craftPart1, craftPart2, craftRequest, true);
                         
                         return true;
                     }
@@ -92,7 +65,7 @@ namespace ITCafe.CafeBusiness
             }
 
             FLogger.Log<CraftService>("No Recipes found");
-            CacheResult(craftPart1, craftPart2, craftRequest, false);
+            _craftCache.CacheResult(craftPart1, craftPart2, craftRequest, false);
             
             return false;
         }
