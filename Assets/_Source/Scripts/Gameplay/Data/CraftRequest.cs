@@ -4,14 +4,14 @@ namespace ITCafe.Gameplay.Data
 {
     public readonly struct CraftRequest
     {
-        public readonly IItemPart ItemPart1;
-        public readonly IItemPart ItemPart2;
+        public readonly ICraftPart CraftPart1;
+        public readonly ICraftPart CraftPart2;
         public readonly RecipeSO Recipe;
 
-        public CraftRequest(IItemPart itemPart1, IItemPart itemPart2, RecipeSO recipe)
+        public CraftRequest(ICraftPart craftPart1, ICraftPart craftPart2, RecipeSO recipe)
         {
-            ItemPart1 = itemPart1;
-            ItemPart2 = itemPart2;
+            CraftPart1 = craftPart1;
+            CraftPart2 = craftPart2;
             Recipe = recipe;
         }
     }

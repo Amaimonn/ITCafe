@@ -1,13 +1,15 @@
 using System.Collections.Generic;
+using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 
 namespace ITCafe.Environment
 {
-    public interface IItemPart
+    public interface ICraftPart : IEquatableItem
     {
         // Add modifications mb? (ex.: Hot, Cold, Packed, BunFried, PattyFried)
         public ItemTag Tag { get; }
+        public bool IsCombination { get; }
         public IReadOnlyDictionary<ItemTag, int> PartsAmountMap { get; }
-        public bool CanBeUsedWith(IItemPart itemPart);
+        public bool CanBeUsedWith(ICraftPart craftPart);
     }
 }

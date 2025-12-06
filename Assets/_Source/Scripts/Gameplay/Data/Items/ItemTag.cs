@@ -14,7 +14,6 @@ namespace ITCafe.Data.Items
         Patty = 9,
         Cheese = 10,
         Sausage = 11,
-        Combined = 1000, // Special tag
         
         // Combinations
         BurgerCombination = 1001,

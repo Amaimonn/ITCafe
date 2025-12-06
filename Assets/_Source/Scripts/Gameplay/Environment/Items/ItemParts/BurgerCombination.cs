@@ -6,8 +6,10 @@ namespace ITCafe.Environment
     /// <summary>
     /// May be used in future with more than 2 item parts in burger.
     /// </summary>
-    public class BurgerCombination : ItemCombination
+    public class BurgerCombination : CraftCombination
     {
+        public override ItemTag Tag => ItemTag.BurgerCombination;
+            
         [SerializeField] private GameObject _bun;
         [SerializeField] private GameObject _patty;
 

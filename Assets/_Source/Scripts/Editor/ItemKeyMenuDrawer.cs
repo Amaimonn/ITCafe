@@ -23,7 +23,6 @@ namespace ITCafe.Editor
             
             if (itemKeys.Length == 0)
             {
-                // Fallback to text field with refresh button
                 var fallbackContainer = new VisualElement();
                 fallbackContainer.style.flexDirection = FlexDirection.Row;
                 
@@ -36,8 +35,6 @@ namespace ITCafe.Editor
                 var refreshButton = new Button(() => 
                 {
                     _cachedItemKeys = new Lazy<string[]>(LoadItemKeys);
-                    // Note: In UI Toolkit, we can't easily refresh the property drawer
-                    // This would require a more complex solution
                 })
                 {
                     text = "Refresh",
@@ -57,14 +54,12 @@ namespace ITCafe.Editor
                 return container;
             }
 
-            // Create dropdown with search functionality
             var dropdown = new DropdownField(property.displayName)
             {
                 choices = new List<string>(itemKeys),
                 value = property.stringValue
             };
 
-            // If current value is not in choices, add it
             if (!string.IsNullOrEmpty(property.stringValue) && !dropdown.choices.Contains(property.stringValue))
             {
                 dropdown.choices.Insert(0, property.stringValue);
@@ -76,12 +71,10 @@ namespace ITCafe.Editor
                 property.serializedObject.ApplyModifiedProperties();
             });
 
-            // Add some styling
             dropdown.AddToClassList("item-key-dropdown");
             
             container.Add(dropdown);
             
-            // Add label showing the count of available keys
             var infoLabel = new Label($"{itemKeys.Length} item keys available")
             {
                 style = 

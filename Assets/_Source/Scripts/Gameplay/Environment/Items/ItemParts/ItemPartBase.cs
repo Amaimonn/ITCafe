@@ -8,12 +8,14 @@ using VContainer;
 
 namespace ITCafe.Environment
 {
-    public abstract class ItemPartBase : PickUpItem, IItemPart, IItemHandler
+    public abstract class ItemPartBase : PickUpItem, ICraftPart, IItemHandler
     {
         public abstract ItemTag Tag { get; }
+        public virtual bool IsCombination => false;
         public IReadOnlyDictionary<ItemTag, int> PartsAmountMap => _partsAmountMap;
 
         protected readonly Dictionary<ItemTag, int> _partsAmountMap = new();
+        protected virtual int ItemHashCode => (int)Tag;
 
 #region IItem
         public override bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
@@ -26,7 +28,7 @@ namespace ITCafe.Environment
 #region IItemHandler
         public virtual bool CanHandle(IItem item, PlayerContext context)
         {
-            return item is IItemPart itemPart &&
+            return item is ICraftPart itemPart &&
                    context.CraftService.TryGetCraft(itemPart, this, out _) &&
                    itemPart.CanBeUsedWith(this);
         }
@@ -36,7 +38,7 @@ namespace ITCafe.Environment
         public virtual void Handle(IItem item, PlayerContext context)
         {
             var craftService = context.CraftService;
-            if (!craftService.TryGetCraft((IItemPart)item, this, out var craftRequest))
+            if (!craftService.TryGetCraft((ICraftPart)item, this, out var craftRequest))
             {
                 FLogger.LogWarning<ItemPartBase>("No Recipe in Handle method");
                 return;
@@ -55,9 +57,24 @@ namespace ITCafe.Environment
 #endregion
 
 #region IItemPart
-        public virtual bool CanBeUsedWith(IItemPart itemPart)
+        public virtual bool CanBeUsedWith(ICraftPart craftPart)
         {
             return true; // TODO: Check in service
+        }
+#endregion
+
+        /// <summary>
+        /// Attention: override this for Combined items to use the tag map instead.
+        /// Call after data changes.
+        /// </summary>
+        protected virtual void RecalculateItemHash()
+        {
+        }
+
+#region IEquatableItem
+        public int GetItemHash()
+        {
+            return ItemHashCode;
         }
 #endregion
     }
