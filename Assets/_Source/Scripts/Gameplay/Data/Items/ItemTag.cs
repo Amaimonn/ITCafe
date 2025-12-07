@@ -9,12 +9,13 @@ namespace ITCafe.Data.Items
         Fries = 4,
         ChocolateDonut = 5,
         Burger = 6,
-        BurgerBun = 7,
+        Bun = 7,
         HotDogBun = 8,
         Patty = 9,
         Cheese = 10,
         Sausage = 11,
         Lettuce = 12,
+        HotDog = 13,
         
         
         // Combinations

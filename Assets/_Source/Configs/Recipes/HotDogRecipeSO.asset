@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HotDogRecipeSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.RecipeSO
   <RequiredParts>k__BackingField: 0b00000007000000
-  <CombinationTag>k__BackingField: 1001
-  <FinalTag>k__BackingField: 4
+  <CombinationTag>k__BackingField: 0
+  <FinalTag>k__BackingField: 13

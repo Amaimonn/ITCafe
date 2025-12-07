@@ -21,7 +21,7 @@ namespace ITCafe.Environment
         
         protected override void OnInit()
         {
-            if (_partsAmountMap.ContainsKey(ItemTag.BurgerBun))
+            if (_partsAmountMap.ContainsKey(ItemTag.Bun))
                 _bun.SetActive(true);
             if  (_partsAmountMap.ContainsKey(ItemTag.Patty))
                 _patty.SetActive(true);
