@@ -14,6 +14,7 @@ namespace ITCafe.Data.Items
         Patty = 9,
         Cheese = 10,
         Sausage = 11,
+        Lettuce = 12,
         
         
         // Combinations
