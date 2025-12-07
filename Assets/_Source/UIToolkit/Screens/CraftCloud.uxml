@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
+    <ui:VisualElement class="order-cloud__root">
+        <ui:VisualElement name="ImagesContainer" class="order-cloud__images-container">
+            <ui:VisualElement class="order-cloud__item-image"/>
+            <ui:VisualElement class="order-cloud__item-image"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
