@@ -36,7 +36,7 @@ namespace ITCafe.CafeBusiness
         private CancellationToken _destroyToken;
         private readonly ReactiveProperty<float> _waitingTimeNormalized = new();
         private float _remainingWaitingTime;
-        private const float WAITING_FOR_ORDER_TIME = 60f;
+        private const float WAITING_FOR_ORDER_TIME = 90f;
         
         [Flags]
         public enum ClientState

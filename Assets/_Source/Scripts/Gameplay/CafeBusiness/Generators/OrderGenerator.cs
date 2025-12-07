@@ -12,6 +12,7 @@ namespace ITCafe.Gameplay.CafeBusiness
         private readonly List<ItemInfoSO> _itemInfos;
         private const int MAX_ORDER_SIZE_EXCLUSIVE = 5;
         private const float BASE_ORDER_TIME = 60f;
+        private const float COMPLEXITY_TIME = 10f;
 
         public OrderGenerator(IEnumerable<ItemInfoSO> itemInfos)
         {
@@ -32,6 +33,7 @@ namespace ITCafe.Gameplay.CafeBusiness
                 {
                     var randomItem = _itemInfos[Random.Range(0, itemCount)];
                     var itemHash = randomItem.ItemInfo.GetItemHash();
+                    totalTime += randomItem.ComplexityTimeModifier * COMPLEXITY_TIME;
 
                     order = new OrderItem(itemHash, totalTime);
                 }
@@ -44,7 +46,8 @@ namespace ITCafe.Gameplay.CafeBusiness
                     {
                         var randomItem = _itemInfos[Random.Range(0, itemCount)];
                         var hash = randomItem.ItemInfo.GetItemHash();
-
+                        totalTime += randomItem.ComplexityTimeModifier * COMPLEXITY_TIME;
+                        
                         if (!orderedItemsMap.TryAdd(hash, 1))
                             orderedItemsMap[hash] += 1;
                     }

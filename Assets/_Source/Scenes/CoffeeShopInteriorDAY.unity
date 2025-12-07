@@ -23683,16 +23683,10 @@ MonoBehaviour:
   _keyedItemPrefabs:
   - KeyTag: 6
     GameObject: {fileID: 8531517831877121445, guid: efc545ae2efa5294ca8d5faab10df624, type: 3}
-  - KeyTag: 3
-    GameObject: {fileID: 302401745315096189, guid: 91679a08b59b1a54fb52fbc820cb9df0, type: 3}
-  - KeyTag: 4
-    GameObject: {fileID: 2865937386304091132, guid: d026775de00554444b0130583513db5e, type: 3}
-  - KeyTag: 5
-    GameObject: {fileID: 4535098636528518637, guid: 08600acdbe4c0e140a1edbd3ebd42c20, type: 3}
-  - KeyTag: 13
-    GameObject: {fileID: 2778076070997028652, guid: 04ffb9185edf31f498d1042a5b51c526, type: 3}
   - KeyTag: 1000
     GameObject: {fileID: 7453412856545647206, guid: 5541f909d642de24d8f34b13d17024d2, type: 3}
+  - KeyTag: 13
+    GameObject: {fileID: 2778076070997028652, guid: 04ffb9185edf31f498d1042a5b51c526, type: 3}
   _recipesSO: {fileID: 11400000, guid: 871aed1d3c061ca44b5acc55576256f3, type: 2}
 --- !u!4 &1355671832
 Transform:
