@@ -12,6 +12,7 @@ namespace ITCafe.Environment
     {
         public override bool IsCombination => true;
         protected override int ItemHashCode => _itemHashCode;
+        
         protected int _itemHashCode;
 
         /// <summary>
