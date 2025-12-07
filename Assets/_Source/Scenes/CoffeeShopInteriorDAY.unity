@@ -22474,6 +22474,7 @@ MonoBehaviour:
   _hudViewPrefab: {fileID: 3779760820142183007, guid: ed584786dce5b384898647c19138c671, type: 3}
   _resultsViewPrefab: {fileID: 3448940012858787566, guid: fea11616310c0f34b90844c0603a5473, type: 3}
   _pauseViewPrefab: {fileID: 4498725754442676862, guid: d9cc55f8b889b5143b31f7d6abea57b9, type: 3}
+  _guideViewPrefab: {fileID: 6113830061246565066, guid: 65f6ead4283520c459645e169dde84f6, type: 3}
   _keyedItemPrefabs:
   - KeyTag: 6
     GameObject: {fileID: 8531517831877121445, guid: efc545ae2efa5294ca8d5faab10df624, type: 3}
@@ -22482,6 +22483,7 @@ MonoBehaviour:
   - KeyTag: 13
     GameObject: {fileID: 2778076070997028652, guid: 04ffb9185edf31f498d1042a5b51c526, type: 3}
   _recipesSO: {fileID: 11400000, guid: 871aed1d3c061ca44b5acc55576256f3, type: 2}
+  _guideSO: {fileID: 11400000, guid: df2dd1663211a39409e6b5654b5405b0, type: 2}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,41 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Page3" class="guide__page">
+        <ui:Label text="&#1048;&#1053;&#1057;&#1058;&#1056;&#1059;&#1052;&#1045;&#1053;&#1058;&#1067;" class="guide__page-title"/>
+        <ui:VisualElement name="Equation1" class="guide__equation">
+            <ui:VisualElement class="guide__ingredient">
+                <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/Templates/small_plate.png?fileID=21300000&amp;guid=89845075ca26f6945adbd361c5767d04&amp;type=3#small_plate&quot;);"/>
+                <ui:Label text="$&#1055;&#1054;&#1044;&#1053;&#1054;&#1057;" class="guide__ingredient-label"/>
+            </ui:VisualElement>
+            <ui:Label text="+" class="guide__operator"/>
+            <ui:VisualElement class="guide__ingredient">
+                <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/sweet_and_sour_chicken.png?fileID=21300000&amp;guid=ec06f5e7b761d704d9762c9ff9b75b91&amp;type=3#sweet_and_sour_chicken&quot;); background-size: 80% 80%;"/>
+                <ui:Label text="$&#1041;&#1051;&#1070;&#1044;&#1054;" class="guide__ingredient-label"/>
+            </ui:VisualElement>
+            <ui:Label text="=" class="guide__operator"/>
+            <ui:VisualElement class="guide__ingredient">
+                <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/Templates/small_plate.png?fileID=21300000&amp;guid=89845075ca26f6945adbd361c5767d04&amp;type=3#small_plate&quot;);">
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/sweet_and_sour_chicken.png?fileID=21300000&amp;guid=ec06f5e7b761d704d9762c9ff9b75b91&amp;type=3#sweet_and_sour_chicken&quot;); background-size: 60% 60%; background-position-y: top 0;"/>
+                </ui:VisualElement>
+                <ui:Label text="$&#1055;&#1054;&#1044;&#1053;&#1054;&#1057;_&#1057;_&#1041;&#1051;&#1070;&#1044;&#1054;&#1052;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Equation2" class="guide__equation">
+            <ui:VisualElement class="guide__ingredient">
+                <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);"/>
+                <ui:Label text="$&#1055;&#1056;&#1045;&#1044;&#1052;&#1045;&#1058;" class="guide__ingredient-label"/>
+            </ui:VisualElement>
+            <ui:Label text="+" class="guide__operator"/>
+            <ui:VisualElement class="guide__ingredient">
+                <ui:VisualElement class="guide__ingredient-icon" style="background-image: none;"/>
+                <ui:Label text="$&#1052;&#1059;&#1057;&#1054;&#1056;&#1050;&#1040;" class="guide__ingredient-label"/>
+            </ui:VisualElement>
+            <ui:Label text="=" class="guide__operator"/>
+            <ui:VisualElement class="guide__ingredient">
+                <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);">
+                    <ui:Label text="X" style="color: rgb(253, 55, 55); font-size: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); align-self: center; scale: 2 1.5;"/>
+                </ui:VisualElement>
+                <ui:Label text="$&#1059;&#1044;&#1040;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

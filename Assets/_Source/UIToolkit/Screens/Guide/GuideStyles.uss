@@ -82,13 +82,10 @@
 
 .guide__page {
     flex-direction: column;
-    display: none;
     height: 500px;
 }
 
-.guide__page--active {
-    display: flex;
-}
+
 
 .guide__page-title {
     font-size: 16px;
