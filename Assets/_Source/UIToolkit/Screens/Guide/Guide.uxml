@@ -1,0 +1,124 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="guide__root" style="flex-grow: 1;">
+        <ui:VisualElement name="TerminalContainer" class="guide__terminal">
+            <ui:VisualElement name="Header" class="guide__header">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="// &#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1053;&#1040;&#1071;_&#1044;&#1054;&#1050;&#1059;&#1052;&#1045;&#1053;&#1058;&#1040;&#1062;&#1048;&#1071;" picking-mode="Ignore" class="guide__title"/>
+                    <ui:Label text="// &#1054;&#1041;&#1059;&#1063;&#1045;&#1053;&#1048;&#1045;" class="guide__subtitle"/>
+                </ui:VisualElement>
+                <ui:Button name="CloseButton" text="&#215;" class="guide__close-button-x"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="ContentArea" class="guide__content-area">
+                <ui:VisualElement name="Page1" class="guide__page" style="display: flex;">
+                    <ui:Label text="&#1059;&#1055;&#1056;&#1040;&#1042;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__page-title"/>
+                    <ui:VisualElement name="ControlsGrid" class="guide__controls-grid">
+                        <ui:VisualElement name="Control1" class="guide__control-item">
+                            <ui:Label text="WASD" class="guide__control-key"/>
+                            <ui:Label text="&#1055;&#1045;&#1056;&#1045;&#1052;&#1045;&#1065;&#1045;&#1053;&#1048;&#1045;_&#1055;&#1045;&#1056;&#1057;&#1054;&#1053;&#1040;&#1046;&#1040;" class="guide__control-desc"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Control2" class="guide__control-item">
+                            <ui:Label text="&#1051;&#1050;&#1052;" class="guide__control-key"/>
+                            <ui:Label text="&#1042;&#1047;&#1071;&#1058;&#1068;/&#1041;&#1056;&#1054;&#1057;&#1048;&#1058;&#1068;_&#1055;&#1056;&#1045;&#1044;&#1052;&#1045;&#1058;" class="guide__control-desc"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Control4" class="guide__control-item">
+                            <ui:Label text="ESC" class="guide__control-key"/>
+                            <ui:Label text="&#1055;&#1040;&#1059;&#1047;&#1040;" class="guide__control-desc"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Page2" class="guide__page" style="display: none;">
+                    <ui:Label text="&#1043;&#1054;&#1058;&#1054;&#1042;&#1050;&#1040;" class="guide__page-title"/>
+                    <ui:VisualElement name="Equation1" class="guide__equation">
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=21300000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll&quot;);"/>
+                            <ui:Label text="$&#1041;&#1059;&#1051;&#1050;&#1040;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="+" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300086&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Sausage&quot;);"/>
+                            <ui:Label text="$&#1057;&#1054;&#1057;&#1048;&#1057;&#1050;&#1040;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="=" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300034&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_HotDog&quot;);"/>
+                            <ui:Label text="$&#1061;&#1054;&#1058;&#1044;&#1054;&#1043;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Equation2" class="guide__equation">
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=21300000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll&quot;);"/>
+                            <ui:Label text="$&#1041;&#1059;&#1051;&#1050;&#1040;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="+" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300090&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_SteakCooked&quot;);"/>
+                            <ui:Label text="$&#1050;&#1054;&#1058;&#1051;&#1045;&#1058;&#1040;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="+" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300036&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Salad&quot;);"/>
+                            <ui:Label text="$&#1057;&#1040;&#1051;&#1040;&#1058;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="=" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);"/>
+                            <ui:Label text="$&#1041;&#1059;&#1056;&#1043;&#1045;&#1056;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="Page3" class="guide__page guide__page--active" style="display: none;">
+                    <ui:Label text="&#1048;&#1053;&#1057;&#1058;&#1056;&#1059;&#1052;&#1045;&#1053;&#1058;&#1067;" class="guide__page-title"/>
+                    <ui:VisualElement name="Equation1" class="guide__equation">
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/Templates/small_plate.png?fileID=21300000&amp;guid=89845075ca26f6945adbd361c5767d04&amp;type=3#small_plate&quot;);"/>
+                            <ui:Label text="$&#1055;&#1054;&#1044;&#1053;&#1054;&#1057;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="+" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/sweet_and_sour_chicken.png?fileID=21300000&amp;guid=ec06f5e7b761d704d9762c9ff9b75b91&amp;type=3#sweet_and_sour_chicken&quot;); background-size: 80% 80%;"/>
+                            <ui:Label text="$&#1041;&#1051;&#1070;&#1044;&#1054;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="=" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/Templates/small_plate.png?fileID=21300000&amp;guid=89845075ca26f6945adbd361c5767d04&amp;type=3#small_plate&quot;);">
+                                <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/sweet_and_sour_chicken.png?fileID=21300000&amp;guid=ec06f5e7b761d704d9762c9ff9b75b91&amp;type=3#sweet_and_sour_chicken&quot;); background-size: 60% 60%; background-position-y: top 0;"/>
+                            </ui:VisualElement>
+                            <ui:Label text="$&#1055;&#1054;&#1044;&#1053;&#1054;&#1057;_&#1057;_&#1041;&#1051;&#1070;&#1044;&#1054;&#1052;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Equation2" class="guide__equation">
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);"/>
+                            <ui:Label text="$&#1055;&#1056;&#1045;&#1044;&#1052;&#1045;&#1058;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="+" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon" style="background-image: none;"/>
+                            <ui:Label text="$&#1052;&#1059;&#1057;&#1054;&#1056;&#1050;&#1040;" class="guide__ingredient-label"/>
+                        </ui:VisualElement>
+                        <ui:Label text="=" class="guide__operator"/>
+                        <ui:VisualElement class="guide__ingredient">
+                            <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);">
+                                <ui:Label text="X" style="color: rgb(253, 55, 55); font-size: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); align-self: center; scale: 2 1.5;"/>
+                            </ui:VisualElement>
+                            <ui:Label text="$&#1059;&#1044;&#1040;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Navigation" class="guide__navigation">
+                <ui:Button name="PrevButton" text="&#9668;" class="guide__nav-button guide__nav-button--prev"/>
+                <ui:VisualElement name="PageIndicators" class="guide__page-indicators">
+                    <ui:VisualElement name="Page1Indicator" class="guide__page-indicator guide__page-indicator--active"/>
+                    <ui:VisualElement name="Page2Indicator" class="guide__page-indicator"/>
+                    <ui:VisualElement name="Page3Indicator" class="guide__page-indicator"/>
+                </ui:VisualElement>
+                <ui:Button name="NextButton" text="&#9658;" class="guide__nav-button guide__nav-button--next"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="BottomPanel" class="guide__bottom-panel">
+                <ui:Button name="OkButton" text="OK" class="guide__ok-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
