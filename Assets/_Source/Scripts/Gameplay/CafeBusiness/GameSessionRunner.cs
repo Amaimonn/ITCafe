@@ -15,7 +15,7 @@ namespace ITCafe.CafeBusiness
         private readonly WorkProgressService _workProgressService;
         private readonly HUDViewModel _hudViewModel;
         private readonly ClientsRunner _clientsRunner;
-        private readonly IViewBinder<ResultsView> _resultsBinder;
+        private readonly IViewBinder<ResultsViewModel> _resultsBinder;
         private readonly InputService _inputService;
 
         private CancellationTokenSource _cts;
@@ -26,7 +26,7 @@ namespace ITCafe.CafeBusiness
         public GameSessionRunner(WorkProgressService workProgressService,
             HUDViewModel hudViewModel,
             ClientsRunner clientsRunner,
-            IViewBinder<ResultsView> resultsBinder,
+            IViewBinder<ResultsViewModel> resultsBinder,
             InputService inputService)
         {
             _workProgressService = workProgressService;

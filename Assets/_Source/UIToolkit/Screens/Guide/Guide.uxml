@@ -1,0 +1,29 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Page1" src="project://database/Assets/_Source/UIToolkit/GuidePages/Page1.uxml?fileID=9197481963319205126&amp;guid=3587e7d115f0e704cac0b28c84f1a0f5&amp;type=3#Page1"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="guide__root" style="flex-grow: 1;">
+        <ui:VisualElement name="TerminalContainer" class="guide__terminal">
+            <ui:VisualElement name="Header" class="guide__header">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="// &#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1053;&#1040;&#1071;_&#1044;&#1054;&#1050;&#1059;&#1052;&#1045;&#1053;&#1058;&#1040;&#1062;&#1048;&#1071;" picking-mode="Ignore" class="guide__title"/>
+                </ui:VisualElement>
+                <ui:Button name="CloseButton" text="&#215;" class="guide__close-button-x"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="PagesContainer" class="guide__content-area">
+                <ui:Instance template="Page1"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Navigation" class="guide__navigation">
+                <ui:Button name="PreviousButton" text="&#9668;" class="guide__nav-button guide__nav-button--prev"/>
+                <ui:VisualElement name="PaginationContainer" class="guide__page-indicators">
+                    <ui:VisualElement name="Page1Indicator" class="guide__page-indicator guide__page-indicator--active"/>
+                    <ui:VisualElement name="Page2Indicator" class="guide__page-indicator"/>
+                    <ui:VisualElement name="Page3Indicator" class="guide__page-indicator"/>
+                </ui:VisualElement>
+                <ui:Button name="NextButton" text="&#9658;" class="guide__nav-button guide__nav-button--next"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="BottomPanel" class="guide__bottom-panel">
+                <ui:Button name="OkButton" text="OK" class="guide__ok-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

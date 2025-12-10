@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40319b6c0e8e472ba32a7fd762a2e052, type: 3}
   m_Name: BurgerRecipeSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.RecipeSO
-  <RequiredParts>k__BackingField: 0700000009000000
-  <CombinationTag>k__BackingField: 0
+  <RequiredParts>k__BackingField: 07000000090000000c000000
+  <CombinationTag>k__BackingField: 1000
   <FinalTag>k__BackingField: 6

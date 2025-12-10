@@ -30,10 +30,10 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnBind(viewModel);
             
-            _resumeButton.SubscribeCallback<ClickEvent>(OnCloseClicked)
+            _resumeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
             
-            _closeButton.SubscribeCallback<ClickEvent>(OnCloseClicked)
+            _closeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
 
             _restartButton.SubscribeCallbackOnce<ClickEvent>(OnRestartClicked)
@@ -43,17 +43,17 @@ namespace ITCafe.Gameplay.UI.MVVM
                 .AddTo(_disposables);
         }
 
-        public void OnCloseClicked(ClickEvent _)
+        private void OnCloseClicked(ClickEvent _)
         {
             ViewModel.StartClosing();
         }
 
-        public void OnExitClicked(ClickEvent _)
+        private void OnExitClicked(ClickEvent _)
         {
             ViewModel.ExitToMenu();
         }
 
-        public void OnRestartClicked(ClickEvent _)
+        private void OnRestartClicked(ClickEvent _)
         {
             ViewModel.Restart();
         }

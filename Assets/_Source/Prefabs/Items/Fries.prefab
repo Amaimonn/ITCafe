@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3330097329061567533}
   - component: {fileID: 7993908841854111844}
   m_Layer: 0
-  m_Name: FoodSpawnerPrefab
+  m_Name: Fries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

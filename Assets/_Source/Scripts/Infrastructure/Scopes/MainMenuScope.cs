@@ -22,8 +22,8 @@ namespace ITCafe
             builder.RegisterInstance<MainMenuView>(_mainMenuViewPrefab);
             builder.Register<MainMenuViewModel>(Lifetime.Scoped);
             builder.Register<Func<MainMenuViewModel>>(x => () => x.Resolve<MainMenuViewModel>(), Lifetime.Singleton);
-            builder.Register<LazyAttachBinder<MainMenuView, MainMenuViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<MainMenuView>>();
+            builder.Register<SimpleAttachBinder<MainMenuView, MainMenuViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<MainMenuViewModel>>();
         }
 
         public Observable<MainMenuExitContext> Boot(MainMenuEnterContext mainMenuEnterContext = null)
@@ -35,7 +35,7 @@ namespace ITCafe
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
 
-            var mainMenuBinder = Container.Resolve<IViewBinder<MainMenuView>>();
+            var mainMenuBinder = Container.Resolve<IViewBinder<MainMenuViewModel>>();
             mainMenuBinder.Open();
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.MAIN_MENU_EXIT_SIGNAL);
