@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 15003, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: New Windows Profile
+  m_Name: WindowsProfile
   m_EditorClassIdentifier: 
   m_AssetVersion: 1
   m_BuildTarget: 19
@@ -20,6 +20,7 @@ MonoBehaviour:
     rid: 8553650323210371147
   m_OverrideGlobalSceneList: 0
   m_Scenes: []
+  m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings:
@@ -40,8 +41,8 @@ MonoBehaviour:
     - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b:
         0.1254902, a: 1}'
-    - line: '|   m_ShowUnitySplashScreen: 1'
-    - line: '|   m_ShowUnitySplashLogo: 1'
+    - line: '|   m_ShowUnitySplashScreen: 0'
+    - line: '|   m_ShowUnitySplashLogo: 0'
     - line: '|   m_SplashScreenOverlayOpacity: 1'
     - line: '|   m_SplashScreenAnimation: 1'
     - line: '|   m_SplashScreenLogoStyle: 1'
@@ -70,7 +71,7 @@ MonoBehaviour:
     - line: '|   defaultScreenWidthWeb: 960'
     - line: '|   defaultScreenHeightWeb: 600'
     - line: '|   m_StereoRenderingPath: 0'
-    - line: '|   m_ActiveColorSpace: 1'
+    - line: '|   m_ActiveColorSpace: 0'
     - line: '|   unsupportedMSAAFallback: 0'
     - line: '|   m_SpriteBatchMaxVertexCount: 65535'
     - line: '|   m_SpriteBatchVertexThreshold: 300'
@@ -93,6 +94,7 @@ MonoBehaviour:
     - line: '|   androidStartInFullscreen: 1'
     - line: '|   androidRenderOutsideSafeArea: 1'
     - line: '|   androidUseSwappy: 0'
+    - line: '|   androidDisplayOptions: 1'
     - line: '|   androidBlitType: 0'
     - line: '|   androidResizeableActivity: 1'
     - line: '|   androidDefaultWindowWidth: 1920'
@@ -109,6 +111,7 @@ MonoBehaviour:
     - line: '|   muteOtherAudioSources: 0'
     - line: '|   Prepare IOS For Recording: 0'
     - line: '|   Force IOS Speakers When Recording: 0'
+    - line: '|   audioSpatialExperience: 0'
     - line: '|   deferSystemGesturesMode: 0'
     - line: '|   hideHomeButton: 0'
     - line: '|   submitAnalytics: 1'
@@ -155,6 +158,7 @@ MonoBehaviour:
     - line: '|   switchNVNMaxPublicSamplerIDCount: 0'
     - line: '|   switchMaxWorkerMultiple: 8'
     - line: '|   switchNVNGraphicsFirmwareMemory: 32'
+    - line: '|   switchGraphicsJobsSyncAfterKick: 1'
     - line: '|   vulkanNumSwapchainBuffers: 3'
     - line: '|   vulkanEnableSetSRGBWrite: 0'
     - line: '|   vulkanEnablePreTransform: 1'
@@ -199,6 +203,7 @@ MonoBehaviour:
     - line: '|   AndroidMinSdkVersion: 25'
     - line: '|   AndroidTargetSdkVersion: 0'
     - line: '|   AndroidPreferredInstallLocation: 1'
+    - line: '|   AndroidPreferredDataLocation: 1'
     - line: '|   aotOptions: '
     - line: '|   stripEngineCode: 1'
     - line: '|   iPhoneStrippingLevel: 0'
@@ -287,6 +292,7 @@ MonoBehaviour:
     - line: '|   useCustomGradleSettingsTemplate: 0'
     - line: '|   useCustomProguardFile: 0'
     - line: '|   AndroidTargetArchitectures: 2'
+    - line: '|   AndroidAllowedArchitectures: -1'
     - line: '|   AndroidSplashScreenScale: 0'
     - line: '|   androidSplashScreen: {instanceID: 0}'
     - line: '|   AndroidKeystoreName: '
@@ -296,6 +302,9 @@ MonoBehaviour:
     - line: '|   AndroidBuildApkPerCpuArchitecture: 0'
     - line: '|   AndroidTVCompatibility: 0'
     - line: '|   AndroidIsGame: 1'
+    - line: '|   androidAppCategory: 3'
+    - line: '|   useAndroidAppCategory: 1'
+    - line: '|   androidAppCategoryOther: '
     - line: '|   AndroidEnableTango: 0'
     - line: '|   androidEnableBanner: 1'
     - line: '|   androidUseLowAccuracyLocation: 0'
@@ -586,7 +595,7 @@ MonoBehaviour:
     - line: '|   locationUsageDescription: '
     - line: '|   microphoneUsageDescription: '
     - line: '|   bluetoothUsageDescription: '
-    - line: '|   macOSTargetOSVersion: 11.0'
+    - line: '|   macOSTargetOSVersion: 12.0'
     - line: '|   switchNMETAOverride: '
     - line: '|   switchNetLibKey: '
     - line: '|   switchSocketMemoryPoolSize: 6144'
@@ -834,12 +843,12 @@ MonoBehaviour:
     - line: '|   webGLMemoryLinearGrowthStep: 16'
     - line: '|   webGLMemoryGeometricGrowthStep: 0.2'
     - line: '|   webGLMemoryGeometricGrowthCap: 96'
-    - line: '|   webGLEnableWebGPU: 0'
     - line: '|   webGLPowerPreference: 2'
     - line: '|   webGLWebAssemblyTable: 0'
     - line: '|   webGLWebAssemblyBigInt: 0'
     - line: '|   webGLCloseOnQuit: 0'
     - line: '|   webWasm2023: 0'
+    - line: '|   webEnableSubmoduleStrippingCompatibility: 0'
     - line: '|   scriptingDefineSymbols:'
     - line: '|     Android: UNITY_POST_PROCESSING_STACK_V2'
     - line: '|     EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2'
@@ -848,6 +857,7 @@ MonoBehaviour:
     - line: '|     Kepler: UNITY_POST_PROCESSING_STACK_V2'
     - line: '|     LinuxHeadlessSimulation: UNITY_POST_PROCESSING_STACK_V2'
     - line: '|     Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2'
+    - line: '|     Nintendo Switch 2: UNITY_POST_PROCESSING_STACK_V2'
     - line: '|     PS4: UNITY_POST_PROCESSING_STACK_V2'
     - line: '|     PS5: UNITY_POST_PROCESSING_STACK_V2'
     - line: '|     QNX: UNITY_POST_PROCESSING_STACK_V2'
@@ -861,6 +871,7 @@ MonoBehaviour:
     - line: '|   platformArchitecture: {}'
     - line: '|   scriptingBackend:'
     - line: '|     Android: 1'
+    - line: '|     Standalone: 1'
     - line: '|   il2cppCompilerConfiguration: {}'
     - line: '|   il2cppCodeGeneration: {}'
     - line: '|   il2cppStacktraceInformation: {}'
@@ -970,6 +981,9 @@ MonoBehaviour:
     - line: '|   insecureHttpOption: 0'
     - line: '|   androidVulkanDenyFilterList: []'
     - line: '|   androidVulkanAllowFilterList: []'
+    - line: '|   androidVulkanDeviceFilterListAsset: {instanceID: 0}'
+    - line: '|   d3d12DeviceFilterListAsset: {instanceID: 0}'
+    - line: '|   allowedHttpConnections: 3'
     - line: '| '
   references:
     version: 2
@@ -988,6 +1002,9 @@ MonoBehaviour:
         m_ExplicitArrayBoundsChecks: 0
         m_CompressionType: 0
         m_InstallInBuildFolder: 0
+        m_InsightsSettingsContainer:
+          m_BuildProfileEngineDiagnosticsState: 2
+        m_AdaptivePerformanceEnabled: 0
         m_WindowsBuildAndRunDeployTarget: 0
         m_Architecture: 0
         m_CreateSolution: 0
