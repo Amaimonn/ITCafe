@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
     <ui:VisualElement name="Page2" class="guide__page">
         <ui:Label text="&#1043;&#1054;&#1058;&#1054;&#1042;&#1050;&#1040;" class="guide__page-title"/>
         <ui:VisualElement name="Equation1" class="guide__equation">
