@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Pause/PauseStyles.uss?fileID=7433441132597879392&amp;guid=9e27a021c3203524b84dc5aee746f204&amp;type=3#PauseStyles"/>
-    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="pause__root" style="flex-grow: 1;">
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="pause__root" style="flex-grow: 1; transition-duration: 0.13s;">
         <ui:VisualElement name="PauseContainer" class="pause__container">
             <ui:Button name="CloseButton" text="&#215;" class="pause__close-button"/>
             <ui:VisualElement name="Header" picking-mode="Ignore" class="pause__header">
