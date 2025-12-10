@@ -20,9 +20,8 @@ namespace ITCafe
 
         private void Run()
         {
-            VContainerSettings.LoadInstanceFromPreloadAssets();
-            var vSettings = VContainerSettings.Instance;
-            var rootScope = vSettings.GetOrCreateRootLifetimeScopeInstance();
+            var vContainerSettings = Resources.Load<VContainerSettings>("VContainerSettings"); 
+            var rootScope = vContainerSettings.GetOrCreateRootLifetimeScopeInstance();
             rootScope.Build();
             
             var rootContainer = rootScope.Container;

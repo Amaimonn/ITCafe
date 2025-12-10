@@ -32,7 +32,7 @@ namespace ITCafe
             else if (currentScene == Scenes.GAMEPLAY)
                 yield return LoadGameplay(immediateLoading: true);
 #else
-            yield return LoadMainMenu(immediateLoading: true)
+            yield return LoadMainMenu(showLoadingImmediately: true);
 #endif
         }
 
