@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
     <ui:VisualElement name="Page1" class="guide__page" style="display: flex;">
         <ui:Label text="&#1059;&#1055;&#1056;&#1040;&#1042;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__page-title"/>
         <ui:VisualElement name="ControlsGrid" class="guide__controls-grid">
