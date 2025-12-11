@@ -1,5 +1,4 @@
 using System.Collections;
-using DevKit.UI.MVVM;
 using DevKit.Utils;
 using UnityEngine;
 using VContainer;
@@ -20,14 +19,11 @@ namespace ITCafe
 
         private void Run()
         {
-            
             var vContainerSettings = Resources.Load<VContainerSettings>("VContainerSettings"); 
-
+            var instanceProperty = typeof(VContainerSettings).GetProperty("Instance");
+            instanceProperty.SetValue(null, vContainerSettings);
+            
             var rootScope = vContainerSettings.GetOrCreateRootLifetimeScopeInstance();
-#if UNITY_EDITOR
-            VContainerSettings.LoadInstanceFromPreloadAssets();
-            rootScope = VContainerSettings.Instance.GetOrCreateRootLifetimeScopeInstance();
-#endif
             rootScope.Build();
             
             var rootContainer = rootScope.Container;
@@ -36,15 +32,11 @@ namespace ITCafe
             loadingScreen.Show();
             
             monoHook.StartCoroutine(LoadEntryScene());
+            
+            return;
 
             IEnumerator LoadEntryScene()
             {
-                // var rootUIPrefab = Resources.Load<RootUIBinder>("RootUIBinder");
-                // var rootUIBinder = Object.Instantiate(rootUIPrefab);
-                // Object.DontDestroyOnLoad(rootUIBinder);
-                //
-                // var loadingScreen = rootUIBinder.GetComponentInChildren<LoadingScreen>();
-
                 var sceneLoader = rootContainer.Resolve<SceneLoader>();
 
                 yield return sceneLoader.LoadStartScene();

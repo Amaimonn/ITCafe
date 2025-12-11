@@ -131,7 +131,6 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void UpdateCurrentPage(int pageIndex)
         {
-            FLogger.Log(pageIndex.ToString());
             if (pageIndex >= _pages.Length || pageIndex < 0)
                 return;
             if (_activePage != null)
