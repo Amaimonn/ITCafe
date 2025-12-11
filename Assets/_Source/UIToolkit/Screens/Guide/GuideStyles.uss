@@ -17,6 +17,10 @@
     border-radius: 4px;
     padding: 20px;
     position: relative;
+    border-left-color: var(--cyan-border);
+    border-right-color: var(--cyan-border);
+    border-top-color: var(--cyan-border);
+    border-bottom-color: var(--cyan-border);
 }
 
 .guide__header {
@@ -260,27 +264,18 @@
 .guide__nav-button {
     width: 40px;
     height: 30px;
-    background-color: rgba(30, 40, 60, 0.8);
     border-color: rgb(70, 170, 200);
     border-width: 1px;
     border-radius: 3px;
     color: rgb(180, 220, 240);
-    font-size: 14px;
     -unity-font-style: bold;
     -unity-text-align: middle-center;
     margin: 0 5px;
     padding: 0;
+    font-size: 14px;
 }
 
-.guide__nav-button:hover {
-    background-color: rgba(70, 170, 200, 0.3);
-    border-color: rgb(100, 200, 230);
-}
 
-.guide__nav-button:active {
-    background-color: rgba(70, 170, 200, 0.4);
-    border-color: rgb(120, 220, 255);
-}
 
 .guide__page-indicators {
     flex-direction: row;
@@ -301,27 +296,4 @@
 .guide__page-indicator--active {
     background-color: rgb(0, 184, 148);
     border-color: rgb(0, 224, 178);
-}
-
-.guide__ok-button {
-    height: 42px;
-    background-color: rgba(0, 184, 148, 0.2);
-    border-color: rgb(0, 184, 148);
-    border-width: 1px;
-    border-radius: 3px;
-    color: rgb(220, 240, 235);
-    font-size: 14px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
-    letter-spacing: 1px;
-}
-
-.guide__ok-button:hover {
-    background-color: rgba(0, 184, 148, 0.4);
-    border-color: rgb(0, 224, 178);
-}
-
-.guide__ok-button:active {
-    background-color: rgba(0, 184, 148, 0.5);
-    border-color: rgb(0, 255, 200);
 }

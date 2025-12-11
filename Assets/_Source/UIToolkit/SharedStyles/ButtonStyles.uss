@@ -1,0 +1,109 @@
+.cafe__view-title {
+    font-size: 28px;
+    color: rgb(0, 184, 148);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    letter-spacing: 3px;
+}
+
+.cafe__view-subtitle {
+    font-size: 12px;
+    color: rgb(120, 200, 180);
+    -unity-text-align: middle-left;
+    letter-spacing: 1px;
+}
+
+.cafe__close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border-color: rgb(100, 120, 140);
+    border-width: 1px;
+    border-radius: 3px;
+    color: rgb(160, 180, 200);
+    font-size: 18px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin: 0;
+    padding: 0;
+    transition: all 0.2s ease;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    transition-duration: 0.17s;
+}
+
+.cafe__close-button:enabled:hover {
+    background-color: rgba(231, 76, 60, 0.2);
+    border-color: rgb(231, 76, 60);
+    color: rgb(255, 150, 140);
+}
+
+.cafe__close-button:enabled:active {
+    background-color: rgba(231, 76, 60, 0.3);
+    border-color: rgb(255, 100, 80);
+    color: rgb(255, 180, 170);
+}
+
+.cafe__control-button {
+    height: 50px;
+    background-color: transparent;
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 3px;
+    -unity-font-style: bold;
+    font-size: 14px;
+    color: rgb(220, 240, 235);
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    margin-bottom: 12px;
+}
+.cafe__control-button--cyan {
+    background-color: var(--cyan-bg);
+    border-color: var(--cyan-border);
+}
+
+.cafe__control-button--cyan:enabled:hover {
+    background-color: var(--cyan-bg-hover);
+    border-color: var(--cyan-border-hover);
+}
+
+.cafe__control-button--cyan:enabled:active {
+    background-color: var(--cyan-bg-active);
+    border-color: var(--cyan-border-active);
+}
+
+
+.cafe__control-button--blue {
+    background-color: var(--blue-bg);
+    border-color: var(--blue-border);
+    color: var(--blue-color);
+}
+
+.cafe__control-button--blue:enabled:hover {
+    background-color: var(--blue-bg-hover);
+    border-color: var(--blue-border-hover);
+}
+
+.cafe__control-button--blue:enabled:active {
+    background-color: var(--blue-bg-active);
+    border-color: var(--blue-border-active);
+}
+
+.cafe__control-button--red {
+    background-color: var(--red-bg);
+    border-color: var(--red-border);
+    color: var(--red-color);
+}
+
+.cafe__control-button--red:enabled:hover {
+    background-color: var(--red-bg-hover);
+    border-color: var(--red-border-hover);
+}
+
+.cafe__control-button--red:enabled:active {
+    background-color: var(--red-bg-active);
+    border-color: var(--red-border-active);
+}

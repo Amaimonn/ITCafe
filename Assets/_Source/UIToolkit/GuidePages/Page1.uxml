@@ -9,7 +9,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="Control2" class="guide__control-item">
                 <ui:Label text="&#1051;&#1050;&#1052;" class="guide__control-key"/>
-                <ui:Label text="&#1042;&#1047;&#1071;&#1058;&#1068;/&#1041;&#1056;&#1054;&#1057;&#1048;&#1058;&#1068;_&#1055;&#1056;&#1045;&#1044;&#1052;&#1045;&#1058;" class="guide__control-desc"/>
+                <ui:Label text="&#1042;&#1047;&#1040;&#1048;&#1052;&#1054;&#1044;&#1045;&#1049;&#1057;&#1058;&#1042;&#1054;&#1042;&#1040;&#1058;&#1068;" class="guide__control-desc"/>
             </ui:VisualElement>
             <ui:VisualElement name="Control4" class="guide__control-item">
                 <ui:Label text="ESC" class="guide__control-key"/>

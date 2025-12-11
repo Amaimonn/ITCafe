@@ -17,7 +17,7 @@
                     <ui:Label text="&#1057;&#1058;&#1040;&#1058;&#1048;&#1057;&#1058;&#1048;&#1050;&#1040;" class="hud__widget-title"/>
                     <ui:VisualElement name="OrderStat" class="hud__stat-item">
                         <ui:Label text="_&#1050;&#1051;&#1048;&#1045;&#1053;&#1058;&#1067;:" class="hud__stat-label" style="height: 20px;"/>
-                        <ui:Label text="0" name="OrderValue" class="hud__stat-value" style="-unity-text-outline-width: 0;"/>
+                        <ui:Label text="0" name="OrderValue" class="hud__stat-value" style="-unity-text-outline-width: 0; color: rgb(255, 255, 255);"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="SatisfactionStat" class="hud__stat-item">
                         <ui:Label text="_&#1042;&#1067;&#1055;&#1054;&#1051;&#1053;&#1045;&#1053;&#1054;:" class="hud__stat-label"/>
@@ -45,22 +45,9 @@
                                 <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="OrderExample2" class="hud__order-item hud__order">
-                            <ui:VisualElement name="Order2Images" class="hud__order-images">
-                                <ui:VisualElement name="TeaImage" class="hud__order-image"/>
-                                <ui:VisualElement name="CookieImage" class="hud__order-image"/>
-                            </ui:VisualElement>
-                        </ui:VisualElement>
-                        <ui:VisualElement name="OrderExample3" class="hud__order-item hud__order">
-                            <ui:VisualElement name="Order3Images" class="hud__order-images">
-                                <ui:VisualElement name="CoffeeImage2" class="hud__order-image"/>
-                                <ui:VisualElement name="SandwichImage" class="hud__order-image"/>
-                                <ui:VisualElement name="JuiceImage" class="hud__order-image"/>
-                            </ui:VisualElement>
-                        </ui:VisualElement>
-                        <ui:VisualElement name="OrderExample4" class="hud__order-item hud__order">
-                            <ui:VisualElement name="Order4Images" class="hud__order-images">
-                                <ui:VisualElement name="CoffeeImage3" class="hud__order-image"/>
+                        <ui:VisualElement name="OrderExample4" class="hud__order">
+                            <ui:VisualElement name="Order4Images" class="order-cloud__images-container">
+                                <ui:VisualElement name="CoffeeImage3" class="order-cloud__item-image"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>

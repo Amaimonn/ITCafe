@@ -1,0 +1,24 @@
+:root {
+    --cyan-bg: rgba(0, 184, 148, 0.2);
+    --cyan-bg-hover: rgba(0, 184, 148, 0.4);
+    --cyan-bg-active: rgba(0, 184, 148, 0.5);
+    --cyan-border: rgb(0, 184, 148);
+    --cyan-border-hover: rgb(0, 224, 178);
+    --cyan-border-active: rgb(0, 255, 200);
+
+    --blue-bg: rgba(45, 52, 74, 0.8);
+    --blue-bg-hover: rgba(70, 170, 200, 0.3);
+    --blue-bg-active: rgba(70, 170, 200, 0.4);
+    --blue-border: rgb(70, 170, 200);
+    --blue-border-hover: rgb(100, 200, 230);
+    --blue-border-active: rgb(100, 200, 230);
+    --blue-color: rgb(180, 220, 240);
+
+    --red-bg: rgba(231, 76, 60, 0.1);
+    --red-bg-hover: rgba(231, 76, 60, 0.3);
+    --red-bg-active: rgba(231, 76, 60, 0.4);
+    --red-border: rgb(231, 76, 60);
+    --red-border-hover: rgb(255, 100, 80);
+    --red-border-active: rgb(255, 100, 80);
+    --red-color: rgb(255, 180, 170);
+}

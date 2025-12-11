@@ -1,3 +1,7 @@
 @import url("/Assets/UI Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss");
 
+@import url("/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss");
+@import url("/Assets/_Source/UIToolkit/SharedStyles/ButtonStyles.uss");
+
+
 VisualElement {}
