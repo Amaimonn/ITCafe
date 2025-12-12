@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="OrderPreview" src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreview.uxml?fileID=9197481963319205126&amp;guid=65f009e64710281458e0438bb57f3876&amp;type=3#OrderPreview"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="hud__root" style="flex-grow: 1;">
@@ -37,19 +38,8 @@
                 <ui:VisualElement name="OrdersPanel" class="hud__orders-panel">
                     <ui:Label text="&#1041;&#1069;&#1050;&#1051;&#1054;&#1043;" class="hud__widget-title" style="font-size: 18px;"/>
                     <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
-                        <ui:VisualElement name="OrderExample1" class="hud__order">
-                            <ui:VisualElement name="Order1Images" class="order-cloud__images-container">
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
-                                <ui:VisualElement name="CoffeeImage" class="order-cloud__item-image"/>
-                            </ui:VisualElement>
-                        </ui:VisualElement>
-                        <ui:VisualElement name="OrderExample4" class="hud__order">
-                            <ui:VisualElement name="Order4Images" class="order-cloud__images-container">
-                                <ui:VisualElement name="CoffeeImage3" class="order-cloud__item-image"/>
-                            </ui:VisualElement>
-                        </ui:VisualElement>
+                        <ui:Instance template="OrderPreview" name="OrderPreview"/>
+                        <ui:Instance template="OrderPreview" name="OrderPreview"/>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

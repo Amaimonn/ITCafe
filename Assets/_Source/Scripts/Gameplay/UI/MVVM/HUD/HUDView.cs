@@ -18,6 +18,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _ordersCompletedValueName = "SatisfactionValue";
         [SerializeField] private string _ordersFailedValueName = "FailedValue";
 
+        [SerializeField] private VisualTreeAsset _orderAsset;
+
         private Label _timerLabel;
         private Label _pointsLabel;
         private Label _ordersTakenLabel;
@@ -44,7 +46,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(HUDViewModel viewModel)
         {
             base.OnBind(viewModel);
-            
+
             viewModel.TimerText.Subscribe(x => _timerLabel.text = x.ToString()).AddTo(_disposables);
             viewModel.PointsAmount.Subscribe(x => _pointsLabel.text = x.ToString()).AddTo(_disposables);
 
@@ -58,16 +60,16 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void OnOrderAdded(IOrder order)
         {
-            var orderContainer = new VisualElement();
-            orderContainer.AddToClassList("hud__order");
+            var orderElement = _orderAsset.CloneTree();
+            var orderImagesContainer = orderElement.Q<VisualElement>(className: "order-cloud__images-container");
             
-            var orderImagesContainer = new VisualElement();
-            orderImagesContainer.AddToClassList("order-cloud__images-container");
-            orderContainer.Add(orderImagesContainer);
+            orderImagesContainer.Clear();
+            _orderContainerMap[order] = orderElement;
+            _ordersContainer.Add(orderElement);
             
-            _orderContainerMap[order] = orderContainer;
-            _ordersContainer.Add(orderContainer);
-
+            var orderTimer = orderElement.Q<VisualElement>(name: "RemainingTimeNormalized");
+            order.RemainingTimeNormalized.Subscribe(x => orderTimer.style.width = Length.Percent(x * 100f));
+            
             order.PropagateHashes(x => AddOrderImage(orderImagesContainer, ViewModel.ItemInfoMap[x].Image, x));
             order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderImagesContainer, x)); // dispose is redundant
         }

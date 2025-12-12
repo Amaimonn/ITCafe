@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="OrderCloud" src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloud.uxml?fileID=9197481963319205126&amp;guid=da5dc0fa48c689f4cac16aaaa749a313&amp;type=3#OrderCloud"/>
+    <ui:VisualElement name="OrderPreview" class="hud__order">
+        <ui:Instance template="OrderCloud"/>
+    </ui:VisualElement>
+</ui:UXML>

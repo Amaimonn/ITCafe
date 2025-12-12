@@ -1,8 +1,5 @@
 .order-cloud__root {
-    left: -50%;
-    top: -50%;
     align-items: center;
-    translate: 50% 0;
     align-self: flex-start;
     flex-direction: column;
     flex-shrink: 0;

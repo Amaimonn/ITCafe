@@ -51,3 +51,4 @@ MonoBehaviour:
   _ordersTakenValueName: OrderValue
   _ordersCompletedValueName: SatisfactionValue
   _ordersFailedValueName: FailedValue
+  _orderAsset: {fileID: 9197481963319205126, guid: 65f009e64710281458e0438bb57f3876, type: 3}

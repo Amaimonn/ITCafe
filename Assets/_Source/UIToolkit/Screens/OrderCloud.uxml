@@ -6,7 +6,7 @@
             <ui:VisualElement class="order-cloud__item-image"/>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; width: 120px; height: 8px; margin-top: 1px; border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; border-left-color: rgb(183, 183, 183); border-right-color: rgb(183, 183, 183); border-top-color: rgb(183, 183, 183); border-bottom-color: rgb(183, 183, 183); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: rgb(157, 157, 157);">
-            <ui:VisualElement name="RemainingTimeNormalized" style="flex-grow: 1; background-color: rgb(146, 255, 46); scale: 1 1; width: 100%; align-self: flex-end;"/>
+            <ui:VisualElement name="RemainingTimeNormalized" style="flex-grow: 1; background-color: rgb(146, 255, 46); scale: 1 1; width: 100%;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
