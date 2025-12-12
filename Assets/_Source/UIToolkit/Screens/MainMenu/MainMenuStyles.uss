@@ -11,6 +11,9 @@
 
 .menu__shader {
     -unity-material: url("project://database/Assets/_Source/Art/Materials/MenuUIMat.mat?fileID=2100000&guid=b57f117be3dc75a4b958493e7e40a4b5&type=2#MenuUIMat");
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
 }
 
 .main-menu__background {
