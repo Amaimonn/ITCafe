@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="OrderPreview" src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreview.uxml?fileID=9197481963319205126&amp;guid=65f009e64710281458e0438bb57f3876&amp;type=3#OrderPreview"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles"/>
-    <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="hud__root" style="flex-grow: 1;">
         <ui:VisualElement name="TopBar" picking-mode="Ignore" class="hud__top-bar" style="width: 200px;">
             <ui:VisualElement name="BarLeftItem" class="hud__top-bar-item">
