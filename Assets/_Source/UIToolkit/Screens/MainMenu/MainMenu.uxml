@@ -1,12 +1,30 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/MainMenu/MainMenuStyles.uss?fileID=7433441132597879392&amp;guid=b72b6d07834039643a1308ab69eea901&amp;type=3#MainMenuStyles"/>
-    <ui:VisualElement class="menu__shader" style="flex-grow: 1; position: absolute;"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
+    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 100%; position: absolute; align-items: center; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement class="menu__shader" style="flex-grow: 1; position: absolute;"/>
+    </ui:VisualElement>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="main-menu__root">
         <ui:VisualElement name="ContentContainer" class="main-menu__content">
-            <ui:VisualElement name="MenuPanel" style="flex-grow: 1; justify-content: center;">
+            <ui:VisualElement name="MenuPanel" class="menu__panel">
                 <ui:VisualElement name="HeaderSection" class="main-menu__header">
-                    <ui:Label text="IT Cafe" class="main-menu__title" style="filter: filter();"/>
-                    <ui:Label text="&#1053;&#1086; &#1077;&#1089;&#1090;&#1100; &#1085;&#1102;&#1072;&#1085;&#1089;&#1099;..." class="main-menu__subtitle"/>
+                    <ui:Label text="IT Cafe++" class="main-menu__title" style="filter: filter();"/>
+                    <ui:VisualElement name="Logs" style="flex-grow: 1; height: 300px; width: 420px;">
+                        <ui:Label text="===========================================" emoji-fallback-support="false" name="TerminalLog1" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text="[ &#1048;&#1053;&#1048;&#1062;&#1048;&#1040;&#1051;&#1048;&#1047;&#1040;&#1062;&#1048;&#1071; &#1044;&#1053;&#1045;&#1042;&#1053;&#1048;&#1050;&#1040; &#1057;&#1054;&#1041;&#1067;&#1058;&#1048;&#1049; ]" emoji-fallback-support="false" name="TerminalLog2" class="main-menu__subtitle"/>
+                        <ui:Label text="USER: &#1057;&#1058;&#1059;&#1044;&#1045;&#1053;&#1058;_&#1040;&#1049;&#1058;&#1048;&#1064;&#1053;&#1048;&#1050; " emoji-fallback-support="false" name="TerminalLog3" class="main-menu__subtitle"/>
+                        <ui:Label text="STATUS: **&#1041;&#1045;&#1047; &#1054;&#1055;&#1067;&#1058;&#1040; &#1056;&#1040;&#1041;&#1054;&#1058;&#1067;**" emoji-fallback-support="false" name="TerminalLog4" parse-escape-sequences="true" class="main-menu__subtitle" style="flex-wrap: wrap;"/>
+                        <ui:Label text="-----------------------------------------------------------------------------------" emoji-fallback-support="false" name="TerminalLog5" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text="&gt;&gt; &#1040;&#1053;&#1040;&#1051;&#1048;&#1047; &#1050;&#1040;&#1056;&#1068;&#1045;&#1056;&#1053;&#1054;&#1043;&#1054; &#1055;&#1059;&#1058;&#1048;..." emoji-fallback-support="false" name="TerminalLog6" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text=" **&#1054;&#1064;&#1048;&#1041;&#1050;&#1040; 404: PATH_NOT_FOUND**" emoji-fallback-support="false" name="TerminalLog7" parse-escape-sequences="true" class="main-menu__subtitle" style="color: rgb(230, 72, 86);"/>
+                        <ui:Label text="&gt;&gt; &#1055;&#1045;&#1056;&#1045;&#1054;&#1055;&#1056;&#1045;&#1044;&#1045;&#1051;&#1045;&#1053;&#1048;&#1045; &#1055;&#1040;&#1056;&#1040;&#1052;&#1045;&#1058;&#1056;&#1054;&#1042;... " emoji-fallback-support="false" name="TerminalLog8" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text="&gt;&gt; &#1040;&#1050;&#1058;&#1048;&#1042;&#1048;&#1056;&#1054;&#1042;&#1040;&#1053; &#1056;&#1045;&#1047;&#1045;&#1056;&#1042;&#1053;&#1067;&#1049; &#1055;&#1056;&#1054;&#1058;&#1054;&#1050;&#1054;&#1051;: **&#1050;&#1040;&#1060;&#1045;**" emoji-fallback-support="false" name="TerminalLog9" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text="&gt;&gt; &#1062;&#1045;&#1051;&#1068;: &#1042;&#1067;&#1046;&#1048;&#1042;&#1040;&#1053;&#1048;&#1045;. &#1053;&#1040;&#1050;&#1054;&#1055;&#1051;&#1045;&#1053;&#1048;&#1045;. &#1054;&#1041;&#1053;&#1054;&#1042;&#1051;&#1045;&#1053;&#1048;&#1045;." emoji-fallback-support="false" name="TerminalLog10" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text="===========================================" emoji-fallback-support="false" name="TerminalLog11" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                        <ui:Label text="[ &#1054;&#1046;&#1048;&#1044;&#1040;&#1053;&#1048;&#1045; &#1057;&#1048;&#1052;&#1059;&#1051;&#1071;&#1062;&#1048;&#1048;... ]" emoji-fallback-support="false" name="TerminalLog12" parse-escape-sequences="true" class="main-menu__subtitle"/>
+                    </ui:VisualElement>
+                    <ui:Label text="// &#1050;&#1072;&#1092;&#1077; v0.0.1-beta  // &#1041;&#1072;&#1075;&#1086;&#1074; &#1085;&#1077; &#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1086;. (&#1069;&#1090;&#1086; &#1083;&#1086;&#1078;&#1100;)" emoji-fallback-support="false" class="main-menu__subtitle" style="display: none;"/>
+                    <ui:Label text="PS: C:\Users\you&gt; &#1057;&#1073;&#1086;&#1081; &#1074; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1077; &#1082;&#1072;&#1088;&#1100;&#1077;&#1088;&#1099;.  &gt;&gt; &#1048;&#1085;&#1080;&#1094;&#1080;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085; &#1087;&#1088;&#1086;&#1090;&#1086;&#1082;&#1086;&#1083; &quot;&#1050;&#1072;&#1092;&#1077;&quot;." emoji-fallback-support="false" class="main-menu__subtitle" style="display: none;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="MenuButtons" class="main-menu__buttons">
                     <ui:Button name="PlayButton" text="&#1048;&#1043;&#1056;&#1040;&#1058;&#1068;" class="cafe__control-button cafe__control-button--cyan"/>

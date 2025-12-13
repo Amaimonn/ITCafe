@@ -46,7 +46,7 @@ namespace ITCafe.Gameplay.UI.World
 
         public void Hide()
         {
-            _imagesContainer.style.display = DisplayStyle.None;
+            _imagesContainer.style.display = DisplayStyle.None; // sdfsdfsdf
         }
 
         public void AddImage(Sprite sprite, int hash)
