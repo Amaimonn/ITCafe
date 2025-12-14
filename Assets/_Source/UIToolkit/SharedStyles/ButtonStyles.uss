@@ -76,6 +76,7 @@
     letter-spacing: 1px;
     transition: all 0.2s ease;
     margin-bottom: 12px;
+    text-shadow: 1px 1px 0 rgb(0, 0, 0);
 }
 
 .cafe__control-button--cyan {
