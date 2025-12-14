@@ -10,20 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19107, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: LensDistortionFilter
+  m_Name: WaveFilter
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.FilterFunctionDefinition
   m_FilterName: 
   m_Parameters: []
   m_Passes:
-  - m_Material: {fileID: 2100000, guid: abe1903b62a9ac24f9f9491c353e3946, type: 2}
+  - m_Material: {fileID: 2100000, guid: 926a6d14f8cf29d4b92cb33158a39350, type: 2}
     m_PassIndex: 0
-    m_ParameterBindings:
-    - m_Index: 0
-      m_Name: Distortion
-    - m_Index: 0
-      m_Name: Power
-    - m_Index: 0
-      m_Name: EdgeSmoothness
+    m_ParameterBindings: []
     m_ReadMargins:
       m_Left: 0
       m_Top: 0

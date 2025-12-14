@@ -19,11 +19,11 @@ namespace ITCafe.Editor
         [InitializeOnLoadMethod]
         public static void UseRider()
         {
-            if (System.IO.File.Exists(RIDER_PATH))
-            {
-                CodeEditor.SetExternalScriptEditor(RIDER_PATH);
-                Debug.Log("Используется Rider");
-            }
+            // if (System.IO.File.Exists(RIDER_PATH))
+            // {
+            //     CodeEditor.SetExternalScriptEditor(RIDER_PATH);
+            //     Debug.Log("Используется Rider");
+            // }
         }
         
         public static void UseVSCode()
