@@ -14,7 +14,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: row;">
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; align-items: flex-start; margin-top: 20px;">
-                <ui:VisualElement name="StatsPanel" class="hud__stats-panel">
+                <ui:VisualElement name="StatsPanel" class="hud__stats-panel hud__widget-panel">
                     <ui:Label text="&#1057;&#1058;&#1040;&#1058;&#1048;&#1057;&#1058;&#1048;&#1050;&#1040;" class="hud__widget-title"/>
                     <ui:VisualElement name="OrderStat" class="hud__stat-item">
                         <ui:Label text="_&#1050;&#1051;&#1048;&#1045;&#1053;&#1058;&#1067;:" class="hud__stat-label" style="height: 20px;"/>
@@ -35,7 +35,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="RightSide" style="flex-grow: 1; align-items: flex-end; margin-top: 20px;">
-                <ui:VisualElement name="OrdersPanel" class="hud__orders-panel">
+                <ui:VisualElement name="OrdersPanel" class="hud__orders-panel hud__widget-panel">
                     <ui:Label text="&#1041;&#1069;&#1050;&#1051;&#1054;&#1043;" class="hud__widget-title" style="font-size: 18px;"/>
                     <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
                         <ui:Instance template="OrderPreview" name="OrderPreview"/>

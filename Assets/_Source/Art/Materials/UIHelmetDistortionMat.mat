@@ -101,8 +101,8 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BulgeAmount: 1.25
-    - _BulgeRadius: 0.9
-    - _BulgeStrength: 0.2
+    - _BulgeRadius: 1
+    - _BulgeStrength: 0.1
     - _BumpScale: 1
     - _CenterOffsetX: 0
     - _CenterOffsetY: 0
@@ -126,7 +126,7 @@ Material:
     - _Power: 1.69
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Refraction: 0.3
+    - _Refraction: 0.2
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

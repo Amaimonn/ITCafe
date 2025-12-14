@@ -9955,10 +9955,10 @@ Camera:
   field of view: 63
   orthographic: 0
   orthographic size: 10
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 997
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

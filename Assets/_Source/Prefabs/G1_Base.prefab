@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrderCloudWorldUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3522675441573272691, guid: 3ad284ec2190c014d88f7b071a50a687, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7523057667738463765, guid: 3ad284ec2190c014d88f7b071a50a687, type: 3}
       propertyPath: _uiHolder
       value: 

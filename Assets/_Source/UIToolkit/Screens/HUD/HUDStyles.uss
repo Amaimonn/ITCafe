@@ -10,14 +10,14 @@ Label {
     padding-bottom: 20px;
     padding-left: 20px;
     flex-grow: 1;
-    filter: filter(url("project://database/Assets/_Source/Art/Shaders/HelmetDistortionFilter.asset?fileID=11400000&guid=9273d5e8cea48354683374b6bf5b714f&type=2#HelmetDistortionFilter"));
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/CrtFilter.asset?fileID=11400000&guid=6922be53ede0c9b4c9a879c46efb1952&type=2#CrtFilter")) filter(url("project://database/Assets/_Source/Art/Shaders/HelmetDistortionFilter.asset?fileID=11400000&guid=9273d5e8cea48354683374b6bf5b714f&type=2#HelmetDistortionFilter"));
 }
 
 .hud__top-bar {
     flex-direction: row;
     align-items: center;
     height: 45px;
-    background-color: rgba(12, 22, 45, 0.95);
+    background-color: rgba(12, 22, 45, 0.94);
     border-color: rgba(0, 184, 148, 0.5);
     border-width: 1px;
     border-top-left-radius: 8px;
@@ -54,12 +54,8 @@ Label {
 
 .hud__stats-panel {
     position: relative;
-    width: 220px;
+    width: 200px;
     flex-direction: column;
-    background-color: rgba(15, 25, 45, 0.9);
-    border-color: rgba(0, 184, 148, 0.4);
-    border-width: 1px;
-    border-radius: 8px;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 15px;
@@ -68,7 +64,7 @@ Label {
 }
 
 .hud__widget-title {
-    font-size: 16px;
+    font-size: 18px;
     color: rgb(0, 224, 178);
     -unity-font-style: bold;
     -unity-text-align: middle-center;
@@ -93,7 +89,7 @@ Label {
 }
 
 .hud__stat-label {
-    font-size: 13px;
+    font-size: 16px;
     color: rgb(180, 220, 240);
     -unity-text-align: upper-left;
     opacity: 0.9;
@@ -101,7 +97,7 @@ Label {
 }
 
 .hud__stat-value {
-    font-size: 15px;
+    font-size: 16px;
     -unity-font-style: bold;
     -unity-text-align: upper-right;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
@@ -110,10 +106,6 @@ Label {
 
 .hud__orders-panel {
     flex-direction: column;
-    background-color: rgba(15, 25, 45, 0.9);
-    border-color: rgba(0, 184, 148, 0.4);
-    border-width: 1px;
-    border-radius: 8px;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 15px;
@@ -221,4 +213,15 @@ Label {
     border-width: 1px;
     border-radius: 4px;
     align-self: center;
+}
+
+.hud__widget-panel {
+    background-color: rgba(15, 25, 45, 0.94);
+    border-color: rgba(0, 184, 148, 0.4);
+    border-width: 1px;
+    border-radius: 8px;
+    border-left-color: rgb(0, 184, 148);
+    border-right-color: rgb(0, 184, 148);
+    border-top-color: rgb(0, 184, 148);
+    border-bottom-color: rgb(0, 184, 148);
 }
