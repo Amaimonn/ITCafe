@@ -25,7 +25,6 @@ Shader "UI Toolkit/UILensDistortion"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _ UIE_OUTPUT_LINEAR
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
@@ -82,10 +81,6 @@ Shader "UI Toolkit/UILensDistortion"
 
                 float2 finalUV = MapToUVRect(uv, uvRect);
                 fixed4 col = tex2D(_MainTex, finalUV);
-
-                #if UIE_OUTPUT_LINEAR
-                col.rgb = GammaToLinearSpace(col.rgb);
-                #endif
 
                 return col;
             }

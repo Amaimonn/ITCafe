@@ -3,10 +3,10 @@ Shader "UI Toolkit/UIHelmetDistortion"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _BulgeAmount ("Bulge Amount", Range(0.0, 2.0)) = 0.5
-        _BulgeRadius ("Bulge Radius", Range(0.1, 1.0)) = 0.7
-        _BulgeStrength ("Bulge Strength", Range(0.0, 3.0)) = 1.0
-        _Refraction ("Refraction", Range(0.0, 0.5)) = 0.1
+        _BulgeAmount ("Bulge Amount", Range(0.0, 2.0)) = 1.25
+        _BulgeRadius ("Bulge Radius", Range(0.1, 1.0)) = 1.0
+        _BulgeStrength ("Bulge Strength", Range(0.0, 3.0)) = 0.1
+        _Refraction ("Refraction", Range(0.0, 0.5)) = 0.2
     }
 
     SubShader
@@ -27,7 +27,6 @@ Shader "UI Toolkit/UIHelmetDistortion"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _ UIE_OUTPUT_LINEAR
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
@@ -64,51 +63,38 @@ Shader "UI Toolkit/UIHelmetDistortion"
                 return uv * uvRect.zw + uvRect.xy;
             }
 
-            // ВЫПУКЛАЯ дисторсия - смещает UV ВНЕШНЕ от центра
             float2 BulgeDistortion(float2 uv)
             {
                 float2 center = float2(0.5, 0.5);
                 float2 d = uv - center;
                 float r = length(d);
-                
-                // Нормализуем расстояние относительно радиуса выпуклости
                 float normalizedR = r / _BulgeRadius;
                 
-                // Вычисляем выпуклость: в центре = 0, на краю радиуса = _BulgeAmount
-                float bulge = 0;
+                float bulge = 0; // выпуклость: в центре = 0, на краю радиуса = _BulgeAmount
                 
                 if (normalizedR < 1.0)
                 {
-                    // Квадратичная кривая для плавного выпуклого эффекта
                     float t = 1.0 - normalizedR;
-                    bulge = _BulgeAmount * t * t * _BulgeStrength;
                     
-                    // Добавляем рефракцию (искажение краев)
-                    bulge += _Refraction * sin(normalizedR * 3.14159 * 2.0) * 0.1;
+                    bulge = _BulgeAmount * t * t * _BulgeStrength; // квадратичная кривая для плавного выпуклого эффекта
+                    bulge += _Refraction * sin(normalizedR * 3.14159 * 2.0) * 0.1; //рефракция (искажение краев)
                 }
                 
-                // Смещаем UV ОТ центра (в отличие от вогнутой линзы)
                 return uv + d * bulge;
             }
 
-            // Сферический bulge - более физически точный
             float2 SphericalBulge(float2 uv)
             {
                 float2 center = float2(0.5, 0.5);
                 float2 d = uv - center;
                 float r = length(d);
                 
-                // Только внутри радиуса выпуклости
                 if (r < _BulgeRadius)
                 {
-                    // Вычисляем выпуклость как сегмент сферы
                     float t = r / _BulgeRadius;
-                    float sphereHeight = sqrt(1.0 - t * t); // Высота сферы
-                    
-                    // Преобразуем в смещение UV
+                    float sphereHeight = sqrt(1.0 - t * t);
                     float bulge = _BulgeAmount * sphereHeight * _BulgeStrength;
                     
-                    // Нормализуем направление
                     float2 direction = d / (r + 0.0001);
                     
                     return uv + direction * bulge;
@@ -117,7 +103,6 @@ Shader "UI Toolkit/UIHelmetDistortion"
                 return uv;
             }
 
-            // Эффект "рыбий глаз" - классический выпуклый эффект
             float2 FisheyeBulge(float2 uv)
             {
                 float2 center = float2(0.5, 0.5);
@@ -126,14 +111,11 @@ Shader "UI Toolkit/UIHelmetDistortion"
                 
                 if (r < _BulgeRadius)
                 {
-                    // Формула fish-eye дисторсии
                     float theta = atan2(r, _BulgeRadius);
                     float newR = _BulgeRadius * theta * _BulgeAmount;
                     
-                    // Масштабируем для силы эффекта
                     newR *= _BulgeStrength;
                     
-                    // Применяем к UV
                     float2 direction = d / (r + 0.0001);
                     return center + direction * newR;
                 }
@@ -147,37 +129,30 @@ Shader "UI Toolkit/UIHelmetDistortion"
                 float2 uv = NormalizeUVs(i.uv, uvRect);
                 float2 originalUV = uv;
 
-                // Сохраняем оригинальный цвет для смешивания
                 float2 finalUV = MapToUVRect(originalUV, uvRect);
                 fixed4 originalColor = tex2D(_MainTex, finalUV);
 
-                // Применяем выпуклую дисторсию
                 uv = BulgeDistortion(uv);
-                uv = clamp(uv, 0.0, 1.0);
-                // uv = SphericalBulge(uv); // Альтернатива
-                // uv = FisheyeBulge(uv);   // Другая альтернатива
+                // uv = SphericalBulge(uv); // альтернатива
+                // uv = FisheyeBulge(uv);   // другая альтернатива
                 
-                // Плавное затухание к краям
+                uv = clamp(uv, 0.0, 1.0);
+                
+                // плавное затухание к краям
                 float2 d = uv - float2(0.5, 0.5);
                 float r = length(d);
                 float edgeFade = 1.0 - smoothstep(_BulgeRadius * 0.8, _BulgeRadius * 1.2, r);
                 
-                // Смешиваем с оригиналом на краях
                 float2 distortedUV = MapToUVRect(uv, uvRect);
                 fixed4 distortedColor = tex2D(_MainTex, distortedUV);
                 
-                // Также можно добавить эффект отражения/освещения
+                // эффект отражения/освещения
                 float3 lightDir = normalize(float3(0.3, 0.5, 1.0));
                 float3 normal = normalize(float3(d * 0.5, 1.0));
                 float lighting = saturate(dot(normal, lightDir)) * 0.3 + 0.7;
                 
-                // Смешиваем цвета с учетом затухания и освещения
                 fixed4 col = lerp(originalColor, distortedColor, edgeFade);
                 col.rgb *= lighting;
-
-                #if UIE_OUTPUT_LINEAR
-                col.rgb = GammaToLinearSpace(col.rgb);
-                #endif
 
                 return col;
             }

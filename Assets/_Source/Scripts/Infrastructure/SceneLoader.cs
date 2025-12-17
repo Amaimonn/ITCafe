@@ -105,14 +105,14 @@ namespace ITCafe
             yield return SceneManager.LoadSceneAsync(sceneName, mode);
         }
 
-        private YieldInstruction GetRemainFakeLoadTime(float startTime)
+        private IEnumerator GetRemainFakeLoadTime(float startTime)
         {
             var currentTime = Time.time;
             var remainTime = MIN_LOADING_TIME - (currentTime - startTime);
             if (remainTime > 0)
-                return new WaitForSeconds(remainTime);
+                yield return new WaitForSeconds(remainTime);
             else
-                return null;
+                yield return null;
         }
     }
 }

@@ -23,7 +23,6 @@ Shader "UI Toolkit/UIWave"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _ UIE_OUTPUT_LINEAR
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
@@ -141,11 +140,6 @@ Shader "UI Toolkit/UIWave"
                 // col.rgb += noise * 0.1;
                 
                 // === КОНЕЦ: эффекты цвета ===
-
-                // Обработка для force gamma режима
-                #if UIE_OUTPUT_LINEAR
-                col.rgb = GammaToLinearSpace(col.rgb);
-                #endif
 
                 return col;
             }

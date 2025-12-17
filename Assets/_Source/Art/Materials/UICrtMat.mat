@@ -45,9 +45,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MaskIntensity: 0.04
+    - _MaskIntensity: 0.14
     - _MaskScale: 180
-    - _NoiseIntensity: 0.2
+    - _NoiseIntensity: 0.4
     - _OverlayAlpha: 0.3
     - _ScanlineDensity: 290
     - _ScanlineIntensity: 1

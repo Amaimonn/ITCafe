@@ -4,17 +4,17 @@ Shader "UI Toolkit/UICrt"
     {
         _MainTex ("UI Texture", 2D) = "white" {}
 
-        _ScanlineIntensity ("Scanline Intensity", Range(0,1)) = 0.35
-        _ScanlineDensity ("Scanline Density", Range(100,600)) = 320
-        _ScanlineSpeed ("Scanline Speed", Float) = 1.0
+        _ScanlineIntensity ("Scanline Intensity", Range(0,1)) = 1.0
+        _ScanlineDensity ("Scanline Density", Range(100,600)) = 290
+        _ScanlineSpeed ("Scanline Speed", Float) = 2.0
 
-        _MaskIntensity ("Mask Intensity", Range(0,1)) = 0.15
+        _MaskIntensity ("Mask Intensity", Range(0,1)) = 0.14
         _MaskScale ("Mask Scale", Float) = 180
 
-        _NoiseIntensity ("Noise Intensity", Range(0,0.2)) = 0.04
+        _NoiseIntensity ("Noise Intensity", Range(0, 1.0)) = 0.4
 
         _Tint ("Tint", Color) = (0.6, 1.0, 0.6, 1)
-        _OverlayAlpha ("Overlay Alpha", Range(0,1)) = 1.0
+        _OverlayAlpha ("Overlay Alpha", Range(0,1)) = 0.3
     }
 
     SubShader
@@ -35,6 +35,7 @@ Shader "UI Toolkit/UICrt"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
 
@@ -78,7 +79,7 @@ Shader "UI Toolkit/UICrt"
                 float2 uv = (i.uv - uvRect.xy) / uvRect.zw;
                 float2 texUV = i.uv;
 
-                fixed4 baseColor = tex2D(_MainTex, texUV);
+                fixed4 col = tex2D(_MainTex, texUV);
 
                 float time = _Time.y;
 
@@ -102,9 +103,9 @@ Shader "UI Toolkit/UICrt"
                 // Alpha-independent overlay
                 float overlayAlpha = _OverlayAlpha * saturate(_ScanlineIntensity + _MaskIntensity);
 
-                baseColor.rgb = lerp(baseColor.rgb, baseColor.rgb + crt, overlayAlpha);
+                col.rgb = lerp(col.rgb, col.rgb + crt, overlayAlpha);
 
-                return baseColor;
+                return col;
             }
             ENDCG
         }
