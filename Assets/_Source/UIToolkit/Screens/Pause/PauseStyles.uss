@@ -17,7 +17,13 @@
     border-radius: 4px;
     padding: 30px;
     position: relative;
+    border-left-color: rgb(0, 255, 205);
+    border-right-color: rgb(0, 255, 205);
+    border-top-color: rgb(0, 255, 205);
+    border-bottom-color: rgb(0, 255, 205);
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/GlitchFilter.asset?fileID=11400000&guid=af8001a8dfaf8a541bdcf0cc307629de&type=2#GlitchFilter"));
 }
+
 .pause__header {
     flex-direction: column;
     margin-bottom: 30px;
@@ -79,20 +85,6 @@
     flex-direction: column;
     margin-bottom: 25px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .pause__footer {
     flex-direction: column;

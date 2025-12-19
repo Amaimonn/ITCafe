@@ -12,6 +12,7 @@ namespace ITCafe
 
         protected override void Configure(IContainerBuilder builder)
         {
+            ShaderUnscaledTime.On();
             FLogger.Log("RootScope Configure");
             var rootUIBinder = Instantiate(_rootUIBinderPrefab);
             DontDestroyOnLoad(rootUIBinder);

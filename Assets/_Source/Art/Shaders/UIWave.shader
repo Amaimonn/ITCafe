@@ -103,8 +103,17 @@ Shader "UI Toolkit/UIWave"
                 // uv = MirrorUV(uv);
                 
                 // Пример 4: Wave эффект с использованием времени
+                uv = (uv - 0.5) * 1.05 + 0.5;
                 uv = WaveUV(uv, _Time.y);
+
+                float borderWidth = 1e-16; // Adjust as needed
+                clip(uv.x - borderWidth);
+                clip(uv.y - borderWidth);
+                clip(1.0 - uv.x - borderWidth);
+                clip(1.0 - uv.y - borderWidth);
+                
                 uv = clamp(uv, 0.0, 1.0);
+                
                 
                 // Пример 5: Масштабирование UV
                 // float2 center = float2(0.5, 0.5);

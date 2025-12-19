@@ -19,7 +19,7 @@ namespace ITCafe.CafeBusiness
         private readonly InputService _inputService;
 
         private CancellationTokenSource _cts;
-        private const int SESSION_DURATION_SECONDS = 180;
+        private const int SESSION_DURATION_SECONDS = 300;
         private readonly TimeSpan _sessionDuration = TimeSpan.FromSeconds(SESSION_DURATION_SECONDS);
         private readonly Subject<Unit> _onCompleted = new();
 
@@ -47,7 +47,7 @@ namespace ITCafe.CafeBusiness
                 _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
                 _hudViewModel.StartSessionTimer(_sessionDuration);
 
-                await UniTask.Delay(TimeSpan.FromMinutes(3), cancellationToken: linkedTokenSource.Token);
+                await UniTask.Delay(_sessionDuration, cancellationToken: linkedTokenSource.Token);
 
                 CompleteSession();
             }
