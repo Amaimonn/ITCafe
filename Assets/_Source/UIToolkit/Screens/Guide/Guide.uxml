@@ -9,21 +9,21 @@
                     <ui:Label text="// &#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1053;&#1040;&#1071;_&#1044;&#1054;&#1050;&#1059;&#1052;&#1045;&#1053;&#1058;&#1040;&#1062;&#1048;&#1071;" picking-mode="Ignore" class="cafe__view-title" style="font-size: 22px;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button name="CloseButton" text="&#215;" class="cafe__close-button"/>
+            <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
             <ui:VisualElement name="PagesContainer" class="guide__content-area">
                 <ui:Instance template="Page1"/>
             </ui:VisualElement>
             <ui:VisualElement name="Navigation" class="guide__navigation">
-                <ui:Button name="PreviousButton" text="&#9668;" class="cafe__control-button guide__nav-button cafe__control-button--blue"/>
+                <ui:Button name="PreviousButton" text="&#9668;" focusable="false" class="cafe__control-button guide__nav-button cafe__control-button--blue"/>
                 <ui:VisualElement name="PaginationContainer" class="guide__page-indicators">
                     <ui:VisualElement name="Page1Indicator" class="guide__page-indicator guide__page-indicator--active"/>
                     <ui:VisualElement name="Page2Indicator" class="guide__page-indicator"/>
                     <ui:VisualElement name="Page3Indicator" class="guide__page-indicator"/>
                 </ui:VisualElement>
-                <ui:Button name="NextButton" text="&#9658;" class="cafe__control-button guide__nav-button cafe__control-button--blue"/>
+                <ui:Button name="NextButton" text="&#9658;" focusable="false" class="cafe__control-button guide__nav-button cafe__control-button--blue"/>
             </ui:VisualElement>
             <ui:VisualElement name="BottomPanel" class="guide__bottom-panel">
-                <ui:Button name="OkButton" text="OK" class="cafe__control-button cafe__control-button--cyan" style="margin-bottom: 0;"/>
+                <ui:Button name="OkButton" text="OK" focusable="false" class="cafe__control-button cafe__control-button--cyan" style="margin-bottom: 0;"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
