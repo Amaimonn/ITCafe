@@ -37,100 +37,63 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SpecGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AddPrecomputedVelocity: 0
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
-    - _Blend: 0
-    - _BlendModePreserveSpecular: 1
-    - _BumpScale: 1
-    - _ClearCoatMask: 0
-    - _ClearCoatSmoothness: 0
-    - _Cull: 2
-    - _Cutoff: 0.5
-    - _DetailAlbedoMapScale: 1
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
-    - _EnvironmentReflections: 1
-    - _GlossMapScale: 0
-    - _Glossiness: 0
-    - _GlossyReflections: 0
-    - _Metallic: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.005
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
-    - _Smoothness: 0.5
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _WorkflowMode: 1
-    - _XRMotionVectorsPass: 1
-    - _ZWrite: 1
+    - _BlockCount: 15
+    - _BlockGlitchAmount: 0.3
+    - _BlockGlitchIntensity: 0.2
+    - _BlockGlitchSpeed: 3
+    - _BlockOffsetIntensity: 0.05
+    - _BlockSize: 0.05
+    - _BlockSpeed: 1
+    - _BloomIntensity: 0.5
+    - _BloomSize: 2
+    - _BloomThreshold: 0.16
+    - _Brightness: 1.1
+    - _Contrast: 1.2
+    - _DiagonalAngle: 0.785
+    - _DiagonalShift: 0.03
+    - _DiagonalSpeed: 5
+    - _DigitalRain: 0.3
+    - _DigitalStripes: 0.4
+    - _Distortion: 0.02
+    - _DistortionSpeed: 1
+    - _FlickerIntensity: 0.1
+    - _FlickerSpeed: 2
+    - _GlitchBlockSize: 1
+    - _GlitchFrequency: 2
+    - _GlitchIntensity: 1
+    - _GlitchPulseFreq: 0.2
+    - _GlitchShift: 0.1
+    - _GlitchSpeed: 1
+    - _HueShift: 0.1
+    - _NoiseScale: 5
+    - _NoiseSpeed: 0.5
+    - _RGBShift: 0.0015
+    - _RGBShiftIntensity: 0.01
+    - _RGBShiftSpeed: 3
+    - _RainDensity: 3
+    - _RainSpeed: 3
+    - _RectCount: 30
+    - _RectFlashSpeed: 1
+    - _RectGlitchIntensity: 0.4
+    - _RectMaxSize: 0.15
+    - _RectMinSize: 0.05
+    - _Saturation: 1.2
+    - _ScanLineDensity: 50
+    - _ScanLineIntensity: 0.02
+    - _ScanLineSpeed: 3
+    - _ScanLineWidth: 0.005
+    - _StripeSpeed: 8
+    - _StripeThickness: 0.02
+    - _VignetteIntensity: 0.3
+    - _VignetteSmoothness: 0.5
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
+    - _GlitchTint: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

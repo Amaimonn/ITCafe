@@ -1,6 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Page1" src="project://database/Assets/_Source/UIToolkit/GuidePages/Page1.uxml?fileID=9197481963319205126&amp;guid=3587e7d115f0e704cac0b28c84f1a0f5&amp;type=3#Page1"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="guide__root" style="flex-grow: 1;">
         <ui:VisualElement name="TerminalContainer" class="guide__terminal">
             <ui:VisualElement name="Header" class="guide__header">

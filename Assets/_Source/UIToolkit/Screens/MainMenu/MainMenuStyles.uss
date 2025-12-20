@@ -24,25 +24,11 @@
     left: 0;
 }
 
-.main-menu__coffee-cup {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background-color: rgba(139, 69, 19, 0.1);
-    border-color: rgba(160, 82, 45, 0.3);
-    border-width: 2px;
-    border-radius: 20px;
-}
 
-.main-menu__coffee-cup--1 {
-    top: 15%;
-    left: 10%;
-}
 
-.main-menu__coffee-cup--2 {
-    bottom: 20%;
-    right: 8%;
-}
+
+
+
 
 .main-menu__coffee-bean {
     position: absolute;
@@ -52,15 +38,9 @@
     border-radius: 50%;
 }
 
-.main-menu__coffee-bean--1 {
-    top: 30%;
-    right: 15%;
-}
 
-.main-menu__coffee-bean--2 {
-    bottom: 35%;
-    left: 12%;
-}
+
+
 
 .main-menu__content {
     flex-direction: column;
@@ -106,6 +86,7 @@
     margin-bottom: 50px;
     width: 300px;
     align-self: center;
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
 }
 
 .main-menu__button {

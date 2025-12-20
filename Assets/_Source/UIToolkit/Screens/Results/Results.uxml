@@ -1,71 +1,73 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Results/ResultsStyles.uss?fileID=7433441132597879392&amp;guid=b280a6aba7c9f5845b1f0dc49547865b&amp;type=3#ResultsStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="results__root" style="flex-grow: 1;">
-        <ui:VisualElement name="ReceiptContainer" class="results__receipt">
-            <ui:VisualElement name="ReceiptHeader" class="results__receipt-header">
-                <ui:Label text="IT_CAFE" class="results__cafe-name"/>
-                <ui:Label text="&#1054;&#1058;&#1063;&#1045;&#1058;_&#1047;&#1040;_&#1057;&#1052;&#1045;&#1053;&#1059;" class="results__day-title"/>
-                <ui:Label text="#AF3242" name="BillCodeLabel" class="results__receipt-number"/>
+        <ui:VisualElement style="flex-grow: 1; justify-content: center; filter: filter(url(&quot;project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&amp;guid=b9117f15d2285b04abdcc136ad8f4c80&amp;type=2#ChromaFilter&quot;));">
+            <ui:VisualElement name="ReceiptContainer" class="results__receipt">
+                <ui:VisualElement name="ReceiptHeader" class="results__receipt-header">
+                    <ui:Label text="IT_CAFE" class="results__cafe-name"/>
+                    <ui:Label text="&#1054;&#1058;&#1063;&#1045;&#1058;_&#1047;&#1040;_&#1057;&#1052;&#1045;&#1053;&#1059;" class="results__day-title"/>
+                    <ui:Label text="#AF3242" name="BillCodeLabel" class="results__receipt-number"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="StarsContainer" class="results__stars-container">
+                    <ui:VisualElement name="Star1" class="results__star results__star--filled"/>
+                    <ui:VisualElement name="Star2" class="results__star results__star--filled"/>
+                    <ui:VisualElement name="Star3" class="results__star results__star--empty"/>
+                    <ui:VisualElement name="Star4" class="results__star results__star--empty"/>
+                    <ui:VisualElement name="Star5" class="results__star results__star--empty"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="StatsSection" class="results__stats-section">
+                    <ui:VisualElement name="StatRow1" class="results__stat-row">
+                        <ui:Label text="&#1055;&#1056;&#1048;&#1053;&#1071;&#1058;&#1054;_&#1047;&#1040;&#1050;&#1040;&#1047;&#1054;&#1042;:" class="results__stat-label"/>
+                        <ui:Label text="0" name="OrdersTakenValue" class="results__stat-value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="StatRow2" class="results__stat-row">
+                        <ui:Label text="&#1042;&#1067;&#1055;&#1054;&#1051;&#1053;&#1045;&#1053;&#1054;_&#1059;&#1057;&#1055;&#1045;&#1064;&#1053;&#1054;:" class="results__stat-label"/>
+                        <ui:Label text="0" name="OrdersCompletedValue" class="results__stat-value results__stat-value--success"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="StatRow3" class="results__stat-row">
+                        <ui:Label text="&#1057;&#1041;&#1054;&#1048;_&#1042;_&#1054;&#1041;&#1057;&#1051;&#1059;&#1046;&#1048;&#1042;&#1040;&#1053;&#1048;&#1048;:" class="results__stat-label"/>
+                        <ui:Label text="0" name="OrdersFailedValue" class="results__stat-value results__stat-value--failed"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Divider" class="results__divider"/>
+                    <ui:VisualElement name="StatRow4" class="results__stat-row">
+                        <ui:Label text="&#1054;&#1041;&#1065;&#1048;&#1049;_&#1044;&#1054;&#1061;&#1054;&#1044;:" class="results__stat-label"/>
+                        <ui:Label text="0" name="PointsValue" class="results__stat-value results__stat-value--income"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="StatRow5" class="results__stat-row" style="display: none;">
+                        <ui:Label text="&#1063;&#1040;&#1045;&#1042;&#1067;&#1045;:" class="results__stat-label"/>
+                        <ui:Label text="180" name="TipsValue" class="results__stat-value results__stat-value--tips"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Divider2" class="results__divider"/>
+                    <ui:VisualElement name="StatRow6" class="results__stat-row results__stat-row--total" style="display: none;">
+                        <ui:Label text="&#1048;&#1058;&#1054;&#1043;&#1054;_&#1047;&#1040;&#1056;&#1040;&#1041;&#1054;&#1058;&#1040;&#1053;&#1054;:" class="results__stat-label results__stat-label--total"/>
+                        <ui:Label text="1 430" name="TotalValue" class="results__stat-value results__stat-value--total"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="BonusSection" class="results__bonus-section">
+                    <ui:VisualElement name="TimeRow" class="results__bonus-row">
+                        <ui:Label text="&#1042;&#1056;&#1045;&#1052;&#1071;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1067;:" class="results__bonus-label"/>
+                        <ui:Label text="00:00" name="TimeWorkedValue" class="results__bonus-value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="BonusRow" class="results__bonus-row" style="display: none;">
+                        <ui:Label text="&#1041;&#1054;&#1053;&#1059;&#1057;_&#1047;&#1040;_&#1057;&#1050;&#1054;&#1056;&#1054;&#1057;&#1058;&#1068;:" class="results__bonus-label"/>
+                        <ui:Label text="+50" name="SpeedBonusValue" class="results__bonus-value results__bonus-value--positive"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="RatingRow" class="results__bonus-row" style="display: none;">
+                        <ui:Label text="&#1056;&#1045;&#1049;&#1058;&#1048;&#1053;&#1043;_&#1050;&#1040;&#1060;&#1045;:" class="results__bonus-label"/>
+                        <ui:Label text="4.2/5.0" name="CafeRatingValue" class="results__bonus-value"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ReceiptFooter" class="results__receipt-footer">
+                    <ui:Label text="&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1040;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1040;&#1045;&#1058;_&#1057;&#1058;&#1040;&#1041;&#1048;&#1051;&#1068;&#1053;&#1054;" class="results__thank-you"/>
+                    <ui:Label text="-------------------" class="results__divider-line"/>
+                    <ui:Label text="&#1054;&#1046;&#1048;&#1044;&#1040;&#1053;&#1048;&#1045;_&#1057;&#1051;&#1045;&#1044;&#1059;&#1070;&#1065;&#1045;&#1049;_&#1057;&#1052;&#1045;&#1053;&#1067;" class="results__next-day"/>
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="StarsContainer" class="results__stars-container">
-                <ui:VisualElement name="Star1" class="results__star results__star--filled"/>
-                <ui:VisualElement name="Star2" class="results__star results__star--filled"/>
-                <ui:VisualElement name="Star3" class="results__star results__star--empty"/>
-                <ui:VisualElement name="Star4" class="results__star results__star--empty"/>
-                <ui:VisualElement name="Star5" class="results__star results__star--empty"/>
+            <ui:VisualElement name="ActionsContainer" class="results__actions">
+                <ui:Button name="ContinueButton" text="&#1055;&#1056;&#1054;&#1044;&#1054;&#1051;&#1046;&#1048;&#1058;&#1068;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1059;" class="results__button results__button--primary" style="display: none;"/>
+                <ui:Button name="RestartButton" text="&#1055;&#1045;&#1056;&#1045;&#1047;&#1040;&#1055;&#1059;&#1057;&#1058;&#1048;&#1058;&#1068;_&#1057;&#1052;&#1045;&#1053;&#1059;" class="results__button results__button--secondary"/>
+                <ui:Button name="MenuButton" text="&#1042;&#1067;&#1061;&#1054;&#1044;_&#1053;&#1040;_&#1052;&#1069;&#1049;&#1053;&#1060;&#1056;&#1045;&#1049;&#1052;" class="results__button results__button--primary"/>
             </ui:VisualElement>
-            <ui:VisualElement name="StatsSection" class="results__stats-section">
-                <ui:VisualElement name="StatRow1" class="results__stat-row">
-                    <ui:Label text="&#1055;&#1056;&#1048;&#1053;&#1071;&#1058;&#1054;_&#1047;&#1040;&#1050;&#1040;&#1047;&#1054;&#1042;:" class="results__stat-label"/>
-                    <ui:Label text="0" name="OrdersTakenValue" class="results__stat-value"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="StatRow2" class="results__stat-row">
-                    <ui:Label text="&#1042;&#1067;&#1055;&#1054;&#1051;&#1053;&#1045;&#1053;&#1054;_&#1059;&#1057;&#1055;&#1045;&#1064;&#1053;&#1054;:" class="results__stat-label"/>
-                    <ui:Label text="0" name="OrdersCompletedValue" class="results__stat-value results__stat-value--success"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="StatRow3" class="results__stat-row">
-                    <ui:Label text="&#1057;&#1041;&#1054;&#1048;_&#1042;_&#1054;&#1041;&#1057;&#1051;&#1059;&#1046;&#1048;&#1042;&#1040;&#1053;&#1048;&#1048;:" class="results__stat-label"/>
-                    <ui:Label text="0" name="OrdersFailedValue" class="results__stat-value results__stat-value--failed"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="Divider" class="results__divider"/>
-                <ui:VisualElement name="StatRow4" class="results__stat-row">
-                    <ui:Label text="&#1054;&#1041;&#1065;&#1048;&#1049;_&#1044;&#1054;&#1061;&#1054;&#1044;:" class="results__stat-label"/>
-                    <ui:Label text="0" name="PointsValue" class="results__stat-value results__stat-value--income"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="StatRow5" class="results__stat-row" style="display: none;">
-                    <ui:Label text="&#1063;&#1040;&#1045;&#1042;&#1067;&#1045;:" class="results__stat-label"/>
-                    <ui:Label text="180" name="TipsValue" class="results__stat-value results__stat-value--tips"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="Divider2" class="results__divider"/>
-                <ui:VisualElement name="StatRow6" class="results__stat-row results__stat-row--total" style="display: none;">
-                    <ui:Label text="&#1048;&#1058;&#1054;&#1043;&#1054;_&#1047;&#1040;&#1056;&#1040;&#1041;&#1054;&#1058;&#1040;&#1053;&#1054;:" class="results__stat-label results__stat-label--total"/>
-                    <ui:Label text="1 430" name="TotalValue" class="results__stat-value results__stat-value--total"/>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="BonusSection" class="results__bonus-section">
-                <ui:VisualElement name="TimeRow" class="results__bonus-row">
-                    <ui:Label text="&#1042;&#1056;&#1045;&#1052;&#1071;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1067;:" class="results__bonus-label"/>
-                    <ui:Label text="00:00" name="TimeWorkedValue" class="results__bonus-value"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="BonusRow" class="results__bonus-row" style="display: none;">
-                    <ui:Label text="&#1041;&#1054;&#1053;&#1059;&#1057;_&#1047;&#1040;_&#1057;&#1050;&#1054;&#1056;&#1054;&#1057;&#1058;&#1068;:" class="results__bonus-label"/>
-                    <ui:Label text="+50" name="SpeedBonusValue" class="results__bonus-value results__bonus-value--positive"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="RatingRow" class="results__bonus-row" style="display: none;">
-                    <ui:Label text="&#1056;&#1045;&#1049;&#1058;&#1048;&#1053;&#1043;_&#1050;&#1040;&#1060;&#1045;:" class="results__bonus-label"/>
-                    <ui:Label text="4.2/5.0" name="CafeRatingValue" class="results__bonus-value"/>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="ReceiptFooter" class="results__receipt-footer">
-                <ui:Label text="&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1040;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1040;&#1045;&#1058;_&#1057;&#1058;&#1040;&#1041;&#1048;&#1051;&#1068;&#1053;&#1054;" class="results__thank-you"/>
-                <ui:Label text="-------------------" class="results__divider-line"/>
-                <ui:Label text="&#1054;&#1046;&#1048;&#1044;&#1040;&#1053;&#1048;&#1045;_&#1057;&#1051;&#1045;&#1044;&#1059;&#1070;&#1065;&#1045;&#1049;_&#1057;&#1052;&#1045;&#1053;&#1067;" class="results__next-day"/>
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="ActionsContainer" class="results__actions">
-            <ui:Button name="ContinueButton" text="&#1055;&#1056;&#1054;&#1044;&#1054;&#1051;&#1046;&#1048;&#1058;&#1068;_&#1056;&#1040;&#1041;&#1054;&#1058;&#1059;" class="results__button results__button--primary" style="display: none;"/>
-            <ui:Button name="RestartButton" text="&#1055;&#1045;&#1056;&#1045;&#1047;&#1040;&#1055;&#1059;&#1057;&#1058;&#1048;&#1058;&#1068;_&#1057;&#1052;&#1045;&#1053;&#1059;" class="results__button results__button--secondary"/>
-            <ui:Button name="MenuButton" text="&#1042;&#1067;&#1061;&#1054;&#1044;_&#1053;&#1040;_&#1052;&#1069;&#1049;&#1053;&#1060;&#1056;&#1045;&#1049;&#1052;" class="results__button results__button--primary"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

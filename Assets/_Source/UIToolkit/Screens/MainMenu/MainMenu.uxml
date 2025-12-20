@@ -8,7 +8,7 @@
         <ui:VisualElement name="ContentContainer" class="main-menu__content">
             <ui:VisualElement name="MenuPanel" class="menu__panel">
                 <ui:VisualElement name="HeaderSection" class="main-menu__header">
-                    <ui:Label text="IT Cafe++" class="main-menu__title" style="filter: filter();"/>
+                    <ui:Label text="IT Cafe++" class="main-menu__title"/>
                     <ui:VisualElement name="Logs" style="flex-grow: 1; height: 300px; width: 420px;">
                         <ui:Label text="===========================================" emoji-fallback-support="false" name="TerminalLog1" parse-escape-sequences="true" class="main-menu__subtitle"/>
                         <ui:Label text="[ &#1048;&#1053;&#1048;&#1062;&#1048;&#1040;&#1051;&#1048;&#1047;&#1040;&#1062;&#1048;&#1071; &#1044;&#1053;&#1045;&#1042;&#1053;&#1048;&#1050;&#1040; &#1057;&#1054;&#1041;&#1067;&#1058;&#1048;&#1049; ]" emoji-fallback-support="false" name="TerminalLog2" class="main-menu__subtitle"/>

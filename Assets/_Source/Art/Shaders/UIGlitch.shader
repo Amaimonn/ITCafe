@@ -43,9 +43,6 @@ Shader "UI Toolkit/UIGlitch"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_local_fragment _ GLITCH_ON
-            #pragma multi_compile_local_fragment _ SCANLINE_ON
-            #pragma multi_compile_local_fragment _ BLOOM_ON
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
