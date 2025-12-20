@@ -43,9 +43,9 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             BindSliderInt(_sensitivitySlider, sectionViewModel.SetSensitivity, sectionViewModel.Sensitivity);
             BindToggle(_vSyncToggle, sectionViewModel.SetVsync, sectionViewModel.VSync);
-            BindDropdown(_fpsDropdown, x => sectionViewModel.SetFps(int.Parse(x)),
-                sectionViewModel.FPS.Select(x => x.ToString()));
-            
+            BindDropdown(_fpsDropdown, x => sectionViewModel.SetFps(SensitivityStringToInt(x)),
+                sectionViewModel.FPS.Select(SensitivityIntToString));
+
             _applyButton.RegisterCallback<ClickEvent>(ApplyChanges);
             _cancelChangesButton.RegisterCallback<ClickEvent>(CancelChanges);
 
@@ -72,6 +72,18 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             toggle.RegisterValueChangedCallback(e => update(e.newValue));
             observable.Subscribe(x => toggle.value = x);
+        }
+
+        private int SensitivityStringToInt(string sensitivity)
+        {
+            if (int.TryParse(sensitivity, out var result))
+                return result;
+            return -1;
+        }
+
+        private string SensitivityIntToString(int sensitivity)
+        {
+            return sensitivity == -1 ? "Максимум" : sensitivity.ToString();
         }
 
         private void ApplyChanges(ClickEvent clickEvent)
