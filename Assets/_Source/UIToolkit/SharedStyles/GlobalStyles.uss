@@ -13,8 +13,8 @@
     --blue-border-active: rgb(100, 200, 230);
     --blue-color: rgb(180, 220, 240);
     --red-bg: rgba(231, 76, 60, 0.44);
-    --red-bg-hover: rgba(231, 76, 60, 0.38);
-    --red-bg-active: rgba(231, 76, 60, 0.4);
+    --red-bg-hover: rgba(231, 76, 60, 0.35);
+    --red-bg-active: rgba(231, 76, 60, 0.45);
     --red-border: rgb(231, 76, 60);
     --red-border-hover: rgb(255, 100, 80);
     --red-border-active: rgb(255, 100, 80);

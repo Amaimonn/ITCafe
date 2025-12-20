@@ -64,6 +64,14 @@
     color: rgb(255, 180, 170);
 }
 
+.cafe__close-button:enabled:focus {
+    border-color: rgb(100, 120, 140);
+}
+
+.cafe__close-button:disabled:focus {
+    border-color: rgb(100, 120, 140);
+}
+
 .cafe__control-button {
     height: 50px;
     background-color: transparent;
@@ -109,6 +117,14 @@
     border-color: var(--cyan-border);
 }
 
+.cafe__control-button--cyan:enabled:focus {
+    border-color: var(--cyan-border);
+}
+
+.cafe__control-button--cyan:disabled:focus {
+    border-color: var(--cyan-border);
+}
+
 .cafe__control-button--blue {
     background-color: var(--blue-bg);
     border-color: var(--blue-border);
@@ -141,6 +157,14 @@
     border-color: var(--blue-border);
 }
 
+.cafe__control-button--blue:enabled:focus  {
+    border-color: var(--blue-border);
+}
+
+.cafe__control-button--blue:disabled:focus  {
+    border-color: var(--blue-border);
+}
+
 .cafe__control-button--red {
     background-color: var(--red-bg);
     border-color: var(--red-border);
@@ -170,5 +194,13 @@
 
 .cafe__control-button--red:disabled:active {
     background-color: var(--red-bg);
+    border-color: var(--red-border);
+}
+
+.cafe__control-button--red:enabled:focus {
+    border-color: var(--red-border);
+}
+
+.cafe__control-button--red:disabled:focus  {
     border-color: var(--red-border);
 }

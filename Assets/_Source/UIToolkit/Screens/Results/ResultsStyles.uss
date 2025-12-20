@@ -38,7 +38,7 @@
 }
 
 .results__receipt-number {
-    font-size: 11px;
+    font-size: 12px;
     color: rgb(120, 200, 180);
     -unity-text-align: middle-center;
     margin-bottom: 12px;
@@ -98,7 +98,7 @@
 }
 
 .results__stat-label {
-    font-size: 13px;
+    font-size: 14px;
     color: rgb(180, 220, 210);
     -unity-text-align: upper-left;
     letter-spacing: 0.5px;
@@ -111,7 +111,7 @@
 }
 
 .results__stat-value {
-    font-size: 13px;
+    font-size: 16px;
     color: rgb(255, 255, 255);
     -unity-text-align: upper-right;
     -unity-font-style: bold;
@@ -162,13 +162,13 @@
 }
 
 .results__bonus-label {
-    font-size: 11px;
+    font-size: 14px;
     color: rgb(150, 200, 220);
     -unity-text-align: upper-left;
 }
 
 .results__bonus-value {
-    font-size: 11px;
+    font-size: 16px;
     color: rgb(200, 230, 255);
     -unity-text-align: upper-right;
     -unity-font-style: bold;
@@ -222,7 +222,7 @@
     margin: 0;
     padding: 0 20px;
     -unity-font-style: bold;
-    font-size: 13px;
+    font-size: 14px;
     color: rgb(220, 240, 235);
     letter-spacing: 1px;
 }
