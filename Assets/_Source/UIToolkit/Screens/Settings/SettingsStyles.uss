@@ -8,8 +8,8 @@
     padding: 30px 20px;
 }
 
-.settings__terminal {
-    width: 500px;
+.settings__panel {
+    width: auto;
     flex-direction: column;
     background-color: rgba(20, 25, 45, 0.95);
     border-color: rgb(0, 184, 148);
@@ -21,6 +21,11 @@
     border-right-color: rgb(0, 255, 205);
     border-top-color: rgb(0, 255, 205);
     border-bottom-color: rgb(0, 255, 205);
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
 }
 
 .settings__close-button {
@@ -56,7 +61,7 @@
 
 .settings__header {
     flex-direction: column;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom-color: rgba(0, 184, 148, 0.3);
     border-bottom-width: 1px;
@@ -81,7 +86,7 @@
 
 .settings__sections {
     flex-direction: column;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .settings__section {
@@ -91,122 +96,57 @@
     border-width: 1px;
     border-radius: 3px;
     padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .settings__bar {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     margin: 10px 0;
     padding: 8px 0;
-    min-height: 36px;
-    border-bottom-color: rgba(100, 120, 140, 0.1);
-    border-bottom-width: 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 .settings__bar-label {
-    font-size: 12px;
+    font-size: var(--control-font-size);
     color: rgb(180, 220, 210);
     -unity-text-align: middle-left;
     letter-spacing: 0.5px;
     flex-grow: 1;
     margin-right: 15px;
-    min-width: 180px;
+    min-width: 320px;
 }
 
 .settings__control {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    min-width: 200px;
+    align-items: stretch;
+    justify-content: center;
+    min-width: 180px;
 }
 
 .settings__slider {
     flex-grow: 1;
-    min-width: 120px;
-    max-width: 160px;
-    height: 20px;
-}
-
-.settings__slider > .unity-base-slider__tracker {
-    background-color: rgba(40, 60, 90, 0.8);
-    border-color: rgb(70, 170, 200);
-    border-width: 1px;
-    border-radius: 3px;
-    height: 6px;
-}
-
-.settings__slider > .unity-base-slider__dragger {
-    background-color: rgb(0, 184, 148);
-    border-color: rgb(0, 224, 178);
-    border-width: 1px;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-}
-
-.settings__slider > .unity-base-slider__dragger:hover {
-    background-color: rgb(0, 224, 178);
-    border-color: rgb(0, 255, 200);
-}
-
-.settings__slider > .unity-base-slider__dragger:active {
-    background-color: rgb(0, 255, 200);
-    border-color: rgb(100, 255, 230);
-}
-
-.settings__value {
-    font-size: 12px;
-    color: rgb(255, 215, 0);
-    -unity-font-style: bold;
-    min-width: 25px;
-    -unity-text-align: middle-right;
-    letter-spacing: 0.5px;
+    flex-shrink: 1;
+    width: 238px;
 }
 
 .settings__toggle {
-    width: 40px;
-    height: 20px;
     margin: 0;
     padding: 0;
-}
-
-.settings__toggle > .unity-toggle__checkmark {
-    background-color: rgba(40, 60, 90, 0.8);
-    border-color: rgb(70, 170, 200);
-    border-width: 1px;
-    border-radius: 10px;
-    width: 40px;
-    height: 20px;
-}
-
-.settings__toggle > .unity-toggle__checkmark {
-    background-color: rgb(120, 150, 180);
-    border-color: rgb(100, 130, 160);
-    border-width: 1px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    margin-left: 1px;
-    margin-top: 0;
-}
-
-.settings__toggle:checked > .unity-toggle__checkmark {
-    background-color: rgba(0, 184, 148, 0.5);
-    border-color: rgb(0, 224, 178);
-}
-
-.settings__toggle:checked > .unity-toggle__checkmark {
-    background-color: rgb(0, 255, 200);
-    border-color: rgb(0, 224, 178);
-    margin-left: 19px;
+    align-self: flex-end;
 }
 
 .settings__actions {
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
     align-items: center;
-    margin-top: 15px;
     padding-top: 20px;
     border-top-color: rgba(0, 184, 148, 0.3);
     border-top-width: 1px;
@@ -215,13 +155,8 @@
 .settings__button {
     min-width: 180px;
     height: 40px;
-    background-color: transparent;
     border-width: 1px;
     border-radius: 3px;
-    font-size: 12px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
-    letter-spacing: 1px;
 }
 
 .settings__button--primary {
@@ -264,5 +199,5 @@
 }
 
 .settings__dropdown {
-    width: 120px;
+    width: 100%;
 }

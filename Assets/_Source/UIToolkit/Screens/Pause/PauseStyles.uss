@@ -21,7 +21,7 @@
     border-right-color: rgb(0, 255, 205);
     border-top-color: rgb(0, 255, 205);
     border-bottom-color: rgb(0, 255, 205);
-    filter: filter(url("project://database/Assets/_Source/Art/Shaders/GlitchFilter.asset?fileID=11400000&guid=af8001a8dfaf8a541bdcf0cc307629de&type=2#GlitchFilter"));
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
 }
 
 .pause__header {

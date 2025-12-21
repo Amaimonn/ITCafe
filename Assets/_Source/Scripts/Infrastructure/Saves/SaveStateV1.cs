@@ -1,12 +1,24 @@
 using DevKit.Saves;
 using ITCafe.Gameplay.Data;
+using UnityEngine;
 
 namespace ITCafe.Infrastructure.Saves
 {
     public class SaveStateV1 : SaveStateBase, ISaveState
     {
-        public override int Version { get; set; } = 1;
+        public override int Version
+        {
+            get => _version;
+            set => _version = value;
+        }
+
+        public SettingsState SettingsState
+        {
+            get => _settingsState;
+            set => _settingsState = value;
+        }
         
-        public SettingsState SettingsState { get; set; }
+        [SerializeField] private int _version = 1;
+        [SerializeField] private SettingsState _settingsState;
     }
 }

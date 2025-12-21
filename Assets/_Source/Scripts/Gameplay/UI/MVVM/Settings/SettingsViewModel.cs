@@ -11,18 +11,29 @@ namespace Inui.UI.MVVM.Settings
     {
         public Observable<bool> IsAnyChanges => _isAnyChanges;
         public readonly GeneralSectionViewModel GeneralSectionViewModel;
-
         private readonly ISaveStateProvider _gameStateProvider;
-        private readonly ReadOnlyReactiveProperty<bool> _isAnyChanges;
-        private readonly SettingsModel _model;
+        
+        private ReadOnlyReactiveProperty<bool> _isAnyChanges;
+        private SettingsModel _model;
 
-        public SettingsViewModel(SettingsModel model, ISaveStateProvider gameStateProvider)
+        public SettingsViewModel(ISaveStateProvider gameStateProvider)
+        {
+            _gameStateProvider = gameStateProvider;
+            GeneralSectionViewModel = new GeneralSectionViewModel();
+        }
+
+        public void Bind(SettingsModel model)
         {
             _model = model;
-            _gameStateProvider = gameStateProvider;
-            GeneralSectionViewModel = new GeneralSectionViewModel(model);
+            GeneralSectionViewModel.Bind(model);
 
             _isAnyChanges = GeneralSectionViewModel.IsAnyChanges;
+        }
+
+        public override void StartClosing()
+        {
+            CancelUnappliedChanges();
+            base.StartClosing();
         }
 
         /// <summary>
@@ -50,9 +61,10 @@ namespace Inui.UI.MVVM.Settings
             _gameStateProvider.SaveAll();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             GeneralSectionViewModel.Dispose();
+            base.Dispose();
         }
     }
 }

@@ -165,6 +165,45 @@
     border-color: var(--blue-border);
 }
 
+
+.cafe__control-button--gold {
+    background-color: var(--gold-bg);
+    border-color: var(--gold-border);
+}
+
+.cafe__control-button--gold:disabled {
+    background-color: var(--gold-bg);
+    border-color: var(--gold-border);
+}
+
+.cafe__control-button--gold:enabled:hover {
+    background-color: var(--gold-bg-hover);
+    border-color: var(--gold-border-hover);
+}
+
+.cafe__control-button--gold:disabled:hover {
+    background-color: var(--gold-bg);
+    border-color: var(--gold-border);
+}
+
+.cafe__control-button--gold:enabled:active {
+    background-color: var(--gold-bg-active);
+    border-color: var(--gold-border-active);
+}
+
+.cafe__control-button--gold:disabled:active {
+    background-color: var(--gold-bg);
+    border-color: var(--gold-border);
+}
+
+.cafe__control-button--gold:enabled:focus {
+    border-color: var(--gold-border);
+}
+
+.cafe__control-button--gold:disabled:focus {
+    border-color: var(--gold-border);
+}
+
 .cafe__control-button--red {
     background-color: var(--red-bg);
     border-color: var(--red-border);

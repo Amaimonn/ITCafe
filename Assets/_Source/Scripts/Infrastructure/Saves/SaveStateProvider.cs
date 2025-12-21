@@ -1,4 +1,5 @@
 using DevKit.Saves;
+using DevKit.Utils;
 
 namespace ITCafe.Infrastructure.Saves
 {
@@ -20,7 +21,7 @@ namespace ITCafe.Infrastructure.Saves
             {
                 _saveState = _saveSystem.Load<SaveStateV1>(SAVE_STATE);
             }
-            else 
+            else
             {
                 _saveState = new()
                 {
@@ -33,12 +34,14 @@ namespace ITCafe.Infrastructure.Saves
                 };
 
                 SaveAll();
+                FLogger.Log<SaveStateProvider>("New save file was created");
             }
         }
 
         public void SaveAll()
         {
             _saveSystem.Save(SAVE_STATE, _saveState);
+            FLogger.Log<SaveStateProvider>("State was saved");
         }
     }
 }

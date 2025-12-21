@@ -22050,6 +22050,7 @@ MonoBehaviour:
   _playerInteractor: {fileID: 604675099}
   _playerItemPicker: {fileID: 604675100}
   _pauseActionRef: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _cinemachineInputAxisController: {fileID: 1589975953}
   _clientPrefabs:
   - {fileID: 1935830331690626689, guid: e723f90a8283e8648b5de2309d25d248, type: 3}
   - {fileID: 353381090113085243, guid: 81170a5be13d0e2449a33eefd05f6e39, type: 3}

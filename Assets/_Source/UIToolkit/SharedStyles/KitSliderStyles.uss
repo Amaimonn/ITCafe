@@ -1,0 +1,86 @@
+.kit-slider {
+    align-self: flex-end;
+    margin: 0;
+}
+
+.kit-slider__readonly-value {
+    
+}
+
+
+.kit-slider .unity-base-field__label {
+    padding-right: 20px;
+    -unity-text-align: middle-left;
+    font-size: var(--control-font-size);
+    flex-grow: 0;
+}
+
+.kit-slider .unity-base-slider__dragger {
+    border-radius: var(--control-radius);
+    width: 22px;
+    height: 22px;
+    margin-top: -11px;
+    border-color: var(--control-border-color);
+    background-color: var(--control-bg);
+    transition-property: scale;
+    transition-duration: 0.1s;
+    border-width: var(--common-border-width);
+}
+
+.kit-slider .unity-base-slider__dragger:enabled:hover {
+    border-color: var(--control-border-color);
+    background-color: var(--control-bg-hover);
+    scale: 1.07 1.07;
+}
+
+.kit-slider .unity-base-slider__input {
+    max-width: 254px;
+    max-height: 70px;
+    align-items: stretch;
+    flex-direction: row-reverse;
+}
+
+.kit-slider .unity-base-slider__tracker {
+    background-color: rgba(0, 0, 0, 0.31);
+    border-color: rgba(83, 83, 83, 0.86);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 14px;
+    margin-top: -7px;
+}
+
+.kit-slider .unity-base-slider__tracker:enabled:hover {
+    background-color: rgba(0, 0, 0, 0.31);
+    border-color: rgba(83, 83, 83, 0.86);
+}
+
+.kit-slider .unity-base-text-field {
+    width: 70px;
+    overflow: visible;
+}
+
+.kit-slider .unity-text-field .unity-base-field__input {
+    font-size: var(--control-font-size);
+    overflow: visible;
+    background-color: var(--control-bg);
+    border-color: var(--control-border-color);
+    border-width: var(--common-border-width);
+    border-radius: var(--control-radius);
+}
+
+.kit-slider .unity-base-slider__drag-container {
+}
+
+.kit-slider__readonly-value {
+    flex-grow: 0;
+    margin-right: 8px;
+    width: 50px;
+    font-size: var(--control-font-size);
+    color: var(--blue-color);
+    -unity-text-align: middle-center;
+    overflow: visible;
+}

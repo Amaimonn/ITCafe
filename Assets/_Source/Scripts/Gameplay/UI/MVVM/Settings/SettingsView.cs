@@ -1,5 +1,7 @@
 using System;
 using DevKit.UI.MVVM.Bases;
+using DevKit.UITK;
+using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using R3;
 using UnityEngine;
@@ -10,17 +12,13 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class SettingsView : ScreenToolkitAttach<SettingsViewModel>
     {
         [Header("UIElements")]
-        [SerializeField] private string _applyButtonName;
-        [SerializeField] private string _cancelChangesButtonName;
-        [SerializeField] private string _sectionsRootClass;
-
-        [SerializeField] private string _settingBarLabelClass;
-        [SerializeField] private string _settingBarBackgroundClass;
-        [SerializeField] private VisualTreeAsset _sliderSettingBarAsset;
-        [SerializeField] private VisualTreeAsset _toggleSettingBarAsset;
+        [SerializeField] private string _applyButtonName = "ApplyButton";
+        [SerializeField] private string _cancelChangesButtonName = "CancelChangesButton";
+        [SerializeField] private string _closeButtonName = "CloseButton";
 
         private Button _applyButton;
         private Button _cancelChangesButton;
+        private Button _closeButton;
 
         private SliderInt _sensitivitySlider;
         private DropdownField _fpsDropdown;
@@ -30,8 +28,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             _applyButton = Root.Q<Button>(name: _applyButtonName);
             _cancelChangesButton = Root.Q<Button>(name: _cancelChangesButtonName);
+            _closeButton = Root.Q<Button>(name: _closeButtonName);
 
-            _sensitivitySlider = Root.Q<SliderInt>("SensitivitySlider");
+            _sensitivitySlider = Root.Q<KitSliderInt>("SensitivitySlider");
             _fpsDropdown = Root.Q<DropdownField>("FPSDropdown");
             _vSyncToggle = Root.Q<Toggle>("VSyncToggle");
         }
@@ -48,12 +47,14 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _applyButton.RegisterCallback<ClickEvent>(ApplyChanges);
             _cancelChangesButton.RegisterCallback<ClickEvent>(CancelChanges);
+            _closeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
+                .AddTo(_disposables);
 
             ViewModel.IsAnyChanges.Subscribe(x =>
             {
                 _applyButton.SetEnabled(x);
                 _cancelChangesButton.SetEnabled(x);
-            });
+            }).AddTo(_disposables);;
         }
 
         private void BindSliderInt(SliderInt slider, Action<int> update, Observable<int> observable)
@@ -94,6 +95,11 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void CancelChanges(ClickEvent clickEvent)
         {
             ViewModel.CancelUnappliedChanges();
+        }
+        
+        private void OnCloseClicked(ClickEvent _)
+        {
+            ViewModel.StartClosing();
         }
     }
 }

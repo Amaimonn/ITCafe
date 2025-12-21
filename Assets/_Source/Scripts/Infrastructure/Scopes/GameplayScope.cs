@@ -12,6 +12,7 @@ using ITCafe.Gameplay.Data;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Player;
 using R3;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;
@@ -35,6 +36,7 @@ namespace ITCafe
         [SerializeField] private Interactor _playerInteractor;
         [SerializeField] private ItemPicker _playerItemPicker;
         [SerializeField] private InputActionReference _pauseActionRef;
+        [SerializeField] private CinemachineInputAxisController _cinemachineInputAxisController;
 
         [Header("Clients"), Space(4)]
         [SerializeField] private ClientCharacter[] _clientPrefabs;
@@ -146,6 +148,26 @@ namespace ITCafe
             foreach (var entry in _keyedItemPrefabs)
                 itemsCreator.Register(entry.GameObject, entry.KeyTag);
 
+            var settingsModel = Container.Resolve<SettingsModel>();
+            settingsModel.Sensitivity.Subscribe(x =>
+                {
+                    var newValue = x <= 50f
+                        ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
+                        : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
+                    foreach (var c in _cinemachineInputAxisController.Controllers)
+                    {
+                        if (c.Name == "Look X (Pan)")
+                        {
+                            c.Input.Gain = newValue;
+                        }
+                        if (c.Name == "Look Y (Tilt)")
+                        {
+                            c.Input.Gain = -newValue;
+                        }
+                    }
+                })
+                .AddTo(_disposables);
+
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);
 
@@ -171,7 +193,7 @@ namespace ITCafe
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-                
+
                 var guideBinder = Container.Resolve<IViewBinder<GuideViewModel>>();
                 var guideViewModel = guideBinder.Open();
                 guideViewModel.OnClosingCompleted.Take(1)
@@ -188,10 +210,10 @@ namespace ITCafe
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            
+
             var inputService = Container.Resolve<InputService>();
             inputService.SetInputEnabled(true);
-            
+
             _destroyToken = destroyCancellationToken;
 
             Container.Inject(_playerInteractor);
@@ -229,7 +251,7 @@ namespace ITCafe
             builder.Register<Func<HUDViewModel>>(x => () =>
             {
                 var hudViewModel = x.Resolve<HUDViewModel>();
-                var progressService = Container.Resolve<WorkProgressService>();
+                var progressService = x.Resolve<WorkProgressService>();
                 progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
                 progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
                 progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed());

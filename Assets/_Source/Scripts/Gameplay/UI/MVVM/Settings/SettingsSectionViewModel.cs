@@ -11,14 +11,21 @@ namespace ITCafe.Gameplay.UI.MVVM
     {
         public ReadOnlyReactiveProperty<bool> IsAnyChanges = new ReactiveProperty<bool>(false);
 
-        protected readonly SettingsModel _model;
-        protected CompositeDisposable _disposables = new();
+        protected SettingsModel _model;
+        protected CompositeDisposable _disposables;
         protected List<IReactiveChange> _changeProperties = new();
         protected List<Action> _cancelChanges = new();
-
-        public SettingsSectionViewModel(SettingsModel model)
+        
+        public void Bind(SettingsModel model)
         {
             _model = model;
+            _disposables = new();
+            OnBind(model);
+        }
+
+        protected virtual void OnBind(SettingsModel model)
+        {
+            
         }
 
         public virtual void ApplyChanges()
@@ -39,7 +46,11 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             BindChanges(modelProperty, viewModelProperty);
             _changeProperties.Add(viewModelProperty);
-            _cancelChanges.Add(() => modelProperty.Value = viewModelProperty.CachedValue);
+            _cancelChanges.Add(() =>
+            {
+                viewModelProperty.ResetToCached();
+                modelProperty.Value = viewModelProperty.CachedValue;
+            });
 
             return viewModelProperty;
         }

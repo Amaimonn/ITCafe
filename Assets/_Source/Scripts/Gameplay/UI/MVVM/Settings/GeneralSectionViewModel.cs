@@ -11,11 +11,11 @@ namespace ITCafe.Gameplay.UI.MVVM
         public Observable<bool> VSync => _vsync;
         public Observable<int> FPS => _fps;
 
-        private readonly ReactiveChange<int> _sensitivity;
-        private readonly ReactiveChange<bool> _vsync;
-        private readonly ReactiveChange<int> _fps;
+        private ReactiveChange<int> _sensitivity;
+        private ReactiveChange<bool> _vsync;
+        private ReactiveChange<int> _fps;
 
-        public GeneralSectionViewModel(SettingsModel model) : base(model)
+        protected override void OnBind(SettingsModel model)
         {
             _sensitivity = CreateBindedProperty(model.Sensitivity);
             _vsync = CreateBindedProperty(model.VSync);
