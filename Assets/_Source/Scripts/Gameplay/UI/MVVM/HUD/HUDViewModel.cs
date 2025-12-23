@@ -11,8 +11,6 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class HUDViewModel : ScreenViewModel
     {
-        public int RemainingSeconds => _remainingSeconds;
-
         public Observable<string> TimerText => _timerText;
         public Observable<int> PointsAmount => _pointsAmount;
 
@@ -35,8 +33,6 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private CancellationTokenSource _timerCts;
         private DateTime _sessionStartTime;
-        private bool _isSessionRunning;
-        private int _remainingSeconds;
         private IDisposable _timerSubscription;
 
         public HUDViewModel(IReadOnlyDictionary<int, ItemInfoSO> itemInfoMap)
@@ -44,20 +40,14 @@ namespace ITCafe.Gameplay.UI.MVVM
             _itemInfoMap = itemInfoMap;
         }
 
-        public void StartSessionTimer(TimeSpan sessionDuration)
+        public void SetRemainingSeconds(int remainingSeconds)
         {
-            _remainingSeconds = (int)sessionDuration.TotalSeconds;
-            _isSessionRunning = true;
-            _timerSubscription = Observable.Timer(TimeSpan.Zero, TimeSpan.FromSeconds(1), UnityTimeProvider.Update)
-                .TakeWhile(_ => _isSessionRunning)
-                .Subscribe(_ => TimerDisplayTick());
+            if (remainingSeconds <= 0)
+                remainingSeconds = 0;
+            
+            _timerText.Value = FormatTime(TimeSpan.FromSeconds(remainingSeconds));
         }
-
-        public void StopSessionTimer()
-        {
-            _isSessionRunning = false;
-        }
-
+     
         public void IncrementOrdersTaken()
         {
             _ordersTaken.Value++;
@@ -93,26 +83,10 @@ namespace ITCafe.Gameplay.UI.MVVM
             Disposes.ClearDispose(ref _timerSubscription);
             base.Dispose();
         }
-
-        private void TimerDisplayTick()
-        {
-            _remainingSeconds--;
-
-            if (_remainingSeconds <= 0)
-            {
-                _remainingSeconds = 0;
-                _isSessionRunning = false;
-            }
-
-            _timerText.Value = FormatTime(TimeSpan.FromSeconds(_remainingSeconds));
-        }
-
+        
         private string FormatTime(TimeSpan timeSpan)
         {
             return timeSpan.ToString(@"mm\:ss");
-            // timeSpan.Hours > 0 
-            // ? timeSpan.ToString(@"hh\:mm\:ss")
-            // : timeSpan.ToString(@"mm\:ss");
         }
     }
 }

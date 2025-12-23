@@ -18,10 +18,10 @@ namespace ITCafe.CafeBusiness
         private readonly IViewBinder<ResultsViewModel> _resultsBinder;
         private readonly InputService _inputService;
 
+        private readonly Subject<Unit> _onCompleted = new();
         private CancellationTokenSource _cts;
         private const int SESSION_DURATION_SECONDS = 300;
-        private readonly TimeSpan _sessionDuration = TimeSpan.FromSeconds(SESSION_DURATION_SECONDS);
-        private readonly Subject<Unit> _onCompleted = new();
+        private int _remainingSeconds = SESSION_DURATION_SECONDS;
 
         public GameSessionRunner(WorkProgressService workProgressService,
             HUDViewModel hudViewModel,
@@ -45,9 +45,15 @@ namespace ITCafe.CafeBusiness
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
                 _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
-                _hudViewModel.StartSessionTimer(_sessionDuration);
+                _hudViewModel.SetRemainingSeconds(_remainingSeconds);
 
-                await UniTask.Delay(_sessionDuration, cancellationToken: linkedTokenSource.Token);
+                for (var i = 1; i <= SESSION_DURATION_SECONDS; i++)
+                {
+                    await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: linkedTokenSource.Token);
+
+                    _remainingSeconds--;
+                    _hudViewModel.SetRemainingSeconds(_remainingSeconds);
+                }
 
                 CompleteSession();
             }
@@ -58,7 +64,6 @@ namespace ITCafe.CafeBusiness
             finally
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Game session stopped");
-                _hudViewModel.StopSessionTimer();
             }
         }
 
@@ -66,15 +71,18 @@ namespace ITCafe.CafeBusiness
         {
             Dispose();
             _clientsRunner.Dispose();
+            
             _workProgressService.SetTotalTime(
-                TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _hudViewModel.RemainingSeconds));
+                TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _remainingSeconds));
             _workProgressService.CompleteDay();
 
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);
+            
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            
             _onCompleted.OnNext(Unit.Default);
         }
 

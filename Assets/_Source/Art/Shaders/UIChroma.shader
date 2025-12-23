@@ -4,7 +4,7 @@ Shader "UI Toolkit/UIChroma"
     {
         _MainTex("Texture2D", 2D) = "white" {}
         
-        _BloomThreshold ("Bloom Threshold", Range(0, 1)) = 0.7
+        _BloomThreshold ("Bloom Threshold", Range(0, 1)) = 0.16
         _BloomIntensity ("Bloom Intensity", Range(0, 2)) = 0.5
         
         _RGBShift ("RGB Shift", Range(0, 0.02)) = 0.0015
@@ -67,8 +67,6 @@ Shader "UI Toolkit/UIChroma"
                 float4 uvRect = GetFilterUVRect(i.rectIndex);
                 float4 col = tex2D(_MainTex, i.uv);
                 float2 uv =  NormalizeUVs(i.uv, uvRect);
-                
-                // MapToUVRect(uv, uvRect);
 
                 float4 shiftedCol;
                 shiftedCol.r = tex2D(_MainTex, MapToUVRect(uv + float2(_RGBShift, 0.0), uvRect)).r;

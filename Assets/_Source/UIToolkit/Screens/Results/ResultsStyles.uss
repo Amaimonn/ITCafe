@@ -38,11 +38,12 @@
 }
 
 .results__receipt-number {
-    font-size: 12px;
+    font-size: 14px;
     color: rgb(120, 200, 180);
     -unity-text-align: middle-center;
-    margin-bottom: 12px;
+    margin-bottom: 0;
     letter-spacing: 1px;
+    padding-bottom: 0;
 }
 
 .results__day-title {
@@ -56,25 +57,48 @@
 .results__stars-container {
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: -4px;
+    margin-top: 12px;
 }
 
 .results__star {
-    width: 28px;
-    height: 28px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     margin: 0 6px;
     border-width: 2px;
+    font-size: 100px;
+    -unity-text-align: middle-center;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(40, 60, 100);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 12px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .results__star--filled {
-    background-color: rgb(255, 215, 0);
     border-color: rgb(255, 195, 0);
+    color: rgb(255, 215, 0);
+    -unity-text-outline-color: rgba(255, 230, 94, 0.6);
 }
 
 .results__star--empty {
-    background-color: rgba(40, 60, 100, 0.6);
     border-color: rgb(60, 100, 140);
+    color: rgba(40, 60, 100, 0.6);
+    -unity-text-outline-color: rgb(40, 60, 100);
 }
 
 .results__stats-section {
@@ -245,5 +269,3 @@
     background-color: rgba(70, 170, 200, 0.3);
     border-color: rgb(100, 200, 230);
 }
-
-

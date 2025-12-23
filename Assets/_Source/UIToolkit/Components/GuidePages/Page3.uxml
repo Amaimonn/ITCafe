@@ -33,9 +33,9 @@
             <ui:Label text="=" class="guide__operator"/>
             <ui:VisualElement class="guide__ingredient">
                 <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);">
-                    <ui:Label text="X" style="color: rgb(253, 55, 55); font-size: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); align-self: center; scale: 2 1.5; -unity-font-definition: url(&quot;project://database/Assets/_Source/Art/Fonts/Play-Regular.ttf?fileID=12800000&amp;guid=3de51de8e9653d74492aae1ba81063a0&amp;type=3#Play-Regular&quot;);"/>
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/_Source/Art/Images/cross_icon.png?fileID=2800000&amp;guid=99daa8f616fe2ee4395ced4cc3bc98cf&amp;type=3#cross_icon&quot;);"/>
                 </ui:VisualElement>
-                <ui:Label text="$&#1059;&#1044;&#1040;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                <ui:Label text="~&#1059;&#1044;&#1040;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

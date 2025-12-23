@@ -10,11 +10,11 @@
                     <ui:Label text="#AF3242" name="BillCodeLabel" class="results__receipt-number"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="StarsContainer" class="results__stars-container">
-                    <ui:VisualElement name="Star1" class="results__star results__star--filled"/>
-                    <ui:VisualElement name="Star2" class="results__star results__star--filled"/>
-                    <ui:VisualElement name="Star3" class="results__star results__star--empty"/>
-                    <ui:VisualElement name="Star4" class="results__star results__star--empty"/>
-                    <ui:VisualElement name="Star5" class="results__star results__star--empty"/>
+                    <ui:Label text="*" name="Star1" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--filled" style="margin-left: 0;"/>
+                    <ui:Label text="*" name="Star2" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--filled"/>
+                    <ui:Label text="*" name="Star3" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--empty"/>
+                    <ui:Label text="*" name="Star4" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--empty"/>
+                    <ui:Label text="*" name="Star5" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--empty"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="StatsSection" class="results__stats-section">
                     <ui:VisualElement name="OrdersRow1" class="results__stat-row">
