@@ -35,6 +35,7 @@ Shader "UI Toolkit/UIChroma"
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
+            #include "Filters.cginc"
 
             struct v2f
             {
@@ -59,22 +60,6 @@ Shader "UI Toolkit/UIChroma"
                 o.rectIndex = GetFilterRectIndex(v);
                 
                 return o;
-            }
-            
-            float2 NormalizeUVs(float2 uv, float4 uvRect)
-            {
-                return float2(
-                    (uv.x - uvRect.x) / uvRect.z,
-                    (uv.y - uvRect.y) / uvRect.w
-                );
-            }
-
-            float2 MapToUVRect(float2 uv, float4 uvRect)
-            {
-                return float2(
-                    uv.x * uvRect.z + uvRect.x,
-                    uv.y * uvRect.w + uvRect.y
-                );
             }
 
             float4 frag(v2f i) : SV_TARGET

@@ -28,6 +28,7 @@ Shader "UI Toolkit/UILensDistortion"
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
+            #include "Filters.cginc"
 
             struct v2f
             {
@@ -47,16 +48,6 @@ Shader "UI Toolkit/UILensDistortion"
                 o.uv = v.uv;
                 o.rectIndex = GetFilterRectIndex(v);
                 return o;
-            }
-
-            float2 NormalizeUVs(float2 uv, float4 uvRect)
-            {
-                return (uv - uvRect.xy) / uvRect.zw;
-            }
-
-            float2 MapToUVRect(float2 uv, float4 uvRect)
-            {
-                return uv * uvRect.zw + uvRect.xy;
             }
 
             // Вогнутая линза (helmet / visor)

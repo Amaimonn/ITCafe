@@ -26,6 +26,7 @@ Shader "UI Toolkit/UIWave"
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
+            #include "Filters.cginc"
 
             struct v2f
             {
@@ -44,22 +45,6 @@ Shader "UI Toolkit/UIWave"
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.rectIndex = GetFilterRectIndex(v);
                 return o;
-            }
-
-            float2 NormalizeUVs(float2 uv, float4 uvRect)
-            {
-                return float2(
-                    (uv.x - uvRect.x) / uvRect.z,
-                    (uv.y - uvRect.y) / uvRect.w
-                );
-            }
-
-            float2 MapToUVRect(float2 uv, float4 uvRect)
-            {
-                return float2(
-                    uv.x * uvRect.z + uvRect.x,
-                    uv.y * uvRect.w + uvRect.y
-                );
             }
 
             float2 RotateUV90(float2 uv)

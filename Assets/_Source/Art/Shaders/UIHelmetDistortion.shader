@@ -30,6 +30,7 @@ Shader "UI Toolkit/UIHelmetDistortion"
 
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
+            #include "Filters.cginc"
 
             struct v2f
             {
@@ -51,16 +52,6 @@ Shader "UI Toolkit/UIHelmetDistortion"
                 o.uv = v.uv;
                 o.rectIndex = GetFilterRectIndex(v);
                 return o;
-            }
-
-            float2 NormalizeUVs(float2 uv, float4 uvRect)
-            {
-                return (uv - uvRect.xy) / uvRect.zw;
-            }
-
-            float2 MapToUVRect(float2 uv, float4 uvRect)
-            {
-                return uv * uvRect.zw + uvRect.xy;
             }
 
             float2 BulgeDistortion(float2 uv)

@@ -1,18 +1,3 @@
-.cafe__view-title {
-    font-size: 28px;
-    color: rgb(0, 184, 148);
-    -unity-font-style: bold;
-    -unity-text-align: middle-left;
-    letter-spacing: 3px;
-}
-
-.cafe__view-subtitle {
-    font-size: 14px;
-    color: rgb(120, 200, 180);
-    -unity-text-align: middle-left;
-    letter-spacing: 1px;
-}
-
 .cafe__close-button {
     position: absolute;
     top: 12px;
