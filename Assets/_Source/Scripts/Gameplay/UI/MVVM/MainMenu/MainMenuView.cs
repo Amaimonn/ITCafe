@@ -142,7 +142,6 @@ namespace ITCafe.Gameplay.UI.MVVM
                 yield return new WaitForSeconds(_typingSpeed);
             }
 
-            // Flickering error
             var errorText = text[errorStartIndex..];
             var textBeforeError = currentText;
 

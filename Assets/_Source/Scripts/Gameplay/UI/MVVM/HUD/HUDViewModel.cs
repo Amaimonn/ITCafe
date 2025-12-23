@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DevKit.UI.MVVM;
 using R3;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;

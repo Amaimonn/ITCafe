@@ -7,7 +7,7 @@
 }
 
 .cafe__view-subtitle {
-    font-size: 12px;
+    font-size: 14px;
     color: rgb(120, 200, 180);
     -unity-text-align: middle-left;
     letter-spacing: 1px;

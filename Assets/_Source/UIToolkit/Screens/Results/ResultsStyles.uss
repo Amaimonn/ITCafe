@@ -16,7 +16,7 @@
     border-width: 1px;
     border-radius: 4px;
     padding: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .results__receipt-header {
@@ -98,10 +98,9 @@
 }
 
 .results__stat-label {
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(180, 220, 210);
     -unity-text-align: upper-left;
-    letter-spacing: 0.5px;
 }
 
 .results__stat-label--total {
@@ -127,6 +126,7 @@
 
 .results__stat-value--income {
     color: rgb(255, 200, 100);
+    font-size: 26px;
 }
 
 .results__stat-value--tips {
@@ -162,7 +162,7 @@
 }
 
 .results__bonus-label {
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(150, 200, 220);
     -unity-text-align: upper-left;
 }
@@ -200,9 +200,8 @@
 }
 
 .results__next-day {
-    font-size: 12px;
+    font-size: 14px;
     color: rgb(150, 200, 220);
-    -unity-font-style: italic;
     -unity-text-align: middle-center;
 }
 
@@ -224,7 +223,6 @@
     -unity-font-style: bold;
     font-size: 14px;
     color: rgb(220, 240, 235);
-    letter-spacing: 1px;
 }
 
 .results__button--primary {
@@ -247,3 +245,5 @@
     background-color: rgba(70, 170, 200, 0.3);
     border-color: rgb(100, 200, 230);
 }
+
+

@@ -24,12 +24,6 @@
     left: 0;
 }
 
-
-
-
-
-
-
 .main-menu__coffee-bean {
     position: absolute;
     width: 40px;
@@ -37,10 +31,6 @@
     background-color: rgba(101, 67, 33, 0.3);
     border-radius: 50%;
 }
-
-
-
-
 
 .main-menu__content {
     flex-direction: column;
@@ -70,7 +60,6 @@
     color: rgb(132, 195, 106);
     -unity-text-align: middle-left;
     letter-spacing: -6px;
-    -unity-font-style: italic;
     width: 100%;
     text-shadow: 1px 1px 0 rgb(0, 0, 0);
     margin-bottom: 0;

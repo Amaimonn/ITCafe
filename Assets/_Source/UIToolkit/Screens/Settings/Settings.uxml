@@ -1,6 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Settings/SettingsStyles.uss?fileID=7433441132597879392&amp;guid=30f779d9fb6fcbd4dbb865b56c1d47a6&amp;type=3#SettingsStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss?fileID=7433441132597879392&amp;guid=4db18ea67a6154348b95683aced0b2d5&amp;type=3#DropdownStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="settings__root" style="flex-grow: 1;">
         <ui:VisualElement name="SettingsPanel" class="settings__panel">
             <ui:VisualElement name="Header" class="settings__header">
@@ -17,9 +18,9 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="FPSBar" class="settings__bar">
-                        <ui:Label text="&#1060;&#1055;&#1057;" class="settings__bar-label"/>
+                        <ui:Label text="FPS" class="settings__bar-label"/>
                         <ui:VisualElement name="FPSControl" class="settings__control">
-                            <ui:DropdownField name="FPSDropdown" choices="60,120,180,&#1052;&#1072;&#1082;&#1089;&#1080;&#1084;&#1091;&#1084;" value="60" focusable="false" class="settings__dropdown"/>
+                            <ui:DropdownField name="FPSDropdown" choices="60,120,180,&#1052;&#1072;&#1082;&#1089;&#1080;&#1084;&#1091;&#1084;" value="60" focusable="false" index="-1" class="settings__dropdown"/>
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="VSyncBar" class="settings__bar">

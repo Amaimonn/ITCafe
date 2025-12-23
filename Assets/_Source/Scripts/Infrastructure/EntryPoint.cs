@@ -28,8 +28,8 @@ namespace ITCafe
             
             var rootContainer = rootScope.Container;
             var monoHook = rootContainer.Resolve<MonoBehaviourHook>();
-            // var loadingScreen = rootContainer.Resolve<LoadingScreen>();
-            // loadingScreen.Show();
+            var loadingScreen = rootContainer.Resolve<LoadingScreen>();
+            loadingScreen.Show();
             
             monoHook.StartCoroutine(LoadEntryScene());
             

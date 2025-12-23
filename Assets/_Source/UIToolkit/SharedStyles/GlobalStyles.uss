@@ -27,11 +27,18 @@
     --gold-border-active: rgb(255, 238, 153);
     --gold-color: rgb(255, 245, 200);
     -unity-font-definition: url("project://database/Assets/_Source/Art/Fonts/Tektur-VariableFont_wdth,wght.ttf?fileID=12800000&guid=f22f7c504ae8bae488c80c7e91742461&type=3#Tektur-VariableFont_wdth,wght");
-    
     --control-radius: 2px;
     --common-border-width: 1px;
     --control-border-color: rgba(70, 170, 200, 0.8);
     --control-bg: rgb(20, 25, 40);
     --control-bg-hover: rgb(30, 37, 60);
     --control-font-size: 16px;
+}
+
+Label {
+    letter-spacing: 2px;
+}
+
+Button {
+    letter-spacing: 2px;
 }
