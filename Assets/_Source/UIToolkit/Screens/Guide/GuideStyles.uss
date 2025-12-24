@@ -21,6 +21,7 @@
     border-right-color: var(--cyan-border);
     border-top-color: var(--cyan-border);
     border-bottom-color: var(--cyan-border);
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
 }
 
 .guide__header {
@@ -140,7 +141,7 @@
 }
 
 .guide__ingredient-label {
-    font-size: 11px;
+    font-size: 14px;
     color: rgb(180, 220, 240);
     -unity-text-align: middle-center;
     -unity-font-style: bold;
@@ -274,8 +275,6 @@
     padding: 0;
     font-size: 14px;
 }
-
-
 
 .guide__page-indicators {
     flex-direction: row;

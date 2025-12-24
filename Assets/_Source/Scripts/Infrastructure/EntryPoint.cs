@@ -6,9 +6,9 @@ using VContainer.Unity;
 
 namespace ITCafe
 {
-    public class GameEntryPoint
+    public class EntryPoint
     {
-        private static GameEntryPoint _instance;
+        private static EntryPoint _instance;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Enter()

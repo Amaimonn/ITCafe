@@ -1,0 +1,40 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Settings/SettingsStyles.uss?fileID=7433441132597879392&amp;guid=30f779d9fb6fcbd4dbb865b56c1d47a6&amp;type=3#SettingsStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss?fileID=7433441132597879392&amp;guid=4db18ea67a6154348b95683aced0b2d5&amp;type=3#DropdownStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="settings__root" style="flex-grow: 1;">
+        <ui:VisualElement name="SettingsPanel" class="settings__panel">
+            <ui:VisualElement name="Header" class="settings__header">
+                <ui:Label text="// &#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;" class="cafe__view-title"/>
+                <ui:Label text="&#1050;&#1054;&#1053;&#1060;&#1048;&#1043;&#1059;&#1056;&#1040;&#1062;&#1048;&#1071;_&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1067;" class="cafe__view-subtitle"/>
+            </ui:VisualElement>
+            <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
+            <ui:VisualElement name="SectionsContainer" class="settings__sections">
+                <ui:VisualElement name="GeneralSection" class="settings__section">
+                    <ui:VisualElement name="SensitivityBar" class="settings__bar">
+                        <ui:Label text="&#1063;&#1059;&#1042;&#1057;&#1058;&#1042;&#1048;&#1058;&#1045;&#1051;&#1068;&#1053;&#1054;&#1057;&#1058;&#1068;_&#1042;&#1047;&#1043;&#1051;&#1071;&#1044;&#1040;" class="settings__bar-label"/>
+                        <ui:VisualElement name="SensitivityControl" class="settings__control">
+                            <DevKit.UITK.KitSliderInt show-readonly-value="true" high-value="100" value="1" low-value="1" name="SensitivitySlider" class="settings__slider"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="FPSBar" class="settings__bar">
+                        <ui:Label text="FPS" class="settings__bar-label"/>
+                        <ui:VisualElement name="FPSControl" class="settings__control">
+                            <ui:DropdownField name="FPSDropdown" choices="60,120,180,&#1052;&#1072;&#1082;&#1089;&#1080;&#1084;&#1091;&#1084;" value="60" focusable="false" index="-1" class="settings__dropdown"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="VSyncBar" class="settings__bar">
+                        <ui:Label text="&#1042;&#1045;&#1056;&#1058;&#1048;&#1050;&#1040;&#1051;&#1068;&#1053;&#1040;&#1071;_&#1057;&#1048;&#1053;&#1061;&#1056;&#1054;&#1053;&#1048;&#1047;&#1040;&#1062;&#1048;&#1071;" class="settings__bar-label"/>
+                        <ui:VisualElement name="VSyncControl" class="settings__control">
+                            <ui:Toggle name="VSyncToggle" focusable="false" class="settings__toggle"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ActionsContainer" class="settings__actions">
+                <ui:Button name="CancelChangesButton" text="&#1054;&#1058;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="cafe__control-button cafe__control-button--red settings__button" style="margin-bottom: 0;"/>
+                <ui:Button name="ApplyButton" text="&#1055;&#1056;&#1048;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="settings__button cafe__control-button cafe__control-button--cyan"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -68,13 +68,23 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnBind(viewModel);
             _playButton.RegisterCallbackOnce<ClickEvent>(StartGameplay);
-            _exitButton.RegisterCallbackOnce<ClickEvent>(_ => Application.Quit());
-            // TODO: Добавить обработку кнопки настроек
+            _settingsButton.RegisterCallback<ClickEvent>(OpenSettings);
+            _exitButton.RegisterCallbackOnce<ClickEvent>(Quit);
         }
         
         private void StartGameplay(ClickEvent clickEvent)
         {
             ViewModel.StartGameplay();
+        }
+        
+        private void OpenSettings(ClickEvent clickEvent)
+        {
+            ViewModel.OpenSettings();
+        }
+        
+        private void Quit(ClickEvent clickEvent)
+        {
+            ViewModel.Quit();
         }
 
         private IEnumerator TypeTerminalLogs()
@@ -132,7 +142,6 @@ namespace ITCafe.Gameplay.UI.MVVM
                 yield return new WaitForSeconds(_typingSpeed);
             }
 
-            // Flickering error
             var errorText = text[errorStartIndex..];
             var textBeforeError = currentText;
 

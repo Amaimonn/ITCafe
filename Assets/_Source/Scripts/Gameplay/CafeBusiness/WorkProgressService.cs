@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using DevKit.Utils;
 using ITCafe.Data.Items;
 using R3;
-using UnityEngine;
 
 namespace ITCafe.CafeBusiness
 {
@@ -118,7 +117,8 @@ namespace ITCafe.CafeBusiness
                 AverageServiceTime = AverageServiceTime,
                 ItemsServed = _itemsServedCountMap,
                 Points = points,
-                EarnedStars = stars
+                EarnedStars = stars,
+                StarEvaluations =  _fiveStarEvaluations,
             };
         }
 

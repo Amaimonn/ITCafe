@@ -8,7 +8,7 @@
         <ui:VisualElement name="ContentContainer" class="main-menu__content">
             <ui:VisualElement name="MenuPanel" class="menu__panel">
                 <ui:VisualElement name="HeaderSection" class="main-menu__header">
-                    <ui:Label text="IT Cafe++" class="main-menu__title" style="filter: filter();"/>
+                    <ui:Label text="IT Cafe++" class="main-menu__title"/>
                     <ui:VisualElement name="Logs" style="flex-grow: 1; height: 300px; width: 420px;">
                         <ui:Label text="===========================================" emoji-fallback-support="false" name="TerminalLog1" parse-escape-sequences="true" class="main-menu__subtitle"/>
                         <ui:Label text="[ &#1048;&#1053;&#1048;&#1062;&#1048;&#1040;&#1051;&#1048;&#1047;&#1040;&#1062;&#1048;&#1071; &#1044;&#1053;&#1045;&#1042;&#1053;&#1048;&#1050;&#1040; &#1057;&#1054;&#1041;&#1067;&#1058;&#1048;&#1049; ]" emoji-fallback-support="false" name="TerminalLog2" class="main-menu__subtitle"/>
@@ -27,9 +27,9 @@
                     <ui:Label text="PS: C:\Users\you&gt; &#1057;&#1073;&#1086;&#1081; &#1074; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1077; &#1082;&#1072;&#1088;&#1100;&#1077;&#1088;&#1099;.  &gt;&gt; &#1048;&#1085;&#1080;&#1094;&#1080;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085; &#1087;&#1088;&#1086;&#1090;&#1086;&#1082;&#1086;&#1083; &quot;&#1050;&#1072;&#1092;&#1077;&quot;." emoji-fallback-support="false" class="main-menu__subtitle" style="display: none;"/>
                 </ui:VisualElement>
                 <ui:VisualElement name="MenuButtons" class="main-menu__buttons">
-                    <ui:Button name="PlayButton" text="&#1048;&#1043;&#1056;&#1040;&#1058;&#1068;" class="cafe__control-button cafe__control-button--cyan"/>
-                    <ui:Button name="SettingsButton" text="&#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;" class="cafe__control-button cafe__control-button--blue"/>
-                    <ui:Button name="ExitButton" text="&#1042;&#1067;&#1061;&#1054;&#1044;" class="cafe__control-button cafe__control-button--red"/>
+                    <ui:Button name="PlayButton" text="&#1048;&#1043;&#1056;&#1040;&#1058;&#1068;" focusable="false" class="cafe__control-button cafe__control-button--cyan"/>
+                    <ui:Button name="SettingsButton" text="&#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;" focusable="false" class="cafe__control-button cafe__control-button--blue"/>
+                    <ui:Button name="ExitButton" text="&#1042;&#1067;&#1061;&#1054;&#1044;" focusable="false" class="cafe__control-button cafe__control-button--red"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

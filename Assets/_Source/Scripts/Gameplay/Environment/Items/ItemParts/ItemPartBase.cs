@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using DevKit.Utils;
-using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Player;
-using VContainer;
 
 namespace ITCafe.Environment
 {

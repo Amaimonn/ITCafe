@@ -39,11 +39,13 @@ namespace ITCafe
         private IEnumerator LoadMainMenu(MainMenuEnterContext mainMenuEnterContext = null,
             bool showLoadingImmediately = false)
         {
-            yield return _loadingScreen.ShowWithInstantlyCoroutine(showLoadingImmediately);
+            yield return _loadingScreen.ShowWithInstantCoroutine(showLoadingImmediately);
+            
             var startTime = Time.time;
             _onLoadingStarted.OnNext(Unit.Default);
 
             yield return LoadSceneAsync(Scenes.MAIN_MENU);
+            
             _onLoadingFinished.OnNext(Unit.Default);
 
             Debug.Log("Main menu scene loaded");
@@ -62,7 +64,7 @@ namespace ITCafe
 
         private IEnumerator LoadGameplay(GameplayEnterContext gameplayEnterContext = null, bool immediateLoading = false)
         {
-            yield return _loadingScreen.ShowWithInstantlyCoroutine(immediateLoading);
+            yield return _loadingScreen.ShowWithInstantCoroutine(immediateLoading);
 
             var startTime = Time.time;
             _onLoadingStarted.OnNext(Unit.Default);
@@ -93,8 +95,7 @@ namespace ITCafe
             });
 
             _onLoadingFinished.OnNext(Unit.Default);
-
-
+            
             yield return GetRemainFakeLoadTime(startTime);
             yield return _loadingScreen.HideCoroutine();
         }

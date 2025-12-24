@@ -15,6 +15,7 @@ namespace ITCafe.CafeBusiness
         public IReadOnlyDictionary<int, int> ItemsServed { get; set; }
         public int Points { get; set; }
         public int EarnedStars { get; set; }
+        public IReadOnlyList<int> StarEvaluations { get; set; } 
 
         public override string ToString()
         {

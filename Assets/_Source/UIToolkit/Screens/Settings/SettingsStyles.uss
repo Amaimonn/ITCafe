@@ -1,0 +1,203 @@
+.settings__root {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 30, 0.85);
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.settings__panel {
+    width: auto;
+    flex-direction: column;
+    background-color: rgba(20, 25, 45, 0.95);
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 25px;
+    position: relative;
+    border-left-color: rgb(0, 255, 205);
+    border-right-color: rgb(0, 255, 205);
+    border-top-color: rgb(0, 255, 205);
+    border-bottom-color: rgb(0, 255, 205);
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
+}
+
+.settings__close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    border-color: rgb(100, 120, 140);
+    border-width: 1px;
+    border-radius: 3px;
+    color: rgb(160, 180, 200);
+    font-size: 18px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2px;
+}
+
+.settings__close-button:hover {
+    background-color: rgba(231, 76, 60, 0.2);
+    border-color: rgb(231, 76, 60);
+    color: rgb(255, 150, 140);
+}
+
+.settings__close-button:active {
+    background-color: rgba(231, 76, 60, 0.3);
+    border-color: rgb(255, 100, 80);
+    color: rgb(255, 180, 170);
+}
+
+.settings__header {
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom-color: rgba(0, 184, 148, 0.3);
+    border-bottom-width: 1px;
+    padding-right: 40px;
+}
+
+.settings__title {
+    font-size: 22px;
+    color: rgb(0, 184, 148);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.settings__subtitle {
+    font-size: 11px;
+    color: rgb(120, 200, 180);
+    -unity-text-align: middle-left;
+    letter-spacing: 1px;
+}
+
+.settings__sections {
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.settings__section {
+    flex-direction: column;
+    background-color: rgba(15, 20, 35, 0.6);
+    border-color: rgba(70, 170, 200, 0.2);
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.settings__bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 10px 0;
+    padding: 8px 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.settings__bar-label {
+    font-size: var(--control-font-size);
+    color: rgb(180, 220, 210);
+    -unity-text-align: middle-left;
+    letter-spacing: 0.5px;
+    flex-grow: 1;
+    margin-right: 15px;
+    min-width: 320px;
+}
+
+.settings__control {
+    align-items: stretch;
+    justify-content: center;
+    min-width: 180px;
+}
+
+.settings__slider {
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 238px;
+}
+
+.settings__toggle {
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+}
+
+.settings__actions {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 20px;
+    border-top-color: rgba(0, 184, 148, 0.3);
+    border-top-width: 1px;
+}
+
+.settings__button {
+    min-width: 180px;
+    height: 40px;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.settings__button--primary {
+    background-color: rgba(0, 184, 148, 0.2);
+    border-color: rgb(0, 184, 148);
+    color: rgb(220, 240, 235);
+}
+
+.settings__button--primary:hover {
+    background-color: rgba(0, 184, 148, 0.4);
+    border-color: rgb(0, 224, 178);
+}
+
+.settings__button--primary:active {
+    background-color: rgba(0, 184, 148, 0.5);
+    border-color: rgb(0, 255, 200);
+}
+
+.settings__button--secondary {
+    background-color: rgba(45, 52, 74, 0.8);
+    border-color: rgb(70, 170, 200);
+    color: rgb(180, 220, 240);
+}
+
+.settings__button--secondary:hover {
+    background-color: rgba(70, 170, 200, 0.3);
+    border-color: rgb(100, 200, 230);
+}
+
+.settings__button--secondary:active {
+    background-color: rgba(70, 170, 200, 0.4);
+    border-color: rgb(120, 220, 255);
+}
+
+.settings__button:disabled {
+    opacity: 0.5;
+    background-color: rgba(60, 70, 90, 0.3);
+    border-color: rgb(80, 100, 120);
+    color: rgb(140, 160, 180);
+}
+
+.settings__dropdown {
+    width: 100%;
+}

@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5742079816527037440
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIGlitchMat
+  m_Shader: {fileID: 4800000, guid: 8268b9032c6ed5a4db1649a65f33dd59, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BlockCount: 15
+    - _BlockGlitchAmount: 0.3
+    - _BlockGlitchIntensity: 0.2
+    - _BlockGlitchSpeed: 3
+    - _BlockOffsetIntensity: 0.05
+    - _BlockSize: 0.05
+    - _BlockSpeed: 1
+    - _BloomIntensity: 0.5
+    - _BloomSize: 2
+    - _BloomThreshold: 0.16
+    - _Brightness: 1.1
+    - _Contrast: 1.2
+    - _DiagonalAngle: 0.785
+    - _DiagonalShift: 0.03
+    - _DiagonalSpeed: 5
+    - _DigitalRain: 0.3
+    - _DigitalStripes: 0.4
+    - _Distortion: 0.02
+    - _DistortionSpeed: 1
+    - _FlickerIntensity: 0.1
+    - _FlickerSpeed: 2
+    - _GlitchBlockSize: 1
+    - _GlitchFrequency: 2
+    - _GlitchIntensity: 1
+    - _GlitchPulseFreq: 0.2
+    - _GlitchShift: 0.1
+    - _GlitchSpeed: 1
+    - _HueShift: 0.1
+    - _NoiseScale: 5
+    - _NoiseSpeed: 0.5
+    - _RGBShift: 0.0015
+    - _RGBShiftIntensity: 0.01
+    - _RGBShiftSpeed: 3
+    - _RainDensity: 3
+    - _RainSpeed: 3
+    - _RectCount: 30
+    - _RectFlashSpeed: 1
+    - _RectGlitchIntensity: 0.4
+    - _RectMaxSize: 0.15
+    - _RectMinSize: 0.05
+    - _Saturation: 1.2
+    - _ScanLineDensity: 50
+    - _ScanLineIntensity: 0.02
+    - _ScanLineSpeed: 3
+    - _ScanLineWidth: 0.005
+    - _StripeSpeed: 8
+    - _StripeThickness: 0.02
+    - _VignetteIntensity: 0.3
+    - _VignetteSmoothness: 0.5
+    m_Colors:
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 1}
+    - _GlitchTint: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

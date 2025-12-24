@@ -17,7 +17,13 @@
     border-radius: 4px;
     padding: 30px;
     position: relative;
+    border-left-color: rgb(0, 255, 205);
+    border-right-color: rgb(0, 255, 205);
+    border-top-color: rgb(0, 255, 205);
+    border-bottom-color: rgb(0, 255, 205);
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
 }
+
 .pause__header {
     flex-direction: column;
     margin-bottom: 30px;
@@ -79,20 +85,6 @@
     flex-direction: column;
     margin-bottom: 25px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .pause__footer {
     flex-direction: column;

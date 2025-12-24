@@ -1,0 +1,89 @@
+.unity-popup-field {
+    padding: 0;
+    margin: 0;
+}
+
+.unity-base-popup-field__input {
+    background-color: var(--control-bg);
+    border-color: var(--control-border-color);
+    border-radius: var(--control-radius);
+    border-width: var(--common-border-width);
+    margin-left: 0;
+    overflow: visible;
+    padding-top: 2px;
+    padding-right: 6px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+}
+
+.unity-base-popup-field__text {
+    color: var(--blue-color);
+    font-size: var(--control-font-size);
+    -unity-text-align: upper-center;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-right: 0;
+}
+
+.unity-popup-field:enabled:hover > .unity-base-popup-field__input {
+    background-color: var(--control-bg-hover);
+    border-color: var(--control-border-color);
+}
+
+.unity-popup-field:enabled:active > .unity-base-popup-field__input {
+    background-color: var(--control-bg-hover);
+    border-color: var(--control-border-color);
+}
+
+.unity-base-dropdown__container-inner {
+    background-color: var(--control-bg);
+    border-color: var(--control-border-color);
+    border-radius: var(--control-radius);
+    border-width: var(--common-border-width);
+    padding: 0;
+}
+
+.unity-base-dropdown__container-inner .unity-scroll-view__content-container {
+    padding: 2px;
+}
+
+.unity-base-dropdown__item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 100%;
+    padding: 0;
+    margin: 1px 0;
+    min-height: auto;
+    color: var(--blue-color);
+    background-color: var(--control-bg);
+    border-radius: 2px;
+    font-size: var(--control-font-size);
+    transition: all 0.1s ease-out;
+}
+
+.unity-base-dropdown__label {
+    margin: 0;
+}
+
+.unity-base-dropdown__item:enabled:hover {
+    background-color: var(--control-bg-hover);
+    padding-left: 8px;
+}
+
+.unity-base-dropdown__item:active {
+    background-color: rgba(255, 100, 80, 0.5);
+}
+
+.unity-base-dropdown > .unity-scroll-view__content-and-vertical-scroll-container {
+    display: none;
+}
+
+.unity-base-dropdown__checkmark {
+    display: none;
+}
+
+.unity-popup-field .unity-base-popup-field__arrow {
+    -unity-background-image-tint-color: var(--blue-color);
+}

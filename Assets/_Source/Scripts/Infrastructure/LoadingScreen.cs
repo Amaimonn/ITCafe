@@ -30,7 +30,7 @@ namespace ITCafe
         }
 #endregion
 
-        public IEnumerator ShowWithInstantlyCoroutine(bool isInstant)
+        public IEnumerator ShowWithInstantCoroutine(bool isInstant)
         {
             if (isInstant)
                 Show();

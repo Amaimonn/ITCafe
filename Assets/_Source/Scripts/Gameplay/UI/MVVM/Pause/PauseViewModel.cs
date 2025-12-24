@@ -1,4 +1,6 @@
+using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
+using Inui.UI.MVVM.Settings;
 using R3;
 using UnityEngine;
 using VContainer;
@@ -10,13 +12,16 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly Subject<Unit> _exitToMenuSignal;
         private readonly Subject<Unit> _restartSignal;
         private readonly InputService _inputService;
-
+        private readonly IViewBinder<SettingsViewModel> _settingsBinder;
+        
         public PauseViewModel([Key(Constants.GAMEPLAY_EXIT_SIGNAL)] Subject<Unit> exitToMenuSignal,
-            [Key(Constants.RESTART_GAMEPLAY_SIGNAL)] Subject<Unit> restartSignal, InputService inputService)
+            [Key(Constants.RESTART_GAMEPLAY_SIGNAL)] Subject<Unit> restartSignal, InputService inputService,
+            IViewBinder<SettingsViewModel> settingsBinder)
         {
             _exitToMenuSignal = exitToMenuSignal;
             _restartSignal = restartSignal;
             _inputService = inputService;
+            _settingsBinder = settingsBinder;
         }
 
         public override void Open()
@@ -42,9 +47,15 @@ namespace ITCafe.Gameplay.UI.MVVM
             _exitToMenuSignal.OnNext(Unit.Default);
         }
 
+        public void OpenSettings()
+        {
+            _settingsBinder.Open();
+        }
+        
         public void Restart()
         {
             _restartSignal.OnNext(Unit.Default);
         }
     }
 }
+

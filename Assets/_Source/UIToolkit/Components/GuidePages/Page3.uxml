@@ -5,7 +5,7 @@
         <ui:VisualElement name="Equation1" class="guide__equation">
             <ui:VisualElement class="guide__ingredient">
                 <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/_Source/Art/Images/TrayIcon.png?fileID=21300000&amp;guid=c98bb47a1d3dc7e46bdd6c5f2908574f&amp;type=3#TrayIcon&quot;);"/>
-                <ui:Label text="$&#1055;&#1054;&#1044;&#1053;&#1054;&#1057;" class="guide__ingredient-label"/>
+                <ui:Label text="C:\ &#1055;&#1054;&#1044;&#1053;&#1054;&#1057;" class="guide__ingredient-label"/>
             </ui:VisualElement>
             <ui:Label text="+" class="guide__operator"/>
             <ui:VisualElement class="guide__ingredient">
@@ -17,7 +17,7 @@
                 <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/_Source/Art/Images/TrayIcon.png?fileID=21300000&amp;guid=c98bb47a1d3dc7e46bdd6c5f2908574f&amp;type=3#TrayIcon&quot;);">
                     <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/sweet_and_sour_chicken.png?fileID=21300000&amp;guid=ec06f5e7b761d704d9762c9ff9b75b91&amp;type=3#sweet_and_sour_chicken&quot;); background-size: 70% 70%; background-position-y: top 0;"/>
                 </ui:VisualElement>
-                <ui:Label text="$&#1055;&#1054;&#1044;&#1053;&#1054;&#1057;_&#1057;_&#1041;&#1051;&#1070;&#1044;&#1054;&#1052;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                <ui:Label text="C:\ &#1055;&#1054;&#1044;&#1053;&#1054;&#1057; \ $&#1041;&#1051;&#1070;&#1044;&#1054;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Equation2" class="guide__equation">
@@ -28,14 +28,14 @@
             <ui:Label text="+" class="guide__operator"/>
             <ui:VisualElement class="guide__ingredient">
                 <ui:VisualElement class="guide__ingredient-icon" style="background-image: url(&quot;project://database/Assets/_Source/Art/Images/TrashCanIcon.png?fileID=2800000&amp;guid=eba35aef0142b2546b3ddaaf96693e7b&amp;type=3#TrashCanIcon&quot;);"/>
-                <ui:Label text="$&#1052;&#1059;&#1057;&#1054;&#1056;&#1050;&#1040;" class="guide__ingredient-label"/>
+                <ui:Label text="D:\ &#1052;&#1059;&#1057;&#1054;&#1056;&#1050;&#1040;" class="guide__ingredient-label"/>
             </ui:VisualElement>
             <ui:Label text="=" class="guide__operator"/>
             <ui:VisualElement class="guide__ingredient">
                 <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);">
-                    <ui:Label text="X" style="color: rgb(253, 55, 55); font-size: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); align-self: center; scale: 2 1.5;"/>
+                    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/_Source/Art/Images/cross_icon.png?fileID=2800000&amp;guid=99daa8f616fe2ee4395ced4cc3bc98cf&amp;type=3#cross_icon&quot;);"/>
                 </ui:VisualElement>
-                <ui:Label text="$&#1059;&#1044;&#1040;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
+                <ui:Label text="~&#1059;&#1044;&#1040;&#1051;&#1045;&#1053;&#1048;&#1045;" class="guide__result-label guide__ingredient-label guide__ingredient-label--result"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -24,7 +24,7 @@ MonoBehaviour:
       m_Right: 0
       m_Bottom: 0
     m_WriteMargins:
-      m_Left: 0
-      m_Top: 0
-      m_Right: 0
-      m_Bottom: 0
+      m_Left: 100
+      m_Top: 100
+      m_Right: 100
+      m_Bottom: 100

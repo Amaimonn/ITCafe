@@ -11,11 +11,13 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _resumeButtonName = "ResumeButton";
         [SerializeField] private string _closeButtonName = "CloseButton";
         [SerializeField] private string _restartButtonName = "RestartButton";
+        [SerializeField] private string _settingsButtonName = "SettingsButton";
         [SerializeField] private string _exitButtonName = "ExitButton";
         
         private Button _resumeButton;
         private Button _closeButton;
         private Button _restartButton;
+        private Button _settingsButton;
         private Button _exitButton;
 
         protected override void OnInit()
@@ -23,6 +25,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _resumeButton = Root.Q<Button>(name: _resumeButtonName);
             _closeButton = Root.Q<Button>(name: _closeButtonName);
             _restartButton = Root.Q<Button>(name: _restartButtonName);
+            _settingsButton = Root.Q<Button>(name: _settingsButtonName);
             _exitButton = Root.Q<Button>(name: _exitButtonName);
         }
 
@@ -37,6 +40,9 @@ namespace ITCafe.Gameplay.UI.MVVM
                 .AddTo(_disposables);
 
             _restartButton.SubscribeCallbackOnce<ClickEvent>(OnRestartClicked)
+                .AddTo(_disposables);
+            
+            _settingsButton.SubscribeCallback<ClickEvent>(OnSettingsClicked)
                 .AddTo(_disposables);
 
             _exitButton.SubscribeCallbackOnce<ClickEvent>(OnExitClicked)
@@ -53,6 +59,11 @@ namespace ITCafe.Gameplay.UI.MVVM
             ViewModel.ExitToMenu();
         }
 
+        private void OnSettingsClicked(ClickEvent _)
+        {
+            ViewModel.OpenSettings();
+        }
+        
         private void OnRestartClicked(ClickEvent _)
         {
             ViewModel.Restart();

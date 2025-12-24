@@ -9089,7 +9089,7 @@ Transform:
   m_GameObject: {fileID: 604675094}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.507, y: 0.8020001, z: -2.682}
+  m_LocalPosition: {x: 9.64, y: 0.8020001, z: -2.887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9858,7 +9858,7 @@ Transform:
   m_GameObject: {fileID: 654921928}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.507, y: 1.4520001, z: -2.682}
+  m_LocalPosition: {x: 9.64, y: 1.4520001, z: -2.887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22050,6 +22050,7 @@ MonoBehaviour:
   _playerInteractor: {fileID: 604675099}
   _playerItemPicker: {fileID: 604675100}
   _pauseActionRef: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _cinemachineInputAxisController: {fileID: 1589975953}
   _clientPrefabs:
   - {fileID: 1935830331690626689, guid: e723f90a8283e8648b5de2309d25d248, type: 3}
   - {fileID: 353381090113085243, guid: 81170a5be13d0e2449a33eefd05f6e39, type: 3}
@@ -27615,7 +27616,7 @@ Transform:
   m_GameObject: {fileID: 1589975950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.507, y: 1.4520001, z: -2.682}
+  m_LocalPosition: {x: 9.64, y: 1.4520001, z: -2.887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
