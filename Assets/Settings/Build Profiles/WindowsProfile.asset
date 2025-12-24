@@ -1,47 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7031789044254360623
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 15009, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Graphics Settings
-  m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.Build.Profile.BuildProfileGraphicsSettings
-  m_LightmapStripping: 0
-  m_LightmapKeepPlain: 1
-  m_LightmapKeepDirCombined: 1
-  m_LightmapKeepDynamicPlain: 1
-  m_LightmapKeepDynamicDirCombined: 1
-  m_LightmapKeepShadowMask: 1
-  m_LightmapKeepSubtractive: 1
-  m_FogStripping: 0
-  m_FogKeepLinear: 1
-  m_FogKeepExp: 1
-  m_FogKeepExp2: 1
-  m_InstancingStripping: 0
-  m_BrgStripping: 0
-  m_LogWhenShaderIsCompiled: 0
-  m_CameraRelativeLightCulling: 0
-  m_CameraRelativeShadowCulling: 0
-  m_VideoShadersIncludeMode: 2
-  m_AlwaysIncludedShaders:
-  - {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 15104, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 15105, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 15106, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10783, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightProbeOutsideHullStrategy: 0
-  m_PreloadedShaders: []
-  m_PreloadShadersBatchTimeLimit: -1
-  m_ShaderBuildSettings:
-    keywordDeclarationOverrides: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +178,7 @@ MonoBehaviour:
     - line: '|     enable360StereoCapture: 0'
     - line: '|   isWsaHolographicRemotingEnabled: 0'
     - line: '|   enableFrameTimingStats: 0'
-    - line: '|   enableOpenGLProfilerGPURecorders: 1'
+    - line: '|   enableOpenGLProfilerGPURecorders: 0'
     - line: '|   allowHDRDisplaySupport: 0'
     - line: '|   useHDRDisplay: 0'
     - line: '|   hdrBitDepth: 0'
@@ -592,10 +550,12 @@ MonoBehaviour:
     - line: '|       m_SubKind: '
     - line: '|   m_BuildTargetBatching:'
     - line: '|   - m_BuildTarget: Standalone'
-    - line: '|     m_StaticBatching: 1'
+    - line: '|     m_StaticBatching: 0'
     - line: '|     m_DynamicBatching: 0'
     - line: '|   m_BuildTargetShaderSettings: []'
-    - line: '|   m_BuildTargetGraphicsJobs: []'
+    - line: '|   m_BuildTargetGraphicsJobs:'
+    - line: '|   - m_BuildTarget: WindowsStandaloneSupport'
+    - line: '|     m_GraphicsJobs: 1'
     - line: '|   m_BuildTargetGraphicsJobMode: []'
     - line: '|   m_BuildTargetGraphicsAPIs:'
     - line: '|   - m_BuildTarget: iOSSupport'
@@ -622,7 +582,13 @@ MonoBehaviour:
     - line: '|   - serializedVersion: 2'
     - line: '|     m_BuildTarget: Android'
     - line: '|     m_EncodingQuality: 1'
-    - line: '|   m_BuildTargetGroupHDRCubemapEncodingQuality: []'
+    - line: '|   - serializedVersion: 2'
+    - line: '|     m_BuildTarget: Standalone'
+    - line: '|     m_EncodingQuality: 1'
+    - line: '|   m_BuildTargetGroupHDRCubemapEncodingQuality:'
+    - line: '|   - serializedVersion: 2'
+    - line: '|     m_BuildTarget: Standalone'
+    - line: '|     m_EncodingQuality: 1'
     - line: '|   m_BuildTargetGroupLightmapSettings: []'
     - line: '|   m_BuildTargetGroupLoadStoreDebugModeSettings: []'
     - line: '|   m_BuildTargetNormalMapEncoding:'

@@ -269,3 +269,21 @@
     background-color: rgba(70, 170, 200, 0.3);
     border-color: rgb(100, 200, 230);
 }
+
+.results__star-container {
+    flex-grow: 1;
+    align-items: center;
+    max-width: 72px;
+}
+
+.results__star-boundary {
+    color: rgb(255, 238, 144);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}

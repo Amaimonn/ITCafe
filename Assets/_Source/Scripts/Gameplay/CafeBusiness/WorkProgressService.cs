@@ -117,7 +117,8 @@ namespace ITCafe.CafeBusiness
                 AverageServiceTime = AverageServiceTime,
                 ItemsServed = _itemsServedCountMap,
                 Points = points,
-                EarnedStars = stars
+                EarnedStars = stars,
+                StarEvaluations =  _fiveStarEvaluations,
             };
         }
 

@@ -39,25 +39,36 @@ namespace ITCafe.CafeBusiness
         public async UniTaskVoid RunSessionAsync(CancellationToken token)
         {
             _cts = new();
-            var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
+            using var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
 
             try
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
                 _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
+                
                 _hudViewModel.SetRemainingSeconds(_remainingSeconds);
-
-                for (var i = 1; i <= SESSION_DURATION_SECONDS; i++)
+                float remainingTime = SESSION_DURATION_SECONDS;
+                var displayedSeconds = _remainingSeconds;
+                
+                while (remainingTime > 0)
                 {
-                    await UniTask.Delay(TimeSpan.FromSeconds(1), cancellationToken: linkedTokenSource.Token);
-
-                    _remainingSeconds--;
-                    _hudViewModel.SetRemainingSeconds(_remainingSeconds);
+                    await UniTask.Yield(cancellationToken: linkedTokenSource.Token);
+                    
+                    remainingTime -= Time.deltaTime;
+                    _remainingSeconds = Mathf.CeilToInt(remainingTime);
+                    
+                    if (_remainingSeconds != displayedSeconds)
+                    {
+                        if (_remainingSeconds < 0)
+                            _remainingSeconds = 0;
+                        _hudViewModel.SetRemainingSeconds(_remainingSeconds);
+                        displayedSeconds = _remainingSeconds;
+                    }
                 }
 
                 CompleteSession();
             }
-            catch (OperationCanceledException) when (token.IsCancellationRequested)
+            catch (OperationCanceledException)
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Operation cancelled");
             }
@@ -71,18 +82,18 @@ namespace ITCafe.CafeBusiness
         {
             Dispose();
             _clientsRunner.Dispose();
-            
+
             _workProgressService.SetTotalTime(
                 TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _remainingSeconds));
             _workProgressService.CompleteDay();
 
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);
-            
+
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            
+
             _onCompleted.OnNext(Unit.Default);
         }
 
