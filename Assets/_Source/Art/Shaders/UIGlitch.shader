@@ -12,17 +12,11 @@ Shader "UI Toolkit/UIGlitch"
         
         _NoiseScale ("Noise Scale", Range(0.1, 20)) = 5.0
 
-        _RGBShift ("RGB Shift", Range(0, 0.02)) = 0.0015
         _ColorTint ("Color Tint", Color) = (1.0, 1.0, 1.0, 1.0)
 
         _ScanLineSpeed ("Scan Line Speed", Range(0, 20)) = 3.0
         _ScanLineDensity ("Scan Line Density", Range(1, 200)) = 50.0
         _ScanLineIntensity ("Scan Line Intensity", Range(0, 0.5)) = 0.03
-
-        _BloomThreshold ("Bloom Threshold", Range(0, 1)) = 0.7
-        _BloomIntensity ("Bloom Intensity", Range(0, 2)) = 0.5
-
-        _Contrast ("Contrast", Range(0.5, 2)) = 1.2
     }
 
     SubShader
@@ -66,17 +60,11 @@ Shader "UI Toolkit/UIGlitch"
 
             float _NoiseScale;
 
-            float _RGBShift;
             float4 _ColorTint;
 
             float _ScanLineSpeed;
             float _ScanLineDensity;
             float _ScanLineIntensity;
-
-            float _BloomThreshold;
-            float _BloomIntensity;
-
-            float _Contrast;
 
             v2f vert(FilterVertexInput v)
             {
@@ -137,11 +125,7 @@ Shader "UI Toolkit/UIGlitch"
 
                 glitchUV = saturate(glitchUV);
 
-                float4 shiftedCol;
-                shiftedCol.r = tex2D(_MainTex, MapToUVRect(glitchUV + float2(_RGBShift, 0.0), uvRect)).r;
-                shiftedCol.g = tex2D(_MainTex, MapToUVRect(glitchUV, uvRect)).g;
-                shiftedCol.b = tex2D(_MainTex, MapToUVRect(glitchUV - float2(_RGBShift, 0.0), uvRect)).b;
-
+                float4 shiftedCol = tex2D(_MainTex, MapToUVRect(glitchUV, uvRect));
                 col.rgb = lerp(col.rgb, shiftedCol.rgb, _GlitchIntensity);
 
                 float scanLine = sin(uv.y * _ScanLineDensity + _UnscaledTime * _ScanLineSpeed) * 0.5 + 0.5;
@@ -152,14 +136,6 @@ Shader "UI Toolkit/UIGlitch"
                 col.rgb *= flicker;
 
                 col.rgb *= _ColorTint.rgb;
-
-                float brightness = dot(col.rgb, float3(0.299, 0.587, 0.114));
-                float bloom = smoothstep(_BloomThreshold, 1.0, brightness);
-                col.rgb += bloom * _BloomIntensity * _ColorTint.rgb * _GlitchIntensity;
-
-                col.rgb = pow(col.rgb, _Contrast);
-
-                col.a = original_col.a;
 
                 return col;
             }
