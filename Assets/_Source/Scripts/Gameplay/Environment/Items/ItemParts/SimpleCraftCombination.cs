@@ -16,7 +16,7 @@ namespace ITCafe.Environment
 
         [SerializeField] private Transform _uiHolder;
         [SerializeField] private UIDocument _uiDocument;
-        [SerializeField] private AllCraftIconsSO _craftIconsSO;
+        [SerializeField] private AllCraftIconsSO _craftIconsSO; // TODO: Inject + mission config
 
         private VisualElement _iconsContainer;
         private Transform _lookAtTarget;

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
   m_Name: ChocolateDonutInfoSO
   m_EditorClassIdentifier: 
+  <ItemTag>k__BackingField: 5
+  <ComplexityTimeModifier>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: 368263ee150d3414ebbfc3e1df82cf53, type: 3}
+  <PrefabName>k__BackingField: chocolate_donut
   ItemInfo:
     rid: 8553649853818732788
   <Points>k__BackingField: 10

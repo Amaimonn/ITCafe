@@ -5,6 +5,8 @@ namespace ITCafe
 {
     public static class Constants
     {
+        public const int STAR_COUNT = 5;
+        
 #region Outline config
         public const float OUTLINE_WIDTH = 7f;
         public static Color OUTLINE_COLOR = new(1f, 10.6283679f, 0.45f, 1);

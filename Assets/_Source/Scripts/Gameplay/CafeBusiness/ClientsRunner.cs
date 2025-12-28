@@ -20,6 +20,7 @@ namespace ITCafe.CafeBusiness
         
         private readonly Dictionary<Transform, bool> _orderAvailabilityMap;
         private readonly int _maxActiveClients = 6;
+        private readonly int _clientsDelayMS = 2500; // TODO: mission Config
         private CancellationTokenSource _cts;
         private int _currentActiveClients = 0;
 
@@ -46,7 +47,7 @@ namespace ITCafe.CafeBusiness
 
             try
             {
-                await UniTask.Delay(1000, cancellationToken: linkedTokenSource.Token);
+                await UniTask.Delay(1000, cancellationToken: linkedTokenSource.Token); // initial delay
 
                 while (!token.IsCancellationRequested)
                 {
@@ -85,7 +86,7 @@ namespace ITCafe.CafeBusiness
                         Debug.Log($"[{nameof(ClientsRunner)}]: No free table available");
                     }
 
-                    await UniTask.Delay(2500, cancellationToken: linkedTokenSource.Token);
+                    await UniTask.Delay(_clientsDelayMS, cancellationToken: linkedTokenSource.Token);
                 }
             }
             catch (OperationCanceledException) when (token.IsCancellationRequested)

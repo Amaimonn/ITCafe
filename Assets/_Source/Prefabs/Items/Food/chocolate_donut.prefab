@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 3297077780980691893}
   - component: {fileID: 4321637157517414826}
   m_Layer: 0
-  m_Name: ChocolateDonutItemPrefab
+  m_Name: chocolate_donut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

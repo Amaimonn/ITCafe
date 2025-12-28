@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DevKit.Utils;
 using ITCafe.Data.Items;
+using ITCafe.Gameplay.Data;
 using R3;
 
 namespace ITCafe.CafeBusiness
@@ -18,6 +19,7 @@ namespace ITCafe.CafeBusiness
 
 
         private readonly IReadOnlyDictionary<int, ItemInfoSO> _itemConfigsMap;
+        private readonly IReadOnlyList<int> _starEvaluations;
 
         private readonly Dictionary<int, int> _itemsServedCountMap = new();
         private TimeSpan _totalTime;
@@ -26,7 +28,6 @@ namespace ITCafe.CafeBusiness
         private int _failedOrders = 0;
         private float _totalServiceTime = 0f;
         private DateTime _dayStartTime = DateTime.Now;
-        private readonly int[] _fiveStarEvaluations = new int[5] { 200, 400, 600, 800, 1000 };
         private readonly Subject<int> _onOrderTaken = new();
         private readonly Subject<int> _onClientServed = new();
         private readonly Subject<int> _onClientFailed = new();
@@ -35,9 +36,10 @@ namespace ITCafe.CafeBusiness
         private const int SUCCESS_POINTS = 50;
         private const int FAILURE_POINTS = 50;
 
-        public WorkProgressService(IReadOnlyDictionary<int, ItemInfoSO> itemConfigsMap)
+        public WorkProgressService(MissionEvaluation missionEvaluation, IReadOnlyDictionary<int, ItemInfoSO> itemConfigsMap)
         {
             _itemConfigsMap = itemConfigsMap;
+            _starEvaluations = missionEvaluation.StarEvaluations;
         }
 
         public void RegisterClient(ClientCharacter client)
@@ -118,7 +120,7 @@ namespace ITCafe.CafeBusiness
                 ItemsServed = _itemsServedCountMap,
                 Points = points,
                 EarnedStars = stars,
-                StarEvaluations =  _fiveStarEvaluations,
+                StarEvaluations =  _starEvaluations,
             };
         }
 
@@ -134,7 +136,7 @@ namespace ITCafe.CafeBusiness
         private int CalcStars(int points)
         {
             var starsAmount = 0;
-            foreach (var starEvaluation in _fiveStarEvaluations)
+            foreach (var starEvaluation in _starEvaluations)
                 if (points >= starEvaluation)
                     starsAmount++;
 

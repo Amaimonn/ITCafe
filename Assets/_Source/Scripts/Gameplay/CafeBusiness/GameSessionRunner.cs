@@ -36,7 +36,8 @@ namespace ITCafe.CafeBusiness
             _inputService = inputService;
         }
 
-        public async UniTaskVoid RunSessionAsync(CancellationToken token)
+        public async UniTaskVoid RunSessionAsync(int sessionDurationSeconds = SESSION_DURATION_SECONDS, 
+            CancellationToken token = default)
         {
             _cts = new();
             using var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
@@ -46,8 +47,9 @@ namespace ITCafe.CafeBusiness
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
                 _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
                 
+                _remainingSeconds = sessionDurationSeconds;
                 _hudViewModel.SetRemainingSeconds(_remainingSeconds);
-                float remainingTime = SESSION_DURATION_SECONDS;
+                float remainingTime = sessionDurationSeconds;
                 var displayedSeconds = _remainingSeconds;
                 
                 while (remainingTime > 0)

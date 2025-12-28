@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7952085007970174338}
   - component: {fileID: 4384106151155382657}
   m_Layer: 0
-  m_Name: FriesItemPrefab
+  m_Name: fries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

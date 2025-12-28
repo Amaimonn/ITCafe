@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Environment;
 using UnityEngine;
@@ -26,7 +27,10 @@ namespace ITCafe.Player
         public T Get<T>(ItemTag key) where T : MonoBehaviour, IItem
         {
             if (!_keyedPrefabsMap.TryGetValue(key, out var itemPrefab))
-                throw new KeyNotFoundException($"{key} not found");
+            {
+                FLogger.LogError<ItemsCreator>($"{key} not found");
+                return null;
+            }
             
             var item = Object.Instantiate(itemPrefab).GetComponent<T>();
             item.SetPhysicsEnabled(false);
@@ -37,7 +41,10 @@ namespace ITCafe.Player
         public IItem Get(ItemTag tag)
         {
             if (!_keyedPrefabsMap.TryGetValue(tag, out var itemPrefab))
-                throw new KeyNotFoundException($"{tag} not found");
+            {
+                FLogger.LogError<ItemsCreator>($"{tag} not found");
+                return null;
+            }
             
             var item = Object.Instantiate(itemPrefab).GetComponent<IItem>();
             item.SetPhysicsEnabled(false);
