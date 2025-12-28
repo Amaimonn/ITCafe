@@ -13,6 +13,6 @@ But there is a nuance...
 
 ## Screenshots
 
-<img width="1280" height="657" alt="Main scene" src="https://github.com/user-attachments/assets/9c871921-6c8f-4d15-ab8b-f9f96fedf51c" />
-<img width="1280" height="657" alt="Outlined burger" src="https://github.com/user-attachments/assets/ad65c2bc-13fd-4143-b5ea-0e4700fa92b7" />
-<img width="1280" height="657" alt="Props" src="https://github.com/user-attachments/assets/4d75939c-c39c-4d24-a1f5-21dcc51d59e6" />
+<img width="1280" height="657" alt="Main scene" src="https://github.com/user-attachments/assets/9c3f3cdc-de5d-403a-934d-4ec28decee79" />
+<img width="1280" height="657" alt="Kitchen" src="https://github.com/user-attachments/assets/ebff7d2b-c73f-4ecd-8212-c9e77fb8dcbf" />
+<img width="1280" height="657" alt="Gameplay" src="https://github.com/user-attachments/assets/819f1abc-3c69-4599-895b-592b0f447f40" />
