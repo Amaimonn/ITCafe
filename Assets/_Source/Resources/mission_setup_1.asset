@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b5d536fb142e6842e7b95489d287c, type: 3}
   m_Name: mission_setup_1
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.MissionSetupSO
+  <SceneObjectsPrefab>k__BackingField: {fileID: 1468748952249590066, guid: e1b5a8c9f0a991d418c370b6f358d89c, type: 3}
   <ItemsInfoSO>k__BackingField: {fileID: 11400000, guid: 141fde6b68e4349409867a8ff4a74662, type: 2}
   <RecipesSO>k__BackingField: {fileID: 11400000, guid: 871aed1d3c061ca44b5acc55576256f3, type: 2}
   <GuideSO>k__BackingField: {fileID: 11400000, guid: df2dd1663211a39409e6b5654b5405b0, type: 2}

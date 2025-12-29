@@ -6,6 +6,7 @@ namespace ITCafe.Gameplay.Data
     [CreateAssetMenu(fileName = "MissionSetupSO", menuName = "Scriptable Objects/MissionSetupSO")]
     public class MissionSetupSO : ScriptableObject
     {
+        [field: SerializeField] public GameObject SceneObjectsPrefab { get; private set; }
         [field: SerializeField] public AllItemInfoSO ItemsInfoSO { get; private set; }
         [field: SerializeField] public AllRecipesSO RecipesSO { get; private set; }
         [field: SerializeField] public GuideSO GuideSO { get; private set; }

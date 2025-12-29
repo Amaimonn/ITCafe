@@ -8,18 +8,8 @@ namespace ITCafe.Environment
     public class ItemSpawner : BaseInteractable
     {
         [SerializeField] private ItemTag _spawningItemTag;
-        [SerializeField] private GameObject _itemPrefab;
 
         private IItem _coreItem; // util object
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            var itemObject = Instantiate(_itemPrefab);
-            _coreItem = itemObject.GetComponent<IItem>();
-            itemObject.SetActive(false);
-        }
 
         public override bool CanInteract(PlayerContext context)
         {
@@ -27,6 +17,7 @@ namespace ITCafe.Environment
             {
                 _coreItem = context.ItemsCreator.Get(_spawningItemTag);
                 _coreItem.transform.gameObject.SetActive(false);
+                _coreItem.transform.SetParent(transform);
             }
             
             var picker = context.ItemPicker;
@@ -36,8 +27,7 @@ namespace ITCafe.Environment
 
         public override void Interact(PlayerContext context)
         {
-            var itemObject = Instantiate(_itemPrefab);
-            var item = itemObject.GetComponent<IItem>();
+            var item = context.ItemsCreator.Get(_spawningItemTag);
             item.SetPhysicsEnabled(false);
 
             context.ItemPicker.Take(item);

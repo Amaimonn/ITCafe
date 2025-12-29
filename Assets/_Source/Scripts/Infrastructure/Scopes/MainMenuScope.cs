@@ -29,6 +29,9 @@ namespace ITCafe
         public Observable<MainMenuExitContext> Boot(MainMenuEnterContext mainMenuEnterContext = null)
         {
             Time.timeScale = 1;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
             _mainMenuEnterContext = mainMenuEnterContext;
             
             Build();

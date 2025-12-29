@@ -37,18 +37,21 @@ namespace ITCafe
         [SerializeField] private Transform[] _clientSeatPoints;
         [SerializeField] private Transform[] _clientOrderPoints;
 
-        [Header("UI")]
+        [Header("UI"), Space(4)]
         [SerializeField] private AimView _aimViewPrefab;
         [SerializeField] private HUDView _hudViewPrefab;
         [SerializeField] private ResultsView _resultsViewPrefab;
         [SerializeField] private PauseView _pauseViewPrefab;
         [SerializeField] private GuideView _guideViewPrefab;
+        
+        [Header("Other"), Space(4)]
+        [SerializeField] private GameObject _missionSetupRoot;
 
         private GuideSO _guideSO;
         private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
         private IViewBinder<PauseViewModel> _pauseBinder;
-        private GameplayEnterContext _enterContext;
+        private GameplayEnterContext _gameplayEnterContext;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -106,57 +109,15 @@ namespace ITCafe
             builder.Register<CraftService>(Lifetime.Singleton)
                 .As<ICraftService>();
         }
-
-        private void RegisterUI(IContainerBuilder builder)
-        {
-            builder.RegisterInstance<HUDView>(_hudViewPrefab); // prefab registration
-            builder.Register<HUDViewModel>(Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<HUDViewModel>>();
-            builder.Register<Func<HUDViewModel>>(x => () =>
-            {
-                var hudViewModel = x.Resolve<HUDViewModel>();
-                var progressService = x.Resolve<WorkProgressService>();
-                progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
-                progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
-                progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed());
-                return hudViewModel;
-            }, Lifetime.Singleton);
-
-            builder.RegisterInstance<AimView>(_aimViewPrefab); // prefab registration
-            builder.Register<AimViewModel>(Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<AimView, AimViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<AimViewModel>>();
-            builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
-
-            builder.RegisterInstance<ResultsView>(_resultsViewPrefab); // prefab registration
-            builder.Register<ResultsViewModel>(Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<ResultsView, ResultsViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<ResultsViewModel>>();
-            builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
-
-            builder.RegisterInstance<PauseView>(_pauseViewPrefab); // prefab registration
-            builder.Register<PauseViewModel>(Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<PauseView, PauseViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<PauseViewModel>>();
-            builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
-
-            if (_guideSO != null)
-            {
-                builder.RegisterInstance<GuideView>(_guideViewPrefab);
-                builder.Register<GuideViewModel>(Lifetime.Singleton);
-                builder.Register<SimpleAttachBinder<GuideView, GuideViewModel>>(Lifetime.Singleton)
-                    .As<IViewBinder<GuideViewModel>>();
-                builder.Register<Func<GuideViewModel>>(x => () => x.Resolve<GuideViewModel>(), Lifetime.Singleton);
-            }
-        }
-
+        
         private void RegisterMissionConfig(IContainerBuilder builder)
         {
             // if (_enterContext != null) // TODO: use in future
             // {
             // }
             var missionSetup = Resources.Load<MissionSetupSO>("mission_setup_1"); // TODO: take from enterContext
+            builder.RegisterInstance<MissionSetupSO>(missionSetup);
+            
             var menuItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
             var menuItemsHashMap = new Dictionary<int, ItemInfoSO>();
             var allItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
@@ -202,24 +163,77 @@ namespace ITCafe
                 .As<IEnumerable<ItemInfoSO>>();
         }
 
+        private void RegisterUI(IContainerBuilder builder)
+        {
+            builder.RegisterInstance<HUDView>(_hudViewPrefab); // prefab registration
+            builder.Register<HUDViewModel>(Lifetime.Singleton);
+            builder.Register<SimpleAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<HUDViewModel>>();
+            builder.Register<Func<HUDViewModel>>(x => () =>
+            {
+                var hudViewModel = x.Resolve<HUDViewModel>();
+                var progressService = x.Resolve<WorkProgressService>();
+                progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
+                progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
+                progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed());
+                return hudViewModel;
+            }, Lifetime.Singleton);
+
+            builder.RegisterInstance<AimView>(_aimViewPrefab); // prefab registration
+            builder.Register<AimViewModel>(Lifetime.Singleton);
+            builder.Register<SimpleAttachBinder<AimView, AimViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<AimViewModel>>();
+            builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
+
+            builder.RegisterInstance<ResultsView>(_resultsViewPrefab); // prefab registration
+            builder.Register<ResultsViewModel>(Lifetime.Singleton);
+            builder.Register<SimpleAttachBinder<ResultsView, ResultsViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<ResultsViewModel>>();
+            builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
+
+            builder.RegisterInstance<PauseView>(_pauseViewPrefab); // prefab registration
+            builder.Register<PauseViewModel>(Lifetime.Singleton);
+            builder.Register<SimpleAttachBinder<PauseView, PauseViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<PauseViewModel>>();
+            builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
+
+            if (_guideSO != null)
+            {
+                builder.RegisterInstance<GuideView>(_guideViewPrefab);
+                builder.Register<GuideViewModel>(Lifetime.Singleton);
+                builder.Register<SimpleAttachBinder<GuideView, GuideViewModel>>(Lifetime.Singleton)
+                    .As<IViewBinder<GuideViewModel>>();
+                builder.Register<Func<GuideViewModel>>(x => () => x.Resolve<GuideViewModel>(), Lifetime.Singleton);
+            }
+        }
+
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
         {
             Time.timeScale = 1;
-
-            _enterContext = gameplayEnterContext;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
+            _gameplayEnterContext = gameplayEnterContext;
+            
             Build();
-
+            
+            // Scene setup
+            Destroy(_missionSetupRoot);
+            var missionSetup = Container.Resolve<MissionSetupSO>();
+            var sceneSetup = missionSetup.SceneObjectsPrefab;
+            Instantiate(sceneSetup);
+            
+            // Input init
             var inputService = Container.Resolve<InputService>();
             inputService.SetInputEnabled(false);
 
             InitUI();
-
+            
+            // Delayed boot setup
             var loadingScreen = Container.Resolve<LoadingScreen>();
             loadingScreen.OnFinished.Take(1).Subscribe(_ => BootAfterLoading());
-
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
+            
+            // Item prefabs registering
             var itemsCreator = Container.Resolve<ItemsCreator>();
             var itemPrefabs = Container.Resolve<IReadOnlyDictionary<ItemTag, ItemInfoSO>>(Constants.ALL_ITEMS_MAP);
             foreach (var entry in itemPrefabs.Values)
@@ -227,7 +241,8 @@ namespace ITCafe
                 if (entry.Prefab != null)
                     itemsCreator.Register(entry.Prefab, entry.ItemTag);
             }
-
+            
+            // Settings binding
             var settingsModel = Container.Resolve<SettingsModel>();
             settingsModel.Sensitivity.Subscribe(x =>
             {
@@ -246,7 +261,8 @@ namespace ITCafe
                 }
             })
             .AddTo(_disposables);
-
+            
+            // Exit callback setup
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);
 
