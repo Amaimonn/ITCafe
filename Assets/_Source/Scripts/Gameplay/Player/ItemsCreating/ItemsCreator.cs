@@ -4,6 +4,7 @@ using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Environment;
 using UnityEngine;
+using VContainer;
 using Object = UnityEngine.Object;
 
 namespace ITCafe.Player
@@ -11,7 +12,13 @@ namespace ITCafe.Player
     public class ItemsCreator : IItemsCreator
     {
         private readonly Dictionary<ItemTag, GameObject> _keyedPrefabsMap = new();
+        private readonly IObjectResolver _container;
 
+        public ItemsCreator(IObjectResolver container)
+        {
+            _container = container;
+        }
+        
         public void Register(GameObject itemPrefab, ItemTag key)
         {
             var type = itemPrefab.GetComponent<IItem>().GetType();
@@ -33,6 +40,7 @@ namespace ITCafe.Player
             }
             
             var item = Object.Instantiate(itemPrefab).GetComponent<T>();
+            _container.Inject(item);
             item.SetPhysicsEnabled(false);
                 
             return item;
@@ -45,8 +53,9 @@ namespace ITCafe.Player
                 FLogger.LogError<ItemsCreator>($"{tag} not found");
                 return null;
             }
-            
+
             var item = Object.Instantiate(itemPrefab).GetComponent<IItem>();
+            _container.Inject(item);
             item.SetPhysicsEnabled(false);
                 
             return item;

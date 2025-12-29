@@ -3,6 +3,7 @@ using ITCafe.Data.Items;
 using ITCafe.Gameplay.Data;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VContainer;
 
 namespace ITCafe.Environment
 {
@@ -16,11 +17,11 @@ namespace ITCafe.Environment
 
         [SerializeField] private Transform _uiHolder;
         [SerializeField] private UIDocument _uiDocument;
-        [SerializeField] private AllCraftIconsSO _craftIconsSO; // TODO: Inject + mission config
 
+        [Inject] private readonly AllCraftIconsSO _craftIconsSO;
         private VisualElement _iconsContainer;
         private Transform _lookAtTarget;
-
+        
         protected override void OnInit()
         {
             _lookAtTarget = Camera.main.transform;

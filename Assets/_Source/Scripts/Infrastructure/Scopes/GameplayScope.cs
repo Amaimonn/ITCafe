@@ -5,7 +5,6 @@ using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
-using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -162,6 +161,8 @@ namespace ITCafe
             
             builder.RegisterInstance<MissionEvaluation>(missionSetup.MissionEvaluation);
             
+            builder.RegisterInstance<AllCraftIconsSO>(missionSetup.CraftIconsSO);
+            
             _guideSO = missionSetup.GuideSO;
             if (_guideSO != null)
                 builder.RegisterInstance<GuideSO>(_guideSO);
@@ -170,6 +171,7 @@ namespace ITCafe
             builder.RegisterInstance<ItemInfoSO[]>(itemsInfo)
                 .AsSelf()
                 .As<IEnumerable<ItemInfoSO>>();
+            
             builder.Register<IReadOnlyDictionary<int, ItemInfoSO>>(_ =>
                 itemsInfo.ToDictionary(y => y.ItemInfo.GetItemHash()), Lifetime.Singleton);
             
@@ -231,10 +233,12 @@ namespace ITCafe
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
             var gameplayExitSignal = new Subject<GameplayExitContext>();
 
-            exitSignal.Take(1).Subscribe(_ => gameplayExitSignal.OnNext(gameplayExitContext))
+            exitSignal.Take(1)
+                .Subscribe(_ => gameplayExitSignal.OnNext(gameplayExitContext))
                 .AddTo(_disposables);
 
-            restartSignal.Take(1).Subscribe(_ => gameplayExitSignal.OnNext(gameplayRestartContext))
+            restartSignal.Take(1)
+                .Subscribe(_ => gameplayExitSignal.OnNext(gameplayRestartContext))
                 .AddTo(_disposables);
             
             return gameplayExitSignal;
@@ -249,7 +253,8 @@ namespace ITCafe
 
                 var guideBinder = Container.Resolve<IViewBinder<GuideViewModel>>();
                 var guideViewModel = guideBinder.Open();
-                guideViewModel.OnClosingCompleted.Take(1)
+                guideViewModel.OnClosingCompleted
+                    .Take(1)
                     .Subscribe(_ => BootAfterGuide())
                     .AddTo(_disposables);
             }

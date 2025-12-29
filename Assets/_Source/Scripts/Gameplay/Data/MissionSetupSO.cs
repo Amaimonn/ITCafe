@@ -8,6 +8,7 @@ namespace ITCafe.Gameplay.Data
     {
         [field: SerializeField] public AllTaggedItemsSO TaggedItemsPrefabsSO { get; private set; }
         [field: SerializeField] public AllItemInfoSO ItemsInfoSO { get; private set; }
+        [field: SerializeField] public AllCraftIconsSO CraftIconsSO  { get; private set; }
         [field: SerializeField] public AllRecipesSO RecipesSO { get; private set; }
         [field: SerializeField] public GuideSO GuideSO { get; private set; }
         [field: SerializeField] public MissionEvaluation MissionEvaluation { get; private set; }
