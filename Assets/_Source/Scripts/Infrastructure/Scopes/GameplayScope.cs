@@ -230,22 +230,22 @@ namespace ITCafe
 
             var settingsModel = Container.Resolve<SettingsModel>();
             settingsModel.Sensitivity.Subscribe(x =>
-                {
-                    var newValue = x <= 50f
-                        ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
-                        : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
+            {
+                var newValue = x <= 50f
+                    ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
+                    : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
 
-                    foreach (var c in _cinemachineInputAxisController.Controllers)
+                foreach (var c in _cinemachineInputAxisController.Controllers)
+                {
+                    c.Input.Gain = c.Name switch
                     {
-                        c.Input.Gain = c.Name switch
-                        {
-                            "Look X (Pan)" => newValue,
-                            "Look Y (Tilt)" => -newValue,
-                            _ => c.Input.Gain
-                        };
-                    }
-                })
-                .AddTo(_disposables);
+                        "Look X (Pan)" => newValue,
+                        "Look Y (Tilt)" => -newValue,
+                        _ => c.Input.Gain
+                    };
+                }
+            })
+            .AddTo(_disposables);
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);

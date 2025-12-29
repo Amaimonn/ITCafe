@@ -30,6 +30,7 @@ namespace ITCafe
         {
             Time.timeScale = 1;
             _mainMenuEnterContext = mainMenuEnterContext;
+            
             Build();
 
             var rootUIBinder = Container.Resolve<IRootUIBinder>();

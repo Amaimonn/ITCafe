@@ -18,6 +18,7 @@ namespace ITCafe
     {
         [SerializeField] private RootUIBinder _rootUIBinderPrefab;
         [SerializeField] private SettingsView _settingsViewPrefab;
+        
         private CompositeDisposable _disposables = new();
 
         protected override void Configure(IContainerBuilder builder)
@@ -45,7 +46,7 @@ namespace ITCafe
             RegisterSaves(builder);
             RegisterUI(builder);
 
-            builder.RegisterBuildCallback(_ => OnBuild());
+            builder.RegisterBuildCallback(OnBuild);
         }
 
         private void RegisterSaves(IContainerBuilder builder)
@@ -80,7 +81,7 @@ namespace ITCafe
                 .As<IViewBinder<SettingsViewModel>>();
         }
 
-        private void OnBuild()
+        private void OnBuild(IObjectResolver _)
         {
             InitSettings();
         }
@@ -89,6 +90,8 @@ namespace ITCafe
         {
             var appSettingsModel = Container.Resolve<SettingsModel>();
             BindSettings(appSettingsModel);
+
+            return;
 
             void BindSettings(SettingsModel model)
             {

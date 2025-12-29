@@ -373,12 +373,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b710a3efb5d481788ded012d68d38f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingGameObject: {fileID: 8839817106225845352}
+  _loadingRoot: {fileID: 8839817106225845352}
   _overlayImage: {fileID: 5027336310606176176}
   _loadingStub: {fileID: 4392567777207854838}
   _loadingText: {fileID: 6032404649391654886}
   _overlayProgressProperty: _Progress
-  _overlayFillSeconds: 1.2
+  _overlayFillSeconds: 1
 --- !u!1 &8839817106225845352
 GameObject:
   m_ObjectHideFlags: 0
