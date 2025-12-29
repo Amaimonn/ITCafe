@@ -19,7 +19,7 @@ namespace ITCafe
 
         private void Run()
         {
-            var vContainerSettings = Resources.Load<VContainerSettings>("VContainerSettings"); 
+            var vContainerSettings = Resources.Load<VContainerSettings>("vcontainer_settings"); 
             var instanceProperty = typeof(VContainerSettings).GetProperty("Instance");
             instanceProperty.SetValue(null, vContainerSettings);
             

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1603059132151503853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.135, z: 0}
+  m_LocalPosition: {x: 0, y: 0.165, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -198,7 +198,6 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _uiHolder: {fileID: 1954858709405632315}
   _uiDocument: {fileID: 5275185602665464575}
-  _craftIconsSO: {fileID: 11400000, guid: f68ffc70415ab9f468c43350b10908e0, type: 2}
 --- !u!114 &8800769945354085933
 MonoBehaviour:
   m_ObjectHideFlags: 0
