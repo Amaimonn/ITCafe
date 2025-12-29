@@ -70,7 +70,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var orderTimer = orderElement.Q<VisualElement>(name: "RemainingTimeNormalized");
             order.RemainingTimeNormalized.Subscribe(x => orderTimer.style.width = Length.Percent(x * 100f));
             
-            order.PropagateHashes(x => AddOrderImage(orderImagesContainer, ViewModel.ItemInfoMap[x].Image, x));
+            order.PropagateHashes(x => AddOrderImage(orderImagesContainer, ViewModel.MenuItemsHashMap[x].Image, x));
             order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderImagesContainer, x)); // dispose is redundant
         }
 

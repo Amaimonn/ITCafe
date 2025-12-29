@@ -5,6 +5,7 @@ using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
+using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
@@ -42,7 +43,7 @@ namespace ITCafe
         [SerializeField] private ResultsView _resultsViewPrefab;
         [SerializeField] private PauseView _pauseViewPrefab;
         [SerializeField] private GuideView _guideViewPrefab;
-        
+
         private GuideSO _guideSO;
         private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
@@ -52,7 +53,7 @@ namespace ITCafe
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterMissionConfig(builder);
-            
+
             RegisterUI(builder);
 
             builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
@@ -105,7 +106,7 @@ namespace ITCafe
             builder.Register<CraftService>(Lifetime.Singleton)
                 .As<ICraftService>();
         }
-        
+
         private void RegisterUI(IContainerBuilder builder)
         {
             builder.RegisterInstance<HUDView>(_hudViewPrefab); // prefab registration
@@ -156,30 +157,49 @@ namespace ITCafe
             // {
             // }
             var missionSetup = Resources.Load<MissionSetupSO>("mission_setup_1"); // TODO: take from enterContext
+            var menuItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
+            var menuItemsHashMap = new Dictionary<int, ItemInfoSO>();
+            var allItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
+
+            foreach (var itemInfo in missionSetup.ItemsInfoSO.AllInfo)
+            {
+                if (!allItemsMap.TryAdd(itemInfo.ItemTag, itemInfo))
+                    FLogger.LogWarning($"{itemInfo.ItemTag} has already been added");
+
+                if (itemInfo.MenuItemExtra != null)
+                {
+                    menuItemsMap.TryAdd(itemInfo.ItemTag, itemInfo);
+                    menuItemsHashMap.TryAdd(itemInfo.MenuItemExtra.ItemInfo.GetItemHash(), itemInfo);
+                }
+            }
+
+            builder.RegisterInstance<Dictionary<ItemTag, ItemInfoSO>>(allItemsMap)
+                .AsSelf()
+                .As<IReadOnlyDictionary<ItemTag, ItemInfoSO>>()
+                .Keyed(Constants.ALL_ITEMS_MAP);
+
+            builder.RegisterInstance<Dictionary<ItemTag, ItemInfoSO>>(menuItemsMap)
+                .AsSelf()
+                .As<IReadOnlyDictionary<ItemTag, ItemInfoSO>>()
+                .Keyed(Constants.MENU_ITEMS_MAP);
             
+            builder.RegisterInstance<Dictionary<int, ItemInfoSO>>(menuItemsHashMap)
+                .AsSelf()
+                .As<IReadOnlyDictionary<int, ItemInfoSO>>()
+                .Keyed(Constants.MENU_ITEMS_HASH_MAP);
+
             builder.RegisterInstance<IEnumerable<RecipeSO>>(missionSetup.RecipesSO.Recipes);
-            
+
             builder.RegisterInstance<MissionEvaluation>(missionSetup.MissionEvaluation);
-            
-            builder.RegisterInstance<AllCraftIconsSO>(missionSetup.CraftIconsSO);
-            
+
             _guideSO = missionSetup.GuideSO;
             if (_guideSO != null)
                 builder.RegisterInstance<GuideSO>(_guideSO);
-            
+
             var itemsInfo = missionSetup.ItemsInfoSO.AllInfo;
             builder.RegisterInstance<ItemInfoSO[]>(itemsInfo)
                 .AsSelf()
                 .As<IEnumerable<ItemInfoSO>>();
-            
-            builder.Register<IReadOnlyDictionary<int, ItemInfoSO>>(_ =>
-                itemsInfo.ToDictionary(y => y.ItemInfo.GetItemHash()), Lifetime.Singleton);
-            
-            var creatableItemPrefabs = missionSetup.TaggedItemsPrefabsSO.AllTaggedItems;
-            
-            builder.RegisterInstance<TaggedItemSO[]>(creatableItemPrefabs)
-                .AsSelf()
-                .As<IEnumerable<TaggedItemSO>>();
         }
 
         public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
@@ -201,9 +221,12 @@ namespace ITCafe
             Cursor.lockState = CursorLockMode.Locked;
 
             var itemsCreator = Container.Resolve<ItemsCreator>();
-            var creatableItemPrefabs = Container.Resolve<IEnumerable<TaggedItemSO>>();
-            foreach (var entry in creatableItemPrefabs)
-                itemsCreator.Register(entry.Prefab, entry.ItemTag);
+            var itemPrefabs = Container.Resolve<IReadOnlyDictionary<ItemTag, ItemInfoSO>>(Constants.ALL_ITEMS_MAP);
+            foreach (var entry in itemPrefabs.Values)
+            {
+                if (entry.Prefab != null)
+                    itemsCreator.Register(entry.Prefab, entry.ItemTag);
+            }
 
             var settingsModel = Container.Resolve<SettingsModel>();
             settingsModel.Sensitivity.Subscribe(x =>
@@ -211,7 +234,7 @@ namespace ITCafe
                     var newValue = x <= 50f
                         ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
                         : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
-                    
+
                     foreach (var c in _cinemachineInputAxisController.Controllers)
                     {
                         c.Input.Gain = c.Name switch
@@ -240,7 +263,7 @@ namespace ITCafe
             restartSignal.Take(1)
                 .Subscribe(_ => gameplayExitSignal.OnNext(gameplayRestartContext))
                 .AddTo(_disposables);
-            
+
             return gameplayExitSignal;
         }
 

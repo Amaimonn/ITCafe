@@ -6,7 +6,7 @@ namespace ITCafe
     public static class Constants
     {
         public const int STAR_COUNT = 5;
-        
+
 #region Outline config
         public const float OUTLINE_WIDTH = 7f;
         public static Color OUTLINE_COLOR = new(1f, 10.6283679f, 0.45f, 1);
@@ -29,6 +29,12 @@ namespace ITCafe
         [ItemKey] public const string HOT_DOG = nameof(HOT_DOG);
         [ItemKey] public const string DONUT = nameof(DONUT);
         [ItemKey] public const string FRIES = nameof(FRIES);
+#endregion
+
+#region Registration Keys
+        public const string MENU_ITEMS_MAP = nameof(MENU_ITEMS_MAP);
+        public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
+        public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
 #endregion
     }
 }

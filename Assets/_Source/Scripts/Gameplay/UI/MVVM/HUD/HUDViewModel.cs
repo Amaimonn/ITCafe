@@ -6,6 +6,7 @@ using ITCafe.Data.Items;
 using ObservableCollections;
 using System.Threading;
 using DevKit.UI.MVVM.Bases;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -17,27 +18,24 @@ namespace ITCafe.Gameplay.UI.MVVM
         public ReactiveProperty<int> OrdersTaken => _ordersTaken;
         public ReactiveProperty<int> OrdersCompleted => _ordersCompleted;
         public ReactiveProperty<int> OrdersFailed => _ordersFailed;
-
-
         public IObservableCollection<IOrder> ActiveOrders => _activeOrders;
-        public IReadOnlyDictionary<int, ItemInfoSO> ItemInfoMap => _itemInfoMap;
+        public IReadOnlyDictionary<int, ItemInfoSO> MenuItemsHashMap => _menuItemsHashMap;
 
-        private readonly IReadOnlyDictionary<int, ItemInfoSO> _itemInfoMap;
+        private readonly IReadOnlyDictionary<int, ItemInfoSO> _menuItemsHashMap;
         private readonly ObservableHashSet<IOrder> _activeOrders = new();
         private readonly ReactiveProperty<string> _timerText = new("00:00");
         private readonly ReactiveProperty<int> _pointsAmount = new(0);
         private readonly ReactiveProperty<int> _ordersTaken = new(0);
         private readonly ReactiveProperty<int> _ordersCompleted = new(0);
         private readonly ReactiveProperty<int> _ordersFailed = new(0);
-
-
+        
         private CancellationTokenSource _timerCts;
         private DateTime _sessionStartTime;
         private IDisposable _timerSubscription;
 
-        public HUDViewModel(IReadOnlyDictionary<int, ItemInfoSO> itemInfoMap)
+        public HUDViewModel([Key(Constants.MENU_ITEMS_HASH_MAP)] IReadOnlyDictionary<int, ItemInfoSO> menuItemsHashMap)
         {
-            _itemInfoMap = itemInfoMap;
+            _menuItemsHashMap = menuItemsHashMap;
         }
 
         public void SetRemainingSeconds(int remainingSeconds)

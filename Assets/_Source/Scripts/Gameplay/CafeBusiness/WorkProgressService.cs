@@ -4,6 +4,7 @@ using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.Data;
 using R3;
+using VContainer;
 
 namespace ITCafe.CafeBusiness
 {
@@ -18,7 +19,7 @@ namespace ITCafe.CafeBusiness
         public float AverageServiceTime => _totalClientsCount > 0 ? _totalServiceTime / _totalClientsCount : 0f;
 
 
-        private readonly IReadOnlyDictionary<int, ItemInfoSO> _itemConfigsMap;
+        private readonly IReadOnlyDictionary<int, ItemInfoSO> _menuItemsHashMap;
         private readonly IReadOnlyList<int> _starEvaluations;
 
         private readonly Dictionary<int, int> _itemsServedCountMap = new();
@@ -36,9 +37,10 @@ namespace ITCafe.CafeBusiness
         private const int SUCCESS_POINTS = 50;
         private const int FAILURE_POINTS = 50;
 
-        public WorkProgressService(MissionEvaluation missionEvaluation, IReadOnlyDictionary<int, ItemInfoSO> itemConfigsMap)
+        public WorkProgressService(MissionEvaluation missionEvaluation, 
+            [Key(Constants.MENU_ITEMS_HASH_MAP)] IReadOnlyDictionary<int, ItemInfoSO> menuItemsHashMap)
         {
-            _itemConfigsMap = itemConfigsMap;
+            _menuItemsHashMap = menuItemsHashMap;
             _starEvaluations = missionEvaluation.StarEvaluations;
         }
 
@@ -128,7 +130,7 @@ namespace ITCafe.CafeBusiness
         {
             var points = _successfulOrders * SUCCESS_POINTS - _failedOrders * FAILURE_POINTS;
             foreach (var (hash, amount) in _itemsServedCountMap)
-                points += _itemConfigsMap[hash].Points * amount;
+                points += _menuItemsHashMap[hash].MenuItemExtra.Points * amount;
 
             return points;
         }

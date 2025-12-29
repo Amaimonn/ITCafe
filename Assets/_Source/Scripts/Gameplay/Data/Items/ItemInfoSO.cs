@@ -5,12 +5,13 @@ namespace ITCafe.Data.Items
     [CreateAssetMenu(fileName = "ItemInfoSO", menuName = "Scriptable Objects/ItemInfoSO")]
     public class ItemInfoSO : ScriptableObject
     {
-        [field: SerializeField, Range(1, 4)] public int ComplexityTimeModifier { get; private set; }
+        [field: SerializeField] public ItemTag ItemTag { get; set; }
+        
         [field: SerializeField] public Sprite Image { get; private set; }
-
-        [ItemTypeSelector, SerializeReference]
-        public BaseItemInfo ItemInfo;
-
-        [field: SerializeField] public int Points { get; private set; } = 10;
+        
+        [field: SerializeField] public GameObject Prefab { get; private set; }
+        
+        [field: SerializeField, Tooltip("For menu items only. Leave empty for other item types.")] 
+        public MenuItemExtraSO MenuItemExtra { get; private set; }
     }
 }
