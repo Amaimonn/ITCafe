@@ -1226,6 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 70564566}
+  _spawningItemTag: 11
   _itemPrefab: {fileID: 800402767766359633, guid: 113a3d0bc03745d4f89467846a40a932, type: 3}
 --- !u!4 &75564350 stripped
 Transform:
@@ -13609,6 +13610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 887605007}
+  _spawningItemTag: 9
   _itemPrefab: {fileID: 9143675695500297735, guid: 58c1f18cc05319f4d891664ae99c60e6, type: 3}
 --- !u!4 &889026853 stripped
 Transform:
@@ -16896,6 +16898,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1322542069}
     m_Modifications:
+    - target: {fileID: 2380021432811828852, guid: 33fe6d4bf1d0bc746a7bbc4498a51d17, type: 3}
+      propertyPath: _spawningItemTag
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4548657843131883558, guid: 33fe6d4bf1d0bc746a7bbc4498a51d17, type: 3}
       propertyPath: m_Name
       value: Buns (1)
@@ -21466,6 +21472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 1324218123}
+  _spawningItemTag: 12
   _itemPrefab: {fileID: 4369445326442889132, guid: 42e4059f27bf28f47a753c1300c7cafa, type: 3}
 --- !u!1001 &1329961281
 PrefabInstance:
@@ -22055,7 +22062,6 @@ MonoBehaviour:
   - {fileID: 1935830331690626689, guid: e723f90a8283e8648b5de2309d25d248, type: 3}
   - {fileID: 353381090113085243, guid: 81170a5be13d0e2449a33eefd05f6e39, type: 3}
   - {fileID: 1979498699636639764, guid: 58aa49a411d423b49a64c82e6dc6b3fc, type: 3}
-  _allItemsInfoSO: {fileID: 11400000, guid: 141fde6b68e4349409867a8ff4a74662, type: 2}
   _clientSeatPoints:
   - {fileID: 2146833225}
   - {fileID: 1112174119}
@@ -22082,15 +22088,6 @@ MonoBehaviour:
   _resultsViewPrefab: {fileID: 3448940012858787566, guid: fea11616310c0f34b90844c0603a5473, type: 3}
   _pauseViewPrefab: {fileID: 4498725754442676862, guid: d9cc55f8b889b5143b31f7d6abea57b9, type: 3}
   _guideViewPrefab: {fileID: 6113830061246565066, guid: 65f6ead4283520c459645e169dde84f6, type: 3}
-  _keyedItemPrefabs:
-  - KeyTag: 6
-    GameObject: {fileID: 8531517831877121445, guid: efc545ae2efa5294ca8d5faab10df624, type: 3}
-  - KeyTag: 1000
-    GameObject: {fileID: 7453412856545647206, guid: 5541f909d642de24d8f34b13d17024d2, type: 3}
-  - KeyTag: 13
-    GameObject: {fileID: 2778076070997028652, guid: 04ffb9185edf31f498d1042a5b51c526, type: 3}
-  _recipesSO: {fileID: 11400000, guid: 871aed1d3c061ca44b5acc55576256f3, type: 2}
-  _guideSO: {fileID: 11400000, guid: df2dd1663211a39409e6b5654b5405b0, type: 2}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0
@@ -37687,6 +37684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 2079728290}
+  _spawningItemTag: 500
   _itemPrefab: {fileID: 6000649212412820298, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
 --- !u!65 &2079728292
 BoxCollider:
@@ -38923,6 +38921,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1322542069}
     m_Modifications:
+    - target: {fileID: 2380021432811828852, guid: 33fe6d4bf1d0bc746a7bbc4498a51d17, type: 3}
+      propertyPath: _spawningItemTag
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4548657843131883558, guid: 33fe6d4bf1d0bc746a7bbc4498a51d17, type: 3}
       propertyPath: m_Name
       value: Buns

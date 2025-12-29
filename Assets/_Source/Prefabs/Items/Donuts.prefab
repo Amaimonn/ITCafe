@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 4322035202291961577}
+  _spawningItemTag: 5
   _itemPrefab: {fileID: 4535098636528518637, guid: 08600acdbe4c0e140a1edbd3ebd42c20, type: 3}
 --- !u!114 &4322035202291961577
 MonoBehaviour:

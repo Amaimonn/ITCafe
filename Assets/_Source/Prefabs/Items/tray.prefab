@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8652373983043803132}
   - component: {fileID: 3441046590803840511}
   m_Layer: 0
-  m_Name: TrayItemContainer
+  m_Name: tray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
   <ItemTag>k__BackingField: 12
   <Image>k__BackingField: {fileID: 21300036, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
-  <Prefab>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 4369445326442889132, guid: 42e4059f27bf28f47a753c1300c7cafa, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 0}

@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outline: {fileID: 3330097329061567533}
+  _spawningItemTag: 4
   _itemPrefab: {fileID: 2865937386304091132, guid: d026775de00554444b0130583513db5e, type: 3}
 --- !u!114 &3330097329061567533
 MonoBehaviour:
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
   outlineWidth: 7
   precomputeOutline: 0

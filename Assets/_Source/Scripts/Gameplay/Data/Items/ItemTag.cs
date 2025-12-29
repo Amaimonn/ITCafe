@@ -17,6 +17,8 @@ namespace ITCafe.Data.Items
         Lettuce = 12,
         HotDog = 13,
         
+        // Special
+        Tray = 500,
         
         // Combinations
         SimpleCombination = 1000,

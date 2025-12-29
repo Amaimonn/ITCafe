@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8800769945354085933}
   - component: {fileID: 4167508139142181100}
   m_Layer: 0
-  m_Name: SimpleCraftCombination
+  m_Name: simple_craft_combination
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
