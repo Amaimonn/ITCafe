@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using DevKit.Saves;
 using DevKit.Utils;
+using ITCafe.Data;
+using ITCafe.Data.Campaign;
 
 namespace ITCafe.Infrastructure.Saves
 {
@@ -23,13 +26,23 @@ namespace ITCafe.Infrastructure.Saves
             }
             else
             {
-                _saveState = new()
+                _saveState = new SaveStateV1
                 {
-                    SettingsState = new()
+                    SettingsState = new SettingsState
                     {
                         Sensitivity = 50,
                         VSync = false,
                         FPS = -1,
+                    },
+                    CampaignState = new CampaignState
+                    {
+                        Locations = new List<LocationState>
+                        {
+                            new("location_1", false, new List<MissionState>
+                            {
+                                new("mission_1_1", false)
+                            })
+                        }
                     }
                 };
 
