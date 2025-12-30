@@ -55,13 +55,13 @@ namespace ITCafe.Campaign
 
             if (!currentMissionState.IsCompleted)
             {
-                var currentLocationMissionsData = selectedLocationData.AllMissionsData;
-                var currentMissionIndex = currentLocationMissionsData.IndexWhere(x => x.Id == missionId);
+                var currentLocationMissionIds = selectedLocationData.MissionIds;
+                var currentMissionIndex = currentLocationMissionIds.IndexWhere(x => x == missionId);
 
-                if (currentMissionIndex < currentLocationMissionsData.Count - 1) // open next mission
+                if (currentMissionIndex < currentLocationMissionIds.Count - 1) // open next mission
                 {
-                    var nextMissionData = currentLocationMissionsData[currentMissionIndex + 1];
-                    var nextMissionState = new MissionState(nextMissionData.Id, false);
+                    var nextMissionData = currentLocationMissionIds[currentMissionIndex + 1];
+                    var nextMissionState = new MissionState(nextMissionData, false);
                     actions.Add(_ =>
                     {
                         campaignModel.State.Locations.First(x => x.Id == locationId).OpenedMissions
@@ -76,7 +76,7 @@ namespace ITCafe.Campaign
                     if (currentLocationIndex < campaignModel.AllLocationsData.AllData.Count - 1)
                     {
                         var nextLocationData = campaignModel.AllLocationsData.AllData[currentLocationIndex + 1];
-                        var firstMissionState = new MissionState(nextLocationData.AllMissionsData[0].Id, false);
+                        var firstMissionState = new MissionState(nextLocationData.MissionIds[0], false);
                         var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
                         var nextLocationState = new LocationState(nextLocationData.Id, isCompleted: false,
                             nextLocationOpenedMissions);
@@ -90,8 +90,8 @@ namespace ITCafe.Campaign
                 }
                 else
                 {
-                    var maxMissionIndex = currentLocationMissionsData.IndexWhere(x =>
-                        x.Id == currentLocationState.MaxCompletedMissionId);
+                    var maxMissionIndex = currentLocationMissionIds.IndexWhere(x =>
+                        x == currentLocationState.MaxCompletedMissionId);
 
                     if (maxMissionIndex < currentMissionIndex)
                         actions.Add(_ => currentLocationState.MaxCompletedMissionId = missionId);
@@ -127,11 +127,11 @@ namespace ITCafe.Campaign
                         x.Id == previousLocationData.Id);
                     if (previousLocationState is { IsCompleted: true })
                     {
-                        var firstMissionState = new MissionState(locationData.AllMissionsData[0].Id, false);
+                        var firstMissionState = new MissionState(locationData.MissionIds[0], false);
                         var newLocationState = new LocationState(locationData.Id, false,
                             new List<MissionState> { firstMissionState });
 
-                        var newLocationModel = new LocationModel(newLocationState, locationData);
+                        var newLocationModel = new LocationModel(newLocationState);
                         campaignModel.AvailableLocationsMap.Add(locationData.Id, newLocationModel);
 
                         stateChanged = true;
@@ -139,11 +139,11 @@ namespace ITCafe.Campaign
                 }
                 else if (allLocationsData[0].Id == locationData.Id)
                 {
-                    var firstMissionState = new MissionState(locationData.AllMissionsData[0].Id, false);
+                    var firstMissionState = new MissionState(locationData.MissionIds[0], false);
                     var newLocationState = new LocationState(locationData.Id, false,
                         new List<MissionState> { firstMissionState });
 
-                    var newLocationModel = new LocationModel(newLocationState, locationData);
+                    var newLocationModel = new LocationModel(newLocationState);
                     campaignModel.AvailableLocationsMap.Add(locationData.Id, newLocationModel);
 
                     stateChanged = true;
@@ -155,37 +155,37 @@ namespace ITCafe.Campaign
                 if (string.IsNullOrEmpty(locationState.MaxCompletedMissionId))
                     continue;
                 
-                var locationData = campaignModel.LocationsDataMap[locationState.Id];
+                var locationData = campaignModel.LocationsDataMap.CurrentValue[locationState.Id];
 
-                var lastCompletedMissionData = locationData.AllMissionsData.FirstOrDefault(x =>
-                    x.Id == locationState.MaxCompletedMissionId);
+                var lastCompletedMissionData = locationData.MissionIds.FirstOrDefault(x =>
+                    x == locationState.MaxCompletedMissionId);
                 int lastCompletedMissionDataIndex;
                 if (lastCompletedMissionData == null) // last completed mission data no longer exists
                 {
-                    lastCompletedMissionDataIndex = locationData.AllMissionsData.LastIndexWhere(x =>
-                        locationState.OpenedMissions.Any(m => m.Id == x.Id));
+                    lastCompletedMissionDataIndex = locationData.MissionIds.LastIndexWhere(x =>
+                        locationState.OpenedMissions.Any(m => m.Id == x));
                 }
                 else
                 {
-                    lastCompletedMissionDataIndex = locationData.AllMissionsData.IndexWhere(x =>
-                        x.Id == locationState.MaxCompletedMissionId);
+                    lastCompletedMissionDataIndex = locationData.MissionIds.IndexWhere(x =>
+                        x == locationState.MaxCompletedMissionId);
                 }
 
                 // open old missions and the new one (if it is necessary)
-                var allMissionCount = locationData.AllMissionsData.Count;
+                var allMissionCount = locationData.MissionIds.Count;
                 var lastMissionIndexToOpen = Math.Min(lastCompletedMissionDataIndex + 1, allMissionCount - 1);
 
                 for (var i = 0; i <= lastMissionIndexToOpen; i++)
                 {
-                    var missionData = locationData.AllMissionsData[i];
-                    var missionState = locationState.OpenedMissions.FirstOrDefault(x => x.Id == missionData.Id);
+                    var missionId = locationData.MissionIds[i];
+                    var missionState = locationState.OpenedMissions.FirstOrDefault(x => x.Id == missionId);
 
                     if (missionState == null) // open new mission
                     {
-                        var newMissionState = new MissionState(missionData.Id, false);
+                        var newMissionState = new MissionState(missionId, false);
                         var locationModel = campaignModel.AvailableLocationsMap[locationData.Id];
-                        var newMissionModel = new MissionModel(newMissionState, missionData);
-                        locationModel.AvailableMissionsMap.Add(missionData.Id, newMissionModel);
+                        var newMissionModel = new MissionModel(newMissionState);
+                        locationModel.AvailableMissionsMap.Add(missionId, newMissionModel);
 
                         stateChanged = true;
                     }

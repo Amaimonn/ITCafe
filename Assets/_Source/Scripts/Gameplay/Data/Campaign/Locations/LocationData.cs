@@ -9,9 +9,9 @@ namespace ITCafe.Data.Campaign
     {
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
-        public IReadOnlyList<IMissionData> AllMissionsData => AllMissionsDataRaw;
+        public IReadOnlyList<string> MissionIds => AllMissionsDataRaw;
         
-        [field: SerializeField] public MissionData[] AllMissionsDataRaw { get; private set; }
+        [field: SerializeField] public string[] AllMissionsDataRaw { get; private set; }
 
     }
 }
