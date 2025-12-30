@@ -3,7 +3,8 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using DevKit.Utils;
 using ITCafe.Data.Campaign;
-using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace ITCafe.Campaign
 {
@@ -14,7 +15,7 @@ namespace ITCafe.Campaign
     public class CampaignLoader
     {
         private readonly CampaignModel _campaignModel;
-        private readonly Dictionary<string, Object> _loadedAssetsMap = new();
+        private readonly Dictionary<string, AsyncOperationHandle> _pathHandleMap = new();
         private MissionDataSO[] _loadedMissionsData;
         private const string ALL_LOCATIONS_DATA_PATH = "all_locations_data";
 
@@ -55,33 +56,33 @@ namespace ITCafe.Campaign
         public void UnloadUnused()
         {
             var selectedLocationPath = _campaignModel.SelectedLocationData.Value?.Id;
-            var selectedMissionPath =  _campaignModel.SelectedMissionData.Value?.Id;
-            
-            foreach (var (path, asset) in _loadedAssetsMap)
+            var selectedMissionPath = _campaignModel.SelectedMissionData.Value?.Id;
+
+            foreach (var (path, handle) in _pathHandleMap)
             {
                 if (path == selectedLocationPath ||
                     path == selectedMissionPath ||
                     path == ALL_LOCATIONS_DATA_PATH)
                     continue;
 
-                UnloadAsset(asset);
+                ReleaseHandle(handle);
             }
 
             if (!string.IsNullOrEmpty(selectedLocationPath) && !string.IsNullOrEmpty(selectedMissionPath))
             {
-                var hasLocation = _loadedAssetsMap.TryGetValue(selectedLocationPath, out var selectedLocationAsset);
-                var hasMission = _loadedAssetsMap.TryGetValue(selectedMissionPath, out var selectedMissionAsset);
+                var hasLocation = _pathHandleMap.TryGetValue(selectedLocationPath, out var selectedLocationAsset);
+                var hasMission = _pathHandleMap.TryGetValue(selectedMissionPath, out var selectedMissionAsset);
 
-                _loadedAssetsMap.Clear();
+                _pathHandleMap.Clear();
 
                 if (hasLocation)
-                    _loadedAssetsMap[selectedLocationPath] = selectedLocationAsset;
+                    _pathHandleMap[selectedLocationPath] = selectedLocationAsset;
                 if (hasMission)
-                    _loadedAssetsMap[selectedMissionPath] = selectedMissionAsset;
+                    _pathHandleMap[selectedMissionPath] = selectedMissionAsset;
             }
             else
             {
-                _loadedAssetsMap.Clear();
+                _pathHandleMap.Clear();
             }
 
             _campaignModel.CurrentMissionsData.Value = null;
@@ -90,25 +91,30 @@ namespace ITCafe.Campaign
 
         public void UnloadAll()
         {
-            foreach (var asset in _loadedAssetsMap.Values)
-                UnloadAsset(asset);
-            _loadedAssetsMap.Clear();
+            foreach (var asset in _pathHandleMap.Values)
+                ReleaseHandle(asset);
+            _pathHandleMap.Clear();
         }
 
-        private async UniTask<T> LoadAsync<T>(string path) where T : Object
+        private async UniTask<T> LoadAsync<T>(string path)
         {
-            var asset = await Resources.LoadAsync<T>(path);
-            var typedAsset = asset as T;
+            var handle = Addressables.LoadAssetAsync<T>(path);
+            _pathHandleMap.Add(path, handle);
+            
+            await handle;
 
-            if (typedAsset == null)
-                FLogger.LogError<CampaignLoader>($"Failed to load {path}");
-            else
-                _loadedAssetsMap.Add(path, typedAsset);
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+                return handle.Result;
+            
+            FLogger.LogError<CampaignLoader>($"Failed to load {path}");
+            UnloadAsset(handle);
+            _pathHandleMap.Remove(path);
 
-            return typedAsset;
+            return default;
+
         }
 
-        private async UniTask<T[]> LoadManyAsync<T>(IEnumerable<string> paths) where T : Object
+        private async UniTask<T[]> LoadManyAsync<T>(IEnumerable<string> paths)
         {
             var loadTasks = new List<UniTask<T>>();
             foreach (var path in paths)
@@ -118,14 +124,19 @@ namespace ITCafe.Campaign
             }
 
             var typedAssets = await UniTask.WhenAll(loadTasks);
-            typedAssets = typedAssets.Where(mission => mission != null).ToArray();
+            typedAssets = typedAssets.Where(x => !EqualityComparer<T>.Default.Equals(x, default)).ToArray();
 
             return typedAssets;
         }
 
-        private void UnloadAsset(Object asset)
+        private void ReleaseHandle(AsyncOperationHandle handle)
         {
-            Resources.UnloadAsset(asset);
+            handle.Release();
+        }
+
+        private void UnloadAsset<T>(T asset)
+        {
+            Addressables.Release(asset);
         }
     }
 }
