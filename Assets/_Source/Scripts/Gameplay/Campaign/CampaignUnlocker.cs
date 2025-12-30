@@ -19,7 +19,8 @@ namespace ITCafe.Campaign
         {
             var locationId = selectedLocationData.Id;
             var missionId = selectedMissionData.Id;
-            var currentLocationState = campaignModel.State.Locations.First(x => x.Id == locationId);
+            var campaignState = campaignModel.State;
+            var currentLocationState = campaignState.Locations.First(x => x.Id == locationId);
             var currentMissionState = currentLocationState.OpenedMissions.First(x => x.Id == missionId);
 
             var actions = new List<Action<T>>();
@@ -36,7 +37,7 @@ namespace ITCafe.Campaign
             actions.Add(x =>
             {
                 currentMissionState.IsCompleted = true;
-                resultHandler(x, campaignModel.State);
+                resultHandler(x, campaignState);
             });
             // TODO: implement results handling
             // if (currentMissionState.Stars != 3)
@@ -64,23 +65,27 @@ namespace ITCafe.Campaign
                     var nextMissionState = new MissionState(nextMissionData, false);
                     actions.Add(_ =>
                     {
-                        campaignModel.State.Locations.First(x => x.Id == locationId).OpenedMissions
+                        campaignState.Locations.First(x => x.Id == locationId).OpenedMissions
                             .Add(nextMissionState);
                     });
                 }
                 else // open next location (+ mission)
                 {
                     actions.Add(_ => currentLocationState.IsCompleted = true);
-                    var currentLocationIndex = campaignModel.AllLocationsData.AllData.IndexWhere(x =>
+                    
+                    var allLocationsData = campaignModel.AllLocationsData.AllData;
+                    var currentLocationIndex = allLocationsData.IndexWhere(x =>
                         x.Id == locationId);
-                    if (currentLocationIndex < campaignModel.AllLocationsData.AllData.Count - 1)
+                    
+                    if (currentLocationIndex < allLocationsData.Count - 1)
                     {
-                        var nextLocationData = campaignModel.AllLocationsData.AllData[currentLocationIndex + 1];
+                        var nextLocationData = allLocationsData[currentLocationIndex + 1];
                         var firstMissionState = new MissionState(nextLocationData.MissionIds[0], false);
                         var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
                         var nextLocationState = new LocationState(nextLocationData.Id, isCompleted: false,
                             nextLocationOpenedMissions);
-                        actions.Add(_ => { campaignModel.State.Locations.Add(nextLocationState); });
+                        
+                        actions.Add(_ => campaignState.Locations.Add(nextLocationState));
                     }
                 }
 
