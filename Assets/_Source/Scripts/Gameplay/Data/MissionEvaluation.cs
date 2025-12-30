@@ -3,7 +3,7 @@ using System.Linq;
 using DevKit.Utils;
 using UnityEngine;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     [Serializable]
     public class MissionEvaluation

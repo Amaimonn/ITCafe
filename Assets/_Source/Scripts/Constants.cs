@@ -1,4 +1,4 @@
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using UnityEngine;
 
 namespace ITCafe

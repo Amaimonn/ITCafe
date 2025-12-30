@@ -1,5 +1,5 @@
 using DevKit.Saves;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using UnityEngine;
 
 namespace ITCafe.Infrastructure.Saves

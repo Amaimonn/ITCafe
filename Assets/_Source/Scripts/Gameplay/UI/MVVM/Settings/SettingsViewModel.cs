@@ -1,6 +1,6 @@
 using DevKit.Utils;
 using DevKit.UI.MVVM.Bases;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;

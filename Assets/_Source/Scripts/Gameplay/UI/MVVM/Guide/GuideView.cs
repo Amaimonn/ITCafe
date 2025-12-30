@@ -1,7 +1,7 @@
 using System;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using UnityEngine;
 using UnityEngine.UIElements;
 using R3;

@@ -1,5 +1,5 @@
 using DevKit.UI.MVVM.Bases;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using R3;
 
 namespace ITCafe.Gameplay.UI.MVVM

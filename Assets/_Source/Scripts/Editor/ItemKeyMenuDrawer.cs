@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;

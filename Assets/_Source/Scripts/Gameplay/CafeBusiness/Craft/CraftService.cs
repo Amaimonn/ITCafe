@@ -3,7 +3,7 @@ using System.Linq;
 using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Environment;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using ITCafe.Player;
 
 namespace ITCafe.CafeBusiness

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DevKit.UI.MVVM;
 using R3;
 using DevKit.Utils;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {

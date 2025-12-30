@@ -1,7 +1,7 @@
 using ITCafe.Data.Items;
 using UnityEngine;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     [CreateAssetMenu(fileName = "RecipeSO", menuName = "Scriptable Objects/RecipeSO")]
     public class RecipeSO : ScriptableObject

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     [CreateAssetMenu(fileName = "GuideSO", menuName = "Scriptable Objects/GuideSO")]
     public class GuideSO : ScriptableObject

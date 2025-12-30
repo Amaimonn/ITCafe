@@ -1,6 +1,6 @@
 using ITCafe.Environment;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     public readonly struct CraftRequest
     {

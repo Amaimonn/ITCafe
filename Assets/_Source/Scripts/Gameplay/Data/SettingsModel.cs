@@ -1,6 +1,6 @@
 using R3;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     /// <summary>
     /// Модель настроек приложения.

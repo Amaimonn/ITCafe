@@ -2,7 +2,7 @@ using System;
 using DevKit.Saves;
 using UnityEngine;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     [Serializable]
     public class SettingsState : IVersioned
