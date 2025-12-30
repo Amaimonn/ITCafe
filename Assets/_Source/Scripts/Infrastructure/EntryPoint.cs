@@ -1,5 +1,4 @@
-using System.Collections;
-using DevKit.Utils;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -27,20 +26,11 @@ namespace ITCafe
             rootScope.Build();
             
             var rootContainer = rootScope.Container;
-            var monoHook = rootContainer.Resolve<MonoBehaviourHook>();
             var loadingScreen = rootContainer.Resolve<LoadingScreen>();
             loadingScreen.Show();
             
-            monoHook.StartCoroutine(LoadEntryScene());
-            
-            return;
-
-            IEnumerator LoadEntryScene()
-            {
-                var sceneLoader = rootContainer.Resolve<SceneLoader>();
-
-                yield return sceneLoader.LoadStartScene();
-            }
+            var sceneLoader = rootContainer.Resolve<SceneLoader>();
+            sceneLoader.LoadStartScene().ToUniTask();
         }
     }
 }
