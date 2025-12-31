@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
 using ITCafe.Gameplay.UI.MVVM;
@@ -11,7 +13,10 @@ namespace ITCafe
 {
     public class MainMenuScope : LifetimeScope
     {
+        public Observable<MainMenuExitContext> ExitSignal { get; private set; }
+        
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
+        
         private MainMenuEnterContext _mainMenuEnterContext;
 
         protected override void Configure(IContainerBuilder builder)
@@ -26,7 +31,7 @@ namespace ITCafe
                 .As<IViewBinder<MainMenuViewModel>>();
         }
 
-        public Observable<MainMenuExitContext> Boot(MainMenuEnterContext mainMenuEnterContext = null)
+        public IEnumerator BootCoroutine(MainMenuEnterContext mainMenuEnterContext = null)
         {
             Time.timeScale = 1;
             Cursor.visible = true;
@@ -35,6 +40,7 @@ namespace ITCafe
             _mainMenuEnterContext = mainMenuEnterContext;
             
             Build();
+            yield return new WaitForEndOfFrame();
 
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
@@ -43,12 +49,17 @@ namespace ITCafe
             mainMenuBinder.Open();
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.MAIN_MENU_EXIT_SIGNAL);
-            // define context in UI
-            var gameplayEnterContext = new GameplayEnterContext();
+            var gameplayEnterContext = new GameplayEnterContext()
+            {
+                // TODO: define through UI
+                ToSceneName = Scenes.GAMEPLAY_1, 
+                LocationId = "location_1",
+                MissionId = "mission_1_1"
+            };
             var mainMenuExitContext = new MainMenuExitContext(gameplayEnterContext);
             var mainMenuExitSignal = exitSignal.Select(_ => mainMenuExitContext);
 
-            return mainMenuExitSignal;
+            ExitSignal = mainMenuExitSignal;
         }
     }
 }

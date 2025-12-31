@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_Source/Scenes/main_menu.unity
     guid: 80feb6d236fd7d6408bcdb9fecbd99f3
   - enabled: 0
-    path: Assets/_Source/Scenes/mission_1_1.unity
+    path: Assets/_Source/Scenes/cafe_1.unity
     guid: 79b77b99f469ac04cb13088d83ea956d
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3c11aa28adb6e9942b11fbf365445d12, type: 2}

@@ -36,7 +36,7 @@ namespace ITCafe
                 case Scenes.MAIN_MENU:
                     yield return LoadMainMenu(showLoadingImmediately: true);
                     break;
-                case Scenes.GAMEPLAY:
+                case Scenes.GAMEPLAY_1:
                     yield return LoadGameplay(immediateLoading: true);
                     break;
             }
@@ -61,7 +61,9 @@ namespace ITCafe
             Debug.Log("Main menu scene loaded");
 
             var mainMenuBootstrap = Object.FindAnyObjectByType<MainMenuScope>();
-            var exitMainMenuSignal = mainMenuBootstrap.Boot(mainMenuEnterContext);
+            yield return mainMenuBootstrap.BootCoroutine(mainMenuEnterContext);
+
+            var exitMainMenuSignal = mainMenuBootstrap.ExitSignal;
 
             exitMainMenuSignal.Take(1).Subscribe(mainMenuExitContext =>
             {
@@ -80,17 +82,20 @@ namespace ITCafe
             _onLoadingStarted.OnNext(Unit.Default);
 
             yield return LoadSceneAsync(Scenes.GAP);
-            yield return LoadSceneAsync(Scenes.GAMEPLAY);
+            yield return LoadSceneAsync(gameplayEnterContext == null ? Scenes.GAMEPLAY_1 : 
+                gameplayEnterContext.ToSceneName);
 
             Debug.Log("Gameplay scene loaded");
 
             var gameplayBootstrap = Object.FindAnyObjectByType<GameplayScope>();
-            var gameplayExitSignal = gameplayBootstrap.Boot(gameplayEnterContext);
+            yield return gameplayBootstrap.BootCoroutine(gameplayEnterContext);
+
+            var gameplayExitSignal = gameplayBootstrap.ExitSignal;
 
             gameplayExitSignal.Take(1).Subscribe(gameplayExitContext =>
             {
                 var enterContext = gameplayExitContext.EnterContext;
-                switch (enterContext.SceneName)
+                switch (enterContext.SceneTag)
                 {
                     case Scenes.MAIN_MENU:
                         _monoHook.StartCoroutine(LoadMainMenu((MainMenuEnterContext)enterContext));
@@ -111,12 +116,12 @@ namespace ITCafe
             yield return _loadingScreen.HideCoroutine();
         }
 
-        private AsyncOperationHandle<SceneInstance> LoadSceneAsync(string sceneName, 
+        private AsyncOperationHandle<SceneInstance> LoadSceneAsync(string sceneName,
             LoadSceneMode loadMode = LoadSceneMode.Single)
         {
             var handle = Addressables.LoadSceneAsync($"scenes/{sceneName}", loadMode, activateOnLoad: true);
             handle.Destroyed += _ => { FLogger.LogGood<SceneLoader>($"Scene {sceneName} was unloaded"); };
-            
+
             return handle;
         }
 

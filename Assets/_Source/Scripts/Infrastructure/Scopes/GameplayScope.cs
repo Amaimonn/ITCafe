@@ -1,6 +1,6 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
@@ -15,6 +15,7 @@ using ITCafe.Player;
 using R3;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
@@ -25,6 +26,8 @@ namespace ITCafe
 {
     public class GameplayScope : LifetimeScope
     {
+        public Observable<GameplayExitContext> ExitSignal { get; private set; }
+        
         [Header("Player")]
         [SerializeField] private InputActionAsset _inputActionAsset;
         [SerializeField] private Interactor _playerInteractor;
@@ -53,6 +56,7 @@ namespace ITCafe
         private IViewBinder<PauseViewModel> _pauseBinder;
         private GameplayEnterContext _gameplayEnterContext;
         private InputAction _pauseActionRef;
+        private MissionSetupSO _missionSetup;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -113,17 +117,13 @@ namespace ITCafe
         
         private void RegisterMissionConfig(IContainerBuilder builder)
         {
-            // if (_enterContext != null) // TODO: use in future
-            // {
-            // }
-            var missionSetup = Resources.Load<MissionSetupSO>("mission_setup_1"); // TODO: take from enterContext
-            builder.RegisterInstance<MissionSetupSO>(missionSetup);
+            builder.RegisterInstance<MissionSetupSO>(_missionSetup);
             
             var menuItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
             var menuItemsHashMap = new Dictionary<int, ItemInfoSO>();
             var allItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
 
-            foreach (var itemInfo in missionSetup.ItemsInfoSO.AllInfo)
+            foreach (var itemInfo in _missionSetup.ItemsInfoSO.AllInfo)
             {
                 if (!allItemsMap.TryAdd(itemInfo.ItemTag, itemInfo))
                     FLogger.LogWarning($"{itemInfo.ItemTag} has already been added");
@@ -150,15 +150,15 @@ namespace ITCafe
                 .As<IReadOnlyDictionary<int, ItemInfoSO>>()
                 .Keyed(Constants.MENU_ITEMS_HASH_MAP);
 
-            builder.RegisterInstance<IEnumerable<RecipeSO>>(missionSetup.RecipesSO.Recipes);
+            builder.RegisterInstance<IEnumerable<RecipeSO>>(_missionSetup.RecipesSO.Recipes);
 
-            builder.RegisterInstance<MissionEvaluation>(missionSetup.MissionEvaluation);
+            builder.RegisterInstance<MissionEvaluation>(_missionSetup.MissionEvaluation);
 
-            _guideSO = missionSetup.GuideSO;
+            _guideSO = _missionSetup.GuideSO;
             if (_guideSO != null)
                 builder.RegisterInstance<GuideSO>(_guideSO);
 
-            var itemsInfo = missionSetup.ItemsInfoSO.AllInfo;
+            var itemsInfo = _missionSetup.ItemsInfoSO.AllInfo;
             builder.RegisterInstance<ItemInfoSO[]>(itemsInfo)
                 .AsSelf()
                 .As<IEnumerable<ItemInfoSO>>();
@@ -208,7 +208,7 @@ namespace ITCafe
             }
         }
 
-        public Observable<GameplayExitContext> Boot(GameplayEnterContext gameplayEnterContext = null)
+        public IEnumerator BootCoroutine(GameplayEnterContext gameplayEnterContext = null)
         {
             Time.timeScale = 1;
             Cursor.visible = false;
@@ -217,19 +217,30 @@ namespace ITCafe
             
             _gameplayEnterContext = gameplayEnterContext;
             
+            // TODO: take id from enterContext
+            var setupId = gameplayEnterContext == null ? 
+                "mission_1_1_setup" : 
+                $"{gameplayEnterContext.MissionId}_setup";
+            
+            var handle = Addressables.LoadAssetAsync<MissionSetupSO>(setupId);
+            yield return handle;
+            
+            _missionSetup = handle.Result;
+            
             Build();
+            yield return new WaitForEndOfFrame();
             
             // Scene setup
             Destroy(_missionSetupRoot);
-            var missionSetup = Container.Resolve<MissionSetupSO>();
-            var sceneSetup = missionSetup.SceneObjectsPrefab;
-            Instantiate(sceneSetup);
+            var sceneSetup = _missionSetup.SceneObjectsPrefab;
+            yield return InstantiateAsync(sceneSetup);
             
             // Input init
             var inputService = Container.Resolve<InputService>();
             inputService.SetInputEnabled(false);
 
             InitUI();
+            yield return new WaitForEndOfFrame();
             
             // Delayed boot setup
             var loadingScreen = Container.Resolve<LoadingScreen>();
@@ -270,7 +281,12 @@ namespace ITCafe
 
             var mainMenuEnterContext = new MainMenuEnterContext();
 
-            var gameplayRestartContext = new GameplayExitContext(gameplayEnterContext ?? new GameplayEnterContext());
+            var gameplayRestartContext = new GameplayExitContext(gameplayEnterContext ?? new GameplayEnterContext()
+            {
+                ToSceneName = Scenes.GAMEPLAY_1,
+                MissionId = "mission_1_1",
+                LocationId = "Location_1_1",
+            });
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
             var gameplayExitSignal = new Subject<GameplayExitContext>();
 
@@ -282,7 +298,7 @@ namespace ITCafe
                 .Subscribe(_ => gameplayExitSignal.OnNext(gameplayRestartContext))
                 .AddTo(_disposables);
 
-            return gameplayExitSignal;
+            ExitSignal = gameplayExitSignal;
         }
 
         private void BootAfterLoading()

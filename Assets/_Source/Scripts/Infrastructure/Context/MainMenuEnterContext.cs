@@ -7,6 +7,7 @@ namespace ITCafe
     {
         public MainMenuEnterContext() : base(Scenes.MAIN_MENU)
         {
+            ToSceneName = Scenes.MAIN_MENU;
         }
     }
 }
