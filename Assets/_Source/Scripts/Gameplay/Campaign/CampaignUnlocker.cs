@@ -63,6 +63,7 @@ namespace ITCafe.Campaign
                 {
                     var nextMissionData = currentLocationMissionIds[currentMissionIndex + 1];
                     var nextMissionState = new MissionState(nextMissionData, false);
+                    
                     actions.Add(_ =>
                     {
                         campaignState.Locations.First(x => x.Id == locationId).OpenedMissions
