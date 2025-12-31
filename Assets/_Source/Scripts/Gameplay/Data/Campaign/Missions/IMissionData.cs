@@ -7,9 +7,9 @@ namespace ITCafe.Data.Campaign
         /// <summary>
         /// The number of the mission in UI.
         /// </summary>
-        public string DysplayedNumber { get; }
+        public string DisplayedNumber { get; }
         public string Name { get; }
-        public string Text { get; }
+        public string Description { get; }
         public string SceneName { get; }
     }
 }

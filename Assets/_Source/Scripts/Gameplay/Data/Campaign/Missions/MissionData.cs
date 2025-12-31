@@ -11,9 +11,9 @@ namespace ITCafe.Data.Campaign
         /// <summary>
         /// The number of the mission that is displayed on the screen.
         /// </summary>
-        [field: SerializeField] public string DysplayedNumber { get; private set; }
+        [field: SerializeField] public string DisplayedNumber { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
-        [field: SerializeField] public string Text { get; private set; }
+        [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public string SceneName { get; private set; }
     }
 }
