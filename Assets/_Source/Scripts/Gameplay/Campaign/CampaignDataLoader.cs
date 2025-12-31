@@ -12,14 +12,13 @@ namespace ITCafe.Campaign
     /// Loads and unloads data asynchronously.
     /// Limitations: wait for the data loading operation to be completed before releasing it.
     /// </summary>
-    public class CampaignLoader
+    public class CampaignDataLoader
     {
         private readonly CampaignModel _campaignModel;
         private readonly Dictionary<string, AsyncOperationHandle> _pathHandleMap = new();
         private MissionDataSO[] _currentMissionsData;
-        private const string ALL_LOCATIONS_DATA_PATH = "all_locations_data";
 
-        public CampaignLoader(CampaignModel campaignModel)
+        public CampaignDataLoader(CampaignModel campaignModel)
         {
             _campaignModel = campaignModel;
         }
@@ -29,7 +28,7 @@ namespace ITCafe.Campaign
         /// </summary>
         public async UniTaskVoid LoadAllLocationsDataAsync()
         {
-            var allLocationsData = await LoadAsync<AllLocationsDataSO>(ALL_LOCATIONS_DATA_PATH);
+            var allLocationsData = await LoadAsync<AllLocationsDataSO>(Constants.ALL_LOCATIONS_DATA_PATH);
             _campaignModel.SetAllLocationsData(allLocationsData);
         }
 
@@ -127,7 +126,7 @@ namespace ITCafe.Campaign
             if (handle.Status == AsyncOperationStatus.Succeeded)
                 return handle.Result;
 
-            FLogger.LogError<CampaignLoader>($"Failed to load {path}");
+            FLogger.LogError<CampaignDataLoader>($"Failed to load {path}");
             UnloadAsset(handle);
             _pathHandleMap.Remove(path);
 

@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4484dee8d90447d4eb9584ad942a4ac0
+    m_Address: all_locations_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79b77b99f469ac04cb13088d83ea956d
     m_Address: scenes/cafe_1
     m_ReadOnly: 0

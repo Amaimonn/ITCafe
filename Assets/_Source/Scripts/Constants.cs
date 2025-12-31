@@ -36,5 +36,9 @@ namespace ITCafe
         public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
         public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
 #endregion
+
+#region Addressables Paths
+        public const string ALL_LOCATIONS_DATA_PATH = "all_locations_data";
+#endregion
     }
 }
