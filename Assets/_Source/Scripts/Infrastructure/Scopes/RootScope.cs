@@ -20,26 +20,17 @@ namespace ITCafe
         [SerializeField] private SettingsView _settingsViewPrefab;
         
         private CompositeDisposable _disposables = new();
-
+        private RootUIBinder _rootUIBinder;
+        
         protected override void Configure(IContainerBuilder builder)
         {
             FLogger.Log("RootScope Configure");
             ShaderUnscaledTime.On();
 
-            var rootUIBinder = Instantiate(_rootUIBinderPrefab);
-            DontDestroyOnLoad(rootUIBinder);
-            builder.RegisterInstance<RootUIBinder>(rootUIBinder)
+            _rootUIBinder = Instantiate(_rootUIBinderPrefab);
+            DontDestroyOnLoad(_rootUIBinder);
+            builder.RegisterInstance<RootUIBinder>(_rootUIBinder)
                 .As<IRootUIBinder>();
-
-            var monoHook = new GameObject("EntryMonoHook").AddComponent<MonoBehaviourHook>();
-            DontDestroyOnLoad(monoHook);
-            builder.RegisterInstance<MonoBehaviourHook>(monoHook);
-
-            var loadingScreen = rootUIBinder.gameObject.GetComponentInChildren<LoadingScreen>(includeInactive: true);
-            if (loadingScreen == null)
-                FLogger.LogError("Loading Screen not found");
-
-            builder.RegisterComponent<LoadingScreen>(loadingScreen);
 
             builder.Register<SceneLoader>(Lifetime.Singleton);
 
@@ -81,8 +72,10 @@ namespace ITCafe
                 .As<IViewBinder<SettingsViewModel>>();
         }
 
-        private void OnBuild(IObjectResolver _)
+        private void OnBuild(IObjectResolver container)
         {
+            var loadingScreen = container.Resolve<LoadingScreen>();
+            loadingScreen.transform.SetParent(_rootUIBinder.transform);
             InitSettings();
         }
 

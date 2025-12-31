@@ -70,6 +70,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c530ce46a74c30e46b11215cf3d9cd20
+    m_Address: vcontainer_settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf5f52feba1d24142b1742b6da4eeaec
     m_Address: mission_1_1_setup
     m_ReadOnly: 0

@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using DevKit.Utils;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using VContainer;
 using VContainer.Unity;
 
@@ -21,24 +20,37 @@ namespace ITCafe
 
         private void Run()
         {
-            var vContainerSettings = Resources.Load<VContainerSettings>("vcontainer_settings"); 
-            var instanceProperty = typeof(VContainerSettings).GetProperty("Instance");
-            instanceProperty.SetValue(null, vContainerSettings);
-            
-            var rootScope = vContainerSettings.GetOrCreateRootLifetimeScopeInstance();
-            rootScope.Build();
-            
-            var rootContainer = rootScope.Container;
-            var monoHook = rootContainer.Resolve<MonoBehaviourHook>();
-            var loadingScreen = rootContainer.Resolve<LoadingScreen>();
+            var loadingScreenPrefab = Resources.Load<LoadingScreen>("loading_screen");
+            var loadingScreen = Object.Instantiate(loadingScreenPrefab);
             loadingScreen.Show();
-            
-            monoHook.StartCoroutine(LoadEntryScene());
-            
+
+            var monoHook = new GameObject("EntryMonoHook").AddComponent<MonoBehaviourHook>();
+            Object.DontDestroyOnLoad(monoHook);
+
+            monoHook.StartCoroutine(EntryCoroutine());
+
             return;
 
-            IEnumerator LoadEntryScene()
+            IEnumerator EntryCoroutine()
             {
+                var vContainerSettingsHandle = Addressables.LoadAssetAsync<VContainerSettings>("vcontainer_settings");
+                yield return vContainerSettingsHandle;
+
+                var vContainerSettings = vContainerSettingsHandle.Result;
+                var instanceProperty = typeof(VContainerSettings).GetProperty("Instance");
+                instanceProperty.SetValue(null, vContainerSettings);
+
+                var rootScope = vContainerSettings.GetOrCreateRootLifetimeScopeInstance();
+                using (LifetimeScope.Enqueue(builder =>
+                   {
+                       builder.RegisterInstance(monoHook);
+                       builder.RegisterInstance(loadingScreen);
+                   }))
+                {
+                    rootScope.Build();
+                }
+                
+                var rootContainer = rootScope.Container;
                 var sceneLoader = rootContainer.Resolve<SceneLoader>();
 
                 yield return sceneLoader.LoadStartScene();
