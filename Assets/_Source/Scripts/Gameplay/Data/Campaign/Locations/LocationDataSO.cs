@@ -8,8 +8,8 @@ namespace ITCafe.Data.Campaign
     {
         [field: SerializeField] public string Id { get; private set; }
         [field: SerializeField] public string Name { get; private set; }
-        public IReadOnlyList<string> MissionIds => AllMissionsDataSO;
+        public IReadOnlyList<string> MissionIds => _missionIds;
 
-        [field: SerializeField] public string[] AllMissionsDataSO {get; private set;}
+        [SerializeField] private string[] _missionIds;
     }
 }

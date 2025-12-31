@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: all_locations_data
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Campaign.AllLocationsDataSO
   <Version>k__BackingField: 1
-  _locationsData: []
+  _locationsData:
+  - {fileID: 11400000, guid: 338ed021b1d18fb48afecfa12018999c, type: 2}

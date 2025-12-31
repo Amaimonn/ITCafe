@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Campaign.LocationDataSO
   <Id>k__BackingField: location_1
   <Name>k__BackingField: Location 1
-  <AllMissionsDataSO>k__BackingField: []
+  _missionIds:
+  - mission_1_1
+  - mission_1_2
+  - mission_1_3
