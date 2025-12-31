@@ -29,7 +29,7 @@ namespace ITCafe
         [SerializeField] private InputActionAsset _inputActionAsset;
         [SerializeField] private Interactor _playerInteractor;
         [SerializeField] private ItemPicker _playerItemPicker;
-        [SerializeField] private InputActionReference _pauseActionRef;
+        [SerializeField] private string _pauseActionName;
         [SerializeField] private CinemachineInputAxisController _cinemachineInputAxisController;
 
         [Header("Clients"), Space(4)]
@@ -52,6 +52,7 @@ namespace ITCafe
         private CancellationToken _destroyToken;
         private IViewBinder<PauseViewModel> _pauseBinder;
         private GameplayEnterContext _gameplayEnterContext;
+        private InputAction _pauseActionRef;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -60,7 +61,7 @@ namespace ITCafe
             RegisterUI(builder);
 
             builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
-
+            
             builder.Register<Subject<Unit>>(Lifetime.Singleton)
                 .Keyed(Constants.GAMEPLAY_EXIT_SIGNAL);
 
@@ -212,6 +213,7 @@ namespace ITCafe
             Time.timeScale = 1;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            _inputActionAsset.FindActionMap("GameUI").Enable();
             
             _gameplayEnterContext = gameplayEnterContext;
             
@@ -353,12 +355,23 @@ namespace ITCafe
         private void SubscribePause()
         {
             _pauseBinder = Container.Resolve<IViewBinder<PauseViewModel>>();
-            _pauseActionRef.action.started += Pause;
+            _pauseActionRef = _inputActionAsset.FindAction(_pauseActionName);
+            
+            if (_pauseActionRef != null)
+            {
+                _pauseActionRef.started += Pause;
+                FLogger.LogGood<GameplayScope>("Pause action binded");
+            }
+            else
+            {
+                FLogger.LogError<GameplayScope>("Pause action not found");
+            }
         }
 
         private void UnsubscribePause()
         {
-            _pauseActionRef.action.started -= Pause;
+            if (_pauseActionRef != null)
+                _pauseActionRef.started -= Pause;
         }
 
         private void Pause(InputAction.CallbackContext _)

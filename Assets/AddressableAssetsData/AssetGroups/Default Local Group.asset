@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 7bc64339ac30628409e4e353cab0f0fc
   m_SerializeEntries:
+  - m_GUID: 052faaac586de48259a63d0c4782560b
+    m_Address: Assets/_Source/Settings/PlayerActionMap.inputactions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f5e7422d45158d45802854e5b80bdde
     m_Address: mission_1_1
     m_ReadOnly: 0
@@ -22,6 +27,21 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 338ed021b1d18fb48afecfa12018999c
     m_Address: location_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79b77b99f469ac04cb13088d83ea956d
+    m_Address: scenes/mission_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80feb6d236fd7d6408bcdb9fecbd99f3
+    m_Address: scenes/main_menu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93b2bd02ed33c1a46ab7ea36bae4ce7a
+    m_Address: scenes/gap
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

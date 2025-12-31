@@ -30,8 +30,10 @@ namespace ITCafe.Player
         public void Init()
         {
             _onInteract = OnInteract; //_inputService.MediateAction(_interactAction, OnInteract);
-            var inputEntry = new InputEntry(() => _interactAction.action.started += _onInteract,
-                () => _interactAction.action.started -= _onInteract, 90);
+            
+            var interactAction = _interactAction.action;
+            var inputEntry = new InputEntry(() => interactAction.started += _onInteract,
+                () => interactAction.started -= _onInteract, 90);
             _interactSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_interactAction.action, "started"),
                 inputEntry);
         }

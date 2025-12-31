@@ -21111,7 +21111,7 @@ MonoBehaviour:
   _inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _playerInteractor: {fileID: 604675099}
   _playerItemPicker: {fileID: 604675100}
-  _pauseActionRef: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _pauseActionName: GameUI/Pause
   _cinemachineInputAxisController: {fileID: 1589975953}
   _clientPrefabs:
   - {fileID: 1935830331690626689, guid: e723f90a8283e8648b5de2309d25d248, type: 3}
@@ -36543,7 +36543,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outline: {fileID: 2079728290}
   _spawningItemTag: 500
-  _itemPrefab: {fileID: 6000649212412820298, guid: fdac0b03b138f2f46b517d74230aafe1, type: 3}
 --- !u!65 &2079728292
 BoxCollider:
   m_ObjectHideFlags: 0
