@@ -57,7 +57,6 @@ namespace ITCafe.Gameplay.UI.MVVM
         public void StartGameplay()
         {
             _startMissionSubject.OnNext(Unit.Default);
-            _campaignDataLoader.UnloadAll(_campaignDataModel); // TODO: mb call it later (in dispose)
         }
 
         public void SelectLocation(ILocationData locationData)
@@ -105,10 +104,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _campaignDataModel.CurrentMissionsData.Subscribe(x =>
             {
-                if (x == null)
-                    _currentMissionsData.Value = new List<IMissionData>();
-                else
-                    _currentMissionsData.Value = x;
+                _currentMissionsData.Value = x ?? new List<IMissionData>();
             }).AddTo(_disposables);
 
             _campaignDataModel.SelectedLocationData.Subscribe(x => _selectedLocationData.Value = x)
@@ -132,6 +128,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         public override void Dispose()
         {
             Disposes.ClearDispose(ref _disposables);
+            _campaignDataLoader.UnloadAll(_campaignDataModel);
         }
     }
 }

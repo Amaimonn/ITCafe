@@ -93,6 +93,7 @@ namespace ITCafe.Campaign
                 UnloadAsset(missionData);
                 _pathHandleMap.Remove(missionData.Id);
             }
+            FLogger.Log<CampaignDataLoader>($"Unloaded left: {_pathHandleMap.Count}");
             _currentMissionsData = null;
         }
 
@@ -148,6 +149,7 @@ namespace ITCafe.Campaign
                 ReleaseHandle(asset);
 
             _pathHandleMap.Clear();
+            FLogger.Log<CampaignDataLoader>($"Unloaded left: {_pathHandleMap.Count}");
         }
 
         private async UniTask<T> LoadAsync<T>(string path)

@@ -252,15 +252,68 @@
     border-color: rgb(0, 224, 178);
 }
 
+.campaign__mission-button.campaign__mission-button--selected:hover {
+    background-color: rgba(0, 184, 148, 0.3);
+    border-color: rgb(0, 224, 178);
+}
+
+.campaign__mission-button.campaign__mission-button--selected:active {
+    background-color: rgba(0, 184, 148, 0.3);
+    border-color: rgb(0, 224, 178);
+}
+
+.campaign__mission-button--locked {
+    opacity: 0.5;
+}
+
+.campaign__mission-button.campaign__mission-button--locked:hover {
+    opacity: 0.55;
+}
+
+.campaign__mission-button.campaign__mission-button--locked:active {
+    opacity: 0.6;
+}
+
+.campaign__mission-button.campaign__mission-button--locked.campaign__mission-button--selected {
+    opacity: 0.55;
+}
+
+.campaign__mission-button.campaign__mission-button--locked.campaign__mission-button--selected:hover {
+    opacity: 0.55;
+}
+
+.campaign__mission-button.campaign__mission-button--locked.campaign__mission-button--selected:active {
+    opacity: 0.55;
+}
+
 .campaign__mission-button--completed {
     background-color: rgba(46, 204, 113, 0.2);
     border-color: rgb(46, 204, 113);
 }
 
-.campaign__mission-button--locked {
-    opacity: 0.5;
-    background-color: rgba(60, 70, 90, 0.5);
-    border-color: rgb(80, 100, 120);
+.campaign__mission-button.campaign__mission-button--completed:hover {
+    background-color: rgba(46, 204, 113, 0.25);
+    border-color: rgb(46, 204, 113);
+}
+
+.campaign__mission-button.campaign__mission-button--completed:active {
+    background-color: rgba(46, 204, 113, 0.3);
+    border-color: rgb(46, 204, 113);
+}
+
+.campaign__mission-button--completed.campaign__mission-button--selected {
+    background-color: rgba(46, 204, 113, 0.25);
+    border-color: rgb(46, 204, 113);
+}
+
+.campaign__mission-button.campaign__mission-button--completed.campaign__mission-button--selected:hover {
+    background-color: rgba(46, 204, 113, 0.25);
+    border-color: rgb(46, 204, 113);
+}
+
+.campaign__mission-button.campaign__mission-button--completed.campaign__mission-button--selected:active {
+    background-color: rgba(46, 204, 113, 0.25);
+    border-color: rgb(46, 204, 113);
 }
 
 .campaign__mission-number {
@@ -268,20 +321,6 @@
     color: rgb(255, 255, 255);
     -unity-text-align: middle-center;
     margin-bottom: 4px;
-}
-
-.campaign__mission-stars {
-    flex-direction: row;
-    margin-top: 4px;
-}
-
-.campaign__mission-star {
-    width: 12px;
-    height: 12px;
-    background-color: rgb(255, 184, 0);
-    border-radius: 50%;
-    margin-left: 1px;
-    margin-right: 1px;
 }
 
 .campaign__mission-details {
@@ -385,37 +424,14 @@
     padding-top: 25px;
     border-top-color: rgba(0, 184, 148, 0.3);
     border-top-width: 1px;
+    justify-content: flex-end;
 }
 
-.campaign__button {
-    min-width: 180px;
-    height: 44px;
-    border-width: 1px;
-    border-radius: 3px;
-    font-size: 14px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 24px;
-    padding-right: 24px;
-}
 
-.campaign__button:hover {
-    background-color: rgba(70, 170, 200, 0.2);
-}
 
-.campaign__button--primary {
-    background-color: rgba(0, 184, 148, 0.2);
-    border-color: rgb(0, 184, 148);
-    color: rgb(220, 240, 235);
-    margin-left: 20px;
-}
 
-.campaign__button--primary:hover {
-    background-color: rgba(0, 184, 148, 0.4);
-    border-color: rgb(0, 224, 178);
-}
+
+
 
 .campaign__button--primary:active {
     background-color: rgba(0, 184, 148, 0.5);
@@ -475,15 +491,6 @@
     background-color: rgba(100, 200, 230, 0.7);
 }
 
-
-
-
-
-
-
-
-
-/* Стили для звезд внутри кнопки миссии */
 .campaign__mission-stars {
     flex-direction: row;
     -unity-text-align: middle-center;
@@ -497,39 +504,4 @@
     border-radius: 50%;
     margin-left: 1px;
     margin-right: 1px;
-}
-
-/* Стили для статуса локации */
-.campaign__location-status {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgb(70, 170, 200);
-    margin-left: 8px;
-}
-
-.campaign__location-status--completed {
-    background-color: rgb(0, 184, 148);
-}
-
-.campaign__location-status--locked {
-    background-color: rgb(120, 140, 160);
-}
-
-/* Дополнительные классы состояния */
-.campaign__location-tab--locked {
-    opacity: 0.6;
-    background-color: rgba(60, 70, 90, 0.5);
-    border-color: rgb(80, 100, 120);
-}
-
-.campaign__location-tab--locked:hover {
-    background-color: rgba(60, 70, 90, 0.6);
-    border-color: rgb(100, 120, 140);
-}
-
-.campaign__mission-button--locked {
-    opacity: 0.5;
-    background-color: rgba(60, 70, 90, 0.5);
-    border-color: rgb(80, 100, 120);
 }

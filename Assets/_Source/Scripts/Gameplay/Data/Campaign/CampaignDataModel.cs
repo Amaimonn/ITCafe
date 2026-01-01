@@ -11,14 +11,16 @@ namespace ITCafe.Data.Campaign
 
         public ReadOnlyReactiveProperty<IReadOnlyDictionary<string, ILocationData>> LocationsDataMap =>
             _locationsDataMap; // should be loaded before model usage
+
         public ReadOnlyReactiveProperty<IReadOnlyDictionary<string, IMissionData>> CurrentMissionsDataMap =>
             _currentMissionsDataMap;
+
         public Observable<IReadOnlyList<IMissionData>> CurrentMissionsData =>
             _currentMissionsData;
 
         public readonly ReactiveProperty<ILocationData> SelectedLocationData = new();
         public readonly ReactiveProperty<IMissionData> SelectedMissionData = new();
-        
+
         /// <summary>
         /// All Locations config data in campaign
         /// </summary>
@@ -32,9 +34,9 @@ namespace ITCafe.Data.Campaign
         public void SetAllLocationsData(IAllLocationsData allLocationsData)
         {
             _allLocationsData = allLocationsData;
-            if (_allLocationsData != null)
+            if (_allLocationsData != null && allLocationsData.AllData != null)
             {
-                var locationsPairs = allLocationsData?.AllData
+                var locationsPairs = allLocationsData.AllData
                     .Select(x => new KeyValuePair<string, ILocationData>(x.Id, x));
 
                 _locationsDataMap.Value = new Dictionary<string, ILocationData>(locationsPairs);
@@ -43,7 +45,7 @@ namespace ITCafe.Data.Campaign
             {
                 _locationsDataMap.Value = new Dictionary<string, ILocationData>();
             }
-            
+
             _isLoaded.Value = true;
         }
 
@@ -52,9 +54,7 @@ namespace ITCafe.Data.Campaign
             _currentMissionsData.Value = currentMissionsData;
             if (currentMissionsData != null)
             {
-                var missionPairs = currentMissionsData
-                    .Select(x => new KeyValuePair<string, IMissionData>(x.Id, x));
-
+                var missionPairs = currentMissionsData.Select(x => new KeyValuePair<string, IMissionData>(x.Id, x));
                 _currentMissionsDataMap.Value = new Dictionary<string, IMissionData>(missionPairs);
             }
             else

@@ -1,4 +1,5 @@
 using DevKit.Solutions;
+using R3;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -6,6 +7,9 @@ namespace ITCafe.Data.Campaign
 {
     public class CampaignDataModelFactory : IFactory<CampaignDataModel>
     {
+        public Observable<CampaignDataModel> OnProduced => _onProduced;
+
+        private readonly ReactiveProperty<CampaignDataModel> _onProduced = new();
         private AsyncOperationHandle<AllLocationsDataSO> _locationsDataHandle;
         
         // There could be a cached model with loaded data (Create method will just increase addressables counter)
@@ -34,6 +38,7 @@ namespace ITCafe.Data.Campaign
                 //     _gameStateProvider.SaveAll(); // save new version
                 // }
             };
+            _onProduced.Value = campaignDataModel;
             
             return campaignDataModel;
         }
