@@ -345,6 +345,7 @@ MonoBehaviour:
   autoRun: 0
   autoInjectGameObjects: []
   _mainMenuViewPrefab: {fileID: 5820000055470892123, guid: 3d28230d3ddbf2d439ee4925b5971659, type: 3}
+  _campaignViewPrefab: {fileID: 2689488396547932521, guid: 62c7c7a63560f5c4aa953c35c251d223, type: 3}
 --- !u!4 &1317737976
 Transform:
   m_ObjectHideFlags: 0

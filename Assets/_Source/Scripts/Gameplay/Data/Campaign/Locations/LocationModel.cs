@@ -8,7 +8,7 @@ namespace ITCafe.Data.Campaign
     public class LocationModel : Model<LocationState>
     {
         public readonly ReactiveProperty<bool> IsCompleted;
-        public readonly ObservableDictionary<string, MissionModel> AvailableMissionsMap;
+        public readonly ObservableDictionary<string, MissionModel> OpenedMissionsMap;
         
         public LocationModel(LocationState locationState) : 
             base(locationState)
@@ -16,11 +16,11 @@ namespace ITCafe.Data.Campaign
             IsCompleted = new ReactiveProperty<bool>(State.IsCompleted);
             IsCompleted.Skip(1).Subscribe(x => State.IsCompleted = x);
             
-            var availableMissionsMap = State.OpenedMissions.Select(x => 
+            var openedMissionsMap = State.OpenedMissions.Select(x => 
                 new KeyValuePair<string, MissionModel>(x.Id, new MissionModel(x)));
             
-            AvailableMissionsMap = new ObservableDictionary<string, MissionModel>(availableMissionsMap);
-            AvailableMissionsMap.ObserveAdd()
+            OpenedMissionsMap = new ObservableDictionary<string, MissionModel>(openedMissionsMap);
+            OpenedMissionsMap.ObserveAdd()
                 .Subscribe(x => State.OpenedMissions.Add(x.Value.Value.State));
         }
     }

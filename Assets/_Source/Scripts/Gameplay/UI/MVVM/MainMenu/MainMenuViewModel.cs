@@ -12,7 +12,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly Subject<Unit> _exitSubject;
         private readonly IViewBinder<SettingsViewModel> _settingsBinder;
 
-        public MainMenuViewModel([Key(Constants.MAIN_MENU_EXIT_SIGNAL)] Subject<Unit> exitSubject,
+        public MainMenuViewModel([Key(Constants.START_MISSION_SIGNAL)] Subject<Unit> exitSubject,
             IViewBinder<SettingsViewModel> settingsBinder)
         {
             _exitSubject = exitSubject;

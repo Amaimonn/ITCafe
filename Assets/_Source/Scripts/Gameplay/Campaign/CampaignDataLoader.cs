@@ -14,46 +14,53 @@ namespace ITCafe.Campaign
     /// </summary>
     public class CampaignDataLoader
     {
-        private readonly CampaignModel _campaignModel;
         private readonly Dictionary<string, AsyncOperationHandle> _pathHandleMap = new();
         private MissionDataSO[] _currentMissionsData;
 
-        public CampaignDataLoader(CampaignModel campaignModel)
-        {
-            _campaignModel = campaignModel;
-        }
-
-        /// <summary>
-        /// Use on Campaign model init.
-        /// </summary>
-        public async UniTaskVoid LoadAllLocationsDataAsync()
-        {
-            var allLocationsData = await LoadAsync<AllLocationsDataSO>(Constants.ALL_LOCATIONS_DATA_PATH);
-            _campaignModel.SetAllLocationsData(allLocationsData);
-        }
+        // /// <summary>
+        // /// Use on Campaign model init.
+        // /// </summary>
+        // public async UniTaskVoid LoadAllLocationsDataAsync(CampaignDataModel campaignDataModel)
+        // {
+        //     var allLocationsData = await LoadAsync<AllLocationsDataSO>(Constants.ALL_LOCATIONS_DATA_PATH);
+        //     campaignDataModel.SetAllLocationsData(allLocationsData);
+        // }
 
         /// <summary>
         /// Use on location selection in Campaign UI.
         /// </summary>
-        public async UniTaskVoid LoadLocationMissionsAsync(string locationId)
+        public async UniTaskVoid SelectLocationAsync(CampaignDataModel campaignDataModel, string locationId)
         {
-            UnloadCurrentMissionsData();
+            if (!campaignDataModel.LocationsDataMap.CurrentValue.TryGetValue(locationId, out var locationData))
+            {
+                FLogger.LogError<CampaignDataLoader>($"No location data found for {locationId}");
+                return;
+            }
+            
+            campaignDataModel.SelectedLocationData.Value = locationData;
 
-            var locationData = _campaignModel.LocationsDataMap.CurrentValue[locationId];
+            UnloadCurrentMissionsData(campaignDataModel);
+
             var loadedMissions = await LoadManyAsync<MissionDataSO>(locationData.MissionIds); // path is id
-            var missionsData = loadedMissions.Where(mission => mission != null)
-                .ToArray();
-
-            _campaignModel.CurrentMissionsData.Value = missionsData;
+            if (loadedMissions != null)
+            {
+                var missionsData = loadedMissions.Where(mission => mission != null)
+                    .ToArray();
+                campaignDataModel.CurrentMissionsData.Value = missionsData;
+            }
         }
 
-        public void UnloadCurrentMissionsData()
+        /// <summary>
+        /// Clears currently loaded missions data.
+        /// May be used when location selection screen is displayed and no missions visible.
+        /// </summary>
+        private void UnloadCurrentMissionsData(CampaignDataModel campaignDataModel)
         {
             if (_currentMissionsData == null)
                 return;
-            
-            _campaignModel.SelectedMissionData.Value = null;
-            
+
+            campaignDataModel.SelectedMissionData.Value = null;
+
             foreach (var missionData in _currentMissionsData)
             {
                 UnloadAsset(missionData);
@@ -102,12 +109,12 @@ namespace ITCafe.Campaign
         /// Use after Campaign UI closed and going to gameplay.
         /// Don`t use data objects after this method (look at selected).
         /// </summary>
-        public void UnloadAll()
+        public void UnloadAll(CampaignDataModel campaignDataModel)
         {
-            _campaignModel.SetAllLocationsData(null);
-            _campaignModel.CurrentMissionsData.Value = null;
-            _campaignModel.SelectedLocationData.Value = null;
-            _campaignModel.SelectedMissionData.Value = null;
+            campaignDataModel.SetAllLocationsData(null);
+            campaignDataModel.CurrentMissionsData.Value = null;
+            campaignDataModel.SelectedLocationData.Value = null;
+            campaignDataModel.SelectedMissionData.Value = null;
             _currentMissionsData = null;
 
             foreach (var asset in _pathHandleMap.Values)

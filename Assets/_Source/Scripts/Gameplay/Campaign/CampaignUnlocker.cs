@@ -13,7 +13,8 @@ namespace ITCafe.Campaign
     /// </summary>
     public class CampaignUnlocker
     {
-        public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel,
+        public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel, 
+            CampaignDataModel campaignDataModel,
             ILocationData selectedLocationData, IMissionData selectedMissionData, Action saveAction, 
             Action<T, CampaignState> resultHandler) where T : IMissionResult
         {
@@ -74,7 +75,7 @@ namespace ITCafe.Campaign
                 {
                     actions.Add(_ => currentLocationState.IsCompleted = true);
                     
-                    var allLocationsData = campaignModel.AllLocationsData.AllData;
+                    var allLocationsData = campaignDataModel.AllLocationsData.AllData;
                     var currentLocationIndex = allLocationsData.IndexWhere(x =>
                         x.Id == locationId);
                     
@@ -112,10 +113,10 @@ namespace ITCafe.Campaign
         /// <summary>
         /// Updates available Locations and Missions according to data.
         /// </summary>
-        public void MigrateCampaign(CampaignModel campaignModel)
+        public void MigrateCampaign(CampaignModel campaignModel, CampaignDataModel campaignDataModel)
         {
             var stateChanged = false;
-            var allLocationsData = campaignModel.AllLocationsData.AllData;
+            var allLocationsData = campaignDataModel.AllLocationsData.AllData;
 
             foreach (var locationData in allLocationsData)
             {
@@ -138,7 +139,7 @@ namespace ITCafe.Campaign
                             new List<MissionState> { firstMissionState });
 
                         var newLocationModel = new LocationModel(newLocationState);
-                        campaignModel.AvailableLocationsMap.Add(locationData.Id, newLocationModel);
+                        campaignModel.OpenedLocationsMap.Add(locationData.Id, newLocationModel);
 
                         stateChanged = true;
                     }
@@ -150,7 +151,7 @@ namespace ITCafe.Campaign
                         new List<MissionState> { firstMissionState });
 
                     var newLocationModel = new LocationModel(newLocationState);
-                    campaignModel.AvailableLocationsMap.Add(locationData.Id, newLocationModel);
+                    campaignModel.OpenedLocationsMap.Add(locationData.Id, newLocationModel);
 
                     stateChanged = true;
                 }
@@ -161,7 +162,7 @@ namespace ITCafe.Campaign
                 if (string.IsNullOrEmpty(locationState.MaxCompletedMissionId))
                     continue;
                 
-                var locationData = campaignModel.LocationsDataMap.CurrentValue[locationState.Id];
+                var locationData = campaignDataModel.LocationsDataMap.CurrentValue[locationState.Id];
 
                 var lastCompletedMissionData = locationData.MissionIds.FirstOrDefault(x =>
                     x == locationState.MaxCompletedMissionId);
@@ -189,9 +190,9 @@ namespace ITCafe.Campaign
                     if (missionState == null) // open new mission
                     {
                         var newMissionState = new MissionState(missionId, false);
-                        var locationModel = campaignModel.AvailableLocationsMap[locationData.Id];
+                        var locationModel = campaignModel.OpenedLocationsMap[locationData.Id];
                         var newMissionModel = new MissionModel(newMissionState);
-                        locationModel.AvailableMissionsMap.Add(missionId, newMissionModel);
+                        locationModel.OpenedMissionsMap.Add(missionId, newMissionModel);
 
                         stateChanged = true;
                     }
