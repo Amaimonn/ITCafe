@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class ResultsView : ScreenToolkitAttach<ResultsViewModel>
+    public class ResultsView : AttachableToolkitScreen<ResultsViewModel>
     {
         [SerializeField] private string _menuButtonName = "MenuButton";
         [SerializeField] private string _restartButtonName = "RestartButton";

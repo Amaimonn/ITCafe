@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class PauseView : ScreenToolkitAttach<PauseViewModel>
+    public class PauseView : AttachableToolkitScreen<PauseViewModel>
     {
         [SerializeField] private string _resumeButtonName = "ResumeButton";
         [SerializeField] private string _closeButtonName = "CloseButton";

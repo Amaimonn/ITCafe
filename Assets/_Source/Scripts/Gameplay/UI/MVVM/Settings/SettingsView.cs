@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class SettingsView : ScreenToolkitAttach<SettingsViewModel>
+    public class SettingsView : AttachableToolkitScreen<SettingsViewModel>
     {
         [Header("UIElements")]
         [SerializeField] private string _applyButtonName = "ApplyButton";

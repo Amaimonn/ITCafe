@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class MainMenuView : ScreenToolkitAttach<MainMenuViewModel>
+    public class MainMenuView : AttachableToolkitScreen<MainMenuViewModel>
     {
         [SerializeField] private string _playButtonName = "PlayButton";
         [SerializeField] private string _exitButtonName = "ExitButton";

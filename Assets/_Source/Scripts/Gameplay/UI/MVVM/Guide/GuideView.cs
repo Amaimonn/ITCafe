@@ -8,7 +8,7 @@ using R3;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class GuideView : ScreenToolkitAttach<GuideViewModel>
+    public class GuideView : AttachableToolkitScreen<GuideViewModel>
     {
         [SerializeField] private string _pagesContainerName = "PagesContainer";
         [SerializeField] private string _okButtonName = "OkButton";
