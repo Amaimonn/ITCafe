@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
+using DevKit.Utils;
 using ITCafe.Campaign;
 using ITCafe.Data.Campaign;
 using ObservableCollections;
@@ -11,11 +12,11 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class CampaignViewModel : ScreenViewModel
     {
         public Observable<IReadOnlyDictionary<string, ILocationData>> LocationsDataMap => _locationsDataMap;
-        public Observable<ILocationData> SelectedLocationData => _selectedLocationData;
-        public Observable<IMissionData> SelectedMissionData => _selectedMissionData;
+        public ReadOnlyReactiveProperty<ILocationData> SelectedLocationData => _selectedLocationData;
+        public ReadOnlyReactiveProperty<IMissionData> SelectedMissionData => _selectedMissionData;
         public Observable<IReadOnlyList<IMissionData>> CurrentMissionsData => _currentMissionsData;
-        public IReadOnlyObservableDictionary<string, LocationModel> AvailableLocationsMap => _availableLocationsMap;
-        public IReadOnlyObservableDictionary<string, MissionModel> AvailableMissionsMap => _availableMissionsMap;
+        public IReadOnlyObservableDictionary<string, LocationModel> OpenedLocationsMap => _openedLocationsMap;
+        public IReadOnlyObservableDictionary<string, MissionModel> OpenedMissionsMap => _openedMissionsMap;
 
         private readonly CampaignDataLoader _campaignDataLoader;
         private readonly Subject<Unit> _startMissionSubject;
@@ -26,8 +27,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly ReactiveProperty<ILocationData> _selectedLocationData = new();
         private readonly ReactiveProperty<IMissionData> _selectedMissionData = new();
         private readonly ReactiveProperty<IReadOnlyList<IMissionData>> _currentMissionsData = new();
-        private readonly ObservableDictionary<string, MissionModel> _availableMissionsMap = new();
-        private readonly ObservableDictionary<string, LocationModel> _availableLocationsMap = new();
+        private readonly ObservableDictionary<string, MissionModel> _openedMissionsMap = new();
+        private readonly ObservableDictionary<string, LocationModel> _openedLocationsMap = new();
         private readonly ReactiveProperty<IReadOnlyDictionary<string, ILocationData>> _locationsDataMap = new();
         private CompositeDisposable _disposables;
 
@@ -52,13 +53,13 @@ namespace ITCafe.Gameplay.UI.MVVM
                 .Subscribe(_ => BindDataOnLoaded())
                 .AddTo(_disposables);
         }
-        
+
         public void StartGameplay()
         {
             _startMissionSubject.OnNext(Unit.Default);
             _campaignDataLoader.UnloadAll(_campaignDataModel); // TODO: mb call it later (in dispose)
         }
-        
+
         public void SelectLocation(ILocationData locationData)
         {
             _campaignModel.SelectedLocationId.Value = locationData?.Id;
@@ -76,30 +77,38 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void BindOpenedLocations(IDictionary<string, LocationModel> locationsMap)
         {
             foreach (var idLocationPair in locationsMap)
-                BindOpenedMissions(idLocationPair.Value);
+                BindLocation(idLocationPair.Value);
 
             _campaignModel.OpenedLocationsMap.ObserveAdd()
-                .Subscribe(x => BindOpenedMissions(x.Value.Value))
+                .Subscribe(x => BindLocation(x.Value.Value))
                 .AddTo(_disposables);
 
             return;
 
-            void BindOpenedMissions(LocationModel locationModel)
+
+            void BindLocation(LocationModel locationModel)
             {
+                _openedLocationsMap.Add(locationModel.State.Id, locationModel);
+
                 foreach (var idMissionPair in locationModel.OpenedMissionsMap)
-                    _availableMissionsMap.Add(idMissionPair.Key, idMissionPair.Value);
+                    _openedMissionsMap.Add(idMissionPair.Key, idMissionPair.Value);
 
                 locationModel.OpenedMissionsMap.ObserveAdd()
-                    .Subscribe(x => _availableMissionsMap.Add(x.Value.Key, x.Value.Value))
+                    .Subscribe(x => _openedMissionsMap.Add(x.Value.Key, x.Value.Value))
                     .AddTo(_disposables);
             }
         }
 
         private void BindDataOnLoaded()
         {
+            FLogger.Log<CampaignViewModel>("Campaign Data Binding");
+
             _campaignDataModel.CurrentMissionsData.Subscribe(x =>
             {
-                _currentMissionsData.Value = x ?? new List<IMissionData>();
+                if (x == null)
+                    _currentMissionsData.Value = new List<IMissionData>();
+                else
+                    _currentMissionsData.Value = x;
             }).AddTo(_disposables);
 
             _campaignDataModel.SelectedLocationData.Subscribe(x => _selectedLocationData.Value = x)
@@ -111,8 +120,12 @@ namespace ITCafe.Gameplay.UI.MVVM
             _campaignDataModel.LocationsDataMap.Subscribe(x => _locationsDataMap.Value = x)
                 .AddTo(_disposables);
 
-            _campaignModel.SelectedLocationId.Subscribe(x =>
-                    _campaignDataLoader.SelectLocationAsync(_campaignDataModel, x).Forget())
+            _campaignModel.SelectedMissionId.Where(x => !string.IsNullOrEmpty(x))
+                .Subscribe(x => _campaignDataLoader.SelectMissionAsync(_campaignDataModel, x).Forget())
+                .AddTo(_disposables);
+
+            _campaignModel.SelectedLocationId.Where(x => !string.IsNullOrEmpty(x))
+                .Subscribe(x => _campaignDataLoader.SelectLocationAsync(_campaignDataModel, x).Forget())
                 .AddTo(_disposables);
         }
 

@@ -67,7 +67,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(MainMenuViewModel viewModel)
         {
             base.OnBind(viewModel);
-            _playButton.RegisterCallbackOnce<ClickEvent>(StartGameplay);
+            _playButton.RegisterCallback<ClickEvent>(StartGameplay);
             _settingsButton.RegisterCallback<ClickEvent>(OpenSettings);
             _exitButton.RegisterCallbackOnce<ClickEvent>(Quit);
         }

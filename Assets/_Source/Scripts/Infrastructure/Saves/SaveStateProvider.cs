@@ -23,6 +23,16 @@ namespace ITCafe.Infrastructure.Saves
             if (_saveSystem.Exists(SAVE_STATE))
             {
                 _saveState = _saveSystem.Load<SaveStateV1>(SAVE_STATE);
+                _saveState.CampaignState ??= new CampaignState
+                {
+                    Locations = new List<LocationState>
+                    {
+                        new("location_1", false, new List<MissionState>
+                        {
+                            new("mission_1_1", false)
+                        })
+                    }
+                };
             }
             else
             {

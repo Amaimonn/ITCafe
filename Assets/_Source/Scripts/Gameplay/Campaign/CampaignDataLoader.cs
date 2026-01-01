@@ -31,6 +31,13 @@ namespace ITCafe.Campaign
         /// </summary>
         public async UniTaskVoid SelectLocationAsync(CampaignDataModel campaignDataModel, string locationId)
         {
+            if (string.IsNullOrEmpty(locationId))
+            {
+                campaignDataModel.SelectedLocationData.Value = null;
+                UnloadCurrentMissionsData(campaignDataModel);
+                return;
+            }
+            
             if (!campaignDataModel.LocationsDataMap.CurrentValue.TryGetValue(locationId, out var locationData))
             {
                 FLogger.LogError<CampaignDataLoader>($"No location data found for {locationId}");
@@ -38,7 +45,6 @@ namespace ITCafe.Campaign
             }
             
             campaignDataModel.SelectedLocationData.Value = locationData;
-
             UnloadCurrentMissionsData(campaignDataModel);
 
             var loadedMissions = await LoadManyAsync<MissionDataSO>(locationData.MissionIds); // path is id
@@ -46,8 +52,29 @@ namespace ITCafe.Campaign
             {
                 var missionsData = loadedMissions.Where(mission => mission != null)
                     .ToArray();
-                campaignDataModel.CurrentMissionsData.Value = missionsData;
+                campaignDataModel.SetCurrentMissionsData(missionsData);
             }
+            else
+            {
+                FLogger.LogError<CampaignDataLoader>($"No missions loaded for {locationId}");
+            }
+        }
+        
+        // may use additional data in future
+        public async UniTaskVoid SelectMissionAsync(CampaignDataModel campaignDataModel, string missionId)
+        {
+            if (string.IsNullOrEmpty(missionId))
+            {
+                campaignDataModel.SelectedMissionData.Value = null;
+                return;
+            }
+            
+            if (!campaignDataModel.CurrentMissionsDataMap.CurrentValue.TryGetValue(missionId, out var missionData))
+            {
+                FLogger.LogError<CampaignDataLoader>($"No mission data found for {missionId}");
+                return;
+            }
+            campaignDataModel.SelectedMissionData.Value = missionData;
         }
 
         /// <summary>
@@ -112,7 +139,7 @@ namespace ITCafe.Campaign
         public void UnloadAll(CampaignDataModel campaignDataModel)
         {
             campaignDataModel.SetAllLocationsData(null);
-            campaignDataModel.CurrentMissionsData.Value = null;
+            campaignDataModel.SetCurrentMissionsData(null);
             campaignDataModel.SelectedLocationData.Value = null;
             campaignDataModel.SelectedMissionData.Value = null;
             _currentMissionsData = null;
@@ -131,7 +158,10 @@ namespace ITCafe.Campaign
             await handle;
 
             if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                FLogger.Log<CampaignDataLoader>($"Loaded {handle.Result.ToString()}");
                 return handle.Result;
+            }
 
             FLogger.LogError<CampaignDataLoader>($"Failed to load {path}");
             UnloadAsset(handle);
@@ -151,7 +181,7 @@ namespace ITCafe.Campaign
 
             var typedAssets = await UniTask.WhenAll(loadTasks);
             typedAssets = typedAssets.Where(x => !EqualityComparer<T>.Default.Equals(x, default)).ToArray();
-
+            
             return typedAssets;
         }
 

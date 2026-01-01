@@ -11,18 +11,21 @@ namespace ITCafe.Gameplay.UI.MVVM
     {
         private readonly Subject<Unit> _exitSubject;
         private readonly IViewBinder<SettingsViewModel> _settingsBinder;
+        private readonly IViewBinder<CampaignViewModel> _campaignBinder;
 
         public MainMenuViewModel([Key(Constants.START_MISSION_SIGNAL)] Subject<Unit> exitSubject,
-            IViewBinder<SettingsViewModel> settingsBinder)
+            IViewBinder<SettingsViewModel> settingsBinder, IViewBinder<CampaignViewModel> campaignBinder)
         {
             _exitSubject = exitSubject;
             _settingsBinder = settingsBinder;
+            _campaignBinder = campaignBinder;
         }
 
         public void StartGameplay()
         {
             Debug.Log("Start Gameplay signal in vm");
-            _exitSubject.OnNext(Unit.Default);
+            _campaignBinder.Open();
+            // _exitSubject.OnNext(Unit.Default);
         }
 
         public void Quit()

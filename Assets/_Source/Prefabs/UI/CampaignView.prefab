@@ -44,6 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651a29fe71894c93bca875b898e632af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.CampaignView
-  _uiAsset: {fileID: 0}
+  _uiAsset: {fileID: 9197481963319205126, guid: 3de00ae413e1eec42a87467d5d923178, type: 3}
   _closeButtonName: CloseButton
   _closeBackgroundName: CloseBackground
+  _contentName: RootWrapper
+  _contentClass: campaign__root
+  _startButtonName: StartButton
+  _locationTabsContainerName: LocationsTabsContainer
+  _selectedMissionLabelName: SelectedMissionLabel
+  _selectedMissionTextName: SelectedMissionText
+  _missionTextScrollViewName: MissionTextScrollView
+  _missionsGridName: MissionsGrid
+  _panelWhiteBackgroundClass: panel__white-background
+  _loadingIndicatorName: LoadingIndicator
+  _missionButton: {fileID: 9197481963319205126, guid: 525293e9cfd556a43a0f92d16cd9da50, type: 3}
+  _missionButtonSelectedClass: campaign__mission-button--selected
+  _missionButtonCompletedClass: campaign__mission-button--completed
+  _starLi: {fileID: 9197481963319205126, guid: 5deb29bd73f96ff4faaca50e321736dc, type: 3}
+  _starsColumnName: StarsColumn
+  _locationTabButton: {fileID: 9197481963319205126, guid: dd93274ae840df2418e2e57e2e40191a, type: 3}
+  _locationButtonSelectedClass: campaign__location-tab--selected

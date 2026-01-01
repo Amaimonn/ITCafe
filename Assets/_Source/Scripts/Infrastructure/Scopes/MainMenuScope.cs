@@ -29,7 +29,7 @@ namespace ITCafe
             builder.Register<Subject<Unit>>(Lifetime.Scoped)
                 .Keyed(Constants.START_MISSION_SIGNAL);
             
-            builder.Register<CampaignDataLoader>(Lifetime.Singleton);
+            builder.Register<CampaignDataLoader>(Lifetime.Transient); // Transient
             builder.Register<CampaignDataModelFactory>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IFactory<CampaignDataModel>>();
@@ -44,7 +44,7 @@ namespace ITCafe
                 .As<IViewBinder<MainMenuViewModel>>();
             
             builder.RegisterInstance<CampaignView>(_campaignViewPrefab);
-            builder.Register<CampaignViewModel>(Lifetime.Singleton);
+            builder.Register<CampaignViewModel>(Lifetime.Transient); // Transient
             builder.Register<Func<CampaignViewModel>>(x => () => x.Resolve<CampaignViewModel>(), Lifetime.Singleton);
             builder.Register<CampaignBinder>(Lifetime.Singleton)
                 .As<IViewBinder<CampaignViewModel>>();
