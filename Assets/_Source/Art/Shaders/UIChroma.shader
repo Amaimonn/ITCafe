@@ -3,11 +3,11 @@ Shader "UI Toolkit/UIChroma"
     Properties
     {
         _MainTex("Texture2D", 2D) = "white" {}
-        
+
         _BloomThreshold ("Bloom Threshold", Range(0, 1)) = 0.16
         _BloomIntensity ("Bloom Intensity", Range(0, 2)) = 0.5
-        
-        _RGBShift ("RGB Shift", Range(0, 0.02)) = 0.0015
+
+        _RGBShiftPixels ("RGB Shift Pixels", Range(0, 100)) = 1
         _ColorTint ("Color Tint", Color) = (1.0, 1.0, 1.0, 1.0)
         _ShiftIntensity ("Shift Intensity", Range(0, 3)) = 1
 
@@ -43,11 +43,12 @@ Shader "UI Toolkit/UIChroma"
                 float2 uv : TEXCOORD0;
                 uint rectIndex : TEXCOORD1;
             };
-            
+
             sampler2D _MainTex;
+            float4 _MainTex_TexelSize;
             float _BloomThreshold;
             float _BloomIntensity;
-            float _RGBShift;
+            float _RGBShiftPixels;
             float4 _ColorTint;
             float _ShiftIntensity;
             float _Contrast;
@@ -58,29 +59,30 @@ Shader "UI Toolkit/UIChroma"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 o.rectIndex = GetFilterRectIndex(v);
-                
+
                 return o;
             }
 
             float4 frag(v2f i) : SV_TARGET
             {
                 float4 uvRect = GetFilterUVRect(i.rectIndex);
-                float4 col = tex2D(_MainTex, i.uv);
-                float2 uv =  NormalizeUVs(i.uv, uvRect);
+                float2 uv = NormalizeUVs(i.uv, uvRect);
+
+                float2 shiftUV = float2(_RGBShiftPixels, 0.0) * _MainTex_TexelSize.xy;
 
                 float4 shiftedCol;
-                shiftedCol.r = tex2D(_MainTex, MapToUVRect(uv + float2(_RGBShift, 0.0), uvRect)).r;
+                shiftedCol.r = tex2D(_MainTex, MapToUVRect(uv + shiftUV, uvRect)).r;
                 shiftedCol.g = tex2D(_MainTex, MapToUVRect(uv, uvRect)).g;
-                shiftedCol.b = tex2D(_MainTex, MapToUVRect(uv - float2(_RGBShift, 0.0), uvRect)).b;
-                
+                shiftedCol.b = tex2D(_MainTex, MapToUVRect(uv - shiftUV, uvRect)).b;
+
+                float4 col = tex2D(_MainTex, i.uv);
                 col.rgb = lerp(col.rgb, shiftedCol.rgb, _ShiftIntensity);
 
                 float brightness = dot(col.rgb, float3(0.299, 0.587, 0.114));
                 float bloom = smoothstep(_BloomThreshold, 1.0, brightness);
                 col.rgb += bloom * _BloomIntensity * _ColorTint.rgb;
-                
+
                 col.rgb = pow(col.rgb, _Contrast);
-                
                 return col;
             }
             ENDCG
