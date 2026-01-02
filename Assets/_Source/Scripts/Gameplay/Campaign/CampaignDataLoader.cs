@@ -40,7 +40,7 @@ namespace ITCafe.Campaign
             
             if (!campaignDataModel.LocationsDataMap.CurrentValue.TryGetValue(locationId, out var locationData))
             {
-                FLogger.LogError<CampaignDataLoader>($"No location data found for {locationId}");
+                FLogger.LogWarning<CampaignDataLoader>($"No location data found for {locationId}");
                 return;
             }
             
@@ -63,17 +63,25 @@ namespace ITCafe.Campaign
         // may use additional data in future
         public async UniTaskVoid SelectMissionAsync(CampaignDataModel campaignDataModel, string missionId)
         {
+            if (campaignDataModel.SelectedMissionData.CurrentValue != null &&
+                campaignDataModel.SelectedMissionData.CurrentValue.Id == missionId)
+            {
+                return;
+            }
+            
             if (string.IsNullOrEmpty(missionId))
             {
                 campaignDataModel.SelectedMissionData.Value = null;
                 return;
             }
-            
-            if (!campaignDataModel.CurrentMissionsDataMap.CurrentValue.TryGetValue(missionId, out var missionData))
+
+            if (campaignDataModel.CurrentMissionsDataMap.CurrentValue == null || 
+                !campaignDataModel.CurrentMissionsDataMap.CurrentValue.TryGetValue(missionId, out var missionData))
             {
-                FLogger.LogError<CampaignDataLoader>($"No mission data found for {missionId}");
+                FLogger.LogWarning<CampaignDataLoader>($"Can`t receive data for {missionId}");
                 return;
             }
+            
             campaignDataModel.SelectedMissionData.Value = missionData;
         }
 
@@ -87,6 +95,7 @@ namespace ITCafe.Campaign
                 return;
 
             campaignDataModel.SelectedMissionData.Value = null;
+            FLogger.Log<CampaignDataLoader>("Now SelectedMissionData is null");
 
             foreach (var missionData in _currentMissionsData)
             {

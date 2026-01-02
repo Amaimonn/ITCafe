@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
@@ -62,6 +63,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         public void SelectLocation(ILocationData locationData)
         {
             _campaignModel.SelectedLocationId.Value = locationData?.Id;
+            _campaignModel.SelectedMissionId.Value = null;
         }
 
         public void SelectMission(IMissionData missionData)
@@ -102,27 +104,30 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             FLogger.Log<CampaignViewModel>("Campaign Data Binding");
 
-            _campaignDataModel.CurrentMissionsData.Subscribe(x =>
-            {
-                _currentMissionsData.Value = x ?? new List<IMissionData>();
-            }).AddTo(_disposables);
+            _campaignDataModel.LocationsDataMap.Subscribe(x => _locationsDataMap.Value = x)
+                .AddTo(_disposables);
 
             _campaignDataModel.SelectedLocationData.Subscribe(x => _selectedLocationData.Value = x)
                 .AddTo(_disposables);
 
+            _campaignDataModel.CurrentMissionsData.Subscribe(x =>
+            {
+                _currentMissionsData.Value = x ?? Array.Empty<IMissionData>();
+                _campaignDataLoader.SelectMissionAsync(_campaignDataModel, _campaignModel.SelectedMissionId.CurrentValue)
+                    .Forget();
+            }).AddTo(_disposables);
+
             _campaignDataModel.SelectedMissionData.Subscribe(x => _selectedMissionData.Value = x)
                 .AddTo(_disposables);
 
-            _campaignDataModel.LocationsDataMap.Subscribe(x => _locationsDataMap.Value = x)
+
+            _campaignModel.SelectedLocationId.Subscribe(x =>
+                    _campaignDataLoader.SelectLocationAsync(_campaignDataModel, x).Forget())
                 .AddTo(_disposables);
 
-            _campaignModel.SelectedMissionId.Where(x => !string.IsNullOrEmpty(x))
-                .Subscribe(x => _campaignDataLoader.SelectMissionAsync(_campaignDataModel, x).Forget())
-                .AddTo(_disposables);
-
-            _campaignModel.SelectedLocationId.Where(x => !string.IsNullOrEmpty(x))
-                .Subscribe(x => _campaignDataLoader.SelectLocationAsync(_campaignDataModel, x).Forget())
-                .AddTo(_disposables);
+            _campaignModel.SelectedMissionId.Subscribe(x =>
+                    _campaignDataLoader.SelectMissionAsync(_campaignDataModel, x).Forget())
+                .AddTo(_disposables); // no data selected on init. Sub after SelectLocationAsync finoshed mb
         }
 
         public override void Dispose()

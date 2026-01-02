@@ -6,6 +6,7 @@ using DevKit.UI.MVVM.Bases;
 using ITCafe.Campaign;
 using ITCafe.Data.Campaign;
 using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.Infrastructure.Saves;
 using R3;
 using UnityEngine;
 using VContainer;
@@ -29,6 +30,7 @@ namespace ITCafe
             builder.Register<Subject<Unit>>(Lifetime.Scoped)
                 .Keyed(Constants.START_MISSION_SIGNAL);
 
+            builder.Register<CampaignUnlocker>(Lifetime.Singleton);
             builder.Register<CampaignModelFactory>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IFactory<CampaignModel>>();
@@ -85,13 +87,31 @@ namespace ITCafe
             exitSignal.Take(1).Subscribe(_ =>
             {
                 // Fetching data from all models for enter context
-                var campaignModelFactory = Container.Resolve<CampaignDataModelFactory>();
-                CampaignDataModel campaignDataModel = null;
-                campaignModelFactory.OnProduced.Take(1).Subscribe(x => campaignDataModel = x); // Took last model
-                
+                // use another class for main menu local context mb
+                var campaignDataModelFactory = Container.Resolve<CampaignDataModelFactory>();
+                var campaignDataModel = campaignDataModelFactory.CurrentInstance.CurrentValue; // Took last model
+
+                var selectedLocationId = campaignDataModel.SelectedLocationData.Value.Id;
+                var selectedMissionId = campaignDataModel.SelectedMissionData.Value.Id;
+
                 gameplayEnterContext.ToSceneName = campaignDataModel.SelectedMissionData.Value.SceneName;
-                gameplayEnterContext.LocationId = campaignDataModel.SelectedLocationData.Value.Id;
-                gameplayEnterContext.MissionId = campaignDataModel.SelectedMissionData.Value.Id;
+                gameplayEnterContext.LocationId = selectedLocationId;
+                gameplayEnterContext.MissionId = selectedMissionId;
+
+                var campaignModelFactory = Container.Resolve<CampaignModelFactory>();
+                var campaignModel = campaignModelFactory.Current.CurrentValue;
+                var campaignUnlocker = Container.Resolve<CampaignUnlocker>();
+                var saveStateProvider = Container.Resolve<ISaveStateProvider>();
+                var selectedMissionModel = campaignModel.OpenedLocationsMap[selectedLocationId]
+                    .OpenedMissionsMap[selectedMissionId];
+                var completionSignal = campaignUnlocker.CreateMissionCompletionSignal<CafeMissionResult>(campaignModel,
+                    campaignDataModel, saveStateProvider.SaveAll, (result, _) =>
+                    {
+                        if (selectedMissionModel.Stars.Value < result.Stars)
+                            selectedMissionModel.Stars.Value = result.Stars;
+                    });
+                gameplayEnterContext.CompletionSignal = completionSignal;
+                
                 mainMenuExitSignal.OnNext(mainMenuExitContext);
             });
 

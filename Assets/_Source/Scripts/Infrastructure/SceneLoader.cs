@@ -120,7 +120,7 @@ namespace ITCafe
             LoadSceneMode loadMode = LoadSceneMode.Single)
         {
             var handle = Addressables.LoadSceneAsync($"scenes/{sceneName}", loadMode, activateOnLoad: true);
-            handle.Destroyed += _ => { FLogger.LogGood<SceneLoader>($"Scene {sceneName} was unloaded"); };
+            handle.Destroyed += _ => FLogger.LogGood<SceneLoader>($"Scene {sceneName} was unloaded");
 
             return handle;
         }

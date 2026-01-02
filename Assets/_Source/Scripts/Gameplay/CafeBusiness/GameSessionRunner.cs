@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.UI.MVVM;
+using ITCafe.Data.Campaign;
 using ITCafe.Gameplay.UI.MVVM;
 using R3;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace ITCafe.CafeBusiness
         private readonly ClientsRunner _clientsRunner;
         private readonly IViewBinder<ResultsViewModel> _resultsBinder;
         private readonly InputService _inputService;
+        private readonly Subject<CafeMissionResult> _sendResults;
 
         private readonly Subject<Unit> _onCompleted = new();
         private CancellationTokenSource _cts;
@@ -27,16 +29,18 @@ namespace ITCafe.CafeBusiness
             HUDViewModel hudViewModel,
             ClientsRunner clientsRunner,
             IViewBinder<ResultsViewModel> resultsBinder,
-            InputService inputService)
+            InputService inputService,
+            Subject<CafeMissionResult> sendResults)
         {
             _workProgressService = workProgressService;
             _hudViewModel = hudViewModel;
             _clientsRunner = clientsRunner;
             _resultsBinder = resultsBinder;
             _inputService = inputService;
+            _sendResults = sendResults;
         }
 
-        public async UniTaskVoid RunSessionAsync(int sessionDurationSeconds = SESSION_DURATION_SECONDS, 
+        public async UniTaskVoid RunSessionAsync(int sessionDurationSeconds = SESSION_DURATION_SECONDS,
             CancellationToken token = default)
         {
             _cts = new();
@@ -46,19 +50,19 @@ namespace ITCafe.CafeBusiness
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
                 _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
-                
+
                 _remainingSeconds = sessionDurationSeconds;
                 _hudViewModel.SetRemainingSeconds(_remainingSeconds);
                 float remainingTime = sessionDurationSeconds;
                 var displayedSeconds = _remainingSeconds;
-                
+
                 while (remainingTime > 0)
                 {
                     await UniTask.Yield(cancellationToken: linkedTokenSource.Token);
-                    
+
                     remainingTime -= Time.deltaTime;
                     _remainingSeconds = Mathf.CeilToInt(remainingTime);
-                    
+
                     if (_remainingSeconds != displayedSeconds)
                     {
                         if (_remainingSeconds < 0)
@@ -88,6 +92,15 @@ namespace ITCafe.CafeBusiness
             _workProgressService.SetTotalTime(
                 TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _remainingSeconds));
             _workProgressService.CompleteDay();
+
+            var report = _workProgressService.GetDailyReport();
+            if (report.EarnedStars > 0)
+            {
+                _sendResults.OnNext(new CafeMissionResult
+                {
+                    Stars = report.EarnedStars
+                });
+            }
 
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);

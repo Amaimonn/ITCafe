@@ -10,6 +10,7 @@ using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Data;
+using ITCafe.Data.Campaign;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Player;
 using R3;
@@ -60,6 +61,8 @@ namespace ITCafe
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterInstance<Subject<CafeMissionResult>>(_gameplayEnterContext.CompletionSignal);
+            
             RegisterMissionConfig(builder);
 
             RegisterUI(builder);

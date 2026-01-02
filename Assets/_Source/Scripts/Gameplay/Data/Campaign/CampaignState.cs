@@ -14,6 +14,8 @@ namespace ITCafe.Data.Campaign
 
         public int CampaignDataVersion = 1; // to update the saved state when new missions are added
         public List<LocationState> Locations;
+        [NonSerialized] public string SelectedLocationId;
+        [NonSerialized] public string SelectedMissionId;
         public string LastLaunchedLocationId;
         public string LastLaunchedMissionId;
 

@@ -7,9 +7,9 @@ namespace ITCafe.Data.Campaign
 {
     public class CampaignDataModelFactory : IFactory<CampaignDataModel>
     {
-        public Observable<CampaignDataModel> OnProduced => _onProduced;
+        public ReadOnlyReactiveProperty<CampaignDataModel> CurrentInstance => _currentInstance;
 
-        private readonly ReactiveProperty<CampaignDataModel> _onProduced = new();
+        private readonly ReactiveProperty<CampaignDataModel> _currentInstance = new();
         private AsyncOperationHandle<AllLocationsDataSO> _locationsDataHandle;
         
         // There could be a cached model with loaded data (Create method will just increase addressables counter)
@@ -38,7 +38,7 @@ namespace ITCafe.Data.Campaign
                 //     _gameStateProvider.SaveAll(); // save new version
                 // }
             };
-            _onProduced.Value = campaignDataModel;
+            _currentInstance.Value = campaignDataModel;
             
             return campaignDataModel;
         }

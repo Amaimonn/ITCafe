@@ -14,70 +14,49 @@ namespace ITCafe.Campaign
     public class CampaignUnlocker
     {
         public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel, 
-            CampaignDataModel campaignDataModel,
-            ILocationData selectedLocationData, IMissionData selectedMissionData, Action saveAction, 
-            Action<T, CampaignState> resultHandler) where T : IMissionResult
+            CampaignDataModel campaignDataModel, Action saveAction, 
+            Action<T, CampaignState> successHandler) where T : IMissionResult
         {
-            var locationId = selectedLocationData.Id;
-            var missionId = selectedMissionData.Id;
+            var selectedLocationId = campaignModel.SelectedLocationId.Value;
+            var selectedMissionId = campaignModel.SelectedMissionId.Value;
             var campaignState = campaignModel.State;
-            var currentLocationState = campaignState.Locations.First(x => x.Id == locationId);
-            var currentMissionState = currentLocationState.OpenedMissions.First(x => x.Id == missionId);
+            var selectedLocationModel = campaignModel.OpenedLocationsMap[selectedLocationId];
+            var selectedMissionModel = selectedLocationModel.OpenedMissionsMap[selectedMissionId];
 
             var actions = new List<Action<T>>();
             var completionSignal = new Subject<T>();
-
-            if (currentMissionState.IsCompleted)
-                return completionSignal;
 
             completionSignal.Subscribe(x =>
             {
                 foreach (var action in actions)
                     action?.Invoke(x);
             });
-            actions.Add(x =>
-            {
-                currentMissionState.IsCompleted = true;
-                resultHandler(x, campaignState);
-            });
-            // TODO: implement results handling
-            // if (currentMissionState.Stars != 3)
-            //     actions.Add(x =>
-            //     {
-            //         currentMissionState.IsCompleted = true;
-            //         var totalStars = 0;
-            //         if (x.FirstStar)
-            //             totalStars++;
-            //         if (x.SecondStar)
-            //             totalStars++;
-            //         if (x.ThirdStar)
-            //             totalStars++;
-            //         currentMissionState.Stars = Mathf.Max(totalStars, currentMissionState.Stars);
-            //     }); // mission completed
+            
+            actions.Add(x => successHandler(x, campaignState));
 
-            if (!currentMissionState.IsCompleted)
+            if (!selectedMissionModel.IsCompleted.Value)
             {
+                actions.Add(x => selectedMissionModel.IsCompleted.Value = true);
+                
+                var selectedLocationData =  campaignDataModel.SelectedLocationData.Value;
                 var currentLocationMissionIds = selectedLocationData.MissionIds;
-                var currentMissionIndex = currentLocationMissionIds.IndexWhere(x => x == missionId);
+                var currentMissionIndex = currentLocationMissionIds.IndexWhere(x => x == selectedMissionId);
 
                 if (currentMissionIndex < currentLocationMissionIds.Count - 1) // open next mission
                 {
-                    var nextMissionData = currentLocationMissionIds[currentMissionIndex + 1];
-                    var nextMissionState = new MissionState(nextMissionData, false);
+                    var nextMissionId = currentLocationMissionIds[currentMissionIndex + 1];
+                    var nextMissionState = new MissionState(nextMissionId, false);
+                    var nextMissionModel = new MissionModel(nextMissionState);
                     
-                    actions.Add(_ =>
-                    {
-                        campaignState.Locations.First(x => x.Id == locationId).OpenedMissions
-                            .Add(nextMissionState);
-                    });
+                    actions.Add(_ => selectedLocationModel.OpenedMissionsMap.Add(nextMissionId, nextMissionModel));
                 }
                 else // open next location (+ mission)
                 {
-                    actions.Add(_ => currentLocationState.IsCompleted = true);
+                    actions.Add(_ => selectedLocationModel.IsCompleted.Value = true);
                     
                     var allLocationsData = campaignDataModel.AllLocationsData.AllData;
                     var currentLocationIndex = allLocationsData.IndexWhere(x =>
-                        x.Id == locationId);
+                        x.Id == selectedLocationId);
                     
                     if (currentLocationIndex < allLocationsData.Count - 1)
                     {
@@ -91,17 +70,17 @@ namespace ITCafe.Campaign
                     }
                 }
 
-                if (string.IsNullOrEmpty(currentLocationState.MaxCompletedMissionId))
+                if (string.IsNullOrEmpty(selectedLocationModel.State.MaxCompletedMissionId))
                 {
-                    actions.Add(_ => currentLocationState.MaxCompletedMissionId = missionId);
+                    actions.Add(_ => selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId);
                 }
                 else
                 {
                     var maxMissionIndex = currentLocationMissionIds.IndexWhere(x =>
-                        x == currentLocationState.MaxCompletedMissionId);
+                        x == selectedLocationModel.State.MaxCompletedMissionId);
 
                     if (maxMissionIndex < currentMissionIndex)
-                        actions.Add(_ => currentLocationState.MaxCompletedMissionId = missionId);
+                        actions.Add(_ => selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId);
                 }
             }
 

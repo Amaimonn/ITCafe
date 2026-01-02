@@ -75,8 +75,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             ViewModel.LocationsDataMap.Subscribe(OnLocationsChanged).AddTo(_disposables);
             ViewModel.SelectedLocationData.Subscribe(OnLocationSelected).AddTo(_disposables);
-            ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
             ViewModel.CurrentMissionsData.Subscribe(OnCurrentMissionsChanged).AddTo(_disposables);
+            ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
 
             _startButton.RegisterCallback<ClickEvent>(StartGameplay);
         }
@@ -118,6 +118,10 @@ namespace ITCafe.Gameplay.UI.MVVM
                 }
 
                 _locationTabsContainer.Add(locationTabButtonContainer);
+
+                var selectedLocationData = ViewModel.SelectedLocationData.CurrentValue;
+                if (selectedLocationData != null && locations.ContainsKey(selectedLocationData.Id))
+                    OnLocationSelected(selectedLocationData);
             }
         }
 
@@ -125,7 +129,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             _missionsGrid.Clear();
             _missionButtonsMap.Clear();
-            
+
             if (missions == null || missions.Count == 0)
             {
                 FLogger.Log<CampaignView>($"No Current missions data");
@@ -141,7 +145,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 var missionLabel = missionButtonContainer.Q<Label>();
 
                 missionLabel.text = missionData.DisplayedNumber;
-                
+
                 _missionButtonsMap[missionData.Id] = missionButton;
                 missionButton.RegisterCallback<ClickEvent>(_ => ViewModel.SelectMission(missionData));
 
@@ -151,14 +155,20 @@ namespace ITCafe.Gameplay.UI.MVVM
                     {
                         missionButton.AddToClassList(_missionButtonCompletedClass);
                         var starsColumn = missionButtonContainer.Q<VisualElement>(name: _starsColumnName);
-                        
-                        for (var i = 0; i < missionModel.Stars; i++)
+
+                        for (var i = 0; i < missionModel.Stars.Value; i++)
                             _starLi.CloneTree(starsColumn);
                     }
                 }
                 else
                 {
                     missionButtonContainer.AddToClassList(_missionButtonLockedClass);
+                }
+
+                if (ViewModel.SelectedMissionData.CurrentValue != null &&
+                    ViewModel.SelectedMissionData.CurrentValue.Id == missionData.Id)
+                {
+                    OnMissionSelected(missionData);
                 }
 
                 _missionsGrid.Add(missionButtonContainer);
@@ -191,7 +201,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void OnMissionSelected(IMissionData missionData)
         {
             _selectedMissionButton?.RemoveFromClassList(_missionButtonSelectedClass);
-            
+
             if (missionData != null)
             {
                 var isOpened = ViewModel.OpenedMissionsMap.ContainsKey(missionData.Id);

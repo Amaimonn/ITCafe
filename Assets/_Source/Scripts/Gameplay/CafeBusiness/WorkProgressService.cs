@@ -36,8 +36,9 @@ namespace ITCafe.CafeBusiness
 
         private const int SUCCESS_POINTS = 50;
         private const int FAILURE_POINTS = 50;
+        private ProgressReport? _cachedReport;
 
-        public WorkProgressService(MissionEvaluation missionEvaluation, 
+        public WorkProgressService(MissionEvaluation missionEvaluation,
             [Key(Constants.MENU_ITEMS_HASH_MAP)] IReadOnlyDictionary<int, ItemInfoSO> menuItemsHashMap)
         {
             _menuItemsHashMap = menuItemsHashMap;
@@ -55,7 +56,7 @@ namespace ITCafe.CafeBusiness
 
         public void SetTotalTime(TimeSpan totalTime)
         {
-            _totalTime =  totalTime;
+            _totalTime = totalTime;
         }
 
         private void OnOrderTakenHandler()
@@ -94,7 +95,7 @@ namespace ITCafe.CafeBusiness
             _onDayCompleted.OnNext(Unit.Default);
         }
 
-        public void ResetDailyStats()
+        public void Reset()
         {
             _totalTime = TimeSpan.Zero;
             _totalClientsCount = 0;
@@ -103,14 +104,18 @@ namespace ITCafe.CafeBusiness
             _totalServiceTime = 0f;
             _dayStartTime = DateTime.Now;
             _itemsServedCountMap.Clear();
+            _cachedReport = null;
         }
 
         public ProgressReport GetDailyReport()
         {
+            if (_cachedReport != null)
+                return _cachedReport.Value;
+
             var points = CalcPoints();
             var stars = CalcStars(points);
 
-            return new ProgressReport
+            _cachedReport = new ProgressReport
             {
                 WorkTime = _totalTime,
                 DayStartTime = _dayStartTime,
@@ -122,8 +127,9 @@ namespace ITCafe.CafeBusiness
                 ItemsServed = _itemsServedCountMap,
                 Points = points,
                 EarnedStars = stars,
-                StarEvaluations =  _starEvaluations,
+                StarEvaluations = _starEvaluations,
             };
+            return _cachedReport.Value;
         }
 
         private int CalcPoints()

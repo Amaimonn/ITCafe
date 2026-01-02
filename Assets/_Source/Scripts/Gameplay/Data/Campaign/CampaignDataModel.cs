@@ -51,7 +51,6 @@ namespace ITCafe.Data.Campaign
 
         public void SetCurrentMissionsData(IReadOnlyList<IMissionData> currentMissionsData)
         {
-            _currentMissionsData.Value = currentMissionsData;
             if (currentMissionsData != null)
             {
                 var missionPairs = currentMissionsData.Select(x => new KeyValuePair<string, IMissionData>(x.Id, x));
@@ -61,6 +60,7 @@ namespace ITCafe.Data.Campaign
             {
                 _currentMissionsDataMap.Value = new Dictionary<string, IMissionData>();
             }
+            _currentMissionsData.Value = currentMissionsData;
         }
     }
 }
