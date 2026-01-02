@@ -55,11 +55,12 @@ namespace ITCafe.Gameplay.UI.MVVM
             _content = Root.Q<VisualElement>(name: _contentName);
             _startButton = Root.Q<Button>(name: _startButtonName);
             _locationTabsContainer = Root.Q<VisualElement>(name: _locationTabsContainerName);
+            _locationTabsContainer.Clear();
             _selectedMissionLabel = Root.Q<Label>(name: _selectedMissionLabelName);
             _selectedMissionText = Root.Q<Label>(name: _selectedMissionTextName);
             _missionTextScrollView = Root.Q<ScrollView>(name: _missionTextScrollViewName);
             _missionsGrid = Root.Q<VisualElement>(name: _missionsGridName);
-
+            _missionsGrid.Clear();
             // Начальное состояние
             // _content.AddToClassList($"{_contentClass}--disabled");
             // _content.RegisterCallback<TransitionEndEvent>(_ =>

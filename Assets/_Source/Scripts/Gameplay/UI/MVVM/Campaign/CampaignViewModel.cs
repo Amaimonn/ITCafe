@@ -127,7 +127,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _campaignModel.SelectedMissionId.Subscribe(x =>
                     _campaignDataLoader.SelectMissionAsync(_campaignDataModel, x).Forget())
-                .AddTo(_disposables); // no data selected on init. Sub after SelectLocationAsync finoshed mb
+                .AddTo(_disposables);
         }
 
         public override void Dispose()

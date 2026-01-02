@@ -1,4 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="LocationTabButton" src="project://database/Assets/_Source/UIToolkit/Components/LocationTabButton/LocationTabButton.uxml?fileID=9197481963319205126&amp;guid=dd93274ae840df2418e2e57e2e40191a&amp;type=3#LocationTabButton"/>
+    <ui:Template name="MissionButton" src="project://database/Assets/_Source/UIToolkit/Components/MissionButton/MissionButton.uxml?fileID=9197481963319205126&amp;guid=525293e9cfd556a43a0f92d16cd9da50&amp;type=3#MissionButton"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Campaign/CampaignStyles.uss?fileID=7433441132597879392&amp;guid=26467cc07a5cb7a47951e51c8fce3b94&amp;type=3#CampaignStyles"/>
     <ui:VisualElement name="RootWrapper" class="campaign__root">
         <ui:VisualElement name="CloseBackground" style="flex-grow: 1; width: 100%; height: 100%; position: absolute; top: 0; left: 0;"/>
@@ -9,13 +11,18 @@
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" focusable="false" class="cafe__close-button"/>
             <ui:VisualElement name="CampaignContainer" class="campaign__container">
-                <ui:VisualElement name="LocationsSection" class="campaign__locations-section">
+                <ui:VisualElement name="LocationsSection" class="campaign__info-section campaign__locations-section" style="min-width: 320px;">
                     <ui:Label text="&#1051;&#1054;&#1050;&#1040;&#1062;&#1048;&#1048;" class="campaign__section-title"/>
                     <ui:ScrollView name="LocationsScrollView" class="campaign__locations-scrollview">
-                        <ui:VisualElement name="LocationsTabsContainer" class="campaign__locations-tabs"/>
+                        <ui:VisualElement name="LocationsTabsContainer" class="campaign__locations-tabs">
+                            <ui:Instance template="LocationTabButton"/>
+                            <ui:Instance template="LocationTabButton"/>
+                            <ui:Instance template="LocationTabButton"/>
+                            <ui:Instance template="LocationTabButton"/>
+                        </ui:VisualElement>
                     </ui:ScrollView>
                 </ui:VisualElement>
-                <ui:VisualElement name="MissionsSection" class="campaign__missions-section">
+                <ui:VisualElement name="MissionsSection" style="flex-grow: 1; width: 100%;">
                     <ui:VisualElement name="MissionsHeader" class="campaign__missions-header">
                         <ui:Label text="&#1052;&#1048;&#1057;&#1057;&#1048;&#1048;" class="campaign__section-title"/>
                         <ui:VisualElement name="LoadingIndicator" class="campaign__loading-indicator" style="display: none;">
@@ -23,10 +30,31 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:ScrollView name="MissionsScrollView" class="campaign__missions-scrollview">
-                        <ui:VisualElement name="MissionsGrid" class="campaign__missions-grid"/>
+                        <ui:VisualElement name="MissionsGrid" class="campaign__missions-grid">
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                            <ui:Instance template="MissionButton"/>
+                        </ui:VisualElement>
                     </ui:ScrollView>
                 </ui:VisualElement>
-                <ui:VisualElement name="MissionInfoSection" class="campaign__mission-info-section">
+                <ui:VisualElement name="MissionInfoSection" class="campaign__info-section campaign__missions-section" style="min-width: 400px;">
                     <ui:Label text="&#1048;&#1053;&#1060;&#1054;&#1056;&#1052;&#1040;&#1062;&#1048;&#1071;_&#1054;_&#1052;&#1048;&#1057;&#1057;&#1048;&#1048;" class="campaign__section-title"/>
                     <ui:VisualElement name="MissionDetails" class="campaign__mission-details">
                         <ui:Label name="SelectedMissionLabel" text="" class="campaign__mission-title"/>

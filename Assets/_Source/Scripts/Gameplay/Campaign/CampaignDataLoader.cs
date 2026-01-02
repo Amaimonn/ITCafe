@@ -106,41 +106,6 @@ namespace ITCafe.Campaign
             _currentMissionsData = null;
         }
 
-        // public void UnloadAllExceptSelected()
-        // {
-        //     _campaignModel.SetAllLocationsData(null);
-        //     _campaignModel.CurrentMissionsData.Value = null;
-        //     _currentMissionsData = null;
-        //
-        //     var selectedLocationPath = _campaignModel.SelectedLocationData.Value?.Id;
-        //     var selectedMissionPath = _campaignModel.SelectedMissionData.Value?.Id;
-        //
-        //     foreach (var (path, handle) in _pathHandleMap)
-        //     {
-        //         if (path == selectedLocationPath || path == selectedMissionPath)
-        //             continue;
-        //
-        //         ReleaseHandle(handle);
-        //     }
-        //
-        //     if (!string.IsNullOrEmpty(selectedLocationPath) && !string.IsNullOrEmpty(selectedMissionPath))
-        //     {
-        //         var hasLocation = _pathHandleMap.TryGetValue(selectedLocationPath, out var selectedLocationAsset);
-        //         var hasMission = _pathHandleMap.TryGetValue(selectedMissionPath, out var selectedMissionAsset);
-        //
-        //         _pathHandleMap.Clear();
-        //
-        //         if (hasLocation)
-        //             _pathHandleMap[selectedLocationPath] = selectedLocationAsset;
-        //         if (hasMission)
-        //             _pathHandleMap[selectedMissionPath] = selectedMissionAsset;
-        //     }
-        //     else
-        //     {
-        //         _pathHandleMap.Clear();
-        //     }
-        // }
-
         /// <summary>
         /// Use after Campaign UI closed and returning to the menu.
         /// Use after Campaign UI closed and going to gameplay.
