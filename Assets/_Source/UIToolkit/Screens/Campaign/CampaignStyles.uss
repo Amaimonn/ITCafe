@@ -79,6 +79,8 @@
     padding-bottom: 8px;
     border-bottom-color: rgba(70, 170, 200, 0.2);
     border-bottom-width: 1px;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .campaign__missions-header {
@@ -112,6 +114,10 @@
 
 .campaign__locations-tabs {
     flex-direction: column;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
 }
 
 .campaign__location-tab {
@@ -124,8 +130,8 @@
     padding-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 0;
+    margin-bottom: 12px;
 }
 
 .campaign__location-tab:hover {
@@ -426,32 +432,6 @@
 }
 
 .campaign__loading-indicator {
-}
-
-.campaign__locations-scrollview > .unity-scroll-view__vertical-scroller,
-.campaign__missions-scrollview > .unity-scroll-view__vertical-scroller,
-.campaign__mission-scrollview > .unity-scroll-view__vertical-scroller {
-    width: 6px;
-}
-
-.campaign__locations-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller,
-.campaign__missions-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller,
-.campaign__mission-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller {
-    background-color: rgba(15, 20, 35, 0.3);
-    border-radius: 3px;
-}
-
-.campaign__locations-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller > .unity-slider__dragger,
-.campaign__missions-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller > .unity-slider__dragger,
-.campaign__mission-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller > .unity-slider__dragger {
-    background-color: rgba(70, 170, 200, 0.5);
-    border-radius: 3px;
-}
-
-.campaign__locations-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller > .unity-slider__dragger:hover,
-.campaign__missions-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller > .unity-slider__dragger:hover,
-.campaign__mission-scrollview > .unity-scroll-view__vertical-scroller > .unity-scroller > .unity-slider__dragger:hover {
-    background-color: rgba(100, 200, 230, 0.7);
 }
 
 .campaign__mission-stars {
