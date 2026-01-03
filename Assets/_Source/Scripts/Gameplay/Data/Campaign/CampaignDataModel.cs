@@ -15,9 +15,6 @@ namespace ITCafe.Data.Campaign
         public ReadOnlyReactiveProperty<IReadOnlyDictionary<string, IMissionData>> CurrentMissionsDataMap =>
             _currentMissionsDataMap;
 
-        public Observable<IReadOnlyList<IMissionData>> CurrentMissionsData =>
-            _currentMissionsData;
-
         public readonly ReactiveProperty<ILocationData> SelectedLocationData = new();
         public readonly ReactiveProperty<IMissionData> SelectedMissionData = new();
 
@@ -27,7 +24,6 @@ namespace ITCafe.Data.Campaign
         private IAllLocationsData _allLocationsData;
         private readonly ReactiveProperty<IReadOnlyDictionary<string, ILocationData>> _locationsDataMap = new();
         private readonly ReactiveProperty<IReadOnlyDictionary<string, IMissionData>> _currentMissionsDataMap = new();
-        private readonly ReactiveProperty<IReadOnlyList<IMissionData>> _currentMissionsData = new();
 
         private readonly ReactiveProperty<bool> _isLoaded = new(false);
 
@@ -60,7 +56,6 @@ namespace ITCafe.Data.Campaign
             {
                 _currentMissionsDataMap.Value = new Dictionary<string, IMissionData>();
             }
-            _currentMissionsData.Value = currentMissionsData;
         }
     }
 }

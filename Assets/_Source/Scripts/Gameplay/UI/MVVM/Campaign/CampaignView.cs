@@ -38,12 +38,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         private ScrollView _missionTextScrollView;
         private VisualElement _missionsGrid;
         private VisualElement _panelWhiteBackground;
-        private bool _isGameplayStarted = false;
+        
+        private Button _selectedMissionButton;
+        private VisualElement _selectedLocationTab;
         private bool _isClosing = false;
         private readonly Dictionary<string, Button> _missionButtonsMap = new();
         private readonly Dictionary<string, VisualElement> _locationTabButtonsMap = new();
-        private Button _selectedMissionButton;
-        private VisualElement _selectedLocationTab;
 
         protected override void OnInit()
         {
@@ -73,104 +73,114 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             ViewModel.LocationsDataMap.Subscribe(OnLocationsChanged).AddTo(_disposables);
             ViewModel.SelectedLocationData.Subscribe(OnLocationSelected).AddTo(_disposables);
-            ViewModel.CurrentMissionsData.Subscribe(OnCurrentMissionsChanged).AddTo(_disposables);
+            ViewModel.CurrentMissionsDataMap.Subscribe(OnCurrentMissionsChanged).AddTo(_disposables);
             ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
 
-            _startButton.RegisterCallback<ClickEvent>(StartGameplay);
+            _startButton.SubscribeCallbackOnce<ClickEvent>(StartGameplay).AddTo(_disposables);
+        }
+        
+        private void StartGameplay(ClickEvent _)
+        {
+            ViewModel.StartGameplay();
         }
 
-        private void OnLocationsChanged(IReadOnlyDictionary<string, ILocationData> locations)
+        private void SelectLocation(ClickEvent _, ILocationData locationData)
         {
-            if (locations == null)
+            ViewModel.SelectLocation(locationData);
+        }
+        
+        private void SelectMission(ClickEvent _, IMissionData missionData)
+        {
+            ViewModel.SelectMission(missionData);
+        }
+
+        private void OnLocationsChanged(IReadOnlyDictionary<string, ILocationData> locationDataMap)
+        {
+            if (locationDataMap == null)
                 return;
 
             _locationTabsContainer.Clear();
             _locationTabButtonsMap.Clear();
 
-            var locationsData = locations.Values;
-            var selectedLocationId = ViewModel.SelectedLocationData.CurrentValue?.Id;
-
-            foreach (var locationData in locationsData)
-            {
-                var locationTabButtonContainer = _locationTabButton.CloneTree();
-                var locationTabButton = locationTabButtonContainer.Q<Button>();
-                var locationLabel = locationTabButtonContainer.Q<Label>();
-
-                locationLabel.text = locationData.Name;
-
-                if (ViewModel.OpenedLocationsMap.TryGetValue(locationData.Id, out _))
-                {
-                    locationTabButton.RegisterCallback<ClickEvent>(_ => ViewModel.SelectLocation(locationData));
-                    _locationTabButtonsMap[locationData.Id] = locationTabButton;
-
-                    if (!string.IsNullOrEmpty(selectedLocationId) && locationData.Id == selectedLocationId)
-                    {
-                        locationTabButton.AddToClassList(USSConst.SELECTED);
-                        _selectedLocationTab = locationTabButton;
-                    }
-                }
-                else
-                {
-                    FLogger.Log<CampaignView>($"No missions opened for: {locationData.Id}");
-                    locationTabButton.SetEnabled(false);
-                }
-
-                _locationTabsContainer.Add(locationTabButtonContainer);
-
-                var selectedLocationData = ViewModel.SelectedLocationData.CurrentValue;
-                if (selectedLocationData != null && locations.ContainsKey(selectedLocationData.Id))
-                    OnLocationSelected(selectedLocationData);
-            }
+            foreach (var locationData in locationDataMap.Values)
+                AddLocationTab(locationData);
+            
+            var selectedLocationData = ViewModel.SelectedLocationData.CurrentValue;
+            if (selectedLocationData != null && locationDataMap.ContainsKey(selectedLocationData.Id))
+                OnLocationSelected(selectedLocationData);
         }
 
-        private void OnCurrentMissionsChanged(IReadOnlyList<IMissionData> missions)
+        private void AddLocationTab(ILocationData locationData)
+        {
+            var locationTabButtonContainer = _locationTabButton.CloneTree();
+            var locationTabButton = locationTabButtonContainer.Q<Button>();
+            var locationLabel = locationTabButtonContainer.Q<Label>();
+
+            locationLabel.text = locationData.Name;
+
+            if (ViewModel.OpenedLocationsMap.TryGetValue(locationData.Id, out _))
+            {
+                locationTabButton.RegisterCallback<ClickEvent, ILocationData>(SelectLocation, locationData);
+                _locationTabButtonsMap[locationData.Id] = locationTabButton;
+            }
+            else
+            {
+                FLogger.Log<CampaignView>($"No missions opened for: {locationData.Id}");
+                locationTabButton.SetEnabled(false);
+            }
+
+            _locationTabsContainer.Add(locationTabButtonContainer);
+        }
+
+        private void OnCurrentMissionsChanged(IReadOnlyDictionary<string, IMissionData> missionDataMap)
         {
             _missionsGrid.Clear();
             _missionButtonsMap.Clear();
 
-            if (missions == null || missions.Count == 0)
+            if (missionDataMap == null || missionDataMap.Count == 0)
             {
                 FLogger.Log<CampaignView>($"No Current missions data");
                 return;
             }
 
-            FLogger.Log<CampaignView>($"Current missions data: {missions.Count}");
+            FLogger.Log<CampaignView>($"Current missions data: {missionDataMap.Count}");
+            
+            foreach (var missionData in missionDataMap.Values)
+                AddMission(missionData);
 
-            foreach (var missionData in missions)
+            var selectedMissionData = ViewModel.SelectedMissionData.CurrentValue;
+            if (selectedMissionData != null)
+                OnMissionSelected(selectedMissionData);
+        }
+
+        private void AddMission(IMissionData missionData)
+        {
+            var missionButtonContainer = _missionButton.CloneTree();
+            var missionButton = missionButtonContainer.Q<Button>();
+            var missionLabel = missionButtonContainer.Q<Label>();
+
+            missionLabel.text = missionData.DisplayedNumber;
+
+            _missionButtonsMap[missionData.Id] = missionButton;
+            missionButton.RegisterCallback<ClickEvent, IMissionData>(SelectMission, missionData);
+
+            if (ViewModel.OpenedMissionsMap.TryGetValue(missionData.Id, out var missionModel))
             {
-                var missionButtonContainer = _missionButton.CloneTree();
-                var missionButton = missionButtonContainer.Q<Button>();
-                var missionLabel = missionButtonContainer.Q<Label>();
-
-                missionLabel.text = missionData.DisplayedNumber;
-
-                _missionButtonsMap[missionData.Id] = missionButton;
-                missionButton.RegisterCallback<ClickEvent>(_ => ViewModel.SelectMission(missionData));
-
-                if (ViewModel.OpenedMissionsMap.TryGetValue(missionData.Id, out var missionModel))
+                if (missionModel.IsCompleted.Value)
                 {
-                    if (missionModel.IsCompleted.Value)
-                    {
-                        missionButton.AddToClassList(USSConst.COMPLETED);
-                        var starsColumn = missionButtonContainer.Q<VisualElement>(name: _starsColumnName);
+                    missionButton.AddToClassList(USSConst.COMPLETED);
+                    var starsColumn = missionButtonContainer.Q<VisualElement>(name: _starsColumnName);
 
-                        for (var i = 0; i < missionModel.Stars.Value; i++)
-                            _starLi.CloneTree(starsColumn);
-                    }
+                    for (var i = 0; i < missionModel.Stars.Value; i++)
+                        _starLi.CloneTree(starsColumn);
                 }
-                else
-                {
-                    missionButtonContainer.AddToClassList(USSConst.LOCKED);
-                }
-
-                if (ViewModel.SelectedMissionData.CurrentValue != null &&
-                    ViewModel.SelectedMissionData.CurrentValue.Id == missionData.Id)
-                {
-                    OnMissionSelected(missionData);
-                }
-
-                _missionsGrid.Add(missionButtonContainer);
             }
+            else
+            {
+                missionButtonContainer.AddToClassList(USSConst.LOCKED);
+            }
+
+            _missionsGrid.Add(missionButtonContainer);
         }
 
         private void OnLocationSelected(ILocationData locationData)
@@ -227,15 +237,6 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _selectedMissionLabel.text = string.Empty;
                 _selectedMissionText.text = string.Empty;
             }
-        }
-
-        private void StartGameplay(ClickEvent clickEvent)
-        {
-            if (_isGameplayStarted)
-                return;
-
-            ViewModel.StartGameplay();
-            _isGameplayStarted = true;
         }
     }
 }

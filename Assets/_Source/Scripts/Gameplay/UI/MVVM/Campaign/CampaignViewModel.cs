@@ -13,9 +13,9 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class CampaignViewModel : ScreenViewModel
     {
         public Observable<IReadOnlyDictionary<string, ILocationData>> LocationsDataMap => _locationsDataMap;
+        public Observable<IReadOnlyDictionary<string, IMissionData>> CurrentMissionsDataMap => _currentMissionsDataMap;
         public ReadOnlyReactiveProperty<ILocationData> SelectedLocationData => _selectedLocationData;
         public ReadOnlyReactiveProperty<IMissionData> SelectedMissionData => _selectedMissionData;
-        public Observable<IReadOnlyList<IMissionData>> CurrentMissionsData => _currentMissionsData;
         public IReadOnlyObservableDictionary<string, LocationModel> OpenedLocationsMap => _openedLocationsMap;
         public IReadOnlyObservableDictionary<string, MissionModel> OpenedMissionsMap => _openedMissionsMap;
 
@@ -27,10 +27,10 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private readonly ReactiveProperty<ILocationData> _selectedLocationData = new();
         private readonly ReactiveProperty<IMissionData> _selectedMissionData = new();
-        private readonly ReactiveProperty<IReadOnlyList<IMissionData>> _currentMissionsData = new();
+        private readonly ReactiveProperty<IReadOnlyDictionary<string, ILocationData>> _locationsDataMap = new();
+        private readonly ReactiveProperty<IReadOnlyDictionary<string, IMissionData>> _currentMissionsDataMap = new();
         private readonly ObservableDictionary<string, MissionModel> _openedMissionsMap = new();
         private readonly ObservableDictionary<string, LocationModel> _openedLocationsMap = new();
-        private readonly ReactiveProperty<IReadOnlyDictionary<string, ILocationData>> _locationsDataMap = new();
         private CompositeDisposable _disposables;
 
         public CampaignViewModel(CampaignDataLoader campaignDataLoader,
@@ -110,9 +110,9 @@ namespace ITCafe.Gameplay.UI.MVVM
             _campaignDataModel.SelectedLocationData.Subscribe(x => _selectedLocationData.Value = x)
                 .AddTo(_disposables);
 
-            _campaignDataModel.CurrentMissionsData.Subscribe(x =>
+            _campaignDataModel.CurrentMissionsDataMap.Subscribe(x =>
             {
-                _currentMissionsData.Value = x ?? Array.Empty<IMissionData>();
+                _currentMissionsDataMap.Value = x ?? new Dictionary<string, IMissionData>();
                 _campaignDataLoader.SelectMissionAsync(_campaignDataModel, _campaignModel.SelectedMissionId.CurrentValue)
                     .Forget();
             }).AddTo(_disposables);
