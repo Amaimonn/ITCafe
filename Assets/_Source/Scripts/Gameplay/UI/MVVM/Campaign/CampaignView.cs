@@ -22,16 +22,12 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
-        [SerializeField] private string _missionButtonSelectedClass = "campaign__mission-button--selected";
-        [SerializeField] private string _missionButtonCompletedClass = "campaign__mission-button--completed";
-        [SerializeField] private string _missionButtonLockedClass = "campaign__mission-button--locked";
 
         [SerializeField] private VisualTreeAsset _starLi;
         [SerializeField] private string _starsColumnName = "StarsColumn";
 
         [Space(2f)]
         [SerializeField] private VisualTreeAsset _locationTabButton;
-        [SerializeField] private string _locationButtonSelectedClass = "campaign__location-tab--selected";
 
         private Button _startButton;
         private VisualElement _content;
@@ -108,7 +104,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
                     if (!string.IsNullOrEmpty(selectedLocationId) && locationData.Id == selectedLocationId)
                     {
-                        locationTabButton.AddToClassList(_locationButtonSelectedClass);
+                        locationTabButton.AddToClassList(USSConst.SELECTED);
                         _selectedLocationTab = locationTabButton;
                     }
                 }
@@ -154,7 +150,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 {
                     if (missionModel.IsCompleted.Value)
                     {
-                        missionButton.AddToClassList(_missionButtonCompletedClass);
+                        missionButton.AddToClassList(USSConst.COMPLETED);
                         var starsColumn = missionButtonContainer.Q<VisualElement>(name: _starsColumnName);
 
                         for (var i = 0; i < missionModel.Stars.Value; i++)
@@ -163,7 +159,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 }
                 else
                 {
-                    missionButtonContainer.AddToClassList(_missionButtonLockedClass);
+                    missionButtonContainer.AddToClassList(USSConst.LOCKED);
                 }
 
                 if (ViewModel.SelectedMissionData.CurrentValue != null &&
@@ -181,15 +177,15 @@ namespace ITCafe.Gameplay.UI.MVVM
             if (locationData == null)
             {
                 FLogger.Log<CampaignView>($"No location data");
-                _selectedLocationTab?.RemoveFromClassList(_locationButtonSelectedClass);
+                _selectedLocationTab?.RemoveFromClassList(USSConst.SELECTED);
                 _selectedLocationTab = null;
                 return;
             }
 
-            _selectedLocationTab?.RemoveFromClassList(_locationButtonSelectedClass);
+            _selectedLocationTab?.RemoveFromClassList(USSConst.SELECTED);
             if (_locationTabButtonsMap.TryGetValue(locationData.Id, out var tabButton))
             {
-                tabButton.AddToClassList(_locationButtonSelectedClass);
+                tabButton.AddToClassList(USSConst.SELECTED);
                 _selectedLocationTab = tabButton;
             }
             else
@@ -201,7 +197,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void OnMissionSelected(IMissionData missionData)
         {
-            _selectedMissionButton?.RemoveFromClassList(_missionButtonSelectedClass);
+            _selectedMissionButton?.RemoveFromClassList(USSConst.SELECTED);
 
             if (missionData != null)
             {
@@ -212,7 +208,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
                 if (_missionButtonsMap.TryGetValue(missionData.Id, out var button))
                 {
-                    button.AddToClassList(_missionButtonSelectedClass);
+                    button.AddToClassList(USSConst.SELECTED);
                     _selectedMissionButton = button;
                 }
                 else

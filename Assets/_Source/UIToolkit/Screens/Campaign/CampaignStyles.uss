@@ -138,18 +138,18 @@
     border-color: rgb(120, 220, 255);
 }
 
-.campaign__location-tab--selected {
+.campaign__location-tab.selected {
     background-color: rgba(0, 184, 148, 0.3);
     border-color: rgb(0, 224, 178);
 }
 
-.campaign__location-tab--locked {
+.campaign__location-tab.locked {
     opacity: 0.6;
     background-color: rgba(60, 70, 90, 0.5);
     border-color: rgb(80, 100, 120);
 }
 
-.campaign__location-tab--locked:hover {
+.campaign__location-tab.locked:hover {
     background-color: rgba(60, 70, 90, 0.6);
     border-color: rgb(100, 120, 140);
 }
@@ -168,11 +168,11 @@
     background-color: rgb(70, 170, 200);
 }
 
-.campaign__location-status--completed {
+.campaign__location-status.completed {
     background-color: rgb(0, 184, 148);
 }
 
-.campaign__location-status--locked {
+.campaign__location-status.locked {
     background-color: rgb(120, 140, 160);
 }
 
@@ -213,83 +213,74 @@
     border-color: rgb(120, 220, 255);
 }
 
-.campaign__mission-button.campaign__mission-button--selected {
+.campaign__mission-button.selected {
     background-color: rgba(70, 170, 200, 0.2);
     border-color: rgb(100, 200, 230);
-}
-
-.campaign__mission-button.campaign__mission-button--selected:hover {
-    background-color: rgba(70, 170, 200, 0.2);
-    border-color: rgb(100, 200, 230);
-}
-
-.campaign__mission-button.campaign__mission-button--selected:active {
-    background-color: rgba(70, 170, 200, 0.2);
-    border-color: rgb(100, 200, 230);
-}
-
-.campaign__mission-button--selected {
     border-width: 4px;
 }
 
-campaign__mission-button--selected:hover {
+.campaign__mission-button.selected:hover {
+    background-color: rgba(70, 170, 200, 0.2);
+    border-color: rgb(100, 200, 230);
     border-width: 4px;
 }
 
-campaign__mission-button--selected:active {
+.campaign__mission-button.selected:active {
+    background-color: rgba(70, 170, 200, 0.2);
+    border-color: rgb(100, 200, 230);
     border-width: 4px;
 }
 
-.campaign__mission-button--locked {
+.campaign__mission-button.locked {
     opacity: 0.5;
 }
 
-.campaign__mission-button.campaign__mission-button--locked:hover {
+.campaign__mission-button.locked:hover {
     opacity: 0.55;
 }
 
-.campaign__mission-button.campaign__mission-button--locked:active {
+.campaign__mission-button.locked:active {
     opacity: 0.6;
 }
 
-.campaign__mission-button.campaign__mission-button--locked.campaign__mission-button--selected {
+.campaign__mission-button.locked.selected {
     opacity: 0.55;
 }
 
-.campaign__mission-button.campaign__mission-button--locked.campaign__mission-button--selected:hover {
+.campaign__mission-button.locked.selected:hover {
     opacity: 0.55;
 }
 
-.campaign__mission-button.campaign__mission-button--locked.campaign__mission-button--selected:active {
+.campaign__mission-button.locked.selected:active {
     opacity: 0.55;
 }
 
-.campaign__mission-button--completed {
+.campaign__mission-button.completed {
     background-color: rgba(46, 204, 113, 0.2);
     border-color: rgb(46, 204, 113);
 }
 
-.campaign__mission-button.campaign__mission-button--completed:hover {
+.campaign__mission-button.completed:hover {
     background-color: rgba(46, 204, 113, 0.3);
     border-color: rgb(46, 204, 113);
 }
 
-.campaign__mission-button.campaign__mission-button--completed:active {
+.campaign__mission-button.completed:active {
     background-color: rgba(46, 204, 113, 0.4);
     border-color: rgb(46, 204, 113);
 }
 
-.campaign__mission-button--completed.campaign__mission-button--selected {
+.campaign__mission-button.completed.selected {
     background-color: rgba(46, 204, 113, 0.3);
     border-color: rgb(46, 204, 113);
 }
 
-.campaign__mission-button.campaign__mission-button--completed.campaign__mission-button--selected:hover {
+.campaign__mission-button.completed.selected:hover {
     background-color: rgba(46, 204, 113, 0.3);
     border-color: rgb(46, 204, 113);
 }
 
-.campaign__mission-button.campaign__mission-button--completed.campaign__mission-button--selected:active {
+.campaign__mission-button.completed.selected:active {
     background-color: rgba(46, 204, 113, 0.3);
     border-color: rgb(46, 204, 113);
 }
