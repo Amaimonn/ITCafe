@@ -61,6 +61,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _missionsGrid = Root.Q<VisualElement>(name: _missionsGridName);
             _missionsGrid.Clear();
             _nodes = Root.Q<NodesElement>();
+            _nodes.ClearConnections();
             // Начальное состояние
             // _content.AddToClassList($"{_contentClass}--disabled");
             // _content.RegisterCallback<TransitionEndEvent>(_ =>

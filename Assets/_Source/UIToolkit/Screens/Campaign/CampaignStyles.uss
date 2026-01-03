@@ -205,86 +205,104 @@
     margin-right: 6px;
 }
 
+.campaign__mission-button {
+    background-color: rgb(30, 35, 50);
+    border-color: rgb(70, 170, 200);
+    border-width: 2px;
+}
+
 .campaign__mission-button:hover {
-    background-color: rgba(70, 170, 200, 0.2);
+    background-color: rgb(40, 45, 65);
     border-color: rgb(100, 200, 230);
 }
 
 .campaign__mission-button:active {
-    background-color: rgba(70, 170, 200, 0.3);
+    background-color: rgb(50, 55, 80);
     border-color: rgb(120, 220, 255);
 }
 
 .campaign__mission-button.selected {
-    background-color: rgba(70, 170, 200, 0.2);
-    border-color: rgb(100, 200, 230);
+    background-color: rgb(20, 40, 60);
+    border-color: rgb(0, 184, 148);
     border-width: 4px;
 }
 
 .campaign__mission-button.selected:hover {
-    background-color: rgba(70, 170, 200, 0.2);
-    border-color: rgb(100, 200, 230);
+    background-color: rgb(20, 40, 60);
+    border-color: rgb(0, 184, 148);
     border-width: 4px;
 }
 
 .campaign__mission-button.selected:active {
-    background-color: rgba(70, 170, 200, 0.2);
-    border-color: rgb(100, 200, 230);
+    background-color: rgb(20, 40, 60);
+    border-color: rgb(0, 184, 148);
     border-width: 4px;
 }
 
 .campaign__mission-button.locked {
-    opacity: 0.5;
+    background-color: rgb(40, 45, 60);
+    border-color: rgb(80, 90, 110);
+    color: rgb(120, 130, 150); 
 }
 
 .campaign__mission-button.locked:hover {
-    opacity: 0.55;
+    background-color: rgb(45, 50, 65);
+    border-color: rgb(90, 100, 120);
+    color: rgb(130, 140, 160);
 }
 
 .campaign__mission-button.locked:active {
-    opacity: 0.6;
+    background-color: rgb(50, 55, 70);
+    border-color: rgb(100, 110, 130);
+    color: rgb(140, 150, 170);
 }
 
 .campaign__mission-button.locked.selected {
-    opacity: 0.55;
+    background-color: rgb(35, 40, 55);
+    border-color: rgb(60, 70, 90);
+    color: rgb(110, 120, 140);
 }
 
 .campaign__mission-button.locked.selected:hover {
-    opacity: 0.55;
+    background-color: rgb(35, 40, 55);
+    border-color: rgb(60, 70, 90);
+    color: rgb(110, 120, 140);
 }
 
 .campaign__mission-button.locked.selected:active {
-    opacity: 0.55;
+    background-color: rgb(35, 40, 55);
+    border-color: rgb(60, 70, 90);
+    color: rgb(110, 120, 140);
 }
 
 .campaign__mission-button.completed {
-    background-color: rgba(46, 204, 113, 0.2);
+    background-color: rgb(20, 50, 40);
     border-color: rgb(46, 204, 113);
 }
 
 .campaign__mission-button.completed:hover {
-    background-color: rgba(46, 204, 113, 0.3);
-    border-color: rgb(46, 204, 113);
+    background-color: rgb(25, 60, 45);
+    border-color: rgb(56, 214, 123);
 }
 
 .campaign__mission-button.completed:active {
-    background-color: rgba(46, 204, 113, 0.4);
-    border-color: rgb(46, 204, 113);
+    background-color: rgb(30, 70, 50);
+    border-color: rgb(66, 224, 133);
 }
 
 .campaign__mission-button.completed.selected {
-    background-color: rgba(46, 204, 113, 0.3);
-    border-color: rgb(46, 204, 113);
+    background-color: rgb(15, 45, 35);
+    border-color: rgb(36, 194, 103);
 }
 
 .campaign__mission-button.completed.selected:hover {
-    background-color: rgba(46, 204, 113, 0.3);
-    border-color: rgb(46, 204, 113);
+    background-color: rgb(15, 45, 35);
+    border-color: rgb(36, 194, 103);
 }
 
 .campaign__mission-button.completed.selected:active {
-    background-color: rgba(46, 204, 113, 0.3);
-    border-color: rgb(46, 204, 113);
+    background-color: rgb(15, 45, 35);
+    border-color: rgb(36, 194, 103);
 }
 
 .campaign__mission-number {
