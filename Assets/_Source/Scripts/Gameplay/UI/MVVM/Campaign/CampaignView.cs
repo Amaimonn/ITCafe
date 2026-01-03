@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using R3;
 using ITCafe.Data.Campaign;
+using ITCafe.Gameplay.UI.Custom;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -38,6 +39,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private ScrollView _missionTextScrollView;
         private VisualElement _missionsGrid;
         private VisualElement _panelWhiteBackground;
+        private NodesElement _nodes;
 
         private Button _selectedMissionButton;
         private VisualElement _selectedLocationTab;
@@ -58,6 +60,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _missionTextScrollView = Root.Q<ScrollView>(name: _missionTextScrollViewName);
             _missionsGrid = Root.Q<VisualElement>(name: _missionsGridName);
             _missionsGrid.Clear();
+            _nodes = Root.Q<NodesElement>();
             // Начальное состояние
             // _content.AddToClassList($"{_contentClass}--disabled");
             // _content.RegisterCallback<TransitionEndEvent>(_ =>
@@ -139,6 +142,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             _missionsGrid.Clear();
             _missionButtonsMap.Clear();
+            _nodes.ClearConnections();
 
             if (missionDataMap == null || missionDataMap.Count == 0)
             {
@@ -154,6 +158,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             var selectedMissionData = ViewModel.SelectedMissionData.CurrentValue;
             if (selectedMissionData != null)
                 OnMissionSelected(selectedMissionData);
+            
+            DrawNodes(missionDataMap, _missionButtonsMap);
         }
 
         private void AddMission(IMissionData missionData)
@@ -187,6 +193,30 @@ namespace ITCafe.Gameplay.UI.MVVM
             }
 
             _missionsGrid.Add(missionButtonContainer);
+        }
+
+        /// <summary>
+        /// Добавить соединения на основе данных миссий
+        /// </summary>
+        public void DrawNodes(IReadOnlyDictionary<string, IMissionData> missions,
+            Dictionary<string, Button> missionButtons)
+        {
+            if (missions == null)
+                return;
+            
+            foreach (var mission in missions.Values)
+            {
+                if (mission.NextMissionIds == null ||
+                    mission.NextMissionIds.Count == 0 ||
+                    !missionButtons.TryGetValue(mission.Id, out var fromElement))
+                {
+                    continue;
+                }
+
+                foreach (var nextMissionId in mission.NextMissionIds)
+                    if (missionButtons.TryGetValue(nextMissionId, out var toElement))
+                        _nodes.AddConnection(fromElement, toElement);
+            }
         }
 
         private void OnLocationSelected(ILocationData locationData)

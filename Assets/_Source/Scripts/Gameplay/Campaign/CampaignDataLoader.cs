@@ -49,7 +49,7 @@ namespace ITCafe.Campaign
             var loadedMissions = await LoadManyAsync<MissionDataSO>(locationData.MissionIds); // path is id
             if (loadedMissions != null)
             {
-                var missionsData = loadedMissions.Where(mission => mission != null)
+                var missionsData = loadedMissions.Where(x => x != null)
                     .ToArray();
                 
                 _currentMissionsData =  missionsData;
@@ -84,10 +84,12 @@ namespace ITCafe.Campaign
             }
             
             campaignDataModel.SelectedMissionData.Value = missionData;
+            // TODO: load and set MissionPreview
         }
 
         public void DeselectMission(CampaignDataModel campaignDataModel)
         {
+            // TODO: Unload (and unset) MissionPreview
             campaignDataModel.SelectedMissionData.Value = null;
         }
 
@@ -108,6 +110,7 @@ namespace ITCafe.Campaign
                 UnloadAsset(missionData);
                 _pathHandleMap.Remove(missionData.Id);
             }
+            
             FLogger.Log<CampaignDataLoader>($"Unloaded left: {_pathHandleMap.Count}");
             _currentMissionsData = null;
         }

@@ -28,6 +28,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 1; align-self: center;">
+                        <ITCafe.Gameplay.UI.Custom.NodesElement style="width: 100%; height: 100%; position: absolute;"/>
                         <ui:VisualElement name="MissionsGrid" class="campaign__missions-grid" style="width: 1050px;">
                             <ui:Instance template="MissionButton" style="top: 91px; left: 200px; position: absolute;"/>
                             <ui:Instance template="MissionButton" style="top: 311px; left: 103px; position: absolute;"/>
