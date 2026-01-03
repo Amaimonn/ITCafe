@@ -108,9 +108,7 @@
     -unity-text-align: middle-center;
 }
 
-.campaign__locations-scrollview {
-    flex-grow: 1;
-}
+
 
 .campaign__locations-tabs {
     flex-direction: column;

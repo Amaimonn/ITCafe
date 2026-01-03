@@ -22,7 +22,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
-
+        
+        [Space(2f)]
         [SerializeField] private VisualTreeAsset _starLi;
         [SerializeField] private string _starsColumnName = "StarsColumn";
 
