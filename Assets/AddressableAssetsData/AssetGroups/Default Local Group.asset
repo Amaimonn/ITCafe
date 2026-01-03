@@ -35,6 +35,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fd48fa5f4c5f414dbb76826b61f4103
+    m_Address: mission_1_5_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32476cde404093546b47e7e4df71c9be
+    m_Address: mission_1_4_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 338ed021b1d18fb48afecfa12018999c
     m_Address: location_1
     m_ReadOnly: 0
@@ -42,6 +52,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4484dee8d90447d4eb9584ad942a4ac0
     m_Address: all_locations_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54488c11f6ab92c46847c880baf0c009
+    m_Address: mission_1_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6897d832f5c137e4e8af1519a752a754
+    m_Address: mission_1_5
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -57,6 +77,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93b2bd02ed33c1a46ab7ea36bae4ce7a
     m_Address: scenes/gap
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5c1f8dbbe253cf47aba597f88ae803f
+    m_Address: mission_1_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9f41ec6220cfa3489d27f415884019c
+    m_Address: location_2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -77,6 +107,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cf5f52feba1d24142b1742b6da4eeaec
     m_Address: mission_1_1_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff3bacdf484531a499e38e7305644c27
+    m_Address: mission_1_6_setup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

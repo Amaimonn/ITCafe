@@ -66,7 +66,7 @@
 .campaign__missions-section {
     flex-grow: 1;
     margin-right: 20px;
-    margin-left: 0;
+    margin-left: 20px;
 }
 
 .campaign__section-title {
@@ -107,8 +107,6 @@
     -unity-font-style: italic;
     -unity-text-align: middle-center;
 }
-
-
 
 .campaign__locations-tabs {
     flex-direction: column;

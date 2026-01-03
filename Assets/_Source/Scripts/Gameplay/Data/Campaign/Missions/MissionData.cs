@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ITCafe.Data.Campaign
@@ -15,5 +16,9 @@ namespace ITCafe.Data.Campaign
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public string SceneName { get; private set; }
+        [field: SerializeField] public int PositionX { get; private set; }
+        [field: SerializeField] public int PositionY { get; private set; }
+        [field: SerializeField] public IReadOnlyList<string> NextMissionIds { get; private set; }
+        [field: SerializeField] public IReadOnlyList<string> NextLocationIds { get; private set; }
     }
 }

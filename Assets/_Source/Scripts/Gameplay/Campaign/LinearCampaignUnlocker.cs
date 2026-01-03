@@ -11,7 +11,7 @@ namespace ITCafe.Campaign
     /// Handles missions and locations completion logic.
     /// Limitations: works with a linear campaign (the next available mission/location is determined by its index).
     /// </summary>
-    public class CampaignUnlocker
+    public class LinearCampaignUnlocker
     {
         public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel, 
             CampaignDataModel campaignDataModel, Action saveAction, 

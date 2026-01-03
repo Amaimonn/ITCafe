@@ -17,3 +17,8 @@ MonoBehaviour:
   <Name>k__BackingField: Mission 1
   <Description>k__BackingField: This is your first mission
   <SceneName>k__BackingField: cafe_1
+  <PositionX>k__BackingField: 200
+  <PositionY>k__BackingField: 91
+  _nextMissionIds:
+  - mission_1_2
+  _nextLocationIds: []

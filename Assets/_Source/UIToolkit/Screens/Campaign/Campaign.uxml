@@ -27,27 +27,15 @@
                             <ui:Label text="&#1047;&#1040;&#1043;&#1056;&#1059;&#1047;&#1050;&#1040;..." class="campaign__loading-text"/>
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="MissionsGrid" class="campaign__missions-grid">
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
-                        <ui:Instance template="MissionButton"/>
+                    <ui:VisualElement style="flex-grow: 1; align-self: center;">
+                        <ui:VisualElement name="MissionsGrid" class="campaign__missions-grid" style="width: 1050px;">
+                            <ui:Instance template="MissionButton" style="top: 91px; left: 200px; position: absolute;"/>
+                            <ui:Instance template="MissionButton" style="top: 311px; left: 103px; position: absolute;"/>
+                            <ui:Instance template="MissionButton" style="top: 551px; left: 391px; position: absolute;"/>
+                            <ui:Instance template="MissionButton" style="top: 464px; left: 706px; position: absolute;"/>
+                            <ui:Instance template="MissionButton" style="top: 238px; left: 867px; position: absolute;"/>
+                            <ui:Instance template="MissionButton" style="top: 63px; left: 703px; position: absolute;"/>
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="MissionInfoSection" class="campaign__info-section campaign__missions-section" style="min-width: 400px;">

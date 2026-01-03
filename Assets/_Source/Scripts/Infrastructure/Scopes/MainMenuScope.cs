@@ -30,7 +30,7 @@ namespace ITCafe
             builder.Register<Subject<Unit>>(Lifetime.Scoped)
                 .Keyed(Constants.START_MISSION_SIGNAL);
 
-            builder.Register<CampaignUnlocker>(Lifetime.Singleton);
+            builder.Register<LinearCampaignUnlocker>(Lifetime.Singleton);
             builder.Register<CampaignModelFactory>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IFactory<CampaignModel>>();
@@ -100,7 +100,7 @@ namespace ITCafe
 
                 var campaignModelFactory = Container.Resolve<CampaignModelFactory>();
                 var campaignModel = campaignModelFactory.Current.CurrentValue;
-                var campaignUnlocker = Container.Resolve<CampaignUnlocker>();
+                var campaignUnlocker = Container.Resolve<LinearCampaignUnlocker>();
                 var saveStateProvider = Container.Resolve<ISaveStateProvider>();
                 var selectedMissionModel = campaignModel.OpenedLocationsMap[selectedLocationId]
                     .OpenedMissionsMap[selectedMissionId];

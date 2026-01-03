@@ -22,7 +22,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
-        
+
         [Space(2f)]
         [SerializeField] private VisualTreeAsset _starLi;
         [SerializeField] private string _starsColumnName = "StarsColumn";
@@ -38,7 +38,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private ScrollView _missionTextScrollView;
         private VisualElement _missionsGrid;
         private VisualElement _panelWhiteBackground;
-        
+
         private Button _selectedMissionButton;
         private VisualElement _selectedLocationTab;
         private bool _isClosing = false;
@@ -78,7 +78,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _startButton.SubscribeCallbackOnce<ClickEvent>(StartGameplay).AddTo(_disposables);
         }
-        
+
         private void StartGameplay(ClickEvent _)
         {
             ViewModel.StartGameplay();
@@ -88,7 +88,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             ViewModel.SelectLocation(locationData);
         }
-        
+
         private void SelectMission(ClickEvent _, IMissionData missionData)
         {
             ViewModel.SelectMission(missionData);
@@ -104,7 +104,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             foreach (var locationData in locationDataMap.Values)
                 AddLocationTab(locationData);
-            
+
             var selectedLocationData = ViewModel.SelectedLocationData.CurrentValue;
             if (selectedLocationData != null && locationDataMap.ContainsKey(selectedLocationData.Id))
                 OnLocationSelected(selectedLocationData);
@@ -118,15 +118,18 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             locationLabel.text = locationData.Name;
 
-            if (ViewModel.OpenedLocationsMap.TryGetValue(locationData.Id, out _))
+            _locationTabButtonsMap[locationData.Id] = locationTabButton;
+            locationTabButton.RegisterCallback<ClickEvent, ILocationData>(SelectLocation, locationData);
+
+            if (ViewModel.OpenedLocationsMap.TryGetValue(locationData.Id, out var locationModel))
             {
-                locationTabButton.RegisterCallback<ClickEvent, ILocationData>(SelectLocation, locationData);
-                _locationTabButtonsMap[locationData.Id] = locationTabButton;
+                if (locationModel.IsCompleted.Value)
+                    locationTabButton.AddToClassList(USSConst.COMPLETED);
             }
             else
             {
                 FLogger.Log<CampaignView>($"No missions opened for: {locationData.Id}");
-                locationTabButton.SetEnabled(false);
+                locationTabButtonContainer.AddToClassList(USSConst.LOCKED);
             }
 
             _locationTabsContainer.Add(locationTabButtonContainer);
@@ -139,12 +142,12 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             if (missionDataMap == null || missionDataMap.Count == 0)
             {
-                FLogger.Log<CampaignView>($"No Current missions data");
+                FLogger.Log<CampaignView>("No Current missions data");
                 return;
             }
 
             FLogger.Log<CampaignView>($"Current missions data: {missionDataMap.Count}");
-            
+
             foreach (var missionData in missionDataMap.Values)
                 AddMission(missionData);
 
@@ -156,11 +159,14 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void AddMission(IMissionData missionData)
         {
             var missionButtonContainer = _missionButton.CloneTree();
-            var missionButton = missionButtonContainer.Q<Button>();
-            var missionLabel = missionButtonContainer.Q<Label>();
+            missionButtonContainer.style.position = Position.Absolute;
+            missionButtonContainer.style.left = missionData.PositionX;
+            missionButtonContainer.style.top = missionData.PositionY;
 
+            var missionLabel = missionButtonContainer.Q<Label>();
             missionLabel.text = missionData.DisplayedNumber;
 
+            var missionButton = missionButtonContainer.Q<Button>();
             _missionButtonsMap[missionData.Id] = missionButton;
             missionButton.RegisterCallback<ClickEvent, IMissionData>(SelectMission, missionData);
 
@@ -177,7 +183,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             }
             else
             {
-                missionButtonContainer.AddToClassList(USSConst.LOCKED);
+                missionButton.AddToClassList(USSConst.LOCKED);
             }
 
             _missionsGrid.Add(missionButtonContainer);
@@ -187,7 +193,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             if (locationData == null)
             {
-                FLogger.Log<CampaignView>($"No location data");
+                FLogger.Log<CampaignView>("No location data");
                 _selectedLocationTab?.RemoveFromClassList(USSConst.SELECTED);
                 _selectedLocationTab = null;
                 return;

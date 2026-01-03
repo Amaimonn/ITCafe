@@ -119,15 +119,19 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _campaignDataModel.SelectedMissionData.Subscribe(x => _selectedMissionData.Value = x)
                 .AddTo(_disposables);
-
-
-            _campaignModel.SelectedLocationId.Subscribe(x =>
-                    _campaignDataLoader.SelectLocationAsync(_campaignDataModel, x).Forget())
-                .AddTo(_disposables);
+            
+            _campaignDataLoader.SelectLocationAsync(_campaignDataModel, _campaignModel.SelectedLocationId.Value)
+                .Forget();
+            _campaignModel.SelectedLocationId.Skip(1).Subscribe(x =>
+            {
+                if (!string.IsNullOrEmpty(x))
+                    _campaignModel.SelectedMissionId.Value = null;
+                _campaignDataLoader.SelectLocationAsync(_campaignDataModel, x).Forget();
+            }).AddTo(_disposables);
 
             _campaignModel.SelectedMissionId.Subscribe(x =>
-                    _campaignDataLoader.SelectMissionAsync(_campaignDataModel, x).Forget())
-                .AddTo(_disposables);
+                _campaignDataLoader.SelectMissionAsync(_campaignDataModel, x).Forget()
+            ).AddTo(_disposables);
         }
 
         public override void Dispose()

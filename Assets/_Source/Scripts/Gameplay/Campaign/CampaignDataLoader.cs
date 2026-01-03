@@ -33,8 +33,7 @@ namespace ITCafe.Campaign
         {
             if (string.IsNullOrEmpty(locationId))
             {
-                campaignDataModel.SelectedLocationData.Value = null;
-                UnloadCurrentMissionsData(campaignDataModel);
+                DeselectLocation(campaignDataModel);
                 return;
             }
             
@@ -44,14 +43,16 @@ namespace ITCafe.Campaign
                 return;
             }
             
-            campaignDataModel.SelectedLocationData.Value = locationData;
             UnloadCurrentMissionsData(campaignDataModel);
+            campaignDataModel.SelectedLocationData.Value = locationData;
 
             var loadedMissions = await LoadManyAsync<MissionDataSO>(locationData.MissionIds); // path is id
             if (loadedMissions != null)
             {
                 var missionsData = loadedMissions.Where(mission => mission != null)
                     .ToArray();
+                
+                _currentMissionsData =  missionsData;
                 campaignDataModel.SetCurrentMissionsData(missionsData);
             }
             else
@@ -59,19 +60,19 @@ namespace ITCafe.Campaign
                 FLogger.LogError<CampaignDataLoader>($"No missions loaded for {locationId}");
             }
         }
+
+        public void DeselectLocation(CampaignDataModel campaignDataModel)
+        {
+            UnloadCurrentMissionsData(campaignDataModel);
+            campaignDataModel.SelectedLocationData.Value = null;
+        }
         
         // may use additional data in future
         public async UniTaskVoid SelectMissionAsync(CampaignDataModel campaignDataModel, string missionId)
         {
-            if (campaignDataModel.SelectedMissionData.CurrentValue != null &&
-                campaignDataModel.SelectedMissionData.CurrentValue.Id == missionId)
-            {
-                return;
-            }
-            
             if (string.IsNullOrEmpty(missionId))
             {
-                campaignDataModel.SelectedMissionData.Value = null;
+                DeselectMission(campaignDataModel);
                 return;
             }
 
@@ -83,6 +84,11 @@ namespace ITCafe.Campaign
             }
             
             campaignDataModel.SelectedMissionData.Value = missionData;
+        }
+
+        public void DeselectMission(CampaignDataModel campaignDataModel)
+        {
+            campaignDataModel.SelectedMissionData.Value = null;
         }
 
         /// <summary>
