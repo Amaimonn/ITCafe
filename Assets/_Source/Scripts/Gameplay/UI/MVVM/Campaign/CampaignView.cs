@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
@@ -13,13 +14,13 @@ namespace ITCafe.Gameplay.UI.MVVM
     {
         [Header("UI Elements")]
         [SerializeField] private string _contentName = "RootWrapper";
-        [SerializeField] private string _contentClass = "campaign__root";
         [SerializeField] private string _startButtonName = "StartButton";
         [SerializeField] private string _locationTabsContainerName = "LocationsTabsContainer";
         [SerializeField] private string _selectedMissionLabelName = "SelectedMissionLabel";
         [SerializeField] private string _selectedMissionTextName = "SelectedMissionText";
         [SerializeField] private string _missionTextScrollViewName = "MissionTextScrollView";
-        [SerializeField] private string _missionsGridName = "MissionsGrid";
+        [SerializeField] private string _missionsContainerName = "MissionsContainer";
+        [SerializeField] private string _campaignMapName = "CampaignMap";
 
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
@@ -33,11 +34,12 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private Button _startButton;
         private VisualElement _content;
+        private VisualElement _campaignMap;
         private VisualElement _locationTabsContainer;
         private Label _selectedMissionLabel;
         private Label _selectedMissionText;
         private ScrollView _missionTextScrollView;
-        private VisualElement _missionsGrid;
+        private VisualElement _missionsContainer;
         private VisualElement _panelWhiteBackground;
         private NodesElement _nodes;
 
@@ -46,20 +48,22 @@ namespace ITCafe.Gameplay.UI.MVVM
         private bool _isClosing = false;
         private readonly Dictionary<string, Button> _missionButtonsMap = new();
         private readonly Dictionary<string, VisualElement> _locationTabButtonsMap = new();
+        private Coroutine _showMapCoroutine;
 
         protected override void OnInit()
         {
             base.OnInit();
 
             _content = Root.Q<VisualElement>(name: _contentName);
+            _campaignMap = Root.Q<VisualElement>(name: _campaignMapName);
             _startButton = Root.Q<Button>(name: _startButtonName);
             _locationTabsContainer = Root.Q<VisualElement>(name: _locationTabsContainerName);
             _locationTabsContainer.Clear();
             _selectedMissionLabel = Root.Q<Label>(name: _selectedMissionLabelName);
             _selectedMissionText = Root.Q<Label>(name: _selectedMissionTextName);
             _missionTextScrollView = Root.Q<ScrollView>(name: _missionTextScrollViewName);
-            _missionsGrid = Root.Q<VisualElement>(name: _missionsGridName);
-            _missionsGrid.Clear();
+            _missionsContainer = Root.Q<VisualElement>(name: _missionsContainerName);
+            _missionsContainer.Clear();
             _nodes = Root.Q<NodesElement>();
             _nodes.ClearConnections();
             // Начальное состояние
@@ -81,6 +85,19 @@ namespace ITCafe.Gameplay.UI.MVVM
             ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
 
             _startButton.SubscribeCallbackOnce<ClickEvent>(StartGameplay).AddTo(_disposables);
+        }
+
+        protected override void OnOpening()
+        {
+            Show();
+            SetCampaignMapEnabled(false);
+            StartCoroutine(OpenAnimation());
+
+            IEnumerator OpenAnimation()
+            {
+                yield return null;
+                SetCampaignMapEnabled(true);
+            }
         }
 
         private void StartGameplay(ClickEvent _)
@@ -141,9 +158,10 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void OnCurrentMissionsChanged(IReadOnlyDictionary<string, IMissionData> missionDataMap)
         {
-            _missionsGrid.Clear();
+            _missionsContainer.Clear();
             _missionButtonsMap.Clear();
             _nodes.ClearConnections();
+            SetCampaignMapEnabled(false);
 
             if (missionDataMap == null || missionDataMap.Count == 0)
             {
@@ -159,8 +177,10 @@ namespace ITCafe.Gameplay.UI.MVVM
             var selectedMissionData = ViewModel.SelectedMissionData.CurrentValue;
             if (selectedMissionData != null)
                 OnMissionSelected(selectedMissionData);
-            
+
             DrawNodes(missionDataMap, _missionButtonsMap);
+            
+            SetCampaignMapEnabled(true);
         }
 
         private void AddMission(IMissionData missionData)
@@ -193,18 +213,18 @@ namespace ITCafe.Gameplay.UI.MVVM
                 missionButton.AddToClassList(USSConst.LOCKED);
             }
 
-            _missionsGrid.Add(missionButtonContainer);
+            _missionsContainer.Add(missionButtonContainer);
         }
 
         /// <summary>
         /// Добавить соединения на основе данных миссий
         /// </summary>
-        public void DrawNodes(IReadOnlyDictionary<string, IMissionData> missions,
+        private void DrawNodes(IReadOnlyDictionary<string, IMissionData> missions,
             Dictionary<string, Button> missionButtons)
         {
             if (missions == null)
                 return;
-            
+
             foreach (var mission in missions.Values)
             {
                 if (mission.NextMissionIds == null ||
@@ -217,6 +237,30 @@ namespace ITCafe.Gameplay.UI.MVVM
                 foreach (var nextMissionId in mission.NextMissionIds)
                     if (missionButtons.TryGetValue(nextMissionId, out var toElement))
                         _nodes.AddConnection(fromElement, toElement);
+            }
+        }
+        
+        /// <summary>
+        /// Mission Nodes fade animation
+        /// </summary>
+        private void SetCampaignMapEnabled(bool isEnabled)
+        {
+            if (_showMapCoroutine != null)
+            {
+                StopCoroutine(_showMapCoroutine);
+                _showMapCoroutine = null;
+            }
+            
+            if (isEnabled)
+                _showMapCoroutine = StartCoroutine(ShowMap());
+            else
+                _campaignMap.RemoveFromClassList(USSConst.ENABLED);
+
+            IEnumerator ShowMap()
+            {
+                yield return null;
+                _campaignMap.AddToClassList(USSConst.ENABLED);
+                _showMapCoroutine = null;
             }
         }
 

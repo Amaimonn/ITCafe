@@ -242,7 +242,7 @@
 .campaign__mission-button.locked {
     background-color: rgb(40, 45, 60);
     border-color: rgb(80, 90, 110);
-    color: rgb(120, 130, 150); 
+    color: rgb(120, 130, 150);
 }
 
 .campaign__mission-button.locked:hover {
@@ -467,4 +467,16 @@
     margin-top: 0;
     margin-bottom: 0;
     color: var(--gold-border);
+}
+
+.campaign__map {
+    flex-grow: 1;
+    align-self: center;
+    opacity: 0;
+}
+
+.campaign__map.enabled {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.3s;
 }
