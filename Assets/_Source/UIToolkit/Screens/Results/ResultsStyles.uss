@@ -67,8 +67,6 @@
     border-radius: 50%;
     margin: 0 6px;
     border-width: 2px;
-    font-size: 100px;
-    -unity-text-align: middle-center;
     border-top-left-radius: 0%;
     border-top-right-radius: 0%;
     border-bottom-right-radius: 0%;
@@ -77,28 +75,25 @@
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    -unity-text-outline-width: 2px;
-    -unity-text-outline-color: rgb(40, 60, 100);
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
-    margin-left: 12px;
+    margin-left: 0;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    background-image: url("project://database/Assets/_Source/Art/Images/star_symbol.png?fileID=2800000&guid=de123aa9100e11242867f0d24f722d05&type=3#star_symbol");
 }
 
 .results__star--filled {
     border-color: rgb(255, 195, 0);
-    color: rgb(255, 215, 0);
-    -unity-text-outline-color: rgba(255, 230, 94, 0.6);
+    -unity-background-image-tint-color: rgb(255, 215, 0);
 }
 
 .results__star--empty {
     border-color: rgb(60, 100, 140);
-    color: rgba(40, 60, 100, 0.6);
-    -unity-text-outline-color: rgb(40, 60, 100);
+    -unity-background-image-tint-color: rgb(38, 58, 96);
 }
 
 .results__stats-section {
@@ -278,7 +273,7 @@
 
 .results__star-boundary {
     color: rgb(255, 238, 144);
-    margin-top: 0;
+    margin-top: 6px;
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;

@@ -11,23 +11,23 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="StarsContainer" class="results__stars-container">
                     <ui:VisualElement name="StarContainer1" class="results__star-container">
-                        <ui:Label text="*" name="Star1" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--filled" style="margin-left: 0;"/>
+                        <ui:VisualElement name="Star1" class="results__star results__star--filled"/>
                         <ui:Label text="000" name="StarBoundary1" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star-boundary"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="StarContainer2" class="results__star-container">
-                        <ui:Label text="*" name="Star2" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--filled" style="margin-left: 0;"/>
+                        <ui:VisualElement name="Star2" class="results__star results__star--filled" style="flex-grow: 1; margin-left: 0;"/>
                         <ui:Label text="000" name="StarBoundary2" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star-boundary"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="StarContainer3" class="results__star-container">
-                        <ui:Label text="*" name="Star3" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--empty" style="margin-left: 0;"/>
+                        <ui:VisualElement name="Star3" class="results__star results__star--filled" style="margin-left: 0;"/>
                         <ui:Label text="0000" name="StarBoundary3" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star-boundary"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="StarContainer4" class="results__star-container">
-                        <ui:Label text="*" name="Star4" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--empty" style="margin-left: 0;"/>
+                        <ui:VisualElement name="Star4" class="results__star results__star--empty" style="margin-left: 0;"/>
                         <ui:Label text="0000" name="StarBoundary4" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star-boundary"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="StarContainer5" class="results__star-container">
-                        <ui:Label text="*" name="Star5" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star results__star--empty" style="margin-left: 0;"/>
+                        <ui:VisualElement name="Star5" class="results__star results__star--empty"/>
                         <ui:Label text="0000" name="StarBoundary5" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="results__star-boundary"/>
                     </ui:VisualElement>
                 </ui:VisualElement>

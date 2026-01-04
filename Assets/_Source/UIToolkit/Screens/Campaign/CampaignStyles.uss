@@ -203,6 +203,11 @@
     margin-bottom: 6px;
     margin-left: 6px;
     margin-right: 6px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    justify-content: center;
 }
 
 .campaign__mission-button:hover {
@@ -303,7 +308,14 @@
 .campaign__mission-number {
     font-size: 24px;
     -unity-text-align: middle-center;
-    margin-bottom: 4px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .campaign__mission-details {
@@ -446,11 +458,14 @@
     flex-direction: row;
     -unity-text-align: middle-center;
     margin-top: 4px;
+    justify-content: center;
+    padding-left: 3px;
+    height: 11px;
 }
 
 .campaign__mission-star {
-    width: 8px;
-    height: 8px;
+    width: 11px;
+    height: 11px;
     margin-right: 3px;
     border-radius: 50%;
     margin-left: 0;
@@ -460,7 +475,9 @@
     padding-left: 0;
     margin-top: 0;
     margin-bottom: 0;
-    color: var(--gold-border);
+    background-image: url("project://database/Assets/_Source/Art/Images/star_symbol.png?fileID=2800000&guid=de123aa9100e11242867f0d24f722d05&type=3#star_symbol");
+    -unity-background-image-tint-color: rgb(255, 215, 0);
+    flex-shrink: 0;
 }
 
 .campaign__map {
