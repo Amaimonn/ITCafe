@@ -191,10 +191,10 @@
 .campaign__mission-button {
     width: 80px;
     height: 80px;
-    background-color: rgba(25, 30, 45, 0.8);
-    border-color: rgb(70, 170, 200);
-    border-width: 1px;
     border-radius: 3px;
+    background-color: rgb(30, 35, 50);
+    border-color: rgb(70, 170, 200);
+    border-width: 2px;
     font-size: 20px;
     color: rgb(180, 220, 210);
     -unity-font-style: bold;
@@ -203,12 +203,6 @@
     margin-bottom: 6px;
     margin-left: 6px;
     margin-right: 6px;
-}
-
-.campaign__mission-button {
-    background-color: rgb(30, 35, 50);
-    border-color: rgb(70, 170, 200);
-    border-width: 2px;
 }
 
 .campaign__mission-button:hover {
@@ -307,7 +301,6 @@
 
 .campaign__mission-number {
     font-size: 24px;
-    color: rgb(255, 255, 255);
     -unity-text-align: middle-center;
     margin-bottom: 4px;
 }
