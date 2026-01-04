@@ -219,6 +219,7 @@
     background-color: rgb(20, 40, 60);
     border-color: rgb(0, 184, 148);
     border-width: 4px;
+    scale: 1.1 1.1;
 }
 
 .campaign__mission-button.selected:hover {
