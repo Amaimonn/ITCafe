@@ -27,7 +27,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="CampaignMap" class="campaign__map enabled">
-                        <ITCafe.Gameplay.UI.Custom.NodesElement line-width="6" line-curve-type="Straight" style="width: 100%; height: 100%; position: absolute;"/>
+                        <ITCafe.Gameplay.UI.Custom.NodesElement line-width="6" line-curve-type="Straight" line-color="rgba(185, 255, 242, 0.5)" style="width: 100%; height: 100%; position: absolute;"/>
                         <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 0; width: 180px; height: 180px; flex-shrink: 0; position: absolute; background-color: rgb(0, 0, 0); -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/PolygonTargetUIMat.mat?fileID=2100000&amp;guid=71e2ccbc1f081094291d673fd6d69056&amp;type=2#PolygonTargetUIMat&quot;);"/>
                         <ui:VisualElement name="MissionsContainer" class="campaign__missions-grid" style="width: 1050px;">
                             <ui:Instance template="MissionButton" style="top: 91px; left: 200px; position: absolute;"/>

@@ -18,6 +18,15 @@ namespace ITCafe.Gameplay.UI.Custom
 
         [UxmlAttribute]
         public CurveType LineCurveType { get; set; } = CurveType.Quadratic;
+        
+        [UxmlAttribute]
+        public bool UseDashPattern { get; set; } = true;
+        
+        [UxmlAttribute]
+        public float DashLength { get; set; } = 30f;
+        
+        [UxmlAttribute]
+        public float DashGap { get; set; } = 12f;
 
         public enum CurveType
         {
@@ -69,6 +78,8 @@ namespace ITCafe.Gameplay.UI.Custom
             painter.lineCap = LineCap.Round;
             painter.lineJoin = LineJoin.Round;
             painter.strokeColor = LineColor;
+            if (UseDashPattern)
+                painter.SetDashPattern(DashLength, DashGap);
 
             foreach (var connection in _connections)
                 DrawConnection(painter, connection);
