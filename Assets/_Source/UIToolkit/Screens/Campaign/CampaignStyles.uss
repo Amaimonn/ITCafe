@@ -199,15 +199,24 @@
     color: rgb(180, 220, 210);
     -unity-font-style: bold;
     -unity-text-align: middle-center;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    margin-left: 6px;
-    margin-right: 6px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
     justify-content: center;
+    rotate: 45deg;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
 }
 
 .campaign__mission-button:hover {
@@ -225,18 +234,30 @@
     border-color: rgb(0, 184, 148);
     border-width: 4px;
     scale: 1.1 1.1;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
 }
 
 .campaign__mission-button.selected:hover {
     background-color: rgb(20, 40, 60);
     border-color: rgb(0, 184, 148);
     border-width: 4px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
 }
 
 .campaign__mission-button.selected:active {
     background-color: rgb(20, 40, 60);
     border-color: rgb(0, 184, 148);
     border-width: 4px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
 }
 
 .campaign__mission-button.locked {
@@ -316,6 +337,7 @@
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+    rotate: -45deg;
 }
 
 .campaign__mission-details {
@@ -461,6 +483,8 @@
     justify-content: center;
     padding-left: 3px;
     height: 11px;
+    position: absolute;
+    bottom: 0;
 }
 
 .campaign__mission-star {

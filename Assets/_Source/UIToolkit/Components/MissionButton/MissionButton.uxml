@@ -1,8 +1,10 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Components/MissionButton/MissionButtonStyles.uss?fileID=7433441132597879392&amp;guid=134a3e52f4df19d40998c0612de465e6&amp;type=3#MissionButtonStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Campaign/CampaignStyles.uss?fileID=7433441132597879392&amp;guid=26467cc07a5cb7a47951e51c8fce3b94&amp;type=3#CampaignStyles"/>
-    <ui:Button name="MissionButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" display-tooltip-when-elided="false" triple-click-selects-line="false" class="campaign__mission-button">
-        <ui:Label name="MissionNumber" text="0" class="campaign__mission-number"/>
-        <ui:VisualElement name="StarsColumn" class="campaign__mission-stars"/>
-    </ui:Button>
+    <ui:VisualElement style="flex-grow: 0; width: 113px; height: 123px; align-items: center; justify-content: flex-start; flex-direction: column; padding-top: 15px;">
+        <ui:Button name="MissionButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" display-tooltip-when-elided="false" triple-click-selects-line="false" class="campaign__mission-button">
+            <ui:Label name="MissionNumber" text="0" class="campaign__mission-number"/>
+        </ui:Button>
+        <ui:VisualElement name="StarsColumn" picking-mode="Ignore" class="campaign__mission-stars"/>
+    </ui:VisualElement>
 </ui:UXML>

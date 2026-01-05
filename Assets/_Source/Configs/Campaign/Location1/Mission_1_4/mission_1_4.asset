@@ -17,8 +17,8 @@ MonoBehaviour:
   <Name>k__BackingField: Mission 4
   <Description>k__BackingField: This is your 4th mission
   <SceneName>k__BackingField: cafe_1
-  <PositionX>k__BackingField: 706
-  <PositionY>k__BackingField: 464
+  <PositionX>k__BackingField: 450
+  <PositionY>k__BackingField: 500
   _nextMissionIds:
   - mission_1_5
   _nextLocationIds: []
