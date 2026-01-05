@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using R3;
 using ITCafe.Data.Campaign;
 using ITCafe.Gameplay.UI.Custom;
+using UnityEngine.UIElements.Experimental;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -21,6 +22,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _missionTextScrollViewName = "MissionTextScrollView";
         [SerializeField] private string _missionsContainerName = "MissionsContainer";
         [SerializeField] private string _campaignMapName = "CampaignMap";
+        [SerializeField] private string _targetSelectionName = "TargetSelection";
 
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
@@ -42,6 +44,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _missionsContainer;
         private VisualElement _panelWhiteBackground;
         private NodesElement _nodes;
+        private VisualElement _targetSelection;
 
         private Button _selectedMissionButton;
         private VisualElement _selectedLocationTab;
@@ -49,6 +52,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly Dictionary<string, Button> _missionButtonsMap = new();
         private readonly Dictionary<string, VisualElement> _locationTabButtonsMap = new();
         private Coroutine _showMapCoroutine;
+        private Coroutine _selectionCoroutine;
+        private IValueAnimation _selectionAnimation;
 
         protected override void OnInit()
         {
@@ -66,6 +71,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             _missionsContainer.Clear();
             _nodes = Root.Q<NodesElement>();
             _nodes.ClearConnections();
+            _targetSelection = Root.Q<VisualElement>(name: _targetSelectionName);
+            SelectTarget(null);
             // Начальное состояние
             // _content.AddToClassList($"{_contentClass}--disabled");
             // _content.RegisterCallback<TransitionEndEvent>(_ =>
@@ -179,7 +186,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 OnMissionSelected(selectedMissionData);
 
             DrawNodes(missionDataMap, _missionButtonsMap);
-            
+
             SetCampaignMapEnabled(true);
         }
 
@@ -239,7 +246,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                         _nodes.AddConnection(fromElement, toElement);
             }
         }
-        
+
         /// <summary>
         /// Mission Nodes fade animation
         /// </summary>
@@ -250,7 +257,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 StopCoroutine(_showMapCoroutine);
                 _showMapCoroutine = null;
             }
-            
+
             if (isEnabled)
                 _showMapCoroutine = StartCoroutine(ShowMap());
             else
@@ -302,10 +309,13 @@ namespace ITCafe.Gameplay.UI.MVVM
                 {
                     button.AddToClassList(USSConst.SELECTED);
                     _selectedMissionButton = button;
+
+                    SelectTarget(button);
                 }
                 else
                 {
                     _selectedMissionButton = null;
+                    SelectTarget(null);
                     Debug.LogWarning($"No button found for missionId: {missionData.Id}");
                 }
 
@@ -317,6 +327,62 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _selectedMissionButton = null;
                 _selectedMissionLabel.text = string.Empty;
                 _selectedMissionText.text = string.Empty;
+                SelectTarget(null);
+            }
+        }
+
+        private void SelectTarget(VisualElement target)
+        {
+            if (_selectionCoroutine != null)
+            {
+                StopCoroutine(_selectionCoroutine);
+                _selectionCoroutine = null;
+            }
+
+            if (_selectionAnimation != null)
+            {
+                _selectionAnimation.Stop();
+                _selectionAnimation = null;
+            }
+
+            if (target != null)
+                StartCoroutine(SelectCoroutine());
+            else
+                _targetSelection.style.visibility = Visibility.Hidden;
+
+            IEnumerator SelectCoroutine()
+            {
+                yield return null;
+                var isVisible = _targetSelection.style.visibility == Visibility.Visible;
+                _targetSelection.style.visibility = Visibility.Visible;
+
+                var targetCenter = _campaignMap.WorldToLocal(target.worldBound.center);
+                targetCenter.x -= _targetSelection.worldBound.width / 2f;
+                targetCenter.y -= _targetSelection.worldBound.height / 2f;
+
+                if (isVisible)
+                {
+                    _selectionAnimation = _targetSelection.experimental.animation.Start
+                    (
+                        new StyleValues
+                        {
+                            left = _targetSelection.style.left.value.value,
+                            top = _targetSelection.style.top.value.value,
+                        },
+                        new StyleValues
+                        {
+                            left = targetCenter.x,
+                            top = targetCenter.y
+                        },
+                        durationMs: 300
+                    ).OnCompleted(() => _selectionAnimation = null);
+                }
+                else
+                {
+                    _targetSelection.style.left = targetCenter.x;
+                    _targetSelection.style.top = targetCenter.y;
+                }
+                _selectionCoroutine = null;
             }
         }
     }
