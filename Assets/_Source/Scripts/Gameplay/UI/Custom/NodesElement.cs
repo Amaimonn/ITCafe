@@ -12,17 +12,31 @@ namespace ITCafe.Gameplay.UI.Custom
 
         [UxmlAttribute]
         public Color LineColor { get; set; } = new(1f, 1f, 1f, 0.5f);
-        
+
+        [UxmlAttribute]
+        public float CurveStrength { get; set; } = 0.3f;
+
+        [UxmlAttribute]
+        public CurveType LineCurveType { get; set; } = CurveType.Quadratic;
+
+        public enum CurveType
+        {
+            Straight,
+            Quadratic,
+            Bezier,
+            Arc
+        }
+
         private readonly List<PathConnection> _connections = new();
 
         public NodesElement()
         {
             generateVisualContent += OnGenerateVisualContent;
         }
-        
+
         public void AddConnection(VisualElement from, VisualElement to)
         {
-            if (from == null || to == null) 
+            if (from == null || to == null)
                 return;
 
             var connection = new PathConnection(from, to);
@@ -46,7 +60,7 @@ namespace ITCafe.Gameplay.UI.Custom
 
         private void OnGenerateVisualContent(MeshGenerationContext context)
         {
-            if (_connections.Count == 0) 
+            if (_connections.Count == 0)
                 return;
 
             var painter = context.painter2D;
@@ -62,7 +76,8 @@ namespace ITCafe.Gameplay.UI.Custom
 
         private void DrawConnection(Painter2D painter, PathConnection connection)
         {
-            Vector2 startPoint, endPoint;
+            Vector2 startPoint;
+            Vector2 endPoint;
 
             if (connection.IsElementBased)
             {
@@ -77,11 +92,65 @@ namespace ITCafe.Gameplay.UI.Custom
 
             startPoint = this.WorldToLocal(startPoint);
             endPoint = this.WorldToLocal(endPoint);
-            
+
             painter.BeginPath();
             painter.MoveTo(startPoint);
-            painter.LineTo(endPoint);
+
+            switch (LineCurveType)
+            {
+                case CurveType.Straight:
+                    painter.LineTo(endPoint);
+                    break;
+                case CurveType.Quadratic:
+                {
+                    var controlPoint = CalculateQuadraticControlPoint(startPoint, endPoint, CurveStrength);
+                    painter.QuadraticCurveTo(controlPoint, endPoint);
+                    break;
+                }
+                case CurveType.Bezier:
+                {
+                    CalculateCubicControlPoints(startPoint, endPoint, CurveStrength, out var control1, 
+                        out var control2);
+                    painter.BezierCurveTo(control1, control2, endPoint);
+                    break;
+                }
+                case CurveType.Arc:
+                    DrawArc(painter, startPoint, endPoint, CurveStrength);
+                    break;
+            }
+
             painter.Stroke();
+        }
+
+        private Vector2 CalculateQuadraticControlPoint(Vector2 start, Vector2 end, float strength)
+        {
+            var middle = (start + end) * 0.5f;
+            var direction = (end - start).normalized;
+            var perpendicular = new Vector2(-direction.y, direction.x);
+
+            var distance = Vector2.Distance(start, end);
+            return middle + perpendicular * (distance * strength);
+        }
+
+        private void CalculateCubicControlPoints(Vector2 start, Vector2 end, float strength,
+            out Vector2 control1, out Vector2 control2)
+        {
+            var distance = Vector2.Distance(start, end);
+            var direction = (end - start).normalized;
+            var perpendicular = new Vector2(-direction.y, direction.x);
+
+            control1 = start + direction * (distance * 0.3f) + perpendicular * (distance * strength);
+            control2 = end - direction * (distance * 0.3f) + perpendicular * (distance * strength);
+        }
+
+        private void DrawArc(Painter2D painter, Vector2 start, Vector2 end, float strength)
+        {
+            var middle = (start + end) * 0.5f;
+            var direction = (end - start).normalized;
+
+            var control = middle + new Vector2(-direction.y, direction.x) * Vector2.Distance(start, end) * strength;
+
+            painter.QuadraticCurveTo(control, end);
         }
 
         private Vector2 GetElementCenter(VisualElement element)
