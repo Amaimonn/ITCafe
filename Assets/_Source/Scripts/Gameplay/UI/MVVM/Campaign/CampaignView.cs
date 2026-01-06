@@ -14,7 +14,7 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class CampaignView : AttachableToolkitWindow<CampaignViewModel>
     {
         [Header("UI Elements")]
-        [SerializeField] private string _contentName = "RootWrapper";
+        [SerializeField] private string _panelBackgroundName = "CampaignBackground";
         [SerializeField] private string _startButtonName = "StartButton";
         [SerializeField] private string _locationTabsContainerName = "LocationsTabsContainer";
         [SerializeField] private string _missionPanelName = "MissionInfoSection";
@@ -37,7 +37,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private Button _startButton;
         private VisualElement _missionPanel;
-        private VisualElement _content;
+        private VisualElement _panelBackground;
         private VisualElement _campaignMap;
         private VisualElement _locationTabsContainer;
         private Label _selectedMissionLabel;
@@ -61,7 +61,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnInit();
 
-            _content = Root.Q<VisualElement>(name: _contentName);
+            _panelBackground = Root.Q<VisualElement>(name: _panelBackgroundName);
             _missionPanel = Root.Q<VisualElement>(name: _missionPanelName);
             SetMissionPanelVisible(false);
             _campaignMap = Root.Q<VisualElement>(name: _campaignMapName);
@@ -96,12 +96,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
 
             _startButton.SubscribeCallbackOnce<ClickEvent>(StartGameplay).AddTo(_disposables);
-            
-            Root.RegisterCallback<ClickEvent>(e =>
-            {
-                if (e.target is not Button)
-                    ViewModel.SelectMission(null);
-            }, TrickleDown.TrickleDown);
+
+            _panelBackground.RegisterCallback<ClickEvent>(_ => ViewModel.SelectMission(null));
         }
 
         protected override void OnOpening()
@@ -127,9 +123,10 @@ namespace ITCafe.Gameplay.UI.MVVM
             ViewModel.SelectLocation(locationData);
         }
 
-        private void SelectMission(ClickEvent _, IMissionData missionData)
+        private void SelectMission(ClickEvent e, IMissionData missionData)
         {
             ViewModel.SelectMission(missionData);
+            e.StopPropagation();
         }
 
         private void OnLocationsChanged(IReadOnlyDictionary<string, ILocationData> locationDataMap)
@@ -203,6 +200,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void AddMission(IMissionData missionData)
         {
             var missionButtonContainer = _missionButton.CloneTree();
+            missionButtonContainer.pickingMode = PickingMode.Ignore;
             missionButtonContainer.style.position = Position.Absolute;
             missionButtonContainer.style.left = missionData.PositionX;
             missionButtonContainer.style.top = missionData.PositionY;
@@ -347,7 +345,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             _missionPanel.style.visibility = isVisible ? Visibility.Visible : Visibility.Hidden;
         }
-        
+
         private void AimAtMission(VisualElement target)
         {
             if (_selectionCoroutine != null)

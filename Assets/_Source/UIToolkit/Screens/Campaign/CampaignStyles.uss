@@ -18,10 +18,6 @@
     border-color: rgb(0, 184, 148);
     border-width: 1px;
     border-radius: 4px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    padding-left: 25px;
-    padding-right: 25px;
     border-left-color: rgb(0, 255, 205);
     border-right-color: rgb(0, 255, 205);
     border-top-color: rgb(0, 255, 205);
@@ -71,14 +67,11 @@
 }
 
 .campaign__locations-section {
-    margin-right: 20px;
     flex-shrink: 0;
 }
 
 .campaign__missions-section {
     flex-grow: 1;
-    margin-right: 20px;
-    margin-left: 20px;
 }
 
 .campaign__section-title {
