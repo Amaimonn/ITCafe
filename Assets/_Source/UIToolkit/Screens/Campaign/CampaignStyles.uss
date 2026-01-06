@@ -162,7 +162,7 @@
 }
 
 .campaign__location-name {
-    font-size: 14px;
+    font-size: 24px;
     color: rgb(180, 220, 210);
     -unity-text-align: middle-left;
     flex-grow: 1;

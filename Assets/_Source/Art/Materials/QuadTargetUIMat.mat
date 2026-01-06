@@ -39,7 +39,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Gap: 0.333
-    - _Width: 0.06
+    - _Height: 0.06
+    - _PulseOffset: 0.05
+    - _PulseSpeed: 5
+    - _Width: 0.03
     m_Colors:
     - _Color: {r: 0.27450982, g: 0.6666667, b: 0.78431374, a: 1}
   m_BuildTextureStacks: []
