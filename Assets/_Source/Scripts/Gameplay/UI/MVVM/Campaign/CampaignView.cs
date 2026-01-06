@@ -28,6 +28,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
         [SerializeField] private string _missionName = "MissionName";
+        [SerializeField] private string _missionNumber = "MissionNumber";
 
         [Space(2f)]
         [SerializeField] private VisualTreeAsset _starLi;
@@ -206,7 +207,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             missionButtonContainer.style.left = missionData.PositionX;
             missionButtonContainer.style.top = missionData.PositionY;
 
-            var missionLabel = missionButtonContainer.Q<Label>();
+            var missionLabel = missionButtonContainer.Q<Label>(name: _missionNumber);
             missionLabel.text = missionData.DisplayedNumber;
 
             var missionButton = missionButtonContainer.Q<Button>();
@@ -235,9 +236,6 @@ namespace ITCafe.Gameplay.UI.MVVM
             _missionsContainer.Add(missionButtonContainer);
         }
 
-        /// <summary>
-        /// Добавить соединения на основе данных миссий
-        /// </summary>
         private void DrawNodes(IReadOnlyDictionary<string, IMissionData> missions,
             Dictionary<string, Button> missionButtons)
         {

@@ -44,7 +44,7 @@ Material:
     - _PulseSpeed: 5
     - _Width: 0.03
     m_Colors:
-    - _Color: {r: 0.27450982, g: 0.6666667, b: 0.78431374, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.8039216, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6966941313632739494
