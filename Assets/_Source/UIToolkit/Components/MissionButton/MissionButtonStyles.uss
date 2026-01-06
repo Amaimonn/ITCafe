@@ -276,120 +276,109 @@
 
 .mission__button {
     width: 200px;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    background-color: rgb(30, 35, 50);
+    margin: 0;
+    background-color: rgb(20, 40, 60);
     border-color: rgb(70, 170, 200);
     color: rgb(180, 220, 210);
     -unity-text-align: middle-center;
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 2px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border-width: 0 0 0 2px;
+    border-radius: 6px;
     background-image: url("project://database/Assets/_Source/Art/Images/white_gradient_fade.png?fileID=2800000&guid=9a27966530d26424683ef0ecc05a7437&type=3#white_gradient_fade");
     -unity-background-image-tint-color: rgba(255, 255, 255, 0.05);
-    padding-top: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
-    padding-left: 2px;
+    padding: 2px;
 }
 
 .mission__button:hover {
-    background-color: rgb(40, 45, 65);
-    border-color: rgb(100, 200, 230);
+    background-color: rgb(30, 50, 70);
+    border-color: rgb(90, 190, 220);
 }
 
 .mission__button:active {
-    background-color: rgb(50, 55, 80);
-    border-color: rgb(120, 220, 255);
+    background-color: rgb(40, 60, 80);
+    border-color: rgb(110, 210, 240);
 }
 
 .mission__button.selected {
-    border-color: rgb(0, 184, 148);
+    background-color: rgb(35, 55, 75);
+    border-color: rgb(100, 200, 230);
     scale: 1.05 1;
     border-left-width: 4px;
 }
 
 .mission__button.selected:hover {
-    background-color: rgb(20, 40, 60);
-    border-color: rgb(0, 184, 148);
+    background-color: rgb(35, 55, 75);
+    border-color: rgb(100, 200, 230);
     border-left-width: 4px;
 }
 
 .mission__button.selected:active {
-    background-color: rgb(20, 40, 60);
-    border-color: rgb(0, 184, 148);
+    background-color: rgb(35, 55, 75);
+    border-color: rgb(100, 200, 230);
     border-left-width: 4px;
 }
 
 .mission__button.locked {
-    background-color: rgb(40, 45, 60);
-    border-color: rgb(80, 90, 110);
+    background-color: rgb(35, 40, 55);
+    border-color: rgb(60, 70, 90);
     color: rgb(120, 130, 150);
 }
 
 .mission__button.locked:hover {
     background-color: rgb(45, 50, 65);
-    border-color: rgb(90, 100, 120);
+    border-color: rgb(70, 80, 100);
     color: rgb(130, 140, 160);
 }
 
 .mission__button.locked:active {
-    background-color: rgb(50, 55, 70);
-    border-color: rgb(100, 110, 130);
+    background-color: rgb(55, 60, 75);
+    border-color: rgb(80, 90, 110);
     color: rgb(140, 150, 170);
 }
 
 .mission__button.locked.selected {
-    background-color: rgb(35, 40, 55);
-    border-color: rgb(60, 70, 90);
+    background-color: rgb(50, 55, 70);
+    border-color: rgb(75, 85, 105);
     color: rgb(110, 120, 140);
 }
 
 .mission__button.locked.selected:hover {
-    background-color: rgb(35, 40, 55);
-    border-color: rgb(60, 70, 90);
+    background-color: rgb(50, 55, 70);
+    border-color: rgb(75, 85, 105);
     color: rgb(110, 120, 140);
 }
 
 .mission__button.locked.selected:active {
-    background-color: rgb(35, 40, 55);
-    border-color: rgb(60, 70, 90);
+    background-color: rgb(50, 55, 70);
+    border-color: rgb(75, 85, 105);
     color: rgb(110, 120, 140);
 }
 
 .mission__button.completed {
-    background-color: rgb(20, 50, 40);
-    border-color: rgb(46, 204, 113);
+    background-color: rgb(15, 45, 35);
+    border-color: rgb(36, 194, 103);
 }
 
 .mission__button.completed:hover {
-    background-color: rgb(25, 60, 45);
-    border-color: rgb(56, 214, 123);
+    background-color: rgb(25, 55, 45);
+    border-color: rgb(46, 204, 113); 
 }
 
 .mission__button.completed:active {
-    background-color: rgb(30, 70, 50);
-    border-color: rgb(66, 224, 133);
+    background-color: rgb(35, 65, 55);
+    border-color: rgb(56, 214, 123);
 }
 
 .mission__button.completed.selected {
-    background-color: rgb(15, 45, 35);
-    border-color: rgb(36, 194, 103);
+    background-color: rgb(30, 60, 50);
+    border-color: rgb(51, 209, 118);
 }
 
 .mission__button.completed.selected:hover {
-    background-color: rgb(15, 45, 35);
-    border-color: rgb(36, 194, 103);
+    background-color: rgb(30, 60, 50);
+    border-color: rgb(51, 209, 118);
 }
 
 .mission__button.completed.selected:active {
-    background-color: rgb(15, 45, 35);
-    border-color: rgb(36, 194, 103);
+    background-color: rgb(30, 60, 50);
+    border-color: rgb(51, 209, 118);
 }
