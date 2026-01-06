@@ -32,11 +32,13 @@
     --control-border-color: rgba(70, 170, 200, 0.8);
     --control-bg: rgb(20, 25, 40);
     --control-bg-hover: rgb(30, 37, 60);
-    --control-font-size: 16px;
+    --control-font-size: 20px;
+    --description-font-size: 18px;
 }
 
 Label {
     letter-spacing: 2px;
+    font-size: 20px;
 }
 
 Button {
@@ -44,7 +46,7 @@ Button {
 }
 
 .cafe__view-title {
-    font-size: 28px;
+    font-size: 32px;
     color: rgb(0, 184, 148);
     -unity-font-style: bold;
     -unity-text-align: middle-left;
@@ -52,7 +54,7 @@ Button {
 }
 
 .cafe__view-subtitle {
-    font-size: 14px;
+    font-size: 24px;
     color: rgb(120, 200, 180);
     -unity-text-align: middle-left;
     letter-spacing: 1px;

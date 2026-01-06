@@ -43,7 +43,7 @@
                         <ui:VisualElement name="MissionDetails" class="campaign__mission-details">
                             <ui:Label name="SelectedMissionLabel" text="" class="campaign__mission-title"/>
                             <ui:ScrollView name="MissionTextScrollView" class="campaign__mission-scrollview">
-                                <ui:Label name="SelectedMissionText" text="" class="campaign__mission-description"/>
+                                <ui:Label name="SelectedMissionText" text="Mission description" class="campaign__mission-description"/>
                             </ui:ScrollView>
                         </ui:VisualElement>
                         <ui:VisualElement name="MissionStats" class="campaign__mission-stats" style="display: none;">

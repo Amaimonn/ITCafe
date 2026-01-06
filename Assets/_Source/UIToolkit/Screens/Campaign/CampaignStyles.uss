@@ -75,7 +75,6 @@
 }
 
 .campaign__section-title {
-    font-size: 16px;
     color: rgb(0, 184, 148);
     -unity-font-style: bold;
     -unity-text-align: middle-left;
@@ -104,13 +103,6 @@
     padding-left: 12px;
     padding-right: 12px;
     margin-left: 20px;
-}
-
-.campaign__loading-text {
-    font-size: 12px;
-    color: rgb(180, 220, 240);
-    -unity-font-style: italic;
-    -unity-text-align: middle-center;
 }
 
 .campaign__locations-tabs {
@@ -200,7 +192,7 @@
 }
 
 .campaign__mission-title {
-    font-size: 18px;
+    font-size: 28px;
     color: rgb(0, 184, 148);
     -unity-font-style: bold;
     -unity-text-align: middle-left;
@@ -223,7 +215,7 @@
 }
 
 .campaign__mission-description {
-    font-size: 14px;
+    font-size: var(--description-font-size);
     color: rgb(180, 220, 210);
     -unity-text-align: upper-left;
 }
@@ -233,41 +225,6 @@
     padding-top: 15px;
     border-top-color: rgba(70, 170, 200, 0.2);
     border-top-width: 1px;
-}
-
-.campaign__stats-title {
-    font-size: 14px;
-    color: rgb(120, 200, 180);
-    -unity-text-align: middle-left;
-    margin-bottom: 10px;
-}
-
-.campaign__mission-reward {
-    flex-direction: column;
-    padding-top: 15px;
-    border-top-color: rgba(70, 170, 200, 0.2);
-    border-top-width: 1px;
-}
-
-.campaign__reward-title {
-    font-size: 14px;
-    color: rgb(120, 200, 180);
-    -unity-text-align: middle-left;
-    margin-bottom: 10px;
-}
-
-.campaign__reward-icon {
-    width: 32px;
-    height: 32px;
-    background-color: rgb(255, 184, 0);
-    border-radius: 4px;
-    margin-bottom: 8px;
-}
-
-.campaign__reward-text {
-    font-size: 12px;
-    color: rgb(180, 220, 210);
-    -unity-text-align: middle-left;
 }
 
 .campaign__actions {
