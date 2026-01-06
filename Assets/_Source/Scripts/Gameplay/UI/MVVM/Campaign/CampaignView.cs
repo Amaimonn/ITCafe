@@ -44,7 +44,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _missionsContainer;
         private VisualElement _panelWhiteBackground;
         private NodesElement _nodes;
-        private VisualElement _targetSelection;
+        private VisualElement _missionAim;
 
         private Button _selectedMissionButton;
         private VisualElement _selectedLocationTab;
@@ -71,8 +71,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             _missionsContainer.Clear();
             _nodes = Root.Q<NodesElement>();
             _nodes.ClearConnections();
-            _targetSelection = Root.Q<VisualElement>(name: _targetSelectionName);
-            SelectTarget(null);
+            _missionAim = Root.Q<VisualElement>(name: _targetSelectionName);
+            AimAtMission(null);
             // Начальное состояние
             // _content.AddToClassList($"{_contentClass}--disabled");
             // _content.RegisterCallback<TransitionEndEvent>(_ =>
@@ -310,12 +310,12 @@ namespace ITCafe.Gameplay.UI.MVVM
                     button.AddToClassList(USSConst.SELECTED);
                     _selectedMissionButton = button;
 
-                    SelectTarget(button);
+                    AimAtMission(button);
                 }
                 else
                 {
                     _selectedMissionButton = null;
-                    SelectTarget(null);
+                    HideMissionAim();
                     Debug.LogWarning($"No button found for missionId: {missionData.Id}");
                 }
 
@@ -327,11 +327,11 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _selectedMissionButton = null;
                 _selectedMissionLabel.text = string.Empty;
                 _selectedMissionText.text = string.Empty;
-                SelectTarget(null);
+                HideMissionAim();
             }
         }
 
-        private void SelectTarget(VisualElement target)
+        private void AimAtMission(VisualElement target)
         {
             if (_selectionCoroutine != null)
             {
@@ -339,51 +339,30 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _selectionCoroutine = null;
             }
 
-            if (_selectionAnimation != null)
-            {
-                _selectionAnimation.Stop();
-                _selectionAnimation = null;
-            }
-
             if (target != null)
                 StartCoroutine(SelectCoroutine());
             else
-                _targetSelection.style.visibility = Visibility.Hidden;
+                HideMissionAim();
+
+            return;
 
             IEnumerator SelectCoroutine()
             {
                 yield return null;
-                var isVisible = _targetSelection.style.visibility == Visibility.Visible;
-                _targetSelection.style.visibility = Visibility.Visible;
+                _missionAim.style.visibility = Visibility.Visible;
 
                 var targetCenter = _campaignMap.WorldToLocal(target.worldBound.center);
-                targetCenter.x -= _targetSelection.worldBound.width / 2f;
-                targetCenter.y -= _targetSelection.worldBound.height / 2f;
+                targetCenter.x -= _missionAim.resolvedStyle.width / 2f;
+                targetCenter.y -= _missionAim.resolvedStyle.height / 2f;
 
-                if (isVisible)
-                {
-                    _selectionAnimation = _targetSelection.experimental.animation.Start
-                    (
-                        new StyleValues
-                        {
-                            left = _targetSelection.style.left.value.value,
-                            top = _targetSelection.style.top.value.value,
-                        },
-                        new StyleValues
-                        {
-                            left = targetCenter.x,
-                            top = targetCenter.y
-                        },
-                        durationMs: 300
-                    ).OnCompleted(() => _selectionAnimation = null);
-                }
-                else
-                {
-                    _targetSelection.style.left = targetCenter.x;
-                    _targetSelection.style.top = targetCenter.y;
-                }
+                _missionAim.style.translate = targetCenter;
                 _selectionCoroutine = null;
             }
+        }
+
+        private void HideMissionAim()
+        {
+            _missionAim.style.visibility = Visibility.Hidden;
         }
     }
 }
