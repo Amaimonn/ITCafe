@@ -17,6 +17,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _contentName = "RootWrapper";
         [SerializeField] private string _startButtonName = "StartButton";
         [SerializeField] private string _locationTabsContainerName = "LocationsTabsContainer";
+        [SerializeField] private string _missionPanelName = "MissionInfoSection";
         [SerializeField] private string _selectedMissionLabelName = "SelectedMissionLabel";
         [SerializeField] private string _selectedMissionTextName = "SelectedMissionText";
         [SerializeField] private string _missionTextScrollViewName = "MissionTextScrollView";
@@ -35,6 +36,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private VisualTreeAsset _locationTabButton;
 
         private Button _startButton;
+        private VisualElement _missionPanel;
         private VisualElement _content;
         private VisualElement _campaignMap;
         private VisualElement _locationTabsContainer;
@@ -60,6 +62,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             base.OnInit();
 
             _content = Root.Q<VisualElement>(name: _contentName);
+            _missionPanel = Root.Q<VisualElement>(name: _missionPanelName);
+            SetMissionPanelVisible(false);
             _campaignMap = Root.Q<VisualElement>(name: _campaignMapName);
             _startButton = Root.Q<Button>(name: _startButtonName);
             _locationTabsContainer = Root.Q<VisualElement>(name: _locationTabsContainerName);
@@ -72,7 +76,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _nodes = Root.Q<NodesElement>();
             _nodes.ClearConnections();
             _missionAim = Root.Q<VisualElement>(name: _targetSelectionName);
-            AimAtMission(null);
+            HideMissionAim();
             // Начальное состояние
             // _content.AddToClassList($"{_contentClass}--disabled");
             // _content.RegisterCallback<TransitionEndEvent>(_ =>
@@ -92,6 +96,12 @@ namespace ITCafe.Gameplay.UI.MVVM
             ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
 
             _startButton.SubscribeCallbackOnce<ClickEvent>(StartGameplay).AddTo(_disposables);
+            
+            Root.RegisterCallback<ClickEvent>(e =>
+            {
+                if (e.target is not Button)
+                    ViewModel.SelectMission(null);
+            }, TrickleDown.TrickleDown);
         }
 
         protected override void OnOpening()
@@ -304,6 +314,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _startButton.SetEnabled(isOpened);
                 _selectedMissionLabel.text = missionData.Name;
                 _selectedMissionText.text = missionData.Description;
+                SetMissionPanelVisible(true);
 
                 if (_missionButtonsMap.TryGetValue(missionData.Id, out var button))
                 {
@@ -328,9 +339,15 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _selectedMissionLabel.text = string.Empty;
                 _selectedMissionText.text = string.Empty;
                 HideMissionAim();
+                SetMissionPanelVisible(false);
             }
         }
 
+        private void SetMissionPanelVisible(bool isVisible)
+        {
+            _missionPanel.style.visibility = isVisible ? Visibility.Visible : Visibility.Hidden;
+        }
+        
         private void AimAtMission(VisualElement target)
         {
             if (_selectionCoroutine != null)
