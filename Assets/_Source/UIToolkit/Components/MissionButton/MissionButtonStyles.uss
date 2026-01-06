@@ -301,7 +301,6 @@
 .mission__button.selected {
     background-color: rgb(35, 55, 75);
     border-color: rgb(100, 200, 230);
-    scale: 1.05 1;
     border-left-width: 4px;
 }
 
@@ -360,7 +359,7 @@
 
 .mission__button.completed:hover {
     background-color: rgb(25, 55, 45);
-    border-color: rgb(46, 204, 113); 
+    border-color: rgb(46, 204, 113);
 }
 
 .mission__button.completed:active {
