@@ -24,14 +24,14 @@
                     <ui:VisualElement name="MissionsSection" picking-mode="Ignore" style="flex-grow: 1; width: 100%;">
                         <ui:VisualElement name="CampaignMap" picking-mode="Ignore" class="campaign__map enabled">
                             <ITCafe.Gameplay.UI.Custom.NodesElement line-width="1" line-curve-type="Straight" line-color="rgba(70, 170, 200, 0.5)" picking-mode="Ignore" style="width: 100%; height: 100%; position: absolute;"/>
-                            <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 1; position: absolute; width: 106px; height: 106px; -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/QuadTargetUIMat.mat?fileID=2100000&amp;guid=0e6be13b5567c6b4499e24f852d0f3ce&amp;type=2#QuadTargetUIMat&quot;); background-color: rgb(0, 0, 0); translate: 306px 56px;"/>
+                            <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 1; position: absolute; width: 240px; height: 80px; -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/QuadTargetUIMat.mat?fileID=2100000&amp;guid=0e6be13b5567c6b4499e24f852d0f3ce&amp;type=2#QuadTargetUIMat&quot;); background-color: rgb(0, 0, 0); translate: 280px 44px;"/>
                             <ui:VisualElement name="MissionsContainer" picking-mode="Ignore" class="campaign__missions-grid" style="width: 1050px;">
                                 <ui:Instance template="MissionButton" style="top: 200px; left: 150px; position: absolute;"/>
                                 <ui:Instance template="MissionButton" style="top: 350px; left: 300px; position: absolute;"/>
                                 <ui:Instance template="MissionButton" style="top: 500px; left: 450px; position: absolute;"/>
                                 <ui:Instance template="MissionButton" style="top: 350px; left: 600px; position: absolute;"/>
                                 <ui:Instance template="MissionButton" style="top: 200px; left: 750px; position: absolute;"/>
-                                <ui:Instance template="MissionButton" style="top: 50px; left: 300px; position: absolute;"/>
+                                <ui:Instance template="MissionButton" style="top: 50px; left: 300px; position: absolute; scale: 1.05 1;"/>
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>

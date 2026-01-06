@@ -27,6 +27,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Assets"), Space(4)]
         [SerializeField] private VisualTreeAsset _missionButton;
+        [SerializeField] private string _missionName = "MissionName";
 
         [Space(2f)]
         [SerializeField] private VisualTreeAsset _starLi;
@@ -211,6 +212,9 @@ namespace ITCafe.Gameplay.UI.MVVM
             var missionButton = missionButtonContainer.Q<Button>();
             _missionButtonsMap[missionData.Id] = missionButton;
             missionButton.RegisterCallback<ClickEvent, IMissionData>(SelectMission, missionData);
+            
+            var missionName = missionButtonContainer.Q<Label>(name: _missionName);
+            missionName.text = missionData.Name;
 
             if (ViewModel.OpenedMissionsMap.TryGetValue(missionData.Id, out var missionModel))
             {

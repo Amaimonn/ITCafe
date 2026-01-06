@@ -7,7 +7,7 @@
                 <ui:Label text="-" name="DashLabel" class="mission__dash"/>
                 <ui:Label name="MissionNumber" text="0" class="mission__number"/>
             </ui:VisualElement>
-            <ui:Label text="Label" name="MissionName" class="mission__name"/>
+            <ui:Label text="-" name="MissionName" class="mission__name"/>
         </ui:Button>
         <ui:VisualElement name="StarsColumn" picking-mode="Ignore" class="mission__stars"/>
     </ui:VisualElement>
