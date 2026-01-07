@@ -51,11 +51,15 @@ Button {
     -unity-font-style: bold;
     -unity-text-align: middle-left;
     letter-spacing: 3px;
+    margin: 0;
+    padding: 0;
 }
 
 .cafe__view-subtitle {
-    font-size: 24px;
+    font-size: 20px;
     color: rgb(120, 200, 180);
     -unity-text-align: middle-left;
     letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
 }

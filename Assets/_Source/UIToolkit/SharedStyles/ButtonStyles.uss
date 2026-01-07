@@ -9,8 +9,7 @@
     border-width: 1px;
     border-radius: 3px;
     color: rgb(160, 180, 200);
-    font-size: 20px;
-    -unity-font-style: bold;
+    font-size: 28px;
     -unity-text-align: middle-center;
     margin: 0;
     padding: 0;
@@ -58,17 +57,19 @@
 }
 
 .cafe__control-button {
-    height: 50px;
+    height: 58px;
     background-color: transparent;
     border-color: rgb(0, 184, 148);
     border-width: 1px;
     border-radius: 3px;
-    -unity-font-style: bold;
     font-size: var(--control-font-size);
     color: rgb(220, 240, 235);
     letter-spacing: 1px;
     transition: all 0.2s ease;
+    margin-top: 0;
+    margin-right: 0;
     margin-bottom: 12px;
+    margin-left: 0;
     text-shadow: 1px 1px 0 rgb(0, 0, 0);
 }
 
