@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="FPSBar" class="settings__bar">
+        <ui:Label text="_" name="SettingBarLabel" class="settings__bar-label"/>
+        <ui:VisualElement name="FPSControl" class="settings__control">
+            <ui:DropdownField name="FPSDropdown" value="60" focusable="false" index="-1" class="settings__dropdown"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

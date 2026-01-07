@@ -26,7 +26,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private ReactiveChange<bool> _bloom;
         private ReactiveChange<bool> _filmGrain;
         private ReactiveChange<bool> _antiAliasing;
-        private ReactiveChange<ScreenResolution> _resolution;
+        private ReactiveChangeApplying<ScreenResolution> _resolution;
         private ReactiveChange<bool> _fullscreen;
 
         protected override void OnBind(SettingsModel model)
@@ -40,8 +40,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             _bloom = CreateBindedProperty(model.IsBloomEnabled);
             _filmGrain = CreateBindedProperty(model.IsFilmGrainEnabled);
             _antiAliasing = CreateBindedProperty(model.IsAntiAliasingEnabled);
-            _resolution = CreateBindedProperty(model.ScreenResolution);
-            Resolution = _resolution.Select(r => r.ToString());
+            _resolution = CreateBindedPropertyApplying(model.ScreenResolution);
+            Resolution = _resolution.Select(ScreenResolutionToString);
             _fullscreen = CreateBindedProperty(model.Fullscreen);
         }
 
@@ -90,6 +90,16 @@ namespace ITCafe.Gameplay.UI.MVVM
             var parts = resolution.Split('x');
             if (parts.Length == 2 && int.TryParse(parts[0], out var width) && int.TryParse(parts[1], out var height))
                 _model.ScreenResolution.Value = new ScreenResolution { Width = width, Height = height };
+            else
+                _model.ScreenResolution.Value = new ScreenResolution { Width = -1, Height = -1 };
+        }
+
+        private string ScreenResolutionToString(ScreenResolution resolution)
+        {
+            if (resolution is { Width: >= 0, Height: >= 0 })
+                return resolution.ToString();
+            
+            return "default";
         }
 
         public void SetFullscreen(bool value)
@@ -108,7 +118,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private string FpsIntToString(int fps)
         {
             // localize
-            return fps == -1 ? "Максимум" : fps.ToString();
+            return fps == -1 ? "max" : fps.ToString();
         }
     }
 }

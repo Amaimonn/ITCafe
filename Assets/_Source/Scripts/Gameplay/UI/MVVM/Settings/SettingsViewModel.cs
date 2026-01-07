@@ -32,6 +32,8 @@ namespace Inui.UI.MVVM.Settings
         {
             _model = model;
             VideoSettingsViewModel.Bind(model);
+            SoundSettingsViewModel.Bind(model);
+            LanguageSettingsViewModel.Bind(model);
 
             _isAnyChanges = VideoSettingsViewModel.IsAnyChanges;
         }

@@ -89,6 +89,7 @@
 .settings__sections {
     flex-direction: column;
     flex-grow: 1;
+    width: 600px;
 }
 
 .settings__section {
@@ -127,7 +128,8 @@
     letter-spacing: 0.5px;
     flex-grow: 1;
     margin-right: 15px;
-    min-width: 200px;
+    min-width: 120px;
+    width: 120px;
 }
 
 .settings__control {
@@ -154,7 +156,7 @@
 }
 
 .settings__actions {
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     padding-top: 20px;
     border-top-color: rgba(0, 184, 148, 0.3);
@@ -237,4 +239,9 @@
     width: 10px;
     height: 40px;
     margin-top: -20px;
+}
+
+TabScrollView .unity-scroll-view__content-viewport {
+    padding-right: 6px;
+    padding-left: 6px;
 }

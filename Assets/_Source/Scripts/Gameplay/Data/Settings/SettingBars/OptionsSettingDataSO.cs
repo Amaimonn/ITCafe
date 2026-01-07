@@ -7,5 +7,6 @@ namespace ITCafe.Data.Settings
     public class OptionsSettingDataSO : SettingBarDataSO, IOptionsSettingData
     {
         [field: SerializeField] public virtual string[] Options { get; private set; }
+        [field: SerializeField] public virtual string[] OverrideDisplayOptions { get; private set; }
     }
 }

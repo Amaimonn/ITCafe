@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace ITCafe.Data.Settings
 {
-    public class SettingsDataSO : ISettingsData
+    [CreateAssetMenu(fileName = "SettingsDataSO", menuName = "Scriptable Objects/Settings/SettingsDataSO")]
+    public class SettingsDataSO : ScriptableObject, ISettingsData
     {
         // Sound settings
         public ISliderSettingData<int> MusicVolumeData => _musicVolumeSliderDataSO;

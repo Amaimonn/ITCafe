@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617e48c1cca84e9a87b483fd7ec7317b, type: 3}
+  m_Name: SettingsDataSO
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.SettingsDataSO
+  <SoundSectionLabel>k__BackingField: sound
+  <VideoSectionLabel>k__BackingField: video
+  <InputSectionLabel>k__BackingField: input
+  <LanguageSectionLabel>k__BackingField: language
+  <SoundIcon>k__BackingField: {fileID: 0}
+  <VideoIcon>k__BackingField: {fileID: 0}
+  <InputIcon>k__BackingField: {fileID: 0}
+  <LanguageIcon>k__BackingField: {fileID: 0}
+  _musicVolumeSliderDataSO: {fileID: 11400000, guid: 89e456505ed340946a2ebb8460c5d3d6, type: 2}
+  _sfxVolumeSliderDataSO: {fileID: 11400000, guid: 1f1d7b9a97aa01744b7a26b7f54c824d, type: 2}
+  _sensitivitySliderDataSO: {fileID: 11400000, guid: a137a9a524d42ec4b8ccc3fb134e68c9, type: 2}
+  _fpsOptionsDataSO: {fileID: 11400000, guid: ea458332c84146845becc86e9f1b3d2f, type: 2}
+  _vsyncToggleDataSO: {fileID: 11400000, guid: e5750f65e9d09e549a09682adab3d126, type: 2}
+  _brightnessSliderDataSO: {fileID: 11400000, guid: cb38f61f9bde996459ca3ef82f945e09, type: 2}
+  _isPostProcessingEnabledToggleDataSO: {fileID: 11400000, guid: 9b8a099c0cbaae447bfb9295833723ef, type: 2}
+  _isBloomEnabledToggleDataSO: {fileID: 11400000, guid: a4d85e1de2a030e4db111e5718c53264, type: 2}
+  _isFilmGrainEnabledToggleDataSO: {fileID: 11400000, guid: 8448ffe938edc6d49a9184c5bed7af55, type: 2}
+  _isAntiAliasingEnabledToggleDataSO: {fileID: 11400000, guid: d3527c0294dc58a47897a9c8b97f87ea, type: 2}
+  _qualityPresetDataSO: {fileID: 11400000, guid: b181def77ca5bff46b5b7423c5f79506, type: 2}
+  _resolutionDataSO: {fileID: 11400000, guid: 1575d049dd6aefb4cb3a0186c29f4bd1, type: 2}
+  _fullscreenToggleDataSO: {fileID: 11400000, guid: 056152c45b3d5e2479a8766672dc0e76, type: 2}
+  _languageDataSO: {fileID: 11400000, guid: ea415434015dfac4e90bfe29ac69ea63, type: 2}

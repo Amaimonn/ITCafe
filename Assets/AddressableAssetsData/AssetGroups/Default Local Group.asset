@@ -120,6 +120,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f220926c3c92bc94f9a10e22db0b5a0a
+    m_Address: settings_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ff3bacdf484531a499e38e7305644c27
     m_Address: mission_1_6_setup
     m_ReadOnly: 0

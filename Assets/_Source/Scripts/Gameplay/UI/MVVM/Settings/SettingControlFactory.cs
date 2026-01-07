@@ -12,7 +12,8 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class SettingControlFactory
     {
         [Space(4)]
-        [SerializeField] private string _settingBarLabelName = "BarLabel";
+        [SerializeField] private string _tabClass = "settings__section-tab";
+        [SerializeField] private string _settingBarLabelName = "SettingBarLabel";
 
         [Header("Arrow Menu"), Space(4)]
         [SerializeField] private VisualTreeAsset _arrowMenuBar;
@@ -25,18 +26,24 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Dropdown"), Space(4)]
         [SerializeField] private VisualTreeAsset _dropdownBarAsset;
-        
-        public Tab AddBindedTab(VisualElement sectionsRoot, string labelText, Action<Tab> selectAction)
+
+        public TabScrollView AddBindedTab(VisualElement sectionsRoot, string labelText, Action<Tab> selectAction)
         {
-            var tab = new Tab();
+            var tab = new TabScrollView();
+
+            tab.AddToClassList(_tabClass);
+            tab.label = labelText;
             
-            // tab.LocalizeLabel(Tables.SETTINGS, labelEntry);
-            tab.selected += selectAction;
+            tab.selected += x =>
+            {
+                selectAction(x);
+                tab.ScrollToTop(); // TODO: check in case of equality
+            };
             sectionsRoot.Add(tab);
 
             return tab;
         }
-        
+
         public void AddBindedSliderInt(ISliderSettingData<int> sliderSettingData, VisualElement parentSection,
             Action<int> onInput, Observable<int> observable)
         {
@@ -46,15 +53,11 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public SliderInt CreateSliderInt(ISliderSettingData<int> sliderSettingData, VisualElement parentSection)
         {
-            var settingBar = _sliderIntBarAsset.CloneTree();
-            parentSection.Add(settingBar);
-
+            var settingBar = CreateBar(_sliderIntBarAsset, sliderSettingData.Label, parentSection);
             var slider = settingBar.Q<SliderInt>();
+            
             slider.lowValue = sliderSettingData.MinValue;
             slider.highValue = sliderSettingData.MaxValue;
-
-            // var label = settingBar.Q<Label>(className: _settingBarLabelClass);
-            // label.LocalizeText(Tables.SETTINGS, sliderSettingData.Label);
 
             return slider;
         }
@@ -74,13 +77,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public Toggle CreateToggle(IToggleSettingData toggleSettingData, VisualElement parentSection)
         {
-            var settingBar = _toggleBarAsset.CloneTree();
-            parentSection.Add(settingBar);
-
+            var settingBar = CreateBar(_toggleBarAsset, toggleSettingData.Label, parentSection);
             var toggle = settingBar.Q<Toggle>();
-
-            // var label = settingBar.Q<Label>(className: _settingBarLabelClass);
-            // label.LocalizeText(Tables.SETTINGS, toggleSettingData.Label);
 
             return toggle;
         }
@@ -100,13 +98,17 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public DropdownField CreateDropdown(IOptionsSettingData dropdownSettingData, VisualElement parentSection)
         {
-            var settingBar = _dropdownBarAsset.CloneTree();
-            parentSection.Add(settingBar);
-
-            // localize label
-
+            var settingBar = CreateBar(_dropdownBarAsset, dropdownSettingData.Label, parentSection);
             var dropdown = settingBar.Q<DropdownField>();
-            dropdown.choices = dropdownSettingData.Options.ToList(); // localize options if necessary
+            
+            // localize options if necessary
+            // var overrideOptions= dropdownSettingData.OverrideDisplayOptions;
+            // var options = dropdownSettingData.Options;
+            
+            // if (overrideOptions is { Length: > 0 } && overrideOptions.Length == options.Length)
+            //     dropdown.choices = dropdownSettingData.OverrideDisplayOptions.ToList();
+            
+            dropdown.choices = dropdownSettingData.Options.ToList();
 
             return dropdown;
         }
@@ -126,16 +128,23 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public ArrowMenuString CreateArrowMenu(IOptionsSettingData arrowMenuSettingData, VisualElement parentSection)
         {
-            var settingBar = _arrowMenuBar.CloneTree();
-            parentSection.Add(settingBar);
-
-            // var label = settingBar.Q<Label>(className: _settingBarLabelClass);
-            // label.LocalizeText(Tables.SETTINGS, arrowsSettingData.Label);
-
+            var settingBar = CreateBar(_arrowMenuBar, arrowMenuSettingData.Label, parentSection);
             var arrowMenuInt = settingBar.Q<ArrowMenuString>();
+            
             arrowMenuInt.Options = arrowMenuSettingData.Options;
 
             return arrowMenuInt;
+        }
+
+        private VisualElement CreateBar(VisualTreeAsset asset, string labelText, VisualElement parent)
+        {
+            var settingBar = asset.CloneTree();
+            parent.Add(settingBar);
+
+            var label = settingBar.Q<Label>(name: _settingBarLabelName);
+            label.text = labelText;
+
+            return settingBar;
         }
 
         public void BindArrowMenu<T>(ArrowMenu<T> arrowsMenu, Action<T> onInput, Observable<T> observable)

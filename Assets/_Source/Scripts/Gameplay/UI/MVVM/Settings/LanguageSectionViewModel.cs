@@ -1,6 +1,6 @@
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class LanguageSectionViewModel
+    public class LanguageSectionViewModel : SettingsSectionViewModel
     {
         
     }
