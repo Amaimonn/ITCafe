@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="DropdownBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/DropdownBar.uxml?fileID=9197481963319205126&amp;guid=cc934e3d2ffcc634a910e2af88bc8d9a&amp;type=3#DropdownBar"/>
     <ui:Template name="KitSliderIntBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/KitSliderIntBar.uxml?fileID=9197481963319205126&amp;guid=25b67a6a10ede5f47b17cf020d88acd3&amp;type=3#KitSliderIntBar"/>
     <ui:Template name="SettingsTabButton" src="project://database/Assets/_Source/UIToolkit/Components/SettingsTabButton/SettingsTabButton.uxml?fileID=9197481963319205126&amp;guid=b2905de1abc05464ca8152b75774639c&amp;type=3#SettingsTabButton"/>
     <ui:Template name="ToggleBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/ToggleBar.uxml?fileID=9197481963319205126&amp;guid=8e2eff4da41bc864cb5b084b38950082&amp;type=3#ToggleBar"/>
@@ -20,6 +21,7 @@
                 <ui:VisualElement name="SectionsContainer" class="settings__widget-panel settings__sections" style="flex-grow: 1;">
                     <ui:ScrollView class="settings__section cafe__scroll-view">
                         <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="DropdownBar"/>
                         <ui:Instance template="ToggleBar"/>
                         <ui:Instance template="KitSliderIntBar"/>
                         <ui:Instance template="KitSliderIntBar"/>

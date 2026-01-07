@@ -34,7 +34,6 @@
 }
 
 .kit-slider .unity-base-slider__input {
-    max-width: 254px;
     max-height: 70px;
     align-items: stretch;
     flex-direction: row-reverse;
@@ -47,8 +46,8 @@
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     height: 14px;
     margin-top: -7px;
 }

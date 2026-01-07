@@ -150,7 +150,7 @@
 .settings__slider {
     flex-grow: 1;
     flex-shrink: 1;
-    width: 238px;
+    width: 398px;
 }
 
 .settings__toggle {
@@ -224,7 +224,7 @@
 }
 
 .settings__dropdown {
-    width: 100%;
+    width: 340px;
     height: 40px;
 }
 

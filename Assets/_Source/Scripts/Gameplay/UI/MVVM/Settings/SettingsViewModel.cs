@@ -1,3 +1,4 @@
+using System.Linq;
 using DevKit.Utils;
 using DevKit.UI.MVVM.Bases;
 using ITCafe.Data.Settings;
@@ -36,7 +37,12 @@ namespace Inui.UI.MVVM.Settings
             SoundSettingsViewModel.Bind(model);
             LanguageSettingsViewModel.Bind(model);
 
-            _isAnyChanges = VideoSettingsViewModel.IsAnyChanges;
+            _isAnyChanges = Observable.CombineLatest(VideoSettingsViewModel.IsAnyChanges,
+                    SoundSettingsViewModel.IsAnyChanges, 
+                    LanguageSettingsViewModel.IsAnyChanges)
+                .Select(x => x.Any(t => t))
+                .ToReadOnlyReactiveProperty();
+            
             _currentSection = new ReactiveProperty<SettingsSectionViewModel>(VideoSettingsViewModel);
         }
 
