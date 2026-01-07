@@ -1,6 +1,6 @@
 using DevKit.Utils;
 using DevKit.UI.MVVM.Bases;
-using ITCafe.Data;
+using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;
@@ -9,25 +9,36 @@ namespace Inui.UI.MVVM.Settings
 {
     public class SettingsViewModel : ScreenViewModel
     {
+        public Observable<ISettingsData> OnSettingsDataChanged => _settingsData;
         public Observable<bool> IsAnyChanges => _isAnyChanges;
-        public readonly GeneralSectionViewModel GeneralSectionViewModel;
+
+        public readonly VideoSettingsViewModel VideoSettingsViewModel = new();
+        public readonly SoundSettingsViewModel SoundSettingsViewModel = new();
+        public readonly LanguageSectionViewModel LanguageSettingsViewModel = new();
+
         private readonly ISaveStateProvider _gameStateProvider;
-        
+
         private ReadOnlyReactiveProperty<bool> _isAnyChanges;
         private SettingsModel _model;
+        private readonly ReactiveProperty<ISettingsData> _settingsData = new();
+        private SettingsSectionViewModel _currentSection;
 
         public SettingsViewModel(ISaveStateProvider gameStateProvider)
         {
             _gameStateProvider = gameStateProvider;
-            GeneralSectionViewModel = new GeneralSectionViewModel();
         }
 
         public void Bind(SettingsModel model)
         {
             _model = model;
-            GeneralSectionViewModel.Bind(model);
+            VideoSettingsViewModel.Bind(model);
 
-            _isAnyChanges = GeneralSectionViewModel.IsAnyChanges;
+            _isAnyChanges = VideoSettingsViewModel.IsAnyChanges;
+        }
+
+        public void SetSettingsData(ISettingsData settingsData)
+        {
+            _settingsData.Value = settingsData;
         }
 
         public override void StartClosing()
@@ -41,19 +52,21 @@ namespace Inui.UI.MVVM.Settings
         /// </summary>
         public void ApplyChanges()
         {
-            GeneralSectionViewModel.ApplyChanges();
-            _model.ApplyToState(); // состояние для сохранения изменяется только после подтверждения установленных настроек
+            VideoSettingsViewModel.ApplyChanges();
+            _model.ApplyToState();
             SaveSettings();
             FLogger.Log("Settings: Applied");
         }
 
-        /// <summary>
-        /// Отменяет несохраённые изменения
-        /// </summary>
         public void CancelUnappliedChanges()
         {
-            GeneralSectionViewModel.CancelChanges();
+            VideoSettingsViewModel.CancelChanges();
             FLogger.Log("Settings: Cancelled");
+        }
+
+        public void SelectSection(SettingsSectionViewModel section)
+        {
+            _currentSection = section;
         }
 
         private void SaveSettings()
@@ -63,7 +76,7 @@ namespace Inui.UI.MVVM.Settings
 
         public override void Dispose()
         {
-            GeneralSectionViewModel.Dispose();
+            VideoSettingsViewModel.Dispose();
             base.Dispose();
         }
     }

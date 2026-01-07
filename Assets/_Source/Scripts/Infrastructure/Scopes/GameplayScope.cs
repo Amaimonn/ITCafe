@@ -22,13 +22,14 @@ using VContainer;
 using VContainer.Unity;
 using Cursor = UnityEngine.Cursor;
 using Unit = R3.Unit;
+using ITCafe.Data.Settings;
 
 namespace ITCafe
 {
     public class GameplayScope : LifetimeScope
     {
         public Observable<GameplayExitContext> ExitSignal { get; private set; }
-        
+
         [Header("Player")]
         [SerializeField] private InputActionAsset _inputActionAsset;
         [SerializeField] private Interactor _playerInteractor;
@@ -47,7 +48,7 @@ namespace ITCafe
         [SerializeField] private ResultsView _resultsViewPrefab;
         [SerializeField] private PauseView _pauseViewPrefab;
         [SerializeField] private GuideView _guideViewPrefab;
-        
+
         [Header("Other"), Space(4)]
         [SerializeField] private GameObject _missionSetupRoot;
 
@@ -62,13 +63,13 @@ namespace ITCafe
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterInstance<Subject<CafeMissionResult>>(_gameplayEnterContext.CompletionSignal);
-            
+
             RegisterMissionConfig(builder);
 
             RegisterUI(builder);
 
             builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
-            
+
             builder.Register<Subject<Unit>>(Lifetime.Singleton)
                 .Keyed(Constants.GAMEPLAY_EXIT_SIGNAL);
 
@@ -117,11 +118,11 @@ namespace ITCafe
             builder.Register<CraftService>(Lifetime.Singleton)
                 .As<ICraftService>();
         }
-        
+
         private void RegisterMissionConfig(IContainerBuilder builder)
         {
             builder.RegisterInstance<MissionSetupSO>(_missionSetup);
-            
+
             var menuItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
             var menuItemsHashMap = new Dictionary<int, ItemInfoSO>();
             var allItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
@@ -147,7 +148,7 @@ namespace ITCafe
                 .AsSelf()
                 .As<IReadOnlyDictionary<ItemTag, ItemInfoSO>>()
                 .Keyed(Constants.MENU_ITEMS_MAP);
-            
+
             builder.RegisterInstance<Dictionary<int, ItemInfoSO>>(menuItemsHashMap)
                 .AsSelf()
                 .As<IReadOnlyDictionary<int, ItemInfoSO>>()
@@ -217,38 +218,36 @@ namespace ITCafe
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             _inputActionAsset.FindActionMap("GameUI").Enable();
-            
+
             _gameplayEnterContext = gameplayEnterContext;
-            
+
             // TODO: take id from enterContext
-            var setupId = gameplayEnterContext == null ? 
-                "mission_1_1_setup" : 
-                $"{gameplayEnterContext.MissionId}_setup";
-            
+            var setupId = gameplayEnterContext == null ? "mission_1_1_setup" : $"{gameplayEnterContext.MissionId}_setup";
+
             var handle = Addressables.LoadAssetAsync<MissionSetupSO>(setupId);
             yield return handle;
-            
+
             _missionSetup = handle.Result;
-            
+
             Build();
             yield return new WaitForEndOfFrame();
-            
+
             // Scene setup
             Destroy(_missionSetupRoot);
             var sceneSetup = _missionSetup.SceneObjectsPrefab;
             yield return InstantiateAsync(sceneSetup);
-            
+
             // Input init
             var inputService = Container.Resolve<InputService>();
             inputService.SetInputEnabled(false);
 
             InitUI();
             yield return new WaitForEndOfFrame();
-            
+
             // Delayed boot setup
             var loadingScreen = Container.Resolve<LoadingScreen>();
             loadingScreen.OnFinished.Take(1).Subscribe(_ => BootAfterLoading());
-            
+
             // Item prefabs registering
             var itemsCreator = Container.Resolve<ItemsCreator>();
             var itemPrefabs = Container.Resolve<IReadOnlyDictionary<ItemTag, ItemInfoSO>>(Constants.ALL_ITEMS_MAP);
@@ -257,39 +256,40 @@ namespace ITCafe
                 if (entry.Prefab != null)
                     itemsCreator.Register(entry.Prefab, entry.ItemTag);
             }
-            
+
             // Settings binding
             var settingsModel = Container.Resolve<SettingsModel>();
             settingsModel.Sensitivity.Subscribe(x =>
-            {
-                var newValue = x <= 50f
-                    ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
-                    : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
-
-                foreach (var c in _cinemachineInputAxisController.Controllers)
                 {
-                    c.Input.Gain = c.Name switch
+                    var newValue = x <= 50f
+                        ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
+                        : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
+
+                    foreach (var c in _cinemachineInputAxisController.Controllers)
                     {
-                        "Look X (Pan)" => newValue,
-                        "Look Y (Tilt)" => -newValue,
-                        _ => c.Input.Gain
-                    };
-                }
-            })
-            .AddTo(_disposables);
-            
+                        c.Input.Gain = c.Name switch
+                        {
+                            "Look X (Pan)" => newValue,
+                            "Look Y (Tilt)" => -newValue,
+                            _ => c.Input.Gain
+                        };
+                    }
+                })
+                .AddTo(_disposables);
+
             // Exit callback setup
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
             var restartSignal = Container.Resolve<Subject<Unit>>(Constants.RESTART_GAMEPLAY_SIGNAL);
 
             var mainMenuEnterContext = new MainMenuEnterContext();
 
-            var gameplayRestartContext = new GameplayExitContext(gameplayEnterContext ?? new GameplayEnterContext()
-            {
-                ToSceneName = Scenes.GAMEPLAY_1,
-                MissionId = "mission_1_1",
-                LocationId = "Location_1_1",
-            });
+            var gameplayRestartContext = new GameplayExitContext(gameplayEnterContext ??
+                                                                 new GameplayEnterContext()
+                                                                 {
+                                                                     ToSceneName = Scenes.GAMEPLAY_1,
+                                                                     MissionId = "mission_1_1",
+                                                                     LocationId = "Location_1_1",
+                                                                 });
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
             var gameplayExitSignal = new Subject<GameplayExitContext>();
 
@@ -375,7 +375,7 @@ namespace ITCafe
         {
             _pauseBinder = Container.Resolve<IViewBinder<PauseViewModel>>();
             _pauseActionRef = _inputActionAsset.FindAction(_pauseActionName);
-            
+
             if (_pauseActionRef != null)
             {
                 _pauseActionRef.started += Pause;

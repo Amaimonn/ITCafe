@@ -1,4 +1,4 @@
-using ITCafe.Data;
+using ITCafe.Data.Settings;
 using ITCafe.Data.Campaign;
 
 namespace ITCafe.Infrastructure.Saves

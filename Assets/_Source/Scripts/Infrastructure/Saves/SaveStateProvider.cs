@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using DevKit.Saves;
 using DevKit.Utils;
-using ITCafe.Data;
+using ITCafe.Data.Settings;
 using ITCafe.Data.Campaign;
 
 namespace ITCafe.Infrastructure.Saves

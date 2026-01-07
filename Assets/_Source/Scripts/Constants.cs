@@ -40,6 +40,7 @@ namespace ITCafe
 
 #region Addressables Paths
         public const string ALL_LOCATIONS_DATA_PATH = "all_locations_data";
+        public const string SETTINGS_DATA_PATH = "settings_data";
 #endregion
     }
 }

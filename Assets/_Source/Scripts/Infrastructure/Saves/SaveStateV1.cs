@@ -1,5 +1,5 @@
 using DevKit.Saves;
-using ITCafe.Data;
+using ITCafe.Data.Settings;
 using ITCafe.Data.Campaign;
 using UnityEngine;
 

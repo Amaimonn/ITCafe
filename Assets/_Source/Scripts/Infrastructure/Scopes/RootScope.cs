@@ -1,10 +1,11 @@
 using System;
 using DevKit.Saves;
+using DevKit.Solutions;
 using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
-using ITCafe.Data;
+using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;
@@ -18,10 +19,10 @@ namespace ITCafe
     {
         [SerializeField] private RootUIBinder _rootUIBinderPrefab;
         [SerializeField] private SettingsView _settingsViewPrefab;
-        
+
         private CompositeDisposable _disposables = new();
         private RootUIBinder _rootUIBinder;
-        
+
         protected override void Configure(IContainerBuilder builder)
         {
             FLogger.Log("RootScope Configure");
@@ -56,19 +57,10 @@ namespace ITCafe
         private void RegisterUI(IContainerBuilder builder)
         {
             builder.RegisterInstance<SettingsView>(_settingsViewPrefab);
-            builder.Register<SettingsViewModel>(Lifetime.Scoped);
-            builder.Register<Func<SettingsViewModel>>(x =>
-            {
-                return () =>
-                {
-                    var settingsViewModel = x.Resolve<SettingsViewModel>();
-                    var settingsModel = x.Resolve<SettingsModel>();
-                    settingsViewModel.Bind(settingsModel);
-
-                    return settingsViewModel;
-                };
-            }, Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<SettingsView, SettingsViewModel>>(Lifetime.Singleton)
+            builder.Register<SettingsViewModel>(Lifetime.Transient);
+            builder.Register<Func<SettingsViewModel>>(x => () => x.Resolve<SettingsViewModel>(),
+                Lifetime.Singleton);
+            builder.Register<SettingsBinder>(Lifetime.Singleton)
                 .As<IViewBinder<SettingsViewModel>>();
         }
 

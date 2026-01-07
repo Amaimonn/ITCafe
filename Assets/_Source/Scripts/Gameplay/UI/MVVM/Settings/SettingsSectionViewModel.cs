@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DevKit.UI.MVVM;
 using R3;
 using DevKit.Utils;
-using ITCafe.Data;
+using ITCafe.Data.Settings;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -12,20 +13,28 @@ namespace ITCafe.Gameplay.UI.MVVM
         public ReadOnlyReactiveProperty<bool> IsAnyChanges = new ReactiveProperty<bool>(false);
 
         protected SettingsModel _model;
+        protected readonly List<IReactiveChange> _changeProperties = new();
+        protected readonly List<Action> _cancelChanges = new();
         protected CompositeDisposable _disposables;
-        protected List<IReactiveChange> _changeProperties = new();
-        protected List<Action> _cancelChanges = new();
-        
+
         public void Bind(SettingsModel model)
         {
             _model = model;
             _disposables = new();
+            
             OnBind(model);
+            TrackChanges();
         }
 
         protected virtual void OnBind(SettingsModel model)
         {
-            
+        }
+
+        private void TrackChanges()
+        {
+            IsAnyChanges = Observable.CombineLatest(_changeProperties.Select(x => x.IsChanged))
+                .Select(x => x.Any(t => t))
+                .ToReadOnlyReactiveProperty();
         }
 
         public virtual void ApplyChanges()
@@ -57,7 +66,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected ReactiveChangeApplying<T> CreateBindedPropertyApplying<T>(ReactiveProperty<T> modelProperty)
         {
-            var viewModelProperty = new ReactiveChangeApplying<T>(() => modelProperty.Value, x => modelProperty.Value = x,
+            var viewModelProperty = new ReactiveChangeApplying<T>(() => modelProperty.Value,
+                x => modelProperty.Value = x,
                 modelProperty.Value);
 
             BindChanges(modelProperty, viewModelProperty);
