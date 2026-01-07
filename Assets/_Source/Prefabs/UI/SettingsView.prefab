@@ -49,10 +49,12 @@ MonoBehaviour:
   _cancelChangesButtonName: CancelChangesButton
   _closeButtonName: CloseButton
   _sectionsContainerName: SectionsContainer
+  _tabButtonsContainerName: TabButtonsContainer
   _controlFactory:
-    _tabClass: settings__section-tab
+    _tabClass: settings__section
     _settingBarLabelName: SettingBarLabel
-    _arrowMenuBar: {fileID: 0}
+    _tabButtonAsset: {fileID: 9197481963319205126, guid: b2905de1abc05464ca8152b75774639c, type: 3}
+    _arrowMenuBarAsset: {fileID: 0}
     _sliderIntBarAsset: {fileID: 9197481963319205126, guid: 25b67a6a10ede5f47b17cf020d88acd3, type: 3}
     _toggleBarAsset: {fileID: 9197481963319205126, guid: 8e2eff4da41bc864cb5b084b38950082, type: 3}
     _dropdownBarAsset: {fileID: 9197481963319205126, guid: cc934e3d2ffcc634a910e2af88bc8d9a, type: 3}

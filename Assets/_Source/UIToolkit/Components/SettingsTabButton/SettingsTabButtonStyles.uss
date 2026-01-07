@@ -1,0 +1,22 @@
+.settings__tab-button {
+    margin-right: 10px;
+    font-size: 20px;
+    min-width: 100px;
+    height: 40px;
+    background-color: transparent;
+    border-color: var(--blue-border);
+    color: var(--blue-color);
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.settings__tab-button.selected {
+    margin-right: 10px;
+    min-width: 100px;
+    height: 40px;
+    background-color: var(--blue-bg);
+    border-color: var(--blue-border);
+    color: var(--blue-color);
+    border-width: 1px;
+    border-radius: 3px;
+}

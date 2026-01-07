@@ -104,6 +104,15 @@
     padding-right: 10px;
     padding-left: 10px;
     flex-grow: 1;
+    border-left-color: rgba(70, 170, 200, 0.45);
+    border-right-color: rgba(70, 170, 200, 0.45);
+    border-top-color: rgba(70, 170, 200, 0.45);
+    border-bottom-color: rgba(70, 170, 200, 0.45);
+}
+
+.settings__section .unity-scroll-view__content-container {
+    padding-left: 20px;
+    padding-right: 12px;
 }
 
 .settings__bar {
@@ -239,9 +248,4 @@
     width: 10px;
     height: 40px;
     margin-top: -20px;
-}
-
-TabScrollView .unity-scroll-view__content-viewport {
-    padding-right: 6px;
-    padding-left: 6px;
 }

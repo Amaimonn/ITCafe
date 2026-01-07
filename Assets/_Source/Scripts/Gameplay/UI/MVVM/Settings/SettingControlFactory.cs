@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using DevKit.UITK;
 using ITCafe.Data.Settings;
+using ITCafe.Gameplay.UI.Custom;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,11 +13,14 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class SettingControlFactory
     {
         [Space(4)]
-        [SerializeField] private string _tabClass = "settings__section-tab";
+        [SerializeField] private string _tabClass = "settings__section";
         [SerializeField] private string _settingBarLabelName = "SettingBarLabel";
 
+        [Header("TabButton"), Space(4)]
+        [SerializeField] private VisualTreeAsset _tabButtonAsset;
+
         [Header("Arrow Menu"), Space(4)]
-        [SerializeField] private VisualTreeAsset _arrowMenuBar;
+        [SerializeField] private VisualTreeAsset _arrowMenuBarAsset;
 
         [Header("Slider Int"), Space(4)]
         [SerializeField] private VisualTreeAsset _sliderIntBarAsset;
@@ -27,21 +31,21 @@ namespace ITCafe.Gameplay.UI.MVVM
         [Header("Dropdown"), Space(4)]
         [SerializeField] private VisualTreeAsset _dropdownBarAsset;
 
-        public TabScrollView AddBindedTab(VisualElement sectionsRoot, string labelText, Action<Tab> selectAction)
+        public TabEntry AddBindedTab(VisualElement sectionsContainer, VisualElement buttonsContainer,
+            string labelText, EventCallback<ClickEvent> onButtonClicked)
         {
-            var tab = new TabScrollView();
+            var scrollView = new ScrollView();
+            scrollView.AddToClassList(_tabClass);
+            sectionsContainer.Add(scrollView);
 
-            tab.AddToClassList(_tabClass);
-            tab.label = labelText;
-            
-            tab.selected += x =>
-            {
-                selectAction(x);
-                tab.ScrollToTop(); // TODO: check in case of equality
-            };
-            sectionsRoot.Add(tab);
+            var tabButtonTemplate = _tabButtonAsset.CloneTree();
+            buttonsContainer.Add(tabButtonTemplate);
 
-            return tab;
+            var tabButton = tabButtonTemplate.Q<Button>();
+            tabButton.RegisterCallback<ClickEvent>(onButtonClicked);
+            tabButton.text = labelText;
+
+            return new TabEntry { Button = tabButton, ScrollView = scrollView };
         }
 
         public void AddBindedSliderInt(ISliderSettingData<int> sliderSettingData, VisualElement parentSection,
@@ -55,7 +59,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var settingBar = CreateBar(_sliderIntBarAsset, sliderSettingData.Label, parentSection);
             var slider = settingBar.Q<SliderInt>();
-            
+
             slider.lowValue = sliderSettingData.MinValue;
             slider.highValue = sliderSettingData.MaxValue;
 
@@ -100,14 +104,14 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var settingBar = CreateBar(_dropdownBarAsset, dropdownSettingData.Label, parentSection);
             var dropdown = settingBar.Q<DropdownField>();
-            
+
             // localize options if necessary
             // var overrideOptions= dropdownSettingData.OverrideDisplayOptions;
             // var options = dropdownSettingData.Options;
-            
+
             // if (overrideOptions is { Length: > 0 } && overrideOptions.Length == options.Length)
             //     dropdown.choices = dropdownSettingData.OverrideDisplayOptions.ToList();
-            
+
             dropdown.choices = dropdownSettingData.Options.ToList();
 
             return dropdown;
@@ -128,9 +132,9 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public ArrowMenuString CreateArrowMenu(IOptionsSettingData arrowMenuSettingData, VisualElement parentSection)
         {
-            var settingBar = CreateBar(_arrowMenuBar, arrowMenuSettingData.Label, parentSection);
+            var settingBar = CreateBar(_arrowMenuBarAsset, arrowMenuSettingData.Label, parentSection);
             var arrowMenuInt = settingBar.Q<ArrowMenuString>();
-            
+
             arrowMenuInt.Options = arrowMenuSettingData.Options;
 
             return arrowMenuInt;

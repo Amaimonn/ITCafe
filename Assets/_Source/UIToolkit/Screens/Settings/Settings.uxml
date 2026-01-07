@@ -1,5 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="KitSliderIntBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/KitSliderIntBar.uxml?fileID=9197481963319205126&amp;guid=25b67a6a10ede5f47b17cf020d88acd3&amp;type=3#KitSliderIntBar"/>
+    <ui:Template name="SettingsTabButton" src="project://database/Assets/_Source/UIToolkit/Components/SettingsTabButton/SettingsTabButton.uxml?fileID=9197481963319205126&amp;guid=b2905de1abc05464ca8152b75774639c&amp;type=3#SettingsTabButton"/>
     <ui:Template name="ToggleBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/ToggleBar.uxml?fileID=9197481963319205126&amp;guid=8e2eff4da41bc864cb5b084b38950082&amp;type=3#ToggleBar"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Settings/SettingsStyles.uss?fileID=7433441132597879392&amp;guid=30f779d9fb6fcbd4dbb865b56c1d47a6&amp;type=3#SettingsStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss?fileID=7433441132597879392&amp;guid=4db18ea67a6154348b95683aced0b2d5&amp;type=3#DropdownStyles"/>
@@ -10,13 +11,28 @@
                 <ui:Label text="// &#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;" class="cafe__view-title"/>
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
+            <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px;">
+                <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
+                <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
+                <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
+            </ui:VisualElement>
             <ui:VisualElement name="SettingsContent" style="flex-grow: 1; flex-direction: row;">
-                <ui:TabView __unity-builder-selected-element="" name="SectionsContainer" class="settings__widget-panel settings__sections">
-                    <DevKit.UITK.TabScrollView __unity-builder-selected-element="">
-                        <ui:Instance template="KitSliderIntBar" __unity-builder-selected-element=""/>
-                        <ui:Instance template="ToggleBar" __unity-builder-selected-element=""/>
-                    </DevKit.UITK.TabScrollView>
-                </ui:TabView>
+                <ui:VisualElement name="SectionsContainer" class="settings__widget-panel settings__sections" style="flex-grow: 1;">
+                    <ui:ScrollView class="settings__section cafe__scroll-view">
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="ToggleBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                    </ui:ScrollView>
+                </ui:VisualElement>
                 <ui:VisualElement name="SettingInfo" class="settings__widget-panel settings__info-panel"/>
             </ui:VisualElement>
             <ui:VisualElement name="ActionsContainer" class="settings__actions" style="margin-top: 20px;">

@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using ITCafe.Data.Settings;
+using ITCafe.Gameplay.UI.Custom;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,6 +17,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _cancelChangesButtonName = "CancelChangesButton";
         [SerializeField] private string _closeButtonName = "CloseButton";
         [SerializeField] private string _sectionsContainerName = "SectionsContainer";
+        [SerializeField] private string _tabButtonsContainerName = "TabButtonsContainer";
 
         [Space(4)]
         [SerializeField] private SettingControlFactory _controlFactory;
@@ -23,6 +26,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Button _cancelChangesButton;
         private Button _closeButton;
         private VisualElement _sectionsContainer;
+        private VisualElement _tabButtonsContainer;
+        private readonly Dictionary<SettingsSectionViewModel, TabEntry> _sectionsMap = new();
 
         protected override void OnInit()
         {
@@ -32,18 +37,25 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _sectionsContainer = Root.Q<VisualElement>(name: _sectionsContainerName);
             _sectionsContainer.Clear();
+            _tabButtonsContainer = Root.Q<VisualElement>(name: _tabButtonsContainerName);
+            _tabButtonsContainer.Clear();
         }
 
         protected override void OnBind(SettingsViewModel viewModel)
         {
             base.OnBind(viewModel);
+            
+            _sectionsMap.Clear();
 
             viewModel.OnSettingsDataChanged.Where(x => x != null)
+                .Take(1)
                 .Subscribe(data =>
                 {
                     _sectionsContainer.Clear();
                     InitVideo(data);
                     InitSound(data);
+                    ViewModel.OnSectionChanged.Subscribe(OnSectionChanged)
+                        .AddTo(_disposables);
                 })
                 .AddTo(_disposables);
 
@@ -62,9 +74,11 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void InitVideo(ISettingsData data)
         {
             var videoViewModel = ViewModel.VideoSettingsViewModel;
-
-            var videoSection = _controlFactory.AddBindedTab(_sectionsContainer, data.VideoSectionLabel,
-                _ => ViewModel.SelectSection(videoViewModel));
+            
+            var tabEntry = _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer,
+                data.VideoSectionLabel, _ => ViewModel.SelectSection(videoViewModel));
+            var videoSection = tabEntry.ScrollView;
+            _sectionsMap[videoViewModel] = tabEntry;
 
             _controlFactory.AddBindedSliderInt(data.SensitivityData, videoSection,
                 videoViewModel.SetSensitivity, videoViewModel.Sensitivity);
@@ -100,15 +114,34 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void InitSound(ISettingsData data)
         {
             var soundViewModel = ViewModel.SoundSettingsViewModel;
-
-            var soundSection = _controlFactory.AddBindedTab(_sectionsContainer, data.SoundSectionLabel,
-                _ => ViewModel.SelectSection(soundViewModel));
-
+            
+            var tabEntry =  _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer, 
+                data.SoundSectionLabel, _ => ViewModel.SelectSection(soundViewModel));
+            var soundSection = tabEntry.ScrollView;
+            _sectionsMap[soundViewModel] = tabEntry;
+            
             _controlFactory.AddBindedSliderInt(data.MusicVolumeData, soundSection,
                 soundViewModel.SetMusicVolume, soundViewModel.MusicVolume);
 
             _controlFactory.AddBindedSliderInt(data.SfxVolumeData, soundSection,
                 soundViewModel.SetSfxVolume, soundViewModel.SfxVolume);
+        }
+
+        private void OnSectionChanged(SettingsSectionViewModel section)
+        {
+            foreach (var (viewModel, tabEntry) in _sectionsMap)
+            {
+                if (viewModel == section)
+                {
+                    tabEntry.Button.AddToClassList(USSConst.SELECTED);
+                    tabEntry.ScrollView.style.display = DisplayStyle.Flex;
+                }
+                else
+                {
+                    tabEntry.Button.RemoveFromClassList(USSConst.SELECTED);
+                    tabEntry.ScrollView.style.display = DisplayStyle.None;
+                }
+            }
         }
 
         private void ApplyChanges(ClickEvent _)

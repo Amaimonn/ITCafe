@@ -11,6 +11,7 @@ namespace Inui.UI.MVVM.Settings
     {
         public Observable<ISettingsData> OnSettingsDataChanged => _settingsData;
         public Observable<bool> IsAnyChanges => _isAnyChanges;
+        public Observable<SettingsSectionViewModel> OnSectionChanged => _currentSection;
 
         public readonly VideoSettingsViewModel VideoSettingsViewModel = new();
         public readonly SoundSettingsViewModel SoundSettingsViewModel = new();
@@ -21,7 +22,7 @@ namespace Inui.UI.MVVM.Settings
         private ReadOnlyReactiveProperty<bool> _isAnyChanges;
         private SettingsModel _model;
         private readonly ReactiveProperty<ISettingsData> _settingsData = new();
-        private SettingsSectionViewModel _currentSection;
+        private ReactiveProperty<SettingsSectionViewModel> _currentSection;
 
         public SettingsViewModel(ISaveStateProvider gameStateProvider)
         {
@@ -36,6 +37,7 @@ namespace Inui.UI.MVVM.Settings
             LanguageSettingsViewModel.Bind(model);
 
             _isAnyChanges = VideoSettingsViewModel.IsAnyChanges;
+            _currentSection = new ReactiveProperty<SettingsSectionViewModel>(VideoSettingsViewModel);
         }
 
         public void SetSettingsData(ISettingsData settingsData)
@@ -68,7 +70,7 @@ namespace Inui.UI.MVVM.Settings
 
         public void SelectSection(SettingsSectionViewModel section)
         {
-            _currentSection = section;
+            _currentSection.Value = section;
         }
 
         private void SaveSettings()
