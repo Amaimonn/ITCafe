@@ -13,11 +13,12 @@ namespace ITCafe.Gameplay.UI.MVVM
     [Serializable]
     public class SettingControlFactory
     {
-        [Space(4)]
+        [Header("Tab")]
         [SerializeField] private string _tabClass = "settings__section";
+        [SerializeField] private string _tabScrollViewClass = "cafe__scroll-view";
         [SerializeField] private string _settingBarLabelName = "SettingBarLabel";
 
-        [Header("TabButton"), Space(4)]
+        [Header("Tab Button"), Space(4)]
         [SerializeField] private VisualTreeAsset _tabButtonAsset;
 
         [Header("Arrow Menu"), Space(4)]
@@ -49,6 +50,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var scrollView = new ScrollView();
             scrollView.AddToClassList(_tabClass);
+            scrollView.AddToClassList(_tabScrollViewClass);
             sectionsContainer.Add(scrollView);
 
             var tabButtonTemplate = _tabButtonAsset.CloneTree();

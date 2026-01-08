@@ -68,6 +68,7 @@
     border-bottom-color: rgba(0, 184, 148, 0.3);
     border-bottom-width: 1px;
     padding-right: 40px;
+    flex-shrink: 0;
 }
 
 .settings__title {
@@ -128,6 +129,7 @@
     border-top-color: rgba(0, 184, 148, 0.3);
     border-top-width: 1px;
     flex-direction: row;
+    flex-shrink: 0;
 }
 
 .settings__button {

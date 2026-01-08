@@ -3,6 +3,7 @@ using DevKit.Saves;
 using DevKit.Utils;
 using ITCafe.Data.Settings;
 using ITCafe.Data.Campaign;
+using UnityEngine;
 
 namespace ITCafe.Infrastructure.Saves
 {
@@ -43,6 +44,9 @@ namespace ITCafe.Infrastructure.Saves
                         Sensitivity = 50,
                         VSync = false,
                         FPS = -1,
+                        Fullscreen = true,
+                        ScreenWidth = Display.main.systemWidth,
+                        ScreenHeight = Display.main.systemHeight,
                     },
                     CampaignState = new CampaignState
                     {

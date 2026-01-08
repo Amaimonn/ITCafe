@@ -4,7 +4,7 @@ namespace ITCafe.Data.Settings
 {
     [CreateAssetMenu(fileName = "EnumSettingsDataSO", 
         menuName = "Scriptable Objects/Settings/EnumSettingsDataSO")]
-    public class EnumSettingsDataSO : OptionsSettingDataSO
+    public class EnumSettingDataSO : OptionsSettingDataSO
     {
         public override string[] Options => _options;
         public override string[] OverrideDisplayOptions => _overrideOptions;

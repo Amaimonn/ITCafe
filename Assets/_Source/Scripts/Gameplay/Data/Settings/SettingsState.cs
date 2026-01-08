@@ -21,7 +21,7 @@ namespace ITCafe.Data.Settings
         [Range(1, 100)] public int Sensitivity = 50;
         
         // Video settings
-        public bool VSync = true;
+        public bool VSync = false;
         public int FPS = -1;
         [Range(0, 100)] public int Brightness = 50;
         public bool IsPostProcessingEnabled = true;
@@ -29,8 +29,8 @@ namespace ITCafe.Data.Settings
         public bool IsFilmGrainEnabled = false;
         public bool IsAntiAliasingEnabled = true;
         // public int QualityPreset = 2;
-        public int ScreenWidth = -1;
-        public int ScreenHeight = -1;
+        public int ScreenWidth;
+        public int ScreenHeight;
         public bool Fullscreen = true;
         
         // Language settings
