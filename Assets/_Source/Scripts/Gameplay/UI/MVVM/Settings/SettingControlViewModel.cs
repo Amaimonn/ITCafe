@@ -4,9 +4,9 @@ using R3;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public interface ISettingsControlViewModel<TOwn>
+    public interface ISettingControlViewModel<TOwn>
     {
-        public Observable<TOwn> OnChanged { get; }
+        public ReadOnlyReactiveProperty<TOwn> OnChanged { get; }
         public Observable<bool> IsWarning { get; }
         public void SetValue(TOwn value);
     }
@@ -23,7 +23,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             }
             else
             {
-                _reactiveChange = new ReactiveChange<T>(() => modelProperty.Value);
+                _reactiveChange = new ReactiveChange<T>(() => modelProperty.Value, modelProperty.Value);
             }
 
             OnChanged = _reactiveChange;
@@ -38,11 +38,18 @@ namespace ITCafe.Gameplay.UI.MVVM
             else
                 _modelProperty.Value = value;
         }
+
+        public override void ResetToCached()
+        {
+            _reactiveChange.ResetToCached();
+            if (!_isDelayed)
+                _modelProperty.Value = _reactiveChange.CachedValue;
+        }
     }
 
-    public class SettingControlViewModel<TOwn, TModel> : ISettingsControlViewModel<TOwn>, IReactiveChange, IDisposable
+    public class SettingControlViewModel<TOwn, TModel> : ISettingControlViewModel<TOwn>, IReactiveChange, IDisposable
     {
-        public Observable<TOwn> OnChanged { get; protected set; }
+        public ReadOnlyReactiveProperty<TOwn> OnChanged { get; protected set; }
         public ReadOnlyReactiveProperty<bool> IsChanged => _reactiveChange.IsChanged;
         public Observable<bool> IsWarning => _isWarning;
 
@@ -60,7 +67,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             if (_isDelayed)
                 _reactiveChange.Value = value;
             else
-                _setPipe(value);
+                _modelProperty.Value = _setPipe(value);
         }
 
         public virtual void SetWarning(bool isWarning)
@@ -74,8 +81,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             _isDelayed = isDelayed;
         }
 
-        public SettingControlViewModel(ReactiveProperty<TModel> modelProperty, Func<TOwn, TModel> setPipe,
-            Func<TModel, TOwn> getPipe, bool isDelayed = false) : this(modelProperty, isDelayed)
+        public SettingControlViewModel(ReactiveProperty<TModel> modelProperty, Func<TModel, TOwn> getPipe,
+            Func<TOwn, TModel> setPipe, bool isDelayed = false) : this(modelProperty, isDelayed)
         {
             _setPipe = setPipe;
             _getPipe = getPipe;
@@ -90,13 +97,12 @@ namespace ITCafe.Gameplay.UI.MVVM
             }
             else
             {
-                _reactiveChange = new ReactiveChange<TOwn>(getter);
+                _reactiveChange = new ReactiveChange<TOwn>(getter, getPipe(modelProperty.Value));
             }
 
             OnChanged = _reactiveChange;
             _modelSubscription = modelProperty.Skip(1)
-                .Select(getPipe)
-                .Subscribe(x => _reactiveChange.Value = x);
+                .Subscribe(x => _reactiveChange.Value = getPipe(x));
         }
 
         public void ApplyChanges()
@@ -104,9 +110,11 @@ namespace ITCafe.Gameplay.UI.MVVM
             _reactiveChange.ApplyChanges();
         }
 
-        public void ResetToCached()
+        public virtual void ResetToCached()
         {
             _reactiveChange.ResetToCached();
+            if (!_isDelayed)
+                _modelProperty.Value = _setPipe(_reactiveChange.CachedValue);
         }
 
         public void UpdateCache()

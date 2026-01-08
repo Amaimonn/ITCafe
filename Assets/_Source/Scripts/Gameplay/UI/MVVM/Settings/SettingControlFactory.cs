@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using DevKit.UITK;
+using DevKit.Utils;
 using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.Custom;
-using ObservableCollections;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -31,16 +31,19 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Dropdown"), Space(4)]
         [SerializeField] private VisualTreeAsset _dropdownBarAsset;
-        
+
         private VisualElement _sectionsContainer;
         private VisualElement _buttonsContainer;
+        private VisualElement _controlInfoContainer;
 
-        public void Init(VisualElement sectionsContainer, VisualElement buttonsContainer)
+        public void Init(VisualElement sectionsContainer, VisualElement buttonsContainer, 
+            VisualElement controlInfoContainer)
         {
             _sectionsContainer = sectionsContainer;
             _buttonsContainer = buttonsContainer;
+            _controlInfoContainer = controlInfoContainer;
         }
-        
+
         public TabEntry AddBindedTab(VisualElement sectionsContainer, VisualElement buttonsContainer,
             string labelText, EventCallback<ClickEvent> onButtonClicked)
         {
@@ -59,58 +62,42 @@ namespace ITCafe.Gameplay.UI.MVVM
         }
 
         public void AddBindedSliderInt(ISliderSettingData<int> sliderSettingData, VisualElement parentSection,
-            Action<int> onInput, Observable<int> observable)
-        {
-            var slider = CreateSliderInt(sliderSettingData, parentSection);
-            BindSliderInt(slider, onInput, observable);
-        }
-
-        public SliderInt CreateSliderInt(ISliderSettingData<int> sliderSettingData, VisualElement parentSection)
+            ISettingControlViewModel<int> controlViewModel)
         {
             var settingBar = CreateBar(_sliderIntBarAsset, sliderSettingData.Label, parentSection);
             var slider = settingBar.Q<SliderInt>();
 
             slider.lowValue = sliderSettingData.MinValue;
             slider.highValue = sliderSettingData.MaxValue;
-
-            return slider;
+            
+            BindSliderInt(slider, controlViewModel);
+            BindBar(settingBar, slider, controlViewModel, sliderSettingData);
         }
 
-        public void BindSliderInt(SliderInt slider, Action<int> onInput, Observable<int> observable)
+        private void BindSliderInt(SliderInt slider, ISettingControlViewModel<int> controlViewModel)
         {
-            slider.RegisterCallback<ChangeEvent<int>>(e => onInput(e.newValue));
-            observable.Subscribe(x => slider.value = x);
+            slider.RegisterCallback<ChangeEvent<int>>(e => controlViewModel.SetValue(e.newValue));
+            controlViewModel.OnChanged.Subscribe(x => slider.value = x);
         }
 
         public void AddBindedToggle(IToggleSettingData toggleSettingData, VisualElement parentSection,
-            Action<bool> onInput, Observable<bool> observable)
-        {
-            var toggle = CreateToggle(toggleSettingData, parentSection);
-            BindToggle(toggle, onInput, observable);
-        }
-
-        public Toggle CreateToggle(IToggleSettingData toggleSettingData, VisualElement parentSection)
+            ISettingControlViewModel<bool> controlViewModel)
         {
             var settingBar = CreateBar(_toggleBarAsset, toggleSettingData.Label, parentSection);
             var toggle = settingBar.Q<Toggle>();
-
-            return toggle;
+            
+            BindToggle(toggle, controlViewModel);
+            BindBar(settingBar, toggle, controlViewModel, toggleSettingData);
         }
 
-        public void BindToggle(Toggle toggle, Action<bool> onInput, Observable<bool> observable)
+        private void BindToggle(Toggle toggle, ISettingControlViewModel<bool> controlViewModel)
         {
-            toggle.RegisterCallback<ChangeEvent<bool>>(e => onInput(e.newValue));
-            observable.Subscribe(x => toggle.value = x);
+            toggle.RegisterCallback<ChangeEvent<bool>>(e => controlViewModel.SetValue(e.newValue));
+            controlViewModel.OnChanged.Subscribe(x => toggle.value = x);
         }
 
         public void AddBindedDropdown(IOptionsSettingData dropdownSettingData, VisualElement parentSection,
-            Action<string> onInput, Observable<string> observable)
-        {
-            var dropdown = CreateDropdown(dropdownSettingData, parentSection);
-            BindDropdown(dropdown, onInput, observable);
-        }
-
-        public DropdownField CreateDropdown(IOptionsSettingData dropdownSettingData, VisualElement parentSection)
+            ISettingControlViewModel<string> controlViewModel)
         {
             var settingBar = CreateBar(_dropdownBarAsset, dropdownSettingData.Label, parentSection);
             var dropdown = settingBar.Q<DropdownField>();
@@ -123,31 +110,33 @@ namespace ITCafe.Gameplay.UI.MVVM
             //     dropdown.choices = dropdownSettingData.OverrideDisplayOptions.ToList();
 
             dropdown.choices = dropdownSettingData.Options.ToList();
-
-            return dropdown;
+            
+            BindDropdown(dropdown, controlViewModel);
+            BindBar(settingBar, dropdown, controlViewModel, dropdownSettingData);
         }
 
-        public void BindDropdown(DropdownField dropdown, Action<string> onInput, Observable<string> observable)
+        private void BindDropdown(DropdownField dropdown, ISettingControlViewModel<string> controlViewModel)
         {
-            dropdown.RegisterValueChangedCallback(e => onInput(e.newValue));
-            observable.Subscribe(x => dropdown.value = x);
+            dropdown.RegisterValueChangedCallback(e => controlViewModel.SetValue(e.newValue));
+            controlViewModel.OnChanged.Subscribe(x => dropdown.value = x);
         }
 
         public void AddBindedArrowMenu(IOptionsSettingData arrowMenuSettingData, VisualElement parentSection,
-            Action<string> onInput, Observable<string> observable)
-        {
-            var arrowMenu = CreateArrowMenu(arrowMenuSettingData, parentSection);
-            BindArrowMenu(arrowMenu, onInput, observable);
-        }
-
-        public ArrowMenuString CreateArrowMenu(IOptionsSettingData arrowMenuSettingData, VisualElement parentSection)
+            ISettingControlViewModel<string> controlViewModel)
         {
             var settingBar = CreateBar(_arrowMenuBarAsset, arrowMenuSettingData.Label, parentSection);
-            var arrowMenuInt = settingBar.Q<ArrowMenuString>();
+            var arrowMenu = settingBar.Q<ArrowMenuString>();
 
-            arrowMenuInt.Options = arrowMenuSettingData.Options;
+            arrowMenu.Options = arrowMenuSettingData.Options;
+            
+            BindArrowMenu(arrowMenu, controlViewModel);
+            BindBar(settingBar, arrowMenu, controlViewModel, arrowMenuSettingData);
+        }
 
-            return arrowMenuInt;
+        private void BindArrowMenu<T>(ArrowMenu<T> arrowMenu, ISettingControlViewModel<T> controlViewModel)
+        {
+            arrowMenu.OnValueChanged += controlViewModel.SetValue;
+            controlViewModel.OnChanged.Subscribe(x => arrowMenu.Value = x);
         }
 
         private VisualElement CreateBar(VisualTreeAsset asset, string labelText, VisualElement parent)
@@ -161,10 +150,19 @@ namespace ITCafe.Gameplay.UI.MVVM
             return settingBar;
         }
 
-        public void BindArrowMenu<T>(ArrowMenu<T> arrowsMenu, Action<T> onInput, Observable<T> observable)
+        private void BindBar<T>(VisualElement bar, VisualElement control, ISettingControlViewModel<T> controlViewModel, 
+            ISettingBarData data)
         {
-            arrowsMenu.OnValueChanged += onInput;
-            observable.Subscribe(x => arrowsMenu.Value = x);
+            controlViewModel.IsWarning.Subscribe(x => control.SetEnabled(!x));
+            bar.RegisterCallback<PointerEnterEvent>(_ =>
+            {
+                if (_controlInfoContainer == null) 
+                    return;
+                
+                _controlInfoContainer.Clear();
+                _controlInfoContainer.Add(new Label(data.Label));
+                // TODO: display warning
+            }, TrickleDown.TrickleDown);
         }
     }
 }

@@ -35,7 +35,11 @@
                         <ui:Instance template="KitSliderIntBar"/>
                     </ui:ScrollView>
                 </ui:VisualElement>
-                <ui:VisualElement name="SettingInfo" class="settings__widget-panel settings__info-panel"/>
+                <ui:VisualElement name="SettingInfo" class="settings__widget-panel settings__info-panel">
+                    <ui:VisualElement name="ControlInfoContainer" style="flex-grow: 1; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                        <ui:Label text="Label"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ActionsContainer" class="settings__actions" style="margin-top: 20px;">
                 <ui:Button name="ApplyButton" text="&#1055;&#1056;&#1048;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="settings__button cafe__control-button cafe__control-button--cyan"/>

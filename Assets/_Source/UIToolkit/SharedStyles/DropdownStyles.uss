@@ -28,6 +28,12 @@
     margin-right: 0;
 }
 
+.unity-popup-field:disabled > .unity-base-popup-field__input {
+    background-color: var(--control-bg-hover);
+    border-color: var(--control-border-color);
+    opacity: 0.5;
+}
+
 .unity-popup-field:enabled:hover > .unity-base-popup-field__input {
     background-color: var(--control-bg-hover);
     border-color: var(--control-border-color);

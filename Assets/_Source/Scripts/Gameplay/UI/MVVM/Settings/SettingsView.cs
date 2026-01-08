@@ -19,6 +19,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _closeButtonName = "CloseButton";
         [SerializeField] private string _sectionsContainerName = "SectionsContainer";
         [SerializeField] private string _tabButtonsContainerName = "TabButtonsContainer";
+        [SerializeField] private string _controlInfoContainerName = "ControlInfoContainer";
 
         [Space(4)]
         [SerializeField] private SettingControlFactory _controlFactory;
@@ -28,6 +29,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Button _closeButton;
         private VisualElement _sectionsContainer;
         private VisualElement _tabButtonsContainer;
+        private VisualElement _controlInfoContainer;
         private readonly Dictionary<SettingsSectionViewModel, TabEntry> _sectionsMap = new();
 
         protected override void OnInit()
@@ -40,12 +42,16 @@ namespace ITCafe.Gameplay.UI.MVVM
             _sectionsContainer.Clear();
             _tabButtonsContainer = Root.Q<VisualElement>(name: _tabButtonsContainerName);
             _tabButtonsContainer.Clear();
+            _controlInfoContainer =  Root.Q<VisualElement>(name: _controlInfoContainerName);
+            _controlInfoContainer.Clear();
+            
+            _controlFactory.Init(_sectionsContainer, _tabButtonsContainer, _controlInfoContainer);
         }
 
         protected override void OnBind(SettingsViewModel viewModel)
         {
             base.OnBind(viewModel);
-            
+
             _sectionsMap.Clear();
 
             viewModel.OnSettingsDataChanged.Where(x => x != null)
@@ -75,57 +81,46 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void InitVideo(ISettingsData data)
         {
             var videoViewModel = ViewModel.VideoSettingsViewModel;
-            
+
             var tabEntry = _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer,
                 data.VideoSectionLabel, _ => ViewModel.SelectSection(videoViewModel));
             var videoSection = tabEntry.ScrollView;
             _sectionsMap[videoViewModel] = tabEntry;
 
-            _controlFactory.AddBindedSliderInt(data.SensitivityData, videoSection,
-                videoViewModel.SetSensitivity, videoViewModel.Sensitivity);
+            _controlFactory.AddBindedSliderInt(data.SensitivityData, videoSection, videoViewModel.Sensitivity);
 
-            _controlFactory.AddBindedToggle(data.VSyncData, videoSection,
-                videoViewModel.SetVsync, videoViewModel.VSync);
+            _controlFactory.AddBindedToggle(data.VSyncData, videoSection, videoViewModel.VSync);
 
-            _controlFactory.AddBindedDropdown(data.FpsData, videoSection,
-                videoViewModel.SetFps, videoViewModel.FPS);
+            _controlFactory.AddBindedDropdown(data.FpsData, videoSection, videoViewModel.FPS);
 
-            _controlFactory.AddBindedSliderInt(data.BrightnessData, videoSection,
-                videoViewModel.SetBrightness, videoViewModel.Brightness);
+            _controlFactory.AddBindedSliderInt(data.BrightnessData, videoSection, videoViewModel.Brightness);
 
             _controlFactory.AddBindedToggle(data.IsPostProcessingEnabledData, videoSection,
-                videoViewModel.SetPostProcessing, videoViewModel.PostProcessing);
+                videoViewModel.PostProcessing);
 
-            _controlFactory.AddBindedToggle(data.IsBloomEnabledData, videoSection,
-                videoViewModel.SetBloom, videoViewModel.Bloom);
+            _controlFactory.AddBindedToggle(data.IsBloomEnabledData, videoSection, videoViewModel.Bloom);
 
-            _controlFactory.AddBindedToggle(data.IsFilmGrainEnabledData, videoSection,
-                videoViewModel.SetFilmGrain, videoViewModel.FilmGrain);
+            _controlFactory.AddBindedToggle(data.IsFilmGrainEnabledData, videoSection, videoViewModel.FilmGrain);
 
-            _controlFactory.AddBindedToggle(data.IsAntiAliasingEnabledData, videoSection,
-                videoViewModel.SetAntiAliasing, videoViewModel.AntiAliasing);
+            _controlFactory.AddBindedToggle(data.IsAntiAliasingEnabledData, videoSection, videoViewModel.AntiAliasing);
 
-            _controlFactory.AddBindedDropdown(data.ResolutionData, videoSection,
-                videoViewModel.SetResolution, videoViewModel.Resolution);
+            _controlFactory.AddBindedDropdown(data.ResolutionData, videoSection, videoViewModel.Resolution);
 
-            _controlFactory.AddBindedToggle(data.FullscreenData, videoSection,
-                videoViewModel.SetFullscreen, videoViewModel.Fullscreen);
+            _controlFactory.AddBindedToggle(data.FullscreenData, videoSection, videoViewModel.Fullscreen);
         }
 
         private void InitSound(ISettingsData data)
         {
             var soundViewModel = ViewModel.SoundSettingsViewModel;
-            
-            var tabEntry =  _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer, 
+
+            var tabEntry = _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer,
                 data.SoundSectionLabel, _ => ViewModel.SelectSection(soundViewModel));
             var soundSection = tabEntry.ScrollView;
             _sectionsMap[soundViewModel] = tabEntry;
-            
-            _controlFactory.AddBindedSliderInt(data.MusicVolumeData, soundSection,
-                soundViewModel.SetMusicVolume, soundViewModel.MusicVolume);
 
-            _controlFactory.AddBindedSliderInt(data.SfxVolumeData, soundSection,
-                soundViewModel.SetSfxVolume, soundViewModel.SfxVolume);
+            _controlFactory.AddBindedSliderInt(data.MusicVolumeData, soundSection, soundViewModel.MusicVolume);
+
+            _controlFactory.AddBindedSliderInt(data.SfxVolumeData, soundSection, soundViewModel.SfxVolume);
         }
 
         private void OnSectionChanged(SettingsSectionViewModel section)

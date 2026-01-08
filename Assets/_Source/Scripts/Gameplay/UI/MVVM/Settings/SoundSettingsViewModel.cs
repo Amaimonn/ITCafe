@@ -1,16 +1,14 @@
-using DevKit.Utils;
 using ITCafe.Data.Settings;
-using R3;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
     public class SoundSettingsViewModel : SettingsSectionViewModel
     {
-        public Observable<int> MusicVolume => _musicVolume;
-        public Observable<int> SfxVolume => _sfxVolume;
+        public ISettingControlViewModel<int> MusicVolume => _musicVolume;
+        public ISettingControlViewModel<int> SfxVolume => _sfxVolume;
 
-        private ReactiveChange<int> _musicVolume;
-        private ReactiveChange<int> _sfxVolume;
+        private SettingControlViewModel<int> _musicVolume;
+        private SettingControlViewModel<int> _sfxVolume;
 
         protected override void OnBind(SettingsModel model)
         {

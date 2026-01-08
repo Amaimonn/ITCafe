@@ -6,8 +6,8 @@ namespace ITCafe.Data.Settings
         menuName = "Scriptable Objects/Settings/EnumSettingsDataSO")]
     public class EnumSettingsDataSO : OptionsSettingDataSO
     {
-        [field: SerializeField] public override string[] Options => _options;
-        [field: SerializeField] public virtual string[] OverrideDisplayOptions => _overrideOptions;
+        public override string[] Options => _options;
+        public override string[] OverrideDisplayOptions => _overrideOptions;
         
         [SerializeField] private string[] _options;
         [SerializeField] private string[] _overrideOptions;

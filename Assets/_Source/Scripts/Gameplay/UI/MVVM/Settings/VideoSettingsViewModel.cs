@@ -8,115 +8,68 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class VideoSettingsViewModel : SettingsSectionViewModel
     {
-        public Observable<int> Sensitivity => _sensitivity;
-        public Observable<bool> VSync => _vsync;
-        public Observable<string> FPS { get; private set; }
-        public Observable<int> Brightness => _brightness;
-        public Observable<bool> PostProcessing => _postProcessing;
-        public Observable<bool> Bloom => _bloom;
-        public Observable<bool> FilmGrain => _filmGrain;
-        public Observable<bool> AntiAliasing => _antiAliasing;
-        public Observable<string> Resolution { get; private set; }
-        public Observable<bool> Fullscreen => _fullscreen;
+        public ISettingControlViewModel<int> Sensitivity => _sensitivity;
+        public ISettingControlViewModel<bool> VSync => _vsync;
+        public ISettingControlViewModel<string> FPS => _fps;
+        public ISettingControlViewModel<int> Brightness => _brightness;
+        public ISettingControlViewModel<bool> PostProcessing => _postProcessing;
+        public ISettingControlViewModel<bool> Bloom => _bloom;
+        public ISettingControlViewModel<bool> FilmGrain => _filmGrain;
+        public ISettingControlViewModel<bool> AntiAliasing => _antiAliasing;
+        public ISettingControlViewModel<string> Resolution => _resolution;
+        public ISettingControlViewModel<bool> Fullscreen => _fullscreen;
 
-        private ReactiveChange<int> _sensitivity;
-        private ReactiveChange<bool> _vsync;
-        private ReactiveChange<int> _fps;
-        private ReactiveChange<int> _brightness;
-        private ReactiveChange<bool> _postProcessing;
-        private ReactiveChange<bool> _bloom;
-        private ReactiveChange<bool> _filmGrain;
-        private ReactiveChange<bool> _antiAliasing;
-        private ReactiveChangeApplying<ScreenResolution> _resolution;
-        private ReactiveChange<bool> _fullscreen;
+        private SettingControlViewModel<bool> _vsync;
+        private SettingControlViewModel<int> _sensitivity;
+        private SettingControlViewModel<string, int> _fps;
+        private SettingControlViewModel<int> _brightness;
+        private SettingControlViewModel<bool> _postProcessing;
+        private SettingControlViewModel<bool> _bloom;
+        private SettingControlViewModel<bool> _filmGrain;
+        private SettingControlViewModel<bool> _antiAliasing;
+        private SettingControlViewModel<string, ScreenResolution> _resolution;
+        private SettingControlViewModel<bool> _fullscreen;
 
         protected override void OnBind(SettingsModel model)
         {
             _sensitivity = CreateBindedProperty(model.Sensitivity);
             _vsync = CreateBindedProperty(model.VSync);
-            _fps = CreateBindedProperty(model.FPS);
-            FPS = _fps.Select(FpsIntToString);
+            _fps = CreateBindedProperty(model.FPS, FpsIntToString, FpsStringToInt);
             _brightness = CreateBindedProperty(model.Brightness);
             _postProcessing = CreateBindedProperty(model.IsPostProcessingEnabled);
             _bloom = CreateBindedProperty(model.IsBloomEnabled);
             _filmGrain = CreateBindedProperty(model.IsFilmGrainEnabled);
             _antiAliasing = CreateBindedProperty(model.IsAntiAliasingEnabled);
-            _resolution = CreateBindedPropertyApplying(model.ScreenResolution);
-            Resolution = _resolution.Select(ScreenResolutionToString);
-            _fullscreen = CreateBindedProperty(model.Fullscreen);
-        }
-
-        public void SetSensitivity(int value)
-        {
-            _model.Sensitivity.Value = Mathf.Clamp(value, 1, 100);
-        }
-
-        public void SetVsync(bool value)
-        {
-            _model.VSync.Value = value;
-            if (value)
-                _settingWarnings.Add(_data.FpsData);
-            else
-                _settingWarnings.Remove(_data.FpsData);
-        }
-
-        public void SetFps(string value)
-        {
-            _model.FPS.Value = FpsStringToInt(value);
-        }
-
-        public void SetBrightness(int value)
-        {
-            _model.Brightness.Value = value;
-        }
-
-        public void SetPostProcessing(bool value)
-        {
-            _model.IsPostProcessingEnabled.Value = value;
-        }
-
-        public void SetBloom(bool value)
-        {
-            _model.IsBloomEnabled.Value = value;
-        }
-
-        public void SetFilmGrain(bool value)
-        {
-            _model.IsFilmGrainEnabled.Value = value;
-        }
-
-        public void SetAntiAliasing(bool value)
-        {
-            _model.IsAntiAliasingEnabled.Value = value;
-        }
-
-        public void SetResolution(string resolution)
-        {
-            var parts = resolution.Split('x');
-            if (parts.Length == 2 && int.TryParse(parts[0], out var width) && int.TryParse(parts[1], out var height))
-                _resolution.Value = new ScreenResolution { Width = width, Height = height };
-            else
-                _resolution.Value = new ScreenResolution { Width = -1, Height = -1 };
+            _resolution = CreateBindedProperty(model.ScreenResolution, ScreenResolutionToString,
+                StringToScreenResolution, true); // delayed
+            _fullscreen = CreateBindedProperty(model.Fullscreen, true); // delayed
+            
+            _vsync.OnChanged.Subscribe(_fps.SetWarning) // if vsync is enabled: display fps warning
+                .AddTo(_disposables);
         }
 
         private string ScreenResolutionToString(ScreenResolution resolution)
         {
             if (resolution is { Width: >= 0, Height: >= 0 })
                 return resolution.ToString();
-            
+
             return "default";
         }
 
-        public void SetFullscreen(bool value)
+        private ScreenResolution StringToScreenResolution(string resolution)
         {
-            _model.Fullscreen.Value = value;
+            var parts = resolution.Split('x');
+            if (parts.Length == 2 && int.TryParse(parts[0], out var width) && int.TryParse(parts[1], out var height))
+                return new ScreenResolution { Width = width, Height = height };
+            else
+                return new ScreenResolution { Width = -1, Height = -1 };
         }
 
         private int FpsStringToInt(string fps)
         {
             if (int.TryParse(fps, out var result))
                 return result;
-
+            FLogger.Log("Can`t parse fps");
             return -1;
         }
 
