@@ -1,5 +1,6 @@
 using DevKit.Utils;
 using ITCafe.Data.Settings;
+using ObservableCollections;
 using R3;
 using UnityEngine;
 
@@ -53,6 +54,10 @@ namespace ITCafe.Gameplay.UI.MVVM
         public void SetVsync(bool value)
         {
             _model.VSync.Value = value;
+            if (value)
+                _settingWarnings.Add(_data.FpsData);
+            else
+                _settingWarnings.Remove(_data.FpsData);
         }
 
         public void SetFps(string value)
@@ -62,7 +67,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public void SetBrightness(int value)
         {
-            _model.Brightness.Value = Mathf.Clamp(value, 0, 100);
+            _model.Brightness.Value = value;
         }
 
         public void SetPostProcessing(bool value)
@@ -89,9 +94,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var parts = resolution.Split('x');
             if (parts.Length == 2 && int.TryParse(parts[0], out var width) && int.TryParse(parts[1], out var height))
-                _model.ScreenResolution.Value = new ScreenResolution { Width = width, Height = height };
+                _resolution.Value = new ScreenResolution { Width = width, Height = height };
             else
-                _model.ScreenResolution.Value = new ScreenResolution { Width = -1, Height = -1 };
+                _resolution.Value = new ScreenResolution { Width = -1, Height = -1 };
         }
 
         private string ScreenResolutionToString(ScreenResolution resolution)

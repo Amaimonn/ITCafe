@@ -1,18 +1,21 @@
+using System.Collections.Generic;
 using System.Linq;
 using DevKit.Utils;
 using DevKit.UI.MVVM.Bases;
 using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
+using ObservableCollections;
 using R3;
 
 namespace Inui.UI.MVVM.Settings
 {
     public class SettingsViewModel : ScreenViewModel
     {
-        public Observable<ISettingsData> OnSettingsDataChanged => _settingsData;
         public Observable<bool> IsAnyChanges => _isAnyChanges;
         public Observable<SettingsSectionViewModel> OnSectionChanged => _currentSection;
+        public Observable<ISettingsData> OnSettingsDataChanged => _settingsData;
+        public IObservableCollection<ISettingBarData> SettingWarnings => _settingWarnings;
 
         public readonly VideoSettingsViewModel VideoSettingsViewModel = new();
         public readonly SoundSettingsViewModel SoundSettingsViewModel = new();
@@ -24,22 +27,27 @@ namespace Inui.UI.MVVM.Settings
         private SettingsModel _model;
         private readonly ReactiveProperty<ISettingsData> _settingsData = new();
         private ReactiveProperty<SettingsSectionViewModel> _currentSection;
+        private readonly List<SettingsSectionViewModel> _sections;
+        private readonly ObservableHashSet<ISettingBarData> _settingWarnings = new();
 
         public SettingsViewModel(ISaveStateProvider gameStateProvider)
         {
             _gameStateProvider = gameStateProvider;
+            _sections = new List<SettingsSectionViewModel>
+            {
+                VideoSettingsViewModel,
+                SoundSettingsViewModel,
+                LanguageSettingsViewModel
+            };
         }
 
         public void Bind(SettingsModel model)
         {
             _model = model;
-            VideoSettingsViewModel.Bind(model);
-            SoundSettingsViewModel.Bind(model);
-            LanguageSettingsViewModel.Bind(model);
+            foreach (var section in _sections)
+                section.Bind(model);
 
-            _isAnyChanges = Observable.CombineLatest(VideoSettingsViewModel.IsAnyChanges,
-                    SoundSettingsViewModel.IsAnyChanges, 
-                    LanguageSettingsViewModel.IsAnyChanges)
+            _isAnyChanges = Observable.CombineLatest(_sections.Select(x => x.IsAnyChanges))
                 .Select(x => x.Any(t => t))
                 .ToReadOnlyReactiveProperty();
             
@@ -49,6 +57,8 @@ namespace Inui.UI.MVVM.Settings
         public void SetSettingsData(ISettingsData settingsData)
         {
             _settingsData.Value = settingsData;
+            foreach (var section in _sections)
+                section.SetSettingsData(settingsData, _settingWarnings);
         }
 
         public override void StartClosing()

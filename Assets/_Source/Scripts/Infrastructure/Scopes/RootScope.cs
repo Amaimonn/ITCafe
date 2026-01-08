@@ -74,22 +74,9 @@ namespace ITCafe
         private void InitSettings()
         {
             var appSettingsModel = Container.Resolve<SettingsModel>();
-            BindSettings(appSettingsModel);
-
-            return;
-
-            void BindSettings(SettingsModel model)
-            {
-                model.VSync.Subscribe(x => QualitySettings.vSyncCount = x ? 1 : 0)
-                    .AddTo(_disposables);
-
-                Application.targetFrameRate = model.FPS.Value;
-                model.FPS.Skip(1).Subscribe(x =>
-                {
-                    Application.targetFrameRate = x;
-                    model.VSync.Value = false;
-                }).AddTo(_disposables);
-            }
+            
+            var appSettingsApplier = new AppSettingsApplier();
+            appSettingsApplier.BindSettings(appSettingsModel).AddTo(_disposables);
         }
 
         protected override void OnDestroy()

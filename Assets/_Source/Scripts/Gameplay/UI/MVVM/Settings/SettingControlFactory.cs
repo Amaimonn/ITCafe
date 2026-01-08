@@ -3,6 +3,7 @@ using System.Linq;
 using DevKit.UITK;
 using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.Custom;
+using ObservableCollections;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -30,7 +31,16 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Header("Dropdown"), Space(4)]
         [SerializeField] private VisualTreeAsset _dropdownBarAsset;
+        
+        private VisualElement _sectionsContainer;
+        private VisualElement _buttonsContainer;
 
+        public void Init(VisualElement sectionsContainer, VisualElement buttonsContainer)
+        {
+            _sectionsContainer = sectionsContainer;
+            _buttonsContainer = buttonsContainer;
+        }
+        
         public TabEntry AddBindedTab(VisualElement sectionsContainer, VisualElement buttonsContainer,
             string labelText, EventCallback<ClickEvent> onButtonClicked)
         {

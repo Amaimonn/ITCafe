@@ -4,6 +4,7 @@ using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.Custom;
+using ObservableCollections;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
