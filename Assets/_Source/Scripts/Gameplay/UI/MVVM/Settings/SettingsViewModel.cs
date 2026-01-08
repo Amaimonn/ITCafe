@@ -57,9 +57,6 @@ namespace Inui.UI.MVVM.Settings
             base.StartClosing();
         }
 
-        /// <summary>
-        /// Применяет все изменения
-        /// </summary>
         public void ApplyChanges()
         {
             VideoSettingsViewModel.ApplyChanges();

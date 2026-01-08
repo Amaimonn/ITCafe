@@ -1,0 +1,52 @@
+.settings__bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 10px 0;
+    padding: 8px 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.settings__bar-label {
+    font-size: var(--control-font-size);
+    color: rgb(180, 220, 210);
+    -unity-text-align: middle-left;
+    flex-grow: 1;
+    margin-right: 15px;
+    min-width: 120px;
+    width: 120px;
+}
+
+.settings__dropdown {
+    width: 340px;
+    height: 40px;
+}
+
+.settings__slider {
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 398px;
+}
+
+.settings__slider .unity-base-slider__dragger {
+    width: 10px;
+    height: 40px;
+    margin-top: -20px;
+}
+
+.settings__toggle {
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+}
+
+.settings__toggle .unity-toggle__checkmark {
+    width: 40px;
+    height: 40px;
+}
