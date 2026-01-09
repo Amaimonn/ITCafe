@@ -15,10 +15,9 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         protected SettingsModel _model;
         protected ISettingsData _data;
-        protected readonly List<IReactiveChange> _changeProperties = new();
-        protected readonly List<Action> _cancelChanges = new();
         protected CompositeDisposable _disposables;
         protected ObservableHashSet<ISettingBarData> _settingWarnings;
+        private readonly List<IReactiveChange> _controlReactiveChanges = new();
         
         public void Bind(SettingsModel model)
         {
@@ -41,50 +40,49 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void TrackChanges()
         {
-            IsAnyChanges = Observable.CombineLatest(_changeProperties.Select(x => x.IsChanged))
+            IsAnyChanges = Observable.CombineLatest(_controlReactiveChanges.Select(x => x.IsChanged))
                 .Select(x => x.Any(t => t))
                 .ToReadOnlyReactiveProperty();
         }
 
         public virtual void ApplyChanges()
         {
-            foreach (var change in _changeProperties)
-                change.ApplyChanges();
+            foreach (var reactiveChange in _controlReactiveChanges)
+                reactiveChange.ApplyChanges();
         }
 
         public virtual void CancelChanges()
         {
-            foreach (var cancel in _cancelChanges)
-                cancel();
+            foreach (var reactiveChange in _controlReactiveChanges)
+                reactiveChange.ResetToCached();
         }
 
-        protected SettingControlViewModel<T> CreateBindedProperty<T>(ReactiveProperty<T> modelProperty,
+        protected ControlViewModel<T> GetBindedControl<T>(ReactiveProperty<T> modelProperty,
             bool isDelayed = false)
         {
-            var controlViewModel = new SettingControlViewModel<T>(modelProperty, isDelayed)
+            var controlViewModel = new ControlViewModel<T>(modelProperty, isDelayed)
                 .AddTo(_disposables);
             
-            _changeProperties.Add(controlViewModel);
-            _cancelChanges.Add(() => controlViewModel.ResetToCached());
+            _controlReactiveChanges.Add(controlViewModel);
 
             return controlViewModel;
         }
 
-        protected SettingControlViewModel<TOwn, TModel> CreateBindedProperty<TOwn, TModel>(
+        protected ControlViewModel<TOwn, TModel> GetBindedControl<TOwn, TModel>(
             ReactiveProperty<TModel> modelProperty, Func<TModel, TOwn> getPipe, Func<TOwn, TModel> setPipe,
             bool isDelayed = false)
         {
-            var controlViewModel = new SettingControlViewModel<TOwn, TModel>(modelProperty, getPipe, setPipe, isDelayed)
+            var controlViewModel = new ControlViewModel<TOwn, TModel>(modelProperty, getPipe, setPipe, isDelayed)
                 .AddTo(_disposables);
             
-            _changeProperties.Add(controlViewModel);
-            _cancelChanges.Add(() => controlViewModel.ResetToCached());
+            _controlReactiveChanges.Add(controlViewModel);
 
             return controlViewModel;
         }
 
         public virtual void Dispose()
         {
+            _controlReactiveChanges.Clear();
             Disposes.ClearDispose(ref _disposables);
         }
     }

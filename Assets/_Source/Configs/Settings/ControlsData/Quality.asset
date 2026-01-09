@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Quality
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.OptionsSettingDataSO
   <Label>k__BackingField: quality
+  <Description>k__BackingField: quality_description
+  <WarningText>k__BackingField: 
   <Options>k__BackingField:
   - 1
   - 2

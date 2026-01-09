@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: FPS
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.OptionsSettingDataSO
   <Label>k__BackingField: fps
-  <WarningText>k__BackingField: 
+  <Description>k__BackingField: fps_description
+  <WarningText>k__BackingField: fps_warning
   <Options>k__BackingField:
   - max
   - 60

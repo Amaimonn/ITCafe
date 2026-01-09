@@ -4,16 +4,9 @@ using R3;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public interface ISettingControlViewModel<TOwn>
+    public class ControlViewModel<T> : ControlViewModel<T, T>
     {
-        public ReadOnlyReactiveProperty<TOwn> OnChanged { get; }
-        public Observable<bool> IsWarning { get; }
-        public void SetValue(TOwn value);
-    }
-
-    public class SettingControlViewModel<T> : SettingControlViewModel<T, T>
-    {
-        public SettingControlViewModel(ReactiveProperty<T> modelProperty, bool isDelayed = false) :
+        public ControlViewModel(ReactiveProperty<T> modelProperty, bool isDelayed = false) :
             base(modelProperty, isDelayed)
         {
             if (isDelayed)
@@ -47,11 +40,11 @@ namespace ITCafe.Gameplay.UI.MVVM
         }
     }
 
-    public class SettingControlViewModel<TOwn, TModel> : ISettingControlViewModel<TOwn>, IReactiveChange, IDisposable
+    public class ControlViewModel<TOwn, TModel> : IControlViewModel<TOwn>, IReactiveChange, IDisposable
     {
         public ReadOnlyReactiveProperty<TOwn> OnChanged { get; protected set; }
         public ReadOnlyReactiveProperty<bool> IsChanged => _reactiveChange.IsChanged;
-        public Observable<bool> IsWarning => _isWarning;
+        public Observable<bool> OnWarning => _isWarning;
 
         protected ReactiveChangeBase<TOwn> _reactiveChange;
         protected readonly ReactiveProperty<TModel> _modelProperty;
@@ -75,13 +68,13 @@ namespace ITCafe.Gameplay.UI.MVVM
             _isWarning.Value = isWarning;
         }
 
-        protected SettingControlViewModel(ReactiveProperty<TModel> modelProperty, bool isDelayed = false)
+        protected ControlViewModel(ReactiveProperty<TModel> modelProperty, bool isDelayed = false)
         {
             _modelProperty = modelProperty;
             _isDelayed = isDelayed;
         }
 
-        public SettingControlViewModel(ReactiveProperty<TModel> modelProperty, Func<TModel, TOwn> getPipe,
+        public ControlViewModel(ReactiveProperty<TModel> modelProperty, Func<TModel, TOwn> getPipe,
             Func<TOwn, TModel> setPipe, bool isDelayed = false) : this(modelProperty, isDelayed)
         {
             _setPipe = setPipe;

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Sensitivity
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.SliderIntSettingDataSO
   <Label>k__BackingField: sensitivity
+  <Description>k__BackingField: sensitivity_description
+  <WarningText>k__BackingField: 
   <MinValue>k__BackingField: 1
   <MaxValue>k__BackingField: 100

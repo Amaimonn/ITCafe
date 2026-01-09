@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.ToggleSettingDataSO
   <Label>k__BackingField: bloom
+  <Description>k__BackingField: bloom_description
+  <WarningText>k__BackingField: 

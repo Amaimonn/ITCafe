@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: FullScreen
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.ToggleSettingDataSO
   <Label>k__BackingField: full_screen
+  <Description>k__BackingField: full_screen_description
+  <WarningText>k__BackingField: 

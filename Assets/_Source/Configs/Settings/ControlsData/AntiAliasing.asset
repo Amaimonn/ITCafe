@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: AntiAliasing
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.ToggleSettingDataSO
   <Label>k__BackingField: anti_aliasing
+  <Description>k__BackingField: anti_aliasing_description
+  <WarningText>k__BackingField: 

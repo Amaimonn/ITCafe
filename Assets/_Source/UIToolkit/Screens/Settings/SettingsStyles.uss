@@ -198,6 +198,13 @@
     -unity-background-image-tint-color: rgba(132, 165, 255, 0.04);
 }
 
-#ControlInfoContainer > Label {
+.settings__info-entry {
+}
+
+.settings__info-description {
     color: rgb(255, 255, 255);
+}
+
+.settings__info-warning {
+    color: rgb(255, 132, 34);
 }

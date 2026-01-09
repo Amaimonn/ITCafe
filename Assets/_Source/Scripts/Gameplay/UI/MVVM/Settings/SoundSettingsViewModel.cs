@@ -4,26 +4,16 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class SoundSettingsViewModel : SettingsSectionViewModel
     {
-        public ISettingControlViewModel<int> MusicVolume => _musicVolume;
-        public ISettingControlViewModel<int> SfxVolume => _sfxVolume;
+        public IControlViewModel<int> MusicVolume => _musicVolume;
+        public IControlViewModel<int> SfxVolume => _sfxVolume;
 
-        private SettingControlViewModel<int> _musicVolume;
-        private SettingControlViewModel<int> _sfxVolume;
+        private ControlViewModel<int> _musicVolume;
+        private ControlViewModel<int> _sfxVolume;
 
         protected override void OnBind(SettingsModel model)
         {
-            _musicVolume = CreateBindedProperty(model.MusicVolume);
-            _sfxVolume = CreateBindedProperty(model.SfxVolume);
-        }
-
-        public void SetMusicVolume(int value)
-        {
-            _model.MusicVolume.Value = value;
-        }
-
-        public void SetSfxVolume(int value)
-        {
-            _model.SfxVolume.Value = value;
+            _musicVolume = GetBindedControl(model.MusicVolume);
+            _sfxVolume = GetBindedControl(model.SfxVolume);
         }
     }
 }

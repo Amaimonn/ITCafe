@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Brightness
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.SliderIntSettingDataSO
   <Label>k__BackingField: brightness
+  <Description>k__BackingField: brightness_description
+  <WarningText>k__BackingField: 
   <MinValue>k__BackingField: 0
   <MaxValue>k__BackingField: 100

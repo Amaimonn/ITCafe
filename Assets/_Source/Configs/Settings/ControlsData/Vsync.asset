@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Vsync
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.ToggleSettingDataSO
   <Label>k__BackingField: vsync
+  <Description>k__BackingField: vsync_description
+  <WarningText>k__BackingField: 

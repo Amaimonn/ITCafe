@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Postprocessing
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.ToggleSettingDataSO
   <Label>k__BackingField: post_processing
+  <Description>k__BackingField: post_processing_description
+  <WarningText>k__BackingField: 

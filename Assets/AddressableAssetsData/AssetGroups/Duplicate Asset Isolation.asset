@@ -56,11 +56,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 72e5fa9ec6afb1b439e4483f2fd1cf89
-    m_Address: Assets/_Source/Art/Materials/UIChromaMat.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78c657e38e5e41a7a041ee5bc9d0f07f
     m_Address: Assets/_Source/Art/Shaders/UIChroma.shader
     m_ReadOnly: 0

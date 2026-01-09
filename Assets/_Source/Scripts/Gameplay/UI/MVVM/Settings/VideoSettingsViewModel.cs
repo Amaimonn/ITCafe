@@ -8,41 +8,41 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class VideoSettingsViewModel : SettingsSectionViewModel
     {
-        public ISettingControlViewModel<int> Sensitivity => _sensitivity;
-        public ISettingControlViewModel<bool> VSync => _vsync;
-        public ISettingControlViewModel<string> FPS => _fps;
-        public ISettingControlViewModel<int> Brightness => _brightness;
-        public ISettingControlViewModel<bool> PostProcessing => _postProcessing;
-        public ISettingControlViewModel<bool> Bloom => _bloom;
-        public ISettingControlViewModel<bool> FilmGrain => _filmGrain;
-        public ISettingControlViewModel<bool> AntiAliasing => _antiAliasing;
-        public ISettingControlViewModel<string> Resolution => _resolution;
-        public ISettingControlViewModel<bool> Fullscreen => _fullscreen;
+        public IControlViewModel<int> Sensitivity => _sensitivity;
+        public IControlViewModel<bool> VSync => _vsync;
+        public IControlViewModel<string> FPS => _fps;
+        public IControlViewModel<int> Brightness => _brightness;
+        public IControlViewModel<bool> PostProcessing => _postProcessing;
+        public IControlViewModel<bool> Bloom => _bloom;
+        public IControlViewModel<bool> FilmGrain => _filmGrain;
+        public IControlViewModel<bool> AntiAliasing => _antiAliasing;
+        public IControlViewModel<string> Resolution => _resolution;
+        public IControlViewModel<bool> Fullscreen => _fullscreen;
 
-        private SettingControlViewModel<bool> _vsync;
-        private SettingControlViewModel<int> _sensitivity;
-        private SettingControlViewModel<string, int> _fps;
-        private SettingControlViewModel<int> _brightness;
-        private SettingControlViewModel<bool> _postProcessing;
-        private SettingControlViewModel<bool> _bloom;
-        private SettingControlViewModel<bool> _filmGrain;
-        private SettingControlViewModel<bool> _antiAliasing;
-        private SettingControlViewModel<string, ScreenResolution> _resolution;
-        private SettingControlViewModel<bool> _fullscreen;
+        private ControlViewModel<bool> _vsync;
+        private ControlViewModel<int> _sensitivity;
+        private ControlViewModel<string, int> _fps;
+        private ControlViewModel<int> _brightness;
+        private ControlViewModel<bool> _postProcessing;
+        private ControlViewModel<bool> _bloom;
+        private ControlViewModel<bool> _filmGrain;
+        private ControlViewModel<bool> _antiAliasing;
+        private ControlViewModel<string, ScreenResolution> _resolution;
+        private ControlViewModel<bool> _fullscreen;
 
         protected override void OnBind(SettingsModel model)
         {
-            _sensitivity = CreateBindedProperty(model.Sensitivity);
-            _vsync = CreateBindedProperty(model.VSync);
-            _fps = CreateBindedProperty(model.FPS, FpsIntToString, FpsStringToInt);
-            _brightness = CreateBindedProperty(model.Brightness);
-            _postProcessing = CreateBindedProperty(model.IsPostProcessingEnabled);
-            _bloom = CreateBindedProperty(model.IsBloomEnabled);
-            _filmGrain = CreateBindedProperty(model.IsFilmGrainEnabled);
-            _antiAliasing = CreateBindedProperty(model.IsAntiAliasingEnabled);
-            _resolution = CreateBindedProperty(model.ScreenResolution, ScreenResolutionToString,
+            _sensitivity = GetBindedControl(model.Sensitivity);
+            _vsync = GetBindedControl(model.VSync);
+            _fps = GetBindedControl(model.FPS, FpsIntToString, FpsStringToInt);
+            _brightness = GetBindedControl(model.Brightness);
+            _postProcessing = GetBindedControl(model.IsPostProcessingEnabled);
+            _bloom = GetBindedControl(model.IsBloomEnabled);
+            _filmGrain = GetBindedControl(model.IsFilmGrainEnabled);
+            _antiAliasing = GetBindedControl(model.IsAntiAliasingEnabled);
+            _resolution = GetBindedControl(model.ScreenResolution, ScreenResolutionToString,
                 StringToScreenResolution, true); // delayed
-            _fullscreen = CreateBindedProperty(model.Fullscreen, true); // delayed
+            _fullscreen = GetBindedControl(model.Fullscreen, true); // delayed
             
             _vsync.OnChanged.Subscribe(_fps.SetWarning) // if vsync is enabled: display fps warning
                 .AddTo(_disposables);

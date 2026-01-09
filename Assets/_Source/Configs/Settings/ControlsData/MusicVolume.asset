@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: MusicVolume
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.SliderIntSettingDataSO
   <Label>k__BackingField: music
+  <Description>k__BackingField: music_description
+  <WarningText>k__BackingField: 
   <MinValue>k__BackingField: 0
   <MaxValue>k__BackingField: 100

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca283d6cc5cd58841acd80e34cb31e81, type: 3}
   m_Name: Language
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.OptionsSettingDataSO
-  <Label>k__BackingField: 
+  <Label>k__BackingField: language
+  <Description>k__BackingField: language_description
+  <WarningText>k__BackingField: 
   <Options>k__BackingField:
   - en
   - ru

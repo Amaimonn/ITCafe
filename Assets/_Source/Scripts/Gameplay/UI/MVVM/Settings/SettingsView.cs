@@ -4,7 +4,6 @@ using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.Custom;
-using ObservableCollections;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -59,15 +58,16 @@ namespace ITCafe.Gameplay.UI.MVVM
                 .Subscribe(data =>
                 {
                     _sectionsContainer.Clear();
-                    InitVideo(data);
-                    InitSound(data);
+                    InitSections(data);
                     ViewModel.OnSectionChanged.Subscribe(OnSectionChanged)
                         .AddTo(_disposables);
                 })
                 .AddTo(_disposables);
 
-            _applyButton.RegisterCallback<ClickEvent>(ApplyChanges);
-            _cancelChangesButton.RegisterCallback<ClickEvent>(CancelChanges);
+            _applyButton.SubscribeCallback<ClickEvent>(ApplyChanges)
+                .AddTo(_disposables);
+            _cancelChangesButton.SubscribeCallback<ClickEvent>(CancelChanges)
+                .AddTo(_disposables);
             _closeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
 
@@ -76,14 +76,22 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _applyButton.SetEnabled(x);
                 _cancelChangesButton.SetEnabled(x);
             }).AddTo(_disposables);
+            
+            _controlFactory.AddTo(_disposables);
         }
 
+        private void InitSections(ISettingsData data)
+        {
+            InitVideo(data);
+            InitSound(data);
+        }
+        
         private void InitVideo(ISettingsData data)
         {
             var videoViewModel = ViewModel.VideoSettingsViewModel;
 
-            var tabEntry = _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer,
-                data.VideoSectionLabel, _ => ViewModel.SelectSection(videoViewModel));
+            var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel, 
+                _ => ViewModel.SelectSection(videoViewModel));
             var videoSection = tabEntry.ScrollView;
             _sectionsMap[videoViewModel] = tabEntry;
 
@@ -113,8 +121,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var soundViewModel = ViewModel.SoundSettingsViewModel;
 
-            var tabEntry = _controlFactory.AddBindedTab(_sectionsContainer, _tabButtonsContainer,
-                data.SoundSectionLabel, _ => ViewModel.SelectSection(soundViewModel));
+            var tabEntry = _controlFactory.AddBindedTab(data.SoundSectionLabel, 
+                _ => ViewModel.SelectSection(soundViewModel));
             var soundSection = tabEntry.ScrollView;
             _sectionsMap[soundViewModel] = tabEntry;
 

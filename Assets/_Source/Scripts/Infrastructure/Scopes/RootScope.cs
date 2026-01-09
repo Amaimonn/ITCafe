@@ -76,7 +76,8 @@ namespace ITCafe
             var appSettingsModel = Container.Resolve<SettingsModel>();
             
             var appSettingsApplier = new AppSettingsApplier();
-            appSettingsApplier.BindSettings(appSettingsModel).AddTo(_disposables);
+            appSettingsApplier.BindSettings(appSettingsModel)
+                .AddTo(_disposables);
         }
 
         protected override void OnDestroy()

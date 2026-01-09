@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: FilmGrain
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.ToggleSettingDataSO
   <Label>k__BackingField: film_grain
+  <Description>k__BackingField: film_grain_description
+  <WarningText>k__BackingField: 

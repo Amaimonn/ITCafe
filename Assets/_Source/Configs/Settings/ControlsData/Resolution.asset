@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Resolution
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.OptionsSettingDataSO
   <Label>k__BackingField: resolution
+  <Description>k__BackingField: resolution_description
+  <WarningText>k__BackingField: 
   <Options>k__BackingField:
   - default
   - 1366x768

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DevKit.UITK;
 using DevKit.Utils;
@@ -11,12 +12,17 @@ using UnityEngine.UIElements;
 namespace ITCafe.Gameplay.UI.MVVM
 {
     [Serializable]
-    public class SettingControlFactory
+    public class SettingControlFactory : IDisposable
     {
         [Header("Tab")]
         [SerializeField] private string _tabClass = "settings__section";
         [SerializeField] private string _tabScrollViewClass = "cafe__scroll-view";
         [SerializeField] private string _settingBarLabelName = "SettingBarLabel";
+
+        [Header("Info Container")]
+        [SerializeField] private string _infoEntryClass = "settings__info-entry";
+        [SerializeField] private string _descriptionClass = "settings__info-description";
+        [SerializeField] private string _warningDescriptionClass = "settings__info-warning";
 
         [Header("Tab Button"), Space(4)]
         [SerializeField] private VisualTreeAsset _tabButtonAsset;
@@ -36,25 +42,26 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _sectionsContainer;
         private VisualElement _buttonsContainer;
         private VisualElement _controlInfoContainer;
+        private CompositeDisposable _disposables;
 
-        public void Init(VisualElement sectionsContainer, VisualElement buttonsContainer, 
+        public void Init(VisualElement sectionsContainer, VisualElement buttonsContainer,
             VisualElement controlInfoContainer)
         {
             _sectionsContainer = sectionsContainer;
             _buttonsContainer = buttonsContainer;
             _controlInfoContainer = controlInfoContainer;
+            _disposables = new();
         }
 
-        public TabEntry AddBindedTab(VisualElement sectionsContainer, VisualElement buttonsContainer,
-            string labelText, EventCallback<ClickEvent> onButtonClicked)
+        public TabEntry AddBindedTab(string labelText, EventCallback<ClickEvent> onButtonClicked)
         {
             var scrollView = new ScrollView();
             scrollView.AddToClassList(_tabClass);
             scrollView.AddToClassList(_tabScrollViewClass);
-            sectionsContainer.Add(scrollView);
+            _sectionsContainer.Add(scrollView);
 
             var tabButtonTemplate = _tabButtonAsset.CloneTree();
-            buttonsContainer.Add(tabButtonTemplate);
+            _buttonsContainer.Add(tabButtonTemplate);
 
             var tabButton = tabButtonTemplate.Q<Button>();
             tabButton.RegisterCallback<ClickEvent>(onButtonClicked);
@@ -64,42 +71,44 @@ namespace ITCafe.Gameplay.UI.MVVM
         }
 
         public void AddBindedSliderInt(ISliderSettingData<int> sliderSettingData, VisualElement parentSection,
-            ISettingControlViewModel<int> controlViewModel)
+            IControlViewModel<int> controlViewModel)
         {
             var settingBar = CreateBar(_sliderIntBarAsset, sliderSettingData.Label, parentSection);
             var slider = settingBar.Q<SliderInt>();
 
             slider.lowValue = sliderSettingData.MinValue;
             slider.highValue = sliderSettingData.MaxValue;
-            
+
             BindSliderInt(slider, controlViewModel);
             BindBar(settingBar, slider, controlViewModel, sliderSettingData);
         }
 
-        private void BindSliderInt(SliderInt slider, ISettingControlViewModel<int> controlViewModel)
+        private void BindSliderInt(SliderInt slider, IControlViewModel<int> controlViewModel)
         {
             slider.RegisterCallback<ChangeEvent<int>>(e => controlViewModel.SetValue(e.newValue));
-            controlViewModel.OnChanged.Subscribe(x => slider.value = x);
+            controlViewModel.OnChanged.Subscribe(x => slider.value = x)
+                .AddTo(_disposables);
         }
 
         public void AddBindedToggle(IToggleSettingData toggleSettingData, VisualElement parentSection,
-            ISettingControlViewModel<bool> controlViewModel)
+            IControlViewModel<bool> controlViewModel)
         {
             var settingBar = CreateBar(_toggleBarAsset, toggleSettingData.Label, parentSection);
             var toggle = settingBar.Q<Toggle>();
-            
+
             BindToggle(toggle, controlViewModel);
             BindBar(settingBar, toggle, controlViewModel, toggleSettingData);
         }
 
-        private void BindToggle(Toggle toggle, ISettingControlViewModel<bool> controlViewModel)
+        private void BindToggle(Toggle toggle, IControlViewModel<bool> controlViewModel)
         {
             toggle.RegisterCallback<ChangeEvent<bool>>(e => controlViewModel.SetValue(e.newValue));
-            controlViewModel.OnChanged.Subscribe(x => toggle.value = x);
+            controlViewModel.OnChanged.Subscribe(x => toggle.value = x)
+                .AddTo(_disposables);
         }
 
         public void AddBindedDropdown(IOptionsSettingData dropdownSettingData, VisualElement parentSection,
-            ISettingControlViewModel<string> controlViewModel)
+            IControlViewModel<string> controlViewModel)
         {
             var settingBar = CreateBar(_dropdownBarAsset, dropdownSettingData.Label, parentSection);
             var dropdown = settingBar.Q<DropdownField>();
@@ -112,33 +121,35 @@ namespace ITCafe.Gameplay.UI.MVVM
             //     dropdown.choices = dropdownSettingData.OverrideDisplayOptions.ToList();
 
             dropdown.choices = dropdownSettingData.Options.ToList();
-            
+
             BindDropdown(dropdown, controlViewModel);
             BindBar(settingBar, dropdown, controlViewModel, dropdownSettingData);
         }
 
-        private void BindDropdown(DropdownField dropdown, ISettingControlViewModel<string> controlViewModel)
+        private void BindDropdown(DropdownField dropdown, IControlViewModel<string> controlViewModel)
         {
             dropdown.RegisterValueChangedCallback(e => controlViewModel.SetValue(e.newValue));
-            controlViewModel.OnChanged.Subscribe(x => dropdown.value = x);
+            controlViewModel.OnChanged.Subscribe(x => dropdown.value = x)
+                .AddTo(_disposables);
         }
 
         public void AddBindedArrowMenu(IOptionsSettingData arrowMenuSettingData, VisualElement parentSection,
-            ISettingControlViewModel<string> controlViewModel)
+            IControlViewModel<string> controlViewModel)
         {
             var settingBar = CreateBar(_arrowMenuBarAsset, arrowMenuSettingData.Label, parentSection);
             var arrowMenu = settingBar.Q<ArrowMenuString>();
 
             arrowMenu.Options = arrowMenuSettingData.Options;
-            
+
             BindArrowMenu(arrowMenu, controlViewModel);
             BindBar(settingBar, arrowMenu, controlViewModel, arrowMenuSettingData);
         }
 
-        private void BindArrowMenu<T>(ArrowMenu<T> arrowMenu, ISettingControlViewModel<T> controlViewModel)
+        private void BindArrowMenu<T>(ArrowMenu<T> arrowMenu, IControlViewModel<T> controlViewModel)
         {
             arrowMenu.OnValueChanged += controlViewModel.SetValue;
-            controlViewModel.OnChanged.Subscribe(x => arrowMenu.Value = x);
+            controlViewModel.OnChanged.Subscribe(x => arrowMenu.Value = x)
+                .AddTo(_disposables);
         }
 
         private VisualElement CreateBar(VisualTreeAsset asset, string labelText, VisualElement parent)
@@ -152,19 +163,59 @@ namespace ITCafe.Gameplay.UI.MVVM
             return settingBar;
         }
 
-        private void BindBar<T>(VisualElement bar, VisualElement control, ISettingControlViewModel<T> controlViewModel, 
+        private void BindBar<T>(VisualElement bar, VisualElement control, IControlViewModel<T> controlViewModel,
             ISettingBarData data)
         {
-            controlViewModel.IsWarning.Subscribe(x => control.SetEnabled(!x));
-            bar.RegisterCallback<PointerEnterEvent>(_ =>
+            var barInfoContainer = new VisualElement
             {
-                if (_controlInfoContainer == null) 
-                    return;
-                
-                _controlInfoContainer.Clear();
-                _controlInfoContainer.Add(new Label(data.Label));
-                // TODO: display warning
-            }, TrickleDown.TrickleDown);
+                style =
+                {
+                    display = DisplayStyle.None
+                }
+            };
+            barInfoContainer.AddToClassList(_infoEntryClass);
+            _controlInfoContainer.Add(barInfoContainer);
+
+            var descriptionLabel = new Label(data.Description);
+            descriptionLabel.AddToClassList(_descriptionClass);
+            barInfoContainer.Add(descriptionLabel);
+
+            if (data.WarningText != null)
+            {
+                var warningLabel = new Label(data.WarningText);
+                warningLabel.AddToClassList(_warningDescriptionClass);
+                barInfoContainer.Add(warningLabel);
+
+                controlViewModel.OnWarning.Subscribe(hasWarning =>
+                    {
+                        if (hasWarning)
+                        {
+                            warningLabel.style.display = DisplayStyle.Flex;
+                            control.SetEnabled(false);
+                        }
+                        else
+                        {
+                            warningLabel.style.display = DisplayStyle.None;
+                            control.SetEnabled(true);
+                        }
+                    })
+                    .AddTo(_disposables);
+            }
+            else
+            {
+                controlViewModel.OnWarning.Subscribe(hasWarning => control.SetEnabled(!hasWarning))
+                    .AddTo(_disposables);
+            }
+
+            bar.RegisterCallback<PointerEnterEvent>(_ => barInfoContainer.style.display = DisplayStyle.Flex,
+                TrickleDown.TrickleDown);
+            bar.RegisterCallback<PointerLeaveEvent>(_ => barInfoContainer.style.display = DisplayStyle.None,
+                TrickleDown.TrickleDown);
+        }
+
+        public void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
         }
     }
 }
