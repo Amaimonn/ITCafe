@@ -1,11 +1,11 @@
 using System;
+using DevKit.Locator;
 using DevKit.Saves;
-using DevKit.Solutions;
 using DevKit.UI.MVVM;
-using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using ITCafe.Data.Settings;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;
@@ -27,6 +27,9 @@ namespace ITCafe
         {
             FLogger.Log("RootScope Configure");
             ShaderUnscaledTime.On();
+            
+            var localizer = new UnityLocalizer();
+            ServiceLocator.Current.Register<ILocalizer>(localizer);
 
             _rootUIBinder = Instantiate(_rootUIBinderPrefab);
             DontDestroyOnLoad(_rootUIBinder);
