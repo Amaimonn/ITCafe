@@ -9,12 +9,15 @@ namespace ITCafe
 
 #region Outline config
         public const float OUTLINE_WIDTH = 7f;
-        public static Color OUTLINE_COLOR = new(1f, 10.6283679f, 0.45f, 1);
+        public readonly static Color OUTLINE_COLOR = new(1f, 10.6283679f, 0.45f, 1);
 #endregion
 
 #region Registration Keys
         public const string CLIENT_SEATS = nameof(CLIENT_SEATS);
         public const string CLIENT_ORDER_PLACES = nameof(CLIENT_ORDER_PLACES);
+        public const string MENU_ITEMS_MAP = nameof(MENU_ITEMS_MAP);
+        public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
+        public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
 #endregion
 
 #region Scene signals
@@ -32,15 +35,19 @@ namespace ITCafe
         [ItemKey] public const string FRIES = nameof(FRIES);
 #endregion
 
-#region Registration Keys
-        public const string MENU_ITEMS_MAP = nameof(MENU_ITEMS_MAP);
-        public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
-        public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
-#endregion
-
 #region Addressables Paths
         public const string ALL_LOCATIONS_DATA_PATH = "all_locations_data";
         public const string SETTINGS_DATA_PATH = "settings_data";
+#endregion
+
+#region Localization Tables
+        public const string SHARED_TABLE = "Shared";
+        public const string MAIN_MENU_TABLE = "MainMenu";
+        public const string GAMEPLAY_TABLE = "Gameplay";
+        
+        public const string SETTINGS_DATA_TABLE = "SettingsData";
+        public const string LOCATIONS_DATA_TABLE = "LocationsData";
+        public static string GetMissionsDataTable(string locationId) => $"{locationId}_MissionsData";
 #endregion
     }
 }
