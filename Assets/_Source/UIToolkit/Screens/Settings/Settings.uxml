@@ -8,7 +8,11 @@
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="settings__root" style="flex-grow: 1;">
         <ui:VisualElement name="SettingsPanel" class="settings__panel" style="flex-grow: 1;">
             <ui:VisualElement name="Header" class="settings__header">
-                <ui:Label text="// &#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;" class="cafe__view-title"/>
+                <ui:Label class="cafe__view-title">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(39123410944)"/>
+                    </Bindings>
+                </ui:Label>
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
             <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px; flex-shrink: 0;">
@@ -41,8 +45,16 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ActionsContainer" class="settings__actions" style="margin-top: 20px;">
-                <ui:Button name="ApplyButton" text="&#1055;&#1056;&#1048;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="settings__button cafe__control-button cafe__control-button--cyan"/>
-                <ui:Button name="CancelChangesButton" text="&#1054;&#1058;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="cafe__control-button cafe__control-button--red settings__button" style="margin-left: 20px;"/>
+                <ui:Button name="ApplyButton" focusable="false" class="settings__button cafe__control-button cafe__control-button--cyan">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(10650322460672)"/>
+                    </Bindings>
+                </ui:Button>
+                <ui:Button name="CancelChangesButton" focusable="false" class="cafe__control-button cafe__control-button--red settings__button" style="margin-left: 20px;">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(10673886060544)"/>
+                    </Bindings>
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

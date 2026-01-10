@@ -2,6 +2,7 @@ using System.Collections;
 using DevKit.Utils;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Localization.Settings;
 using VContainer;
 using VContainer.Unity;
 
@@ -50,7 +51,14 @@ namespace ITCafe
                     rootScope.Build();
                 }
                 
+                yield return LocalizationSettings.InitializationOperation;
+                
                 var rootContainer = rootScope.Container;
+                var localizationLoader = rootContainer.Resolve<ILocalizationLoader>();
+                
+                localizationLoader.Init();
+                yield return localizationLoader.LoadTables();
+                
                 var sceneLoader = rootContainer.Resolve<SceneLoader>();
 
                 yield return sceneLoader.LoadStartScene();

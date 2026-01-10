@@ -20,6 +20,21 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d73c7b9fa74f5a4ca178ee718c45d24
+    m_Address: Assets/_Source/Localization/Tables/Gameplay Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8881dbb907ad6df439a3f2a44ed2bdc7
+    m_Address: Assets/_Source/Localization/Tables/Shared Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfddd950c6abf524ba3cce34892a09ad
+    m_Address: Assets/_Source/Localization/Tables/MainMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: f6de04e4207be0240bbd8b774ef10265, type: 2}
   m_SchemaSet:

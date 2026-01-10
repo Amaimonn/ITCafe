@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Russian (ru)
   m_GUID: d210db5e056460d409616f11cbffca00
   m_SerializeEntries:
+  - m_GUID: 455f1cc7716b0494d8bc9fae0de62f7a
+    m_Address: Shared_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 542f19c0230e68c43969d0abe1748cae
     m_Address: SettingsData_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 859b7992c268221478d4c5508d333d78
+    m_Address: Gameplay_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3bee75766b6c2649872e59f9316435d
+    m_Address: MainMenu_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru

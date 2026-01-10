@@ -19,6 +19,7 @@ namespace ITCafe
     {
         [SerializeField] private RootUIBinder _rootUIBinderPrefab;
         [SerializeField] private SettingsView _settingsViewPrefab;
+        [SerializeField] private LocalizationLoader _localizationLoader;
 
         private CompositeDisposable _disposables = new();
         private RootUIBinder _rootUIBinder;
@@ -27,7 +28,7 @@ namespace ITCafe
         {
             FLogger.Log("RootScope Configure");
             ShaderUnscaledTime.On();
-            
+
             var localizer = new UnityLocalizer();
             ServiceLocator.Current.Register<ILocalizer>(localizer);
 
@@ -37,6 +38,8 @@ namespace ITCafe
                 .As<IRootUIBinder>();
 
             builder.Register<SceneLoader>(Lifetime.Singleton);
+
+            builder.Register<ILocalizationLoader>(_ => _localizationLoader, Lifetime.Scoped);
 
             RegisterSaves(builder);
             RegisterUI(builder);
@@ -77,7 +80,7 @@ namespace ITCafe
         private void InitSettings()
         {
             var appSettingsModel = Container.Resolve<SettingsModel>();
-            
+
             var appSettingsApplier = new AppSettingsApplier();
             appSettingsApplier.BindSettings(appSettingsModel)
                 .AddTo(_disposables);

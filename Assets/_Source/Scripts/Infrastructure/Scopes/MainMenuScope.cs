@@ -20,8 +20,10 @@ namespace ITCafe
 
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
+        [SerializeField] private LocalizationLoader _localizationLoader;
 
         private MainMenuEnterContext _mainMenuEnterContext;
+        private CompositeDisposable _disposables = new();
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -65,6 +67,10 @@ namespace ITCafe
 
             Build();
             yield return new WaitForEndOfFrame();
+            
+            _localizationLoader.Init();
+            _localizationLoader.AddTo(_disposables);
+            yield return _localizationLoader.LoadTables();
 
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
@@ -116,6 +122,12 @@ namespace ITCafe
             });
 
             ExitSignal = mainMenuExitSignal;
+        }
+        
+        protected override void OnDestroy()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.OnDestroy();
         }
     }
 }

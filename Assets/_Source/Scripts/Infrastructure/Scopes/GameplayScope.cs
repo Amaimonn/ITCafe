@@ -51,6 +51,7 @@ namespace ITCafe
 
         [Header("Other"), Space(4)]
         [SerializeField] private GameObject _missionSetupRoot;
+        [SerializeField] private LocalizationLoader _localizationLoader;
 
         private GuideSO _guideSO;
         private CompositeDisposable _disposables = new();
@@ -231,6 +232,10 @@ namespace ITCafe
 
             Build();
             yield return new WaitForEndOfFrame();
+            
+            _localizationLoader.Init();
+            _localizationLoader.AddTo(_disposables);
+            yield return _localizationLoader.LoadTables();
 
             // Scene setup
             Destroy(_missionSetupRoot);
