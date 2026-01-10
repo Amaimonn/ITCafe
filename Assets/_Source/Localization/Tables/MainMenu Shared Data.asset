@@ -27,6 +27,50 @@ MonoBehaviour:
     m_Key: exit_button
     m_Metadata:
       m_Items: []
+  - m_Id: 79785513443328
+    m_Key: log_initialization
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80661699354624
+    m_Key: log_equality_line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80916931141632
+    m_Key: log_user
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80990092386304
+    m_Key: log_status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81021759381504
+    m_Key: log_minus_line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81060946763776
+    m_Key: log_analysis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81196431171584
+    m_Key: log_path_error
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81221831876608
+    m_Key: log_params
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81244057493504
+    m_Key: log_protocol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81265968537600
+    m_Key: log_target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81298566668288
+    m_Key: log_waiting
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

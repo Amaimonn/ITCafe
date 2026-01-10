@@ -1,5 +1,4 @@
 using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.Shared
