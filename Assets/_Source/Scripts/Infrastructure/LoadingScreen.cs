@@ -49,19 +49,22 @@ namespace ITCafe
         public void Show()
         {
             _loadingRoot.SetActive(true);
-            _loadingText.SetActive(true);
-            _loadingStub.SetActive(true);
+            SetActiveTextSafe(true);
+            SetActiveStubSafe(true);
 
             SetOverlayFillProgress(1);
+            
             _onStarted.OnNext(Unit.Default);
         }
 
         public void Hide()
         {
-            _loadingStub.SetActive(false);
-            _loadingText.SetActive(false);
             _loadingRoot.SetActive(false);
+            SetActiveStubSafe(false);
+            SetActiveTextSafe(false);
+            
             SetOverlayFillProgress(0);
+            
             _onFinished.OnNext(Unit.Default);
         }
 
@@ -73,18 +76,22 @@ namespace ITCafe
             while (_overlayFillProgress.Value < 1)
             {
                 var currentProgress = _overlayFillProgress.Value + Time.unscaledDeltaTime / _overlayFillSeconds;
+                
                 if (currentProgress > 1)
                     currentProgress = 1;
+                
                 SetOverlayFillProgress(currentProgress);
                 yield return null;
             }
 
-            _loadingStub.SetActive(true);
+            SetActiveStubSafe(true);
+            SetActiveTextSafe(true);
         }
 
         public IEnumerator HideCoroutine()
         {
-            _loadingStub.SetActive(false);
+            SetActiveStubSafe(false);
+            SetActiveTextSafe(false);
 
             while (_overlayFillProgress.Value > 0)
             {
@@ -103,6 +110,18 @@ namespace ITCafe
         {
             _overlayFillProgress.Value = progress;
             _overlayImage.material.SetFloat(_overlayProgressProperty, _overlayFillProgress.Value);
+        }
+
+        private void SetActiveTextSafe(bool isActive)
+        {
+            if (_loadingText != null)
+                _loadingText.SetActive(isActive);
+        }
+        
+        private void SetActiveStubSafe(bool isActive)
+        {
+            if (_loadingStub != null)
+                _loadingStub.SetActive(isActive);
         }
     }
 }
