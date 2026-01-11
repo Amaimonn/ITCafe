@@ -5,7 +5,7 @@
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="hud__root">
         <ui:VisualElement name="TopBar" picking-mode="Ignore" class="hud__top-bar" style="width: 200px;">
             <ui:VisualElement name="BarLeftItem" class="hud__top-bar-item">
-                <ui:Label text="00:00" name="Timer" class="hud__timer"/>
+                <ui:Label text="- - : - -" name="Timer" class="hud__timer"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 0; height: 100%; width: 4px; position: absolute; left: 50%; translate: -50% 0; background-color: rgb(143, 143, 143); display: none;"/>
             <ui:VisualElement name="BarRightItem" class="hud__top-bar-item" style="flex-grow: 1; display: none;">
@@ -15,17 +15,33 @@
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: row;">
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; align-items: flex-start; margin-top: 20px;">
                 <ui:VisualElement name="StatsPanel" class="hud__stats-panel hud__widget-panel">
-                    <ui:Label text="&#1057;&#1058;&#1040;&#1058;&#1048;&#1057;&#1058;&#1048;&#1050;&#1040;" class="hud__widget-title"/>
+                    <ui:Label class="hud__widget-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(294269993607168)"/>
+                        </Bindings>
+                    </ui:Label>
                     <ui:VisualElement name="OrderStat" class="hud__stat-item">
-                        <ui:Label text="_&#1050;&#1051;&#1048;&#1045;&#1053;&#1058;&#1067;:" class="hud__stat-label" style="height: 20px;"/>
+                        <ui:Label class="hud__stat-label" style="height: 20px;">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(294508557230080)"/>
+                            </Bindings>
+                        </ui:Label>
                         <ui:Label text="0" name="OrderValue" class="hud__stat-value" style="-unity-text-outline-width: 0; color: rgb(255, 255, 255);"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="SatisfactionStat" class="hud__stat-item">
-                        <ui:Label text="_&#1042;&#1067;&#1055;&#1054;&#1051;&#1053;&#1045;&#1053;&#1054;:" class="hud__stat-label"/>
+                        <ui:Label class="hud__stat-label">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(294567764025344)"/>
+                            </Bindings>
+                        </ui:Label>
                         <ui:Label text="0" name="SatisfactionValue" class="hud__stat-value" style="color: rgb(79, 226, 18); -unity-text-outline-width: 0;"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="FailedStat" class="hud__stat-item">
-                        <ui:Label text="_&#1057;&#1041;&#1054;&#1048;:" class="hud__stat-label"/>
+                        <ui:Label class="hud__stat-label">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(294758160261120)"/>
+                            </Bindings>
+                        </ui:Label>
                         <ui:Label text="0" name="FailedValue" class="hud__stat-value" style="color: rgb(226, 51, 18); -unity-text-outline-width: 0;"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="RatingStat" class="hud__stat-item" style="display: none;">
@@ -36,7 +52,11 @@
             </ui:VisualElement>
             <ui:VisualElement name="RightSide" style="flex-grow: 1; align-items: flex-end; margin-top: 20px;">
                 <ui:VisualElement name="OrdersPanel" class="hud__orders-panel hud__widget-panel">
-                    <ui:Label text="&#1041;&#1069;&#1050;&#1051;&#1054;&#1043;" class="hud__widget-title" style="font-size: 18px;"/>
+                    <ui:Label class="hud__widget-title" style="font-size: 18px;">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(9008308224)"/>
+                        </Bindings>
+                    </ui:Label>
                     <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
                         <ui:Instance template="OrderPreview" name="OrderPreview"/>
                         <ui:Instance template="OrderPreview" name="OrderPreview"/>

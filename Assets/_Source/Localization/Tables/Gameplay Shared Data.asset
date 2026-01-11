@@ -19,6 +19,22 @@ MonoBehaviour:
     m_Key: backlog
     m_Metadata:
       m_Items: []
+  - m_Id: 294269993607168
+    m_Key: stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 294508557230080
+    m_Key: clients_stat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 294567764025344
+    m_Key: completed_stat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 294758160261120
+    m_Key: failure_stat
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
