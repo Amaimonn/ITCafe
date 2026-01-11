@@ -6,98 +6,96 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Gameplay.UI.Custom
 {
-    [UxmlObject]
-    public abstract partial class AnimatedText
+    [UxmlElement]
+    public abstract partial class AnimatedText : Label
     {
-        protected Label Label;
+        [UxmlAttribute] private float InitialDelay { get; set; } = 0f;
 
         public bool IsRunning { get; protected set; }
-
-        public void Bind(Label label)
-        {
-            Label = label;
-        }
 
         public IEnumerator ShowCoroutine()
         {
             IsRunning = true;
-            
-            if (Label != null)
-                yield return OnShow();
-            else
-                FLogger.Log<AnimatedText>("No Label binded");
-            
+
+            if (InitialDelay > 0)
+                yield return new WaitForSeconds(InitialDelay);
+
+            style.visibility = Visibility.Visible;
+            yield return OnShow();
+
             IsRunning = false;
         }
-        
+
         protected abstract IEnumerator OnShow();
     }
-    
-    [UxmlObject]
+
+    [UxmlElement]
     public partial class FlashingText : AnimatedText
     {
         [UxmlAttribute] private float FlashInterval { get; set; } = 0.15f;
+        [UxmlAttribute] private bool IsInfinite { get; set; } = false;
         [UxmlAttribute] private int FlashCount { get; set; } = 3;
 
         protected override IEnumerator OnShow()
         {
-            IsRunning = true;
-
-            for (var i = 0; i < FlashCount; i++)
+            if (IsInfinite)
             {
-                Label.style.visibility = Visibility.Visible;
+                while (IsRunning)
+                    yield return Flash();
+            }
+            else
+            {
+                for (var i = 0; i < FlashCount; i++)
+                    yield return Flash();
+            }
+
+            style.visibility = Visibility.Visible;
+
+            IEnumerator Flash()
+            {
+                style.visibility = Visibility.Visible;
                 yield return new WaitForSeconds(FlashInterval);
 
-                Label.style.visibility = Visibility.Hidden;
+                style.visibility = Visibility.Hidden;
                 yield return new WaitForSeconds(FlashInterval);
             }
-            
-            Label.style.visibility = Visibility.Visible;
-
-            IsRunning = false;
         }
     }
 
-    [UxmlObject]
-    public partial class NotAnimatedText : AnimatedText
+    [UxmlElement]
+    public partial class ImmediateText : AnimatedText
     {
         protected override IEnumerator OnShow()
         {
-            IsRunning = true;
             yield return null;
-            IsRunning = false;
         }
     }
 
-    [UxmlObject]
+    [UxmlElement]
     public partial class TypingText : AnimatedText
     {
-        [UxmlAttribute] private float InitialDelay { get; set; } = 0f;
         [UxmlAttribute] private float CharInterval { get; set; } = 0.05f;
 
         protected override IEnumerator OnShow()
         {
-            IsRunning = true;
-            Label.RegisterValueChangedCallback(OnSourceTextChanged);
-            
-            var originalText = Label.text;
-            
-            INotifyValueChanged<string> notifyLabel = Label;
+            this.RegisterValueChangedCallback(OnSourceTextChanged);
+
+            var originalText = text;
+
+            INotifyValueChanged<string> notifyLabel = this;
             notifyLabel.SetValueWithoutNotify(string.Empty);
-            
-            if (InitialDelay > 0)
-                yield return new WaitForSeconds(InitialDelay);
-            
+
+
             foreach (var c in originalText)
             {
                 if (!IsRunning)
                     break;
-                
-                notifyLabel.SetValueWithoutNotify(Label.text + c);
+
+                notifyLabel.SetValueWithoutNotify(text + c);
                 yield return new WaitForSeconds(CharInterval);
             }
-            Label.UnregisterValueChangedCallback(OnSourceTextChanged);
-            IsRunning = false;
+
+            this.UnregisterValueChangedCallback(OnSourceTextChanged);
         }
 
         private void OnSourceTextChanged(ChangeEvent<string> _)
@@ -105,15 +103,32 @@ namespace ITCafe.Gameplay.UI.Custom
             IsRunning = false;
         }
     }
-    
+
     [UxmlElement]
     public partial class AnimatedTextContainer : VisualElement
     {
-        [UxmlObjectReference] private AnimatedText[] AnimatedTextEntries { get; set; }
-
         [UxmlAttribute] private float _lineDelay = 0.3f;
 
+        private readonly List<AnimatedText> _animatedTextEntries = new();
         private readonly List<Label> _labels = new();
+
+        public AnimatedTextContainer()
+        {
+            RegisterCallback<AttachToPanelEvent>(HandleAttachedToPanel);
+        }
+
+        private void HandleAttachedToPanel(AttachToPanelEvent evt)
+        {
+            GatherChildren();
+        }
+
+        private void GatherChildren()
+        {
+            _animatedTextEntries.Clear();
+            this.Query<AnimatedText>().ForEach(x => _animatedTextEntries.Add(x));
+
+            FLogger.Log<AnimatedTextContainer>($"Labels: {_animatedTextEntries.Count}");
+        }
 
         public IEnumerator RunCoroutine()
         {
@@ -124,12 +139,10 @@ namespace ITCafe.Gameplay.UI.Custom
                 _labels.Add(label);
             });
 
-            for (var i = 0; i < AnimatedTextEntries.Length && i < _labels.Count; i++)
+            for (var i = 0; i < _animatedTextEntries.Count && i < _labels.Count; i++)
             {
-                var label = _labels[i];
-                var textEntry = AnimatedTextEntries[i];
-                textEntry.Bind(label);
-                label.style.visibility = Visibility.Visible;
+                var textEntry = _animatedTextEntries[i];
+
                 yield return textEntry.ShowCoroutine();
                 yield return new WaitForSeconds(_lineDelay);
             }

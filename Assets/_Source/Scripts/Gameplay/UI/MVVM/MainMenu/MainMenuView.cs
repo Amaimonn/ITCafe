@@ -11,7 +11,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _playButtonName = "PlayButton";
         [SerializeField] private string _exitButtonName = "ExitButton";
         [SerializeField] private string _settingsButtonName = "SettingsButton";
-
+        [SerializeField] private string _animatedTerminalName = "AnimatedTerminal";
+        
         private Button _playButton;
         private Button _exitButton;
         private Button _settingsButton;
@@ -25,7 +26,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _exitButton = Root.Q<Button>(name: _exitButtonName);
             _settingsButton = Root.Q<Button>(name: _settingsButtonName);
 
-            _animatedTextContainer = Root.Q<AnimatedTextContainer>(string.Empty);
+            _animatedTextContainer = Root.Q<AnimatedTextContainer>(name: _animatedTerminalName);
         }
 
         public override void Show()
