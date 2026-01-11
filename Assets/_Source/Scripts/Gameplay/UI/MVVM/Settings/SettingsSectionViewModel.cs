@@ -5,7 +5,6 @@ using DevKit.UI.MVVM;
 using R3;
 using DevKit.Utils;
 using ITCafe.Data.Settings;
-using ObservableCollections;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -16,7 +15,6 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected SettingsModel _model;
         protected ISettingsData _data;
         protected CompositeDisposable _disposables;
-        protected ObservableHashSet<ISettingBarData> _settingWarnings;
         private readonly List<IReactiveChange> _controlReactiveChanges = new();
         
         public void Bind(SettingsModel model)
@@ -28,10 +26,9 @@ namespace ITCafe.Gameplay.UI.MVVM
             TrackChanges();
         }
 
-        public void SetSettingsData(ISettingsData data, ObservableHashSet<ISettingBarData> settingWarnings)
+        public void SetSettingsData(ISettingsData data)
         {
             _data = data;
-            _settingWarnings = settingWarnings;
         }
 
         protected virtual void OnBind(SettingsModel model)

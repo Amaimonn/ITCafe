@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using DevKit.UITK;
-using DevKit.Utils;
 using ITCafe.Data.Settings;
 using ITCafe.Gameplay.UI.Custom;
 using R3;

@@ -15,7 +15,6 @@ namespace Inui.UI.MVVM.Settings
         public Observable<bool> IsAnyChanges => _isAnyChanges;
         public Observable<SettingsSectionViewModel> OnSectionChanged => _currentSection;
         public Observable<ISettingsData> OnSettingsDataChanged => _settingsData;
-        public IObservableCollection<ISettingBarData> SettingWarnings => _settingWarnings;
 
         public readonly VideoSettingsViewModel VideoSettingsViewModel = new();
         public readonly SoundSettingsViewModel SoundSettingsViewModel = new();
@@ -28,7 +27,6 @@ namespace Inui.UI.MVVM.Settings
         private readonly ReactiveProperty<ISettingsData> _settingsData = new();
         private ReactiveProperty<SettingsSectionViewModel> _currentSection;
         private readonly List<SettingsSectionViewModel> _sections;
-        private readonly ObservableHashSet<ISettingBarData> _settingWarnings = new();
 
         public SettingsViewModel(ISaveStateProvider gameStateProvider)
         {
@@ -58,7 +56,7 @@ namespace Inui.UI.MVVM.Settings
         {
             _settingsData.Value = settingsData;
             foreach (var section in _sections)
-                section.SetSettingsData(settingsData, _settingWarnings);
+                section.SetSettingsData(settingsData);
         }
 
         public override void StartClosing()
@@ -69,15 +67,20 @@ namespace Inui.UI.MVVM.Settings
 
         public void ApplyChanges()
         {
-            VideoSettingsViewModel.ApplyChanges();
+            foreach (var section in _sections)
+                section.ApplyChanges();
+            
             _model.ApplyToState();
             SaveSettings();
+            
             FLogger.Log("Settings: Applied");
         }
 
         public void CancelUnappliedChanges()
         {
-            VideoSettingsViewModel.CancelChanges();
+            foreach (var section in _sections)
+                section.CancelChanges();
+            
             FLogger.Log("Settings: Cancelled");
         }
 
