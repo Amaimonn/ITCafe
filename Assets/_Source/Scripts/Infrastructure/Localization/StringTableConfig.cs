@@ -14,7 +14,8 @@ namespace ITCafe
         menuName = "Scriptable Objects/" + nameof(StringTablesConfig))]
     public class StringTablesConfig : ScriptableObject
     {
-        [field: SerializeField] public InspectorReadonlyList<TableReference> TableReferences { get; private set; }
+        [field: SerializeField, InspectorReadOnly]
+        public InspectorReadonlyList<TableReference> TableReferences { get; private set; }
 
 #if UNITY_EDITOR
         [SerializeField] private StringTableCollection[] tables;

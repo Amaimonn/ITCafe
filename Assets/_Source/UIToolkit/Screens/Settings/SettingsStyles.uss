@@ -203,8 +203,10 @@
 
 .settings__info-description {
     color: rgb(255, 255, 255);
+    white-space: normal;
 }
 
 .settings__info-warning {
     color: rgb(255, 132, 34);
+    white-space: normal;
 }

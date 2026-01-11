@@ -131,6 +131,22 @@ MonoBehaviour:
     m_Key: vsync_description
     m_Metadata:
       m_Items: []
+  - m_Id: 417871384674304
+    m_Key: graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 418253196361728
+    m_Key: audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 424488067006464
+    m_Key: max
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428831319130112
+    m_Key: default
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

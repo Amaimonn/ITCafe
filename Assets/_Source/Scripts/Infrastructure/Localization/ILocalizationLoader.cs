@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using R3;
 
 namespace ITCafe
 {
@@ -7,5 +8,6 @@ namespace ITCafe
     {
         public void Init();
         public UniTaskVoid LoadTables();
+        public Observable<Unit> LoadTablesObservable();
     }
 }

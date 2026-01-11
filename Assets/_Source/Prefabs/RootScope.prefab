@@ -50,5 +50,7 @@ MonoBehaviour:
   autoInjectGameObjects: []
   _rootUIBinderPrefab: {fileID: 3832630466738670075, guid: f2729c5fdc5086b4f834599b68eba00f, type: 3}
   _settingsViewPrefab: {fileID: 1776532671631055006, guid: 5740bb8e3034eaa4b94fe3e14bc73db0, type: 3}
-  _localizationLoader:
+  _rootLocalizationLoader:
     _tablesConfig: {fileID: 11400000, guid: ce3c32f061b37dc42b52433dd3cf68bd, type: 2}
+  _settingsLocalizationLoader:
+    _tablesConfig: {fileID: 11400000, guid: 1058dc49b50b5534690472a41e7fc7b8, type: 2}

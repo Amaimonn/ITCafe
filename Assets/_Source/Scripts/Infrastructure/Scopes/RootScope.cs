@@ -19,7 +19,8 @@ namespace ITCafe
     {
         [SerializeField] private RootUIBinder _rootUIBinderPrefab;
         [SerializeField] private SettingsView _settingsViewPrefab;
-        [SerializeField] private LocalizationLoader _localizationLoader;
+        [SerializeField] private LocalizationLoader _rootLocalizationLoader;
+        [SerializeField] private LocalizationLoader _settingsLocalizationLoader;
 
         private CompositeDisposable _disposables = new();
         private RootUIBinder _rootUIBinder;
@@ -39,7 +40,9 @@ namespace ITCafe
 
             builder.Register<SceneLoader>(Lifetime.Singleton);
 
-            builder.Register<ILocalizationLoader>(_ => _localizationLoader, Lifetime.Scoped);
+            builder.Register<ILocalizationLoader>(_ => _rootLocalizationLoader, Lifetime.Scoped);
+            builder.Register<ILocalizationLoader>(_ => _settingsLocalizationLoader, Lifetime.Scoped)
+                .Keyed(Constants.SETTINGS_LOCALE_LOADER);
 
             RegisterSaves(builder);
             RegisterUI(builder);

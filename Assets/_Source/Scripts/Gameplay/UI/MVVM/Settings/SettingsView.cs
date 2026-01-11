@@ -91,7 +91,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var videoViewModel = ViewModel.VideoSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel, 
-                _ => ViewModel.SelectSection(videoViewModel));
+                _ => ViewModel.SelectSection(videoViewModel), data.GraphicsIcon);
             var videoSection = tabEntry.ScrollView;
             _sectionsMap[videoViewModel] = tabEntry;
 
@@ -122,7 +122,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var soundViewModel = ViewModel.SoundSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.SoundSectionLabel, 
-                _ => ViewModel.SelectSection(soundViewModel));
+                _ => ViewModel.SelectSection(soundViewModel), data.SoundIcon);
             var soundSection = tabEntry.ScrollView;
             _sectionsMap[soundViewModel] = tabEntry;
 

@@ -10,7 +10,7 @@ namespace ITCafe.Data.Settings
         public string LanguageSectionLabel { get; }
 
         public Sprite SoundIcon { get; }
-        public Sprite VideoIcon { get; }
+        public Sprite GraphicsIcon { get; }
         public Sprite InputIcon { get; }
         public Sprite LanguageIcon { get; }
         

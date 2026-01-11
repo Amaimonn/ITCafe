@@ -20,3 +20,9 @@
     border-width: 1px;
     border-radius: 3px;
 }
+
+.settings__tab-button .unity-button__image {
+    margin-right: 2px;
+    width: 32px;
+    aspect-ratio: 1;
+}

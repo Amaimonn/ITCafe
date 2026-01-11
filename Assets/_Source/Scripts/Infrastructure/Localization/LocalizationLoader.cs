@@ -2,6 +2,7 @@
 
 using System;
 using Cysharp.Threading.Tasks;
+using R3;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -23,10 +24,23 @@ namespace ITCafe
         public async UniTaskVoid LoadTables()
         {
             _locale = LocalizationSettings.SelectedLocale;
+            await LocalizationSettings.StringDatabase.PreloadTables(_tablesConfig.TableReferences,
+                _locale);
+        }
+
+        public Observable<Unit> LoadTablesObservable()
+        {
+            _locale = LocalizationSettings.SelectedLocale;
             var handle = LocalizationSettings.StringDatabase.PreloadTables(_tablesConfig.TableReferences,
                 _locale);
 
-            await handle.Task;
+            if (handle.IsDone)
+                return Observable.ReturnUnit();
+
+            var completeSignal = new Subject<Unit>();
+            handle.Completed += x => { completeSignal.OnNext(Unit.Default); };
+
+            return completeSignal;
         }
 
         private void Release()

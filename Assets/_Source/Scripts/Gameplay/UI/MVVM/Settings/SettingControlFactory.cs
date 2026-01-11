@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using DevKit.Locator;
 using DevKit.UITK;
 using ITCafe.Data.Settings;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.Custom;
 using R3;
 using UnityEngine;
@@ -41,6 +43,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _buttonsContainer;
         private VisualElement _controlInfoContainer;
         private CompositeDisposable _disposables;
+        private ILocalizer _localizer;
 
         public void Init(VisualElement sectionsContainer, VisualElement buttonsContainer,
             VisualElement controlInfoContainer)
@@ -49,9 +52,11 @@ namespace ITCafe.Gameplay.UI.MVVM
             _buttonsContainer = buttonsContainer;
             _controlInfoContainer = controlInfoContainer;
             _disposables = new();
+
+            _localizer = ServiceLocator.Current.Get<ILocalizer>();
         }
 
-        public TabEntry AddBindedTab(string labelText, EventCallback<ClickEvent> onButtonClicked)
+        public TabEntry AddBindedTab(string labelText, EventCallback<ClickEvent> onButtonClicked, Sprite icon = null)
         {
             var scrollView = new ScrollView();
             scrollView.AddToClassList(_tabClass);
@@ -64,6 +69,10 @@ namespace ITCafe.Gameplay.UI.MVVM
             var tabButton = tabButtonTemplate.Q<Button>();
             tabButton.RegisterCallback<ClickEvent>(onButtonClicked);
             tabButton.text = labelText;
+            _localizer?.Localize(tabButton, Constants.SETTINGS_DATA_TABLE);
+
+            if (icon != null)
+                tabButton.iconImage = Background.FromSprite(icon);
 
             return new TabEntry { Button = tabButton, ScrollView = scrollView };
         }
@@ -111,23 +120,26 @@ namespace ITCafe.Gameplay.UI.MVVM
             var settingBar = CreateBar(_dropdownBarAsset, dropdownSettingData.Label, parentSection);
             var dropdown = settingBar.Q<DropdownField>();
 
-            // localize options if necessary
-            // var overrideOptions= dropdownSettingData.OverrideDisplayOptions;
-            // var options = dropdownSettingData.Options;
+            var overrideOptions = dropdownSettingData.OverrideDisplayOptions;
+            var options = dropdownSettingData.Options;
 
-            // if (overrideOptions is { Length: > 0 } && overrideOptions.Length == options.Length)
-            //     dropdown.choices = dropdownSettingData.OverrideDisplayOptions.ToList();
+            if (overrideOptions is { Length: > 0 } && overrideOptions.Length == options.Length)
+                dropdown.choices = dropdownSettingData.OverrideDisplayOptions.ToList();
+            else
+                dropdown.choices = options.ToList();
 
-            dropdown.choices = dropdownSettingData.Options.ToList();
+            _localizer?.Localize(dropdown, Constants.SETTINGS_DATA_TABLE);
 
-            BindDropdown(dropdown, controlViewModel);
+            BindDropdown(dropdown, controlViewModel, dropdownSettingData);
             BindBar(settingBar, dropdown, controlViewModel, dropdownSettingData);
         }
 
-        private void BindDropdown(DropdownField dropdown, IControlViewModel<string> controlViewModel)
+        private void BindDropdown(DropdownField dropdown, IControlViewModel<string> controlViewModel,
+            IOptionsSettingData dropdownSettingData)
         {
-            dropdown.RegisterValueChangedCallback(e => controlViewModel.SetValue(e.newValue));
-            controlViewModel.OnChanged.Subscribe(x => dropdown.value = x)
+            dropdown.RegisterValueChangedCallback(_ =>
+                controlViewModel.SetValue(dropdownSettingData.Options[dropdown.index]));
+            controlViewModel.OnChanged.Subscribe(x => dropdown.index = Array.IndexOf(dropdownSettingData.Options, x))
                 .AddTo(_disposables);
         }
 
@@ -157,6 +169,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             var label = settingBar.Q<Label>(name: _settingBarLabelName);
             label.text = labelText;
+            _localizer?.Localize(label, Constants.SETTINGS_DATA_TABLE);
 
             return settingBar;
         }
@@ -175,12 +188,16 @@ namespace ITCafe.Gameplay.UI.MVVM
             _controlInfoContainer.Add(barInfoContainer);
 
             var descriptionLabel = new Label(data.Description);
+            _localizer?.Localize(descriptionLabel, Constants.SETTINGS_DATA_TABLE);
+
             descriptionLabel.AddToClassList(_descriptionClass);
             barInfoContainer.Add(descriptionLabel);
 
             if (data.WarningText != null)
             {
                 var warningLabel = new Label(data.WarningText);
+                _localizer?.Localize(warningLabel, Constants.SETTINGS_DATA_TABLE);
+
                 warningLabel.AddToClassList(_warningDescriptionClass);
                 barInfoContainer.Add(warningLabel);
 
@@ -207,8 +224,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             bar.RegisterCallback<PointerEnterEvent>(_ => barInfoContainer.style.display = DisplayStyle.Flex,
                 TrickleDown.TrickleDown);
-            bar.RegisterCallback<PointerLeaveEvent>(_ => barInfoContainer.style.display = DisplayStyle.None,
-                TrickleDown.TrickleDown);
+            bar.RegisterCallback<PointerLeaveEvent>(_ => barInfoContainer.style.display = DisplayStyle.None);
         }
 
         public void Dispose()

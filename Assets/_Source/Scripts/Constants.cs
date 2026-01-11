@@ -18,6 +18,7 @@ namespace ITCafe
         public const string MENU_ITEMS_MAP = nameof(MENU_ITEMS_MAP);
         public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
         public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
+        public const string SETTINGS_LOCALE_LOADER = nameof(SETTINGS_LOCALE_LOADER);
 #endregion
 
 #region Scene signals

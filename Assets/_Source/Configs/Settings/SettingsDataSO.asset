@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617e48c1cca84e9a87b483fd7ec7317b, type: 3}
   m_Name: SettingsDataSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.SettingsDataSO
-  <SoundSectionLabel>k__BackingField: sound
-  <VideoSectionLabel>k__BackingField: video
+  <SoundSectionLabel>k__BackingField: audio
+  <VideoSectionLabel>k__BackingField: graphics
   <InputSectionLabel>k__BackingField: input
   <LanguageSectionLabel>k__BackingField: language
-  <SoundIcon>k__BackingField: {fileID: 0}
-  <VideoIcon>k__BackingField: {fileID: 0}
+  <SoundIcon>k__BackingField: {fileID: 21300000, guid: 2b2935ea7555fd44dac80a620aae58a3, type: 3}
+  <GraphicsIcon>k__BackingField: {fileID: 21300000, guid: d7cb8c7ae93fa964796337bc20955b0b, type: 3}
   <InputIcon>k__BackingField: {fileID: 0}
   <LanguageIcon>k__BackingField: {fileID: 0}
   _musicVolumeSliderDataSO: {fileID: 11400000, guid: 89e456505ed340946a2ebb8460c5d3d6, type: 2}

@@ -17,7 +17,209 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 0b2fae151df161a4b847f22893f2a3f1, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 13407217647616
+    m_Localized: Mouse Sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13445767495680
+    m_Localized: 'Adjusts the speed at which your view turns when moving the mouse.
+
+
+      Higher
+      values make the camera respond more quickly to mouse movements, allowing for
+      faster aiming and rotating, while lower values provide smoother, more precise
+      control.
+
+
+      This setting is particularly useful for fine-tuning gameplay
+      experience to match your preferred playstyle and hardware responsiveness.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13186681143296
+    m_Localized: Screen Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13126841008128
+    m_Localized: "Sets the rendering resolution of the game window or fullscreen
+      display. \r\n\r\nHigher resolution provides sharper, more detailed visuals
+      with greater clarity on larger screens, but may demand more from your graphics
+      hardware, potentially reducing performance on lower-end systems.\r\n\r\nLower
+      resolution can increase frame rates and smoothness at the cost of image sharpness.
+      This option directly impacts the overall visual fidelity and should be chosen
+      based on monitor's native resolution for optimal results.\n\r\nThe default
+      value uses your monitor's resolution."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13174010150912
+    m_Localized: "Controls the overall level of graphical detail and effects in the
+      game. \r\n\r\nPresets range from Low to Ultra, with higher settings enabling
+      advanced features like improved textures, lighting, shadows, and particle effects
+      for a more immersive and realistic experience. \r\n\r\nHigher quality levels
+      increase the load on GPU and CPU, which may lead to lower frame rates on less
+      powerful hardware. \r\n\r\nUse this to balance visual splendor with performance
+      stability based on your system's capabilities."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13161708257280
+    m_Localized: Graphics Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13138207571968
+    m_Localized: Post-Processing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13150895341568
+    m_Localized: "Enables or disables additional visual effects applied after the
+      main rendering. \r\n\r\nThese effects enhance the cinematic quality and atmosphere
+      of the game world, making scenes feel more dynamic and polished. \r\n\r\nDisabling
+      post-processing can significantly improve performance on mid-range hardware
+      by reducing computational overhead, though it may result in a less vibrant
+      or stylized appearance."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13106024677376
+    m_Localized: Music Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13115407335424
+    m_Localized: "Adjusts the volume level of the background music and soundtracks
+      throughout the game. \r\n\r\nHigher values make the music more prominent, enhancing
+      emotional immersion and thematic elements. \r\n\r\nLower values allow other
+      audio cues like sound effects or dialogue to stand out more clearly. \r\n\r\nThis
+      control does not affect sound effects volume."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13082599489536
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13093060083712
+    m_Localized: "Selects the primary language for all in-game text, subtitles, menus,
+      and other user interface elements. \r\n\r\nChanging this setting will reload
+      the game\u2019s localization files to display content in the chosen language,
+      ensuring accessibility for players worldwide."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13060000579584
+    m_Localized: Full Screen Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13069362266112
+    m_Localized: "Toggles between windowed and full-screen display modes. \r\n\r\nFull-screen
+      mode expands the game to fill your entire monitor, providing a more immersive
+      experience by eliminating distractions from the desktop environment.\r\n\r\nWindowed
+      mode allows for easier multitasking, such as alt-tabbing to other applications,
+      but may introduce minor performance overhead or visible borders depending on
+      your setup."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13046230679552
+    m_Localized: "The frame rate limit doesn\u2019t apply when V-Sync is active."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13036323733504
+    m_Localized: "Sets the target frame rate limit for the game. \r\n\r\nHigher FPS
+      caps allow for smoother motion and more responsive controls, ideal for fast-paced
+      action, but can increase power consumption and heat on your hardware. \r\n\r\nLower
+      limits help stabilize system performance, preventing frame rate spikes that
+      might cause inconsistencies. \r\n\r\nMaximum FPS relies on your hardware\u2019s
+      output, which may vary based on scene complexity and system load."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13025745698816
+    m_Localized: FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12983253204992
+    m_Localized: Film Grain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13009245306880
+    m_Localized: "Applies a subtle overlay of noise to simulate the texture of traditional
+      film stock, adding a vintage or cinematic feel to the visuals.\r\n\r\nThis
+      effect can enhance atmospheric immersion but may slightly obscure fine details.
+      \r\n\r\nDisabling it results in a cleaner, more modern look and can marginally
+      improve performance by reducing post-processing calculations."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12796560539648
+    m_Localized: Brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12809793568768
+    m_Localized: "Adjusts the overall luminance of the game\u2019s display, making
+      scenes brighter or darker without altering color balance. \r\n\r\nUse this
+      setting to ensure optimal visibility in both brightly lit and dimly lit areas
+      of game world, or to calibrate the picture according to the ambient lighting
+      conditions in your surroundings."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12717963476992
+    m_Localized: Bloom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12738653978624
+    m_Localized: "Simulates the way bright light sources bleed into surrounding areas,
+      creating a glowing effect around highlights like lamps or sunlight. \r\n\r\nThis
+      adds realism and depth to high-contrast scenes, making them feel more vibrant
+      and ethereal. \r\n\r\nHigher intensities can lead to overexposure in bright
+      environments, while disabling bloom provides a less stylized image and reduces
+      GPU load for better performance."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12663060037632
+    m_Localized: Anti-Aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12679174553600
+    m_Localized: "Smooths jagged edges on objects and geometry by blending pixels
+      at boundaries, resulting in cleaner lines and a more polished appearance. \r\n\r\nDisabling
+      anti-aliasing maximizes performance at the expense of visual artifacts, especially
+      noticeable on diagonal lines or distant details."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13600889634816
+    m_Localized: Sound Effects Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13610528145408
+    m_Localized: "Controls the volume of sound effects in the game, which are short
+      sounds that accompany the player\u2019s actions and events in the world.\r\n\r\nThe
+      adjustment allows you to emphasize the sounds of important game moments and
+      the response from interactions.\r\n\r\nThis setting doesn\u2019t affect the
+      music volume."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13623052337152
+    m_Localized: V-Sync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13631600328704
+    m_Localized: "Synchronizes the game\u2019s frame rate with your monitor\u2019s
+      refresh rate to eliminate screen tearing, where mismatched frames cause visible
+      horizontal lines during motion.\r\n\r\nEnabling V-Sync provides smoother visuals
+      but may introduce input lag or cap FPS below your hardware\u2019s potential.\r\n\r\nDisabling
+      it allows for higher frame rates and reduced latency, though tearing may occur
+      on fast-moving scenes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 417871384674304
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 418253196361728
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 424488067006464
+    m_Localized: Max
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428831319130112
+    m_Localized: Default
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

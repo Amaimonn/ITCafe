@@ -33,7 +33,7 @@ namespace ITCafe.Data.Settings
         [field: SerializeField] public string LanguageSectionLabel { get; private set; }
 
         [field: SerializeField] public Sprite SoundIcon { get; private set; }
-        [field: SerializeField] public Sprite VideoIcon { get; private set; }
+        [field: SerializeField] public Sprite GraphicsIcon { get; private set; }
         [field: SerializeField] public Sprite InputIcon { get; private set; }
         [field: SerializeField] public Sprite LanguageIcon { get; private set; }
         
