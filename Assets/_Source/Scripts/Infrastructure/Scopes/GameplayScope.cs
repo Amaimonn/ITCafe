@@ -220,19 +220,26 @@ namespace ITCafe
             Cursor.lockState = CursorLockMode.Locked;
             _inputActionAsset.FindActionMap("GameUI").Enable();
 
-            _gameplayEnterContext = gameplayEnterContext;
+            _gameplayEnterContext = gameplayEnterContext ??
+                                    new GameplayEnterContext()
+                                    {
+                                        ToSceneName = Scenes.GAMEPLAY_1,
+                                        MissionId = "mission_1_1",
+                                        LocationId = "Location_1_1",
+                                        CompletionSignal = new Subject<CafeMissionResult>()
+                                    };
 
-            // TODO: take id from enterContext
-            var setupId = gameplayEnterContext == null ? "mission_1_1_setup" : $"{gameplayEnterContext.MissionId}_setup";
-
+            var setupId = $"{_gameplayEnterContext.MissionId}_setup";
             var handle = Addressables.LoadAssetAsync<MissionSetupSO>(setupId);
+            _disposables.Add(Disposable.Create(() => handle.Release()));
+
             yield return handle;
 
             _missionSetup = handle.Result;
 
             Build();
             yield return new WaitForEndOfFrame();
-            
+
             _localizationLoader.Init();
             _localizationLoader.AddTo(_disposables);
             yield return _localizationLoader.LoadTables();
@@ -288,13 +295,7 @@ namespace ITCafe
 
             var mainMenuEnterContext = new MainMenuEnterContext();
 
-            var gameplayRestartContext = new GameplayExitContext(gameplayEnterContext ??
-                                                                 new GameplayEnterContext()
-                                                                 {
-                                                                     ToSceneName = Scenes.GAMEPLAY_1,
-                                                                     MissionId = "mission_1_1",
-                                                                     LocationId = "Location_1_1",
-                                                                 });
+            var gameplayRestartContext = new GameplayExitContext(_gameplayEnterContext);
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
             var gameplayExitSignal = new Subject<GameplayExitContext>();
 
