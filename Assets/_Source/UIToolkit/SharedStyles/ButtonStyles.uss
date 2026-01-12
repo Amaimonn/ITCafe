@@ -75,12 +75,18 @@
 
 .cafe__control-button--cyan {
     background-color: var(--cyan-bg);
-    border-color: var(--cyan-border);
+    border-top-color: var(--cyan-border-plus);
+    border-right-color: var(--cyan-border);
+    border-bottom-color: var(--cyan-border);
+    border-left-color: var(--cyan-border);
 }
 
 .cafe__control-button--cyan:disabled {
     background-color: var(--cyan-bg);
-    border-color: var(--cyan-border);
+    border-top-color: var(--cyan-border-plus);
+    border-right-color: var(--cyan-border);
+    border-bottom-color: var(--cyan-border);
+    border-left-color: var(--cyan-border);
 }
 
 .cafe__control-button--cyan:enabled:hover {
@@ -113,13 +119,19 @@
 
 .cafe__control-button--blue {
     background-color: var(--blue-bg);
-    border-color: var(--blue-border);
+    border-top-color: var(--blue-border-plus);
+    border-right-color: var(--blue-border);
+    border-bottom-color: var(--blue-border);
+    border-left-color: var(--blue-border);
     color: var(--blue-color);
 }
 
 .cafe__control-button--blue:disabled {
     background-color: var(--blue-bg);
-    border-color: var(--blue-border);
+    border-top-color: var(--blue-border-plus);
+    border-right-color: var(--blue-border);
+    border-bottom-color: var(--blue-border);
+    border-left-color: var(--blue-border);
     color: var(--blue-color);
 }
 
@@ -154,12 +166,18 @@
 
 .cafe__control-button--gold {
     background-color: var(--gold-bg);
-    border-color: var(--gold-border);
+    border-top-color: var(--gold-border-plus);
+    border-right-color: var(--gold-border);
+    border-bottom-color: var(--gold-border);
+    border-left-color: var(--gold-border);
 }
 
 .cafe__control-button--gold:disabled {
     background-color: var(--gold-bg);
-    border-color: var(--gold-border);
+    border-top-color: var(--gold-border-plus);
+    border-right-color: var(--gold-border);
+    border-bottom-color: var(--gold-border);
+    border-left-color: var(--gold-border);
 }
 
 .cafe__control-button--gold:enabled:hover {
@@ -192,13 +210,19 @@
 
 .cafe__control-button--red {
     background-color: var(--red-bg);
-    border-color: var(--red-border);
+    border-top-color: var(--red-border-plus);
+    border-right-color: var(--red-border);
+    border-bottom-color: var(--red-border);
+    border-left-color: var(--red-border);
     color: var(--red-color);
 }
 
 .cafe__control-button--red:disabled {
     background-color: var(--red-bg);
-    border-color: var(--red-border);
+    border-top-color: var(--red-border-plus);
+    border-right-color: var(--red-border);
+    border-bottom-color: var(--red-border);
+    border-left-color: var(--red-border);
     color: var(--red-color);
 }
 

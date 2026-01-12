@@ -45,7 +45,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ActionsContainer" class="settings__actions" style="margin-top: 20px;">
-                <ui:Button name="ApplyButton" focusable="false" class="settings__button cafe__control-button cafe__control-button--cyan">
+                <ui:Button name="ApplyButton" focusable="false" class="cafe__control-button cafe__control-button--cyan settings__button">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(10650322460672)"/>
                     </Bindings>

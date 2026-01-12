@@ -3,12 +3,14 @@
     --cyan-bg-hover: rgba(0, 184, 148, 0.4);
     --cyan-bg-active: rgba(0, 184, 148, 0.5);
     --cyan-border: rgb(0, 184, 148);
+    --cyan-border-plus: rgb(5, 189, 150);
     --cyan-border-hover: rgb(0, 224, 178);
     --cyan-border-active: rgb(0, 255, 200);
     --blue-bg: rgba(70, 170, 200, 0.48);
     --blue-bg-hover: rgba(70, 170, 200, 0.3);
     --blue-bg-active: rgba(70, 170, 200, 0.4);
     --blue-border: rgb(70, 170, 200);
+    --blue-border-plus: rgb(75, 175, 202);
     --blue-border-hover: rgb(100, 200, 230);
     --blue-border-active: rgb(100, 200, 230);
     --blue-color: rgb(180, 220, 240);
@@ -16,6 +18,7 @@
     --red-bg-hover: rgba(231, 76, 60, 0.35);
     --red-bg-active: rgba(231, 76, 60, 0.45);
     --red-border: rgb(231, 76, 60);
+    --red-border-plus: rgb(236, 82, 62);
     --red-border-hover: rgb(255, 100, 80);
     --red-border-active: rgb(255, 100, 80);
     --red-color: rgb(255, 180, 170);
@@ -23,6 +26,7 @@
     --gold-bg-hover: rgba(241, 196, 15, 0.35);
     --gold-bg-active: rgba(241, 196, 15, 0.55);
     --gold-border: rgb(241, 196, 15);
+    --gold-border-plus: rgb(246, 201, 17);
     --gold-border-hover: rgb(255, 221, 87);
     --gold-border-active: rgb(255, 238, 153);
     --gold-color: rgb(255, 245, 200);
