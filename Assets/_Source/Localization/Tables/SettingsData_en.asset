@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 13046230679552
-    m_Localized: "The frame rate limit doesn\u2019t apply when V-Sync is active."
+    m_Localized: "\nThe frame rate limit doesn\u2019t apply when V-Sync is active."
     m_Metadata:
       m_Items: []
   - m_Id: 13036323733504

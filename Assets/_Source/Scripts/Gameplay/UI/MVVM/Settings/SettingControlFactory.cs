@@ -23,6 +23,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _infoEntryClass = "settings__info-entry";
         [SerializeField] private string _descriptionClass = "settings__info-description";
         [SerializeField] private string _warningDescriptionClass = "settings__info-warning";
+        [SerializeField] private string _infoTitleClass = "settings__info-title";
 
         [Header("Tab Button"), Space(4)]
         [SerializeField] private VisualTreeAsset _tabButtonAsset;
@@ -187,9 +188,13 @@ namespace ITCafe.Gameplay.UI.MVVM
             barInfoContainer.AddToClassList(_infoEntryClass);
             _controlInfoContainer.Add(barInfoContainer);
 
+            var infoTitle = new Label(data.Label);
+            _localizer?.Localize(infoTitle, Constants.SETTINGS_DATA_TABLE);
+            infoTitle.AddToClassList(_infoTitleClass);
+            barInfoContainer.Add(infoTitle);
+
             var descriptionLabel = new Label(data.Description);
             _localizer?.Localize(descriptionLabel, Constants.SETTINGS_DATA_TABLE);
-
             descriptionLabel.AddToClassList(_descriptionClass);
             barInfoContainer.Add(descriptionLabel);
 

@@ -16,7 +16,7 @@ namespace Inui.UI.MVVM.Settings
         public Observable<SettingsSectionViewModel> OnSectionChanged => _currentSection;
         public Observable<ISettingsData> OnSettingsDataChanged => _settingsData;
 
-        public readonly VideoSettingsViewModel VideoSettingsViewModel = new();
+        public readonly GraphicsSettingsViewModel GraphicsSettingsViewModel = new();
         public readonly SoundSettingsViewModel SoundSettingsViewModel = new();
         public readonly LanguageSectionViewModel LanguageSettingsViewModel = new();
 
@@ -33,7 +33,7 @@ namespace Inui.UI.MVVM.Settings
             _gameStateProvider = gameStateProvider;
             _sections = new List<SettingsSectionViewModel>
             {
-                VideoSettingsViewModel,
+                GraphicsSettingsViewModel,
                 SoundSettingsViewModel,
                 LanguageSettingsViewModel
             };
@@ -49,7 +49,7 @@ namespace Inui.UI.MVVM.Settings
                 .Select(x => x.Any(t => t))
                 .ToReadOnlyReactiveProperty();
             
-            _currentSection = new ReactiveProperty<SettingsSectionViewModel>(VideoSettingsViewModel);
+            _currentSection = new ReactiveProperty<SettingsSectionViewModel>(GraphicsSettingsViewModel);
         }
 
         public void SetSettingsData(ISettingsData settingsData)
@@ -96,7 +96,7 @@ namespace Inui.UI.MVVM.Settings
 
         public override void Dispose()
         {
-            VideoSettingsViewModel.Dispose();
+            GraphicsSettingsViewModel.Dispose();
             base.Dispose();
         }
     }

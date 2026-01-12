@@ -88,7 +88,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         
         private void InitVideo(ISettingsData data)
         {
-            var videoViewModel = ViewModel.VideoSettingsViewModel;
+            var videoViewModel = ViewModel.GraphicsSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel, 
                 _ => ViewModel.SelectSection(videoViewModel), data.GraphicsIcon);

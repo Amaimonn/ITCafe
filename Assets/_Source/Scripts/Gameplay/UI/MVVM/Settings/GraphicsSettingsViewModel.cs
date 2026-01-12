@@ -1,12 +1,10 @@
 using DevKit.Utils;
 using ITCafe.Data.Settings;
-using ObservableCollections;
 using R3;
-using UnityEngine;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class VideoSettingsViewModel : SettingsSectionViewModel
+    public class GraphicsSettingsViewModel : SettingsSectionViewModel
     {
         public IControlViewModel<int> Sensitivity => _sensitivity;
         public IControlViewModel<bool> VSync => _vsync;
@@ -43,9 +41,16 @@ namespace ITCafe.Gameplay.UI.MVVM
             _resolution = GetBindedControl(model.ScreenResolution, ScreenResolutionToString,
                 StringToScreenResolution, true); // delayed
             _fullscreen = GetBindedControl(model.Fullscreen, true); // delayed
-            
+
             _vsync.OnChanged.Subscribe(_fps.SetWarning) // if vsync is enabled: display fps warning
                 .AddTo(_disposables);
+
+            _postProcessing.OnChanged.Select(static x => !x) // if post-processing is disabled: disable effects
+                .Subscribe(x =>
+                {
+                    _bloom.SetWarning(x);
+                    _filmGrain.SetWarning(x);
+                }).AddTo(_disposables);
         }
 
         private string ScreenResolutionToString(ScreenResolution resolution)
