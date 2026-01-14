@@ -3,19 +3,19 @@
     <ui:Template name="MissionButton" src="project://database/Assets/_Source/UIToolkit/Components/MissionButton/MissionButton.uxml?fileID=9197481963319205126&amp;guid=525293e9cfd556a43a0f92d16cd9da50&amp;type=3#MissionButton"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Campaign/CampaignStyles.uss?fileID=7433441132597879392&amp;guid=26467cc07a5cb7a47951e51c8fce3b94&amp;type=3#CampaignStyles"/>
     <ui:VisualElement name="RootWrapper" class="campaign__root">
-        <ui:VisualElement name="CampaignPanel" class="campaign__panel">
+        <ui:VisualElement name="CampaignPanel" class="cafe__root-panel campaign__panel">
             <ui:VisualElement name="CampaignBackground" style="flex-grow: 1; position: absolute; width: 100%; height: 100%;">
                 <ui:VisualElement name="BlurGlow1" picking-mode="Ignore" class="blur-glow" style="flex-grow: 1; position: absolute; width: 600px; height: 600px; right: 0; top: 0; -unity-background-image-tint-color: rgba(255, 145, 239, 0.12);"/>
                 <ui:VisualElement name="BlurGlow2" picking-mode="Ignore" class="blur-glow" style="flex-grow: 1; position: absolute; width: 600px; height: 600px; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%; left: 0; bottom: 0; -unity-background-image-tint-color: rgba(142, 182, 255, 0.12);"/>
             </ui:VisualElement>
             <ui:VisualElement name="CampaignContent" picking-mode="Ignore" style="flex-grow: 1; position: relative; width: 100%; height: 100%; padding-top: 25px; padding-right: 25px; padding-bottom: 25px; padding-left: 25px;">
-                <ui:VisualElement name="Header" class="campaign__header campaign__info-section">
+                <ui:VisualElement name="Header" class="cafe__widget-panel campaign__header">
                     <ui:Label text="// &#1050;&#1040;&#1052;&#1055;&#1040;&#1053;&#1048;&#1071;" class="cafe__view-title"/>
                     <ui:Label text="&#1052;&#1048;&#1057;&#1057;&#1048;&#1048;_&#1056;&#1040;&#1047;&#1056;&#1040;&#1041;&#1054;&#1058;&#1050;&#1048;" class="cafe__view-subtitle"/>
                 </ui:VisualElement>
                 <ui:Button name="CloseButton" text="&#215;" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" focusable="false" class="cafe__close-button"/>
                 <ui:VisualElement name="CampaignContainer" picking-mode="Ignore" class="campaign__container">
-                    <ui:VisualElement name="LocationsSection" class="campaign__info-section campaign__locations-section" style="min-width: 320px;">
+                    <ui:VisualElement name="LocationsSection" class="cafe__widget-panel campaign__locations-section" style="min-width: 320px;">
                         <ui:Label text="&#1051;&#1054;&#1050;&#1040;&#1062;&#1048;&#1048;" class="campaign__section-title"/>
                         <ui:VisualElement name="LocationsTabsContainer" class="campaign__locations-tabs">
                             <ui:Instance template="LocationTabButton"/>
@@ -27,7 +27,7 @@
                     <ui:VisualElement name="MissionsSection" picking-mode="Ignore" style="flex-grow: 1; width: 100%;">
                         <ui:VisualElement name="CampaignMap" picking-mode="Ignore" class="campaign__map enabled">
                             <ITCafe.Gameplay.UI.Custom.NodesElement line-width="1" line-curve-type="Straight" line-color="rgba(70, 170, 200, 0.5)" picking-mode="Ignore" style="width: 100%; height: 100%; position: absolute;"/>
-                            <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 1; position: absolute; width: 240px; height: 88px; -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/QuadTargetUIMat.mat?fileID=2100000&amp;guid=0e6be13b5567c6b4499e24f852d0f3ce&amp;type=2#QuadTargetUIMat&quot;); background-color: rgb(0, 0, 0); translate: 282px 39px;"/>
+                            <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 1; position: absolute; width: 236px; height: 88px; -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/QuadTargetUIMat.mat?fileID=2100000&amp;guid=0e6be13b5567c6b4499e24f852d0f3ce&amp;type=2#QuadTargetUIMat&quot;); background-color: rgb(0, 0, 0); translate: 280px 40px;"/>
                             <ui:VisualElement name="MissionsContainer" picking-mode="Ignore" class="campaign__missions-grid" style="width: 1050px;">
                                 <ui:Instance template="MissionButton" style="top: 200px; left: 150px; position: absolute;"/>
                                 <ui:Instance template="MissionButton" style="top: 350px; left: 300px; position: absolute;"/>
@@ -38,7 +38,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="MissionInfoSection" class="campaign__info-section campaign__missions-section" style="min-width: 400px;">
+                    <ui:VisualElement name="MissionInfoSection" class="cafe__widget-panel campaign__missions-section" style="min-width: 400px;">
                         <ui:Label text="&#1048;&#1053;&#1060;&#1054;&#1056;&#1052;&#1040;&#1062;&#1048;&#1071;_&#1054;_&#1052;&#1048;&#1057;&#1057;&#1048;&#1048;" class="campaign__section-title"/>
                         <ui:VisualElement name="MissionDetails" class="campaign__mission-details">
                             <ui:Label name="SelectedMissionLabel" text="" class="campaign__mission-title"/>

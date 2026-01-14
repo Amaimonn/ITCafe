@@ -5,23 +5,25 @@
     <ui:Template name="ToggleBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/ToggleBar.uxml?fileID=9197481963319205126&amp;guid=8e2eff4da41bc864cb5b084b38950082&amp;type=3#ToggleBar"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Settings/SettingsStyles.uss?fileID=7433441132597879392&amp;guid=30f779d9fb6fcbd4dbb865b56c1d47a6&amp;type=3#SettingsStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss?fileID=7433441132597879392&amp;guid=4db18ea67a6154348b95683aced0b2d5&amp;type=3#DropdownStyles"/>
-    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="settings__root" style="flex-grow: 1;">
-        <ui:VisualElement name="SettingsPanel" class="settings__panel" style="flex-grow: 1;">
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/KitSliderStyles.uss?fileID=7433441132597879392&amp;guid=12a4db4e2081dc9439ac9fc3d3f2b791&amp;type=3#KitSliderStyles"/>
+    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="settings__root" style="flex-grow: 1; align-items: center; justify-content: center;">
+        <ui:VisualElement name="SettingsPanel" class="cafe__root-panel settings__panel" style="flex-grow: 1;">
             <ui:VisualElement name="Header" class="settings__header">
-                <ui:Label class="cafe__view-title">
+                <ui:Label class="cafe__view-title" style="flex-shrink: 1;">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(39123410944)"/>
                     </Bindings>
                 </ui:Label>
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
-            <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px; flex-shrink: 0;">
+            <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px; flex-shrink: 1;">
                 <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
                 <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
                 <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
             </ui:VisualElement>
             <ui:VisualElement name="SettingsContent" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="SectionsContainer" class="settings__widget-panel settings__sections" style="flex-grow: 1;">
+                <ui:VisualElement name="SectionsContainer" class="cafe__widget-panel settings__sections" style="flex-grow: 1; padding-left: 0;">
                     <ui:ScrollView class="settings__section cafe__scroll-view">
                         <ui:Instance template="KitSliderIntBar"/>
                         <ui:Instance template="DropdownBar"/>
@@ -38,13 +40,10 @@
                         <ui:Instance template="KitSliderIntBar"/>
                     </ui:ScrollView>
                 </ui:VisualElement>
-                <ui:VisualElement name="SettingInfo" class="settings__widget-panel settings__info-panel">
-                    <ui:VisualElement name="ControlInfoContainer" style="flex-grow: 1; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                <ui:VisualElement name="SettingInfo" class="cafe__widget-panel settings__info-panel">
+                    <ui:VisualElement name="ControlInfoContainer" style="flex-grow: 1;">
                         <ui:Label text="Label" class="settings__info-title"/>
-                        <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-" class="settings__info-description"/>
+                        <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam " class="settings__info-description"/>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

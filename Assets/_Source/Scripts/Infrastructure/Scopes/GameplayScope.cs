@@ -225,7 +225,7 @@ namespace ITCafe
                                     {
                                         ToSceneName = Scenes.GAMEPLAY_1,
                                         MissionId = "mission_1_1",
-                                        LocationId = "Location_1_1",
+                                        LocationId = "location_1",
                                         CompletionSignal = new Subject<CafeMissionResult>()
                                     };
 
