@@ -17,7 +17,7 @@
                 </ui:Label>
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
-            <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px; flex-shrink: 1;">
+            <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px; flex-shrink: 0; height: 40px;">
                 <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
                 <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
                 <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>

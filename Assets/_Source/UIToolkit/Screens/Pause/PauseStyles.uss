@@ -10,7 +10,6 @@
 .pause__panel {
     width: 450px;
     flex-direction: column;
-    background-color: rgba(20, 25, 45, 0.95);
     border-color: rgb(0, 184, 148);
     border-width: 1px;
     border-radius: 4px;

@@ -71,6 +71,9 @@ Button {
     border-radius: 4px;
     filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
     background-color: rgba(20, 25, 45, 0.95);
+    background-image: url("project://database/Assets/_Source/Art/Images/white_gradient_fade.png?fileID=2800000&guid=9a27966530d26424683ef0ecc05a7437&type=3#white_gradient_fade");
+    -unity-background-image-tint-color: rgba(0, 184, 148, 0.08);
+    background-size: 100% 100%;
 }
 
 .cafe__view-title {
@@ -97,10 +100,6 @@ Button {
     padding-right: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
-    /*border-left-color: rgba(70, 170, 200, 0.2);*/
-    /*border-right-color: rgba(70, 170, 200, 0.2);*/
-    /*border-top-color: rgba(70, 170, 200, 0.2);*/
-    /*border-bottom-color: rgba(70, 170, 200, 0.2);*/
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
