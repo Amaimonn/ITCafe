@@ -2,15 +2,23 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-    margin: 10px 0;
     padding: 8px 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: rgba(0, 0, 0, 0.08);
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.settings__bar:hover {
+    border-color: rgb(0, 184, 148);
 }
 
 .settings__bar-label {

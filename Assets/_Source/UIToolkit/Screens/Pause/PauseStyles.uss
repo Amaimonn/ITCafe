@@ -5,10 +5,9 @@
     background-color: rgba(10, 15, 30, 0.85);
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
 }
 
-.pause__container {
+.pause__panel {
     width: 450px;
     flex-direction: column;
     background-color: rgba(20, 25, 45, 0.95);
@@ -17,11 +16,8 @@
     border-radius: 4px;
     padding: 30px;
     position: relative;
-    border-left-color: rgb(0, 255, 205);
-    border-right-color: rgb(0, 255, 205);
-    border-top-color: rgb(0, 255, 205);
-    border-bottom-color: rgb(0, 255, 205);
     filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter")) filter(url("project://database/Assets/_Source/Art/Shaders/GlitchFilter.asset?fileID=11400000&guid=af8001a8dfaf8a541bdcf0cc307629de&type=2#GlitchFilter"));
+    height: auto;
 }
 
 .pause__header {

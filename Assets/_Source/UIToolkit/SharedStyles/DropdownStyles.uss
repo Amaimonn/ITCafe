@@ -31,7 +31,7 @@
 .unity-popup-field:disabled > .unity-base-popup-field__input {
     background-color: var(--control-bg-hover);
     border-color: var(--control-border-color);
-    opacity: 0.5;
+    opacity: 0.85;
 }
 
 .unity-popup-field:enabled:hover > .unity-base-popup-field__input {
@@ -69,6 +69,8 @@
     font-size: var(--control-font-size);
     transition: all 0.1s ease-out;
 }
+
+
 
 .unity-base-dropdown__label {
     margin: 0;

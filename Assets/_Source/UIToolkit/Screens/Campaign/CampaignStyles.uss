@@ -2,7 +2,7 @@
     flex-grow: 1;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 15, 30, 0.85);
+    background-color: rgba(10, 15, 30, 0.98);
     -unity-text-align: middle-center;
     justify-content: center;
     align-items: center;
@@ -22,6 +22,10 @@
     -unity-slice-right: 32;
     -unity-slice-bottom: 32;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0.03);
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .campaign__header {
