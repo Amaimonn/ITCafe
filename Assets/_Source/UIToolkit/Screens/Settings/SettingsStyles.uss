@@ -5,6 +5,7 @@
     padding-right: 60px;
     padding-bottom: 60px;
     padding-left: 60px;
+    background-color: rgba(10, 15, 30, 0.78);
 }
 
 .settings__panel {
@@ -16,38 +17,12 @@
     padding-left: 20px;
     max-width: 1920px;
     max-height: 1200px;
+    background-color: rgba(20, 25, 45, 0.78);
 }
 
-.settings__close-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 28px;
-    height: 28px;
-    background-color: transparent;
-    border-color: rgb(100, 120, 140);
-    border-width: 1px;
-    border-radius: 3px;
-    color: rgb(160, 180, 200);
-    font-size: 18px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 2px;
-}
 
-.settings__close-button:hover {
-    background-color: rgba(231, 76, 60, 0.2);
-    border-color: rgb(231, 76, 60);
-    color: rgb(255, 150, 140);
-}
 
-.settings__close-button:active {
-    background-color: rgba(231, 76, 60, 0.3);
-    border-color: rgb(255, 100, 80);
-    color: rgb(255, 180, 170);
-}
+
 
 .settings__header {
     flex-direction: column;
@@ -58,21 +33,7 @@
     padding-right: 40px;
 }
 
-.settings__title {
-    font-size: 22px;
-    color: rgb(0, 184, 148);
-    -unity-font-style: bold;
-    -unity-text-align: middle-left;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-}
 
-.settings__subtitle {
-    font-size: 11px;
-    color: rgb(120, 200, 180);
-    -unity-text-align: middle-left;
-    letter-spacing: 1px;
-}
 
 .settings__sections {
     flex-direction: column;

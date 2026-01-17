@@ -147,6 +147,10 @@ MonoBehaviour:
     m_Key: default
     m_Metadata:
       m_Items: []
+  - m_Id: 2653607311835136
+    m_Key: pp_disabled_warning
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

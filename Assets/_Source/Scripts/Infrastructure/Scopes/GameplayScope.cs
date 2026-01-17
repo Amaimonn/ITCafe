@@ -23,12 +23,13 @@ using VContainer.Unity;
 using Cursor = UnityEngine.Cursor;
 using Unit = R3.Unit;
 using ITCafe.Data.Settings;
+using UnityEngine.Rendering;
 
 namespace ITCafe
 {
     public class GameplayScope : LifetimeScope
     {
-        public Observable<GameplayExitContext> ExitSignal { get; private set; }
+        public R3.Observable<GameplayExitContext> ExitSignal { get; private set; }
 
         [Header("Player")]
         [SerializeField] private InputActionAsset _inputActionAsset;
@@ -52,6 +53,7 @@ namespace ITCafe
         [Header("Other"), Space(4)]
         [SerializeField] private GameObject _missionSetupRoot;
         [SerializeField] private LocalizationLoader _localizationLoader;
+        [SerializeField] private Volume _volume;
 
         private GuideSO _guideSO;
         private CompositeDisposable _disposables = new();
@@ -118,6 +120,9 @@ namespace ITCafe
 
             builder.Register<CraftService>(Lifetime.Singleton)
                 .As<ICraftService>();
+
+            builder.Register<PostProcessingController>(Lifetime.Singleton);
+            builder.RegisterInstance<Volume>(_volume);
         }
 
         private void RegisterMissionConfig(IContainerBuilder builder)
@@ -256,6 +261,8 @@ namespace ITCafe
             InitUI();
             yield return new WaitForEndOfFrame();
 
+            InitSettings();
+
             // Delayed boot setup
             var loadingScreen = Container.Resolve<LoadingScreen>();
             loadingScreen.OnFinished.Take(1).Subscribe(_ => BootAfterLoading());
@@ -376,7 +383,16 @@ namespace ITCafe
             var aimBinder = Container.Resolve<IViewBinder<AimViewModel>>();
             aimBinder.Open();
         }
-
+        
+        private void InitSettings()
+        {
+            var settingsModel = Container.Resolve<SettingsModel>();
+            var postProcessingController = Container.Resolve<PostProcessingController>();
+            
+            postProcessingController.BindSettings(settingsModel);
+            postProcessingController.AddTo(_disposables);
+        }
+        
         private void SubscribePause()
         {
             _pauseBinder = Container.Resolve<IViewBinder<PauseViewModel>>();

@@ -10,6 +10,10 @@
     border-radius: 3px;
 }
 
+.settings__tab-button:hover {
+    background-color: var(--blue-bg-hover);
+}
+
 .settings__tab-button.selected {
     margin-right: 10px;
     min-width: 100px;

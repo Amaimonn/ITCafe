@@ -30,6 +30,7 @@
 .settings__dropdown {
     width: 340px;
     height: 40px;
+    overflow: visible;
 }
 
 .settings__slider {
@@ -48,6 +49,7 @@
     margin: 0;
     padding: 0;
     align-self: flex-end;
+    overflow: visible;
 }
 
 .settings__toggle .unity-toggle__checkmark {

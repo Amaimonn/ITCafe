@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.44654083, g: 0.44654083, b: 0.44654083, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientSkyColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_AmbientEquatorColor: {r: 0.23557207, g: 0.25881746, b: 0.27044016, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.93
-  m_AmbientMode: 3
+  m_AmbientIntensity: 0.7
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 065ccad18b7976b4abf972ed3723ee8c, type: 2}
   m_HaloStrength: 0.5
@@ -21146,6 +21146,7 @@ MonoBehaviour:
   _missionSetupRoot: {fileID: 722823122}
   _localizationLoader:
     _tablesConfig: {fileID: 11400000, guid: 095d022d31ebff040984b3ba24a521bc, type: 2}
+  _volume: {fileID: 1675519152}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0
@@ -27302,7 +27303,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.99607843, b: 0.92156863, a: 1}
   m_Intensity: 51.87
   m_Range: 54.4
   m_SpotAngle: 125.00934

@@ -12,7 +12,7 @@ namespace ITCafe
             var disposables = new CompositeDisposable()
             {
                 model.VSync.Subscribe(x => QualitySettings.vSyncCount = x ? 1 : 0),
-                model.IsAntiAliasingEnabled.Subscribe(),
+                model.IsAntiAliasingEnabled.Subscribe(x => QualitySettings.antiAliasing = x ? 1 : 0),
                 model.ScreenResolution.Subscribe(x =>
                 {
                     if (x is { Width: > 0, Height: > 0 })
