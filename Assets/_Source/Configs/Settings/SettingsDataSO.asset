@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SettingsDataSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.SettingsDataSO
   <SoundSectionLabel>k__BackingField: audio
-  <VideoSectionLabel>k__BackingField: graphics
+  <VideoSectionLabel>k__BackingField: video
   <InputSectionLabel>k__BackingField: input
   <LanguageSectionLabel>k__BackingField: language
   <SoundIcon>k__BackingField: {fileID: 21300000, guid: 2b2935ea7555fd44dac80a620aae58a3, type: 3}

@@ -8,20 +8,12 @@
     padding: 30px 20px;
 }
 
-.guide__terminal {
+.guide__panel {
     width: 500px;
     flex-direction: column;
-    background-color: rgba(15, 20, 35, 0.98);
-    border-color: rgb(0, 184, 148);
-    border-width: 1px;
-    border-radius: 4px;
-    padding: 20px;
     position: relative;
-    border-left-color: var(--cyan-border);
-    border-right-color: var(--cyan-border);
-    border-top-color: var(--cyan-border);
-    border-bottom-color: var(--cyan-border);
     filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
+    height: auto;
 }
 
 .guide__header {
