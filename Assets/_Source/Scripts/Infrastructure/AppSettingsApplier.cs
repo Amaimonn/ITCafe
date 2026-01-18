@@ -1,7 +1,9 @@
 using System;
+using DevKit.Utils;
 using ITCafe.Data.Settings;
 using R3;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace ITCafe
 {
@@ -22,6 +24,19 @@ namespace ITCafe
                 }),
                 model.Fullscreen.Subscribe(x => Screen.fullScreen = x),
                 model.FPS.Subscribe(x => Application.targetFrameRate = x),
+                model.Language.Subscribe(x =>
+                {
+                    var newLocale = LocalizationSettings.AvailableLocales.GetLocale(x);
+                    if (newLocale != null)
+                    {
+                        LocalizationSettings.SelectedLocale = newLocale;
+                    }
+                    else
+                    {
+                        FLogger.LogWarning<AppSettingsApplier>($"Locale with code {x} not found.");
+                        model.Language.Value = LocalizationSettings.AvailableLocales.Locales[0].Identifier.Code;
+                    }
+                }),
             };
 
             return disposables;

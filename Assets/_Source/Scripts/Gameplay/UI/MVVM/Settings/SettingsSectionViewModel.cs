@@ -31,9 +31,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _data = data;
         }
 
-        protected virtual void OnBind(SettingsModel model)
-        {
-        }
+        protected abstract void OnBind(SettingsModel model);
 
         private void TrackChanges()
         {

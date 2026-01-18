@@ -34,7 +34,7 @@ namespace ITCafe.Data.Settings
         public bool Fullscreen = true;
         
         // Language settings
-        public int LanguageIndex = 0;
+        public string Language = "en";
 
         [SerializeField] private int _version = 1;
     }

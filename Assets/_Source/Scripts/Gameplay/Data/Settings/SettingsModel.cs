@@ -24,7 +24,7 @@ namespace ITCafe.Data.Settings
         public readonly ReactiveProperty<bool> Fullscreen;
 
         // Language
-        public readonly ReactiveProperty<int> LanguageIndex;
+        public readonly ReactiveProperty<string> Language;
 
         public SettingsModel(SettingsState state) : base(state)
         {
@@ -52,7 +52,7 @@ namespace ITCafe.Data.Settings
             Fullscreen = new ReactiveProperty<bool>(state.Fullscreen);
 
             // Language
-            LanguageIndex = new ReactiveProperty<int>(state.LanguageIndex);
+            Language = new ReactiveProperty<string>(state.Language);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace ITCafe.Data.Settings
             State.Fullscreen = Fullscreen.Value;
 
             // Language
-            State.LanguageIndex = LanguageIndex.Value;
+            State.Language = Language.Value;
         }
     }
 }

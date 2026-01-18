@@ -18,4 +18,6 @@ MonoBehaviour:
   <Options>k__BackingField:
   - en
   - ru
-  <OverrideDisplayOptions>k__BackingField: []
+  <OverrideDisplayOptions>k__BackingField:
+  - English
+  - "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"

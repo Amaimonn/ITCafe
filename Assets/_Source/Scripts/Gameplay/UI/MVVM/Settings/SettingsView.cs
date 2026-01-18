@@ -84,11 +84,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             InitVideo(data);
             InitSound(data);
+            InitLanguage(data);
         }
         
         private void InitVideo(ISettingsData data)
         {
-            var videoViewModel = ViewModel.GraphicsSettingsViewModel;
+            var videoViewModel = ViewModel.VideoSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel, 
                 _ => ViewModel.SelectSection(videoViewModel), data.GraphicsIcon);
@@ -129,6 +130,18 @@ namespace ITCafe.Gameplay.UI.MVVM
             _controlFactory.AddBindedSliderInt(data.MusicVolumeData, soundSection, soundViewModel.MusicVolume);
 
             _controlFactory.AddBindedSliderInt(data.SfxVolumeData, soundSection, soundViewModel.SfxVolume);
+        }
+
+        private void InitLanguage(ISettingsData data)
+        {
+            var languageViewModel = ViewModel.LanguageSettingsViewModel;
+            
+            var tabEntry = _controlFactory.AddBindedTab(data.LanguageSectionLabel, 
+                _ => ViewModel.SelectSection(languageViewModel), data.LanguageIcon);
+            var languageSection = tabEntry.ScrollView;
+            _sectionsMap[languageViewModel] = tabEntry;
+            
+            _controlFactory.AddBindedDropdown(data.LanguageData, languageSection, languageViewModel.Language);
         }
 
         private void OnSectionChanged(SettingsSectionViewModel section)

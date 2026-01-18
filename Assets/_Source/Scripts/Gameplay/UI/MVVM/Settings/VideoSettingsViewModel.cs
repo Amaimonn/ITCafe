@@ -4,7 +4,7 @@ using R3;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
-    public class GraphicsSettingsViewModel : SettingsSectionViewModel
+    public class VideoSettingsViewModel : SettingsSectionViewModel
     {
         public IControlViewModel<int> Sensitivity => _sensitivity;
         public IControlViewModel<bool> VSync => _vsync;
