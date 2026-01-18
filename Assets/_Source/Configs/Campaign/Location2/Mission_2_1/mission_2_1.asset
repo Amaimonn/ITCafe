@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Campaign.MissionDataSO
   <Id>k__BackingField: mission_2_1
   <DisplayedNumber>k__BackingField: 1
-  <Name>k__BackingField: Mission 1
-  <Description>k__BackingField: Mission 1 on Location 2
+  <Name>k__BackingField: mission_2_1_name
+  <Description>k__BackingField: mission_2_1_description
   <SceneName>k__BackingField: cafe_1
   <PositionX>k__BackingField: 100
   <PositionY>k__BackingField: 100

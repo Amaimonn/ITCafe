@@ -71,6 +71,26 @@ MonoBehaviour:
     m_Key: log_waiting
     m_Metadata:
       m_Items: []
+  - m_Id: 2844207994765312
+    m_Key: campaign_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2844307093585920
+    m_Key: campaign_subtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845315374907392
+    m_Key: locations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845483511971840
+    m_Key: mission_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845802618814464
+    m_Key: start_mission
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -74,6 +74,26 @@ MonoBehaviour:
     m_Localized: '[ AWAITING SIMULATION... ]'
     m_Metadata:
       m_Items: []
+  - m_Id: 2844207994765312
+    m_Localized: // CAMPAIGN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2844307093585920
+    m_Localized: MISSION_MAP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845315374907392
+    m_Localized: LOCATIONS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845483511971840
+    m_Localized: MISSION_INFO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845802618814464
+    m_Localized: START_MISSION
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MissionsData_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f24dda0c4c569134db9fdfaa88181289, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5380374528
+    m_Localized: First Deploy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35214458880
+    m_Localized: "A temporary job. A simple task. At least that\u2019s what it seemed
+      before the shift started."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3952459513856
+    m_Localized: Hotfix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4102875643904
+    m_Localized: The queue is growing, time is running out. Fixes go straight to
+      production.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4145938563072
+    m_Localized: Not in the Spec
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4189198614528
+    m_Localized: Orders sound strange and contradictory. You pretend you understand
+      everything.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4248065671168
+    m_Localized: Overheating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4291594158080
+    m_Localized: The pace increases, mistakes multiply. No break planned?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4466316279808
+    m_Localized: Legacy Process
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4516798922752
+    m_Localized: "This is how it\u2019s done here. Nobody remembers why."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4605374234624
+    m_Localized: End of Shift
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4632419106816
+    m_Localized: "The shift is over, and you\u2019re still here. That means you made
+      it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4720264609792
+    m_Localized: Production
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4763818262528
+    m_Localized: Training mode disabled. Errors are no longer forgiven.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4811566219264
+    m_Localized: Higher Throughput
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4863776915456
+    m_Localized: The flow is steady and continuous. You are expected to keep up.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5230472331264
+    m_Localized: Somewhere the process breaks. Find the weak point.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5200487251968
+    m_Localized: Bottleneck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5449859596288
+    m_Localized: Human Factor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5483762155520
+    m_Localized: The system works correctly. The problem lies in execution.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5534806835200
+    m_Localized: Under Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5564347318272
+    m_Localized: Operating at full capacity. A test of endurance.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5600573521920
+    m_Localized: Stable Release
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5629598105600
+    m_Localized: "Everything runs a bit too smoothly. That\u2019s concerning."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

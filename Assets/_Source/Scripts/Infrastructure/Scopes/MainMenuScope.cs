@@ -20,7 +20,8 @@ namespace ITCafe
 
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
-        [SerializeField] private LocalizationLoader _localizationLoader;
+        [SerializeField] private LocalizationLoader _mainMenuLocalizationLoader;
+        [SerializeField] private LocalizationLoader _campaignLocalizationLoader;
 
         private MainMenuEnterContext _mainMenuEnterContext;
         private CompositeDisposable _disposables = new();
@@ -40,6 +41,9 @@ namespace ITCafe
             builder.Register<CampaignDataModelFactory>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IFactory<CampaignDataModel>>();
+            
+            builder.Register<ILocalizationLoader>(_ => _campaignLocalizationLoader, Lifetime.Scoped)
+                .Keyed(Constants.CAMPAIGN_DATA_LOCALE_LOADER);
         }
 
         private void RegisterUI(IContainerBuilder builder)
@@ -68,9 +72,9 @@ namespace ITCafe
             Build();
             yield return new WaitForEndOfFrame();
             
-            _localizationLoader.Init();
-            _localizationLoader.AddTo(_disposables);
-            yield return _localizationLoader.LoadTables();
+            _mainMenuLocalizationLoader.Init();
+            _mainMenuLocalizationLoader.AddTo(_disposables);
+            yield return _mainMenuLocalizationLoader.LoadTables();
 
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
@@ -81,7 +85,6 @@ namespace ITCafe
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.START_MISSION_SIGNAL);
             var gameplayEnterContext = new GameplayEnterContext()
             {
-                // TODO: define through UI
                 ToSceneName = Scenes.GAMEPLAY_1,
                 LocationId = "location_1",
                 MissionId = "mission_1_1"

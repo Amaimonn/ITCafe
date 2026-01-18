@@ -16,7 +16,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             IFactory<CampaignModel> campaignModelFactory,
             IRootUIBinder rootUIBinder,
             CampaignView viewPrefab) :
-            base(viewModelFactory, rootUIBinder, viewPrefab)
+                base(viewModelFactory, rootUIBinder, viewPrefab)
         {
             _campaignDataModelFactory = campaignDataModelFactory;
             _campaignModelFactory = campaignModelFactory;
@@ -27,8 +27,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             var viewModel = base.GetViewModel();
             
             var campaignModel = _campaignModelFactory.Create();
-            var campaignDataViewModel = _campaignDataModelFactory.Create();
-            viewModel.Bind(campaignModel, campaignDataViewModel);
+            var campaignDataModel = _campaignDataModelFactory.Create();
+            viewModel.Bind(campaignModel, campaignDataModel);
 
             return viewModel;
         }

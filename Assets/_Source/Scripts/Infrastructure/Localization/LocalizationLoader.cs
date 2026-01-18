@@ -38,7 +38,7 @@ namespace ITCafe
                 return Observable.ReturnUnit();
 
             var completeSignal = new Subject<Unit>();
-            handle.Completed += x => { completeSignal.OnNext(Unit.Default); };
+            handle.Completed += _ => completeSignal.OnNext(Unit.Default);
 
             return completeSignal;
         }

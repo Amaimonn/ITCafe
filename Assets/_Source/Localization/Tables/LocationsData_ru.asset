@@ -10,28 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Shared_en
+  m_Name: LocationsData_ru
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
-    m_Code: en
-  m_SharedData: {fileID: 11400000, guid: 8881dbb907ad6df439a3f2a44ed2bdc7, type: 2}
+    m_Code: ru
+  m_SharedData: {fileID: 11400000, guid: 130c598c4744fe04fa2d63a760f975f0, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 39123410944
-    m_Localized: // SETTINGS
+  - m_Id: 7712407552
+    m_Localized: "\u041B\u043E\u043A\u0430\u0446\u0438\u044F 1"
     m_Metadata:
       m_Items: []
-  - m_Id: 10650322460672
-    m_Localized: APPLY
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10673886060544
-    m_Localized: CANCEL
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2857639791812608
-    m_Localized: Lvl
+  - m_Id: 83578978304
+    m_Localized: "\u041B\u043E\u043A\u0430\u0446\u0438\u044F 2"
     m_Metadata:
       m_Items: []
   references:

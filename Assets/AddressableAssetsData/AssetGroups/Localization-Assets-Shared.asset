@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 130c598c4744fe04fa2d63a760f975f0
+    m_Address: Assets/_Source/Localization/Tables/LocationsData Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d73c7b9fa74f5a4ca178ee718c45d24
     m_Address: Assets/_Source/Localization/Tables/Gameplay Shared Data.asset
     m_ReadOnly: 1
@@ -32,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cfddd950c6abf524ba3cce34892a09ad
     m_Address: Assets/_Source/Localization/Tables/MainMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f24dda0c4c569134db9fdfaa88181289
+    m_Address: Assets/_Source/Localization/Tables/MissionsData Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -10,13 +10,25 @@
             </ui:VisualElement>
             <ui:VisualElement name="CampaignContent" picking-mode="Ignore" style="flex-grow: 1; position: relative; width: 100%; height: 100%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
                 <ui:VisualElement name="Header" class="cafe__widget-panel campaign__header">
-                    <ui:Label text="// &#1050;&#1040;&#1052;&#1055;&#1040;&#1053;&#1048;&#1071;" class="cafe__view-title"/>
-                    <ui:Label text="&#1052;&#1048;&#1057;&#1057;&#1048;&#1048;_&#1056;&#1040;&#1047;&#1056;&#1040;&#1041;&#1054;&#1058;&#1050;&#1048;" class="cafe__view-subtitle"/>
+                    <ui:Label name="CampaignTitle" class="cafe__view-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(2844207994765312)"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label name="CampaignSubtitle" class="cafe__view-subtitle">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(2844307093585920)"/>
+                        </Bindings>
+                    </ui:Label>
                 </ui:VisualElement>
                 <ui:Button name="CloseButton" text="&#215;" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" focusable="false" class="cafe__close-button"/>
                 <ui:VisualElement name="CampaignContainer" picking-mode="Ignore" class="campaign__container">
                     <ui:VisualElement name="LocationsSection" class="cafe__widget-panel campaign__locations-section" style="min-width: 320px;">
-                        <ui:Label text="&#1051;&#1054;&#1050;&#1040;&#1062;&#1048;&#1048;" class="campaign__section-title"/>
+                        <ui:Label class="campaign__section-title">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(2845315374907392)"/>
+                            </Bindings>
+                        </ui:Label>
                         <ui:VisualElement name="LocationsTabsContainer" class="campaign__locations-tabs">
                             <ui:Instance template="LocationTabButton"/>
                             <ui:Instance template="LocationTabButton"/>
@@ -26,8 +38,8 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="MissionsSection" picking-mode="Ignore" style="flex-grow: 1; width: 100%;">
                         <ui:VisualElement name="CampaignMap" picking-mode="Ignore" class="campaign__map enabled">
-                            <ITCafe.Gameplay.UI.Custom.NodesElement line-width="1" line-curve-type="Straight" line-color="rgba(70, 170, 200, 0.5)" picking-mode="Ignore" style="width: 100%; height: 100%; position: absolute;"/>
-                            <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 1; position: absolute; width: 236px; height: 88px; -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/QuadTargetUIMat.mat?fileID=2100000&amp;guid=0e6be13b5567c6b4499e24f852d0f3ce&amp;type=2#QuadTargetUIMat&quot;); background-color: rgb(0, 0, 0); translate: 280px 40px;"/>
+                            <ITCafe.Gameplay.UI.Custom.NodesElement line-width="1" line-curve-type="Straight" line-color="rgba(70, 170, 200, 0.5)" picking-mode="Ignore" dash-length="20" dash-gap="10" curve-strength="0" style="width: 100%; height: 100%; position: absolute;"/>
+                            <ui:VisualElement name="TargetSelection" picking-mode="Ignore" style="flex-grow: 1; position: absolute; width: 280px; height: 88px; -unity-material: url(&quot;project://database/Assets/_Source/Art/Materials/QuadTargetUIMat.mat?fileID=2100000&amp;guid=0e6be13b5567c6b4499e24f852d0f3ce&amp;type=2#QuadTargetUIMat&quot;); background-color: rgb(0, 0, 0); translate: 280px 40px;"/>
                             <ui:VisualElement name="MissionsContainer" picking-mode="Ignore" class="campaign__missions-grid" style="width: 1050px;">
                                 <ui:Instance template="MissionButton" style="top: 200px; left: 150px; position: absolute;"/>
                                 <ui:Instance template="MissionButton" style="top: 350px; left: 300px; position: absolute;"/>
@@ -39,11 +51,10 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="MissionInfoSection" class="cafe__widget-panel campaign__missions-section" style="min-width: 400px;">
-                        <ui:Label text="&#1048;&#1053;&#1060;&#1054;&#1056;&#1052;&#1040;&#1062;&#1048;&#1071;_&#1054;_&#1052;&#1048;&#1057;&#1057;&#1048;&#1048;" class="campaign__section-title"/>
                         <ui:VisualElement name="MissionDetails" class="campaign__mission-details">
-                            <ui:Label name="SelectedMissionLabel" text="" class="campaign__mission-title"/>
-                            <ui:ScrollView name="MissionTextScrollView" class="campaign__mission-scrollview">
-                                <ui:Label name="SelectedMissionText" text="Mission description" class="campaign__mission-description"/>
+                            <ui:Label name="SelectedMissionLabel" text="Mission name" class="campaign__mission-title"/>
+                            <ui:ScrollView name="MissionTextScrollView" horizontal-scroller-visibility="Hidden" class="campaign__mission-scrollview">
+                                <ui:Label name="SelectedMissionText" text="Mission descripti Mission description Mission description Mission description Mission description Mission description" class="campaign__mission-description"/>
                             </ui:ScrollView>
                         </ui:VisualElement>
                         <ui:VisualElement name="MissionStats" class="campaign__mission-stats" style="display: none;">
@@ -59,7 +70,11 @@
                             <ui:VisualElement name="RewardIcon" class="campaign__reward-icon"/>
                             <ui:Label name="RewardText" text="" class="campaign__reward-text"/>
                         </ui:VisualElement>
-                        <ui:Button name="StartButton" text="&#1053;&#1040;&#1063;&#1040;&#1058;&#1068;_&#1052;&#1048;&#1057;&#1057;&#1048;&#1070;" focusable="false" class="cafe__control-button cafe__control-button--blue" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;"/>
+                        <ui:Button name="StartButton" focusable="false" class="cafe__control-button cafe__control-button--blue" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(2845802618814464)"/>
+                            </Bindings>
+                        </ui:Button>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

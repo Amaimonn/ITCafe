@@ -275,7 +275,7 @@
 }
 
 .mission__button {
-    width: 200px;
+    width: 240px;
     margin: 0;
     background-color: rgb(20, 40, 60);
     border-color: rgb(70, 170, 200);

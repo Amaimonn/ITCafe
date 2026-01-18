@@ -18,7 +18,8 @@ namespace ITCafe
         public const string MENU_ITEMS_MAP = nameof(MENU_ITEMS_MAP);
         public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
         public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
-        public const string SETTINGS_LOCALE_LOADER = nameof(SETTINGS_LOCALE_LOADER);
+        public const string SETTINGS_DATA_LOCALE_LOADER = nameof(SETTINGS_DATA_LOCALE_LOADER);
+        public const string CAMPAIGN_DATA_LOCALE_LOADER = nameof(CAMPAIGN_DATA_LOCALE_LOADER);
 #endregion
 
 #region Scene signals
@@ -48,7 +49,8 @@ namespace ITCafe
         
         public const string SETTINGS_DATA_TABLE = "SettingsData";
         public const string LOCATIONS_DATA_TABLE = "LocationsData";
-        public static string GetMissionsDataTable(string locationId) => $"{locationId}_MissionsData";
+        
+        public const string MISSIONS_DATA_TABLE = "MissionsData";
 #endregion
     }
 }

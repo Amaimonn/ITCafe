@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using DevKit.Locator;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using UnityEngine;
 using UnityEngine.UIElements;
 using R3;
 using ITCafe.Data.Campaign;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.Custom;
 using UnityEngine.UIElements.Experimental;
 
@@ -58,10 +60,13 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Coroutine _showMapCoroutine;
         private Coroutine _selectionCoroutine;
         private IValueAnimation _selectionAnimation;
+        private ILocalizer _localizer;
 
         protected override void OnInit()
         {
             base.OnInit();
+            
+            _localizer = ServiceLocator.Current.Get<ILocalizer>();
 
             _panelBackground = Root.Q<VisualElement>(name: _panelBackgroundName);
             _missionPanel = Root.Q<VisualElement>(name: _missionPanelName);
@@ -154,6 +159,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var locationLabel = locationTabButtonContainer.Q<Label>();
 
             locationLabel.text = locationData.Name;
+            _localizer.Localize(locationLabel, Constants.LOCATIONS_DATA_TABLE);
 
             _locationTabButtonsMap[locationData.Id] = locationTabButton;
             locationTabButton.RegisterCallback<ClickEvent, ILocationData>(SelectLocation, locationData);
@@ -209,6 +215,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             var missionLabel = missionButtonContainer.Q<Label>(name: _missionNumber);
             missionLabel.text = missionData.DisplayedNumber;
+            _localizer.Localize(missionLabel, Constants.MISSIONS_DATA_TABLE);
 
             var missionButton = missionButtonContainer.Q<Button>();
             _missionButtonsMap[missionData.Id] = missionButton;
@@ -216,6 +223,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             
             var missionName = missionButtonContainer.Q<Label>(name: _missionName);
             missionName.text = missionData.Name;
+            _localizer.Localize(missionName, Constants.MISSIONS_DATA_TABLE);
 
             if (ViewModel.OpenedMissionsMap.TryGetValue(missionData.Id, out var missionModel))
             {
@@ -312,8 +320,13 @@ namespace ITCafe.Gameplay.UI.MVVM
             {
                 var isOpened = ViewModel.OpenedMissionsMap.ContainsKey(missionData.Id);
                 _startButton.SetEnabled(isOpened);
+                
                 _selectedMissionLabel.text = missionData.Name;
+                _localizer.Localize(_selectedMissionLabel, Constants.MISSIONS_DATA_TABLE);
+                
                 _selectedMissionText.text = missionData.Description;
+                _localizer.Localize(_selectedMissionText, Constants.MISSIONS_DATA_TABLE);
+                
                 SetMissionPanelVisible(true);
 
                 if (_missionButtonsMap.TryGetValue(missionData.Id, out var button))

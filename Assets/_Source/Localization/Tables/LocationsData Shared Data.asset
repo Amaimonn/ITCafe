@@ -10,35 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Shared Shared Data
+  m_Name: LocationsData Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: Shared
-  m_TableCollectionNameGuidString: 8881dbb907ad6df439a3f2a44ed2bdc7
+  m_TableCollectionName: LocationsData
+  m_TableCollectionNameGuidString: 130c598c4744fe04fa2d63a760f975f0
   m_Entries:
-  - m_Id: 39123410944
-    m_Key: settings_title
+  - m_Id: 7712407552
+    m_Key: location_1_name
     m_Metadata:
       m_Items: []
-  - m_Id: 10650322460672
-    m_Key: apply_button
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10673886060544
-    m_Key: cancel_button
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2857639791812608
-    m_Key: lvl
+  - m_Id: 83578978304
+    m_Key: location_2_name
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 8792218582905520209
+    rid: 8792218761675932199
   references:
     version: 2
     RefIds:
-    - rid: 8792218582905520209
+    - rid: 8792218761675932199
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1768056954340
+        m_CustomEpoch: 1768735823065

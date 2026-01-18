@@ -42,7 +42,7 @@ namespace ITCafe
 
             builder.Register<ILocalizationLoader>(_ => _rootLocalizationLoader, Lifetime.Scoped);
             builder.Register<ILocalizationLoader>(_ => _settingsLocalizationLoader, Lifetime.Scoped)
-                .Keyed(Constants.SETTINGS_LOCALE_LOADER);
+                .Keyed(Constants.SETTINGS_DATA_LOCALE_LOADER);
 
             RegisterSaves(builder);
             RegisterUI(builder);

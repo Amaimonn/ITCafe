@@ -33,8 +33,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b45ae590fb27494e922870bce6b520f
+    m_Address: MissionsData_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad5b156c31359734087a2597cea2473a
     m_Address: Shared_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d117cfb93eb2b364a9c39701b4505a9e
+    m_Address: LocationsData_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
