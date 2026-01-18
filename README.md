@@ -13,7 +13,8 @@ But there is a nuance...
 [![Cinemachine](https://img.shields.io/badge/Cinemachine-000000?style=plastic&logo=unity)](https://unity.com/unity/features/editor/art-and-design/cinemachine)
 [![Input System](https://img.shields.io/badge/Input_System-EE4C2C?style=plastic&logo=unity)](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest)
 [![URP](https://img.shields.io/badge/URP-5CC2F1?style=plastic&logo=unity)](https://unity.com/unity/features/2d-rendering)
-
+> [!WARNING]
+> This repository contains a private DevKit git submodule dependency.
 ## Screenshots
 
 <img width="1280" height="657" alt="Main scene" src="https://github.com/user-attachments/assets/9c3f3cdc-de5d-403a-934d-4ec28decee79" />
