@@ -15,5 +15,7 @@ MonoBehaviour:
   <TableReferences>k__BackingField:
     _lockedItems:
     - m_TableCollectionName: Gameplay
+    - m_TableCollectionName: Pause
   tables:
   - {fileID: 11400000, guid: 02a1bb670000d754eb9ebc0fa6a2cea6, type: 2}
+  - {fileID: 11400000, guid: 493116ace5727b340aee381482aeb2e3, type: 2}
