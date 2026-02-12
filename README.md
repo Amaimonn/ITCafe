@@ -1,5 +1,5 @@
 # IT Cafe 🍔
-But there is a nuance...
+But there is a nuance... 
 
 ## 🛠️ Tech Stack
 
