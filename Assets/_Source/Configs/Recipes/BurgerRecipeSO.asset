@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BurgerRecipeSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.RecipeSO
   _rawData:
-    <CombinationTag>k__BackingField: 1000
-    <FinalTag>k__BackingField: 6
+    <CombinationTag>k__BackingField: 5000
+    <FinalTag>k__BackingField: 10001
     _requiredParts: 0900000007000000

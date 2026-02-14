@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e9c25874674c028ab4084a20210823, type: 3}
-  m_Name: HotDogExtraSO 1
+  m_Name: HotDogExtraSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.MenuItemExtraSO
   ItemInfo:
     rid: 7418799248309747789
@@ -22,4 +22,4 @@ MonoBehaviour:
     - rid: 7418799248309747789
       type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
       data:
-        ItemTag: 13
+        ItemTag: 10000

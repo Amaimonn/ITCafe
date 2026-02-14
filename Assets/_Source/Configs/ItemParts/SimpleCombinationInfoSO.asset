@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
   m_Name: SimpleCombinationInfoSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
-  <ItemTag>k__BackingField: 1000
+  <ItemTag>k__BackingField: 5000
   <Image>k__BackingField: {fileID: 0}
   <Prefab>k__BackingField: {fileID: 7453412856545647206, guid: 5541f909d642de24d8f34b13d17024d2, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 0}

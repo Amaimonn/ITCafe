@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 609276383056010699, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
       propertyPath: m_Name
-      value: HotDogItem Variant
+      value: hotdog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -93,7 +93,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 6689345196359052415}
   _camera: {fileID: 0}
   _info:
-    ItemTag: 13
+    ItemTag: 10000
 --- !u!114 &5416326209524727923
 MonoBehaviour:
   m_ObjectHideFlags: 0

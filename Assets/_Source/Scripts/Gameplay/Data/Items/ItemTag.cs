@@ -8,21 +8,23 @@ namespace ITCafe.Data.Items
         Onigiri = 3,
         Fries = 4,
         ChocolateDonut = 5,
-        Burger = 6,
         Bun = 7,
         // HotDogBun = 8,
         Patty = 9,
         Cheese = 10,
         Sausage = 11,
         Lettuce = 12,
-        HotDog = 13,
-        
-        // Special
-        Tray = 500,
         
         // Combinations
-        SimpleCombination = 1000,
-        BurgerCombination = 1001,
-        HotDogCombination = 1002,
+        SimpleCombination = 5000,
+        BurgerCombination = 5001,
+        HotDogCombination = 5002,
+        
+        // Menu Items
+        HotDog = 10000,
+        Burger = 10001,
+        
+        // Special
+        Tray = 15000,
     }
 }
