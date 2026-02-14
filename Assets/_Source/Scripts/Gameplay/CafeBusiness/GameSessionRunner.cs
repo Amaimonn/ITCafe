@@ -22,8 +22,7 @@ namespace ITCafe.CafeBusiness
 
         private readonly Subject<Unit> _onCompleted = new();
         private CancellationTokenSource _cts;
-        private const int SESSION_DURATION_SECONDS = 300;
-        private int _remainingSeconds = SESSION_DURATION_SECONDS;
+        private int _remainingSeconds = Constants.SESSION_DURATION_SECONDS;
 
         public GameSessionRunner(WorkProgressService workProgressService,
             HUDViewModel hudViewModel,
@@ -40,7 +39,7 @@ namespace ITCafe.CafeBusiness
             _sendResults = sendResults;
         }
 
-        public async UniTaskVoid RunSessionAsync(int sessionDurationSeconds = SESSION_DURATION_SECONDS,
+        public async UniTaskVoid RunSessionAsync(int sessionDurationSeconds = Constants.SESSION_DURATION_SECONDS,
             CancellationToken token = default)
         {
             _cts = new();
@@ -90,7 +89,7 @@ namespace ITCafe.CafeBusiness
             _clientsRunner.Dispose();
 
             _workProgressService.SetTotalTime(
-                TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _remainingSeconds));
+                TimeSpan.FromSeconds(Constants.SESSION_DURATION_SECONDS - _remainingSeconds));
             _workProgressService.CompleteDay();
 
             var report = _workProgressService.GetDailyReport();

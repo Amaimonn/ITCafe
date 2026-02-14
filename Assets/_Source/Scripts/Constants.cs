@@ -6,6 +6,7 @@ namespace ITCafe
     public static class Constants
     {
         public const int STAR_COUNT = 5;
+        public const int SESSION_DURATION_SECONDS = 150;
 
 #region Outline config
         public const float OUTLINE_WIDTH = 7f;
