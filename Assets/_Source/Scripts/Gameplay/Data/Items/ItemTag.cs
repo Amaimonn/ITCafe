@@ -14,17 +14,26 @@ namespace ITCafe.Data.Items
         Cheese = 10,
         Sausage = 11,
         Lettuce = 12,
-        
+        Rice = 13,
+        Salmon = 14,
+        SalmonFillet = 15,
+        Egg = 16,
+        // SoupBase = 17,
+
         // Combinations
         SimpleCombination = 5000,
         BurgerCombination = 5001,
         HotDogCombination = 5002,
-        
+
         // Menu Items
         HotDog = 10000,
         Burger = 10001,
-        
+        // Sushi = 10002,
+        // FriedEgg = 100003
+
         // Special
         Tray = 15000,
+        Plate = 15001,
+        SushiTable = 15002,
     }
 }
