@@ -10,7 +10,7 @@ namespace ITCafe.Data.Items
         ChocolateDonut = 5,
         Burger = 6,
         Bun = 7,
-        HotDogBun = 8,
+        // HotDogBun = 8,
         Patty = 9,
         Cheese = 10,
         Sausage = 11,

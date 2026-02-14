@@ -6,13 +6,13 @@ namespace ITCafe.Data
     {
         public readonly ICraftPart CraftPart1;
         public readonly ICraftPart CraftPart2;
-        public readonly RecipeSO Recipe;
+        public readonly IRecipeData RecipeData;
 
-        public CraftRequest(ICraftPart craftPart1, ICraftPart craftPart2, RecipeSO recipe)
+        public CraftRequest(ICraftPart craftPart1, ICraftPart craftPart2, IRecipeData recipeData)
         {
             CraftPart1 = craftPart1;
             CraftPart2 = craftPart2;
-            Recipe = recipe;
+            RecipeData = recipeData;
         }
     }
 }

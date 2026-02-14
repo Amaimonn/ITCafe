@@ -1,0 +1,14 @@
+using System;
+using System.Linq;
+using DevKit.Utils;
+using UnityEngine;
+
+namespace ITCafe.Data
+{
+    [Serializable]
+    public class MissionEvaluation : IMissionEvaluation
+    {
+        [field: SerializeField] public InspectorReadonlyList<int> StarEvaluations { get; private set; } =
+            Enumerable.Range(0, Constants.STAR_COUNT).Select(_ => 0).ToInspectorReadonlyList();
+    }
+}

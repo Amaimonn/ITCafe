@@ -81,11 +81,11 @@ namespace ITCafe.Gameplay.UI.MVVM
             ViewModel.GoPreviousPage();
         }
 
-        private void OnGuideChanged(GuideSO guideSO)
+        private void OnGuideChanged(IGuideData guideData)
         {
             _pagesContainer.Clear();
 
-            var pages = guideSO.Pages;
+            var pages = guideData.Pages;
 
             if (pages.Count == 0)
             {

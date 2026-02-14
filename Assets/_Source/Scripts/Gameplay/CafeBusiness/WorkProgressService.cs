@@ -38,7 +38,7 @@ namespace ITCafe.CafeBusiness
         private const int FAILURE_POINTS = 50;
         private ProgressReport? _cachedReport;
 
-        public WorkProgressService(MissionEvaluation missionEvaluation,
+        public WorkProgressService(IMissionEvaluation missionEvaluation,
             [Key(Constants.MENU_ITEMS_HASH_MAP)] IReadOnlyDictionary<int, ItemInfoSO> menuItemsHashMap)
         {
             _menuItemsHashMap = menuItemsHashMap;

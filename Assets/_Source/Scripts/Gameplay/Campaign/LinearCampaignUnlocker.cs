@@ -54,7 +54,7 @@ namespace ITCafe.Campaign
                 {
                     actions.Add(_ => selectedLocationModel.IsCompleted.Value = true);
                     
-                    var allLocationsData = campaignDataModel.AllLocationsData.AllData;
+                    var allLocationsData = campaignDataModel.LocationDataCollection.AllData;
                     var currentLocationIndex = allLocationsData.IndexWhere(x =>
                         x.Id == selectedLocationId);
                     
@@ -95,7 +95,7 @@ namespace ITCafe.Campaign
         public void MigrateCampaign(CampaignModel campaignModel, CampaignDataModel campaignDataModel)
         {
             var stateChanged = false;
-            var allLocationsData = campaignDataModel.AllLocationsData.AllData;
+            var allLocationsData = campaignDataModel.LocationDataCollection.AllData;
 
             foreach (var locationData in allLocationsData)
             {

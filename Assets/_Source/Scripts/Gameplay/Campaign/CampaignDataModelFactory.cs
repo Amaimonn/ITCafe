@@ -12,7 +12,7 @@ namespace ITCafe.Data.Campaign
         public ReadOnlyReactiveProperty<CampaignDataModel> CurrentInstance => _currentInstance;
 
         private readonly ReactiveProperty<CampaignDataModel> _currentInstance = new();
-        private AsyncOperationHandle<AllLocationsDataSO> _locationsDataHandle;
+        private AsyncOperationHandle<LocationDataCollectionSO> _locationsDataHandle;
 
         // There could be a cached model with loaded data (Create method will just increase addressables counter)
 
@@ -27,7 +27,7 @@ namespace ITCafe.Data.Campaign
         {
             var campaignDataModel = new CampaignDataModel();
 
-            IAllLocationsData locationsDataSO = null;
+            ILocationDataCollection locationsDataCollectionSO = null;
             var isLocaleLoaded = false;
 
             _campaignLocaleLoader.Init();
@@ -35,18 +35,18 @@ namespace ITCafe.Data.Campaign
             localeObservable.Take(1).Subscribe(_ =>
             {
                 isLocaleLoaded = true;
-                if (locationsDataSO != null)
-                    campaignDataModel.SetAllLocationsData(locationsDataSO);
+                if (locationsDataCollectionSO != null)
+                    campaignDataModel.SetAllLocationsData(locationsDataCollectionSO);
             });
 
-            _locationsDataHandle = Addressables.LoadAssetAsync<AllLocationsDataSO>(Constants.ALL_LOCATIONS_DATA_PATH);
+            _locationsDataHandle = Addressables.LoadAssetAsync<LocationDataCollectionSO>(Constants.ALL_LOCATIONS_DATA_PATH);
             _locationsDataHandle.Completed += (handle) =>
             {
                 if (handle.Status == AsyncOperationStatus.Succeeded)
                 {
-                    locationsDataSO = handle.Result;
+                    locationsDataCollectionSO = handle.Result;
                     if (isLocaleLoaded)
-                        campaignDataModel.SetAllLocationsData(locationsDataSO);
+                        campaignDataModel.SetAllLocationsData(locationsDataCollectionSO);
                 }
                 else
                 {

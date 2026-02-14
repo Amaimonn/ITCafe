@@ -6,7 +6,7 @@ namespace ITCafe.Data.Campaign
 {
     public class CampaignDataModel
     {
-        public IAllLocationsData AllLocationsData => _allLocationsData;
+        public ILocationDataCollection LocationDataCollection => _locationDataCollection;
         public Observable<bool> IsLoaded => _isLoaded;
 
         public ReadOnlyReactiveProperty<IReadOnlyDictionary<string, ILocationData>> LocationsDataMap =>
@@ -21,18 +21,18 @@ namespace ITCafe.Data.Campaign
         /// <summary>
         /// All Locations config data in campaign
         /// </summary>
-        private IAllLocationsData _allLocationsData;
+        private ILocationDataCollection _locationDataCollection;
         private readonly ReactiveProperty<IReadOnlyDictionary<string, ILocationData>> _locationsDataMap = new();
         private readonly ReactiveProperty<IReadOnlyDictionary<string, IMissionData>> _currentMissionsDataMap = new();
 
         private readonly ReactiveProperty<bool> _isLoaded = new(false);
 
-        public void SetAllLocationsData(IAllLocationsData allLocationsData)
+        public void SetAllLocationsData(ILocationDataCollection locationDataCollection)
         {
-            _allLocationsData = allLocationsData;
-            if (_allLocationsData != null && allLocationsData.AllData != null)
+            _locationDataCollection = locationDataCollection;
+            if (_locationDataCollection != null && locationDataCollection.AllData != null)
             {
-                var locationsPairs = allLocationsData.AllData
+                var locationsPairs = locationDataCollection.AllData
                     .Select(x => new KeyValuePair<string, ILocationData>(x.Id, x));
 
                 _locationsDataMap.Value = new Dictionary<string, ILocationData>(locationsPairs);

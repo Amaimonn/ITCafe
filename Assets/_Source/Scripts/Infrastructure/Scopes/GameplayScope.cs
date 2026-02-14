@@ -55,7 +55,7 @@ namespace ITCafe
         [SerializeField] private LocalizationLoader _localizationLoader;
         [SerializeField] private Volume _volume;
 
-        private GuideSO _guideSO;
+        private IGuideData _guideData;
         private CompositeDisposable _disposables = new();
         private CancellationToken _destroyToken;
         private IViewBinder<PauseViewModel> _pauseBinder;
@@ -133,7 +133,7 @@ namespace ITCafe
             var menuItemsHashMap = new Dictionary<int, ItemInfoSO>();
             var allItemsMap = new Dictionary<ItemTag, ItemInfoSO>();
 
-            foreach (var itemInfo in _missionSetup.ItemsInfoSO.AllInfo)
+            foreach (var itemInfo in _missionSetup.ItemInfoCollection.AllInfo)
             {
                 if (!allItemsMap.TryAdd(itemInfo.ItemTag, itemInfo))
                     FLogger.LogWarning($"{itemInfo.ItemTag} has already been added");
@@ -160,16 +160,19 @@ namespace ITCafe
                 .As<IReadOnlyDictionary<int, ItemInfoSO>>()
                 .Keyed(Constants.MENU_ITEMS_HASH_MAP);
 
-            builder.RegisterInstance<IEnumerable<RecipeSO>>(_missionSetup.RecipesSO.Recipes);
+            builder.RegisterInstance<IEnumerable<IRecipeData>>(_missionSetup.RecipeCollection.Recipes);
 
-            builder.RegisterInstance<MissionEvaluation>(_missionSetup.MissionEvaluation);
+            builder.RegisterInstance<IMissionEvaluation>(_missionSetup.MissionEvaluation);
 
-            _guideSO = _missionSetup.GuideSO;
-            if (_guideSO != null)
-                builder.RegisterInstance<GuideSO>(_guideSO);
 
-            var itemsInfo = _missionSetup.ItemsInfoSO.AllInfo;
-            builder.RegisterInstance<ItemInfoSO[]>(itemsInfo)
+            if (_missionSetup.GuideData != null && _missionSetup.GuideData.Pages.Count > 0)
+            {
+                _guideData = _missionSetup.GuideData;
+                builder.RegisterInstance<IGuideData>(_guideData);
+            }
+
+            var itemsInfo = _missionSetup.ItemInfoCollection.AllInfo;
+            builder.RegisterInstance<IReadOnlyList<ItemInfoSO>>(itemsInfo)
                 .AsSelf()
                 .As<IEnumerable<ItemInfoSO>>();
         }
@@ -208,7 +211,7 @@ namespace ITCafe
                 .As<IViewBinder<PauseViewModel>>();
             builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
 
-            if (_guideSO != null)
+            if (_guideData != null)
             {
                 builder.RegisterInstance<GuideView>(_guideViewPrefab);
                 builder.Register<GuideViewModel>(Lifetime.Singleton);
@@ -251,7 +254,7 @@ namespace ITCafe
 
             // Scene setup
             Destroy(_missionSetupRoot);
-            var sceneSetup = _missionSetup.SceneObjectsPrefab;
+            var sceneSetup = _missionSetup.SceneSetupPrefab;
             yield return InstantiateAsync(sceneSetup);
 
             // Input init
@@ -319,7 +322,7 @@ namespace ITCafe
 
         private void BootAfterLoading()
         {
-            if (_guideSO != null)
+            if (_guideData != null)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;

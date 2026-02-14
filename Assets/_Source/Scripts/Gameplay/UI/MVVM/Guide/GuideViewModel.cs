@@ -6,22 +6,22 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class GuideViewModel : ScreenViewModel
     {
-        public Observable<GuideSO> OnGuideChanged => _currentGuide;
+        public Observable<IGuideData> OnGuideChanged => _currentGuide;
         public Observable<int> OnCurrentPageIndexChanged => _currentPageIndex;
         public Observable<int> OnPagesCountChanged => _pagesCount;
         public Observable<bool> OnNextEnabledChanged => _isNextEnabled;
         public Observable<bool> OnPreviousEnabledChanged => _isPreviousEnabled;
 
-        private readonly ReactiveProperty<GuideSO> _currentGuide;
+        private readonly ReactiveProperty<IGuideData> _currentGuide;
         private readonly ReactiveProperty<int> _currentPageIndex = new(0);
         private readonly ReactiveProperty<int> _pagesCount;
         private readonly ReactiveProperty<bool> _isNextEnabled;
         private readonly ReactiveProperty<bool> _isPreviousEnabled = new(false);
 
-        public GuideViewModel(GuideSO guideSO)
+        public GuideViewModel(IGuideData guideData)
         {
-            _currentGuide = new ReactiveProperty<GuideSO>(guideSO);
-            _pagesCount = new ReactiveProperty<int>(guideSO.Pages.Count);
+            _currentGuide = new ReactiveProperty<IGuideData>(guideData);
+            _pagesCount = new ReactiveProperty<int>(guideData.Pages.Count);
             _isNextEnabled = new ReactiveProperty<bool>(_pagesCount.Value > 0);
         }
 
