@@ -226,6 +226,23 @@ MonoBehaviour:
       For the effect to work, you need to enable post-processing.'
     m_Metadata:
       m_Items: []
+  - m_Id: 13151856539860992
+    m_Localized: Chromatic aberration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13152012823822336
+    m_Localized: "Chromatic Aberration is a post-processing effect that simulates
+      color fringing or distortion commonly found in real-world camera lenses. \r\n\r\nIt
+      creates red/blue or green/magenta halos around high-contrast edges of objects.\r\n\r\nON:
+      The image will display colored fringing, particularly at the screen edges and
+      on object boundaries.\r\n\r\nOFF: The image will remain sharp and clear without
+      color distortions.\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13154555436072960
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

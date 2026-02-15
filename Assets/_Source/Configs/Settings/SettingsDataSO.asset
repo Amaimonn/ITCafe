@@ -17,8 +17,8 @@ MonoBehaviour:
   <InputSectionLabel>k__BackingField: input
   <LanguageSectionLabel>k__BackingField: language
   <SoundIcon>k__BackingField: {fileID: 21300000, guid: 2b2935ea7555fd44dac80a620aae58a3, type: 3}
-  <GraphicsIcon>k__BackingField: {fileID: 21300000, guid: d7cb8c7ae93fa964796337bc20955b0b, type: 3}
-  <InputIcon>k__BackingField: {fileID: 0}
+  <VideoIcon>k__BackingField: {fileID: 21300000, guid: d7cb8c7ae93fa964796337bc20955b0b, type: 3}
+  <InputIcon>k__BackingField: {fileID: 21300000, guid: c8408c27200f1af4d9a6f1cd67bec2ad, type: 3}
   <LanguageIcon>k__BackingField: {fileID: 21300000, guid: 1279cd8a74f11084ea32dd6f8d7bdc40, type: 3}
   _musicVolumeSliderDataSO: {fileID: 11400000, guid: 89e456505ed340946a2ebb8460c5d3d6, type: 2}
   _sfxVolumeSliderDataSO: {fileID: 11400000, guid: 1f1d7b9a97aa01744b7a26b7f54c824d, type: 2}
@@ -30,6 +30,7 @@ MonoBehaviour:
   _isBloomEnabledToggleDataSO: {fileID: 11400000, guid: a4d85e1de2a030e4db111e5718c53264, type: 2}
   _isFilmGrainEnabledToggleDataSO: {fileID: 11400000, guid: 8448ffe938edc6d49a9184c5bed7af55, type: 2}
   _isAntiAliasingEnabledToggleDataSO: {fileID: 11400000, guid: d3527c0294dc58a47897a9c8b97f87ea, type: 2}
+  _isChromaticAberrationEnabledToggleDataSO: {fileID: 11400000, guid: ed011f526c578344ea474706a6df0dd6, type: 2}
   _qualityPresetDataSO: {fileID: 11400000, guid: b181def77ca5bff46b5b7423c5f79506, type: 2}
   _resolutionDataSO: {fileID: 11400000, guid: 1575d049dd6aefb4cb3a0186c29f4bd1, type: 2}
   _fullscreenToggleDataSO: {fileID: 11400000, guid: 056152c45b3d5e2479a8766672dc0e76, type: 2}

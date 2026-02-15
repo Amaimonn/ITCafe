@@ -32,7 +32,7 @@ namespace ITCafe
 
         public void Dispose()
         {
-            _localizationLoadingService.Dispose();
+            _localizationLoadingService?.Dispose();
         }
     }
 }

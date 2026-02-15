@@ -10,7 +10,7 @@ namespace ITCafe.Data.Settings
         public string LanguageSectionLabel { get; }
 
         public Sprite SoundIcon { get; }
-        public Sprite GraphicsIcon { get; }
+        public Sprite VideoIcon { get; }
         public Sprite InputIcon { get; }
         public Sprite LanguageIcon { get; }
         
@@ -24,6 +24,7 @@ namespace ITCafe.Data.Settings
         public IToggleSettingData IsPostProcessingEnabledData { get; }
         public IToggleSettingData IsBloomEnabledData { get; }
         public IToggleSettingData IsFilmGrainEnabledData { get; }
+        public IToggleSettingData IsChromaticAberrationEnabledData { get; }
         public IToggleSettingData IsAntiAliasingEnabledData { get; }
         public IOptionsSettingData ResolutionData { get; }
         public IToggleSettingData FullscreenData { get; }

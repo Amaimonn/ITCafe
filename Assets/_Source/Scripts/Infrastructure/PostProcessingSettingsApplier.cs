@@ -8,13 +8,13 @@ using ITCafe.Data.Settings;
 
 namespace ITCafe
 {
-    public class PostProcessingController : IDisposable
+    public class PostProcessingSettingsApplier : IDisposable
     {
         private readonly Volume _volume;
 
         private CompositeDisposable _disposables = new();
 
-        public PostProcessingController(Volume volume)
+        public PostProcessingSettingsApplier(Volume volume)
         {
             _volume = volume;
         }
@@ -42,6 +42,14 @@ namespace ITCafe
                 optionalEffects.Add(filmGrain);
                 settingsModel.IsFilmGrainEnabled
                     .Subscribe(x => filmGrain.active = x)
+                    .AddTo(_disposables);
+            }
+            
+            if (_volume.profile.TryGet<ChromaticAberration>(out var chromaticAberration))
+            {
+                optionalEffects.Add(chromaticAberration);
+                settingsModel.IsChromaticAberrationEnabled
+                    .Subscribe(x => chromaticAberration.active = x)
                     .AddTo(_disposables);
             }
 

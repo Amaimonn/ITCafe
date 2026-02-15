@@ -121,7 +121,7 @@ namespace ITCafe
             builder.Register<CraftService>(Lifetime.Singleton)
                 .As<ICraftService>();
 
-            builder.Register<PostProcessingController>(Lifetime.Singleton);
+            builder.Register<PostProcessingSettingsApplier>(Lifetime.Singleton);
             builder.RegisterInstance<Volume>(_volume);
         }
 
@@ -399,7 +399,7 @@ namespace ITCafe
         private void InitSettings()
         {
             var settingsModel = Container.Resolve<SettingsModel>();
-            var postProcessingController = Container.Resolve<PostProcessingController>();
+            var postProcessingController = Container.Resolve<PostProcessingSettingsApplier>();
 
             postProcessingController.BindSettings(settingsModel);
             postProcessingController.AddTo(_disposables);

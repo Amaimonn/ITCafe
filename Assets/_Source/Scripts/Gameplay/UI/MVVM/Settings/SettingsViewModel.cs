@@ -19,6 +19,7 @@ namespace Inui.UI.MVVM.Settings
         public readonly VideoSettingsViewModel VideoSettingsViewModel = new();
         public readonly SoundSettingsViewModel SoundSettingsViewModel = new();
         public readonly LanguageSectionViewModel LanguageSettingsViewModel = new();
+        public readonly InputSectionViewModel InputSettingsViewModel = new();
 
         private readonly ISaveStateProvider _gameStateProvider;
 
@@ -35,7 +36,8 @@ namespace Inui.UI.MVVM.Settings
             {
                 VideoSettingsViewModel,
                 SoundSettingsViewModel,
-                LanguageSettingsViewModel
+                LanguageSettingsViewModel,
+                InputSettingsViewModel
             };
         }
 

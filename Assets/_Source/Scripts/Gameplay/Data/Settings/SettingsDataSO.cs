@@ -20,6 +20,7 @@ namespace ITCafe.Data.Settings
         public IToggleSettingData IsBloomEnabledData => _isBloomEnabledToggleDataSO;
         public IToggleSettingData IsFilmGrainEnabledData => _isFilmGrainEnabledToggleDataSO;
         public IToggleSettingData IsAntiAliasingEnabledData => _isAntiAliasingEnabledToggleDataSO;
+        public IToggleSettingData IsChromaticAberrationEnabledData =>  _isChromaticAberrationEnabledToggleDataSO;
         public IOptionsSettingData QualityPresetData => _qualityPresetDataSO;
         public IOptionsSettingData ResolutionData => _resolutionDataSO;
         public IToggleSettingData FullscreenData => _fullscreenToggleDataSO;
@@ -33,7 +34,7 @@ namespace ITCafe.Data.Settings
         [field: SerializeField] public string LanguageSectionLabel { get; private set; }
 
         [field: SerializeField] public Sprite SoundIcon { get; private set; }
-        [field: SerializeField] public Sprite GraphicsIcon { get; private set; }
+        [field: SerializeField] public Sprite VideoIcon { get; private set; }
         [field: SerializeField] public Sprite InputIcon { get; private set; }
         [field: SerializeField] public Sprite LanguageIcon { get; private set; }
         
@@ -52,6 +53,7 @@ namespace ITCafe.Data.Settings
         [SerializeField] private ToggleSettingDataSO _isBloomEnabledToggleDataSO;
         [SerializeField] private ToggleSettingDataSO _isFilmGrainEnabledToggleDataSO;
         [SerializeField] private ToggleSettingDataSO _isAntiAliasingEnabledToggleDataSO;
+        [SerializeField] private ToggleSettingDataSO _isChromaticAberrationEnabledToggleDataSO;
         [SerializeField] private OptionsSettingDataSO _qualityPresetDataSO;
         [SerializeField] private OptionsSettingDataSO _resolutionDataSO;
         [SerializeField] private ToggleSettingDataSO _fullscreenToggleDataSO;

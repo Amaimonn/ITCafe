@@ -151,6 +151,18 @@ MonoBehaviour:
     m_Key: pp_disabled_warning
     m_Metadata:
       m_Items: []
+  - m_Id: 13151856539860992
+    m_Key: chromatic_aberration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13152012823822336
+    m_Key: chromatic_aberration_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13154555436072960
+    m_Key: input
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

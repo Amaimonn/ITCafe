@@ -41,9 +41,9 @@ namespace ITCafe.Gameplay.UI.MVVM
             _sectionsContainer.Clear();
             _tabButtonsContainer = Root.Q<VisualElement>(name: _tabButtonsContainerName);
             _tabButtonsContainer.Clear();
-            _controlInfoContainer =  Root.Q<VisualElement>(name: _controlInfoContainerName);
+            _controlInfoContainer = Root.Q<VisualElement>(name: _controlInfoContainerName);
             _controlInfoContainer.Clear();
-            
+
             _controlFactory.Init(_sectionsContainer, _tabButtonsContainer, _controlInfoContainer);
         }
 
@@ -76,7 +76,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _applyButton.SetEnabled(x);
                 _cancelChangesButton.SetEnabled(x);
             }).AddTo(_disposables);
-            
+
             _controlFactory.AddTo(_disposables);
         }
 
@@ -85,18 +85,17 @@ namespace ITCafe.Gameplay.UI.MVVM
             InitVideo(data);
             InitSound(data);
             InitLanguage(data);
+            InitInputs(data);
         }
-        
+
         private void InitVideo(ISettingsData data)
         {
             var videoViewModel = ViewModel.VideoSettingsViewModel;
 
-            var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel, 
-                _ => ViewModel.SelectSection(videoViewModel), data.GraphicsIcon);
+            var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel,
+                _ => ViewModel.SelectSection(videoViewModel), data.VideoIcon);
             var videoSection = tabEntry.ScrollView;
             _sectionsMap[videoViewModel] = tabEntry;
-
-            _controlFactory.AddBindedSliderInt(data.SensitivityData, videoSection, videoViewModel.Sensitivity);
 
             _controlFactory.AddBindedToggle(data.VSyncData, videoSection, videoViewModel.VSync);
 
@@ -111,6 +110,9 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             _controlFactory.AddBindedToggle(data.IsFilmGrainEnabledData, videoSection, videoViewModel.FilmGrain);
 
+            _controlFactory.AddBindedToggle(data.IsChromaticAberrationEnabledData, videoSection,
+                videoViewModel.ChromaticAberration);
+
             _controlFactory.AddBindedToggle(data.IsAntiAliasingEnabledData, videoSection, videoViewModel.AntiAliasing);
 
             _controlFactory.AddBindedDropdown(data.ResolutionData, videoSection, videoViewModel.Resolution);
@@ -122,7 +124,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             var soundViewModel = ViewModel.SoundSettingsViewModel;
 
-            var tabEntry = _controlFactory.AddBindedTab(data.SoundSectionLabel, 
+            var tabEntry = _controlFactory.AddBindedTab(data.SoundSectionLabel,
                 _ => ViewModel.SelectSection(soundViewModel), data.SoundIcon);
             var soundSection = tabEntry.ScrollView;
             _sectionsMap[soundViewModel] = tabEntry;
@@ -135,13 +137,25 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void InitLanguage(ISettingsData data)
         {
             var languageViewModel = ViewModel.LanguageSettingsViewModel;
-            
-            var tabEntry = _controlFactory.AddBindedTab(data.LanguageSectionLabel, 
+
+            var tabEntry = _controlFactory.AddBindedTab(data.LanguageSectionLabel,
                 _ => ViewModel.SelectSection(languageViewModel), data.LanguageIcon);
             var languageSection = tabEntry.ScrollView;
             _sectionsMap[languageViewModel] = tabEntry;
-            
+
             _controlFactory.AddBindedDropdown(data.LanguageData, languageSection, languageViewModel.Language);
+        }
+
+        private void InitInputs(ISettingsData data)
+        {
+            var inputsViewModel = ViewModel.InputSettingsViewModel;
+
+            var tabEntry = _controlFactory.AddBindedTab(data.InputSectionLabel,
+                _ => ViewModel.SelectSection(inputsViewModel), data.InputIcon);
+            var inputSection = tabEntry.ScrollView;
+            _sectionsMap[inputsViewModel] = tabEntry;
+
+            _controlFactory.AddBindedSliderInt(data.SensitivityData, inputSection, inputsViewModel.Sensitivity);
         }
 
         private void OnSectionChanged(SettingsSectionViewModel section)

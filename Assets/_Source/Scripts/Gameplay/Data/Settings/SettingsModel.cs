@@ -18,6 +18,7 @@ namespace ITCafe.Data.Settings
         public readonly ReactiveProperty<bool> IsPostProcessingEnabled;
         public readonly ReactiveProperty<bool> IsBloomEnabled;
         public readonly ReactiveProperty<bool> IsFilmGrainEnabled;
+        public readonly ReactiveProperty<bool> IsChromaticAberrationEnabled;
         public readonly ReactiveProperty<bool> IsAntiAliasingEnabled;
         // public readonly ReactiveProperty<int> QualityPreset;
         public readonly ReactiveProperty<ScreenResolution> ScreenResolution;
@@ -42,6 +43,7 @@ namespace ITCafe.Data.Settings
             IsPostProcessingEnabled = new ReactiveProperty<bool>(state.IsPostProcessingEnabled);
             IsBloomEnabled = new ReactiveProperty<bool>(state.IsBloomEnabled);
             IsFilmGrainEnabled = new ReactiveProperty<bool>(state.IsFilmGrainEnabled);
+            IsChromaticAberrationEnabled = new ReactiveProperty<bool>(state.IsChromaticAberrationEnabled);
             IsAntiAliasingEnabled = new ReactiveProperty<bool>(state.IsAntiAliasingEnabled);
             // QualityPreset = new ReactiveProperty<int>(state.QualityPreset);
             ScreenResolution = new ReactiveProperty<ScreenResolution>(new ScreenResolution

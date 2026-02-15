@@ -27,6 +27,7 @@ namespace ITCafe.Data.Settings
         public bool IsPostProcessingEnabled = true;
         public bool IsBloomEnabled = true;
         public bool IsFilmGrainEnabled = false;
+        public bool IsChromaticAberrationEnabled = true;
         public bool IsAntiAliasingEnabled = true;
         // public int QualityPreset = 2;
         public int ScreenWidth;
