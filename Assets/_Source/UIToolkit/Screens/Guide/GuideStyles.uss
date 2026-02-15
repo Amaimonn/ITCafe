@@ -132,6 +132,10 @@
     border-width: 2px;
 }
 
+.guide__ingredient-labels-container {
+    flex-direction: row;
+}
+
 .guide__ingredient-label {
     font-size: 14px;
     color: rgb(180, 220, 240);

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f09e6688014a5a83d252807b797580, type: 3}
   m_Name: MainMenuTables
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.StringTablesConfig
-  <TableReferences>k__BackingField:
-    _lockedItems:
-    - m_TableCollectionName: MainMenu
-  tables:
-  - {fileID: 11400000, guid: 4685f70987e7e3b448d72f2b0df95260, type: 2}
+  _rawData:
+    <TableReferences>k__BackingField:
+      _lockedItems:
+      - m_TableCollectionName: MainMenu
+    _tables:
+    - {fileID: 11400000, guid: 4685f70987e7e3b448d72f2b0df95260, type: 2}

@@ -1,37 +1,33 @@
-// https://github.com/workavast/Blame-Game 2025 Rodion
-
 using System;
 using Cysharp.Threading.Tasks;
 using R3;
-using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 namespace ITCafe
 {
-    [Serializable]
-    public class LocalizationLoader : ILocalizationLoader
+    public class LocalizationLoadingService : IDisposable
     {
-        [field: SerializeField] private StringTablesConfig _tablesConfig;
-
+        private ILocaleTableCollection _tableCollection;
         private Locale _locale;
-
-        public void Init()
+        
+        public void Init(ILocaleTableCollection tableCollection)
         {
+            _tableCollection =  tableCollection;
             LocalizationSettings.SelectedLocaleChanged += UnloadTables;
         }
 
         public async UniTaskVoid LoadTables()
         {
             _locale = LocalizationSettings.SelectedLocale;
-            await LocalizationSettings.StringDatabase.PreloadTables(_tablesConfig.TableReferences,
+            await LocalizationSettings.StringDatabase.PreloadTables(_tableCollection.TableReferences,
                 _locale);
         }
 
         public Observable<Unit> LoadTablesObservable()
         {
             _locale = LocalizationSettings.SelectedLocale;
-            var handle = LocalizationSettings.StringDatabase.PreloadTables(_tablesConfig.TableReferences,
+            var handle = LocalizationSettings.StringDatabase.PreloadTables(_tableCollection.TableReferences,
                 _locale);
 
             if (handle.IsDone)
@@ -45,7 +41,7 @@ namespace ITCafe
 
         private void Release()
         {
-            foreach (var table in _tablesConfig.TableReferences)
+            foreach (var table in _tableCollection.TableReferences)
                 LocalizationSettings.StringDatabase.ReleaseTable(table, _locale);
         }
 

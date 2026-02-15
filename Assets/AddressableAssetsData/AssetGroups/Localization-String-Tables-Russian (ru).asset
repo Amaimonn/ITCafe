@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5af24b0417039f244a88c8570e34177b
+    m_Address: Guide_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ddbd6a3a3ef6424f81eb261ef488828
     m_Address: LocationsData_ru
     m_ReadOnly: 1
@@ -45,8 +51,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac397edcfeb7b434d8d1986cdfa078c7
+    m_Address: Items_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3bee75766b6c2649872e59f9316435d
     m_Address: MainMenu_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bab7eddf2ab287046bd1ebbf9af9feed
+    m_Address: BaseInputGuide_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru

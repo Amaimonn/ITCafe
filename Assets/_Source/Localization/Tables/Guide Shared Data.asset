@@ -10,47 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Shared Shared Data
+  m_Name: Guide Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: Shared
-  m_TableCollectionNameGuidString: 8881dbb907ad6df439a3f2a44ed2bdc7
+  m_TableCollectionName: Guide
+  m_TableCollectionNameGuidString: ef7264d5a5094f744afcb1837e0f1e34
   m_Entries:
-  - m_Id: 39123410944
-    m_Key: settings_title
+  - m_Id: 6907101184
+    m_Key: guide_title
     m_Metadata:
       m_Items: []
-  - m_Id: 10650322460672
-    m_Key: apply_button
+  - m_Id: 14023507705856
+    m_Key: cooking_subtitle
     m_Metadata:
       m_Items: []
-  - m_Id: 10673886060544
-    m_Key: cancel_button
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2857639791812608
-    m_Key: lvl
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13008797781065728
-    m_Key: item
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13009348648370176
-    m_Key: deletion
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13010248632762368
-    m_Key: ok
+  - m_Id: 18468597530624
+    m_Key: tools_subtitle
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 8792218582905520209
+    rid: 2693439899669364823
   references:
     version: 2
     RefIds:
-    - rid: 8792218582905520209
+    - rid: 2693439899669364823
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1768056954340
+        m_CustomEpoch: 1771154301003

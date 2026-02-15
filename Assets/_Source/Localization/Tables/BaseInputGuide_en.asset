@@ -10,40 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Shared_en
+  m_Name: BaseInputGuide_en
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: en
-  m_SharedData: {fileID: 11400000, guid: 8881dbb907ad6df439a3f2a44ed2bdc7, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 43f6092c1e2012144b74546092a145ca, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 39123410944
-    m_Localized: // SETTINGS
+  - m_Id: 689030955008
+    m_Localized: CONTROLS
     m_Metadata:
       m_Items: []
-  - m_Id: 10650322460672
-    m_Localized: APPLY
+  - m_Id: 1182302076928
+    m_Localized: LMB
     m_Metadata:
       m_Items: []
-  - m_Id: 10673886060544
-    m_Localized: CANCEL
+  - m_Id: 1341668851712
+    m_Localized: CHARACTER_MOVEMENT
     m_Metadata:
       m_Items: []
-  - m_Id: 2857639791812608
-    m_Localized: Lvl
+  - m_Id: 1613841432576
+    m_Localized: INTERACT
     m_Metadata:
       m_Items: []
-  - m_Id: 13008797781065728
-    m_Localized: ITEM
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13009348648370176
-    m_Localized: DELETION
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13010248632762368
-    m_Localized: OK
+  - m_Id: 1819291025408
+    m_Localized: PAUSE
     m_Metadata:
       m_Items: []
   references:

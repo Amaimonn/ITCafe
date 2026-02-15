@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f09e6688014a5a83d252807b797580, type: 3}
   m_Name: SharedTables
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.StringTablesConfig
-  <TableReferences>k__BackingField:
-    _lockedItems:
-    - m_TableCollectionName: Shared
-  tables:
-  - {fileID: 11400000, guid: 92bb3b377c42cd94f9cd4a28bab7a076, type: 2}
+  _rawData:
+    <TableReferences>k__BackingField:
+      _lockedItems:
+      - m_TableCollectionName: Shared
+    _tables:
+    - {fileID: 11400000, guid: 92bb3b377c42cd94f9cd4a28bab7a076, type: 2}

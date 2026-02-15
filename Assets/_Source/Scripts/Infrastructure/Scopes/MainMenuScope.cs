@@ -20,8 +20,8 @@ namespace ITCafe
 
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
-        [SerializeField] private LocalizationLoader _mainMenuLocalizationLoader;
-        [SerializeField] private LocalizationLoader _campaignLocalizationLoader;
+        [SerializeField] private SerializableLocalizationLoader _mainMenuLocalizationLoader;
+        [SerializeField] private SerializableLocalizationLoader _campaignLocalizationLoader;
 
         private MainMenuEnterContext _mainMenuEnterContext;
         private CompositeDisposable _disposables = new();

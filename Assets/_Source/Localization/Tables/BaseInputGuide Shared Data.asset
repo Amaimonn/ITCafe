@@ -10,47 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Shared Shared Data
+  m_Name: BaseInputGuide Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: Shared
-  m_TableCollectionNameGuidString: 8881dbb907ad6df439a3f2a44ed2bdc7
+  m_TableCollectionName: BaseInputGuide
+  m_TableCollectionNameGuidString: 43f6092c1e2012144b74546092a145ca
   m_Entries:
-  - m_Id: 39123410944
-    m_Key: settings_title
+  - m_Id: 689030955008
+    m_Key: controls_title
     m_Metadata:
       m_Items: []
-  - m_Id: 10650322460672
-    m_Key: apply_button
+  - m_Id: 1182302076928
+    m_Key: lmb
     m_Metadata:
       m_Items: []
-  - m_Id: 10673886060544
-    m_Key: cancel_button
+  - m_Id: 1341668851712
+    m_Key: move_desc
     m_Metadata:
       m_Items: []
-  - m_Id: 2857639791812608
-    m_Key: lvl
+  - m_Id: 1613841432576
+    m_Key: interact_desc
     m_Metadata:
       m_Items: []
-  - m_Id: 13008797781065728
-    m_Key: item
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13009348648370176
-    m_Key: deletion
-    m_Metadata:
-      m_Items: []
-  - m_Id: 13010248632762368
-    m_Key: ok
+  - m_Id: 1819291025408
+    m_Key: pause_desc
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 8792218582905520209
+    rid: 2693439899669364822
   references:
     version: 2
     RefIds:
-    - rid: 8792218582905520209
+    - rid: 2693439899669364822
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1768056954340
+        m_CustomEpoch: 1771154280806

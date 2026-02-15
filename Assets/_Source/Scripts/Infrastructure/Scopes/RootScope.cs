@@ -19,8 +19,8 @@ namespace ITCafe
     {
         [SerializeField] private RootUIBinder _rootUIBinderPrefab;
         [SerializeField] private SettingsView _settingsViewPrefab;
-        [SerializeField] private LocalizationLoader _rootLocalizationLoader;
-        [SerializeField] private LocalizationLoader _settingsLocalizationLoader;
+        [SerializeField] private SerializableLocalizationLoader _rootLocalizationLoader;
+        [SerializeField] private SerializableLocalizationLoader _settingsLocalizationLoader;
 
         private CompositeDisposable _disposables = new();
         private RootUIBinder _rootUIBinder;

@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f09e6688014a5a83d252807b797580, type: 3}
   m_Name: GameplayTables
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.StringTablesConfig
-  <TableReferences>k__BackingField:
-    _lockedItems:
-    - m_TableCollectionName: Gameplay
-    - m_TableCollectionName: Pause
-  tables:
-  - {fileID: 11400000, guid: 02a1bb670000d754eb9ebc0fa6a2cea6, type: 2}
-  - {fileID: 11400000, guid: 493116ace5727b340aee381482aeb2e3, type: 2}
+  _rawData:
+    <TableReferences>k__BackingField:
+      _lockedItems:
+      - m_TableCollectionName: Gameplay
+      - m_TableCollectionName: Pause
+      - m_TableCollectionName: Guide
+      - m_TableCollectionName: Items
+    _tables:
+    - {fileID: 11400000, guid: 02a1bb670000d754eb9ebc0fa6a2cea6, type: 2}
+    - {fileID: 11400000, guid: 493116ace5727b340aee381482aeb2e3, type: 2}
+    - {fileID: 11400000, guid: f1958d7c1ae04414dbfe302e91264e55, type: 2}
+    - {fileID: 11400000, guid: fd2928900baefca4f8ab16392b025b71, type: 2}

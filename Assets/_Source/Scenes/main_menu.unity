@@ -347,9 +347,9 @@ MonoBehaviour:
   _mainMenuViewPrefab: {fileID: 5820000055470892123, guid: 3d28230d3ddbf2d439ee4925b5971659, type: 3}
   _campaignViewPrefab: {fileID: 2689488396547932521, guid: 62c7c7a63560f5c4aa953c35c251d223, type: 3}
   _mainMenuLocalizationLoader:
-    _tablesConfig: {fileID: 11400000, guid: 76070ef5091ffec4794e8e1326d07905, type: 2}
+    _tableCollectionSO: {fileID: 11400000, guid: 76070ef5091ffec4794e8e1326d07905, type: 2}
   _campaignLocalizationLoader:
-    _tablesConfig: {fileID: 11400000, guid: 0b2730e4f09bf314fa48744070f0860c, type: 2}
+    _tableCollectionSO: {fileID: 11400000, guid: 0b2730e4f09bf314fa48744070f0860c, type: 2}
 --- !u!4 &1317737976
 Transform:
   m_ObjectHideFlags: 0

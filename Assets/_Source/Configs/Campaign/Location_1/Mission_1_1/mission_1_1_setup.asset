@@ -33,3 +33,9 @@ MonoBehaviour:
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: 64000000c80000002c01000090010000f4010000
+  _localeTableCollection:
+    <TableReferences>k__BackingField:
+      _lockedItems:
+      - m_TableCollectionName: BaseInputGuide
+    _tables:
+    - {fileID: 11400000, guid: 32cbc449ba37e96419520059388bd595, type: 2}

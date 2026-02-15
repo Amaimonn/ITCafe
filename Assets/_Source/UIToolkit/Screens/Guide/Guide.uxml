@@ -1,17 +1,21 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="Page1" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/Page1.uxml?fileID=9197481963319205126&amp;guid=3587e7d115f0e704cac0b28c84f1a0f5&amp;type=3#Page1"/>
+    <ui:Template name="MissionGuide_1_1_p1" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/MissionGuide_1_1_p1.uxml?fileID=9197481963319205126&amp;guid=3587e7d115f0e704cac0b28c84f1a0f5&amp;type=3#MissionGuide_1_1_p1"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="guide__root" style="flex-grow: 1;">
         <ui:VisualElement name="GuidePanel" class="cafe__root-panel guide__panel">
             <ui:VisualElement name="Header" class="guide__header">
                 <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="// &#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1053;&#1040;&#1071;_&#1044;&#1054;&#1050;&#1059;&#1052;&#1045;&#1053;&#1058;&#1040;&#1062;&#1048;&#1071;" picking-mode="Ignore" class="cafe__view-title" style="font-size: 22px;"/>
+                    <ui:Label picking-mode="Ignore" class="cafe__view-title" style="font-size: 22px;">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:ef7264d5a5094f744afcb1837e0f1e34" entry="Id(6907101184)"/>
+                        </Bindings>
+                    </ui:Label>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
             <ui:VisualElement name="PagesContainer" class="guide__content-area">
-                <ui:Instance template="Page1"/>
+                <ui:Instance template="MissionGuide_1_1_p1"/>
             </ui:VisualElement>
             <ui:VisualElement name="Navigation" class="guide__navigation">
                 <ui:Button name="PreviousButton" text="&#9668;" focusable="false" class="cafe__control-button guide__nav-button cafe__control-button--blue"/>
@@ -23,7 +27,11 @@
                 <ui:Button name="NextButton" text="&#9658;" focusable="false" class="cafe__control-button guide__nav-button cafe__control-button--blue"/>
             </ui:VisualElement>
             <ui:VisualElement name="BottomPanel" class="guide__bottom-panel">
-                <ui:Button name="OkButton" text="OK" focusable="false" class="cafe__control-button cafe__control-button--cyan" style="margin-bottom: 0;"/>
+                <ui:Button name="OkButton" focusable="false" class="cafe__control-button cafe__control-button--cyan" style="margin-bottom: 0;">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(13010248632762368)"/>
+                    </Bindings>
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

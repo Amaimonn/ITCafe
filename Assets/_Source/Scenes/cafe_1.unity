@@ -21549,7 +21549,7 @@ MonoBehaviour:
   _guideViewPrefab: {fileID: 6113830061246565066, guid: 65f6ead4283520c459645e169dde84f6, type: 3}
   _missionSetupRoot: {fileID: 722823122}
   _localizationLoader:
-    _tablesConfig: {fileID: 11400000, guid: 095d022d31ebff040984b3ba24a521bc, type: 2}
+    _tableCollectionSO: {fileID: 11400000, guid: 095d022d31ebff040984b3ba24a521bc, type: 2}
   _volume: {fileID: 1675519152}
 --- !u!4 &1355671832
 Transform:

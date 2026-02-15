@@ -52,7 +52,7 @@ namespace ITCafe
 
         [Header("Other"), Space(4)]
         [SerializeField] private GameObject _missionSetupRoot;
-        [SerializeField] private LocalizationLoader _localizationLoader;
+        [SerializeField] private SerializableLocalizationLoader _localizationLoader;
         [SerializeField] private Volume _volume;
 
         private IGuideData _guideData;
@@ -252,10 +252,19 @@ namespace ITCafe
             _localizationLoader.AddTo(_disposables);
             yield return _localizationLoader.LoadTables();
 
-            // Scene setup
+            // Mission Setup
             Destroy(_missionSetupRoot);
             var sceneSetup = _missionSetup.SceneSetupPrefab;
             yield return InstantiateAsync(sceneSetup);
+
+            var tableCollection = _missionSetup.LocaleTableCollection;
+            if (tableCollection is { TableReferences: { Count: > 0 } })
+            {
+                var localizationLoadingService = new LocalizationLoadingService();
+                localizationLoadingService.Init(tableCollection);
+                localizationLoadingService.AddTo(_disposables);
+                yield  return localizationLoadingService.LoadTables();
+            }
 
             // Input init
             var inputService = Container.Resolve<InputService>();
@@ -386,16 +395,16 @@ namespace ITCafe
             var aimBinder = Container.Resolve<IViewBinder<AimViewModel>>();
             aimBinder.Open();
         }
-        
+
         private void InitSettings()
         {
             var settingsModel = Container.Resolve<SettingsModel>();
             var postProcessingController = Container.Resolve<PostProcessingController>();
-            
+
             postProcessingController.BindSettings(settingsModel);
             postProcessingController.AddTo(_disposables);
         }
-        
+
         private void SubscribePause()
         {
             _pauseBinder = Container.Resolve<IViewBinder<PauseViewModel>>();

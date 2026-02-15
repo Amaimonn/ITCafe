@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using ITCafe.Data.Items;
 using UnityEngine;
+using UnityEngine.Localization.Tables;
 
 namespace ITCafe.Data
 {
@@ -10,5 +12,6 @@ namespace ITCafe.Data
         public IRecipeCollection RecipeCollection { get; }
         public IGuideData GuideData { get; }
         public IMissionEvaluation MissionEvaluation { get; }
+        public ILocaleTableCollection LocaleTableCollection { get; }
     }
 }
