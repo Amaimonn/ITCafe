@@ -7,11 +7,11 @@ using UnityEngine.Localization.Settings;
 
 namespace ITCafe
 {
-    public class AppSettingsApplier
+    public class AppSettingsApplier : SettingsApplier
     {
-        public IDisposable BindSettings(SettingsModel model)
+        public override IDisposable BindSettings(SettingsModel model)
         {
-            var disposables = new CompositeDisposable()
+            var disposables = new CompositeDisposable
             {
                 model.VSync.Subscribe(x => QualitySettings.vSyncCount = x ? 1 : 0),
                 model.IsAntiAliasingEnabled.Subscribe(x => QualitySettings.antiAliasing = x ? 1 : 0),

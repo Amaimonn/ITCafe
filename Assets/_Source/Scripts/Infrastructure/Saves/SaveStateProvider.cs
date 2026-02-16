@@ -1,16 +1,16 @@
 using System.Collections.Generic;
+using DevKit.Newtonsoft;
 using DevKit.Saves;
 using DevKit.Utils;
 using ITCafe.Data.Settings;
 using ITCafe.Data.Campaign;
-using UnityEngine;
 
 namespace ITCafe.Infrastructure.Saves
 {
     public class SaveStateProvider : ISaveStateProvider
     {
         public ISaveState SaveState => _saveState;
-        private SaveStateV1 _saveState;
+        private SaveStateV2 _saveState;
         private readonly ISaveSystem _saveSystem;
         private const string SAVE_STATE = "SAVE_STATE";
 
@@ -23,31 +23,17 @@ namespace ITCafe.Infrastructure.Saves
         {
             if (_saveSystem.Exists(SAVE_STATE))
             {
-                _saveState = _saveSystem.Load<SaveStateV1>(SAVE_STATE);
-                _saveState.CampaignState ??= new CampaignState
-                {
-                    Locations = new List<LocationState>
-                    {
-                        new("location_1", false, new List<MissionState>
-                        {
-                            new("mission_1_1", false)
-                        })
-                    }
-                };
+                var saveFileFata = _saveSystem.LoadRaw(SAVE_STATE);
+                var migrator = new Migrator(new MigrationV1ToV2());
+
+                if (migrator.TryMigrateIfNecessary<SaveStateV2>(saveFileFata, out _saveState))
+                    SaveAll();
             }
             else
             {
-                _saveState = new SaveStateV1
+                _saveState = new SaveStateV2
                 {
-                    SettingsState = new SettingsState
-                    {
-                        Sensitivity = 50,
-                        VSync = false,
-                        FPS = -1,
-                        Fullscreen = true,
-                        ScreenWidth = Display.main.systemWidth,
-                        ScreenHeight = Display.main.systemHeight,
-                    },
+                    SettingsState = new SettingsState(),
                     CampaignState = new CampaignState
                     {
                         Locations = new List<LocationState>

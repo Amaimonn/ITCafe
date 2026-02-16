@@ -9,8 +9,7 @@ namespace ITCafe.Data.Campaign
     [Serializable]
     public class CampaignState : IVersioned, ICopyable<CampaignState>
     {
-        public int Version { get => _version; set => _version = value; }
-        [SerializeField] private int _version = 1;
+        public int Version { get; set; } = 1;
 
         public int CampaignDataVersion = 1; // to update the saved state when new missions are added
         public List<LocationState> Locations;

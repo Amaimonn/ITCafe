@@ -72,6 +72,8 @@ namespace ITCafe
             RegisterUI(builder);
 
             builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
+            
+            builder.RegisterInstance<CinemachineInputAxisController>(_cinemachineInputAxisController);
 
             builder.Register<Subject<Unit>>(Lifetime.Singleton)
                 .Keyed(Constants.GAMEPLAY_EXIT_SIGNAL);
@@ -229,7 +231,7 @@ namespace ITCafe
             _inputActionAsset.FindActionMap("GameUI").Enable();
 
             _gameplayEnterContext = gameplayEnterContext ??
-                                    new GameplayEnterContext()
+                                    new GameplayEnterContext
                                     {
                                         ToSceneName = Scenes.GAMEPLAY_1,
                                         MissionId = "mission_1_1",
@@ -246,6 +248,7 @@ namespace ITCafe
             _missionSetup = handle.Result;
 
             Build();
+            
             yield return new WaitForEndOfFrame();
 
             _localizationLoader.Init();
@@ -255,6 +258,7 @@ namespace ITCafe
             // Mission Setup
             Destroy(_missionSetupRoot);
             var sceneSetup = _missionSetup.SceneSetupPrefab;
+            
             yield return InstantiateAsync(sceneSetup);
 
             var tableCollection = _missionSetup.LocaleTableCollection;
@@ -263,6 +267,7 @@ namespace ITCafe
                 var localizationLoadingService = new LocalizationLoadingService();
                 localizationLoadingService.Init(tableCollection);
                 localizationLoadingService.AddTo(_disposables);
+                
                 yield  return localizationLoadingService.LoadTables();
             }
 
@@ -271,6 +276,7 @@ namespace ITCafe
             inputService.SetInputEnabled(false);
 
             InitUI();
+            
             yield return new WaitForEndOfFrame();
 
             InitSettings();
@@ -287,26 +293,6 @@ namespace ITCafe
                 if (entry.Prefab != null)
                     itemsCreator.Register(entry.Prefab, entry.ItemTag);
             }
-
-            // Settings binding
-            var settingsModel = Container.Resolve<SettingsModel>();
-            settingsModel.Sensitivity.Subscribe(x =>
-                {
-                    var newValue = x <= 50f
-                        ? Mathf.Lerp(0.2f, 1f, Mathf.InverseLerp(1f, 50f, x))
-                        : Mathf.Lerp(1f, 5f, Mathf.InverseLerp(50f, 100f, x));
-
-                    foreach (var c in _cinemachineInputAxisController.Controllers)
-                    {
-                        c.Input.Gain = c.Name switch
-                        {
-                            "Look X (Pan)" => newValue,
-                            "Look Y (Tilt)" => -newValue,
-                            _ => c.Input.Gain
-                        };
-                    }
-                })
-                .AddTo(_disposables);
 
             // Exit callback setup
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.GAMEPLAY_EXIT_SIGNAL);
@@ -401,8 +387,8 @@ namespace ITCafe
             var settingsModel = Container.Resolve<SettingsModel>();
             var postProcessingController = Container.Resolve<PostProcessingSettingsApplier>();
 
-            postProcessingController.BindSettings(settingsModel);
-            postProcessingController.AddTo(_disposables);
+            postProcessingController.BindSettings(settingsModel)
+                .AddTo(_disposables);
         }
 
         private void SubscribePause()

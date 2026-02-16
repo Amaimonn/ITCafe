@@ -7,11 +7,7 @@ namespace ITCafe.Data.Settings
     [Serializable]
     public class SettingsState : IVersioned
     {
-        public int Version
-        {
-            get => _version;
-            set => _version = value;
-        }
+        public int Version { get; set; } = 2;
 
         // Sound settings
         [Range(0, 100)] public int MusicVolume = 80;
@@ -26,17 +22,15 @@ namespace ITCafe.Data.Settings
         [Range(0, 100)] public int Brightness = 50;
         public bool IsPostProcessingEnabled = true;
         public bool IsBloomEnabled = true;
-        public bool IsFilmGrainEnabled = false;
+        public bool IsFilmGrainEnabled = true;
         public bool IsChromaticAberrationEnabled = true;
         public bool IsAntiAliasingEnabled = true;
         // public int QualityPreset = 2;
-        public int ScreenWidth;
-        public int ScreenHeight;
+        public int ScreenWidth = Display.main.systemWidth;
+        public int ScreenHeight = Display.main.systemHeight;
         public bool Fullscreen = true;
         
         // Language settings
         public string Language = "en";
-
-        [SerializeField] private int _version = 1;
     }
 }

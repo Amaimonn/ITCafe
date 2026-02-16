@@ -52,14 +52,17 @@ namespace ITCafe
 
         private void RegisterSaves(IContainerBuilder builder)
         {
-            var serializer = new JsonUtilitySerializer();
+            var serializer = new NewtonsoftSerializer();
             var storage = new FileStorage(fileExtension: "json");
             var saveSystem = new SimpleSaveSystem(serializer, storage);
             var saveStateProvider = new SaveStateProvider(saveSystem);
             saveStateProvider.LoadAll();
 
             builder.RegisterInstance<ISaveStateProvider>(saveStateProvider);
-            builder.RegisterInstance<SettingsState>(saveStateProvider.SaveState.SettingsState);
+            
+            var saveState = saveStateProvider.SaveState;
+            var settingsState = saveState.SettingsState;
+            builder.RegisterInstance<SettingsState>(settingsState);
             builder.Register<SettingsModel>(Lifetime.Singleton);
         }
 
