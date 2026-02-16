@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using DevKit.Utils;
+using ITCafe.Data;
 using ITCafe.Data.Items;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -9,8 +12,8 @@ using UnityEngine.UIElements;
 
 namespace ITCafe.Editor
 {
-    [CustomPropertyDrawer(typeof(ItemInfoSelectorAttribute), true)]
-    public class BaseItemInfoDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(RealizationSelectorAttribute), true)]
+    public class RealizationSelectorDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
@@ -20,7 +23,7 @@ namespace ITCafe.Editor
             var typeNames = itemInfoTypes.Select(t => t.Name).ToList();
             typeNames.Insert(0, "None");
 
-            var dropdown = new PopupField<string>("Item Info Type", typeNames, 0)
+            var dropdown = new PopupField<string>("Realization", typeNames, 0)
             {
                 tooltip = "Select the type of item info"
             };
@@ -62,11 +65,14 @@ namespace ITCafe.Editor
         
         private List<Type> GetItemInfoTypes()
         {
+            var searchType = fieldInfo.GetCustomAttribute<RealizationSelectorAttribute>().ParentType;
+            
+            // TODO: use Unity TypeTree mb
             return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type.IsClass && 
                               !type.IsAbstract && 
-                              type.IsSubclassOf(typeof(BaseItemInfo)))
+                              searchType.IsAssignableFrom(type))
                 .ToList();
         }
         

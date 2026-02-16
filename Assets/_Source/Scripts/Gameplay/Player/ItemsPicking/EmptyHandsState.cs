@@ -6,6 +6,7 @@ namespace ITCafe.Player
     public class EmptyHandsState : ItemPickerState
     {
         private readonly PlayerContext _playerContext;
+        
         public EmptyHandsState(IItemPicker picker, PlayerContext playerContext) : base(picker)
         {
             _playerContext = playerContext;

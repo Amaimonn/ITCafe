@@ -9,7 +9,6 @@ namespace ITCafe
     public interface IItemPicker
     {
         public ReadOnlyReactiveProperty<IItem> CurrentItem { get; }
-        public Observable<bool> IsHoldingItem { get; }
         public Transform HoldingPoint  { get; }
 
         public void ChangeState(ItemPickerState newState);

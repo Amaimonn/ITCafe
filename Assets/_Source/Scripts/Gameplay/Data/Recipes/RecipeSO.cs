@@ -10,6 +10,9 @@ namespace ITCafe.Data
         public IReadOnlyList<ItemTag> RequiredParts => _rawData.RequiredParts;
         public ItemTag CombinationTag =>  _rawData.CombinationTag;
         public ItemTag FinalTag => _rawData.FinalTag;
+        
+        // TODO: Add optional pair (ItemTag MainTag, ItemTag PreferredCombinationTag) for combination specification mb?
+        //       if it is MainTag in checking collection then combination with PreferredCombinationTag will be used 
 
         [SerializeField] private RecipeData _rawData;
     }

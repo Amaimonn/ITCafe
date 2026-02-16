@@ -8,5 +8,11 @@ namespace ITCafe.Environment
         public override ItemTag Tag => _itemTag;
         
         [SerializeField] private ItemTag _itemTag;
+        
+        // TEST
+        public void SetTag(ItemTag newTag)
+        {
+            _itemTag = newTag;
+        }
     }
 }

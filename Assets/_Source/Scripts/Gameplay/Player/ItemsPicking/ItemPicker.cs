@@ -1,4 +1,5 @@
 using System;
+using DevKit.Utils;
 using ITCafe.Environment;
 using R3;
 using UnityEngine;
@@ -7,10 +8,9 @@ using VContainer;
 
 namespace ITCafe.Player
 {
-    public class ItemPicker : MonoBehaviour, IItemPicker
+    public class ItemPicker : MonoBehaviour, IItemPicker, IDisposable
     {
         public ReadOnlyReactiveProperty<IItem> CurrentItem => _currentItem;
-        public Observable<bool> IsHoldingItem => _isHoldingItem;
         public bool IsDroppingBlocked { get; set; } = false;
         public Transform HoldingPoint => _holdingPoint;
 
@@ -21,18 +21,24 @@ namespace ITCafe.Player
         [Inject] private InputService _inputService;
         private PlayerContext _playerContext;
         
-        private readonly ReactiveProperty<bool> _isHoldingItem = new(false);
         private readonly ReactiveProperty<IItem> _currentItem = new();
         private readonly ReactiveProperty<ItemPickerState> _currentState = new();
         private bool _wasTakenThisFrame = false;
 
         private Action<InputAction.CallbackContext> _onDrop;
         private IDisposable _dropSubscription;
+        private EmptyHandsState _emptyState;
+        private IDisposable _itemReleaseSubscription;
 
         public void Init(PlayerContext playerContext)
         {
             _playerContext = playerContext;
-            ChangeState(new EmptyHandsState(this, _playerContext));
+            _emptyState = new EmptyHandsState(this, _playerContext);
+            ChangeState(_emptyState);
+
+            _itemReleaseSubscription = _currentItem.Skip(1) // for external item destroy invocation processing
+                .Where(x => x == null)
+                .Subscribe(_ => ChangeState(_emptyState));
         }
 
         public bool CanTake(IItem item)
@@ -42,6 +48,9 @@ namespace ITCafe.Player
 
         public void ChangeState(ItemPickerState newState)
         {
+            if (newState == _currentState.Value)
+                return;
+            
             _currentState.Value?.OnExit();
             _currentState.Value = newState;
             _currentState.Value.OnEnter();
@@ -62,7 +71,7 @@ namespace ITCafe.Player
 
         public bool TryTake(IItem item)
         {
-            if (!CanTake(item) || item == null)
+            if (item == null || !CanTake(item))
                 return false;
             
             Take(item);
@@ -79,27 +88,39 @@ namespace ITCafe.Player
 
         public void Drop()
         {
-            Debug.Log("Dropping item");
+            FLogger.Log<ItemPicker>("Dropping item");
+            
+            ChangeState(_emptyState);
+            
+            if (_currentItem.Value == null)
+                return;
+            
             _currentItem.Value.transform.parent = null;
             _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value.Drop();
             _currentItem.Value = null;
-            _isHoldingItem.Value = false;
-            ChangeState(new EmptyHandsState(this, _playerContext));
         }
 
         public void Release()
         {
-            _currentState.Value = new EmptyHandsState(this, _playerContext);
+            ChangeState(_emptyState);
+            
+            if (_currentItem.Value == null)
+                return;
+            
             _currentItem.Value.transform.parent = null;
             _currentItem.Value.transform.position = _dropPoint.position;
             _currentItem.Value = null;
-            _isHoldingItem.Value = false;
         }
 
         private void OnDrop(InputAction.CallbackContext _)
         {
             TryDrop();
+        }
+
+        public void Dispose()
+        {
+            Disposes.ClearDispose(ref _itemReleaseSubscription);
         }
     }
 }
