@@ -18,7 +18,7 @@ namespace ITCafe.Environment
         /// <summary>
         /// View initialization according to the components present.
         /// </summary>
-        public void Init(IEnumerable<ItemTag> itemPartTags) // give it a bunch of SO data (images, sounds etc.) mb
+        public void Init(IEnumerable<ItemTag> itemPartTags)
         {
             foreach (var itemPartTag in itemPartTags)
                 if (!_partsAmountMap.TryAdd(itemPartTag, 1))

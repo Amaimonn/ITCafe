@@ -57,13 +57,13 @@ namespace ITCafe.Environment
 #region IItemPart
         public virtual bool CanBeUsedWith(ICraftPart craftPart)
         {
-            return true; // TODO: Check in service
+            return true; // special condition
         }
 #endregion
 
         /// <summary>
-        /// Attention: override this for Combined items to use the tag map instead.
-        /// Call after data changes.
+        /// Caution: override this for Combined items to use the tag map instead.
+        /// Call it after data is changed.
         /// </summary>
         protected virtual void RecalculateItemHash()
         {
