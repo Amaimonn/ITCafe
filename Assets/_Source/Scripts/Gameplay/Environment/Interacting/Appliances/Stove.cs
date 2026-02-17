@@ -68,7 +68,7 @@ namespace ITCafe.Environment.Appliances
             var itemPicker = context.ItemPicker;
 
             itemPicker.Release();
-            item.transform.SetParent(_placedTransform, false);
+            item.transform.SetParent(_placedTransform, worldPositionStays: true);
             item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             _holdingItem = item;
