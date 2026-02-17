@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4542711045791903503, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9866fda0e61a7904087eb0ec5ab17e03, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -67,7 +71,7 @@ PrefabInstance:
       addedObject: {fileID: 8482382184614581242}
     - targetCorrespondingSourceObject: {fileID: 2596905523559583450, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8645364932088937556}
+      addedObject: {fileID: -1830692721979432334}
   m_SourcePrefab: {fileID: 100100000, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
 --- !u!1 &800402767766359633 stripped
 GameObject:
@@ -136,7 +140,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &8645364932088937556
+--- !u!114 &-1830692721979432334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,15 +149,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 800402767766359633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de203f7e4f8c494f8e9c049bf82bbbdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aa3cc41f63e487f85d76319558b7b8f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.StoveProcessable
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.GrillProcessable
   _handler:
-    rid: 2693439946463903831
+    rid: 2693439952508944470
   references:
     version: 2
     RefIds:
-    - rid: 2693439946463903831
+    - rid: 2693439952508944470
       type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
       data:
         _resultTag: 20001
@@ -180,7 +184,7 @@ MonoBehaviour:
               m_MethodName: set_material
               m_Mode: 2
               m_Arguments:
-                m_ObjectArgument: {fileID: 2100000, guid: 16253bef9b480314aa55fa9b6c0fb6b3, type: 2}
+                m_ObjectArgument: {fileID: 2100000, guid: fba1ebb6d22ea4844aa382b3d4a537f9, type: 2}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0

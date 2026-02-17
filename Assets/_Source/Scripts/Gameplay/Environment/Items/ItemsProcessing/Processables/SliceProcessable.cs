@@ -1,6 +1,6 @@
 namespace ITCafe.Environment
 {
-    public class SliceProcessable : SimpleProcessable
+    public class SliceProcessable : BaseProcessable
     {
     }
 }

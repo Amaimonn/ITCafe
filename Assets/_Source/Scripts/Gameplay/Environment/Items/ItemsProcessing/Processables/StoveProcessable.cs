@@ -1,6 +1,6 @@
 namespace ITCafe.Environment
 {
-    public class StoveProcessable : SimpleProcessable
+    public class StoveProcessable : BaseProcessable
     {
     }
 }

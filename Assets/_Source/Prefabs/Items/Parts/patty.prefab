@@ -67,7 +67,7 @@ PrefabInstance:
       addedObject: {fileID: 2444733542515490194}
     - targetCorrespondingSourceObject: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 300563437884623071}
+      addedObject: {fileID: -2095447608700841967}
   m_SourcePrefab: {fileID: 100100000, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
 --- !u!64 &3991156801560235165 stripped
 MeshCollider:
@@ -146,7 +146,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &300563437884623071
+--- !u!114 &-2095447608700841967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,15 +155,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 9143675695500297735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d465e3fb544949c1894e203cab41a66a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aa3cc41f63e487f85d76319558b7b8f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PanProcessable
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.GrillProcessable
   _handler:
-    rid: 2693439946463903830
+    rid: 2693439952508944471
   references:
     version: 2
     RefIds:
-    - rid: 2693439946463903830
+    - rid: 2693439952508944471
       type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
       data:
         _resultTag: 20000
@@ -190,7 +190,7 @@ MonoBehaviour:
               m_MethodName: set_material
               m_Mode: 2
               m_Arguments:
-                m_ObjectArgument: {fileID: 2100000, guid: 16253bef9b480314aa55fa9b6c0fb6b3, type: 2}
+                m_ObjectArgument: {fileID: 2100000, guid: fba1ebb6d22ea4844aa382b3d4a537f9, type: 2}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
