@@ -166,7 +166,7 @@ namespace ITCafe.CafeBusiness
             if (IsCompleted)
                 return false;
 
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
             if (item != null)
                 return item.CanBeHandled(this, context);
 
@@ -181,7 +181,7 @@ namespace ITCafe.CafeBusiness
                 return;
             }
 
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
             item.BecomeHandled(this, context);
         }
 #endregion

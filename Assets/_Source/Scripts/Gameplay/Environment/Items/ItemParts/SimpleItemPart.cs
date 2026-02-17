@@ -1,3 +1,4 @@
+using DevKit.Utils;
 using ITCafe.Data.Items;
 using UnityEngine;
 
@@ -9,10 +10,13 @@ namespace ITCafe.Environment
         
         [SerializeField] private ItemTag _itemTag;
         
-        // TEST
+        /// <summary>
+        /// Used by UnityEvents for items processing.
+        /// </summary>
         public void SetTag(ItemTag newTag)
         {
             _itemTag = newTag;
+            FLogger.Log<SimpleItemPart>($"new tag: {newTag}");
         }
     }
 }

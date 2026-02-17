@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ITCafe.Data.Items
 {
-    [CreateAssetMenu(fileName = "ItemInfoSO", menuName = "Scriptable Objects/ItemInfoSO")]
+    [CreateAssetMenu(fileName = nameof(ItemInfoSO), menuName = "Scriptable Objects/" + nameof(ItemInfoSO))]
     public class ItemInfoSO : ScriptableObject
     {
         [field: SerializeField] public ItemTag ItemTag { get; set; }

@@ -1,17 +1,17 @@
-using ITCafe.CafeBusiness;
 using ITCafe.Player;
 using UnityEngine;
 
-namespace ITCafe.Environment
+namespace ITCafe.Environment.Appliances
 {
-    public class PlacementSpot : BaseInteractable, IJustItemHandler
+    public class Stove : BaseInteractable, IJustItemHandler
     {
         [SerializeField] private Transform _placedTransform;
 
         private bool IsBusy => _holdingItem != null;
         private IItem _holdingItem;
-        private IItemsContainer _holdingContainer;
+        private bool _isReadyResult = false;
 
+#region IInteractable
         public override void Focus()
         {
             base.Focus();
@@ -24,50 +24,44 @@ namespace ITCafe.Environment
             _holdingItem?.UnFocus();
         }
 
-#region IInteractable
         public override bool CanInteract(PlayerContext context)
         {
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
+            var emptyHands = item == null;
 
-            return item == null ? IsBusy : item.CanBeHandled(this, context);
+            if (emptyHands)
+                return _isReadyResult && IsBusy; // all fried items can be taken with empty hands (for now)
+            else
+                return item.CanBeHandled(this, context);
         }
 
         public override void Interact(PlayerContext context)
         {
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
             if (item == null)
                 HandOver(context);
             else
-                context.CurrentItem.CurrentValue.BecomeHandled(this, context);
+                context.OnItemChanged.CurrentValue.BecomeHandled(this, context);
         }
 #endregion
 
 #region IJustItemHandler
         public bool CanHandle(IItem item, PlayerContext context)
         {
-            return !IsBusy ||
-                   context.ItemPicker.CanTake(_holdingItem) ||
-                   CanInteractWithPlacedContainer(item, context);
+            return !IsBusy &&
+                   item.TryGetCachedComponent<StoveProcessable>(out var processable) &&
+                   processable.IsProcessable ||
+                   _isReadyResult && context.ItemPicker.CanTake(_holdingItem);
         }
 
         public void Handle(IItem item, PlayerContext context)
         {
             if (!IsBusy)
                 Place(item, context);
-            else if (context.ItemPicker.CanTake(_holdingItem))
-                HandOver(context);
             else
-                PlaceOnHoldingContainer(item, context);
+                HandOver(context);
         }
 #endregion
-
-        private bool CanInteractWithPlacedContainer(IItem item, PlayerContext context)
-        {
-            if (_holdingContainer == null)
-                return false;
-
-            return item is IMenuItem menuItem && _holdingContainer.CanTake(menuItem);
-        }
 
         private void Place(IItem item, PlayerContext context)
         {
@@ -78,10 +72,23 @@ namespace ITCafe.Environment
             item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             _holdingItem = item;
-            if (item is IItemsContainer container)
-                _holdingContainer = container;
-
             _holdingItem.Focus();
+
+            Process(context);
+        }
+
+        private void Process(PlayerContext context)
+        {
+            if (!_holdingItem.TryGetCachedComponent<StoveProcessable>(out var processable) ||
+                !processable.IsProcessable)
+            {
+                return;
+            }
+
+            // TODO: add delay
+
+            _holdingItem = processable.GetResult(_holdingItem, context);
+            _isReadyResult = true;
         }
 
         private void HandOver(PlayerContext context)
@@ -89,14 +96,7 @@ namespace ITCafe.Environment
             context.ItemPicker.Take(_holdingItem);
             _holdingItem.UnFocus();
             _holdingItem = null;
-            _holdingContainer = null;
-        }
-
-        private void PlaceOnHoldingContainer(IItem item, PlayerContext context)
-        {
-            context.ItemPicker.Release();
-            _holdingContainer.Take((IMenuItem)item);
-            _holdingItem.Focus();
+            _isReadyResult = false;
         }
     }
 }

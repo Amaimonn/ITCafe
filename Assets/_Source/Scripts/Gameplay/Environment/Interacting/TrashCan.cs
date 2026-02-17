@@ -7,13 +7,13 @@ namespace ITCafe.Environment
 #region IInteractable
         public override bool CanInteract(PlayerContext context)
         {
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
             return item != null && item.CanBeHandled(this, context); // TODO: Check Item is not important in future
         }
 
         public override void Interact(PlayerContext context)
         {
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
             item.BecomeHandled(this, context);
         }
 #endregion

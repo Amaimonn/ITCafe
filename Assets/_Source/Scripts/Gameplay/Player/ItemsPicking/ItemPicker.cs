@@ -10,7 +10,7 @@ namespace ITCafe.Player
 {
     public class ItemPicker : MonoBehaviour, IItemPicker, IDisposable
     {
-        public ReadOnlyReactiveProperty<IItem> CurrentItem => _currentItem;
+        public ReadOnlyReactiveProperty<IItem> OnItemChanged => _currentItem;
         public bool IsDroppingBlocked { get; set; } = false;
         public Transform HoldingPoint => _holdingPoint;
 

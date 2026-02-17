@@ -8,7 +8,7 @@ namespace ITCafe
 {
     public interface IItemPicker
     {
-        public ReadOnlyReactiveProperty<IItem> CurrentItem { get; }
+        public ReadOnlyReactiveProperty<IItem> OnItemChanged { get; }
         public Transform HoldingPoint  { get; }
 
         public void ChangeState(ItemPickerState newState);

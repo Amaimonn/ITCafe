@@ -6,14 +6,15 @@ namespace ITCafe.Environment
 {
     public abstract class SimpleProcessable : MonoBehaviour, IProcessable
     {
-        // [SerializeField] protected ItemTag _newTag;
-        // [SerializeField] protected UnityEvent<ItemTag> _onProcessed;
+        public bool IsProcessable { get; private set; } = true;
         
         [RealizationSelector(typeof(IProcessingHandler)), SerializeReference] 
         protected IProcessingHandler _handler;
-        
+
         public virtual IItem GetResult(IItem processableItem, PlayerContext context)
         {
+            IsProcessable = false;
+            
             return _handler.GetProcessed(processableItem, context);
         }
     }
