@@ -33,14 +33,11 @@ namespace ITCafe.CafeBusiness
 
         public bool TryGetCraft(ICraftPart craftPart1, ICraftPart craftPart2, out CraftRequest craftRequest)
         {
-            // TODO: fix caching
-            
-            // if (_craftCache.IsCached(craftPart1, craftPart2))
-            // {
-            //     _craftCache.GetFromCache(out var isPossible, out craftRequest);
-            //     FLogger.Log<CraftRequest>($"cached Craft: {craftPart1.Tag} {craftPart2.Tag}. Is possible: {isPossible}");
-            //     return isPossible;
-            // }
+            if (_craftCache.IsCached(craftPart1, craftPart2))
+            {
+                _craftCache.GetFromCache(out var isPossible, out craftRequest);
+                return isPossible;
+            }
 
             craftRequest = default;
 
