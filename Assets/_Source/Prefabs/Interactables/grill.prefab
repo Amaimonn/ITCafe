@@ -187,7 +187,6 @@ GameObject:
   - component: {fileID: 3927801569158444221}
   - component: {fileID: 351044093075640776}
   - component: {fileID: 51334092105375842}
-  - component: {fileID: 5271943428503566305}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -267,27 +266,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5271943428503566305
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2282423835554947902}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.0000009536743, y: 0, z: 0}
 --- !u!1 &3160295890466584918
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +365,6 @@ GameObject:
   - component: {fileID: 4157846984065196289}
   - component: {fileID: 3696027272616641353}
   - component: {fileID: 8967227887833707110}
-  - component: {fileID: 1047897502859413865}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -467,27 +444,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1047897502859413865
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5097736995851004217}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.0000009536743, y: 0, z: 0}
 --- !u!1 &5389563008477050127
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +543,6 @@ GameObject:
   - component: {fileID: 2605907130226396342}
   - component: {fileID: 2706082619481218649}
   - component: {fileID: 7458798093042889186}
-  - component: {fileID: 2961048406777506107}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -667,27 +622,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2961048406777506107
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333635703435894705}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.0000009536743, y: 0, z: 0}
 --- !u!1 &8769854402549318381
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +633,6 @@ GameObject:
   - component: {fileID: 2392023064569676405}
   - component: {fileID: 2133666146020358458}
   - component: {fileID: 3328704287595033968}
-  - component: {fileID: 3456580115976231329}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -779,27 +712,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3456580115976231329
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8769854402549318381}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -0.0000009536743, y: 0, z: 0}
 --- !u!1001 &7506287449524996556
 PrefabInstance:
   m_ObjectHideFlags: 0

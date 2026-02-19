@@ -386,6 +386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_KitchenTable_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3011792786192082833, guid: 84897b65c1aad0446aa9f7450df88b60, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -404,6 +408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 2910895691052297027, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3976062412673591142, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.80000037
@@ -452,9 +460,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4218361114087142558, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4352200305128078812, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
       propertyPath: m_Name
       value: Prop_Stove (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352200305128078812, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814346929221450670, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413467296402047606, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796135169203488608, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180040278101929822, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2327,6 +2359,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 7026784550134137371, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7363866919813087235, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.80000037
@@ -2378,6 +2414,10 @@ PrefabInstance:
     - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenCabinet_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3313,6 +3353,10 @@ PrefabInstance:
     - target: {fileID: 8158876301931766383, guid: 8c31604f61cdc3e4288c7e7dfe0e4e08, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenTable_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158876301931766383, guid: 8c31604f61cdc3e4288c7e7dfe0e4e08, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8823104072678553813, guid: 8c31604f61cdc3e4288c7e7dfe0e4e08, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4372,6 +4416,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 7026784550134137371, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7363866919813087235, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.7
@@ -4415,6 +4463,10 @@ PrefabInstance:
     - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenCabinet_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10243,6 +10295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_KitchenTable_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3011792786192082833, guid: 84897b65c1aad0446aa9f7450df88b60, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10422,6 +10478,10 @@ PrefabInstance:
     - target: {fileID: 104671292763568728, guid: 0d3f954dbbb33c64ab6625685b0b8b0a, type: 3}
       propertyPath: m_Name
       value: Prop_Fan_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 104671292763568728, guid: 0d3f954dbbb33c64ab6625685b0b8b0a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 736353180315164898, guid: 0d3f954dbbb33c64ab6625685b0b8b0a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12263,7 +12323,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 829812760}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3891063317794990912, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12342,11 +12402,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
---- !u!4 &822192543 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7614086670561360322, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
-  m_PrefabInstance: {fileID: 822192542}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &823719289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12949,8 +13004,6 @@ Transform:
   - {fileID: 773347154}
   - {fileID: 1084382725}
   - {fileID: 709183335}
-  - {fileID: 1757432255}
-  - {fileID: 822192543}
   - {fileID: 1281821280}
   - {fileID: 457398969}
   - {fileID: 864741248}
@@ -13252,6 +13305,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 7026784550134137371, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7363866919813087235, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.028
@@ -13295,6 +13352,10 @@ PrefabInstance:
     - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenCabinet_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14384,6 +14445,10 @@ PrefabInstance:
     - target: {fileID: 1520196418594975837, guid: 23b0703af9f894247af6a265a4ae44b9, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenCabinet_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520196418594975837, guid: 23b0703af9f894247af6a265a4ae44b9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2185092692430351079, guid: 23b0703af9f894247af6a265a4ae44b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18725,6 +18790,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 2910895691052297027, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3976062412673591142, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.80000037
@@ -18773,9 +18842,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4218361114087142558, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4352200305128078812, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
       propertyPath: m_Name
       value: Prop_Stove
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352200305128078812, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814346929221450670, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413467296402047606, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796135169203488608, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180040278101929822, guid: 65aeeaef3d6863a428686ba3b34e8c58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26707,6 +26800,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 3471582331520745282, guid: d5d787b8a2e39b24d8a9c7e01c2506a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3851680051689665612, guid: d5d787b8a2e39b24d8a9c7e01c2506a6, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8000003
@@ -26758,6 +26855,14 @@ PrefabInstance:
     - target: {fileID: 4483397428621078262, guid: d5d787b8a2e39b24d8a9c7e01c2506a6, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenCabinet_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483397428621078262, guid: d5d787b8a2e39b24d8a9c7e01c2506a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599567974136857263, guid: d5d787b8a2e39b24d8a9c7e01c2506a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30059,11 +30164,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030971896, guid: abc00000000007818038014052980379, type: 3}
   m_PrefabInstance: {fileID: 1756707632}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1757432255 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7614086670561360322, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
-  m_PrefabInstance: {fileID: 1951817041}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1761506733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30776,6 +30876,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 7026784550134137371, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7363866919813087235, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.301999
@@ -30819,6 +30923,10 @@ PrefabInstance:
     - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenCabinet_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888729152264985273, guid: 2125510b65470574fad5d1e55a9d2619, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30995,6 +31103,10 @@ PrefabInstance:
     - target: {fileID: 8158876301931766383, guid: 8c31604f61cdc3e4288c7e7dfe0e4e08, type: 3}
       propertyPath: m_Name
       value: Prop_KitchenTable_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158876301931766383, guid: 8c31604f61cdc3e4288c7e7dfe0e4e08, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8823104072678553813, guid: 8c31604f61cdc3e4288c7e7dfe0e4e08, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33678,7 +33790,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 829812760}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7125112222206452600, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
       propertyPath: m_Name
@@ -35282,6 +35394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 829812760}
     m_Modifications:
+    - target: {fileID: 1415813257067155045, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2431516643948083176, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -35297,6 +35413,10 @@ PrefabInstance:
     - target: {fileID: 2431516643948083176, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3052126253127255400, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3904760148744462454, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
       propertyPath: m_Name
@@ -35345,6 +35465,10 @@ PrefabInstance:
     - target: {fileID: 4430325999874587340, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4591793094247110028, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5101297338565237643, guid: fc2f6b41f905c7a4593ab9863915ead4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -38250,3 +38374,5 @@ SceneRoots:
   - {fileID: 829812760}
   - {fileID: 358719713}
   - {fileID: 1378776879}
+  - {fileID: 1951817041}
+  - {fileID: 822192542}
