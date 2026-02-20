@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -11,7 +13,9 @@ namespace ITCafe.Environment
         public static ItemStub Default = new();
         public Transform transform { get; }
         public Vector3 CenterOffset { get; }
-        
+
+        Dictionary<Type, object> IItem.CachedComponentsMap => null;
+
         public void Focus()
         {
             throw new System.NotImplementedException();

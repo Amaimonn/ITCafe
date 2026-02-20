@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
+  m_Name: PattyFriedInfoSO
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
+  <ItemTag>k__BackingField: 20000
+  <Image>k__BackingField: {fileID: 21300090, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
+  <Prefab>k__BackingField: {fileID: 0}
+  <MenuItemExtra>k__BackingField: {fileID: 0}

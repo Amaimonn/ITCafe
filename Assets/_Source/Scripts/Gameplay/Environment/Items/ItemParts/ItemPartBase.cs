@@ -44,8 +44,10 @@ namespace ITCafe.Environment
 
             var itemPicker = context.ItemPicker;
             itemPicker.Release();
+            
             var craftedItem = craftService.Craft(craftRequest);
             context.ItemPicker.Take(craftedItem);
+            
             Destroy(item.transform.gameObject);
             Destroy(gameObject);
         }
@@ -70,6 +72,10 @@ namespace ITCafe.Environment
         }
 
 #region IEquatableItem
+        /// <summary>
+        /// Used for caching in <see cref="CraftService"/>
+        /// </summary>
+        /// <returns></returns>
         public int GetItemHash()
         {
             return ItemHashCode;

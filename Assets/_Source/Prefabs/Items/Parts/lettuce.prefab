@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7041683020158330340, guid: a39885acf60cabb49ae5f1ed9464e7b9, type: 3}
       propertyPath: m_Name
-      value: Food_Chopped Lettuce Variant
+      value: lettuce
       objectReference: {fileID: 0}
     - target: {fileID: 7706439381206155102, guid: a39885acf60cabb49ae5f1ed9464e7b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,6 +65,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7041683020158330340, guid: a39885acf60cabb49ae5f1ed9464e7b9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7240021819704182741}
+    - targetCorrespondingSourceObject: {fileID: 7041683020158330340, guid: a39885acf60cabb49ae5f1ed9464e7b9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 148179454174524268}
   m_SourcePrefab: {fileID: 100100000, guid: a39885acf60cabb49ae5f1ed9464e7b9, type: 3}
 --- !u!64 &3989344636687979102 stripped
 MeshCollider:
@@ -138,3 +141,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &148179454174524268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369445326442889132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45d2d5f13054a95824c5f76218b6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SliceProcessable
+  _handler:
+    rid: 2693439929700057174
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693439929700057174
+      type: {class: CreateItemProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _creationTag: 20004
+        _shouldDestroySourceItem: 1

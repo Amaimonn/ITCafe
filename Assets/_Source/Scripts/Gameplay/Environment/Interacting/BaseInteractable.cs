@@ -16,7 +16,7 @@ namespace ITCafe.Environment
 
             _outline.outlineColor = Constants.OUTLINE_COLOR;
             _outline.outlineWidth = Constants.OUTLINE_WIDTH;
-            _outline.outlineMode = Outline.Mode.OutlineVisible;
+            // _outline.outlineMode = Outline.Mode.OutlineVisible;
         }
 
         public static Color ComposeHdrColor(Color32 baseLinearColor, float exposure)

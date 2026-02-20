@@ -11,7 +11,8 @@ namespace ITCafe.Environment
         private bool IsBusy => _holdingItem != null;
         private IItem _holdingItem;
         private IItemsContainer _holdingContainer;
-
+        
+#region IInteractable
         public override void Focus()
         {
             base.Focus();
@@ -23,22 +24,21 @@ namespace ITCafe.Environment
             base.UnFocus();
             _holdingItem?.UnFocus();
         }
-
-#region IInteractable
+        
         public override bool CanInteract(PlayerContext context)
         {
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
 
             return item == null ? IsBusy : item.CanBeHandled(this, context);
         }
 
         public override void Interact(PlayerContext context)
         {
-            var item = context.CurrentItem.CurrentValue;
+            var item = context.OnItemChanged.CurrentValue;
             if (item == null)
                 HandOver(context);
             else
-                context.CurrentItem.CurrentValue.BecomeHandled(this, context);
+                context.OnItemChanged.CurrentValue.BecomeHandled(this, context);
         }
 #endregion
 
@@ -74,7 +74,7 @@ namespace ITCafe.Environment
             var itemPicker = context.ItemPicker;
 
             itemPicker.Release();
-            item.transform.SetParent(_placedTransform, false);
+            item.transform.SetParent(_placedTransform, worldPositionStays: true);
             item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             _holdingItem = item;

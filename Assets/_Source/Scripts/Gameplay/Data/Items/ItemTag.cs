@@ -16,9 +16,14 @@ namespace ITCafe.Data.Items
         Lettuce = 12,
         Rice = 13,
         Salmon = 14,
-        SalmonFillet = 15,
-        Egg = 16,
-        // SoupBase = 17,
+        Egg = 15,
+        Tomato = 16,
+        Dough = 17,
+        SoupBase = 18,
+        Noodles = 19,
+        Meatloaf = 20,
+        BasePizzaRaw = 21,
+        HuntersPizzaRaw = 22,
 
         // Combinations
         SimpleCombination = 5000,
@@ -26,14 +31,29 @@ namespace ITCafe.Data.Items
         HotDogCombination = 5002,
 
         // Menu Items
-        HotDog = 10000,
-        Burger = 10001,
-        // Sushi = 10002,
-        // FriedEgg = 100003
+        HotDog = 10_000,
+        Burger = 10_001,
+        FriedEgg = 10_002,
+        Sushi = 10_003,
+        Udon = 10_004,
+        MargheritaPizza = 10_005,
+        HuntersPizza = 10_006,
+        Salad = 10_007,
 
         // Special
-        Tray = 15000,
-        Plate = 15001,
-        SushiTable = 15002,
+        Tray = 15_000,
+        Plate = 15_001,
+        SushiTable = 15_002,
+        
+        // Processed
+        PattyFried = 20_000,
+        SausageFried = 20_001,
+        SausageSliced = 20_002,
+        SausageFriedSliced = 20_003,
+        LettuceSliced = 20_004,
+        TomatoSliced = 20_005,
+        SalmonSliced = 20_006,
+        RiceBoiled = 20_007,
+        MeatloafSliced = 20_008,
     }
 }

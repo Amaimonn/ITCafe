@@ -353,8 +353,6 @@ namespace ITCafe
 
             _playerInteractor.CanInteract.Subscribe(x => _playerItemPicker.IsDroppingBlocked = x)
                 .AddTo(_disposables);
-            _playerItemPicker.IsHoldingItem.Subscribe(x => Debug.Log($"Holding item: {x}"))
-                .AddTo(_disposables);
 
             var sessionRunner = Container.Resolve<GameSessionRunner>();
             sessionRunner.RunSessionAsync(token: _destroyToken).Forget();

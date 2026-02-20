@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace ITCafe.Environment
 {
-    public class SimpleItem : PickUpItem, IMenuItem
+    /// <summary>
+    /// Final food item that can be used in orders.
+    /// Caution: it can`t be used in crafting now (it doesn`t implement ICraftItem)
+    /// </summary>
+    public class SimpleMenuItem : PickUpItem, IMenuItem
     {
         public string Id { get; set; }
 

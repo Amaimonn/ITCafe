@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
       propertyPath: m_Name
-      value: PattyPartPrefab Variant
+      value: patty
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58,17 +58,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2302944447720108115}
+      addedObject: {fileID: 8559052971770362359}
+    - targetCorrespondingSourceObject: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8345273739023352974}
     - targetCorrespondingSourceObject: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2444733542515490194}
     - targetCorrespondingSourceObject: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8559052971770362359}
+      addedObject: {fileID: -2095447608700841967}
   m_SourcePrefab: {fileID: 100100000, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
 --- !u!64 &3991156801560235165 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 133530632086065125, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
+  m_PrefabInstance: {fileID: 3943194562398143352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7342029480791418834 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6007004180365632682, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
   m_PrefabInstance: {fileID: 3943194562398143352}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &9143675695500297735 stripped
@@ -76,40 +84,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5214559279995241855, guid: 83aad64f3f078194b97e33a1d49fb2b5, type: 3}
   m_PrefabInstance: {fileID: 3943194562398143352}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2302944447720108115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143675695500297735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2b8d741d0b43f0bea6e585f804f4c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PattyPart
-  _outline: {fileID: 2444733542515490194}
-  _collider: {fileID: 3991156801560235165}
-  _rigidbody: {fileID: 8559052971770362359}
-  _camera: {fileID: 0}
---- !u!114 &2444733542515490194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143675695500297735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 3
-  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
-  outlineWidth: 7
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!54 &8559052971770362359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,3 +111,89 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &8345273739023352974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143675695500297735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc584b78f914642ae8696e80e28bafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleItemPart
+  _outline: {fileID: 2444733542515490194}
+  _collider: {fileID: 3991156801560235165}
+  _rigidbody: {fileID: 8559052971770362359}
+  _camera: {fileID: 0}
+  _itemTag: 9
+--- !u!114 &2444733542515490194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143675695500297735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 1
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &-2095447608700841967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143675695500297735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa3cc41f63e487f85d76319558b7b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.GrillProcessable
+  _handler:
+    rid: 2693439952508944471
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693439952508944471
+      type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _resultTag: 20000
+        _onTagChanged:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8345273739023352974}
+              m_TargetAssemblyTypeName: ITCafe.Environment.SimpleItemPart, Assembly-CSharp
+              m_MethodName: SetTag
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _onProcessed:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 7342029480791418834}
+              m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
+              m_MethodName: set_material
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 2100000, guid: fba1ebb6d22ea4844aa382b3d4a537f9, type: 2}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
