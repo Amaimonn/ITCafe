@@ -1,6 +1,6 @@
 namespace ITCafe.Environment.Appliances
 {
-    public class Oven : KitchenAppliance<OvenProcessable>
+    public class Oven : KitchenAppliance<OvenProcessableAspect>
     {
     }
 }

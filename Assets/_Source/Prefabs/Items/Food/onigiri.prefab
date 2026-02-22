@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4734398287278013437, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
       propertyPath: m_Name
-      value: OnigiriItemPrefab Variant
+      value: onigiri
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61,13 +61,16 @@ PrefabInstance:
       addedObject: {fileID: 8291231335393133009}
     - targetCorrespondingSourceObject: {fileID: 4734398287278013437, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3692663957669275248}
-    - targetCorrespondingSourceObject: {fileID: 4734398287278013437, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 9103356968700585084}
     - targetCorrespondingSourceObject: {fileID: 4734398287278013437, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3049446464979819579}
+    - targetCorrespondingSourceObject: {fileID: 4734398287278013437, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3750740184752808674}
+    - targetCorrespondingSourceObject: {fileID: 4734398287278013437, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7133730606953301731}
   m_SourcePrefab: {fileID: 100100000, guid: 7187c3f4e6f817f4f8084642519c9d3e, type: 3}
 --- !u!1 &302401745315096189 stripped
 GameObject:
@@ -96,24 +99,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 178848378082552549, guid: 9a179958414ddf2419a4078d105cc4b7, type: 3}
---- !u!114 &3692663957669275248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302401745315096189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d408cffca68431fbb5b393a4ce229e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outline: {fileID: 9103356968700585084}
-  _collider: {fileID: 8291231335393133009}
-  _rigidbody: {fileID: 3049446464979819579}
-  _camera: {fileID: 0}
-  _info:
-    ItemTag: 3
 --- !u!114 &9103356968700585084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +144,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &3750740184752808674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302401745315096189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40680cb6d5d960f438fdc743102d1cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PickUpItem
+  _outline: {fileID: 9103356968700585084}
+  _collider: {fileID: 8291231335393133009}
+  _rigidbody: {fileID: 3049446464979819579}
+  _camera: {fileID: 0}
+--- !u!114 &7133730606953301731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302401745315096189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85a3c93f32d43bda727dede91676379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleMenuAspect
+  _info:
+    rid: 2693440061738319960
+  _properContainerTag: 15000
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693440061738319960
+      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
+      data:
+        ItemTag: 3

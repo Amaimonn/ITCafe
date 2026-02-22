@@ -24,6 +24,7 @@ namespace ITCafe.Data.Items
         Meatloaf = 20,
         BasePizzaRaw = 21,
         HuntersPizzaRaw = 22,
+        Cookie = 30,
 
         // Combinations
         SimpleCombination = 5000,

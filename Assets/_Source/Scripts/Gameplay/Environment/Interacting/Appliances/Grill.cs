@@ -1,6 +1,6 @@
 namespace ITCafe.Environment.Appliances
 {
-    public class Grill : KitchenAppliance<GrillProcessable>
+    public class Grill : KitchenAppliance<GrillProcessableAspect>
     {
     }
 }

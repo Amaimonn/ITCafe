@@ -234,7 +234,7 @@ namespace ITCafe
                                     new GameplayEnterContext
                                     {
                                         ToSceneName = Scenes.GAMEPLAY_1,
-                                        MissionId = "mission_1_1",
+                                        MissionId = "mission_dev",
                                         LocationId = "location_1",
                                         CompletionSignal = new Subject<CafeMissionResult>()
                                     };

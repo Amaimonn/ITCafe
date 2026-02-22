@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace ITCafe.Environment.Appliances
 {
-    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler where T : IProcessable
+    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
 
-        private bool IsBusy => _holdingItem != null;
-        private IItem _holdingItem;
-        private bool _isReadyResult = false;
+        protected bool IsBusy => _holdingItem != null;
+        protected IItem _holdingItem;
+        protected bool _isReadyResult = false;
 
 #region IInteractable
         public override void Focus()
@@ -72,7 +72,7 @@ namespace ITCafe.Environment.Appliances
         }
 #endregion
 
-        private void Place(IItem item, PlayerContext context)
+        protected virtual void Place(IItem item, PlayerContext context)
         {
             var itemPicker = context.ItemPicker;
 
@@ -86,7 +86,7 @@ namespace ITCafe.Environment.Appliances
             Process(context);
         }
 
-        private void Process(PlayerContext context)
+        protected virtual void Process(PlayerContext context)
         {
             if (!_holdingItem.TryGetCachedComponent<T>(out var processable) ||
                 !processable.IsProcessable)
@@ -101,7 +101,7 @@ namespace ITCafe.Environment.Appliances
             _isReadyResult = true;
         }
 
-        private void HandOver(PlayerContext context)
+        protected virtual void HandOver(PlayerContext context)
         {
             context.ItemPicker.Take(_holdingItem);
             _holdingItem.UnFocus();

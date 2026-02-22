@@ -2,7 +2,7 @@ using ITCafe.Player;
 
 namespace ITCafe.Environment
 {
-    public interface IProcessable
+    public interface IProcessableAspect
     {
         /// <summary>
         /// Check before calling the <see cref="GetResult"/>

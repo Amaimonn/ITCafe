@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ITCafe.Environment
 {
-    public abstract class BaseProcessable : MonoBehaviour, IProcessable
+    public abstract class BaseProcessableAspect : MonoBehaviour, IProcessableAspect
     {
         public bool IsProcessable { get; private set; } = true;
         

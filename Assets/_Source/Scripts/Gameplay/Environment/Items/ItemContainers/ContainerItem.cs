@@ -8,8 +8,6 @@ namespace ITCafe.Environment
     public abstract class ContainerItem : PickUpItem, IItemsContainer, IItemHandler
     {
         public abstract IEnumerable<IItem> Items { get; }
-        
-        [SerializeField] protected ItemTag _containerTag;
 
 #region IItem
         public override bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
@@ -35,8 +33,11 @@ namespace ITCafe.Environment
                     item?.UnFocus();
         }
 
+#region IEquatableItem
         public abstract int GetItemHash();
+#endregion
 
+#region IItemsContainer
         public abstract bool ContainsHash(int hash);
 
         public abstract IItem ExtractItem(int hash);
@@ -44,6 +45,7 @@ namespace ITCafe.Environment
         public abstract bool CanTake(IItem item);
 
         public abstract void Take(IItem item);
+#endregion
 
 #region IItemsHandler
         public virtual bool CanHandle(IItem item, PlayerContext context)

@@ -192,9 +192,9 @@ namespace ITCafe.CafeBusiness
             if (!CheckCanTakeFood())
                 return false;
 
-            if (item is IEquatableItem equatableItem)
+            if (item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
             {
-                var code = equatableItem.GetItemHash();
+                var code = menuAspect.GetItemHash();
                 return CurrentOrder.IsCorresponds(code);
             }
 
@@ -207,15 +207,15 @@ namespace ITCafe.CafeBusiness
                 return false;
 
             return container.Items.Any(item =>
-                item.TryGetCachedComponent<IMenuItem>(out var menuItem) &&
-                CurrentOrder.IsCorresponds(menuItem.GetItemHash()));
+                item.TryGetCachedComponent<IMenuAspect>(out var menuAspect) &&
+                CurrentOrder.IsCorresponds(menuAspect.GetItemHash()));
         }
 
         public void Handle(IItem item, PlayerContext context)
         {
-            if (item is IEquatableItem equatableItem)
+            if (item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
             {
-                var hash = equatableItem.GetItemHash();
+                var hash = menuAspect.GetItemHash();
                 if (CurrentOrder.TryHandOver(hash))
                 {
                     context.ItemPicker.Release();
@@ -232,10 +232,10 @@ namespace ITCafe.CafeBusiness
                 if (CurrentOrder.IsCompleted)
                     break;
                 
-                if (!item.TryGetCachedComponent<IMenuItem>(out var menuItem))
+                if (!item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
                     continue;
                 
-                var hash = menuItem.GetItemHash();
+                var hash = menuAspect.GetItemHash();
                 if (CurrentOrder.IsCorresponds(hash))
                 {
                     var extractedItem = container.ExtractItem(hash);

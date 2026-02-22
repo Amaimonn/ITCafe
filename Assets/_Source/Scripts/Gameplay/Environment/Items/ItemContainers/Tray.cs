@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
-using ITCafe.CafeBusiness;
+using ITCafe.Data.Items;
 using UnityEngine;
 
 namespace ITCafe.Environment
 {
-    public class Tray : ContainerItem
+    public class Tray : ContainerItem, ISimpleContainer
     {
+        public ItemTag ContainerTag => ItemTag.Tray;
         public override IEnumerable<IItem> Items => _currentItems;
         
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;
         [SerializeField, Min(0)] private float _itemsOffsetY = 0.15f;
 
         private readonly List<IItem> _currentItems = new();
-        private readonly List<IMenuItem> _currentMenuItems = new();
+        private readonly List<IMenuAspect> _currentMenuItems = new();
         private int _currentItemsAmount = 0;
 
         public override int GetItemHash()
@@ -32,13 +33,13 @@ namespace ITCafe.Environment
         public override bool CanTake(IItem item)
         {
             return _currentItemsAmount < _maxItemsCapacity && 
-                   item.TryGetCachedComponent<IMenuItem>(out var menuItem) && 
+                   item.TryGetCachedComponent<IMenuAspect>(out var menuItem) && 
                    menuItem.CanBeStored(this);
         }
 
         public override void Take(IItem item)
         {
-            if (!item.TryGetCachedComponent<IMenuItem>(out var menuItem))
+            if (!item.TryGetCachedComponent<IMenuAspect>(out var menuItem))
                 return;
             
             item.SetPhysicsEnabled(false);

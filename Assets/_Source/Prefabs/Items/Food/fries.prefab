@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 681602422666981709}
   - component: {fileID: 5894111684695339183}
   - component: {fileID: 8439843196906555739}
-  - component: {fileID: 7952085007970174338}
   - component: {fileID: 4384106151155382657}
+  - component: {fileID: 6032773649903240313}
+  - component: {fileID: 5755238194446076607}
   m_Layer: 0
   m_Name: fries
   m_TagString: Untagged
@@ -143,24 +144,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &7952085007970174338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2865937386304091132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d408cffca68431fbb5b393a4ce229e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outline: {fileID: 4384106151155382657}
-  _collider: {fileID: 5894111684695339183}
-  _rigidbody: {fileID: 8439843196906555739}
-  _camera: {fileID: 0}
-  _info:
-    ItemTag: 4
 --- !u!114 &4384106151155382657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +162,41 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &6032773649903240313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865937386304091132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40680cb6d5d960f438fdc743102d1cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PickUpItem
+  _outline: {fileID: 4384106151155382657}
+  _collider: {fileID: 5894111684695339183}
+  _rigidbody: {fileID: 8439843196906555739}
+  _camera: {fileID: 0}
+--- !u!114 &5755238194446076607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2865937386304091132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85a3c93f32d43bda727dede91676379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleMenuAspect
+  _info:
+    rid: 2693440061738319960
+  _properContainerTag: 15000
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693440061738319960
+      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
+      data:
+        ItemTag: 4
