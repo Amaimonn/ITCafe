@@ -52,6 +52,12 @@ namespace ITCafe.Environment.Appliances
                    item.TryGetCachedComponent<T>(out var processable) &&
                    processable.IsProcessable ||
                    _isReadyResult && context.ItemPicker.CanTake(_holdingItem);
+            
+            // TODO: if IsBusy: mb try to craft:
+            //       check for processable (higher priority than Craft with Take) ->
+            //       search for recipes ->
+            //       take item, set 'NotReady' and increase cooking time).
+            //       (Not for all appliances. Ex.: ok for pot, but not for grill)
         }
 
         public virtual bool CanHandleContainer(IItemsContainer container, PlayerContext context)

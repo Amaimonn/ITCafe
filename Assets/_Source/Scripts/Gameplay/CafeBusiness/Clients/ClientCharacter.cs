@@ -214,18 +214,14 @@ namespace ITCafe.CafeBusiness
         public void Handle(IItem item, PlayerContext context)
         {
             if (item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
-            {
-                var hash = menuAspect.GetItemHash();
-                if (CurrentOrder.TryHandOver(hash))
-                {
-                    context.ItemPicker.Release();
-                    ConsumeItem(item);
-                }
-            }
+                TakeMenuItem(item, menuAspect, context);
         }
 
         public void HandleContainer(IItemsContainer container, PlayerContext context)
         {
+            if (container.TryGetCachedComponent<IMenuAspect>(out var containerMenuAspect))
+                TakeMenuItem(container, containerMenuAspect, context);
+            
             var items = container.Items.ToArray();
             foreach (var item in items)
             {
@@ -245,6 +241,16 @@ namespace ITCafe.CafeBusiness
             }
         }
 #endregion
+
+        private void TakeMenuItem(IItem item, IMenuAspect menuAspect, PlayerContext context)
+        {
+            var hash = menuAspect.GetItemHash();
+            if (CurrentOrder.TryHandOver(hash))
+            {
+                context.ItemPicker.Release();
+                ConsumeItem(item);
+            }
+        }
 
         private bool CheckCanTakeFood() => ClientState.CanTakeFood.HasFlag(CurrentState);
     }

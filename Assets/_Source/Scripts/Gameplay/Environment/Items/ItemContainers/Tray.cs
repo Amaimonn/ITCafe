@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ITCafe.Data.Items;
+using ITCafe.Player;
 using UnityEngine;
 
 namespace ITCafe.Environment
@@ -82,6 +83,16 @@ namespace ITCafe.Environment
             }
 
             return null;
+        }
+        
+        public override bool CanHandleContainer(IItemsContainer container, PlayerContext context)
+        {
+            return CanHandle(container, context);
+        }
+        
+        public override void HandleContainer(IItemsContainer container, PlayerContext context)
+        {
+            Handle(container, context);
         }
     }
 }

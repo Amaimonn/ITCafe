@@ -40,6 +40,7 @@ namespace ITCafe.Data.Items
         MargheritaPizza = 10_005,
         HuntersPizza = 10_006,
         Salad = 10_007,
+        TomatoSoup = 10_008,
 
         // Special
         Tray = 15_000,

@@ -54,9 +54,8 @@ namespace ITCafe.Environment
             return CanTake(item);
         }
 
-        public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
+        public virtual bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
-            // context is null (Picker State)
             return false;
         }
 
@@ -65,7 +64,7 @@ namespace ITCafe.Environment
             Take(item);
         }
 
-        public void HandleContainer(IItemsContainer container, PlayerContext context)
+        public virtual void HandleContainer(IItemsContainer container, PlayerContext context)
         {
             throw new System.NotImplementedException();
         }

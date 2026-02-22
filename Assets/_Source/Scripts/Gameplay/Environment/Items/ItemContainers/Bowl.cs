@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ITCafe.Environment
 {
-    public class Bowl : ContainerItem, ISimpleContainer
+    public class Bowl : ContainerItem, ISimpleContainer, IMenuAspect
     {
         public ItemTag ContainerTag => ItemTag.Bowl;
         public override IEnumerable<IItem> Items => _currentItems;
@@ -37,6 +37,12 @@ namespace ITCafe.Environment
             var hash = new HashCode();
             
             return hash.ToHashCode();
+        }
+
+        public bool CanBeStored(IItemsContainer container)
+        {
+            // void bowl isn`t stored
+            return HasItem && container is ISimpleContainer { ContainerTag: ItemTag.Tray }; // hardcoded
         }
 
         public override bool CanTake(IItem item)

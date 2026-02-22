@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2837592982824322059, guid: 853831eb758a2c3419f2a300203a4fc0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 18.374
       objectReference: {fileID: 0}
     - target: {fileID: 2837592982824322059, guid: 853831eb758a2c3419f2a300203a4fc0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.98602456
       objectReference: {fileID: 0}
     - target: {fileID: 2837592982824322059, guid: 853831eb758a2c3419f2a300203a4fc0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.143
       objectReference: {fileID: 0}
     - target: {fileID: 2837592982824322059, guid: 853831eb758a2c3419f2a300203a4fc0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -87,7 +87,7 @@ MonoBehaviour:
   _collider: {fileID: 5682343504578080496}
   _rigidbody: {fileID: -8910610396213606764}
   _camera: {fileID: 0}
-  _itemsOffsetY: 0
+  _itemsOffsetY: 0.078
 --- !u!114 &-2815504898548458348
 MonoBehaviour:
   m_ObjectHideFlags: 0

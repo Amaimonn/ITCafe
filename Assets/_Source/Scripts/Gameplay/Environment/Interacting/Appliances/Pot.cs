@@ -12,7 +12,7 @@ namespace ITCafe.Environment.Appliances
             if (emptyHands) // there is no way soup can be taken with empty hands
                 return false;
 
-            return _isReadyResult && IsBusy && item.CanBeHandled(this, context);
+            return item.CanBeHandled(this, context);
         }
 
         public override bool CanHandleContainer(IItemsContainer container, PlayerContext context)
