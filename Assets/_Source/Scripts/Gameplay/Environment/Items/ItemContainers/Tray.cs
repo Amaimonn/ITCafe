@@ -7,12 +7,13 @@ namespace ITCafe.Environment
 {
     public class Tray : ContainerItem
     {
-        public override IEnumerable<IMenuItem> Items => _currentItems;
+        public override IEnumerable<IItem> Items => _currentItems;
         
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;
         [SerializeField, Min(0)] private float _itemsOffsetY = 0.15f;
 
-        private readonly List<IMenuItem> _currentItems = new();
+        private readonly List<IItem> _currentItems = new();
+        private readonly List<IMenuItem> _currentMenuItems = new();
         private int _currentItemsAmount = 0;
 
         public override int GetItemHash()
@@ -20,52 +21,60 @@ namespace ITCafe.Environment
             var hash = new HashCode();
 
             if (_currentItemsAmount == 1)
-                return _currentItems[0].GetItemHash();
+                return _currentMenuItems[0].GetItemHash();
 
-            foreach (var item in _currentItems)
-                hash.Add(item.GetItemHash());
+            foreach (var menuItem in _currentMenuItems)
+                hash.Add(menuItem.GetItemHash());
 
             return hash.ToHashCode();
         }
 
-        public override bool CanTake(IMenuItem item)
+        public override bool CanTake(IItem item)
         {
-            return _currentItemsAmount < _maxItemsCapacity;
+            return _currentItemsAmount < _maxItemsCapacity && 
+                   item.TryGetCachedComponent<IMenuItem>(out var menuItem) && 
+                   menuItem.CanBeStored(this);
         }
 
-        public override void Take(IMenuItem item)
+        public override void Take(IItem item)
         {
+            if (!item.TryGetCachedComponent<IMenuItem>(out var menuItem))
+                return;
+            
             item.SetPhysicsEnabled(false);
             item.transform.SetParent(transform);
             item.transform.SetLocalPositionAndRotation(new Vector3(0, _currentItemsAmount * _itemsOffsetY, 0),
                 Quaternion.identity);
 
             _currentItems.Add(item);
+            _currentMenuItems.Add(menuItem);
             _currentItemsAmount++;
         }
 
         public override bool ContainsHash(int hash)
         {
-            foreach (var item in _currentItems)
-                if (item.GetItemHash() == hash)
+            foreach (var menuItem in _currentMenuItems)
+                if (menuItem.GetItemHash() == hash)
                     return true;
 
             return false;
         }
 
-        public override IMenuItem ExtractItem(int hash)
+        public override IItem ExtractItem(int hash)
         {
             for (var i = 0; i < _currentItemsAmount; i++)
             {
                 var item = _currentItems[i];
-
-                if (item.GetItemHash() != hash)
+                var menuItem = _currentMenuItems[i];
+                
+                if (menuItem.GetItemHash() != hash)
                     continue;
 
                 for (var j = i + 1; j < _currentItemsAmount; j++)
                     _currentItems[j].transform.localPosition -= new Vector3(0, _itemsOffsetY, 0);
 
-                _currentItems.Remove(item);
+                _currentItems.RemoveAt(i);
+                _currentMenuItems.RemoveAt(i);
                 _currentItemsAmount--;
 
                 return item;

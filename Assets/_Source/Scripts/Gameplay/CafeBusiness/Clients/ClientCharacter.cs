@@ -37,7 +37,7 @@ namespace ITCafe.CafeBusiness
         private readonly ReactiveProperty<float> _waitingTimeNormalized = new();
         private float _remainingWaitingTime;
         private const float WAITING_FOR_ORDER_TIME = 90f;
-        
+
         [Flags]
         public enum ClientState
         {
@@ -206,7 +206,9 @@ namespace ITCafe.CafeBusiness
             if (!CheckCanTakeFood())
                 return false;
 
-            return container.Items.Any(item => CurrentOrder.IsCorresponds(item.GetItemHash()));
+            return container.Items.Any(item =>
+                item.TryGetCachedComponent<IMenuItem>(out var menuItem) &&
+                CurrentOrder.IsCorresponds(menuItem.GetItemHash()));
         }
 
         public void Handle(IItem item, PlayerContext context)
@@ -225,17 +227,20 @@ namespace ITCafe.CafeBusiness
         public void HandleContainer(IItemsContainer container, PlayerContext context)
         {
             var items = container.Items.ToArray();
-            foreach (var it in items)
+            foreach (var item in items)
             {
                 if (CurrentOrder.IsCompleted)
                     break;
-
-                var hash = it.GetItemHash();
+                
+                if (!item.TryGetCachedComponent<IMenuItem>(out var menuItem))
+                    continue;
+                
+                var hash = menuItem.GetItemHash();
                 if (CurrentOrder.IsCorresponds(hash))
                 {
-                    var item = container.ExtractItem(hash);
-                    if (item != null && CurrentOrder.TryHandOver(hash))
-                        ConsumeItem(item);
+                    var extractedItem = container.ExtractItem(hash);
+                    if (extractedItem != null && CurrentOrder.TryHandOver(hash))
+                        ConsumeItem(extractedItem);
                 }
             }
         }

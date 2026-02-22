@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ITCafe.Environment.Appliances
 {
-    public abstract class KitchenAppliance<T> : BaseInteractable, IJustItemHandler where T : IProcessable
+    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler where T : IProcessable
     {
         [SerializeField] private Transform _placedTransform;
 
@@ -45,8 +45,8 @@ namespace ITCafe.Environment.Appliances
         }
 #endregion
 
-#region IJustItemHandler
-        public bool CanHandle(IItem item, PlayerContext context)
+#region IItemHandler
+        public virtual bool CanHandle(IItem item, PlayerContext context)
         {
             return !IsBusy &&
                    item.TryGetCachedComponent<T>(out var processable) &&
@@ -54,12 +54,21 @@ namespace ITCafe.Environment.Appliances
                    _isReadyResult && context.ItemPicker.CanTake(_holdingItem);
         }
 
-        public void Handle(IItem item, PlayerContext context)
+        public virtual bool CanHandleContainer(IItemsContainer container, PlayerContext context)
+        {
+            return false;
+        }
+
+        public virtual void Handle(IItem item, PlayerContext context)
         {
             if (!IsBusy)
                 Place(item, context);
             else
                 HandOver(context);
+        }
+
+        public virtual void HandleContainer(IItemsContainer container, PlayerContext context)
+        {
         }
 #endregion
 

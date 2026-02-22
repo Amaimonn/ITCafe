@@ -1,12 +1,15 @@
 using System.Collections.Generic;
-using ITCafe.CafeBusiness;
+using ITCafe.Data.Items;
 using ITCafe.Player;
+using UnityEngine;
 
 namespace ITCafe.Environment
 {
     public abstract class ContainerItem : PickUpItem, IItemsContainer, IItemHandler
     {
-        public abstract IEnumerable<IMenuItem> Items { get; }
+        public abstract IEnumerable<IItem> Items { get; }
+        
+        [SerializeField] protected ItemTag _containerTag;
 
 #region IItem
         public override bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
@@ -36,17 +39,17 @@ namespace ITCafe.Environment
 
         public abstract bool ContainsHash(int hash);
 
-        public abstract IMenuItem ExtractItem(int hash);
+        public abstract IItem ExtractItem(int hash);
 
-        public abstract bool CanTake(IMenuItem item);
+        public abstract bool CanTake(IItem item);
 
-        public abstract void Take(IMenuItem item);
+        public abstract void Take(IItem item);
 
 #region IItemsHandler
         public virtual bool CanHandle(IItem item, PlayerContext context)
         {
             // context is null (Picker State)
-            return item is IMenuItem menuItem && CanTake(menuItem);
+            return CanTake(item);
         }
 
         public bool CanHandleContainer(IItemsContainer container, PlayerContext context)
@@ -57,10 +60,7 @@ namespace ITCafe.Environment
 
         public virtual void Handle(IItem item, PlayerContext context)
         {
-            if (item is not IMenuItem menuItem)
-                return;
-
-            Take(menuItem);
+            Take(item);
         }
 
         public void HandleContainer(IItemsContainer container, PlayerContext context)

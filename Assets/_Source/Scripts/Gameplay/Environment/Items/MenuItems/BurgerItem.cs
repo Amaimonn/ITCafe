@@ -14,5 +14,10 @@ namespace ITCafe.Environment
         {
             return _info.GetItemHash();
         }
+
+        public bool CanBeStored(IItemsContainer container)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

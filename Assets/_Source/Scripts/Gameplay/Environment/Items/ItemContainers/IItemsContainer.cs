@@ -5,10 +5,10 @@ namespace ITCafe.Environment
 {
     public interface IItemsContainer : IEquatableItem, IItem
     {
-        public IEnumerable<IMenuItem> Items { get; }
+        public IEnumerable<IItem> Items { get; }
         public bool ContainsHash(int hash);
-        public IMenuItem ExtractItem(int hash);
-        public bool CanTake(IMenuItem item);
-        public void Take(IMenuItem item);
+        public IItem ExtractItem(int hash);
+        public bool CanTake(IItem item);
+        public void Take(IItem item);
     }
 }
