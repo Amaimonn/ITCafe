@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace ITCafe.Environment.Appliances
 {
-    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler, IDisposable where T : IProcessableAspect
+    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler, IDisposable 
+        where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
         
