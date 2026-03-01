@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using ITCafe.Gameplay.UI.World;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -10,10 +11,7 @@ namespace ITCafe.Environment.Appliances
         where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
-        
-        [SerializeField] 
-        [Tooltip("Additional processing time for every single part")]
-        private float _processingTimeIncrement = 1.0f;
+        [SerializeField] private ProcessingProgressWorldUI _progressUI;
 
         protected bool IsBusy => _holdingItem != null;
         protected IItem _holdingItem;
@@ -119,8 +117,24 @@ namespace ITCafe.Environment.Appliances
                 ClearProcessing();
                 
                 _cts = new CancellationTokenSource();
-                await UniTask.Delay(TimeSpan.FromSeconds(processable.ProcessingTime), cancellationToken:  _cts.Token);
-            
+                
+                _progressUI.Show();
+                _progressUI.SetProgress(0f);
+                
+                var startTime = Time.time;
+                var currentTime = startTime;
+                var finishTime = startTime + processable.ProcessingTime;
+                
+                while (!_cts.IsCancellationRequested && currentTime < finishTime)
+                {
+                    await UniTask.WaitForEndOfFrame(cancellationToken:  _cts.Token);
+                    
+                    currentTime = Time.time;
+                    _progressUI.SetProgress((currentTime - startTime) / processable.ProcessingTime);
+                }
+                
+                _progressUI.SetProgress(1f);
+                
                 _holdingItem = processable.GetResult(_holdingItem, context);
                 _holdingItem.SetPhysicsEnabled(false);
                 _isReadyResult = true;
@@ -133,6 +147,8 @@ namespace ITCafe.Environment.Appliances
 
         protected virtual void HandOver(PlayerContext context)
         {
+            _progressUI.Hide();
+            
             context.ItemPicker.Take(_holdingItem);
             _holdingItem.UnFocus();
             _holdingItem = null;

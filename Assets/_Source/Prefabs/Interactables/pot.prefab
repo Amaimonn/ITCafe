@@ -54,7 +54,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6893060778985535938, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5373375113481213003}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6116665568967549816, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
       insertIndex: -1
@@ -82,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.Appliances.Pot
   _outline: {fileID: 7611277861689135460}
   _placedTransform: {fileID: 6552392435575950574}
+  _progressUI: {fileID: 5259612313144229345}
 --- !u!114 &7611277861689135460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,4 +108,77 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6893060778985535938, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
   m_PrefabInstance: {fileID: 380506296101254444}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5609347057522044974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6552392435575950574}
+    m_Modifications:
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.251
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250820611852355847, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+      propertyPath: m_Name
+      value: ProgressUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+--- !u!114 &5259612313144229345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 370846468082273743, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+  m_PrefabInstance: {fileID: 5609347057522044974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db6fefa14bd44c799d5db13a692276c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.World.ProcessingProgressWorldUI
+--- !u!4 &5373375113481213003 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 525363559174186085, guid: fec3d8511ba3b3f4295669669de6508c, type: 3}
+  m_PrefabInstance: {fileID: 5609347057522044974}
   m_PrefabAsset: {fileID: 0}
