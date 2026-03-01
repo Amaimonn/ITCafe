@@ -18,11 +18,8 @@
     max-width: 1920px;
     max-height: 1200px;
     background-color: rgba(20, 25, 45, 0.78);
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
 }
-
-
-
-
 
 .settings__header {
     flex-direction: column;
@@ -32,8 +29,6 @@
     border-bottom-width: 1px;
     padding-right: 40px;
 }
-
-
 
 .settings__sections {
     flex-direction: column;

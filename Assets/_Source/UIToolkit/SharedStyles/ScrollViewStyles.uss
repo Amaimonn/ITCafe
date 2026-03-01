@@ -76,3 +76,7 @@
     border-left-width: 0;
     background-color: rgba(0, 0, 0, 0);
 }
+
+.cafe__scroll-view .unity-scroll-view--vertical.unity-scroll-view--scroll > .unity-scroll-view__content-and-vertical-scroll-container > .unity-scroll-view__content-viewport > .unity-scroll-view__content-container {
+    /*overflow override (prev: scrollview)*/
+}
