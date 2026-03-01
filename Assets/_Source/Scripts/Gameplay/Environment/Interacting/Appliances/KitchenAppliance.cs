@@ -1,15 +1,23 @@
+using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using ITCafe.Player;
 using UnityEngine;
 
 namespace ITCafe.Environment.Appliances
 {
-    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler where T : IProcessableAspect
+    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler, IDisposable where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
+        
+        [SerializeField] 
+        [Tooltip("Additional processing time for every single part")]
+        private float _processingTimeIncrement = 1.0f;
 
         protected bool IsBusy => _holdingItem != null;
         protected IItem _holdingItem;
         protected bool _isReadyResult = false;
+        protected CancellationTokenSource _cts;
 
 #region IInteractable
         public override void Focus()
@@ -100,11 +108,26 @@ namespace ITCafe.Environment.Appliances
                 return;
             }
 
-            // TODO: add delay
+            ProcessAsync(processable, context).Forget();
+        }
 
-            _holdingItem = processable.GetResult(_holdingItem, context);
-            _holdingItem.SetPhysicsEnabled(false);
-            _isReadyResult = true;
+        protected virtual async UniTaskVoid ProcessAsync(IProcessableAspect processable, PlayerContext context)
+        {
+            try
+            {
+                ClearProcessing();
+                
+                _cts = new CancellationTokenSource();
+                await UniTask.Delay(TimeSpan.FromSeconds(processable.ProcessingTime), cancellationToken:  _cts.Token);
+            
+                _holdingItem = processable.GetResult(_holdingItem, context);
+                _holdingItem.SetPhysicsEnabled(false);
+                _isReadyResult = true;
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         protected virtual void HandOver(PlayerContext context)
@@ -113,6 +136,21 @@ namespace ITCafe.Environment.Appliances
             _holdingItem.UnFocus();
             _holdingItem = null;
             _isReadyResult = false;
+        }
+
+        protected void ClearProcessing()
+        {
+            Disposes.ClearDispose(ref _cts);
+        }
+        
+        protected void OnDestroy()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            ClearProcessing();
         }
     }
 }

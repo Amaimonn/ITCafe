@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PotProcessableAspect
   _handler:
     rid: 2693440061738319961
+  _processingTime: 1
   references:
     version: 2
     RefIds:

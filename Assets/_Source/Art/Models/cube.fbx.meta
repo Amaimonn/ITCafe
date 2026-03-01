@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: a3b35c8f8e90fea479181dc44e5da883
-AssetOrigin:
-  serializedVersion: 1
-  productId: 204525
-  packageName: Pandazole - Kitchen Food lowpoly pack
-  packageVersion: 1.0.0
-  assetPath: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Griller.fbx
-  uploadId: 463565
+guid: 3a8e35269d86d2242a23d32282b54f70
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -17,7 +10,7 @@ ModelImporter:
       name: PandaMat
     second: {fileID: 2100000, guid: 9866fda0e61a7904087eb0ec5ab17e03, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1

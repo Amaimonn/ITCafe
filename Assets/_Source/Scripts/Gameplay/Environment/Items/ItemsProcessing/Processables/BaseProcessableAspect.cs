@@ -7,13 +7,16 @@ namespace ITCafe.Environment
     public abstract class BaseProcessableAspect : MonoBehaviour, IProcessableAspect
     {
         public bool IsProcessable { get; private set; } = true;
-        
+        public float ProcessingTime => _processingTime;
+
         [RealizationSelector(typeof(IProcessingHandler)), SerializeReference] 
         protected IProcessingHandler _handler;
+        
+        [SerializeField] private float _processingTime = 1f;
 
         public virtual IItem GetResult(IItem processableItem, PlayerContext context)
         {
-            IsProcessable = false;
+            IsProcessable = false; // no more than 1 processing by default
             
             return _handler.GetProcessed(processableItem, context);
         }
