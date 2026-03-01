@@ -8,9 +8,6 @@
                 <ui:Label text="- - : - -" name="Timer" class="hud__timer"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 0; height: 100%; width: 4px; position: absolute; left: 50%; translate: -50% 0; background-color: rgb(143, 143, 143); display: none;"/>
-            <ui:VisualElement name="BarRightItem" class="hud__top-bar-item" style="flex-grow: 1; display: none;">
-                <ui:Label text="0" name="PointsLabel" class="hud__points"/>
-            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: row;">
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; align-items: flex-start; margin-top: 20px;">
@@ -47,6 +44,14 @@
                     <ui:VisualElement name="RatingStat" class="hud__stat-item" style="display: none;">
                         <ui:Label text="&#1056;&#1077;&#1081;&#1090;&#1080;&#1085;&#1075;:" class="hud__stat-label"/>
                         <ui:Label text="0.0" name="RatingValue" class="hud__stat-value"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ScoreStat" class="hud__stat-item">
+                        <ui:Label class="hud__stat-label" style="font-size: 20px; color: rgb(97, 202, 255); -unity-font-style: bold;">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(18061521031659520)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="0" name="ScoreValue" class="hud__points"/>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

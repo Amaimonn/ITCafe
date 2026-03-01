@@ -13,7 +13,7 @@ namespace ITCafe.CafeBusiness
         public float SuccessRate { get; set; }
         public float AverageServiceTime { get; set; }
         public IReadOnlyDictionary<int, int> ItemsServed { get; set; }
-        public int Points { get; set; }
+        public int Score { get; set; }
         public int EarnedStars { get; set; }
         public IReadOnlyList<int> StarEvaluations { get; set; } 
 

@@ -35,6 +35,10 @@ MonoBehaviour:
     m_Key: failure_stat
     m_Metadata:
       m_Items: []
+  - m_Id: 18061521031659520
+    m_Key: score_stat
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

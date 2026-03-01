@@ -12,8 +12,8 @@ namespace ITCafe.Gameplay.UI.MVVM
     public class HUDView : AttachableToolkitScreen<HUDViewModel>
     {
         [SerializeField] private string _timerName = "Timer";
-        [SerializeField] private string _pointsLabelName = "PointsLabel";
         [SerializeField] private string _ordersContainerName = "OrdersContainer";
+        [SerializeField] private string _scoreLabelName = "ScoreValue";
         [SerializeField] private string _ordersTakenValueName = "OrderValue";
         [SerializeField] private string _ordersCompletedValueName = "SatisfactionValue";
         [SerializeField] private string _ordersFailedValueName = "FailedValue";
@@ -21,7 +21,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private VisualTreeAsset _orderAsset;
 
         private Label _timerLabel;
-        private Label _pointsLabel;
+        private Label _scoreLabel;
         private Label _ordersTakenLabel;
         private Label _ordersCompletedLabel;
         private Label _ordersFailedLabel;
@@ -33,7 +33,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnInit()
         {
             _timerLabel = Root.Q<Label>(name: _timerName);
-            _pointsLabel = Root.Q<Label>(name: _pointsLabelName);
+            _scoreLabel = Root.Q<Label>(name: _scoreLabelName);
             _ordersContainer = Root.Q<VisualElement>(name: _ordersContainerName);
 
             _ordersTakenLabel = Root.Q<Label>(name: _ordersTakenValueName);
@@ -47,8 +47,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnBind(viewModel);
 
-            viewModel.TimerText.Subscribe(x => _timerLabel.text = x.ToString()).AddTo(_disposables);
-            viewModel.PointsAmount.Subscribe(x => _pointsLabel.text = x.ToString()).AddTo(_disposables);
+            viewModel.OnTimerTextChanged.Subscribe(x => _timerLabel.text = x.ToString()).AddTo(_disposables);
+            viewModel.OnScoreChanged.Subscribe(x => _scoreLabel.text = x.ToString()).AddTo(_disposables);
 
             viewModel.ActiveOrders.ObserveAdd().Subscribe(x => OnOrderAdded(x.Value)).AddTo(_disposables);
             viewModel.ActiveOrders.ObserveRemove().Subscribe(x => OnOrderRemoved(x.Value)).AddTo(_disposables);

@@ -38,6 +38,10 @@ MonoBehaviour:
     m_Localized: '_FAILURES:'
     m_Metadata:
       m_Items: []
+  - m_Id: 18061521031659520
+    m_Localized: 'SCORE:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
