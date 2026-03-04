@@ -15,16 +15,13 @@ namespace ITCafe.Player
 
         public override bool CanTake(IItem item)
         {
-            return item is IMenuItem menuItem && _container.CanTake(menuItem);
+            return _container.CanTake(item);
         }
 
         public override void Take(IItem item)
         {
-            if (item is not IMenuItem menuItem)
-                return;
-
-            Debug.Log($"Placing item {item.transform.name} on tray");
-            _container.Take(menuItem);
+            Debug.Log($"Placing item {item.transform.name} into container");
+            _container.Take(item);
         }
     }
 }

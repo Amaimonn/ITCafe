@@ -12,8 +12,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 {
     public class HUDViewModel : ScreenViewModel
     {
-        public Observable<string> TimerText => _timerText;
-        public Observable<int> PointsAmount => _pointsAmount;
+        public Observable<string> OnTimerTextChanged => _timerText;
+        public Observable<int> OnScoreChanged => _score;
 
         public ReactiveProperty<int> OrdersTaken => _ordersTaken;
         public ReactiveProperty<int> OrdersCompleted => _ordersCompleted;
@@ -24,7 +24,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly IReadOnlyDictionary<int, ItemInfoSO> _menuItemsHashMap;
         private readonly ObservableHashSet<IOrder> _activeOrders = new();
         private readonly ReactiveProperty<string> _timerText = new("00:00");
-        private readonly ReactiveProperty<int> _pointsAmount = new(0);
+        private readonly ReactiveProperty<int> _score = new(0);
         private readonly ReactiveProperty<int> _ordersTaken = new(0);
         private readonly ReactiveProperty<int> _ordersCompleted = new(0);
         private readonly ReactiveProperty<int> _ordersFailed = new(0);
@@ -45,7 +45,12 @@ namespace ITCafe.Gameplay.UI.MVVM
             
             _timerText.Value = FormatTime(TimeSpan.FromSeconds(remainingSeconds));
         }
-     
+
+        public void SetScore(int score)
+        {
+            _score.Value = score;
+        }
+        
         public void IncrementOrdersTaken()
         {
             _ordersTaken.Value++;
@@ -69,11 +74,6 @@ namespace ITCafe.Gameplay.UI.MVVM
         public void RemoveOrderInfo(IOrder order)
         {
             _activeOrders.Remove(order);
-        }
-
-        public void SetPoints(int points)
-        {
-            _pointsAmount.Value = points;
         }
 
         public override void Dispose()

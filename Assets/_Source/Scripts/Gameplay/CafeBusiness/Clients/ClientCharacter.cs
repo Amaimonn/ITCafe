@@ -37,7 +37,7 @@ namespace ITCafe.CafeBusiness
         private readonly ReactiveProperty<float> _waitingTimeNormalized = new();
         private float _remainingWaitingTime;
         private const float WAITING_FOR_ORDER_TIME = 90f;
-        
+
         [Flags]
         public enum ClientState
         {
@@ -192,9 +192,9 @@ namespace ITCafe.CafeBusiness
             if (!CheckCanTakeFood())
                 return false;
 
-            if (item is IEquatableItem equatableItem)
+            if (item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
             {
-                var code = equatableItem.GetItemHash();
+                var code = menuAspect.GetItemHash();
                 return CurrentOrder.IsCorresponds(code);
             }
 
@@ -206,40 +206,51 @@ namespace ITCafe.CafeBusiness
             if (!CheckCanTakeFood())
                 return false;
 
-            return container.Items.Any(item => CurrentOrder.IsCorresponds(item.GetItemHash()));
+            return container.Items.Any(item =>
+                item.TryGetCachedComponent<IMenuAspect>(out var menuAspect) &&
+                CurrentOrder.IsCorresponds(menuAspect.GetItemHash()));
         }
 
         public void Handle(IItem item, PlayerContext context)
         {
-            if (item is IEquatableItem equatableItem)
-            {
-                var hash = equatableItem.GetItemHash();
-                if (CurrentOrder.TryHandOver(hash))
-                {
-                    context.ItemPicker.Release();
-                    ConsumeItem(item);
-                }
-            }
+            if (item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
+                TakeMenuItem(item, menuAspect, context);
         }
 
         public void HandleContainer(IItemsContainer container, PlayerContext context)
         {
+            if (container.TryGetCachedComponent<IMenuAspect>(out var containerMenuAspect))
+                TakeMenuItem(container, containerMenuAspect, context);
+            
             var items = container.Items.ToArray();
-            foreach (var it in items)
+            foreach (var item in items)
             {
                 if (CurrentOrder.IsCompleted)
                     break;
-
-                var hash = it.GetItemHash();
+                
+                if (!item.TryGetCachedComponent<IMenuAspect>(out var menuAspect))
+                    continue;
+                
+                var hash = menuAspect.GetItemHash();
                 if (CurrentOrder.IsCorresponds(hash))
                 {
-                    var item = container.ExtractItem(hash);
-                    if (item != null && CurrentOrder.TryHandOver(hash))
-                        ConsumeItem(item);
+                    var extractedItem = container.ExtractItem(hash);
+                    if (extractedItem != null && CurrentOrder.TryHandOver(hash))
+                        ConsumeItem(extractedItem);
                 }
             }
         }
 #endregion
+
+        private void TakeMenuItem(IItem item, IMenuAspect menuAspect, PlayerContext context)
+        {
+            var hash = menuAspect.GetItemHash();
+            if (CurrentOrder.TryHandOver(hash))
+            {
+                context.ItemPicker.Release();
+                ConsumeItem(item);
+            }
+        }
 
         private bool CheckCanTakeFood() => ClientState.CanTakeFood.HasFlag(CurrentState);
     }

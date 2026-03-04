@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.GrillProcessable
   _handler:
     rid: 2693439952508944471
+  _processingTime: 1
   references:
     version: 2
     RefIds:

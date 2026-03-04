@@ -86,7 +86,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _ordersTakenLabel.text = report.ClientsCount.ToString();
             _ordersCompletedLabel.text = report.SuccessfulOrders.ToString();
             _ordersFailedLabel.text = report.FailedOrders.ToString();
-            _pointsLabel.text = report.Points.ToString();
+            _pointsLabel.text = report.Score.ToString();
 
             _timeWorkedValue.text = report.WorkTime.ToString(@"mm\:ss");
 

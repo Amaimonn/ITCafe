@@ -14,7 +14,7 @@ namespace ITCafe.Player
 
         public override bool CanTake(IItem item)
         {
-            return item != null;
+            return item != null; // if item has IMenuAspect -> additional check mb
         }
 
         public override void Take(IItem item)

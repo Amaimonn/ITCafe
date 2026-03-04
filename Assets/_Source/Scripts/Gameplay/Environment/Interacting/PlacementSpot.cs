@@ -66,7 +66,7 @@ namespace ITCafe.Environment
             if (_holdingContainer == null)
                 return false;
 
-            return item is IMenuItem menuItem && _holdingContainer.CanTake(menuItem);
+            return item.TryGetCachedComponent<IMenuAspect>(out var menuItem) && _holdingContainer.CanTake(item);
         }
 
         private void Place(IItem item, PlayerContext context)
@@ -95,7 +95,7 @@ namespace ITCafe.Environment
         private void PlaceOnHoldingContainer(IItem item, PlayerContext context)
         {
             context.ItemPicker.Release();
-            _holdingContainer.Take((IMenuItem)item);
+            _holdingContainer.Take(item);
             _holdingItem.Focus();
         }
     }

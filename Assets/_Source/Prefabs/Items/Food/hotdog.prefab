@@ -58,13 +58,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 609276383056010699, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3661022098845534238}
+      addedObject: {fileID: 6689345196359052415}
     - targetCorrespondingSourceObject: {fileID: 609276383056010699, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5416326209524727923}
     - targetCorrespondingSourceObject: {fileID: 609276383056010699, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6689345196359052415}
+      addedObject: {fileID: 817966108296342346}
+    - targetCorrespondingSourceObject: {fileID: 609276383056010699, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8778667615297266272}
   m_SourcePrefab: {fileID: 100100000, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
 --- !u!64 &2231894362309376052 stripped
 MeshCollider:
@@ -76,42 +79,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 609276383056010699, guid: 6c61c96db5547f040af6dd99cbdbc93b, type: 3}
   m_PrefabInstance: {fileID: 3384772689127076583}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3661022098845534238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2778076070997028652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d408cffca68431fbb5b393a4ce229e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleItem
-  _outline: {fileID: 5416326209524727923}
-  _collider: {fileID: 2231894362309376052}
-  _rigidbody: {fileID: 6689345196359052415}
-  _camera: {fileID: 0}
-  _info:
-    ItemTag: 10000
---- !u!114 &5416326209524727923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2778076070997028652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 1
-  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
-  outlineWidth: 7
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!54 &6689345196359052415
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,3 +106,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &5416326209524727923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2778076070997028652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 1
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &817966108296342346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2778076070997028652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40680cb6d5d960f438fdc743102d1cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PickUpItem
+  _outline: {fileID: 5416326209524727923}
+  _collider: {fileID: 2231894362309376052}
+  _rigidbody: {fileID: 6689345196359052415}
+  _camera: {fileID: 0}
+--- !u!114 &8778667615297266272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2778076070997028652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85a3c93f32d43bda727dede91676379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleMenuAspect
+  _info:
+    rid: 2693440061738319960
+  _properContainerTag: 15000
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693440061738319960
+      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
+      data:
+        ItemTag: 10000

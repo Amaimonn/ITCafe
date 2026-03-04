@@ -13,7 +13,7 @@ namespace ITCafe.CafeBusiness
     {
         public Observable<Unit> OnCompleted => _onCompleted;
 
-        private readonly WorkProgressService _workProgressService;
+        private readonly GameStatsService _gameStatsService;
         private readonly HUDViewModel _hudViewModel;
         private readonly ClientsRunner _clientsRunner;
         private readonly IViewBinder<ResultsViewModel> _resultsBinder;
@@ -24,14 +24,14 @@ namespace ITCafe.CafeBusiness
         private CancellationTokenSource _cts;
         private int _remainingSeconds = Constants.SESSION_DURATION_SECONDS;
 
-        public GameSessionRunner(WorkProgressService workProgressService,
+        public GameSessionRunner(GameStatsService gameStatsService,
             HUDViewModel hudViewModel,
             ClientsRunner clientsRunner,
             IViewBinder<ResultsViewModel> resultsBinder,
             InputService inputService,
             Subject<CafeMissionResult> sendResults)
         {
-            _workProgressService = workProgressService;
+            _gameStatsService = gameStatsService;
             _hudViewModel = hudViewModel;
             _clientsRunner = clientsRunner;
             _resultsBinder = resultsBinder;
@@ -88,11 +88,11 @@ namespace ITCafe.CafeBusiness
             Dispose();
             _clientsRunner.Dispose();
 
-            _workProgressService.SetTotalTime(
+            _gameStatsService.SetTotalTime(
                 TimeSpan.FromSeconds(Constants.SESSION_DURATION_SECONDS - _remainingSeconds));
-            _workProgressService.CompleteDay();
+            _gameStatsService.CompleteDay();
 
-            var report = _workProgressService.GetDailyReport();
+            var report = _gameStatsService.GetDailyReport();
             if (report.EarnedStars > 0)
             {
                 _sendResults.OnNext(new CafeMissionResult

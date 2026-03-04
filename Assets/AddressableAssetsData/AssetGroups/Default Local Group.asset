@@ -80,6 +80,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e28a5c6b4d494442a97feaecdfecc79
+    m_Address: mission_dev
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93b2bd02ed33c1a46ab7ea36bae4ce7a
     m_Address: scenes/gap
     m_ReadOnly: 0
@@ -87,6 +92,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5c1f8dbbe253cf47aba597f88ae803f
     m_Address: mission_1_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6844780ebfc48e479648b7131da4f97
+    m_Address: mission_dev_setup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

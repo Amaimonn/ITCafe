@@ -13,14 +13,14 @@ namespace ITCafe.Gameplay.UI.MVVM
         private readonly Subject<Unit> _exitGameplaySignal;
         private readonly Subject<Unit> _restartGameplaySignal;
 
-        public ResultsViewModel(WorkProgressService workProgressService,
+        public ResultsViewModel(GameStatsService gameStatsService,
             [Key(Constants.GAMEPLAY_EXIT_SIGNAL)] Subject<Unit> exitGameplaySignal,
             [Key(Constants.RESTART_GAMEPLAY_SIGNAL)] Subject<Unit> restartGameplaySignal)
         {
             _exitGameplaySignal = exitGameplaySignal;
             _restartGameplaySignal = restartGameplaySignal;
             
-            var report = workProgressService.GetDailyReport();
+            var report = gameStatsService.GetDailyReport();
             _reported = new ReactiveProperty<ProgressReport>(report);
         }
 

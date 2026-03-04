@@ -281,9 +281,10 @@ GameObject:
   - component: {fileID: 6963889117945279557}
   - component: {fileID: 7762261517571058766}
   - component: {fileID: 2144379327346488898}
-  - component: {fileID: 8016487318458802091}
   - component: {fileID: 3297077780980691893}
   - component: {fileID: 4321637157517414826}
+  - component: {fileID: -4798538087739555053}
+  - component: {fileID: -3414591780825413165}
   m_Layer: 0
   m_Name: chocolate_donut
   m_TagString: Untagged
@@ -358,24 +359,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5070658199683284066, guid: c84b208b0012fa146a72c06e2d7e1198, type: 3}
---- !u!114 &8016487318458802091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4535098636528518637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d408cffca68431fbb5b393a4ce229e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outline: {fileID: 3297077780980691893}
-  _collider: {fileID: 2144379327346488898}
-  _rigidbody: {fileID: 4321637157517414826}
-  _camera: {fileID: 0}
-  _info:
-    ItemTag: 5
 --- !u!114 &3297077780980691893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,3 +404,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &-4798538087739555053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535098636528518637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40680cb6d5d960f438fdc743102d1cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.PickUpItem
+  _outline: {fileID: 3297077780980691893}
+  _collider: {fileID: 2144379327346488898}
+  _rigidbody: {fileID: 4321637157517414826}
+  _camera: {fileID: 0}
+--- !u!114 &-3414591780825413165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535098636528518637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85a3c93f32d43bda727dede91676379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleMenuAspect
+  _info:
+    rid: 2693440061738319959
+  _properContainerTag: 15000
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693440061738319959
+      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
+      data:
+        ItemTag: 5

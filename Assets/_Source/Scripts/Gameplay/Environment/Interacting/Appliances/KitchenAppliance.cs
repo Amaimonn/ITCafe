@@ -1,15 +1,22 @@
+using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using ITCafe.Gameplay.UI.World;
 using ITCafe.Player;
 using UnityEngine;
 
 namespace ITCafe.Environment.Appliances
 {
-    public abstract class KitchenAppliance<T> : BaseInteractable, IJustItemHandler where T : IProcessable
+    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler, IDisposable 
+        where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
+        [SerializeField] private ProcessingProgressWorldUI _progressUI;
 
-        private bool IsBusy => _holdingItem != null;
-        private IItem _holdingItem;
-        private bool _isReadyResult = false;
+        protected bool IsBusy => _holdingItem != null;
+        protected IItem _holdingItem;
+        protected bool _isReadyResult = false;
+        protected CancellationTokenSource _cts;
 
 #region IInteractable
         public override void Focus()
@@ -45,25 +52,40 @@ namespace ITCafe.Environment.Appliances
         }
 #endregion
 
-#region IJustItemHandler
-        public bool CanHandle(IItem item, PlayerContext context)
+#region IItemHandler
+        public virtual bool CanHandle(IItem item, PlayerContext context)
         {
             return !IsBusy &&
                    item.TryGetCachedComponent<T>(out var processable) &&
                    processable.IsProcessable ||
                    _isReadyResult && context.ItemPicker.CanTake(_holdingItem);
+            
+            // TODO: if IsBusy: mb try to craft:
+            //       check for processable (higher priority than Craft with Take) ->
+            //       search for recipes ->
+            //       take item, set 'NotReady' and increase cooking time).
+            //       (Not for all appliances. Ex.: ok for pot, but not for grill)
         }
 
-        public void Handle(IItem item, PlayerContext context)
+        public virtual bool CanHandleContainer(IItemsContainer container, PlayerContext context)
+        {
+            return false;
+        }
+
+        public virtual void Handle(IItem item, PlayerContext context)
         {
             if (!IsBusy)
                 Place(item, context);
             else
                 HandOver(context);
         }
+
+        public virtual void HandleContainer(IItemsContainer container, PlayerContext context)
+        {
+        }
 #endregion
 
-        private void Place(IItem item, PlayerContext context)
+        protected virtual void Place(IItem item, PlayerContext context)
         {
             var itemPicker = context.ItemPicker;
 
@@ -77,7 +99,7 @@ namespace ITCafe.Environment.Appliances
             Process(context);
         }
 
-        private void Process(PlayerContext context)
+        protected virtual void Process(PlayerContext context)
         {
             if (!_holdingItem.TryGetCachedComponent<T>(out var processable) ||
                 !processable.IsProcessable)
@@ -85,19 +107,67 @@ namespace ITCafe.Environment.Appliances
                 return;
             }
 
-            // TODO: add delay
-
-            _holdingItem = processable.GetResult(_holdingItem, context);
-            _holdingItem.SetPhysicsEnabled(false);
-            _isReadyResult = true;
+            ProcessAsync(processable, context).Forget();
         }
 
-        private void HandOver(PlayerContext context)
+        protected virtual async UniTaskVoid ProcessAsync(IProcessableAspect processable, PlayerContext context)
         {
+            try
+            {
+                ClearProcessing();
+                
+                _cts = new CancellationTokenSource();
+                
+                _progressUI.Show();
+                _progressUI.SetProgress(0f);
+                
+                var startTime = Time.time;
+                var currentTime = startTime;
+                var finishTime = startTime + processable.ProcessingTime;
+                
+                while (!_cts.IsCancellationRequested && currentTime < finishTime)
+                {
+                    await UniTask.WaitForEndOfFrame(cancellationToken:  _cts.Token);
+                    
+                    currentTime = Time.time;
+                    _progressUI.SetProgress((currentTime - startTime) / processable.ProcessingTime);
+                }
+                
+                _progressUI.SetProgress(1f);
+                
+                _holdingItem = processable.GetResult(_holdingItem, context);
+                _holdingItem.SetPhysicsEnabled(false);
+                _isReadyResult = true;
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        protected virtual void HandOver(PlayerContext context)
+        {
+            _progressUI.Hide();
+            
             context.ItemPicker.Take(_holdingItem);
             _holdingItem.UnFocus();
             _holdingItem = null;
             _isReadyResult = false;
+        }
+
+        protected void ClearProcessing()
+        {
+            Disposes.ClearDispose(ref _cts);
+        }
+        
+        protected void OnDestroy()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            ClearProcessing();
         }
     }
 }

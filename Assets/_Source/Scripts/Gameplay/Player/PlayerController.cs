@@ -33,25 +33,20 @@ namespace ITCafe.Player
         }
         #endregion
 
-        /// <summary>
-        /// Передвижение вперед/назад и вправо/влево
-        /// </summary>
         private void Move(Vector2 moveInput)
         {
             var forward = Vector3.ProjectOnPlane(_camera.transform.forward, Vector3.up).normalized;
             var right = Vector3.ProjectOnPlane(_camera.transform.right, Vector3.up).normalized;
             var currentSpeed = moveInput.x * _moveSpeed * right + moveInput.y * _moveSpeed * forward;
+            
             _rigidbody.AddForce(currentSpeed, ForceMode.VelocityChange);
         }
-
-        /// <summary>
-        /// Поворот по горизонтали и вертикали
-        /// </summary>
+        
         private void RotateToLook()
         {
-            // Поворачиваемся в направлении камеры
             var cameraProjection = Vector3.ProjectOnPlane(_camera.transform.forward, Vector3.up).normalized;
             var cameraRotation = Quaternion.LookRotation(cameraProjection);
+            
             _rigidbody.MoveRotation(cameraRotation);
         }
     }

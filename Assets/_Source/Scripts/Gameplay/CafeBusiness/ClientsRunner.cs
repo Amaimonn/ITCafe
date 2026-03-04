@@ -15,7 +15,7 @@ namespace ITCafe.CafeBusiness
     {
         private readonly IFactory<ClientCharacter> _clientsFactory;
         private readonly TableService _tableService;
-        private readonly WorkProgressService _progressService;
+        private readonly GameStatsService _gameStatsService;
         private readonly HUDViewModel _hudViewModel;
         
         private readonly Dictionary<Transform, bool> _orderAvailabilityMap;
@@ -27,13 +27,13 @@ namespace ITCafe.CafeBusiness
         public ClientsRunner(
             IFactory<ClientCharacter> clientsFactory,
             TableService tableService,
-            WorkProgressService progressService,
+            GameStatsService gameStatsService,
             [Key(Constants.CLIENT_ORDER_PLACES)] IEnumerable<Transform> clientOrderPoints,
             HUDViewModel hudViewModel)
         {
             _clientsFactory = clientsFactory;
             _tableService = tableService;
-            _progressService = progressService;
+            _gameStatsService = gameStatsService;
             _hudViewModel = hudViewModel;
             _orderAvailabilityMap = clientOrderPoints.ToDictionary(x => x, _ => true);
         }
@@ -61,7 +61,7 @@ namespace ITCafe.CafeBusiness
                                 client.transform.SetPositionAndRotation(orderTransform.position,
                                     orderTransform.rotation);
                                 _orderAvailabilityMap[orderTransform] = false;
-                                _progressService.RegisterClient(client);
+                                _gameStatsService.RegisterClient(client);
                                 _currentActiveClients++;
 
                                 // TODO: Watch out for client subscription this time

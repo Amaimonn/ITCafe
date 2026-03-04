@@ -24,6 +24,7 @@ namespace ITCafe.Data.Items
         Meatloaf = 20,
         BasePizzaRaw = 21,
         HuntersPizzaRaw = 22,
+        Cookie = 30,
 
         // Combinations
         SimpleCombination = 5000,
@@ -39,11 +40,13 @@ namespace ITCafe.Data.Items
         MargheritaPizza = 10_005,
         HuntersPizza = 10_006,
         Salad = 10_007,
+        TomatoSoup = 10_008,
 
         // Special
         Tray = 15_000,
         Plate = 15_001,
         SushiTable = 15_002,
+        Bowl = 15_003,
         
         // Processed
         PattyFried = 20_000,

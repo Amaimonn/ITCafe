@@ -28,9 +28,11 @@ namespace ITCafe.Environment
         /// </summary>
         bool ICompositeComponent.TryGetCachedComponent<T>(out T component)
         {
-            component = default(T);
             if (transform == null)
+            {
+                component = default(T);
                 return false;
+            }
             
             if (CachedComponentsMap.TryGetValue(typeof(T), out var untypedComponent) && untypedComponent != null)
             {
@@ -45,14 +47,16 @@ namespace ITCafe.Environment
                 return true;
             }
             
-            if (!transform.TryGetComponent(out component))
+            if (transform.TryGetComponent(out component))
             {
-                CachedComponentsMap[typeof(T)] = null;
-                return false;
+                CachedComponentsMap[typeof(T)] = component;
+                return true;
             }
             
-            CachedComponentsMap[typeof(T)] = component;
-            return true;
+            component = default(T);
+            CachedComponentsMap[typeof(T)] = null;
+            
+            return false;
         }
 #endregion
     }

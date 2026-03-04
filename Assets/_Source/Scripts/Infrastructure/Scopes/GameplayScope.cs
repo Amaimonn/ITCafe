@@ -72,7 +72,7 @@ namespace ITCafe
             RegisterUI(builder);
 
             builder.RegisterInstance<InputActionMap>(_inputActionAsset.FindActionMap("Player"));
-            
+
             builder.RegisterInstance<CinemachineInputAxisController>(_cinemachineInputAxisController);
 
             builder.Register<Subject<Unit>>(Lifetime.Singleton)
@@ -114,7 +114,7 @@ namespace ITCafe
 
             builder.Register<GameSessionRunner>(Lifetime.Singleton);
 
-            builder.Register<WorkProgressService>(Lifetime.Singleton);
+            builder.Register<GameStatsService>(Lifetime.Singleton);
 
             builder.Register<ItemsCreator>(Lifetime.Singleton)
                 .AsSelf()
@@ -188,10 +188,17 @@ namespace ITCafe
             builder.Register<Func<HUDViewModel>>(x => () =>
             {
                 var hudViewModel = x.Resolve<HUDViewModel>();
-                var progressService = x.Resolve<WorkProgressService>();
-                progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken());
-                progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted());
-                progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed());
+                var progressService = x.Resolve<GameStatsService>();
+                
+                progressService.OnScoreChanged.Subscribe(hudViewModel.SetScore)
+                    .AddTo(_disposables);
+                progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken())
+                    .AddTo(_disposables);
+                progressService.OnClientServed.Subscribe(_ => hudViewModel.IncrementOrdersCompleted())
+                    .AddTo(_disposables);
+                progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed())
+                    .AddTo(_disposables);
+                
                 return hudViewModel;
             }, Lifetime.Singleton);
 
@@ -234,7 +241,7 @@ namespace ITCafe
                                     new GameplayEnterContext
                                     {
                                         ToSceneName = Scenes.GAMEPLAY_1,
-                                        MissionId = "mission_1_1",
+                                        MissionId = "mission_dev",
                                         LocationId = "location_1",
                                         CompletionSignal = new Subject<CafeMissionResult>()
                                     };
@@ -248,7 +255,7 @@ namespace ITCafe
             _missionSetup = handle.Result;
 
             Build();
-            
+
             yield return new WaitForEndOfFrame();
 
             _localizationLoader.Init();
@@ -258,7 +265,7 @@ namespace ITCafe
             // Mission Setup
             Destroy(_missionSetupRoot);
             var sceneSetup = _missionSetup.SceneSetupPrefab;
-            
+
             yield return InstantiateAsync(sceneSetup);
 
             var tableCollection = _missionSetup.LocaleTableCollection;
@@ -267,8 +274,8 @@ namespace ITCafe
                 var localizationLoadingService = new LocalizationLoadingService();
                 localizationLoadingService.Init(tableCollection);
                 localizationLoadingService.AddTo(_disposables);
-                
-                yield  return localizationLoadingService.LoadTables();
+
+                yield return localizationLoadingService.LoadTables();
             }
 
             // Input init
@@ -276,7 +283,7 @@ namespace ITCafe
             inputService.SetInputEnabled(false);
 
             InitUI();
-            
+
             yield return new WaitForEndOfFrame();
 
             InitSettings();
