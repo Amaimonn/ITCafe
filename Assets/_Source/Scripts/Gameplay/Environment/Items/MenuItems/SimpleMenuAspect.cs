@@ -10,7 +10,6 @@ namespace ITCafe.Environment
         private BaseItemInfo _info;
         
         [SerializeField] private ItemTag _properContainerTag;
-        // [SerializeField] private bool _emptyHandsStorable;
 
         public int GetItemHash()
         {
