@@ -1,0 +1,25 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreviewStyles.uss?fileID=7433441132597879392&amp;guid=752dcc774e209dd4d8de842b4be3c7b8&amp;type=3#OrderPreviewStyles"/>
+    <ui:VisualElement name="DishRecipe" class="order-preview__item order-preview__item--compound">
+        <ui:VisualElement name="DishPreview" class="order-preview__result-container">
+            <ui:VisualElement name="DishImage" class="order-preview__item-image order-preview__item-image--main" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);"/>
+            <ui:Label text="Deluxe Burger" name="DishName" class="order-preview__item-name"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Ingredients" class="order-preview__ingredients">
+            <ui:VisualElement class="order-preview__ingredient">
+                <ui:VisualElement class="order-preview__ingredient-image" style="background-image: url(&quot;project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300090&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_SteakCooked&quot;);">
+                    <ui:VisualElement name="ProcIcon" style="flex-grow: 1; position: absolute; width: 14px; height: 14px; background-color: rgb(75, 134, 255); bottom: -3px; left: -3px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="order-preview__ingredient">
+                <ui:VisualElement class="order-preview__ingredient-image" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=2800000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll&quot;);"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="order-preview__ingredient">
+                <ui:VisualElement class="order-preview__ingredient-image" style="background-image: url(&quot;project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300036&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Salad&quot;);"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="order-preview__ingredient">
+                <ui:VisualElement class="order-preview__ingredient-image" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/swiss_cheese.png?fileID=2800000&amp;guid=cb89955507fad024daecd0757dfd3c76&amp;type=3#swiss_cheese&quot;);"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

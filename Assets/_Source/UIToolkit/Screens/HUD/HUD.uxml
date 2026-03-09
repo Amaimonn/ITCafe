@@ -4,8 +4,10 @@
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="hud__root">
         <ui:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: center;">
-            <ui:VisualElement name="OrdersPanel" class="hud__orders-panel hud__widget-panel">
+            <ui:VisualElement name="OrdersPanel" class="hud__orders-panel">
                 <ui:VisualElement name="OrdersContainer" class="hud__orders-container">
+                    <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
+                    <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
                     <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
                     <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
                     <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>

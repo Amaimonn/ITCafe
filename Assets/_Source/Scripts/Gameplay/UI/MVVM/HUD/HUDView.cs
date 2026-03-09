@@ -17,8 +17,15 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _ordersTakenValueName = "OrderValue";
         [SerializeField] private string _ordersCompletedValueName = "SatisfactionValue";
         [SerializeField] private string _ordersFailedValueName = "FailedValue";
-
+        
+        [Header("Orders")]
         [SerializeField] private VisualTreeAsset _orderAsset;
+        [SerializeField] private string _orderedItemsName = "OrderedItems";
+        
+        [Header("Recipe Preview")]
+        [SerializeField] private VisualTreeAsset _recipePreviewAsset;
+        [SerializeField] private string _ingredientsContainerName = "IngredientsContainer";
+        [SerializeField] private string _orderTimeName = "RemainingTimeNormalized";
 
         private Label _timerLabel;
         private Label _scoreLabel;
@@ -61,17 +68,18 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void OnOrderAdded(IOrder order)
         {
             var orderElement = _orderAsset.CloneTree();
-            var orderImagesContainer = orderElement.Q<VisualElement>(className: "order-cloud__images-container");
+            var orderedItemsContainer = orderElement.Q<VisualElement>(name: _orderedItemsName);
             
-            orderImagesContainer.Clear();
+            orderedItemsContainer.Clear();
             _orderContainerMap[order] = orderElement;
             _ordersContainer.Add(orderElement);
             
-            var orderTimer = orderElement.Q<VisualElement>(name: "RemainingTimeNormalized");
+            var orderTimer = orderElement.Q<VisualElement>(name: _orderTimeName);
             order.RemainingTimeNormalized.Subscribe(x => orderTimer.style.width = Length.Percent(x * 100f));
             
-            order.PropagateHashes(x => AddOrderImage(orderImagesContainer, ViewModel.MenuItemsHashMap[x].Image, x));
-            order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderImagesContainer, x)); // dispose is redundant
+            // TODO: use recipe preview asset
+            order.PropagateHashes(x => AddOrderImage(orderedItemsContainer, ViewModel.MenuItemsHashMap[x].Image, x));
+            order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderedItemsContainer, x)); // dispose is redundant
         }
 
         private void RemoveOrderImage(VisualElement orderContainer, int hash)
