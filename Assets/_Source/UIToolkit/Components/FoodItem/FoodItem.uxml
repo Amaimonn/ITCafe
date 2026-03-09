@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreviewStyles.uss?fileID=7433441132597879392&amp;guid=752dcc774e209dd4d8de842b4be3c7b8&amp;type=3#OrderPreviewStyles"/>
+    <ui:VisualElement name="FoodItem" class="order-preview__food-item">
+        <ui:VisualElement name="FoodImage" class="order-preview__image"/>
+        <ui:Label text="Pizza Margherita" name="FoodName" class="order-preview__food-name"/>
+    </ui:VisualElement>
+</ui:UXML>

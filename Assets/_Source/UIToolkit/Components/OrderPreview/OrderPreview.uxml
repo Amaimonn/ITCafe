@@ -1,15 +1,23 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="DishRecipe" src="project://database/Assets/_Source/UIToolkit/Components/DishRecipe/DishRecipe.uxml?fileID=9197481963319205126&amp;guid=95eedc6d8d87d8c47a679e00a7e8bbf4&amp;type=3#DishRecipe"/>
+    <ui:Template name="FoodItem" src="project://database/Assets/_Source/UIToolkit/Components/FoodItem/FoodItem.uxml?fileID=9197481963319205126&amp;guid=f194e611b13afd44e9f4d16a70752027&amp;type=3#FoodItem"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreviewStyles.uss?fileID=7433441132597879392&amp;guid=752dcc774e209dd4d8de842b4be3c7b8&amp;type=3#OrderPreviewStyles"/>
-    <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles"/>
-    <ui:VisualElement name="OrderPreview" class="order-preview__root">
-        <ui:VisualElement name="OrderedItems" class="order-preview__items-container hud__widget-panel">
-            <ui:Instance template="DishRecipe" name="DishRecipe"/>
-            <ui:Instance template="DishRecipe" name="DishRecipe"/>
-            <ui:Instance template="DishRecipe" name="DishRecipe"/>
-        </ui:VisualElement>
-        <ui:VisualElement class="order-preview__timer">
-            <ui:VisualElement name="RemainingTimeNormalized" class="order-preview__timer-fill" style="width: 78%;"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
+    <ui:VisualElement name="OrderPreviewWrapper" class="hud__order" style="flex-grow: 1; margin-bottom: 8px;">
+        <ui:VisualElement name="OrderPreview" style="align-items: center; width: 180px;">
+            <ui:VisualElement name="FoodContainer" class="order-preview__food-container">
+                <ui:Instance template="FoodItem" name="FoodItem"/>
+                <ui:VisualElement name="FoodItem" class="order-preview__food-item">
+                    <ui:VisualElement name="FoodImage" class="order-preview__image"/>
+                    <ui:Label text="Pizza Margherita" name="FoodName" class="order-preview__food-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="FoodItem" class="order-preview__food-item">
+                    <ui:VisualElement name="FoodImage" class="order-preview__image"/>
+                    <ui:Label text="Pizza Margherita" name="FoodName" class="order-preview__food-name"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; height: 8px; margin-top: 1px; border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; border-left-color: rgb(183, 183, 183); border-right-color: rgb(183, 183, 183); border-top-color: rgb(183, 183, 183); border-bottom-color: rgb(183, 183, 183); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: rgb(157, 157, 157); width: 100%;">
+                <ui:VisualElement name="RemainingTimeNormalized" style="flex-grow: 1; background-color: rgb(146, 255, 46); scale: 1 1; width: 100%;"/>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

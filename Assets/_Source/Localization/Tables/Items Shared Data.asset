@@ -83,6 +83,14 @@ MonoBehaviour:
     m_Key: trash_can
     m_Metadata:
       m_Items: []
+  - m_Id: 8077890464907264
+    m_Key: fries
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8077956135124992
+    m_Key: tomato_soup
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -50,8 +50,9 @@ namespace ITCafe
         
         public const string SETTINGS_DATA_TABLE = "SettingsData";
         public const string LOCATIONS_DATA_TABLE = "LocationsData";
-        
         public const string MISSIONS_DATA_TABLE = "MissionsData";
+        
+        public const string ITEMS_TABLE = "Items";
 #endregion
     }
 }
