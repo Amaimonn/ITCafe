@@ -1,6 +1,71 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="OrderCloud" src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloud.uxml?fileID=9197481963319205126&amp;guid=da5dc0fa48c689f4cac16aaaa749a313&amp;type=3#OrderCloud"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreviewStyles.uss?fileID=7433441132597879392&amp;guid=752dcc774e209dd4d8de842b4be3c7b8&amp;type=3#OrderPreviewStyles"/>
     <ui:VisualElement name="OrderPreview" class="hud__order">
-        <ui:Instance template="OrderCloud"/>
+        <ui:VisualElement class="order-preview__root">
+            <ui:VisualElement name="ItemsContainer" class="order-preview__items-container">
+                <ui:VisualElement class="order-preview__item order-preview__item--compound">
+                    <ui:VisualElement class="order-preview__result-container">
+                        <ui:VisualElement class="order-preview__item-image order-preview__item-image--main"/>
+                        <ui:Label text="Deluxe Burger" class="order-preview__item-name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="order-preview__ingredients">
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image">
+                                <ui:VisualElement name="ProcIcon" style="flex-grow: 1; position: absolute; width: 14px; height: 14px; background-color: rgb(75, 134, 255); bottom: -3px; left: -3px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px;"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="order-preview__item">
+                    <ui:VisualElement class="order-preview__result-container">
+                        <ui:VisualElement class="order-preview__item-image order-preview__item-image--main"/>
+                        <ui:Label text="Deluxe Burger" class="order-preview__item-name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="order-preview__ingredients">
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="order-preview__item">
+                    <ui:VisualElement class="order-preview__result-container">
+                        <ui:VisualElement class="order-preview__item-image order-preview__item-image--main"/>
+                        <ui:Label text="Deluxe Burger" class="order-preview__item-name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="order-preview__ingredients">
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="order-preview__ingredient">
+                            <ui:VisualElement class="order-preview__ingredient-image"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="order-preview__timer">
+                <ui:VisualElement name="RemainingTimeNormalized" class="order-preview__timer-fill"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

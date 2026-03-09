@@ -3,14 +3,25 @@
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss?fileID=7433441132597879392&amp;guid=3c10c99db55200040aa6f38ceb3ef33a&amp;type=3#OrderCloudStyles"/>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="hud__root">
-        <ui:VisualElement name="TopBar" picking-mode="Ignore" class="hud__top-bar" style="width: 200px;">
-            <ui:VisualElement name="BarLeftItem" class="hud__top-bar-item">
-                <ui:Label text="- - : - -" name="Timer" class="hud__timer"/>
+        <ui:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: center;">
+            <ui:VisualElement name="OrdersPanel" class="hud__orders-panel hud__widget-panel">
+                <ui:VisualElement name="OrdersContainer" class="hud__orders-container">
+                    <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
+                    <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
+                    <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
+                    <ui:Instance template="OrderPreview" name="OrderPreview" style="flex-shrink: 0;"/>
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement style="flex-grow: 0; height: 100%; width: 4px; position: absolute; left: 50%; translate: -50% 0; background-color: rgb(143, 143, 143); display: none;"/>
+            <ui:VisualElement name="TopBar" picking-mode="Ignore" class="hud__top-bar">
+                <ui:VisualElement name="BarLeftItem" class="hud__top-bar-item"/>
+                <ui:VisualElement style="flex-grow: 0; height: 100%; width: 4px; position: absolute; left: 50%; translate: -50% 0; background-color: rgb(143, 143, 143); display: none;"/>
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: row;">
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; align-items: flex-start; margin-top: 20px;">
+                <ui:VisualElement class="hud__timer-bar">
+                    <ui:Label text="- - : - -" name="Timer" class="hud__timer"/>
+                </ui:VisualElement>
                 <ui:VisualElement name="StatsPanel" class="hud__stats-panel hud__widget-panel">
                     <ui:Label class="hud__widget-title">
                         <Bindings>
@@ -55,19 +66,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="RightSide" style="flex-grow: 1; align-items: flex-end; margin-top: 20px;">
-                <ui:VisualElement name="OrdersPanel" class="hud__orders-panel hud__widget-panel">
-                    <ui:Label class="hud__widget-title" style="font-size: 18px;">
-                        <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(9008308224)"/>
-                        </Bindings>
-                    </ui:Label>
-                    <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
-                        <ui:Instance template="OrderPreview" name="OrderPreview"/>
-                        <ui:Instance template="OrderPreview" name="OrderPreview"/>
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
+            <ui:VisualElement name="RightSide" style="flex-grow: 1; align-items: flex-end; margin-top: 20px;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

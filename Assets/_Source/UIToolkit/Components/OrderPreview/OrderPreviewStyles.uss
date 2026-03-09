@@ -1,0 +1,194 @@
+.order-preview__root {
+    align-items: center;
+    flex-direction: column;
+    flex-shrink: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 4px;
+}
+
+.order-preview__items-container {
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-left-color: rgb(236, 236, 236);
+    border-right-color: rgb(236, 236, 236);
+    border-top-color: rgb(236, 236, 236);
+    border-bottom-color: rgb(236, 236, 236);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    padding: 4px;
+    min-width: 160px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+.order-preview__item {
+    flex-direction: row;
+    padding: 4px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    align-items: center;
+    background-color: rgb(248, 248, 248);
+    justify-content: space-between;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+.order-preview__compound-header {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.order-preview__item-image {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0.39);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    margin-right: 2px;
+    flex-shrink: 0;
+}
+
+.order-preview__item-name {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: rgb(51, 51, 51);
+    flex-grow: 1;
+    -unity-text-align: middle-left;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.order-preview__ingredients {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-right: 2px;
+    margin-left: 2px;
+}
+
+.order-preview__ingredient {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(224, 224, 224);
+    border-right-color: rgb(224, 224, 224);
+    border-top-color: rgb(224, 224, 224);
+    border-bottom-color: rgb(224, 224, 224);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.order-preview__ingredient-image {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.order-preview__ingredient-name {
+    font-size: 8px;
+    -unity-font-style: bold;
+    color: rgb(102, 102, 102);
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 36px;
+}
+
+.order-preview__timer {
+    width: 152px;
+    height: 8px;
+    margin-top: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-left-color: rgb(183, 183, 183);
+    border-right-color: rgb(183, 183, 183);
+    border-top-color: rgb(183, 183, 183);
+    border-bottom-color: rgb(183, 183, 183);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    background-color: rgb(157, 157, 157);
+    overflow: hidden;
+}
+
+.order-preview__timer-fill {
+    height: 100%;
+    background-color: rgb(146, 255, 46);
+    width: 100%;
+}
+
+.order-preview__timer-fill--warning {
+    background-color: rgb(255, 174, 46);
+}
+
+.order-preview__timer-fill--critical {
+    background-color: rgb(255, 77, 77);
+}
+
+.order-preview__result-container {
+    flex-direction: row;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
