@@ -7,13 +7,13 @@
     padding-bottom: 0;
     padding-left: 0;
     flex-shrink: 1;
-    color: var(--gold-color);
     flex-grow: 1;
     white-space: normal;
     height: 32px;
     font-size: 14px;
     -unity-text-align: middle-left;
     margin-top: 0;
+    color: rgb(255, 245, 200);
 }
 
 .order-preview__image {
