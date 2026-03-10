@@ -47,6 +47,7 @@ namespace ITCafe.Data.Items
         Plate = 15_001,
         SushiTable = 15_002,
         Bowl = 15_003,
+        PlasticCup = 15_004,
         
         // Processed
         PattyFried = 20_000,
