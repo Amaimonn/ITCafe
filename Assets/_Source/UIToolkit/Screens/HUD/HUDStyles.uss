@@ -112,6 +112,7 @@ Label {
     padding-right: 8px;
     min-width: 170px;
     margin-right: 10px;
+    align-self: center;
 }
 
 .hud__order {

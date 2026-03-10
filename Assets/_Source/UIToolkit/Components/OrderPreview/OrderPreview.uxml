@@ -5,14 +5,8 @@
         <ui:VisualElement name="OrderPreview" style="align-items: center; width: 180px;">
             <ui:VisualElement name="FoodContainer" class="order-preview__food-container">
                 <ui:Instance template="FoodItem" name="FoodItem"/>
-                <ui:VisualElement name="FoodItem" class="order-preview__food-item">
-                    <ui:VisualElement name="FoodImage" class="order-preview__image"/>
-                    <ui:Label text="Pizza Margherita" name="FoodName" class="order-preview__food-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement name="FoodItem" class="order-preview__food-item">
-                    <ui:VisualElement name="FoodImage" class="order-preview__image"/>
-                    <ui:Label text="Pizza Margherita" name="FoodName" class="order-preview__food-name"/>
-                </ui:VisualElement>
+                <ui:Instance template="FoodItem" name="FoodItem"/>
+                <ui:Instance template="FoodItem" name="FoodItem"/>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; height: 8px; margin-top: 1px; border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; border-left-color: rgb(183, 183, 183); border-right-color: rgb(183, 183, 183); border-top-color: rgb(183, 183, 183); border-bottom-color: rgb(183, 183, 183); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: rgb(157, 157, 157); width: 100%;">
                 <ui:VisualElement name="RemainingTimeNormalized" style="flex-grow: 1; background-color: rgb(146, 255, 46); scale: 1 1; width: 100%;"/>

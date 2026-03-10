@@ -29,10 +29,13 @@
 
 .order-preview__food-container {
     width: 100%;
+    height: 102px;
 }
 
 .order-preview__food-item {
     flex-grow: 1;
     flex-direction: row;
     width: 100%;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
