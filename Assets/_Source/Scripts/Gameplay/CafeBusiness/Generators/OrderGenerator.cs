@@ -12,7 +12,6 @@ namespace ITCafe.Gameplay.CafeBusiness
     {
         private readonly ItemInfoSO[] _menuItemsInfo;
         private readonly int _itemAmount;
-        private const int MAX_ORDER_SIZE = 4;
         private const float BASE_ORDER_TIME = 60f;
         private const float COMPLEXITY_TIME = 10f;
 
@@ -28,7 +27,7 @@ namespace ITCafe.Gameplay.CafeBusiness
 
             if (_itemAmount > 0)
             {
-                var orderSize = Random.Range(1, MAX_ORDER_SIZE + 1);
+                var orderSize = Random.Range(1, Constants.MAX_ORDER_SIZE + 1);
                 var totalTime = BASE_ORDER_TIME;
 
                 if (orderSize == 1)
