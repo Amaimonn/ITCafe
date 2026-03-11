@@ -1,6 +1,3 @@
-Label {
-}
-
 .hud__root {
     flex-direction: column;
     width: 100%;

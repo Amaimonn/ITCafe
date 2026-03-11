@@ -12,6 +12,8 @@ namespace ITCafe.Environment.Appliances
     {
         [SerializeField] private Transform _placedTransform;
         [SerializeField] private ProcessingProgressWorldUI _progressUI;
+        [SerializeField] private ParticleSystem _placedParticles;
+        [SerializeField] private ParticleSystem _processingParticles;
 
         protected bool IsBusy => _holdingItem != null;
         protected IItem _holdingItem;
@@ -97,6 +99,8 @@ namespace ITCafe.Environment.Appliances
             _holdingItem.Focus();
 
             Process(context);
+            if (_placedParticles != null)
+                _placedParticles.Play();
         }
 
         protected virtual void Process(PlayerContext context)
@@ -125,6 +129,9 @@ namespace ITCafe.Environment.Appliances
                 var currentTime = startTime;
                 var finishTime = startTime + processable.ProcessingTime;
                 
+                if (_processingParticles != null)
+                    _processingParticles.Play();
+                
                 while (!_cts.IsCancellationRequested && currentTime < finishTime)
                 {
                     await UniTask.WaitForEndOfFrame(cancellationToken:  _cts.Token);
@@ -139,6 +146,9 @@ namespace ITCafe.Environment.Appliances
                 _holdingItem.SetPhysicsEnabled(false);
                 
                 _isReadyResult = true;
+                
+                if (_processingParticles != null)
+                    _processingParticles.Stop();
             }
             catch
             {
@@ -159,6 +169,9 @@ namespace ITCafe.Environment.Appliances
             _holdingItem.UnFocus();
             _holdingItem = null;
             _isReadyResult = false;
+            
+            if (_placedParticles != null)
+                _placedParticles.Stop();
         }
 
         protected void ClearProcessing()
