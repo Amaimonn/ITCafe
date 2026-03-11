@@ -41,6 +41,7 @@ namespace ITCafe.Data.Items
         HuntersPizza = 10_006,
         Salad = 10_007,
         TomatoSoup = 10_008,
+        Coffee = 10_009,
 
         // Special
         Tray = 15_000,

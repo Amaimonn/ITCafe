@@ -37,7 +37,7 @@ namespace ITCafe.Environment.Appliances
             var emptyHands = item == null;
 
             if (emptyHands)
-                return _isReadyResult && IsBusy; // all fried items can be taken with empty hands (for now)
+                return _isReadyResult && IsBusy; // can be taken with empty hands by default
             else
                 return item.CanBeHandled(this, context);
         }
@@ -134,15 +134,21 @@ namespace ITCafe.Environment.Appliances
                 }
                 
                 _progressUI.SetProgress(1f);
-                
-                _holdingItem = processable.GetResult(_holdingItem, context);
+
+                SetProcessingResult(processable, context);
                 _holdingItem.SetPhysicsEnabled(false);
+                
                 _isReadyResult = true;
             }
             catch
             {
                 // ignored
             }
+        }
+
+        protected virtual void SetProcessingResult(IProcessableAspect processable, PlayerContext context)
+        {
+            _holdingItem = processable.GetResult(_holdingItem, context);
         }
 
         protected virtual void HandOver(PlayerContext context)

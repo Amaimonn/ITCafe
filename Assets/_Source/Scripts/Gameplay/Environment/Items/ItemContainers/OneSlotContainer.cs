@@ -11,6 +11,7 @@ namespace ITCafe.Environment
         public override IEnumerable<IItem> Items => _currentItems;
 
         [SerializeField, Min(0)] protected float _itemsOffsetY = 0f;
+        [SerializeField] private Transform _holdingPoint;
 
         private readonly IItem[] _currentItems = new IItem[1];
         private readonly IMenuAspect[] _currentMenuAspects = new IMenuAspect[1];
@@ -40,7 +41,7 @@ namespace ITCafe.Environment
         }
 
 #region IMenuAspect
-        public bool CanBeStored(IItemsContainer container)
+        public virtual bool CanBeStored(IItemsContainer container)
         {
             // empty container can`t be stored
             return HasItem && container is ISimpleContainer { ContainerTag: ItemTag.Tray }; // hardcoded
@@ -63,7 +64,7 @@ namespace ITCafe.Environment
                 return;
 
             item.SetPhysicsEnabled(false);
-            item.transform.SetParent(transform);
+            item.transform.SetParent(_holdingPoint != null ? _holdingPoint : transform);
             item.transform.SetLocalPositionAndRotation(new Vector3(0, _itemsOffsetY, 0),
                 Quaternion.identity);
 
