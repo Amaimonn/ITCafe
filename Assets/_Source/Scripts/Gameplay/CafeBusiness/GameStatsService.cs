@@ -135,7 +135,7 @@ namespace ITCafe.CafeBusiness
                 AverageServiceTime = AverageServiceTime,
                 ItemsServed = _itemsServedCountMap,
                 Score = _score.Value,
-                EarnedStars = score,
+                EarnedStars = stars,
                 StarEvaluations = _starEvaluations,
             };
             return _cachedReport.Value;

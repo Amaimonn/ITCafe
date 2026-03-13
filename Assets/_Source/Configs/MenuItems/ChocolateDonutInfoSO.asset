@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ChocolateDonutInfoSO
   m_EditorClassIdentifier: 
   <ItemTag>k__BackingField: 5
+  <NameLid>k__BackingField: chocolate_donut
   <Image>k__BackingField: {fileID: 21300000, guid: 368263ee150d3414ebbfc3e1df82cf53, type: 3}
   <Prefab>k__BackingField: {fileID: 4535098636528518637, guid: 08600acdbe4c0e140a1edbd3ebd42c20, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 11400000, guid: 39e14ab75f60ba0419948d710499f49a, type: 2}

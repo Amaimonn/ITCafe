@@ -18,7 +18,16 @@ namespace ITCafe.Environment
         {
             IsProcessable = false; // no more than 1 processing by default
             
+            if (_handler == null)
+                return processableItem;
+            
             return _handler.GetProcessed(processableItem, context);
+        }
+
+        public virtual void AddToResult(IItemsContainer resultContainer, IItem additionalResult)
+        {
+            if (resultContainer.CanTake(additionalResult))
+                resultContainer.Take(additionalResult);
         }
     }
 }

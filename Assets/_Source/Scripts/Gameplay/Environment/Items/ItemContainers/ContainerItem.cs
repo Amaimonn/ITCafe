@@ -42,9 +42,9 @@ namespace ITCafe.Environment
 
         public abstract IItem ExtractItem(int hash);
 
-        public abstract bool CanTake(IItem item);
+        public abstract bool CanTake(IItem item); // there could be recipe check
 
-        public abstract void Take(IItem item);
+        public abstract void Take(IItem item); // there could be crafting
 #endregion
 
 #region IItemsHandler

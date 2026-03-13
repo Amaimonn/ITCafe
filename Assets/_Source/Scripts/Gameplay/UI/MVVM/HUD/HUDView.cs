@@ -3,9 +3,14 @@ using UnityEngine.UIElements;
 using R3;
 using System.Collections.Generic;
 using System.Linq;
+using DevKit.Locator;
 using DevKit.UI.MVVM.Bases;
+using DevKit.Utils;
 using ITCafe.CafeBusiness;
+using ITCafe.Data.Items;
+using ITCafe.Gameplay.Shared;
 using ObservableCollections;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -19,6 +24,11 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _ordersFailedValueName = "FailedValue";
 
         [SerializeField] private VisualTreeAsset _orderAsset;
+        [SerializeField] private string _foodContainerName = "FoodContainer";
+        
+        [SerializeField] private VisualTreeAsset _foodItemAsset;
+        [SerializeField] private string _foodImageName = "FoodImage";
+        [SerializeField] private string _foodLabelName = "FoodName";
 
         private Label _timerLabel;
         private Label _scoreLabel;
@@ -26,12 +36,15 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Label _ordersCompletedLabel;
         private Label _ordersFailedLabel;
         private VisualElement _ordersContainer;
+        private ILocalizer _localizer;
 
-        private readonly Dictionary<VisualElement, List<(int, VisualElement)>> _orderContainerImagesMap = new();
+        private readonly Dictionary<VisualElement, List<(int, VisualElement)>> _orderContainerFoodMap = new();
         private readonly Dictionary<IOrder, VisualElement> _orderContainerMap = new();
 
         protected override void OnInit()
         {
+            _localizer = ServiceLocator.Current.Get<ILocalizer>();
+            
             _timerLabel = Root.Q<Label>(name: _timerName);
             _scoreLabel = Root.Q<Label>(name: _scoreLabelName);
             _ordersContainer = Root.Q<VisualElement>(name: _ordersContainerName);
@@ -61,52 +74,56 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void OnOrderAdded(IOrder order)
         {
             var orderElement = _orderAsset.CloneTree();
-            var orderImagesContainer = orderElement.Q<VisualElement>(className: "order-cloud__images-container");
+            var foodContainer = orderElement.Q<VisualElement>(name: _foodContainerName);
             
-            orderImagesContainer.Clear();
+            foodContainer.Clear();
             _orderContainerMap[order] = orderElement;
             _ordersContainer.Add(orderElement);
             
             var orderTimer = orderElement.Q<VisualElement>(name: "RemainingTimeNormalized");
             order.RemainingTimeNormalized.Subscribe(x => orderTimer.style.width = Length.Percent(x * 100f));
             
-            order.PropagateHashes(x => AddOrderImage(orderImagesContainer, ViewModel.MenuItemsHashMap[x].Image, x));
-            order.OnHashRemoved.Subscribe(x => RemoveOrderImage(orderImagesContainer, x)); // dispose is redundant
+            order.PropagateHashes(x => AddOrderItem(foodContainer, ViewModel.MenuItemsHashMap[x], x));
+            order.OnHashRemoved.Subscribe(x => RemoveOrderItem(foodContainer, x)); // dispose is redundant
         }
 
-        private void RemoveOrderImage(VisualElement orderContainer, int hash)
+        private void RemoveOrderItem(VisualElement orderContainer, int hash)
         {
-            if (!_orderContainerImagesMap.TryGetValue(orderContainer, out var hashedImagesList))
+            if (!_orderContainerFoodMap.TryGetValue(orderContainer, out var hashedFoodList))
                 return;
 
-            var imageToRemove = hashedImagesList.FirstOrDefault(x => x.Item1 == hash);
-            if (imageToRemove != default)
+            var foodToRemove = hashedFoodList.FirstOrDefault(x => x.Item1 == hash);
+            if (foodToRemove != default)
             {
-                imageToRemove.Item2.RemoveFromHierarchy();
-                hashedImagesList.Remove(imageToRemove);
+                foodToRemove.Item2.RemoveFromHierarchy();
+                hashedFoodList.Remove(foodToRemove);
             }
             else
-                Debug.LogWarning($"Image {hash} not found");
+            {
+                FLogger.LogWarning<HUDView>($"Food {hash} not found");
+            }
         }
 
-        private void AddOrderImage(VisualElement orderContainer, Sprite sprite, int hash)
+        private void AddOrderItem(VisualElement orderContainer, ItemInfoSO itemData, int hash)
         {
-            var image = new VisualElement
-            {
-                style = { backgroundImage = new StyleBackground(sprite) },
-                name = hash.ToString()
-            };
-            image.AddToClassList("order-cloud__item-image");
-            orderContainer.Add(image);
+            var foodItem = _foodItemAsset.CloneTree();
+            orderContainer.Add(foodItem);
+            
+            var image = foodItem.Q<VisualElement>(name: _foodImageName);
+            image.style.backgroundImage = new StyleBackground(itemData.Image);
+            
+            var nameLabel =  foodItem.Q<Label>(name: _foodLabelName);
+            nameLabel.text = itemData.NameLid;
+            _localizer.Localize(nameLabel, Constants.ITEMS_TABLE);
 
-            if (_orderContainerImagesMap.TryGetValue(orderContainer, out var imageList))
+            if (_orderContainerFoodMap.TryGetValue(orderContainer, out var foodList))
             {
-                imageList.Add((hash, image));
+                foodList.Add((hash, foodItem));
             }
             else
             {
-                imageList = new List<(int, VisualElement)> { (hash, image) };
-                _orderContainerImagesMap.Add(orderContainer, imageList);
+                foodList = new List<(int, VisualElement)> { (hash, foodItem) };
+                _orderContainerFoodMap.Add(orderContainer, foodList);
             }
         }
 
@@ -116,7 +133,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             {
                 element.RemoveFromHierarchy();
                 _orderContainerMap.Remove(order);
-                _orderContainerImagesMap.Remove(element);
+                _orderContainerFoodMap.Remove(element);
                 element.RemoveFromHierarchy();
             }
         }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19101, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: CraftWorldSettings
+  m_Name: CombinationWorldSettings
   m_EditorClassIdentifier: 
   themeUss: {fileID: -4733365628477956816, guid: 46c386b13666f4f46b55a6e0eeb4e47a, type: 3}
   m_DisableNoThemeWarning: 0

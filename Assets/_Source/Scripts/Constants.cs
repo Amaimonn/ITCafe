@@ -7,6 +7,7 @@ namespace ITCafe
     {
         public const int STAR_COUNT = 5;
         public const int SESSION_DURATION_SECONDS = 150;
+        public const int MAX_ORDER_SIZE = 3;
 
 #region Outline config
         public const float OUTLINE_WIDTH = 7f;
@@ -50,8 +51,9 @@ namespace ITCafe
         
         public const string SETTINGS_DATA_TABLE = "SettingsData";
         public const string LOCATIONS_DATA_TABLE = "LocationsData";
-        
         public const string MISSIONS_DATA_TABLE = "MissionsData";
+        
+        public const string ITEMS_TABLE = "Items";
 #endregion
     }
 }
