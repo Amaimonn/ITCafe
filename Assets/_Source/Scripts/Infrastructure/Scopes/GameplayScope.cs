@@ -23,6 +23,7 @@ using VContainer.Unity;
 using Cursor = UnityEngine.Cursor;
 using Unit = R3.Unit;
 using ITCafe.Data.Settings;
+using ITCafe.Gameplay.Shared;
 using UnityEngine.Rendering;
 
 namespace ITCafe
@@ -54,6 +55,7 @@ namespace ITCafe
         [SerializeField] private GameObject _missionSetupRoot;
         [SerializeField] private SerializableLocalizationLoader _localizationLoader;
         [SerializeField] private Volume _volume;
+        [SerializeField] private AudioClip _gameplayMusic;
 
         private IGuideData _guideData;
         private CompositeDisposable _disposables = new();
@@ -257,6 +259,9 @@ namespace ITCafe
             Build();
 
             yield return new WaitForEndOfFrame();
+            
+            var audioPlayer = Container.Resolve<AudioPlayer>();
+            audioPlayer.PlayMusic(_gameplayMusic, loop: true);
 
             _localizationLoader.Init();
             _localizationLoader.AddTo(_disposables);

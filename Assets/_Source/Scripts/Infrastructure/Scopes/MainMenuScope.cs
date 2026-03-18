@@ -5,6 +5,7 @@ using DevKit.UI.MVVM;
 using DevKit.UI.MVVM.Bases;
 using ITCafe.Campaign;
 using ITCafe.Data.Campaign;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;
@@ -17,11 +18,12 @@ namespace ITCafe
     public class MainMenuScope : LifetimeScope
     {
         public Observable<MainMenuExitContext> ExitSignal { get; private set; }
-
+        
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
         [SerializeField] private SerializableLocalizationLoader _mainMenuLocalizationLoader;
         [SerializeField] private SerializableLocalizationLoader _campaignLocalizationLoader;
+        [SerializeField] private AudioClip _mainMenuMusic;
 
         private MainMenuEnterContext _mainMenuEnterContext;
         private CompositeDisposable _disposables = new();
@@ -71,6 +73,9 @@ namespace ITCafe
 
             Build();
             yield return new WaitForEndOfFrame();
+            
+            var audioPlayer = Container.Resolve<AudioPlayer>();
+            audioPlayer.PlayMusic(_mainMenuMusic, loop: true);
             
             _mainMenuLocalizationLoader.Init();
             _mainMenuLocalizationLoader.AddTo(_disposables);

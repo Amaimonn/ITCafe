@@ -295,6 +295,7 @@ MonoBehaviour:
     _tableCollectionSO: {fileID: 11400000, guid: 76070ef5091ffec4794e8e1326d07905, type: 2}
   _campaignLocalizationLoader:
     _tableCollectionSO: {fileID: 11400000, guid: 0b2730e4f09bf314fa48744070f0860c, type: 2}
+  _mainMenuMusic: {fileID: 8300000, guid: 4614ce4e0b760324c938583aaa24801a, type: 3}
 --- !u!4 &1317737976
 Transform:
   m_ObjectHideFlags: 0
