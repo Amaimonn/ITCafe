@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using DevKit.Utils;
 using R3;
+using Random = UnityEngine.Random;
 
 namespace ITCafe.Gameplay.Shared
 {
@@ -22,7 +23,9 @@ namespace ITCafe.Gameplay.Shared
         public AudioPlayer(Observable<float> musicVolume, Observable<float> sfxVolume, MonoBehaviourHook monoHook)
         {
             _monoHook = monoHook;
+            
             var audioPlayerObject = new GameObject("AudioPlayer");
+            
             _musicSource = audioPlayerObject.AddComponent<AudioSource>();
             _oneShotSfxSource = audioPlayerObject.AddComponent<AudioSource>();
             Object.DontDestroyOnLoad(audioPlayerObject);
@@ -33,8 +36,10 @@ namespace ITCafe.Gameplay.Shared
                 {
                     var sfxObject = new GameObject("AudioSourceSFX");
                     sfxObject.transform.SetParent(audioPlayerObject.transform);
+                    
                     var audioSource = sfxObject.AddComponent<AudioSource>();
                     audioSource.playOnAwake = false;
+                    
                     sfxVolume.CombineLatest(_sfxVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
                         .Subscribe(x => audioSource.volume = x)
                         .AddTo(_poolDisposables);
@@ -49,6 +54,7 @@ namespace ITCafe.Gameplay.Shared
 
             musicVolume.CombineLatest(_sfxVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
                 .Subscribe(x => _musicSource.volume = x);
+            
             sfxVolume.CombineLatest(_sfxVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
                 .Subscribe(x => _oneShotSfxSource.volume = x);
         }
@@ -65,9 +71,7 @@ namespace ITCafe.Gameplay.Shared
             if (_musicSource.isPlaying)
             {
                 if (_isMusicFading)
-                {
                     _monoHook.StopCoroutine(FadeInRoutine());
-                }
 
                 _monoHook.StartCoroutine(FadeInRoutine());
             }
@@ -80,9 +84,12 @@ namespace ITCafe.Gameplay.Shared
                 while (currentDuration < duration)
                 {
                     _musicVolumeFadeScale.Value += Mathf.Lerp(0, 1, currentDuration / duration);
+                    
                     yield return null;
+                    
                     currentDuration += Time.deltaTime;
                 }
+                
                 _musicVolumeFadeScale.Value = 1;
                 _isMusicFading = false;
             }
@@ -103,11 +110,13 @@ namespace ITCafe.Gameplay.Shared
         public void PlaySFX(AudioClip clip, float pitch = 1.0f)
         {
             var source = _sfxSourcePool.Get();
+            
             source.pitch = pitch;
             source.clip = clip;
+            
             Observable.Timer(System.TimeSpan.FromSeconds(clip.length))
                 .Take(1)
-                .Subscribe(x => _sfxSourcePool.Release(source))
+                .Subscribe(_ => _sfxSourcePool.Release(source))
                 .AddTo(_poolDisposables);
             
             source.Play();
@@ -118,7 +127,7 @@ namespace ITCafe.Gameplay.Shared
         /// </summary>
         public void PlayRandomPitchSFX(AudioClip clip)
         {
-            var randomPitch = UnityEngine.Random.Range(0.9f, 1.1f);
+            var randomPitch = Random.Range(0.9f, 1.1f);
             PlaySFX(clip, randomPitch);
         }
 
