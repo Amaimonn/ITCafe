@@ -46,6 +46,7 @@ namespace ITCafe
 
             RegisterSaves(builder);
             RegisterUI(builder);
+            RegisterAudio(builder);
 
             builder.RegisterBuildCallback(OnBuild);
         }
@@ -74,6 +75,33 @@ namespace ITCafe
                 Lifetime.Singleton);
             builder.Register<SettingsBinder>(Lifetime.Singleton)
                 .As<IViewBinder<SettingsViewModel>>();
+        }
+
+        private void RegisterAudio(IContainerBuilder builder)
+        {
+            builder.Register<AudioPlayer>(resolver => 
+            {
+                var settingsModel = resolver.Resolve<SettingsModel>();
+                var monoHook = resolver.Resolve<MonoBehaviourHook>();
+                var audioPlayer = new AudioPlayer(musicVolume: settingsModel.MusicVolume.Select(x => x / 100.0f), 
+                    sfxVolume: settingsModel.SfxVolume.Select(x => x / 100.0f), monoHook);
+                
+                var loadingScreen = resolver.Resolve<LoadingScreen>();
+                loadingScreen.OverlayFillProgress.Subscribe(x => audioPlayer.VolumeMultiplier.Value = 1.0f - x);
+                
+                var sceneLoader = resolver.Resolve<SceneLoader>();
+                sceneLoader.OnLoadingStarted.Subscribe(_ => 
+                {
+                    audioPlayer.ClearPoolSFX();
+                    audioPlayer.PauseMusic();
+                });
+                sceneLoader.OnLoadingFinished.Subscribe(_ =>
+                {
+                    audioPlayer.UnPauseMusic();
+                });
+                
+                return audioPlayer;
+            }, Lifetime.Singleton);
         }
 
         private void OnBuild(IObjectResolver container)

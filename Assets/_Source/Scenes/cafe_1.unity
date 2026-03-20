@@ -21431,6 +21431,7 @@ MonoBehaviour:
   _localizationLoader:
     _tableCollectionSO: {fileID: 11400000, guid: 095d022d31ebff040984b3ba24a521bc, type: 2}
   _volume: {fileID: 1675519152}
+  _gameplayMusic: {fileID: 8300000, guid: a42e14ed1e80d2a4784cd579cce54c3e, type: 3}
 --- !u!4 &1355671832
 Transform:
   m_ObjectHideFlags: 0
