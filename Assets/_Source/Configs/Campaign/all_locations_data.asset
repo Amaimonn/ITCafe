@@ -16,3 +16,4 @@ MonoBehaviour:
   _locationsData:
   - {fileID: 11400000, guid: 338ed021b1d18fb48afecfa12018999c, type: 2}
   - {fileID: 11400000, guid: a9f41ec6220cfa3489d27f415884019c, type: 2}
+  - {fileID: 11400000, guid: 424efda0777d471488aaf3a66efa1dd7, type: 2}
