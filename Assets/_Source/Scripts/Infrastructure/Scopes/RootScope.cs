@@ -86,13 +86,15 @@ namespace ITCafe
                 var audioPlayer = new AudioPlayer(musicVolume: settingsModel.MusicVolume.Select(x => x / 100.0f), 
                     sfxVolume: settingsModel.SfxVolume.Select(x => x / 100.0f), monoHook);
                 
+                ServiceLocator.Current.Register<AudioPlayer>(audioPlayer);
+                
                 var loadingScreen = resolver.Resolve<LoadingScreen>();
                 loadingScreen.OverlayFillProgress.Subscribe(x => audioPlayer.VolumeMultiplier.Value = 1.0f - x);
                 
                 var sceneLoader = resolver.Resolve<SceneLoader>();
                 sceneLoader.OnLoadingStarted.Subscribe(_ => 
                 {
-                    audioPlayer.ClearPoolSFX();
+                    audioPlayer.ClearPoolSfx();
                     audioPlayer.PauseMusic();
                 });
                 sceneLoader.OnLoadingFinished.Subscribe(_ =>

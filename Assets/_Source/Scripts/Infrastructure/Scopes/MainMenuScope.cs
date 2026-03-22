@@ -75,7 +75,7 @@ namespace ITCafe
             yield return new WaitForEndOfFrame();
             
             var audioPlayer = Container.Resolve<AudioPlayer>();
-            audioPlayer.PlayMusic(_mainMenuMusic, loop: true);
+            audioPlayer.PlaySingletonMusic(_mainMenuMusic, loop: true);
             
             _mainMenuLocalizationLoader.Init();
             _mainMenuLocalizationLoader.AddTo(_disposables);

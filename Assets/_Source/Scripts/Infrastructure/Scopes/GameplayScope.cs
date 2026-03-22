@@ -261,7 +261,7 @@ namespace ITCafe
             yield return new WaitForEndOfFrame();
             
             var audioPlayer = Container.Resolve<AudioPlayer>();
-            audioPlayer.PlayMusic(_gameplayMusic, loop: true);
+            audioPlayer.PlaySingletonMusic(_gameplayMusic, loop: true);
 
             _localizationLoader.Init();
             _localizationLoader.AddTo(_disposables);
