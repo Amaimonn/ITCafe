@@ -37967,6 +37967,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5253240007905482312, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
+      propertyPath: m_Name
+      value: CoffeeArea1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026888151460819414, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
+      propertyPath: m_Name
+      value: Cube
+      objectReference: {fileID: 0}
     - target: {fileID: 9014402381445437953, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
       propertyPath: m_Name
       value: SceneSetupMissionDev

@@ -1,24 +1,39 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using DevKit.Locator;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.World;
 using ITCafe.Player;
 using UnityEngine;
 
 namespace ITCafe.Environment.Appliances
 {
-    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler, IDisposable 
+    public abstract class KitchenAppliance<T> : BaseInteractable, IItemHandler, IDisposable
         where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
         [SerializeField] private ProcessingProgressWorldUI _progressUI;
+
+        [Header("VFX"), Space(4)]
         [SerializeField] private ParticleSystem _placedParticles;
         [SerializeField] private ParticleSystem _processingParticles;
 
+        [Header("SFX"), Space(4)]
+        [SerializeField] private AudioClip _onPlacedSound;
+        [SerializeField] private AudioClip _stayingPlacedSound;
+        [SerializeField] private AudioClip _processingSound;
+
         protected bool IsBusy => _holdingItem != null;
+        protected Vector3 PlacedPosition => _placedTransform.position;
         protected IItem _holdingItem;
         protected bool _isReadyResult = false;
         protected CancellationTokenSource _cts;
+        protected IDisposable _stayingPlacedSfxDisposable;
+        protected IDisposable _processingSfxDisposable;
+
+        protected AudioPlayer AudioPlayer => _audioPlayerCache ??= ServiceLocator.Current.Get<AudioPlayer>();
+        private AudioPlayer _audioPlayerCache;
 
 #region IInteractable
         public override void Focus()
@@ -61,7 +76,7 @@ namespace ITCafe.Environment.Appliances
                    item.TryGetCachedComponent<T>(out var processable) &&
                    processable.IsProcessable ||
                    _isReadyResult && context.ItemPicker.CanTake(_holdingItem);
-            
+
             // TODO: if IsBusy: mb try to craft:
             //       check for processable (higher priority than Craft with Take) ->
             //       search for recipes ->
@@ -99,8 +114,18 @@ namespace ITCafe.Environment.Appliances
             _holdingItem.Focus();
 
             Process(context);
+
             if (_placedParticles != null)
                 _placedParticles.Play();
+
+            if (_onPlacedSound != null)
+                AudioPlayer.PlayRandomPitchSfx(_onPlacedSound, sfxPosition: PlacedPosition);
+
+            if (_stayingPlacedSound != null)
+            {
+                _stayingPlacedSfxDisposable =
+                    AudioPlayer.StartLoopedSfx(_stayingPlacedSound, sfxPosition: PlacedPosition);
+            }
         }
 
         protected virtual void Process(PlayerContext context)
@@ -119,40 +144,42 @@ namespace ITCafe.Environment.Appliances
             try
             {
                 ClearProcessing();
-                
+
                 _cts = new CancellationTokenSource();
-                
+
                 _progressUI.Show();
                 _progressUI.SetProgress(0f);
-                
+
                 var startTime = Time.time;
                 var currentTime = startTime;
                 var finishTime = startTime + processable.ProcessingTime;
-                
+
                 if (_processingParticles != null)
                     _processingParticles.Play();
-                
+
+                if (_processingSound != null)
+                    _processingSfxDisposable = AudioPlayer.StartLoopedSfx(_processingSound, sfxPosition: PlacedPosition);
+
                 while (!_cts.IsCancellationRequested && currentTime < finishTime)
                 {
-                    await UniTask.WaitForEndOfFrame(cancellationToken:  _cts.Token);
-                    
+                    await UniTask.WaitForEndOfFrame(cancellationToken: _cts.Token);
+
                     currentTime = Time.time;
                     _progressUI.SetProgress((currentTime - startTime) / processable.ProcessingTime);
                 }
-                
+
                 _progressUI.SetProgress(1f);
 
                 SetProcessingResult(processable, context);
                 _holdingItem.SetPhysicsEnabled(false);
-                
+
                 _isReadyResult = true;
-                
+            }
+            finally
+            {
+                Disposes.ClearDispose(ref _processingSfxDisposable);
                 if (_processingParticles != null)
                     _processingParticles.Stop();
-            }
-            catch
-            {
-                // ignored
             }
         }
 
@@ -164,21 +191,24 @@ namespace ITCafe.Environment.Appliances
         protected virtual void HandOver(PlayerContext context)
         {
             _progressUI.Hide();
-            
+
             context.ItemPicker.Take(_holdingItem);
             _holdingItem.UnFocus();
             _holdingItem = null;
             _isReadyResult = false;
-            
+
             if (_placedParticles != null)
                 _placedParticles.Stop();
+
+            Disposes.ClearDispose(ref _stayingPlacedSfxDisposable);
         }
 
         protected void ClearProcessing()
         {
+            Disposes.ClearDispose(ref _processingSfxDisposable);
             Disposes.ClearDispose(ref _cts);
         }
-        
+
         protected void OnDestroy()
         {
             Dispose();
@@ -187,6 +217,7 @@ namespace ITCafe.Environment.Appliances
         public virtual void Dispose()
         {
             ClearProcessing();
+            Disposes.ClearDispose(ref _stayingPlacedSfxDisposable);
         }
     }
 }
