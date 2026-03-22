@@ -51,7 +51,11 @@ namespace ITCafe.Gameplay.Shared
                     return audioSource;
                 },
                 onGet: x => x.gameObject.SetActive(true),
-                onRelease: x => x.gameObject.SetActive(false),
+                onRelease: x =>
+                {
+                    x.Stop();
+                    x.gameObject.SetActive(false);
+                },
                 onClear: x => Object.Destroy(x.gameObject),
                 checkNotNull: x => x != null && x.gameObject != null
             );
@@ -180,6 +184,7 @@ namespace ITCafe.Gameplay.Shared
             {
                 var timer = Observable.Timer(TimeSpan.FromSeconds(clip.length));
                 var disposed = false;
+                
                 disposable = timer.Take(1).Subscribe(_ =>
                 {
                     _sfxSourcePool.Release(sfx);
