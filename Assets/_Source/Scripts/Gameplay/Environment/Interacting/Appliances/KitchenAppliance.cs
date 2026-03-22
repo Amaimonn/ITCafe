@@ -158,7 +158,10 @@ namespace ITCafe.Environment.Appliances
                     _processingParticles.Play();
 
                 if (_processingSound != null)
-                    _processingSfxDisposable = AudioPlayer.StartLoopedSfx(_processingSound, sfxPosition: PlacedPosition);
+                {
+                    _processingSfxDisposable = AudioPlayer.StartLoopedSfx(_processingSound, 
+                        sfxPosition: PlacedPosition);
+                }
 
                 while (!_cts.IsCancellationRequested && currentTime < finishTime)
                 {
@@ -199,7 +202,7 @@ namespace ITCafe.Environment.Appliances
 
             if (_placedParticles != null)
                 _placedParticles.Stop();
-
+            
             Disposes.ClearDispose(ref _stayingPlacedSfxDisposable);
         }
 
