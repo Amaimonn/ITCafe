@@ -67,6 +67,8 @@ namespace ITCafe
 
         protected override void Configure(IContainerBuilder builder)
         {
+            _cinemachineInputAxisController.enabled = false;
+            
             builder.RegisterInstance<Subject<CafeMissionResult>>(_gameplayEnterContext.CompletionSignal);
 
             RegisterMissionConfig(builder);
@@ -257,6 +259,10 @@ namespace ITCafe
             _missionSetup = handle.Result;
 
             Build();
+            
+            // Input init
+            var inputService = Container.Resolve<InputService>();
+            inputService.SetInputEnabled(false);
 
             yield return new WaitForEndOfFrame();
             
@@ -282,10 +288,6 @@ namespace ITCafe
 
                 yield return localizationLoadingService.LoadTables();
             }
-
-            // Input init
-            var inputService = Container.Resolve<InputService>();
-            inputService.SetInputEnabled(false);
 
             InitUI();
 
@@ -354,6 +356,7 @@ namespace ITCafe
 
             var inputService = Container.Resolve<InputService>();
             inputService.SetInputEnabled(true);
+            _cinemachineInputAxisController.enabled = true;
 
             _destroyToken = destroyCancellationToken;
 

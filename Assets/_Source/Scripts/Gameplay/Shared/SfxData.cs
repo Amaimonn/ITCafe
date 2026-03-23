@@ -22,7 +22,7 @@ namespace ITCafe.Gameplay.Shared
         
         [field: SerializeField] public float MinPitchShift { get; private set; } = -0.1f;
         
-        [field: SerializeField] public float MaxPitchShift { get; private set; } = 1.0f;
+        [field: SerializeField] public float MaxPitchShift { get; private set; } = 0.1f;
         
         [field: SerializeField] public bool IsPausable { get; private set; } = true;
 

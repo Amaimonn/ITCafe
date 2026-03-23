@@ -102,7 +102,7 @@ MonoBehaviour:
     <Pitch>k__BackingField: 1
     <PitchShift>k__BackingField: 1
     <MinPitchShift>k__BackingField: -0.1
-    <MaxPitchShift>k__BackingField: 1
+    <MaxPitchShift>k__BackingField: 0.1
     <IsPausable>k__BackingField: 1
     <IsSingleton>k__BackingField: 0
   _itemTag: 11

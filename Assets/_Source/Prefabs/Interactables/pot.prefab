@@ -86,6 +86,41 @@ MonoBehaviour:
   _outline: {fileID: 7611277861689135460}
   _placedTransform: {fileID: 6552392435575950574}
   _progressUI: {fileID: 5259612313144229345}
+  _placedParticles: {fileID: 0}
+  _processingParticles: {fileID: 0}
+  _onPlacedSfx:
+    <AudioClip>k__BackingField: {fileID: 0}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
+  _stayingPlacedSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: a2dbe02c0cda32748a11c7714f395ecc, type: 3}
+    <IsLoop>k__BackingField: 1
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
+  _processingSfx:
+    <AudioClip>k__BackingField: {fileID: 0}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
 --- !u!114 &7611277861689135460
 MonoBehaviour:
   m_ObjectHideFlags: 0
