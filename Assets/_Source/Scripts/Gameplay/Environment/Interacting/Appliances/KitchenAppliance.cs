@@ -20,9 +20,9 @@ namespace ITCafe.Environment.Appliances
         [SerializeField] private ParticleSystem _processingParticles;
 
         [Header("SFX"), Space(4)]
-        [SerializeField] private AudioClip _onPlacedSound;
-        [SerializeField] private AudioClip _stayingPlacedSound;
-        [SerializeField] private AudioClip _processingSound;
+        [SerializeField] private SfxData _onPlacedSfx;
+        [SerializeField] private SfxData _stayingPlacedSfx;
+        [SerializeField] private SfxData _processingSfx;
 
         protected bool IsBusy => _holdingItem != null;
         protected Vector3 PlacedPosition => _placedTransform.position;
@@ -118,13 +118,18 @@ namespace ITCafe.Environment.Appliances
             if (_placedParticles != null)
                 _placedParticles.Play();
 
-            if (_onPlacedSound != null)
-                AudioPlayer.PlayRandomPitchSfx(_onPlacedSound, sfxPosition: PlacedPosition);
-
-            if (_stayingPlacedSound != null)
+            if (_onPlacedSfx.IsValid)
             {
-                _stayingPlacedSfxDisposable =
-                    AudioPlayer.StartLoopedSfx(_stayingPlacedSound, sfxPosition: PlacedPosition);
+                AudioPlayer.GetSfxBuilder()
+                    .WithPosition(PlacedPosition)
+                    .Play(_onPlacedSfx);
+            }
+
+            if (_stayingPlacedSfx.IsValid)
+            {
+                AudioPlayer.GetSfxBuilder()
+                    .WithPosition(PlacedPosition)
+                    .TryPlayWithCancellation(_stayingPlacedSfx, out _stayingPlacedSfxDisposable);
             }
         }
 
@@ -157,10 +162,11 @@ namespace ITCafe.Environment.Appliances
                 if (_processingParticles != null)
                     _processingParticles.Play();
 
-                if (_processingSound != null)
+                if (_processingSfx.IsValid)
                 {
-                    _processingSfxDisposable = AudioPlayer.StartLoopedSfx(_processingSound, 
-                        sfxPosition: PlacedPosition);
+                    AudioPlayer.GetSfxBuilder()
+                        .WithPosition(PlacedPosition)
+                        .TryPlayWithCancellation(_processingSfx, out _processingSfxDisposable);
                 }
 
                 while (!_cts.IsCancellationRequested && currentTime < finishTime)
@@ -202,7 +208,7 @@ namespace ITCafe.Environment.Appliances
 
             if (_placedParticles != null)
                 _placedParticles.Stop();
-            
+
             Disposes.ClearDispose(ref _stayingPlacedSfxDisposable);
         }
 

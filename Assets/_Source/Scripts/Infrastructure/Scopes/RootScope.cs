@@ -21,7 +21,8 @@ namespace ITCafe
         [SerializeField] private SettingsView _settingsViewPrefab;
         [SerializeField] private SerializableLocalizationLoader _rootLocalizationLoader;
         [SerializeField] private SerializableLocalizationLoader _settingsLocalizationLoader;
-
+        [SerializeField] private AudioPlayer _audioPlayer;
+            
         private CompositeDisposable _disposables = new();
         private RootUIBinder _rootUIBinder;
 
@@ -82,27 +83,27 @@ namespace ITCafe
             builder.Register<AudioPlayer>(resolver => 
             {
                 var settingsModel = resolver.Resolve<SettingsModel>();
-                var monoHook = resolver.Resolve<MonoBehaviourHook>();
-                var audioPlayer = new AudioPlayer(musicVolume: settingsModel.MusicVolume.Select(x => x / 100.0f), 
-                    sfxVolume: settingsModel.SfxVolume.Select(x => x / 100.0f), monoHook);
                 
-                ServiceLocator.Current.Register<AudioPlayer>(audioPlayer);
+                _audioPlayer.Init(musicVolume: settingsModel.MusicVolume.Select(x => x / 100.0f), 
+                    sfxVolume: settingsModel.SfxVolume.Select(x => x / 100.0f));
+                
+                ServiceLocator.Current.Register<AudioPlayer>(_audioPlayer);
                 
                 var loadingScreen = resolver.Resolve<LoadingScreen>();
-                loadingScreen.OverlayFillProgress.Subscribe(x => audioPlayer.VolumeMultiplier.Value = 1.0f - x);
+                loadingScreen.OverlayFillProgress.Subscribe(x => _audioPlayer.VolumeMultiplier.Value = 1.0f - x);
                 
                 var sceneLoader = resolver.Resolve<SceneLoader>();
                 sceneLoader.OnLoadingStarted.Subscribe(_ => 
                 {
-                    audioPlayer.ClearPoolSfx();
-                    audioPlayer.PauseMusic();
+                    _audioPlayer.StopAllSfx();
+                    _audioPlayer.PauseMusic();
                 });
                 sceneLoader.OnLoadingFinished.Subscribe(_ =>
                 {
-                    audioPlayer.UnPauseMusic();
+                    _audioPlayer.UnPauseMusic();
                 });
                 
-                return audioPlayer;
+                return _audioPlayer;
             }, Lifetime.Singleton);
         }
 
