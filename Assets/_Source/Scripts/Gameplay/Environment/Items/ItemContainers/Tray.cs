@@ -47,6 +47,7 @@ namespace ITCafe.Environment
             item.transform.SetParent(transform);
             item.transform.SetLocalPositionAndRotation(new Vector3(0, _currentItemsAmount * _itemsOffsetY, 0),
                 Quaternion.identity);
+            item.OnTaken();
 
             _currentItems.Add(item);
             _currentMenuItems.Add(menuItem);

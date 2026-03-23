@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Flopin.Utils;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -53,6 +54,10 @@ namespace ITCafe.Environment
         {
             SetPhysicsEnabled(true);
             _rigidbody.AddForce(_camera.transform.forward * 1.2f, ForceMode.Impulse);
+        }
+
+        public virtual void OnTaken()
+        {
         }
 
         public void SetPhysicsEnabled(bool isEnabled)

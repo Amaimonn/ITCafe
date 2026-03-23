@@ -12,10 +12,13 @@ namespace ITCafe.Environment
         public Transform transform { get; }
         public Vector3 CenterOffset { get; }
         public void Drop();
+
+        public void OnTaken();
+
         public void SetPhysicsEnabled(bool isEnabled);
-        
+
         protected Dictionary<Type, object> CachedComponentsMap { get; }
-        
+
 #region ICompositeComponent
         /// <summary>
         /// Used to get Components directly from the transform. If 'this' is T then 'this' is returned.
@@ -33,7 +36,7 @@ namespace ITCafe.Environment
                 component = default(T);
                 return false;
             }
-            
+
             if (CachedComponentsMap.TryGetValue(typeof(T), out var untypedComponent) && untypedComponent != null)
             {
                 component = (T)untypedComponent;
@@ -46,16 +49,16 @@ namespace ITCafe.Environment
                 CachedComponentsMap[typeof(T)] = component;
                 return true;
             }
-            
+
             if (transform.TryGetComponent(out component))
             {
                 CachedComponentsMap[typeof(T)] = component;
                 return true;
             }
-            
+
             component = default(T);
             CachedComponentsMap[typeof(T)] = null;
-            
+
             return false;
         }
 #endregion

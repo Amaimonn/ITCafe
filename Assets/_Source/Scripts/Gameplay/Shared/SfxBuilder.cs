@@ -45,9 +45,9 @@ namespace ITCafe.Gameplay.Shared
         
         public bool TryPlayWithCancellation(SfxData sfxData, out IDisposable disposable)
         {
-            if (sfxData.AudioClip == null)
+            if (!sfxData.IsValid)
             {
-                FLogger.LogError<SfxBuilder>("AudioClip is null");
+                FLogger.LogError<SfxBuilder>("sfxData is invalid");
                 disposable = null;
                 
                 return false;

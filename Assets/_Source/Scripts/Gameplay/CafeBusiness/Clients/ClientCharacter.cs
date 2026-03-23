@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using ITCafe.Environment;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.World;
 using ITCafe.Player;
 using R3;
@@ -17,7 +18,7 @@ namespace ITCafe.CafeBusiness
         public Observable<Unit> OnLeft => _onLeft;
         public Observable<Unit> OnOrdered => _onOrdered;
         public Observable<Unit> OnRegistrationLeft => _onRegistrationLeft;
-        public Observable<Unit> OnCompleted => _onCompleted;
+        public Observable<Unit> OnSucceed => _onSucceed;
         public Observable<Unit> OnFailed => _onFailed;
 
         public IOrder CurrentOrder { get; private set; }
@@ -27,11 +28,13 @@ namespace ITCafe.CafeBusiness
 
         [field: SerializeField] public OrderCloudWorldUI OrderUI { get; private set; }
         [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private SfxData _onItemAcceptedSfx;
+        [SerializeField] private SfxData _onSuccessSfx;
 
         private readonly Subject<Unit> _onLeft = new();
         private readonly Subject<Unit> _onOrdered = new();
         private readonly Subject<Unit> _onRegistrationLeft = new();
-        private readonly Subject<Unit> _onCompleted = new();
+        private readonly Subject<Unit> _onSucceed = new();
         private readonly Subject<Unit> _onFailed = new();
         private CancellationToken _destroyToken;
         private readonly ReactiveProperty<float> _waitingTimeNormalized = new();
@@ -150,9 +153,15 @@ namespace ITCafe.CafeBusiness
         {
             Destroy(item.transform.gameObject);
 
+            if (_onItemAcceptedSfx.IsValid)
+                AudioPlayer.GetSfxBuilder().WithPosition(transform.position).Play(_onItemAcceptedSfx);
+
             if (IsCompleted)
             {
-                _onCompleted.OnNext(Unit.Default);
+                if (_onSuccessSfx.IsValid)
+                    AudioPlayer.GetSfxBuilder().WithPosition(transform.position).Play(_onSuccessSfx);
+                
+                _onSucceed.OnNext(Unit.Default);
                 LeaveCafe();
             }
         }

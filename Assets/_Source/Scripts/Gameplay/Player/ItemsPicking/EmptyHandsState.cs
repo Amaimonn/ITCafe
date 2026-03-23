@@ -22,6 +22,7 @@ namespace ITCafe.Player
             Debug.Log($"Taking item {item.transform.name} with empty hands");
             item.transform.parent = _picker.HoldingPoint;
             item.transform.SetLocalPositionAndRotation(-item.CenterOffset, Quaternion.identity);
+            item.OnTaken();
             _picker.SetCurrentItem(item);
             
             if (item is IItemHandler handler)

@@ -51,7 +51,7 @@ namespace ITCafe.CafeBusiness
         {
             // TODO: watch out for subscriptions in object pool case
             client.OnOrdered.Subscribe(_ => OnOrderTakenHandler());
-            client.OnCompleted.Subscribe(_ => OnOrderCompletedHandler());
+            client.OnSucceed.Subscribe(_ => OnOrderSucceedHandler());
             client.OnFailed.Subscribe(_ => OnOrderFailedHandler());
             client.CurrentOrder.OnHashRemoved.Subscribe(RecordItemServed);
         }
@@ -69,7 +69,7 @@ namespace ITCafe.CafeBusiness
             FLogger.Log<GameStatsService>($"Order has been taken. Total clients: {_totalClientsCount}");
         }
 
-        private void OnOrderCompletedHandler()
+        private void OnOrderSucceedHandler()
         {
             _successfulOrders++;
             _onClientServed.OnNext(_successfulOrders);

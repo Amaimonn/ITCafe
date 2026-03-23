@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using ITCafe.Data.Items;
 using ITCafe.Player;
-using UnityEngine;
 
 namespace ITCafe.Environment
 {

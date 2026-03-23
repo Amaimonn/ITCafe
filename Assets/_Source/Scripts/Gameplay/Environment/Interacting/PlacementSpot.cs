@@ -1,4 +1,6 @@
+using DevKit.Locator;
 using ITCafe.CafeBusiness;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ namespace ITCafe.Environment
     public class PlacementSpot : BaseInteractable, IJustItemHandler
     {
         [SerializeField] private Transform _placedTransform;
-
+        [SerializeField] private SfxData _placedOnSpotSfx;
         private bool IsBusy => _holdingItem != null;
         private IItem _holdingItem;
         private IItemsContainer _holdingContainer;
@@ -76,12 +78,17 @@ namespace ITCafe.Environment
             itemPicker.Release();
             item.transform.SetParent(_placedTransform, worldPositionStays: true);
             item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            item.OnTaken();
 
             _holdingItem = item;
+            
             if (item is IItemsContainer container)
                 _holdingContainer = container;
 
             _holdingItem.Focus();
+            
+            if(_placedOnSpotSfx.IsValid)
+                AudioPlayer.GetSfxBuilder().WithPosition(_placedTransform.position).Play(_placedOnSpotSfx);
         }
 
         private void HandOver(PlayerContext context)

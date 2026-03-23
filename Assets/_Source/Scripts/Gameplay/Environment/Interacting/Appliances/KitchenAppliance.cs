@@ -32,9 +32,6 @@ namespace ITCafe.Environment.Appliances
         protected IDisposable _stayingPlacedSfxDisposable;
         protected IDisposable _processingSfxDisposable;
 
-        protected AudioPlayer AudioPlayer => _audioPlayerCache ??= ServiceLocator.Current.Get<AudioPlayer>();
-        private AudioPlayer _audioPlayerCache;
-
 #region IInteractable
         public override void Focus()
         {
