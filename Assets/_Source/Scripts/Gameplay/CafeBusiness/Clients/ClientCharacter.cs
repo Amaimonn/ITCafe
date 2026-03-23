@@ -28,6 +28,7 @@ namespace ITCafe.CafeBusiness
 
         [field: SerializeField] public OrderCloudWorldUI OrderUI { get; private set; }
         [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private SfxData _onOrderTakenSfx;
         [SerializeField] private SfxData _onItemAcceptedSfx;
         [SerializeField] private SfxData _onSuccessSfx;
 
@@ -139,6 +140,10 @@ namespace ITCafe.CafeBusiness
         {
             OrderUI.Show();
             CurrentState = ClientState.OrderDelay;
+            
+            if (_onOrderTakenSfx.IsValid)
+                AudioPlayer.GetSfxBuilder().WithPosition(transform.position).Play(_onOrderTakenSfx);
+            
             _onOrdered.OnNext(Unit.Default);
 
             if (!IsCompleted)

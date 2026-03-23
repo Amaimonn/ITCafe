@@ -239,6 +239,17 @@ MonoBehaviour:
   _outline: {fileID: 6358669538240770716}
   <OrderUI>k__BackingField: {fileID: 7282836792046058162}
   _agent: {fileID: 2931671934592093003}
+  _onOrderTakenSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 34ee37959643f2d41b69a503b7688930, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 0.5
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
   _onItemAcceptedSfx:
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 34682e4d034e7da478c0ec4d3654db10, type: 3}
     <IsLoop>k__BackingField: 0

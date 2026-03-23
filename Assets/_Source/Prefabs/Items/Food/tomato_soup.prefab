@@ -122,9 +122,9 @@ MonoBehaviour:
   _rigidbody: {fileID: 9050637549556217111}
   _camera: {fileID: 0}
   _onTakenSfx:
-    <AudioClip>k__BackingField: {fileID: 8300000, guid: d46c4349bbebae84f95cd517f3e52a4c, type: 3}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: d95a3a3fa0e00a748ba2071ee4149df9, type: 3}
     <IsLoop>k__BackingField: 0
-    <VolumeScale>k__BackingField: 1
+    <VolumeScale>k__BackingField: 0.5
     <SpacialBlend>k__BackingField: 1
     <Pitch>k__BackingField: 1
     <PitchShift>k__BackingField: 1
