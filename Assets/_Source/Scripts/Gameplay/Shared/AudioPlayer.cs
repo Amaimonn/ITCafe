@@ -129,11 +129,11 @@ namespace ITCafe.Gameplay.Shared
         private SfxSource CreateSfxSource()
         {
             var sfxSource = Instantiate(_sfxSourcePrefab, transform, true);
-            
+
             // TODO: bind pause
 
             _sfxVolumeSetting.CombineLatest(_audioVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
-                .Subscribe(x => sfxSource.AudioSource.volume = x * sfxSource.Data.VolumeScale)
+                .Subscribe(sfxSource.SetVolumeMultiplier)
                 .AddTo(sfxSource.gameObject);
 
             sfxSource.gameObject.SetActive(false);

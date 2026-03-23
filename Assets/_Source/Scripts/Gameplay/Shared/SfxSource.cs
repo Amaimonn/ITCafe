@@ -15,7 +15,8 @@ namespace ITCafe.Gameplay.Shared
         private Coroutine _playingCoroutine;
         private AudioPlayer _audioPlayer;
         private readonly Subject<Unit> _onDisposed = new();
-
+        private float _volumeMultiplier = 1.0f;
+        
         public void Init(SfxData data, AudioPlayer audioPlayer)
         {
             Data = data;
@@ -24,12 +25,19 @@ namespace ITCafe.Gameplay.Shared
             AudioSource.clip = data.AudioClip;
             AudioSource.loop = data.IsLoop;
 
-            AudioSource.volume = data.VolumeScale;
+            AudioSource.volume = data.VolumeScale * _volumeMultiplier;
             AudioSource.pitch = data.Pitch;
             AudioSource.spatialBlend = data.SpacialBlend;
 
             if (data.PitchShift)
                 AudioSource.pitch += Random.Range(data.MinPitchShift, data.MaxPitchShift);
+        }
+
+        public void SetVolumeMultiplier(float volumeScale)
+        {
+            _volumeMultiplier = volumeScale;
+            if (Data != null)
+                AudioSource.volume = volumeScale * Data.VolumeScale;
         }
 
         public void Play()
