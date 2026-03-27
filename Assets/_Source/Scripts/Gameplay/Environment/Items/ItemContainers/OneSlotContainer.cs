@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ITCafe.Data.Items;
+using ITCafe.Gameplay.Shared;
 using UnityEngine;
 
 namespace ITCafe.Environment
@@ -67,9 +68,11 @@ namespace ITCafe.Environment
             item.transform.SetParent(_holdingPoint != null ? _holdingPoint : transform);
             item.transform.SetLocalPositionAndRotation(new Vector3(0, _itemsOffsetY, 0),
                 Quaternion.identity);
+            item.OnTaken();
 
             CurrentItem = item;
             CurrentMenuAspect = menuItem;
+            
         }
 
         public override bool ContainsHash(int hash)

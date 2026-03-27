@@ -26789,7 +26789,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589975950}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
   m_Name: 
@@ -33805,6 +33805,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2071606823927505107, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
+      propertyPath: _placedParticles
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2612373647699406175, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -33913,12 +33917,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7766796508373164673, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
+      propertyPath: _placedParticles
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8412593885743220512, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9076724038580842998, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
+      propertyPath: _placedParticles
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7105702671430246406, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
+    - {fileID: 7212848662518039518, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
+    - {fileID: 2750264664893157931, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3354825010354751194, guid: a6b954cd99262ca48bcad5489c1c8968, type: 3}
@@ -37966,6 +37981,14 @@ PrefabInstance:
     - target: {fileID: 2871928849555941711, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253240007905482312, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
+      propertyPath: m_Name
+      value: CoffeeArea1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026888151460819414, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
+      propertyPath: m_Name
+      value: Cube
       objectReference: {fileID: 0}
     - target: {fileID: 9014402381445437953, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
       propertyPath: m_Name

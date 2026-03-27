@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &521538890868989513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8636301618501174680}
+  - component: {fileID: 188437155310287669}
+  m_Layer: 0
+  m_Name: Outlined
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8636301618501174680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521538890868989513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7242134487461280673}
+  m_Father: {fileID: 7880928742872168703}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &188437155310287669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521538890868989513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1985056052073100185
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,12 +77,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985056052073100185}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.58, y: 0.04, z: 0.32999998}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7880928742872168703}
+  m_Father: {fileID: 8636301618501174680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7960239916928342505
 MeshFilter:
@@ -100,7 +151,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7880928742872168703}
   - component: {fileID: 4772221758678019888}
-  - component: {fileID: 1210283331422329314}
   - component: {fileID: 5606473513990848971}
   m_Layer: 0
   m_Name: GrillArea
@@ -123,7 +173,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7326682913672884504}
-  - {fileID: 7242134487461280673}
+  - {fileID: 2927817140592992960}
+  - {fileID: 8636301618501174680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4772221758678019888
@@ -138,29 +189,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac04c7995e54efba4ed836cd11bb00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.Appliances.Grill
-  _outline: {fileID: 1210283331422329314}
+  _outline: {fileID: 188437155310287669}
   _placedTransform: {fileID: 7880928742872168703}
   _progressUI: {fileID: 7476660312178350258}
-  _placedParticles: {fileID: 0}
+  _placedParticles: {fileID: 3717704606219983658}
   _processingParticles: {fileID: 0}
---- !u!114 &1210283331422329314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6723007487595645585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 0
-  outlineColor: {r: 1, g: 10.628367, b: 0.45, a: 1}
-  outlineWidth: 7
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  _onPlacedSfx:
+    <AudioClip>k__BackingField: {fileID: 0}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
+  _stayingPlacedSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 8d5145642bf79d8468a78b40fcf92489, type: 3}
+    <IsLoop>k__BackingField: 1
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
+  _processingSfx:
+    <AudioClip>k__BackingField: {fileID: 0}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
 --- !u!65 &5606473513990848971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,3 +321,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db6fefa14bd44c799d5db13a692276c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.World.ProcessingProgressWorldUI
+--- !u!1001 &9010811646824086699
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7880928742872168703}
+    m_Modifications:
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8556351006648119389, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+      propertyPath: m_Name
+      value: frying_particles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+--- !u!4 &2927817140592992960 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6173704321020894827, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+  m_PrefabInstance: {fileID: 9010811646824086699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3717704606219983658 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5664162565781301121, guid: 3803b0442ab537047b70119bf89a6a73, type: 3}
+  m_PrefabInstance: {fileID: 9010811646824086699}
+  m_PrefabAsset: {fileID: 0}

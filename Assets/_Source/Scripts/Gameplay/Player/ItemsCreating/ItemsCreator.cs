@@ -40,6 +40,7 @@ namespace ITCafe.Player
             }
             
             var item = Object.Instantiate(itemPrefab).GetComponent<T>();
+            
             _container.Inject(item);
             item.SetPhysicsEnabled(false);
                 
@@ -55,6 +56,7 @@ namespace ITCafe.Player
             }
 
             var item = Object.Instantiate(itemPrefab).GetComponent<IItem>();
+            
             _container.Inject(item);
             item.SetPhysicsEnabled(false);
                 

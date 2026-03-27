@@ -34,7 +34,9 @@ namespace ITCafe.CafeBusiness
             var order = _orderGenerator.Create();
             var randomClient = _clientPrefabs[Random.Range(0, _clientPrefabsAmount)];
             var client = Object.Instantiate(randomClient);
+            
             client.Init(order, _tableService);
+            
             var orderUI = client.OrderUI;
             orderUI.Init();
 

@@ -1,74 +1,86 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using DevKit.Utils;
 using R3;
-using Random = UnityEngine.Random;
+using UnityEngine.Pool;
 
 namespace ITCafe.Gameplay.Shared
 {
-    public class AudioPlayer
+    public class AudioPlayer : MonoBehaviour
     {
         public readonly ReactiveProperty<float> VolumeMultiplier = new(1.0f);
 
-        private readonly AudioSource _musicSource;
-        private readonly AudioSource _oneShotSfxSource;
-        private readonly NotNullPool<AudioSource> _sfxSourcePool;
-        private readonly ReactiveProperty<float> _musicVolumeFadeScale = new(1.0f);
-        private readonly ReactiveProperty<float> _sfxVolumeFadeScale = new(1.0f);
+        [SerializeField] private AudioSource _singletonMusicSource;
+        [SerializeField] private AudioSource _singletonSfxSource;
+        [SerializeField] private SfxSource _sfxSourcePrefab;
+        [SerializeField] private bool _collectionCheck = true;
+        [SerializeField] private int _defaultCapacity = 10;
+        [SerializeField] private int _maxPoolSize = 100;
+
+        private IObjectPool<SfxSource> _sfxSourcePool;
+        private readonly ReactiveProperty<float> _audioVolumeFadeScale = new(1.0f);
         private readonly MonoBehaviourHook _monoHook;
         private bool _isMusicFading = false;
-        
-        private CompositeDisposable _poolDisposables = new();
 
-        public AudioPlayer(Observable<float> musicVolume, Observable<float> sfxVolume, MonoBehaviourHook monoHook)
+        private readonly List<SfxSource> _activeSfxSources = new();
+        private Observable<float> _musicVolumeSetting;
+        private Observable<float> _sfxVolumeSetting;
+
+        public void Init(Observable<float> musicVolume, Observable<float> sfxVolume)
         {
-            _monoHook = monoHook;
-            
-            var audioPlayerObject = new GameObject("AudioPlayer");
-            
-            _musicSource = audioPlayerObject.AddComponent<AudioSource>();
-            _oneShotSfxSource = audioPlayerObject.AddComponent<AudioSource>();
-            Object.DontDestroyOnLoad(audioPlayerObject);
+            _musicVolumeSetting = musicVolume;
+            _sfxVolumeSetting = sfxVolume;
 
-            _sfxSourcePool = new NotNullPool<AudioSource>
-            (
-                createFunc: () => 
-                {
-                    var sfxObject = new GameObject("AudioSourceSFX");
-                    sfxObject.transform.SetParent(audioPlayerObject.transform);
-                    
-                    var audioSource = sfxObject.AddComponent<AudioSource>();
-                    audioSource.playOnAwake = false;
-                    
-                    sfxVolume.CombineLatest(_sfxVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
-                        .Subscribe(x => audioSource.volume = x)
-                        .AddTo(_poolDisposables);
+            _sfxSourcePool = new ObjectPool<SfxSource>(
+                CreateSfxSource,
+                OnTakeFromPool,
+                OnReturnedToPool,
+                OnDestroyPoolObject,
+                _collectionCheck,
+                _defaultCapacity,
+                _maxPoolSize);
 
-                    return audioSource;
-                },
-                onGet: x => x.gameObject.SetActive(true),
-                onRelease: x => x.gameObject.SetActive(false),
-                onClear: x => Object.Destroy(x.gameObject),
-                checkNotNull: x => x != null && x.gameObject != null
-            );
+            _musicVolumeSetting.CombineLatest(_audioVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
+                .Subscribe(x => _singletonMusicSource.volume = x);
 
-            musicVolume.CombineLatest(_sfxVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
-                .Subscribe(x => _musicSource.volume = x);
-            
-            sfxVolume.CombineLatest(_sfxVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
-                .Subscribe(x => _oneShotSfxSource.volume = x);
+            _sfxVolumeSetting.CombineLatest(_audioVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
+                .Subscribe(x => _singletonSfxSource.volume = x);
         }
-        
-        public void PlayMusic(AudioClip musicClip, bool loop = true)
+
+        public SfxSource Get()
         {
-            _musicSource.clip = musicClip;
-            _musicSource.loop = loop;
-            _musicSource.Play();
+            return _sfxSourcePool.Get();
+        }
+
+        public void Release(SfxSource soundEmitter)
+        {
+            _sfxSourcePool.Release(soundEmitter);
+        }
+
+        public void StopAllSfx()
+        {
+            var tempList = new List<SfxSource>(_activeSfxSources);
+
+            foreach (var soundEmitter in tempList)
+                soundEmitter.Stop();
+        }
+
+        public void PlaySingletonMusic(AudioClip musicClip, bool loop = true)
+        {
+            _singletonMusicSource.clip = musicClip;
+            _singletonMusicSource.loop = loop;
+            _singletonMusicSource.Play();
+        }
+
+        public SfxBuilder GetSfxBuilder()
+        {
+            return new SfxBuilder(this);
         }
 
         public void TurnOnSoundFade(float duration)
         {
-            if (_musicSource.isPlaying)
+            if (_singletonMusicSource.isPlaying)
             {
                 if (_isMusicFading)
                     _monoHook.StopCoroutine(FadeInRoutine());
@@ -83,14 +95,14 @@ namespace ITCafe.Gameplay.Shared
 
                 while (currentDuration < duration)
                 {
-                    _musicVolumeFadeScale.Value += Mathf.Lerp(0, 1, currentDuration / duration);
-                    
+                    _audioVolumeFadeScale.Value += Mathf.Lerp(0, 1, currentDuration / duration);
+
                     yield return null;
-                    
+
                     currentDuration += Time.deltaTime;
                 }
-                
-                _musicVolumeFadeScale.Value = 1;
+
+                _audioVolumeFadeScale.Value = 1;
                 _isMusicFading = false;
             }
         }
@@ -99,53 +111,51 @@ namespace ITCafe.Gameplay.Shared
         /// SFX will continue playing even if scene is unloaded until it`s source will be stopped by script.
         /// No pooling.
         /// </summary>
-        public void PlayOneShotSFX(AudioClip clip, float volumeScale = 1.0f)
+        public void PlayOneShotSingletonSFX(AudioClip clip, float volumeScale = 1.0f)
         {
-            _oneShotSfxSource.PlayOneShot(clip, volumeScale);
-        }
-
-        /// <summary>
-        /// SFX will stop playing automatically if scene is unloaded. Extends the pool
-        /// </summary>
-        public void PlaySFX(AudioClip clip, float pitch = 1.0f)
-        {
-            var source = _sfxSourcePool.Get();
-            
-            source.pitch = pitch;
-            source.clip = clip;
-            
-            Observable.Timer(System.TimeSpan.FromSeconds(clip.length))
-                .Take(1)
-                .Subscribe(_ => _sfxSourcePool.Release(source))
-                .AddTo(_poolDisposables);
-            
-            source.Play();
-        }
-
-        /// <summary>
-        /// Same as <see cref="PlaySFX"/> but with random pitch between 0.9 and 1.1. Also extends the pool
-        /// </summary>
-        public void PlayRandomPitchSFX(AudioClip clip)
-        {
-            var randomPitch = Random.Range(0.9f, 1.1f);
-            PlaySFX(clip, randomPitch);
-        }
-
-        public void ClearPoolSFX()
-        {
-            _poolDisposables.Dispose();
-            _poolDisposables = new CompositeDisposable();
-            _sfxSourcePool.Clear();
+            _singletonSfxSource.PlayOneShot(clip, volumeScale);
         }
 
         public void PauseMusic()
         {
-            _musicSource.Pause();
+            _singletonMusicSource.Pause();
         }
 
         public void UnPauseMusic()
         {
-            _musicSource.UnPause();
+            _singletonMusicSource.UnPause();
+        }
+
+        private SfxSource CreateSfxSource()
+        {
+            var sfxSource = Instantiate(_sfxSourcePrefab, transform, true);
+
+            // TODO: bind pause
+
+            _sfxVolumeSetting.CombineLatest(_audioVolumeFadeScale, VolumeMultiplier, (a, b, c) => a * b * c)
+                .Subscribe(sfxSource.SetVolumeMultiplier)
+                .AddTo(sfxSource.gameObject);
+
+            sfxSource.gameObject.SetActive(false);
+
+            return sfxSource;
+        }
+
+        private void OnTakeFromPool(SfxSource soundEmitter)
+        {
+            soundEmitter.gameObject.SetActive(true);
+            _activeSfxSources.Add(soundEmitter);
+        }
+
+        private void OnReturnedToPool(SfxSource soundEmitter)
+        {
+            soundEmitter.gameObject.SetActive(false);
+            _activeSfxSources.Remove(soundEmitter);
+        }
+
+        private void OnDestroyPoolObject(SfxSource soundEmitter)
+        {
+            Destroy(soundEmitter.gameObject);
         }
     }
 }

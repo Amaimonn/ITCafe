@@ -1,4 +1,6 @@
+using DevKit.Locator;
 using Flopin.Utils;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -7,6 +9,9 @@ namespace ITCafe.Environment
     public abstract class BaseInteractable : MonoBehaviour, IInteractable
     {
         [SerializeField] protected Outline _outline;
+        
+        protected AudioPlayer AudioPlayer => _audioPlayerCache ??= ServiceLocator.Current.Get<AudioPlayer>();
+        private AudioPlayer _audioPlayerCache;
 
 #region MonoBehaviour
         protected virtual void OnValidate()

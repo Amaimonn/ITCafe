@@ -18,6 +18,9 @@ namespace ITCafe.Environment.Appliances
                 _coreItem.transform.gameObject.SetActive(false);
                 _coreItem.transform.SetParent(transform);
             }
+
+            if (IsBusy && _isReadyResult)
+                return context.ItemPicker.CanTake(_holdingItem);
             
             return container.CanTake(_coreItem) && CanHandle(container, context);
         }

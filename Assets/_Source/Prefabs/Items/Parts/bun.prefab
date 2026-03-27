@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5951012663612729984, guid: cdb54e10ab7b2a4468a427e39cc38716, type: 3}
       propertyPath: m_Name
-      value: BurgerBunPart Variant
+      value: bun
       objectReference: {fileID: 0}
     - target: {fileID: 6475594417537069114, guid: cdb54e10ab7b2a4468a427e39cc38716, type: 3}
       propertyPath: m_LocalPosition.x
@@ -92,6 +92,17 @@ MonoBehaviour:
   _collider: {fileID: 4473878091943097906}
   _rigidbody: {fileID: 1252918876891412874}
   _camera: {fileID: 0}
+  _onTakenSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 46df4b6eded942f4f98c6203898922f2, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
 --- !u!114 &8010714437877454159
 MonoBehaviour:
   m_ObjectHideFlags: 0

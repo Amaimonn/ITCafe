@@ -42,6 +42,42 @@ MonoBehaviour:
     m_Localized: 'SCORE:'
     m_Metadata:
       m_Items: []
+  - m_Id: 25274601847119872
+    m_Localized: 'ORDERS_ACCEPTED:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25274772760813568
+    m_Localized: 'SERVICE_FAILURES:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25274725625225216
+    m_Localized: 'SUCCESSFUL_COMPLETIONS:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25274893951033344
+    m_Localized: 'SHIFT_DURATION:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25274927870369792
+    m_Localized: 'TOTAL_REVENUE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25275044950171648
+    m_Localized: RESTART_SHIFT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25275067670716416
+    m_Localized: EXIT_TO_MAINFRAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25275500195733504
+    m_Localized: WAITING_FOR_NEXT_SHIFT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25275563315814400
+    m_Localized: SHIFT_REPORT
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

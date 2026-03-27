@@ -121,6 +121,17 @@ MonoBehaviour:
   _collider: {fileID: 739221840648317980}
   _rigidbody: {fileID: 9050637549556217111}
   _camera: {fileID: 0}
+  _onTakenSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: d95a3a3fa0e00a748ba2071ee4149df9, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 0.5
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 0
 --- !u!114 &5393239161685397319
 MonoBehaviour:
   m_ObjectHideFlags: 0

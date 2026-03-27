@@ -40,6 +40,11 @@ namespace ITCafe.Environment
         {
             throw new System.NotImplementedException();
         }
+        
+        public void OnTaken()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void SetPhysicsEnabled(bool isEnabled)
         {
