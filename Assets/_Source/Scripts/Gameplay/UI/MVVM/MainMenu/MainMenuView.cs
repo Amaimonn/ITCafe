@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 using System.Collections;
 using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.Custom;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -13,16 +14,18 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _exitButtonName = "ExitButton";
         [SerializeField] private string _settingsButtonName = "SettingsButton";
         [SerializeField] private string _animatedTerminalName = "AnimatedTerminal";
-        
+
         [Header("SFX"), Space(4)]
         [SerializeField] private SfxData _buttonClickSfx;
-        
+
         private Button _playButton;
         private Button _exitButton;
         private Button _settingsButton;
-        private AnimatedTextContainer _animatedTextContainer; 
-        
+        private AnimatedTextContainer _animatedTextContainer;
+
         private Coroutine _typingCoroutine;
+        
+        [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
         {
@@ -50,24 +53,33 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(MainMenuViewModel viewModel)
         {
             base.OnBind(viewModel);
-            _playButton.RegisterCallback<ClickEvent>(StartGameplay);
-            _settingsButton.RegisterCallback<ClickEvent>(OpenSettings);
-            _exitButton.RegisterCallbackOnce<ClickEvent>(Quit);
+            _playButton.RegisterCallback<ClickEvent>(OnStartClicked);
+            _settingsButton.RegisterCallback<ClickEvent>(OnSettingsClicked);
+            _exitButton.RegisterCallbackOnce<ClickEvent>(OnQuitClicked);
         }
-        
-        private void StartGameplay(ClickEvent clickEvent)
+
+        private void OnStartClicked(ClickEvent clickEvent)
         {
+            PlayButtonSfx();
             ViewModel.StartGameplay();
         }
-        
-        private void OpenSettings(ClickEvent clickEvent)
+
+        private void OnSettingsClicked(ClickEvent clickEvent)
         {
+            PlayButtonSfx();
             ViewModel.OpenSettings();
         }
-        
-        private void Quit(ClickEvent clickEvent)
+
+        private void OnQuitClicked(ClickEvent clickEvent)
         {
+            PlayButtonSfx();
             ViewModel.Quit();
+        }
+
+        private void PlayButtonSfx()
+        {
+            if (_buttonClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
         }
 
         public override void Dispose()

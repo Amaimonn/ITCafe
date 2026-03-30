@@ -29,7 +29,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _exitGameplaySignal.OnNext(Unit.Default);
         }
 
-        public void GoNextDay()
+        public void GoNextMission()
         {
         }
 

@@ -45,15 +45,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.Results.ResultsView
   _uiAsset: {fileID: 9197481963319205126, guid: 09a0246ebe7d1af479e63a25ad4ee716, type: 3}
+  _priority: 0
   _menuButtonName: MenuButton
   _restartButtonName: RestartButton
   _continueButtonName: ContinueButton
   _ordersTakenName: OrdersTakenValue
   _ordersCompletedName: OrdersCompletedValue
   _ordersFailedName: OrdersFailedValue
-  _totalIncomeName: TotalIncomeValue
-  _tipsName: TipsValue
-  _totalName: TotalValue
   _timeWorkedName: TimeWorkedValue
-  _speedBonusName: SpeedBonusValue
-  _cafeRatingName: CafeRatingValue
+  _pointsName: PointsValue
+  _billCodeName: BillCodeLabel
+  _buttonClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: c6fbd808f363742448fbeb406b149350, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1

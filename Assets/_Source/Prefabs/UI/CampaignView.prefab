@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.CampaignView
   _uiAsset: {fileID: 9197481963319205126, guid: 3de00ae413e1eec42a87467d5d923178, type: 3}
+  _priority: 0
   _closeButtonName: CloseButton
   _closeBackgroundName: CloseBackground
   _panelBackgroundName: CampaignBackground
@@ -59,6 +60,29 @@ MonoBehaviour:
   _targetSelectionName: TargetSelection
   _missionButton: {fileID: 9197481963319205126, guid: 525293e9cfd556a43a0f92d16cd9da50, type: 3}
   _missionName: MissionName
+  _missionNumber: MissionNumber
   _starLi: {fileID: 9197481963319205126, guid: 5deb29bd73f96ff4faaca50e321736dc, type: 3}
   _starsColumnName: StarsColumn
   _locationTabButton: {fileID: 9197481963319205126, guid: dd93274ae840df2418e2e57e2e40191a, type: 3}
+  _buttonClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: b9e31184105779448b29b447971df1ea, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1
+  _closeClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 1e6c0cc5f2cb9ed4f863b8e3ff79954f, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1

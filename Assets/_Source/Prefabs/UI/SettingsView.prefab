@@ -45,16 +45,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.SettingsView
   _uiAsset: {fileID: 9197481963319205126, guid: 53d537f9a76bcf5448307ee1e09838fb, type: 3}
+  _priority: 0
   _applyButtonName: ApplyButton
   _cancelChangesButtonName: CancelChangesButton
   _closeButtonName: CloseButton
   _sectionsContainerName: SectionsContainer
   _tabButtonsContainerName: TabButtonsContainer
+  _controlInfoContainerName: ControlInfoContainer
   _controlFactory:
     _tabClass: settings__section
+    _tabScrollViewClass: cafe__scroll-view
     _settingBarLabelName: SettingBarLabel
+    _infoEntryClass: settings__info-entry
+    _descriptionClass: settings__info-description
+    _warningDescriptionClass: settings__info-warning
+    _infoTitleClass: settings__info-title
     _tabButtonAsset: {fileID: 9197481963319205126, guid: b2905de1abc05464ca8152b75774639c, type: 3}
     _arrowMenuBarAsset: {fileID: 0}
     _sliderIntBarAsset: {fileID: 9197481963319205126, guid: 25b67a6a10ede5f47b17cf020d88acd3, type: 3}
     _toggleBarAsset: {fileID: 9197481963319205126, guid: 8e2eff4da41bc864cb5b084b38950082, type: 3}
     _dropdownBarAsset: {fileID: 9197481963319205126, guid: cc934e3d2ffcc634a910e2af88bc8d9a, type: 3}
+  _buttonClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: b9e31184105779448b29b447971df1ea, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1
+  _resetClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 161d0c32ee6cb9842bd74f1611e22abb, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1
+  _closeClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 1e6c0cc5f2cb9ed4f863b8e3ff79954f, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using ITCafe.CafeBusiness;
+using ITCafe.Gameplay.Shared;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -21,6 +23,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _timeWorkedName = "TimeWorkedValue";
         [SerializeField] private string _pointsName = "PointsValue";
         [SerializeField] private string _billCodeName = "BillCodeLabel";
+        
+        [Header("SFX"), Space(4)]
+        [SerializeField] private SfxData _buttonClickSfx;
 
         private Button _menuButton;
         private Button _restartButton;
@@ -35,6 +40,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private readonly List<VisualElement> _stars = new();
         private readonly List<Label> _starBoundaries = new();
+        
+        [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
         {
@@ -56,11 +63,29 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnBind(viewModel);
 
-            _menuButton.SubscribeCallback<ClickEvent>(_ => viewModel.ExitToMainMenu());
-            _restartButton.SubscribeCallback<ClickEvent>(_ => viewModel.Restart());
-            _continueButton.SubscribeCallback<ClickEvent>(_ => viewModel.GoNextDay());
+            _menuButton.SubscribeCallback<ClickEvent>(OnExitToMainMenuClicked);
+            _restartButton.SubscribeCallback<ClickEvent>(OnRestartClicked);
+            _continueButton.SubscribeCallback<ClickEvent>(OnGoNextMissionClicked);
 
             viewModel.OnProgressReported.Take(1).Subscribe(FillUIWithData);
+        }
+
+        private void OnExitToMainMenuClicked(ClickEvent _)
+        {
+            PlayButtonSfx();
+            ViewModel.ExitToMainMenu();
+        }
+
+        private void OnRestartClicked(ClickEvent _)
+        {
+            PlayButtonSfx();
+            ViewModel.Restart();
+        }
+
+        private void OnGoNextMissionClicked(ClickEvent _)
+        {
+            PlayButtonSfx();
+            ViewModel.GoNextMission();
         }
 
         private void InitStars()
@@ -125,6 +150,12 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             for (var i = 0; i < boundaryCount; i++)
                 _starBoundaries[i].text = starEvaluations[i].ToString();
+        }
+        
+        private void PlayButtonSfx()
+        {
+            if (_buttonClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
         }
     }
 }

@@ -2,9 +2,11 @@ using System;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using ITCafe.Data;
+using ITCafe.Gameplay.Shared;
 using UnityEngine;
 using UnityEngine.UIElements;
 using R3;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -17,7 +19,11 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _previousButtonName = "PreviousButton";
         [SerializeField] private string _paginationContainerName = "PaginationContainer";
         [SerializeField] private string _paginationDotClass = "guide__page-indicator";
-
+        
+        [Header("SFX"), Space(4)]
+        [SerializeField] private SfxData _buttonClickSfx;
+        [SerializeField] private SfxData _closeClickSfx;
+        
         private VisualElement _pagesContainer;
         private Button _okButton;
         private Button _closeButton;
@@ -25,9 +31,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Button _previousButton;
         private VisualElement _paginationContainer;
         private VisualElement[] _paginationDots;
+        
         private VisualElement _activeDot;
         private VisualElement[] _pages;
         private VisualElement _activePage;
+        
+        [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
         {
@@ -68,16 +77,19 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void OnCloseClicked(ClickEvent _)
         {
+            PlayCloseSfx();
             ViewModel.StartClosing();
         }
 
         private void OnNextClicked(ClickEvent _)
         {
+            PlayButtonSfx();
             ViewModel.GoNextPage();
         }
 
         private void OnPreviousClicked(ClickEvent _)
         {
+            PlayButtonSfx();
             ViewModel.GoPreviousPage();
         }
 
@@ -151,6 +163,18 @@ namespace ITCafe.Gameplay.UI.MVVM
                 _paginationDots[i] = dot;
                 _paginationContainer.Add(dot);
             }
+        }
+        
+        private void PlayButtonSfx()
+        {
+            if (_buttonClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
+        }
+        
+        private void PlayCloseSfx()
+        {
+            if (_closeClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_closeClickSfx);
         }
     }
 }
