@@ -68,7 +68,7 @@ namespace ITCafe
         protected override void Configure(IContainerBuilder builder)
         {
             _cinemachineInputAxisController.enabled = false;
-            
+
             builder.RegisterInstance<Subject<CafeMissionResult>>(_gameplayEnterContext.CompletionSignal);
 
             RegisterMissionConfig(builder);
@@ -185,13 +185,11 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterInstance<Func<HUDView>>(() => Instantiate(_hudViewPrefab));
-            builder.Register<HUDViewModel>(Lifetime.Singleton);
-            builder.Register<Func<HUDViewModel>>(x => () =>
+            builder.RegisterMVVM<HUDView, HUDViewModel>(_hudViewPrefab, x =>
             {
                 var hudViewModel = x.Resolve<HUDViewModel>();
                 var progressService = x.Resolve<GameStatsService>();
-                
+
                 progressService.OnScoreChanged.Subscribe(hudViewModel.SetScore)
                     .AddTo(_disposables);
                 progressService.OnOrderTaken.Subscribe(_ => hudViewModel.IncrementOrdersTaken())
@@ -200,38 +198,18 @@ namespace ITCafe
                     .AddTo(_disposables);
                 progressService.OnClientFailed.Subscribe(_ => hudViewModel.IncrementOrdersFailed())
                     .AddTo(_disposables);
-                
+
                 return hudViewModel;
-            }, Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<HUDViewModel>>();
-            
-            builder.RegisterInstance<Func<AimView>>(() => Instantiate(_aimViewPrefab));
-            builder.Register<AimViewModel>(Lifetime.Singleton);
-            builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<AimView, AimViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<AimViewModel>>();
-            
-            builder.RegisterInstance<Func<ResultsView>>(() => Instantiate(_resultsViewPrefab));
-            builder.Register<ResultsViewModel>(Lifetime.Singleton);
-            builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<ResultsView, ResultsViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<ResultsViewModel>>();
-            
-            builder.RegisterInstance<Func<PauseView>>(() => Instantiate(_pauseViewPrefab));
-            builder.Register<PauseViewModel>(Lifetime.Singleton);
-            builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<PauseView, PauseViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<PauseViewModel>>();
+            });
+
+            builder.RegisterMVVM<AimView, AimViewModel>(_aimViewPrefab);
+
+            builder.RegisterMVVM<ResultsView, ResultsViewModel>(_resultsViewPrefab);
+
+            builder.RegisterMVVM<PauseView, PauseViewModel>(_pauseViewPrefab);
 
             if (_guideData != null)
-            {
-                builder.RegisterInstance<Func<GuideView>>(() => Instantiate(_guideViewPrefab));
-                builder.Register<GuideViewModel>(Lifetime.Singleton);
-                builder.Register<SimpleAttachBinder<GuideView, GuideViewModel>>(Lifetime.Singleton)
-                    .As<IViewBinder<GuideViewModel>>();
-                builder.Register<Func<GuideViewModel>>(x => () => x.Resolve<GuideViewModel>(), Lifetime.Singleton);
-            }
+                builder.RegisterMVVM<GuideView, GuideViewModel>(_guideViewPrefab);
         }
 
         public IEnumerator BootCoroutine(GameplayEnterContext gameplayEnterContext = null)
@@ -259,13 +237,13 @@ namespace ITCafe
             _missionSetup = handle.Result;
 
             Build();
-            
+
             // Input init
             var inputService = Container.Resolve<InputService>();
             inputService.SetInputEnabled(false);
 
             yield return new WaitForEndOfFrame();
-            
+
             var audioPlayer = Container.Resolve<AudioPlayer>();
             audioPlayer.PlaySingletonMusic(_gameplayMusic, loop: true);
 

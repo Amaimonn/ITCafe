@@ -50,17 +50,9 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterInstance<Func<MainMenuView>>(() => Instantiate(_mainMenuViewPrefab));
-            builder.Register<MainMenuViewModel>(Lifetime.Singleton);
-            builder.Register<Func<MainMenuViewModel>>(x => () => x.Resolve<MainMenuViewModel>(), Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<MainMenuView, MainMenuViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<MainMenuViewModel>>();
-
-            builder.RegisterInstance<Func<CampaignView>>(() => Instantiate(_campaignViewPrefab));
-            builder.Register<CampaignViewModel>(Lifetime.Transient); // Transient
-            builder.Register<Func<CampaignViewModel>>(x => () => x.Resolve<CampaignViewModel>(), Lifetime.Singleton);
-            builder.Register<CampaignBinder>(Lifetime.Singleton)
-                .As<IViewBinder<CampaignViewModel>>();
+            builder.RegisterMVVM<MainMenuView, MainMenuViewModel>(_mainMenuViewPrefab);
+            builder.RegisterMVVM<CampaignView, CampaignViewModel, CampaignBinder>(_campaignViewPrefab, 
+                Lifetime.Transient);
         }
 
         public IEnumerator BootCoroutine(MainMenuEnterContext mainMenuEnterContext = null)

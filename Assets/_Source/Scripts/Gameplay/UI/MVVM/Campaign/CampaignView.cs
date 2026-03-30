@@ -54,7 +54,6 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private Button _selectedMissionButton;
         private VisualElement _selectedLocationTab;
-        private bool _isClosing = false;
         private readonly Dictionary<string, Button> _missionButtonsMap = new();
         private readonly Dictionary<string, VisualElement> _locationTabButtonsMap = new();
         private Coroutine _showMapCoroutine;

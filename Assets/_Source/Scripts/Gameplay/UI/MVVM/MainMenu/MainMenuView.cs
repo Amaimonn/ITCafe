@@ -2,6 +2,7 @@ using DevKit.UI.MVVM.Bases;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.Custom;
 
 namespace ITCafe.Gameplay.UI.MVVM
@@ -12,6 +13,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _exitButtonName = "ExitButton";
         [SerializeField] private string _settingsButtonName = "SettingsButton";
         [SerializeField] private string _animatedTerminalName = "AnimatedTerminal";
+        
+        [Header("SFX"), Space(4)]
+        [SerializeField] private SfxData _buttonClickSfx;
         
         private Button _playButton;
         private Button _exitButton;
