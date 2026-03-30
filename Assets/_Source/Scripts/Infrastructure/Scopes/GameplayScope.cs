@@ -185,10 +185,8 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterInstance<HUDView>(_hudViewPrefab); // prefab registration
+            builder.RegisterInstance<Func<HUDView>>(() => Instantiate(_hudViewPrefab));
             builder.Register<HUDViewModel>(Lifetime.Singleton);
-            builder.Register<SimpleAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
-                .As<IViewBinder<HUDViewModel>>();
             builder.Register<Func<HUDViewModel>>(x => () =>
             {
                 var hudViewModel = x.Resolve<HUDViewModel>();
@@ -205,28 +203,30 @@ namespace ITCafe
                 
                 return hudViewModel;
             }, Lifetime.Singleton);
-
-            builder.RegisterInstance<AimView>(_aimViewPrefab); // prefab registration
+            builder.Register<SimpleAttachBinder<HUDView, HUDViewModel>>(Lifetime.Singleton)
+                .As<IViewBinder<HUDViewModel>>();
+            
+            builder.RegisterInstance<Func<AimView>>(() => Instantiate(_aimViewPrefab));
             builder.Register<AimViewModel>(Lifetime.Singleton);
+            builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
             builder.Register<SimpleAttachBinder<AimView, AimViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<AimViewModel>>();
-            builder.Register<Func<AimViewModel>>(x => () => x.Resolve<AimViewModel>(), Lifetime.Singleton);
-
-            builder.RegisterInstance<ResultsView>(_resultsViewPrefab); // prefab registration
+            
+            builder.RegisterInstance<Func<ResultsView>>(() => Instantiate(_resultsViewPrefab));
             builder.Register<ResultsViewModel>(Lifetime.Singleton);
+            builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
             builder.Register<SimpleAttachBinder<ResultsView, ResultsViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<ResultsViewModel>>();
-            builder.Register<Func<ResultsViewModel>>(x => () => x.Resolve<ResultsViewModel>(), Lifetime.Singleton);
-
-            builder.RegisterInstance<PauseView>(_pauseViewPrefab); // prefab registration
+            
+            builder.RegisterInstance<Func<PauseView>>(() => Instantiate(_pauseViewPrefab));
             builder.Register<PauseViewModel>(Lifetime.Singleton);
+            builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
             builder.Register<SimpleAttachBinder<PauseView, PauseViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<PauseViewModel>>();
-            builder.Register<Func<PauseViewModel>>(x => () => x.Resolve<PauseViewModel>(), Lifetime.Singleton);
 
             if (_guideData != null)
             {
-                builder.RegisterInstance<GuideView>(_guideViewPrefab);
+                builder.RegisterInstance<Func<GuideView>>(() => Instantiate(_guideViewPrefab));
                 builder.Register<GuideViewModel>(Lifetime.Singleton);
                 builder.Register<SimpleAttachBinder<GuideView, GuideViewModel>>(Lifetime.Singleton)
                     .As<IViewBinder<GuideViewModel>>();

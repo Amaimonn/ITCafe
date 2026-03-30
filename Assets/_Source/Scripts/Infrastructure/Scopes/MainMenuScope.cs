@@ -18,7 +18,7 @@ namespace ITCafe
     public class MainMenuScope : LifetimeScope
     {
         public Observable<MainMenuExitContext> ExitSignal { get; private set; }
-        
+
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
         [SerializeField] private SerializableLocalizationLoader _mainMenuLocalizationLoader;
@@ -43,20 +43,20 @@ namespace ITCafe
             builder.Register<CampaignDataModelFactory>(Lifetime.Singleton)
                 .AsSelf()
                 .As<IFactory<CampaignDataModel>>();
-            
+
             builder.Register<ILocalizationLoader>(_ => _campaignLocalizationLoader, Lifetime.Scoped)
                 .Keyed(Constants.CAMPAIGN_DATA_LOCALE_LOADER);
         }
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterInstance<MainMenuView>(_mainMenuViewPrefab);
+            builder.RegisterInstance<Func<MainMenuView>>(() => Instantiate(_mainMenuViewPrefab));
             builder.Register<MainMenuViewModel>(Lifetime.Singleton);
             builder.Register<Func<MainMenuViewModel>>(x => () => x.Resolve<MainMenuViewModel>(), Lifetime.Singleton);
             builder.Register<SimpleAttachBinder<MainMenuView, MainMenuViewModel>>(Lifetime.Singleton)
                 .As<IViewBinder<MainMenuViewModel>>();
 
-            builder.RegisterInstance<CampaignView>(_campaignViewPrefab);
+            builder.RegisterInstance<Func<CampaignView>>(() => Instantiate(_campaignViewPrefab));
             builder.Register<CampaignViewModel>(Lifetime.Transient); // Transient
             builder.Register<Func<CampaignViewModel>>(x => () => x.Resolve<CampaignViewModel>(), Lifetime.Singleton);
             builder.Register<CampaignBinder>(Lifetime.Singleton)
@@ -73,10 +73,10 @@ namespace ITCafe
 
             Build();
             yield return new WaitForEndOfFrame();
-            
+
             var audioPlayer = Container.Resolve<AudioPlayer>();
             audioPlayer.PlaySingletonMusic(_mainMenuMusic, loop: true);
-            
+
             _mainMenuLocalizationLoader.Init();
             _mainMenuLocalizationLoader.AddTo(_disposables);
             yield return _mainMenuLocalizationLoader.LoadTables();
@@ -125,13 +125,13 @@ namespace ITCafe
                             selectedMissionModel.Stars.Value = result.Stars;
                     });
                 gameplayEnterContext.CompletionSignal = completionSignal;
-                
+
                 mainMenuExitSignal.OnNext(mainMenuExitContext);
             });
 
             ExitSignal = mainMenuExitSignal;
         }
-        
+
         protected override void OnDestroy()
         {
             Disposes.ClearDispose(ref _disposables);

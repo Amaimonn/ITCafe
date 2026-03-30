@@ -70,7 +70,7 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterInstance<SettingsView>(_settingsViewPrefab);
+            builder.RegisterInstance<Func<SettingsView>>(() => Instantiate(_settingsViewPrefab));
             builder.Register<SettingsViewModel>(Lifetime.Transient);
             builder.Register<Func<SettingsViewModel>>(x => () => x.Resolve<SettingsViewModel>(),
                 Lifetime.Singleton);
