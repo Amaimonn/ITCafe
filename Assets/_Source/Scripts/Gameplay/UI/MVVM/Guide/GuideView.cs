@@ -35,6 +35,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _activeDot;
         private VisualElement[] _pages;
         private VisualElement _activePage;
+        private CompositeDisposable _disposables;
         
         [Inject] private readonly AudioPlayer _audioPlayer;
 
@@ -53,7 +54,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(GuideViewModel viewModel)
         {
             base.OnBind(viewModel);
-
+            
+            _disposables = new CompositeDisposable();
+            
             _nextButton.SubscribeCallback<ClickEvent>(OnNextClicked)
                 .AddTo(_disposables);
             _previousButton.SubscribeCallback<ClickEvent>(OnPreviousClicked)
@@ -175,6 +178,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             if (_closeClickSfx.IsValid)
                 _audioPlayer.GetSfxBuilder().Play(_closeClickSfx);
+        }
+        
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }

@@ -65,6 +65,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Coroutine _selectionCoroutine;
         private IValueAnimation _selectionAnimation;
         private ILocalizer _localizer;
+        private CompositeDisposable _disposables;
         
         [Inject] private readonly AudioPlayer _audioPlayer;
 
@@ -103,6 +104,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnBind(viewModel);
 
+            _disposables = new CompositeDisposable();
+            
             ViewModel.LocationsDataMap.Subscribe(OnLocationsChanged).AddTo(_disposables);
             ViewModel.SelectedLocationData.Subscribe(OnLocationSelected).AddTo(_disposables);
             ViewModel.CurrentMissionsDataMap.Subscribe(OnCurrentMissionsChanged).AddTo(_disposables);
@@ -420,6 +423,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             if (_closeClickSfx.IsValid)
                 _audioPlayer.GetSfxBuilder().Play(_closeClickSfx);
+        }
+
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }

@@ -53,6 +53,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(MainMenuViewModel viewModel)
         {
             base.OnBind(viewModel);
+            
             _playButton.RegisterCallback<ClickEvent>(OnStartClicked);
             _settingsButton.RegisterCallback<ClickEvent>(OnSettingsClicked);
             _exitButton.RegisterCallbackOnce<ClickEvent>(OnQuitClicked);
@@ -89,6 +90,7 @@ namespace ITCafe.Gameplay.UI.MVVM
                 StopCoroutine(_typingCoroutine);
                 _typingCoroutine = null;
             }
+            
             base.Dispose();
         }
     }

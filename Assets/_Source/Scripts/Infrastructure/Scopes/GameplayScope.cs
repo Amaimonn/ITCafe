@@ -316,10 +316,15 @@ namespace ITCafe
 
                 var guideBinder = Container.Resolve<IViewBinder<GuideViewModel>>();
                 var guideViewModel = guideBinder.Open();
-                guideViewModel.OnClosingCompleted
-                    .Take(1)
-                    .Subscribe(_ => BootAfterGuide())
-                    .AddTo(_disposables);
+
+                guideViewModel.OnClosingCompleted += BootOnce;
+                _disposables.Add(Disposable.Create(() => guideViewModel.OnClosingCompleted -= BootOnce));
+                
+                void BootOnce()
+                {
+                    guideViewModel.OnClosingCompleted -= BootOnce;
+                    BootAfterGuide();
+                }
             }
             else
             {

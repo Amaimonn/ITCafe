@@ -38,6 +38,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _tabButtonsContainer;
         private VisualElement _controlInfoContainer;
         private readonly Dictionary<SettingsSectionViewModel, TabEntry> _sectionsMap = new();
+        private CompositeDisposable _disposables;
         
         [Inject] private readonly AudioPlayer _audioPlayer;
 
@@ -60,7 +61,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(SettingsViewModel viewModel)
         {
             base.OnBind(viewModel);
-
+            
+            _disposables = new CompositeDisposable();
             _sectionsMap.Clear();
 
             viewModel.OnSettingsDataChanged.Where(x => x != null)
@@ -228,6 +230,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             if (_resetClickSfx.IsValid)
                 _audioPlayer.GetSfxBuilder().Play(_resetClickSfx);
+        }
+        
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }

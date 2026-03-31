@@ -26,6 +26,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Button _settingsButton;
         private Button _exitButton;
         
+        private CompositeDisposable _disposables;
+        
         [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
@@ -40,6 +42,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(PauseViewModel viewModel)
         {
             base.OnBind(viewModel);
+            
+            _disposables  = new CompositeDisposable();
             
             _resumeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
@@ -87,6 +91,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             if (_buttonClickSfx.IsValid)
                 _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
+        }
+        
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }
