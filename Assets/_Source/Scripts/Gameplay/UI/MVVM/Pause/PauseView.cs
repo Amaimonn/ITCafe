@@ -1,8 +1,10 @@
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
+using ITCafe.Gameplay.Shared;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -14,11 +16,19 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _settingsButtonName = "SettingsButton";
         [SerializeField] private string _exitButtonName = "ExitButton";
         
+        [Header("SFX"), Space(4)]
+        [SerializeField] private SfxData _buttonClickSfx;
+        [SerializeField] private SfxData _closeClickSfx;
+        
         private Button _resumeButton;
         private Button _closeButton;
         private Button _restartButton;
         private Button _settingsButton;
         private Button _exitButton;
+        
+        private CompositeDisposable _disposables;
+        
+        [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
         {
@@ -32,6 +42,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(PauseViewModel viewModel)
         {
             base.OnBind(viewModel);
+            
+            _disposables  = new CompositeDisposable();
             
             _resumeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
@@ -51,22 +63,40 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private void OnCloseClicked(ClickEvent _)
         {
+            if (_closeClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_closeClickSfx);
+            
             ViewModel.StartClosing();
         }
 
         private void OnExitClicked(ClickEvent _)
         {
+            PlayButtonSfx();
             ViewModel.ExitToMenu();
         }
 
         private void OnSettingsClicked(ClickEvent _)
         {
+            PlayButtonSfx();
             ViewModel.OpenSettings();
         }
         
         private void OnRestartClicked(ClickEvent _)
         {
+            PlayButtonSfx();
             ViewModel.Restart();
+        }
+        
+        private void PlayButtonSfx()
+        {
+            if (_buttonClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
+        }
+        
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }

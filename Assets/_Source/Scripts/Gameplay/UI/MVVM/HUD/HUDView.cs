@@ -37,6 +37,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Label _ordersFailedLabel;
         private VisualElement _ordersContainer;
         private ILocalizer _localizer;
+        private CompositeDisposable _disposables;
 
         private readonly Dictionary<VisualElement, List<(int, VisualElement)>> _orderContainerFoodMap = new();
         private readonly Dictionary<IOrder, VisualElement> _orderContainerMap = new();
@@ -59,7 +60,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(HUDViewModel viewModel)
         {
             base.OnBind(viewModel);
-
+            
+            _disposables = new CompositeDisposable();
+            
             viewModel.OnTimerTextChanged.Subscribe(x => _timerLabel.text = x.ToString()).AddTo(_disposables);
             viewModel.OnScoreChanged.Subscribe(x => _scoreLabel.text = x.ToString()).AddTo(_disposables);
 

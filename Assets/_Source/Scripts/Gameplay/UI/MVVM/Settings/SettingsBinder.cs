@@ -19,9 +19,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         public SettingsBinder(SettingsModel settingsModel,
             Func<SettingsViewModel> viewModelFactory,
             IRootUIBinder rootUIBinder,
-            SettingsView view,
+            Func<SettingsView> viewFactory,
             [Key(Constants.SETTINGS_DATA_LOCALE_LOADER)] ILocalizationLoader settingsLocaleLoader) :
-                base(viewModelFactory, rootUIBinder, view)
+                base(viewModelFactory, rootUIBinder, viewFactory)
         {
             _settingsModel = settingsModel;
             _settingsLocaleLoader = settingsLocaleLoader;

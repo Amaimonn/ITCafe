@@ -10,6 +10,7 @@ using ITCafe.Data.Campaign;
 using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.Custom;
 using UnityEngine.UIElements.Experimental;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -38,6 +39,10 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Space(2f)]
         [SerializeField] private VisualTreeAsset _locationTabButton;
+        
+        [Header("SFX"), Space(4)]
+        [SerializeField] private SfxData _buttonClickSfx;
+        [SerializeField] private SfxData _closeClickSfx;
 
         private Button _startButton;
         private VisualElement _missionPanel;
@@ -54,13 +59,15 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         private Button _selectedMissionButton;
         private VisualElement _selectedLocationTab;
-        private bool _isClosing = false;
         private readonly Dictionary<string, Button> _missionButtonsMap = new();
         private readonly Dictionary<string, VisualElement> _locationTabButtonsMap = new();
         private Coroutine _showMapCoroutine;
         private Coroutine _selectionCoroutine;
         private IValueAnimation _selectionAnimation;
         private ILocalizer _localizer;
+        private CompositeDisposable _disposables;
+        
+        [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
         {
@@ -97,12 +104,14 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             base.OnBind(viewModel);
 
+            _disposables = new CompositeDisposable();
+            
             ViewModel.LocationsDataMap.Subscribe(OnLocationsChanged).AddTo(_disposables);
             ViewModel.SelectedLocationData.Subscribe(OnLocationSelected).AddTo(_disposables);
             ViewModel.CurrentMissionsDataMap.Subscribe(OnCurrentMissionsChanged).AddTo(_disposables);
             ViewModel.SelectedMissionData.Subscribe(OnMissionSelected).AddTo(_disposables);
 
-            _startButton.SubscribeCallbackOnce<ClickEvent>(StartGameplay).AddTo(_disposables);
+            _startButton.SubscribeCallbackOnce<ClickEvent>(OnStartGameplayClicked).AddTo(_disposables);
 
             _panelBackground.RegisterCallback<ClickEvent>(_ => ViewModel.SelectMission(null));
         }
@@ -120,18 +129,27 @@ namespace ITCafe.Gameplay.UI.MVVM
             }
         }
 
-        private void StartGameplay(ClickEvent _)
+        protected override void OnClosing()
         {
+            PlayCloseSfx();
+            base.OnClosing();
+        }
+
+        private void OnStartGameplayClicked(ClickEvent _)
+        {
+            PlayButtonSfx();
             ViewModel.StartGameplay();
         }
 
-        private void SelectLocation(ClickEvent _, ILocationData locationData)
+        private void OnSelectLocationClicked(ClickEvent _, ILocationData locationData)
         {
+            PlayButtonSfx();
             ViewModel.SelectLocation(locationData);
         }
 
-        private void SelectMission(ClickEvent e, IMissionData missionData)
+        private void OnSelectMissionClicked(ClickEvent e, IMissionData missionData)
         {
+            PlayButtonSfx();
             ViewModel.SelectMission(missionData);
             e.StopPropagation();
         }
@@ -162,7 +180,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             _localizer.Localize(locationLabel, Constants.LOCATIONS_DATA_TABLE);
 
             _locationTabButtonsMap[locationData.Id] = locationTabButton;
-            locationTabButton.RegisterCallback<ClickEvent, ILocationData>(SelectLocation, locationData);
+            locationTabButton.RegisterCallback<ClickEvent, ILocationData>(OnSelectLocationClicked, locationData);
 
             if (ViewModel.OpenedLocationsMap.TryGetValue(locationData.Id, out var locationModel))
             {
@@ -219,7 +237,7 @@ namespace ITCafe.Gameplay.UI.MVVM
 
             var missionButton = missionButtonContainer.Q<Button>();
             _missionButtonsMap[missionData.Id] = missionButton;
-            missionButton.RegisterCallback<ClickEvent, IMissionData>(SelectMission, missionData);
+            missionButton.RegisterCallback<ClickEvent, IMissionData>(OnSelectMissionClicked, missionData);
             
             var missionName = missionButtonContainer.Q<Label>(name: _missionName);
             missionName.text = missionData.Name;
@@ -393,6 +411,24 @@ namespace ITCafe.Gameplay.UI.MVVM
         private void HideMissionAim()
         {
             _missionAim.style.visibility = Visibility.Hidden;
+        }
+        
+        private void PlayButtonSfx()
+        {
+            if (_buttonClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
+        }
+        
+        private void PlayCloseSfx()
+        {
+            if (_closeClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_closeClickSfx);
+        }
+
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }

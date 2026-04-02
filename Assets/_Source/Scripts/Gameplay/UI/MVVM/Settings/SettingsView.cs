@@ -1,12 +1,15 @@
+using System;
 using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using ITCafe.Data.Settings;
+using ITCafe.Gameplay.Shared;
 using ITCafe.Gameplay.UI.Custom;
 using R3;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM
 {
@@ -22,6 +25,11 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         [Space(4)]
         [SerializeField] private SettingControlFactory _controlFactory;
+        
+        [Header("SFX"), Space(4)]
+        [SerializeField] private SfxData _buttonClickSfx;
+        [SerializeField] private SfxData _resetClickSfx;
+        [SerializeField] private SfxData _closeClickSfx;
 
         private Button _applyButton;
         private Button _cancelChangesButton;
@@ -30,6 +38,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         private VisualElement _tabButtonsContainer;
         private VisualElement _controlInfoContainer;
         private readonly Dictionary<SettingsSectionViewModel, TabEntry> _sectionsMap = new();
+        private CompositeDisposable _disposables;
+        
+        [Inject] private readonly AudioPlayer _audioPlayer;
 
         protected override void OnInit()
         {
@@ -50,7 +61,8 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnBind(SettingsViewModel viewModel)
         {
             base.OnBind(viewModel);
-
+            
+            _disposables = new CompositeDisposable();
             _sectionsMap.Clear();
 
             viewModel.OnSettingsDataChanged.Where(x => x != null)
@@ -93,7 +105,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var videoViewModel = ViewModel.VideoSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.VideoSectionLabel,
-                _ => ViewModel.SelectSection(videoViewModel), data.VideoIcon);
+                GetOnTabClicked(videoViewModel), data.VideoIcon);
             var videoSection = tabEntry.ScrollView;
             _sectionsMap[videoViewModel] = tabEntry;
 
@@ -125,7 +137,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var soundViewModel = ViewModel.SoundSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.SoundSectionLabel,
-                _ => ViewModel.SelectSection(soundViewModel), data.SoundIcon);
+                GetOnTabClicked(soundViewModel), data.SoundIcon);
             var soundSection = tabEntry.ScrollView;
             _sectionsMap[soundViewModel] = tabEntry;
 
@@ -139,7 +151,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var languageViewModel = ViewModel.LanguageSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.LanguageSectionLabel,
-                _ => ViewModel.SelectSection(languageViewModel), data.LanguageIcon);
+                GetOnTabClicked(languageViewModel), data.LanguageIcon);
             var languageSection = tabEntry.ScrollView;
             _sectionsMap[languageViewModel] = tabEntry;
 
@@ -151,7 +163,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             var inputsViewModel = ViewModel.InputSettingsViewModel;
 
             var tabEntry = _controlFactory.AddBindedTab(data.InputSectionLabel,
-                _ => ViewModel.SelectSection(inputsViewModel), data.InputIcon);
+                GetOnTabClicked(inputsViewModel), data.InputIcon);
             var inputSection = tabEntry.ScrollView;
             _sectionsMap[inputsViewModel] = tabEntry;
 
@@ -175,19 +187,55 @@ namespace ITCafe.Gameplay.UI.MVVM
             }
         }
 
+        private EventCallback<ClickEvent> GetOnTabClicked(SettingsSectionViewModel sectionViewModel)
+        {
+            return _ =>
+            {
+                PlayButtonSfx();
+                ViewModel.SelectSection(sectionViewModel);
+            };
+        }
+        
         private void ApplyChanges(ClickEvent _)
         {
+            PlayButtonSfx();
             ViewModel.ApplyChanges();
         }
 
         private void CancelChanges(ClickEvent _)
         {
+            PlayResetSfx();
             ViewModel.CancelUnappliedChanges();
         }
 
         private void OnCloseClicked(ClickEvent _)
         {
+            PlayCloseSfx();
             ViewModel.StartClosing();
+        }
+        
+        private void PlayButtonSfx()
+        {
+            if (_buttonClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_buttonClickSfx);
+        }
+        
+        private void PlayCloseSfx()
+        {
+            if (_closeClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_closeClickSfx);
+        }
+        
+        private void PlayResetSfx()
+        {
+            if (_resetClickSfx.IsValid)
+                _audioPlayer.GetSfxBuilder().Play(_resetClickSfx);
+        }
+        
+        public override void Dispose()
+        {
+            Disposes.ClearDispose(ref _disposables);
+            base.Dispose();
         }
     }
 }

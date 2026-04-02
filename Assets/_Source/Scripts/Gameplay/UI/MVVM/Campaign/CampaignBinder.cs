@@ -15,8 +15,8 @@ namespace ITCafe.Gameplay.UI.MVVM
             CampaignDataModelFactory campaignDataModelFactory,
             IFactory<CampaignModel> campaignModelFactory,
             IRootUIBinder rootUIBinder,
-            CampaignView viewPrefab) :
-                base(viewModelFactory, rootUIBinder, viewPrefab)
+            Func<CampaignView> viewFactory) :
+                base(viewModelFactory, rootUIBinder, viewFactory)
         {
             _campaignDataModelFactory = campaignDataModelFactory;
             _campaignModelFactory = campaignModelFactory;

@@ -1,4 +1,3 @@
-using System;
 using DevKit.Locator;
 using DevKit.Saves;
 using DevKit.UI.MVVM;
@@ -70,12 +69,8 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
-            builder.RegisterInstance<SettingsView>(_settingsViewPrefab);
-            builder.Register<SettingsViewModel>(Lifetime.Transient);
-            builder.Register<Func<SettingsViewModel>>(x => () => x.Resolve<SettingsViewModel>(),
-                Lifetime.Singleton);
-            builder.Register<SettingsBinder>(Lifetime.Singleton)
-                .As<IViewBinder<SettingsViewModel>>();
+            builder.RegisterMVVM<SettingsView, SettingsViewModel, SettingsBinder>(_settingsViewPrefab, 
+                Lifetime.Transient);
         }
 
         private void RegisterAudio(IContainerBuilder builder)
