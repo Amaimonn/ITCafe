@@ -1,0 +1,75 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/%D0%A1redits/CreditsStyles.uss?fileID=7433441132597879392&amp;guid=d787f5a1de9831d48a429267a673e571&amp;type=3#CreditsStyles"/>
+    <ui:VisualElement name="CreditsContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="HeaderSection" class="credits-header">
+            <ui:Label text="IT CAFE" class="credits-title"/>
+            <ui:Label text="// TERMINAL CREDITS v2.4.7 //" class="credits-subtitle"/>
+            <ui:VisualElement name="DividerTop" class="credits-divider"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="MainContent" class="credits-content">
+            <ui:VisualElement name="LeftColumn" class="credits-column">
+                <ui:Label text="[ CORE DEVELOPMENT ]" class="credits-section-title"/>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="LEAD DEVELOPER" class="credits-role"/>
+                    <ui:Label text="ALEX RIVERA" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="GAME DESIGNER" class="credits-role"/>
+                    <ui:Label text="SASHA CHEN" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="UI/UX DESIGNER" class="credits-role"/>
+                    <ui:Label text="JORDAN TAYLOR" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-spacer"/>
+                <ui:Label text="[ ART &amp; VISUALS ]" class="credits-section-title"/>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="LEAD ARTIST" class="credits-role"/>
+                    <ui:Label text="MAYA PATEL" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="ENVIRONMENT ART" class="credits-role"/>
+                    <ui:Label text="LUCAS WHITE" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="CHARACTER DESIGN" class="credits-role"/>
+                    <ui:Label text="ZOE KIM" class="credits-name"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="RightColumn" class="credits-column">
+                <ui:Label text="[ AUDIO TEAM ]" class="credits-section-title"/>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="COMPOSER" class="credits-role"/>
+                    <ui:Label text="MARCUS LEE" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="SOUND DESIGN" class="credits-role"/>
+                    <ui:Label text="EMMA VOSS" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="VOICE ACTING" class="credits-role"/>
+                    <ui:Label text="SAM RIVERS" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-spacer"/>
+                <ui:Label text="[ SPECIAL THANKS ]" class="credits-section-title"/>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="BETA TESTERS" class="credits-role"/>
+                    <ui:Label text="COMMUNITY HUB" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-entry">
+                    <ui:Label text="PATREON SUPPORTERS" class="credits-role"/>
+                    <ui:Label text="ALL BACKERS" class="credits-name"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="credits-spacer"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label text="// THANK YOU FOR PLAYING //" class="thanks-text"/>
+        <ui:VisualElement name="FooterSection" class="credits-footer">
+            <ui:VisualElement class="credits-divider"/>
+            <ui:Label text="&#169; 2024 CIRCUIT CAFE STUDIOS &#8212; ALL SYSTEMS OPERATIONAL" class="credits-copyright"/>
+            <ui:VisualElement name="ButtonContainer" class="button-container">
+                <ui:Button name="CloseButton" text="[ OK ]" class="credits-close-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

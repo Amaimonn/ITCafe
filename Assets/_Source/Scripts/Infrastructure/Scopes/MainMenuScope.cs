@@ -20,6 +20,7 @@ namespace ITCafe
         public Observable<MainMenuExitContext> ExitSignal { get; private set; }
 
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
+        [SerializeField] private CreditsView _creditsViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
         [SerializeField] private SerializableLocalizationLoader _mainMenuLocalizationLoader;
         [SerializeField] private SerializableLocalizationLoader _campaignLocalizationLoader;
@@ -50,6 +51,7 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
+            builder.RegisterMVVM<CreditsView, CreditsViewModel>(_creditsViewPrefab);
             builder.RegisterMVVM<MainMenuView, MainMenuViewModel>(_mainMenuViewPrefab);
             builder.RegisterMVVM<CampaignView, CampaignViewModel, CampaignBinder>(_campaignViewPrefab, 
                 Lifetime.Transient);

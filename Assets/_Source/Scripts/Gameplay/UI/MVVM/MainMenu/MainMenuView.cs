@@ -13,6 +13,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         [SerializeField] private string _playButtonName = "PlayButton";
         [SerializeField] private string _exitButtonName = "ExitButton";
         [SerializeField] private string _settingsButtonName = "SettingsButton";
+        [SerializeField] private string _creditsButtonName = "CreditsButton";
         [SerializeField] private string _animatedTerminalName = "AnimatedTerminal";
 
         [Header("SFX"), Space(4)]
@@ -21,6 +22,7 @@ namespace ITCafe.Gameplay.UI.MVVM
         private Button _playButton;
         private Button _exitButton;
         private Button _settingsButton;
+        private Button _creditsButton;
         private AnimatedTextContainer _animatedTextContainer;
 
         private Coroutine _typingCoroutine;
@@ -69,6 +71,12 @@ namespace ITCafe.Gameplay.UI.MVVM
         {
             PlayButtonSfx();
             ViewModel.OpenSettings();
+        }
+        
+        private void OnCreditsClicked(ClickEvent clickEvent)
+        {
+            PlayButtonSfx();
+            ViewModel.OpenCredits();
         }
 
         private void OnQuitClicked(ClickEvent clickEvent)

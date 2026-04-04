@@ -1,0 +1,160 @@
+.credits-header {
+    padding-top: 24px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.credits-title {
+    font-size: 42px;
+    -unity-text-align: middle-center;
+    color: rgb(0, 255, 255);
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
+
+.credits-subtitle {
+    font-size: 14px;
+    -unity-text-align: middle-center;
+    color: rgb(150, 255, 255);
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.credits-divider {
+    height: 2px;
+    background-color: rgb(0, 255, 255);
+    margin-top: 8px;
+    margin-bottom: 8px;
+    opacity: 0.6;
+}
+
+.credits-content {
+    flex-direction: row;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    flex-grow: 1;
+    width: 800px;
+    align-self: center;
+}
+
+.credits-column {
+    flex-grow: 1;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.credits-section-title {
+    font-size: 18px;
+    color: rgb(255, 100, 150);
+    -unity-font-style: bold;
+    margin-bottom: 16px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(255, 100, 150);
+    padding-bottom: 4px;
+}
+
+.credits-entry {
+    margin-bottom: 12px;
+}
+
+.credits-role {
+    font-size: 12px;
+    color: rgb(100, 200, 255);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.credits-name {
+    font-size: 16px;
+    color: rgb(220, 220, 255);
+    -unity-font-style: bold;
+    margin-left: 8px;
+}
+
+.credits-spacer {
+    height: 20px;
+}
+
+.icon-placeholder-area {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.icon-slot {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(0, 255, 255, 0.15);
+    border-width: 1px;
+    border-color: rgb(0, 255, 255);
+}
+
+.credits-thanks {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top-width: 1px;
+    border-top-color: rgba(0, 255, 255, 0.3);
+}
+
+.thanks-text {
+    font-size: 16px;
+    -unity-text-align: middle-center;
+    color: rgb(255, 200, 100);
+    letter-spacing: 3px;
+    -unity-font-style: bold;
+}
+
+.credits-footer {
+    padding-top: 16px;
+    padding-bottom: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.credits-copyright {
+    font-size: 10px;
+    -unity-text-align: middle-center;
+    color: rgba(100, 150, 200, 0.7);
+    margin-top: 12px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.button-container {
+    justify-content: center;
+    align-items: center;
+}
+
+.credits-close-button {
+    font-size: 14px;
+    color: rgb(0, 255, 255);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-width: 1px;
+    border-color: rgb(0, 255, 255);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    -unity-text-align: middle-center;
+    letter-spacing: 2px;
+}
+
+.credits-close-button:hover {
+    background-color: rgba(0, 255, 255, 0.2);
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 100, 150);
+}
+
+#CreditsContainer {
+    background-color: rgba(0, 8, 16, 0.95);
+    border-width: 2px;
+    border-color: rgb(0, 255, 255);
+}
