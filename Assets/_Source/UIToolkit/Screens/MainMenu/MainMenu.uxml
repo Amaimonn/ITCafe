@@ -82,6 +82,11 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(69997682688)"/>
                         </Bindings>
                     </ui:Button>
+                    <ui:Button name="CreditsButton" focusable="false" class="cafe__control-button cafe__control-button--gold">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(30398571017658368)"/>
+                        </Bindings>
+                    </ui:Button>
                     <ui:Button name="ExitButton" focusable="false" class="cafe__control-button cafe__control-button--red">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(161924243456)"/>

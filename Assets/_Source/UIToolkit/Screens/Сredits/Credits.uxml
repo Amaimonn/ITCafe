@@ -1,75 +1,103 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/%D0%A1redits/CreditsStyles.uss?fileID=7433441132597879392&amp;guid=d787f5a1de9831d48a429267a673e571&amp;type=3#CreditsStyles"/>
-    <ui:VisualElement name="CreditsContainer" style="flex-grow: 1;">
-        <ui:VisualElement name="HeaderSection" class="credits-header">
-            <ui:Label text="IT CAFE" class="credits-title"/>
-            <ui:Label text="// TERMINAL CREDITS v2.4.7 //" class="credits-subtitle"/>
-            <ui:VisualElement name="DividerTop" class="credits-divider"/>
+    <ui:VisualElement name="CreditsRoot" class="credits">
+        <ui:VisualElement class="credits__header">
+            <ui:Label text="IT CAFE" class="credits__title"/>
+            <ui:Label text="// SYSTEM CREDITS" class="credits__subtitle"/>
+            <ui:VisualElement class="credits__divider"/>
         </ui:VisualElement>
-        <ui:VisualElement name="MainContent" class="credits-content">
-            <ui:VisualElement name="LeftColumn" class="credits-column">
-                <ui:Label text="[ CORE DEVELOPMENT ]" class="credits-section-title"/>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="LEAD DEVELOPER" class="credits-role"/>
-                    <ui:Label text="ALEX RIVERA" class="credits-name"/>
+        <ui:VisualElement class="credits__content">
+            <ui:VisualElement name="Column1" class="credits__column">
+                <ui:VisualElement name="Core">
+                    <ui:Label class="credits__section-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(962822397952)"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement class="credits__entry credits__entry--primary">
+                        <ui:Label class="credits__role">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(1675040382976)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label class="credits__name">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(4151424573440)"/>
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="GAME DESIGNER" class="credits-role"/>
-                    <ui:Label text="SASHA CHEN" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="UI/UX DESIGNER" class="credits-role"/>
-                    <ui:Label text="JORDAN TAYLOR" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-spacer"/>
-                <ui:Label text="[ ART &amp; VISUALS ]" class="credits-section-title"/>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="LEAD ARTIST" class="credits-role"/>
-                    <ui:Label text="MAYA PATEL" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="ENVIRONMENT ART" class="credits-role"/>
-                    <ui:Label text="LUCAS WHITE" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="CHARACTER DESIGN" class="credits-role"/>
-                    <ui:Label text="ZOE KIM" class="credits-name"/>
+                <ui:VisualElement name="Special">
+                    <ui:Label class="credits__section-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(1192108220416)"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement class="credits__entry">
+                        <ui:Label class="credits__name">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(3120573702144)"/>
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="RightColumn" class="credits-column">
-                <ui:Label text="[ AUDIO TEAM ]" class="credits-section-title"/>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="COMPOSER" class="credits-role"/>
-                    <ui:Label text="MARCUS LEE" class="credits-name"/>
+            <ui:VisualElement name="Column2" class="credits__column">
+                <ui:VisualElement name="Assets">
+                    <ui:Label text="[ ASSETS ]" class="credits__section-title"/>
+                    <ui:VisualElement class="credits__entry">
+                        <ui:Label class="credits__role">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(8185065758720)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="ERA Adventures : 150+ Food Icon Pack" class="credits__name"/>
+                        <ui:Label text="Leartes Studios : Coffee Shop Environment" class="credits__name"/>
+                        <ui:Label text="Mumifier Studio : Food Pack | Free Demo" class="credits__name"/>
+                        <ui:Label text="Lumo-Art 3D : FREE Casual Food Pack- Mobile/VR" class="credits__name"/>
+                        <ui:Label text="Fruit Route Studio : Free Hyper Casual Street Food Pack" class="credits__name"/>
+                        <ui:Label text="SR Studios Kerala : Little Ghost (Free)" class="credits__name"/>
+                        <ui:Label text="Pandazole : Pandazole - Kitchen Food low poly pack" class="credits__name"/>
+                        <ui:Label text="Chris Nolet : Quick Outline" class="credits__name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credits__entry">
+                        <ui:Label class="credits__role">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2275740213248)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="AUTHOR / SOURCE" class="credits__name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credits__entry">
+                        <ui:Label class="credits__role">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2369239638016)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="AUTHOR / LICENSE" class="credits__name"/>
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="SOUND DESIGN" class="credits-role"/>
-                    <ui:Label text="EMMA VOSS" class="credits-name"/>
+                <ui:VisualElement name="Tools">
+                    <ui:Label class="credits__section-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(1515665219584)"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement class="credits__entry">
+                        <ui:Label text="Unity 6.3" class="credits__name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credits__entry"/>
                 </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="VOICE ACTING" class="credits-role"/>
-                    <ui:Label text="SAM RIVERS" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-spacer"/>
-                <ui:Label text="[ SPECIAL THANKS ]" class="credits-section-title"/>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="BETA TESTERS" class="credits-role"/>
-                    <ui:Label text="COMMUNITY HUB" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-entry">
-                    <ui:Label text="PATREON SUPPORTERS" class="credits-role"/>
-                    <ui:Label text="ALL BACKERS" class="credits-name"/>
-                </ui:VisualElement>
-                <ui:VisualElement class="credits-spacer"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label text="// THANK YOU FOR PLAYING //" class="thanks-text"/>
-        <ui:VisualElement name="FooterSection" class="credits-footer">
-            <ui:VisualElement class="credits-divider"/>
-            <ui:Label text="&#169; 2024 CIRCUIT CAFE STUDIOS &#8212; ALL SYSTEMS OPERATIONAL" class="credits-copyright"/>
-            <ui:VisualElement name="ButtonContainer" class="button-container">
-                <ui:Button name="CloseButton" text="[ OK ]" class="credits-close-button"/>
-            </ui:VisualElement>
+        <ui:Label class="credits__thanks">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(9981729431552)"/>
+            </Bindings>
+        </ui:Label>
+        <ui:VisualElement class="credits__footer">
+            <ui:VisualElement class="credits__divider"/>
+            <ui:Button text="OK" name="CloseButton" class="cafe__control-button cafe__control-button--cyan" style="width: 120px; margin-bottom: 0;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

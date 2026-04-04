@@ -16,5 +16,7 @@ MonoBehaviour:
     <TableReferences>k__BackingField:
       _lockedItems:
       - m_TableCollectionName: MainMenu
+      - m_TableCollectionName: Credits
     _tables:
     - {fileID: 11400000, guid: 4685f70987e7e3b448d72f2b0df95260, type: 2}
+    - {fileID: 11400000, guid: f989db545fd34a949924e352c998ceda, type: 2}

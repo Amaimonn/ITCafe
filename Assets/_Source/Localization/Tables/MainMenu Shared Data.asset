@@ -91,6 +91,10 @@ MonoBehaviour:
     m_Key: start_mission
     m_Metadata:
       m_Items: []
+  - m_Id: 30398571017658368
+    m_Key: credits_button
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

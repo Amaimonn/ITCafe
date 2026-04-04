@@ -32,8 +32,9 @@ namespace ITCafe.Gameplay.UI.MVVM
         protected override void OnInit()
         {
             _playButton = Root.Q<Button>(name: _playButtonName);
-            _exitButton = Root.Q<Button>(name: _exitButtonName);
             _settingsButton = Root.Q<Button>(name: _settingsButtonName);
+            _creditsButton =  Root.Q<Button>(name: _creditsButtonName);
+            _exitButton = Root.Q<Button>(name: _exitButtonName);
 
             _animatedTextContainer = Root.Q<AnimatedTextContainer>(name: _animatedTerminalName);
         }
@@ -58,6 +59,7 @@ namespace ITCafe.Gameplay.UI.MVVM
             
             _playButton.RegisterCallback<ClickEvent>(OnStartClicked);
             _settingsButton.RegisterCallback<ClickEvent>(OnSettingsClicked);
+            _creditsButton.RegisterCallback<ClickEvent>(OnCreditsClicked);
             _exitButton.RegisterCallbackOnce<ClickEvent>(OnQuitClicked);
         }
 
