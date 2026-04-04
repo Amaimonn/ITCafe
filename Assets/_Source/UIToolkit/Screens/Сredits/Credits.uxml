@@ -89,11 +89,20 @@
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2275740213248)"/>
                             </Bindings>
                         </ui:Label>
-                        <ui:Label text="Nahht" class="credits__name"/>
-                        <ui:Label text="Universfield" class="credits__name"/>
-                        <ui:Label text="freesound_community" class="credits__name"/>
-                        <ui:Label text="Alex Jauk" class="credits__name"/>
-                        <ui:Label text="Dragon Studio" class="credits__name"/>
+                        <ui:VisualElement name="SfxColumns" style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="SfxColumn1" style="flex-grow: 1;">
+                                <ui:Label text="Dragon Studio" class="credits__name"/>
+                                <ui:Label text="RescopicSound" class="credits__name" style="height: 34px;"/>
+                                <ui:Label text="DenielCZ" class="credits__name"/>
+                                <ui:Label text="Nomagician" class="credits__name"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="SfxColumn2" style="flex-grow: 1;">
+                                <ui:Label text="Nahht" class="credits__name"/>
+                                <ui:Label text="Universfield" class="credits__name"/>
+                                <ui:Label text="freesound_community" class="credits__name"/>
+                                <ui:Label text="Alex Jauk" class="credits__name"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
