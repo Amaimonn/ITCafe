@@ -5,6 +5,8 @@ namespace ITCafe
     /// </summary>
     public class MainMenuEnterContext : SceneContext
     {
+        public bool ShowGameCompleted { get; set; } = false;
+
         public MainMenuEnterContext() : base(Scenes.MAIN_MENU)
         {
             ToSceneName = Scenes.MAIN_MENU;

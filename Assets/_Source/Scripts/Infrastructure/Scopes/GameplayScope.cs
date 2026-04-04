@@ -296,6 +296,13 @@ namespace ITCafe
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
             var gameplayExitSignal = new Subject<GameplayExitContext>();
 
+            _gameplayEnterContext.CompletionSignal.Subscribe(x =>
+                {
+                    if (x.IsGameCompletion)
+                        mainMenuEnterContext.ShowGameCompleted = true;
+                })
+                .AddTo(_disposables);
+
             exitSignal.Take(1)
                 .Subscribe(_ => gameplayExitSignal.OnNext(gameplayExitContext))
                 .AddTo(_disposables);
@@ -319,7 +326,7 @@ namespace ITCafe
 
                 guideViewModel.OnClosingCompleted += BootOnce;
                 _disposables.Add(Disposable.Create(() => guideViewModel.OnClosingCompleted -= BootOnce));
-                
+
                 void BootOnce()
                 {
                     guideViewModel.OnClosingCompleted -= BootOnce;

@@ -67,19 +67,28 @@ namespace ITCafe
 
             Build();
             yield return new WaitForEndOfFrame();
-
+            
+            // Background music
             var audioPlayer = Container.Resolve<AudioPlayer>();
             audioPlayer.PlaySingletonMusic(_mainMenuMusic, loop: true);
-
+            
+            // Localization
             _mainMenuLocalizationLoader.Init();
             _mainMenuLocalizationLoader.AddTo(_disposables);
             yield return _mainMenuLocalizationLoader.LoadTables();
-
+            
+            // UI
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
 
             var mainMenuBinder = Container.Resolve<IViewBinder<MainMenuViewModel>>();
             mainMenuBinder.Open();
+
+            if (mainMenuEnterContext is { ShowGameCompleted: true })
+            {
+                var creditsBinder = Container.Resolve<IViewBinder<CreditsViewModel>>();
+                creditsBinder.Open();
+            }
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.START_MISSION_SIGNAL);
             var gameplayEnterContext = new GameplayEnterContext()
@@ -116,9 +125,10 @@ namespace ITCafe
                     campaignDataModel, saveStateProvider.SaveAll, (result, _) =>
                     {
                         var starsCount = result.Stars;
+
                         if (selectedMissionModel.Stars.Value < starsCount)
                             selectedMissionModel.Stars.Value = starsCount;
-
+                        
                         return starsCount > 0;
                     });
                 gameplayEnterContext.CompletionSignal = completionSignal;

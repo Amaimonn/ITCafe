@@ -14,7 +14,8 @@ namespace ITCafe.Campaign
     public class LinearCampaignUnlocker
     {
         public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel,
-            CampaignDataModel campaignDataModel, Action saveAction,
+            CampaignDataModel campaignDataModel,
+            Action saveAction,
             Func<T, CampaignState, bool> successHandler) where T : IMissionResult
         {
             var selectedLocationId = campaignModel.SelectedLocationId.Value;
@@ -32,17 +33,43 @@ namespace ITCafe.Campaign
                     action?.Invoke(x);
             });
 
+            // Data gathering before unloading (data from Addressables)
+            var selectedLocationData = campaignDataModel.SelectedLocationData.Value;
+            var currentLocationMissionIds = selectedLocationData.MissionIds;
+            var allLocationsData = campaignDataModel.LocationDataCollection.AllData;
+            var currentLocationIndex = allLocationsData.IndexWhere(x =>
+                x.Id == selectedLocationId);
+            var allLocationsDataCount = allLocationsData.Count;
+            
+            Action openNextLocation = null;
+            if (currentLocationIndex < allLocationsDataCount - 1)
+            {
+                var nextLocationData = allLocationsData[currentLocationIndex + 1];
+                var nextLocationId = nextLocationData.Id;
+                var nextMissionId = nextLocationData.MissionIds[0];
+
+                openNextLocation = () =>
+                {
+                    var firstMissionState = new MissionState(nextMissionId, false);
+                    var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
+                    var nextLocationState = new LocationState(nextLocationId, isCompleted: false,
+                        nextLocationOpenedMissions);
+
+                    campaignState.Locations.Add(nextLocationState);
+                };
+            }
+
+            // result handling
+            // TIP: don`t use any DATA in lambda, because it will be unloaded that will cause null exception
             actions.Add(result =>
             {
                 var isSuccess = successHandler(result, campaignState);
-                if (!isSuccess || selectedMissionModel.IsCompleted.Value)
+                if (!isSuccess || selectedMissionModel.IsCompleted.Value) // only if NEW mission completion
                     return;
-                
+
                 // New mission completed handling
                 selectedMissionModel.IsCompleted.Value = true;
 
-                var selectedLocationData = campaignDataModel.SelectedLocationData.Value;
-                var currentLocationMissionIds = selectedLocationData.MissionIds;
                 var currentMissionIndex = currentLocationMissionIds.IndexWhere(x => x == selectedMissionId);
 
                 if (currentMissionIndex < currentLocationMissionIds.Count - 1) // open next mission
@@ -57,19 +84,14 @@ namespace ITCafe.Campaign
                 {
                     selectedLocationModel.IsCompleted.Value = true;
 
-                    var allLocationsData = campaignDataModel.LocationDataCollection.AllData;
-                    var currentLocationIndex = allLocationsData.IndexWhere(x =>
-                        x.Id == selectedLocationId);
-
-                    if (currentLocationIndex < allLocationsData.Count - 1)
+                    if (openNextLocation != null)
                     {
-                        var nextLocationData = allLocationsData[currentLocationIndex + 1];
-                        var firstMissionState = new MissionState(nextLocationData.MissionIds[0], false);
-                        var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
-                        var nextLocationState = new LocationState(nextLocationData.Id, isCompleted: false,
-                            nextLocationOpenedMissions);
-
-                        campaignState.Locations.Add(nextLocationState);
+                        openNextLocation();
+                    }
+                    else // last mission was completed
+                    {
+                        result.IsGameCompletion = true;
+                        FLogger.LogGood<LinearCampaignUnlocker>("ALL MISSIONS COMPLETED");
                     }
                 }
 
@@ -86,7 +108,7 @@ namespace ITCafe.Campaign
                         selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId;
                 }
             });
-            
+
             actions.Add(_ => saveAction());
             return completionSignal;
         }
