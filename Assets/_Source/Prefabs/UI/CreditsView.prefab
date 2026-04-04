@@ -48,3 +48,14 @@ MonoBehaviour:
   _priority: 0
   _closeButtonName: CloseButton
   _closeBackgroundName: CloseBackground
+  _closeClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 1e6c0cc5f2cb9ed4f863b8e3ff79954f, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1

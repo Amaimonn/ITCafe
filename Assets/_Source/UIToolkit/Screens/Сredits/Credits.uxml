@@ -3,7 +3,6 @@
     <ui:VisualElement name="CreditsRoot" class="credits">
         <ui:VisualElement class="credits__header">
             <ui:Label text="IT CAFE" class="credits__title"/>
-            <ui:Label text="// SYSTEM CREDITS" class="credits__subtitle"/>
             <ui:VisualElement class="credits__divider"/>
         </ui:VisualElement>
         <ui:VisualElement class="credits__content">
@@ -41,11 +40,26 @@
                         </ui:Label>
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:VisualElement name="Tools">
+                    <ui:Label class="credits__section-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(1515665219584)"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement class="credits__entry">
+                        <ui:Label text="Unity 6.3" class="credits__name"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credits__entry"/>
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Column2" class="credits__column">
                 <ui:VisualElement name="Assets">
-                    <ui:Label text="[ ASSETS ]" class="credits__section-title"/>
-                    <ui:VisualElement class="credits__entry">
+                    <ui:Label class="credits__section-title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(9314492416)"/>
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement name="Graphics" class="credits__entry">
                         <ui:Label class="credits__role">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(8185065758720)"/>
@@ -60,33 +74,27 @@
                         <ui:Label text="Pandazole : Pandazole - Kitchen Food low poly pack" class="credits__name"/>
                         <ui:Label text="Chris Nolet : Quick Outline" class="credits__name"/>
                     </ui:VisualElement>
-                    <ui:VisualElement class="credits__entry">
-                        <ui:Label class="credits__role">
-                            <Bindings>
-                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2275740213248)"/>
-                            </Bindings>
-                        </ui:Label>
-                        <ui:Label text="AUTHOR / SOURCE" class="credits__name"/>
-                    </ui:VisualElement>
-                    <ui:VisualElement class="credits__entry">
+                    <ui:VisualElement name="Music" class="credits__entry">
                         <ui:Label class="credits__role">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2369239638016)"/>
                             </Bindings>
                         </ui:Label>
-                        <ui:Label text="AUTHOR / LICENSE" class="credits__name"/>
+                        <ui:Label text="Emmraan : foreign land" class="credits__name"/>
+                        <ui:Label text="Raspberry Music : morning in the cafe" class="credits__name"/>
                     </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="Tools">
-                    <ui:Label class="credits__section-title">
-                        <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(1515665219584)"/>
-                        </Bindings>
-                    </ui:Label>
-                    <ui:VisualElement class="credits__entry">
-                        <ui:Label text="Unity 6.3" class="credits__name"/>
+                    <ui:VisualElement name="SFX" class="credits__entry">
+                        <ui:Label class="credits__role">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2275740213248)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label text="Nahht" class="credits__name"/>
+                        <ui:Label text="Universfield" class="credits__name"/>
+                        <ui:Label text="freesound_community" class="credits__name"/>
+                        <ui:Label text="Alex Jauk" class="credits__name"/>
+                        <ui:Label text="Dragon Studio" class="credits__name"/>
                     </ui:VisualElement>
-                    <ui:VisualElement class="credits__entry"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

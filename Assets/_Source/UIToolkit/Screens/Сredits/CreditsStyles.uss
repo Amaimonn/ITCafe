@@ -54,11 +54,11 @@
 }
 
 .credits__column {
-    flex-grow: 0;
+    flex-grow: 1;
     padding-left: 16px;
     padding-right: 16px;
-    flex-shrink: 1;
-    width: 300px;
+    flex-shrink: 0;
+    width: 500px;
 }
 
 .credits__section-title {
@@ -81,13 +81,13 @@
 }
 
 .credits__role {
-    font-size: 11px;
+    font-size: 14px;
     color: var(--blue-border-hover);
     letter-spacing: 1px;
 }
 
 .credits__name {
-    font-size: 16px;
+    font-size: var(--description-font-size);
     color: var(--blue-color);
     margin-left: 8px;
 }
