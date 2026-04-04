@@ -56,6 +56,8 @@ namespace ITCafe.Gameplay.UI.MVVM
 
         public void StartGameplay()
         {
+            _campaignModel.LastLaunchedLocationId.Value = _campaignModel.SelectedLocationId.Value;
+            _campaignModel.LastLaunchedMissionId.Value = _campaignModel.SelectedMissionId.Value;
             _startMissionSubject.OnNext(Unit.Default);
         }
 

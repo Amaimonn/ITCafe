@@ -93,13 +93,10 @@ namespace ITCafe.CafeBusiness
             _gameStatsService.CompleteDay();
 
             var report = _gameStatsService.GetDailyReport();
-            if (report.EarnedStars > 0)
+            _sendResults.OnNext(new CafeMissionResult
             {
-                _sendResults.OnNext(new CafeMissionResult
-                {
-                    Stars = report.EarnedStars
-                });
-            }
+                Stars = report.EarnedStars
+            });
 
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);

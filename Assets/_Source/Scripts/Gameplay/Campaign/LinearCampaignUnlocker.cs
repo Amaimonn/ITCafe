@@ -13,9 +13,9 @@ namespace ITCafe.Campaign
     /// </summary>
     public class LinearCampaignUnlocker
     {
-        public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel, 
-            CampaignDataModel campaignDataModel, Action saveAction, 
-            Action<T, CampaignState> successHandler) where T : IMissionResult
+        public Subject<T> CreateMissionCompletionSignal<T>(CampaignModel campaignModel,
+            CampaignDataModel campaignDataModel, Action saveAction,
+            Func<T, CampaignState, bool> successHandler) where T : IMissionResult
         {
             var selectedLocationId = campaignModel.SelectedLocationId.Value;
             var selectedMissionId = campaignModel.SelectedMissionId.Value;
@@ -31,14 +31,17 @@ namespace ITCafe.Campaign
                 foreach (var action in actions)
                     action?.Invoke(x);
             });
-            
-            actions.Add(x => successHandler(x, campaignState));
 
-            if (!selectedMissionModel.IsCompleted.Value)
+            actions.Add(result =>
             {
-                actions.Add(x => selectedMissionModel.IsCompleted.Value = true);
+                var isSuccess = successHandler(result, campaignState);
+                if (!isSuccess || selectedMissionModel.IsCompleted.Value)
+                    return;
                 
-                var selectedLocationData =  campaignDataModel.SelectedLocationData.Value;
+                // New mission completed handling
+                selectedMissionModel.IsCompleted.Value = true;
+
+                var selectedLocationData = campaignDataModel.SelectedLocationData.Value;
                 var currentLocationMissionIds = selectedLocationData.MissionIds;
                 var currentMissionIndex = currentLocationMissionIds.IndexWhere(x => x == selectedMissionId);
 
@@ -47,17 +50,17 @@ namespace ITCafe.Campaign
                     var nextMissionId = currentLocationMissionIds[currentMissionIndex + 1];
                     var nextMissionState = new MissionState(nextMissionId, false);
                     var nextMissionModel = new MissionModel(nextMissionState);
-                    
-                    actions.Add(_ => selectedLocationModel.OpenedMissionsMap.Add(nextMissionId, nextMissionModel));
+
+                    selectedLocationModel.OpenedMissionsMap.Add(nextMissionId, nextMissionModel);
                 }
                 else // open next location (+ mission)
                 {
-                    actions.Add(_ => selectedLocationModel.IsCompleted.Value = true);
-                    
+                    selectedLocationModel.IsCompleted.Value = true;
+
                     var allLocationsData = campaignDataModel.LocationDataCollection.AllData;
                     var currentLocationIndex = allLocationsData.IndexWhere(x =>
                         x.Id == selectedLocationId);
-                    
+
                     if (currentLocationIndex < allLocationsData.Count - 1)
                     {
                         var nextLocationData = allLocationsData[currentLocationIndex + 1];
@@ -65,14 +68,14 @@ namespace ITCafe.Campaign
                         var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
                         var nextLocationState = new LocationState(nextLocationData.Id, isCompleted: false,
                             nextLocationOpenedMissions);
-                        
-                        actions.Add(_ => campaignState.Locations.Add(nextLocationState));
+
+                        campaignState.Locations.Add(nextLocationState);
                     }
                 }
 
                 if (string.IsNullOrEmpty(selectedLocationModel.State.MaxCompletedMissionId))
                 {
-                    actions.Add(_ => selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId);
+                    selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId;
                 }
                 else
                 {
@@ -80,12 +83,11 @@ namespace ITCafe.Campaign
                         x == selectedLocationModel.State.MaxCompletedMissionId);
 
                     if (maxMissionIndex < currentMissionIndex)
-                        actions.Add(_ => selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId);
+                        selectedLocationModel.State.MaxCompletedMissionId = selectedMissionId;
                 }
-            }
-
+            });
+            
             actions.Add(_ => saveAction());
-
             return completionSignal;
         }
 
@@ -140,7 +142,7 @@ namespace ITCafe.Campaign
             {
                 if (string.IsNullOrEmpty(locationState.MaxCompletedMissionId))
                     continue;
-                
+
                 var locationData = campaignDataModel.LocationsDataMap.CurrentValue[locationState.Id];
 
                 var lastCompletedMissionData = locationData.MissionIds.FirstOrDefault(x =>

@@ -113,8 +113,11 @@ namespace ITCafe
                 var completionSignal = campaignUnlocker.CreateMissionCompletionSignal<CafeMissionResult>(campaignModel,
                     campaignDataModel, saveStateProvider.SaveAll, (result, _) =>
                     {
-                        if (selectedMissionModel.Stars.Value < result.Stars)
-                            selectedMissionModel.Stars.Value = result.Stars;
+                        var starsCount = result.Stars;
+                        if (selectedMissionModel.Stars.Value < starsCount)
+                            selectedMissionModel.Stars.Value = starsCount;
+
+                        return starsCount > 0;
                     });
                 gameplayEnterContext.CompletionSignal = completionSignal;
 
