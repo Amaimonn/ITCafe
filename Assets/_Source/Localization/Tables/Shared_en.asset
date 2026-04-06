@@ -46,6 +46,18 @@ MonoBehaviour:
     m_Localized: OK
     m_Metadata:
       m_Items: []
+  - m_Id: 31193451826642944
+    m_Localized: CONFIRM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193654306668544
+    m_Localized: CONFIRM ACTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193557267251200
+    m_Localized: "Close without saving? \nAll changes will be lost."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

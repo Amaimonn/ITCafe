@@ -13,12 +13,11 @@ using VContainer;
 
 namespace ITCafe.UI.MVVM
 {
-    public class SettingsView : AttachableToolkitScreen<SettingsViewModel>
+    public class SettingsView : AttachableToolkitWindow<SettingsViewModel>
     {
         [Header("UIElements")]
         [SerializeField] private string _applyButtonName = "ApplyButton";
         [SerializeField] private string _cancelChangesButtonName = "CancelChangesButton";
-        [SerializeField] private string _closeButtonName = "CloseButton";
         [SerializeField] private string _sectionsContainerName = "SectionsContainer";
         [SerializeField] private string _tabButtonsContainerName = "TabButtonsContainer";
         [SerializeField] private string _controlInfoContainerName = "ControlInfoContainer";
@@ -36,7 +35,6 @@ namespace ITCafe.UI.MVVM
 
         private Button _applyButton;
         private Button _cancelChangesButton;
-        private Button _closeButton;
         private VisualElement _sectionsContainer;
         private VisualElement _tabButtonsContainer;
         private VisualElement _controlInfoContainer;
@@ -84,8 +82,6 @@ namespace ITCafe.UI.MVVM
             _applyButton.SubscribeCallback<ClickEvent>(ApplyChanges)
                 .AddTo(_disposables);
             _cancelChangesButton.SubscribeCallback<ClickEvent>(CancelChanges)
-                .AddTo(_disposables);
-            _closeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
 
             ViewModel.IsAnyChanges.Subscribe(x =>
@@ -212,11 +208,11 @@ namespace ITCafe.UI.MVVM
             PlayResetSfx();
             ViewModel.CancelUnappliedChanges();
         }
-
-        private void OnCloseClicked(ClickEvent _)
+        
+        protected override void OnCloseClicked(ClickEvent _)
         {
             PlayCloseSfx();
-            ViewModel.StartClosing();
+            base.OnCloseClicked(_);
         }
         
         private void PlayButtonSfx()

@@ -46,11 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.UI.MVVM.ConfirmPopUpView
   _uiAsset: {fileID: 9197481963319205126, guid: d3baaedd82402c94fbe0cee86d664813, type: 3}
   _priority: 8
+  _closeButtonName: CloseButton
+  _closeBackgroundName: CloseBackground
   _titleLabelName: TitleLabel
   _messageLabelName: MessageLabel
   _confirmButtonName: ConfirmButton
   _cancelButtonName: CancelButton
-  _closeButtonName: CloseButton
   _confirmClickSfx:
     <AudioClip>k__BackingField: {fileID: 0}
     <IsLoop>k__BackingField: 0

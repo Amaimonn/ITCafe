@@ -43,6 +43,18 @@ MonoBehaviour:
     m_Key: ok
     m_Metadata:
       m_Items: []
+  - m_Id: 31193451826642944
+    m_Key: confirm_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193557267251200
+    m_Key: settings_unapplied_message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193654306668544
+    m_Key: confirm_action
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

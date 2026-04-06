@@ -101,5 +101,5 @@ MonoBehaviour:
   _confirmSetup:
     TitleLid: confirm_action
     MessageLid: settings_unapplied_message
-    ConfirmTextLid: confirm
-    CancelTextLid: cancel
+    ConfirmTextLid: confirm_button
+    CancelTextLid: cancel_button

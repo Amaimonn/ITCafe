@@ -1,7 +1,6 @@
 using DevKit.Locator;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
-using ITCafe.Data;
 using ITCafe.Shared;
 using R3;
 using UnityEngine;
@@ -10,13 +9,12 @@ using VContainer;
 
 namespace ITCafe.UI.MVVM
 {
-    public class ConfirmPopUpView : AttachableToolkitScreen<ConfirmPopUpViewModel>
+    public class ConfirmPopUpView : AttachableToolkitWindow<ConfirmPopUpViewModel>
     {
         [SerializeField] private string _titleLabelName = "TitleLabel";
         [SerializeField] private string _messageLabelName = "MessageLabel";
         [SerializeField] private string _confirmButtonName = "ConfirmButton";
         [SerializeField] private string _cancelButtonName = "CancelButton";
-        [SerializeField] private string _closeButtonName = "CloseButton";
         
         [Header("SFX"), Space(4)]
         [SerializeField] private SfxData _confirmClickSfx;
@@ -27,7 +25,6 @@ namespace ITCafe.UI.MVVM
         private Label _messageLabel;
         private Button _confirmButton;
         private Button _cancelButton;
-        private Button _closeButton;
         
         private ILocalizer _localizer;
 
@@ -37,13 +34,14 @@ namespace ITCafe.UI.MVVM
 
         protected override void OnInit()
         {
+            base.OnInit();
+            
             _localizer = ServiceLocator.Current.Get<ILocalizer>();
             
             _titleLabel = Root.Q<Label>(name: _titleLabelName);
             _messageLabel = Root.Q<Label>(name: _messageLabelName);
             _confirmButton = Root.Q<Button>(name: _confirmButtonName);
             _cancelButton = Root.Q<Button>(name: _cancelButtonName);
-            _closeButton = Root.Q<Button>(name: _closeButtonName);
         }
 
         protected override void OnBind(ConfirmPopUpViewModel viewModel)
@@ -67,8 +65,6 @@ namespace ITCafe.UI.MVVM
                 .AddTo(_disposables);
             _cancelButton.SubscribeCallbackOnce<ClickEvent>(OnCancelClicked)
                 .AddTo(_disposables);
-            _closeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
-                .AddTo(_disposables);
         }
 
         private void SetLocalizedText(TextElement textElement, string text)
@@ -87,12 +83,6 @@ namespace ITCafe.UI.MVVM
         private void OnCancelClicked(ClickEvent _)
         {
             PlaySfx(_cancelClickSfx);
-            ViewModel.Cancel();
-        }
-
-        private void OnCloseClicked(ClickEvent _)
-        {
-            PlaySfx(_closedSfx.IsValid ? _closedSfx : _cancelClickSfx);
             ViewModel.Cancel();
         }
 

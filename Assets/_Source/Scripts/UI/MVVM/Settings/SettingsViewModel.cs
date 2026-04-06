@@ -77,8 +77,14 @@ namespace Inui.UI.MVVM.Settings
 
         public override void StartClosing()
         {
-            if (_confirmViewModel != null) // popup is opened
+            if (!_isOpened)
                 return;
+            
+            if (_confirmViewModel != null) // popup is opened
+            {
+                FLogger.LogWarning("popup is opened");
+                return;
+            }
 
             if (!_isAnyChanges.CurrentValue)
             {
@@ -88,6 +94,8 @@ namespace Inui.UI.MVVM.Settings
             }
 
             _confirmViewModel = _confirmBinder.Open();
+            _confirmViewModel.Setup(_confirmSetup);
+
             _popUpConfirmDisposable = _confirmViewModel.OnConfirmed.Take(1)
                 .Subscribe(_ =>
                 {
@@ -96,6 +104,10 @@ namespace Inui.UI.MVVM.Settings
                     base.StartClosing();
                 });
 
+            var confirmViewModel = _confirmViewModel;
+            Subs.SubscribeOnce(() => _confirmViewModel = null,
+                x => confirmViewModel.OnClosingCompleted += x,
+                x => confirmViewModel.OnClosingCompleted -= x);
             // if cancelled: do nothing
         }
 
