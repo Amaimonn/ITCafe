@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
-using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;

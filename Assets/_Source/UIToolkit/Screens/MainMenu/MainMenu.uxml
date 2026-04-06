@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/MainMenu/MainMenuStyles.uss?fileID=7433441132597879392&amp;guid=b72b6d07834039643a1308ab69eea901&amp;type=3#MainMenuStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
-    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 100%; position: absolute; align-items: center; background-color: rgb(0, 0, 0);">
+    <ui:VisualElement name="MainMenuVFX" style="flex-grow: 1; width: 100%; height: 100%; position: absolute; align-items: center; background-color: rgb(0, 0, 0);">
         <ui:VisualElement class="menu__shader" style="flex-grow: 1; position: absolute;"/>
     </ui:VisualElement>
     <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="main-menu__root">

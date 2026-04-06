@@ -1,5 +1,6 @@
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
+using ITCafe.Data;
 using ITCafe.Shared;
 using R3;
 using UnityEngine;
@@ -19,6 +20,10 @@ namespace ITCafe.UI.MVVM
         [Header("SFX"), Space(4)]
         [SerializeField] private SfxData _buttonClickSfx;
         [SerializeField] private SfxData _closeClickSfx;
+        
+        [Header("PopUps"), Space(4)]
+        [SerializeField] private ConfirmationSetup _restartPopUpSetup;
+        [SerializeField] private ConfirmationSetup _exitPopUpSetup;
         
         private Button _resumeButton;
         private Button _closeButton;
@@ -43,21 +48,24 @@ namespace ITCafe.UI.MVVM
         {
             base.OnBind(viewModel);
             
+            viewModel.SetupExitPopUp(_exitPopUpSetup);
+            viewModel.SetupRestartPopUp(_restartPopUpSetup);
+            
             _disposables  = new CompositeDisposable();
             
-            _resumeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
+            _resumeButton.SubscribeCallback<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
             
-            _closeButton.SubscribeCallbackOnce<ClickEvent>(OnCloseClicked)
+            _closeButton.SubscribeCallback<ClickEvent>(OnCloseClicked)
                 .AddTo(_disposables);
 
-            _restartButton.SubscribeCallbackOnce<ClickEvent>(OnRestartClicked)
+            _restartButton.SubscribeCallback<ClickEvent>(OnRestartClicked)
                 .AddTo(_disposables);
             
             _settingsButton.SubscribeCallback<ClickEvent>(OnSettingsClicked)
                 .AddTo(_disposables);
 
-            _exitButton.SubscribeCallbackOnce<ClickEvent>(OnExitClicked)
+            _exitButton.SubscribeCallback<ClickEvent>(OnExitClicked)
                 .AddTo(_disposables);
         }
 

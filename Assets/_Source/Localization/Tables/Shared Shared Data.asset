@@ -47,12 +47,24 @@ MonoBehaviour:
     m_Key: confirm_button
     m_Metadata:
       m_Items: []
-  - m_Id: 31193557267251200
-    m_Key: settings_unapplied_message
+  - m_Id: 31193654306668544
+    m_Key: settings_unapplied_popup_title
     m_Metadata:
       m_Items: []
-  - m_Id: 31193654306668544
-    m_Key: confirm_action
+  - m_Id: 31193557267251200
+    m_Key: settings_unapplied_popup_message
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31223564756713472
+    m_Key: session_exit_popup_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31224380745973760
+    m_Key: restart_popup_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31222875762589696
+    m_Key: mission_progress_popup_message
     m_Metadata:
       m_Items: []
   m_Metadata:

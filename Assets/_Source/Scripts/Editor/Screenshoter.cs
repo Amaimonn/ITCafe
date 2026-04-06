@@ -8,7 +8,6 @@ namespace ITCafe.Editor
 {
     public class Screenshoter : MonoBehaviour
     {
-#if UNITY_EDITOR
         [SerializeField] private string _path;
         [SerializeField] private string _imageName = "Screenshot";
         
@@ -22,7 +21,6 @@ namespace ITCafe.Editor
                 Debug.Log($"Screenshoter: {fileName} Captured");
             }
         }
-#endif
     }
 }
 #endif

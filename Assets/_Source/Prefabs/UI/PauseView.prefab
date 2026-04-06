@@ -73,3 +73,13 @@ MonoBehaviour:
     <MaxPitchShift>k__BackingField: 0.1
     <IsPausable>k__BackingField: 0
     <IsSingleton>k__BackingField: 1
+  _restartPopUpSetup:
+    TitleLid: restart_popup_title
+    MessageLid: mission_progress_popup_message
+    ConfirmTextLid: confirm_button
+    CancelTextLid: cancel_button
+  _exitPopUpSetup:
+    TitleLid: session_exit_popup_title
+    MessageLid: mission_progress_popup_message
+    ConfirmTextLid: confirm_button
+    CancelTextLid: cancel_button

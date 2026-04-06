@@ -51,11 +51,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 31193654306668544
-    m_Localized: CONFIRM ACTION
+    m_Localized: Close the Settings?
     m_Metadata:
       m_Items: []
   - m_Id: 31193557267251200
-    m_Localized: "Close without saving? \nAll changes will be lost."
+    m_Localized: All unapplied changes will be lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31222875762589696
+    m_Localized: Mission progress will be lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31223564756713472
+    m_Localized: Exit to Main Menu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31224380745973760
+    m_Localized: Restart the mission?
     m_Metadata:
       m_Items: []
   references:

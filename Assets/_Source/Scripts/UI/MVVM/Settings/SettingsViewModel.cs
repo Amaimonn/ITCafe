@@ -96,18 +96,21 @@ namespace Inui.UI.MVVM.Settings
             _confirmViewModel = _confirmBinder.Open();
             _confirmViewModel.Setup(_confirmSetup);
 
-            _popUpConfirmDisposable = _confirmViewModel.OnConfirmed.Take(1)
+            _popUpConfirmDisposable = _confirmViewModel.OnConfirmed
+                .Take(1)
                 .Subscribe(_ =>
                 {
-                    _popUpConfirmDisposable?.Dispose();
                     CancelUnappliedChanges();
                     base.StartClosing();
                 });
 
-            var confirmViewModel = _confirmViewModel;
-            Subs.SubscribeOnce(() => _confirmViewModel = null,
-                x => confirmViewModel.OnClosingCompleted += x,
-                x => confirmViewModel.OnClosingCompleted -= x);
+            Subs.SubscribeOnce(() =>
+                {
+                    Disposes.ClearDispose(ref _popUpConfirmDisposable);
+                    _confirmViewModel = null;
+                },
+                x => _confirmViewModel.OnClosingCompleted += x,
+                x => _confirmViewModel.OnClosingCompleted -= x);
             // if cancelled: do nothing
         }
 
@@ -142,8 +145,9 @@ namespace Inui.UI.MVVM.Settings
 
         public override void Dispose()
         {
-            _popUpConfirmDisposable?.Dispose();
+            Disposes.ClearDispose(ref _popUpConfirmDisposable);
             VideoSettingsViewModel.Dispose();
+            
             base.Dispose();
         }
     }
