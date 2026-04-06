@@ -98,3 +98,8 @@ MonoBehaviour:
     <MaxPitchShift>k__BackingField: 0.1
     <IsPausable>k__BackingField: 1
     <IsSingleton>k__BackingField: 1
+  _confirmSetup:
+    TitleLid: confirm_action
+    MessageLid: settings_unapplied_message
+    ConfirmTextLid: confirm
+    CancelTextLid: cancel

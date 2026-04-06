@@ -54,8 +54,8 @@ namespace ITCafe
         {
             builder.RegisterMVVM<CreditsView, CreditsViewModel>(_creditsViewPrefab);
             builder.RegisterMVVM<MainMenuView, MainMenuViewModel>(_mainMenuViewPrefab);
-            builder.RegisterMVVM<CampaignView, CampaignViewModel, CampaignBinder>(_campaignViewPrefab, 
-                Lifetime.Transient);
+            builder.RegisterMVVM<CampaignView, CampaignViewModel, CampaignBinder>(_campaignViewPrefab,
+                viewModelLifetime: Lifetime.Transient);
         }
 
         public IEnumerator BootCoroutine(MainMenuEnterContext mainMenuEnterContext = null)
@@ -68,16 +68,16 @@ namespace ITCafe
 
             Build();
             yield return new WaitForEndOfFrame();
-            
+
             // Background music
             var audioPlayer = Container.Resolve<AudioPlayer>();
             audioPlayer.PlaySingletonMusic(_mainMenuMusic, loop: true);
-            
+
             // Localization
             _mainMenuLocalizationLoader.Init();
             _mainMenuLocalizationLoader.AddTo(_disposables);
             yield return _mainMenuLocalizationLoader.LoadTables();
-            
+
             // UI
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
@@ -129,7 +129,7 @@ namespace ITCafe
 
                         if (selectedMissionModel.Stars.Value < starsCount)
                             selectedMissionModel.Stars.Value = starsCount;
-                        
+
                         return starsCount > 0;
                     });
                 gameplayEnterContext.CompletionSignal = completionSignal;

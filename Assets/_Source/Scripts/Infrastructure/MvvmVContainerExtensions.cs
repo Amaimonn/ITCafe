@@ -10,43 +10,25 @@ namespace ITCafe
     public static class MvvmVContainerExtensions
     {
         public static IContainerBuilder RegisterMVVM<TView, TViewModel>(this IContainerBuilder builder,
-            TView viewPrefab, Lifetime viewModelLifetime)
-            where TView : BaseView, IScreenAttach<TViewModel>
-            where TViewModel : IScreenViewModel
-        {
-            return builder.RegisterMVVM<TView, TViewModel, SimpleAttachBinder<TView, TViewModel>>(
-                viewPrefab, 
-                null,
-                viewModelLifetime);
-        }
-
-        public static IContainerBuilder RegisterMVVM<TView, TViewModel, TBinder>(this IContainerBuilder builder,
-            TView viewPrefab, Lifetime viewModelLifetime)
-            where TView : BaseView, IScreenAttach<TViewModel>
-            where TViewModel : IScreenViewModel
-            where TBinder : IViewBinder<TViewModel>
-        {
-            return builder.RegisterMVVM<TView, TViewModel, TBinder>(
-                viewPrefab, 
-                null,
-                viewModelLifetime);
-        }
-
-        public static IContainerBuilder RegisterMVVM<TView, TViewModel>(this IContainerBuilder builder,
-            TView viewPrefab, Func<IObjectResolver, TViewModel> viewModelFactory = null,
-            Lifetime viewModelLifetime = Lifetime.Singleton)
+            TView viewPrefab, 
+            Func<IObjectResolver, TViewModel> viewModelFactory = null,
+            Lifetime viewModelLifetime = Lifetime.Singleton,
+            Lifetime binderLifetime = Lifetime.Singleton)
             where TView : BaseView, IScreenAttach<TViewModel>
             where TViewModel : IScreenViewModel
         {
             return builder.RegisterMVVM<TView, TViewModel, SimpleAttachBinder<TView, TViewModel>>(
                 viewPrefab,
                 viewModelFactory,
-                viewModelLifetime);
+                viewModelLifetime: viewModelLifetime,
+                binderLifetime: binderLifetime);
         }
 
         public static IContainerBuilder RegisterMVVM<TView, TViewModel, TBinder>(this IContainerBuilder builder,
-            TView viewPrefab, Func<IObjectResolver, TViewModel> viewModelFactory = null,
-            Lifetime viewModelLifetime = Lifetime.Singleton)
+            TView viewPrefab, 
+            Func<IObjectResolver, TViewModel> viewModelFactory = null,
+            Lifetime viewModelLifetime = Lifetime.Singleton,
+            Lifetime binderLifetime = Lifetime.Singleton)
             where TView : BaseView, IScreenAttach<TViewModel>
             where TViewModel : IScreenViewModel
             where TBinder : IViewBinder<TViewModel>
@@ -65,7 +47,7 @@ namespace ITCafe
 
             builder.Register<Func<TViewModel>>(x => () => vmFactory(x), Lifetime.Singleton);
 
-            builder.Register<TBinder>(Lifetime.Singleton)
+            builder.Register<TBinder>(binderLifetime)
                 .As<IViewBinder<TViewModel>>();
 
             return builder;

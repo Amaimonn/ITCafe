@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
+using ITCafe.Data;
 using ITCafe.Data.Settings;
 using ITCafe.Shared;
 using ITCafe.UI.Custom;
@@ -30,6 +30,9 @@ namespace ITCafe.UI.MVVM
         [SerializeField] private SfxData _buttonClickSfx;
         [SerializeField] private SfxData _resetClickSfx;
         [SerializeField] private SfxData _closeClickSfx;
+        
+        [Header("PopUp"), Space(4)]
+        [SerializeField] private ConfirmationSetup _confirmSetup;
 
         private Button _applyButton;
         private Button _cancelChangesButton;
@@ -64,6 +67,8 @@ namespace ITCafe.UI.MVVM
             
             _disposables = new CompositeDisposable();
             _sectionsMap.Clear();
+            
+            viewModel.SetConfirmation(_confirmSetup);
 
             viewModel.OnSettingsDataChanged.Where(x => x != null)
                 .Take(1)

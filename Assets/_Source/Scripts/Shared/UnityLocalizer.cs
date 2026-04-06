@@ -6,6 +6,14 @@ namespace ITCafe.Shared
 {
     public class UnityLocalizer : ILocalizer
     {
+        public void Localize(TextElement textElement, string table, string entry = null)
+        {
+            entry ??= textElement.text;
+
+            if (!string.IsNullOrEmpty(entry))
+                textElement.SetBinding("text", new LocalizedString(table, entry));
+        }
+        
         public void Localize(Label label, string table, string entry = null)
         {
             entry ??= label.text;
