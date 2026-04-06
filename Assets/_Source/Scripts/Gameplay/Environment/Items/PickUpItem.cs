@@ -1,4 +1,4 @@
-using ITCafe.Gameplay.Shared;
+using ITCafe.Shared;
 using ITCafe.Player;
 using UnityEngine;
 

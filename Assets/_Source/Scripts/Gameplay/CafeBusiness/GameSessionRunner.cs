@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using DevKit.UI.MVVM;
 using DevKit.Utils;
 using ITCafe.Data.Campaign;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.UI.MVVM;
 using R3;
 using UnityEngine;
 

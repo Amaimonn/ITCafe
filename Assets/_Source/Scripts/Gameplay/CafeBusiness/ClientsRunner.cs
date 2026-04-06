@@ -5,7 +5,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.Solutions;
 using DevKit.Utils;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.UI.MVVM;
 using R3;
 using UnityEngine;
 using VContainer;

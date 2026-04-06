@@ -11,7 +11,7 @@ using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Data;
 using ITCafe.Data.Campaign;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.UI.MVVM;
 using ITCafe.Player;
 using R3;
 using Unity.Cinemachine;
@@ -23,7 +23,7 @@ using VContainer.Unity;
 using Cursor = UnityEngine.Cursor;
 using Unit = R3.Unit;
 using ITCafe.Data.Settings;
-using ITCafe.Gameplay.Shared;
+using ITCafe.Shared;
 using UnityEngine.Rendering;
 
 namespace ITCafe

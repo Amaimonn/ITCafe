@@ -9,67 +9,67 @@
             <ui:VisualElement name="MenuPanel" class="menu__panel">
                 <ui:VisualElement name="HeaderSection" class="main-menu__header">
                     <ui:Label text="IT Cafe++" class="main-menu__title"/>
-                    <ITCafe.Gameplay.UI.Custom.AnimatedTextContainer name="AnimatedTerminal" style="flex-grow: 1; width: 420px; height: 300px;">
-                        <ITCafe.Gameplay.UI.Custom.TypingText char-interval="0.025" name="EqualityLog1" class="main-menu__subtitle">
+                    <ITCafe.UI.Custom.AnimatedTextContainer name="AnimatedTerminal" style="flex-grow: 1; width: 420px; height: 300px;">
+                        <ITCafe.UI.Custom.TypingText char-interval="0.025" name="EqualityLog1" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(80661699354624)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="EventLog2" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText name="EventLog2" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(79785513443328)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="UserLog3" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText name="UserLog3" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(80916931141632)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="StatusLog4" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText name="StatusLog4" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(80990092386304)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText char-interval="0.02" name="MinusLog5" class="main-menu__subtitle"/>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="AnalysisLog6" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText char-interval="0.02" name="MinusLog5" class="main-menu__subtitle"/>
+                        <ITCafe.UI.Custom.TypingText name="AnalysisLog6" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(81060946763776)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.FlashingText name="PathErrorLog7" initial-delay="0.5" class="main-menu__subtitle main-menu__log-error">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.FlashingText name="PathErrorLog7" initial-delay="0.5" class="main-menu__subtitle main-menu__log-error">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(81196431171584)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.FlashingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="ParamsLog8" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.FlashingText>
+                        <ITCafe.UI.Custom.TypingText name="ParamsLog8" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(81221831876608)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="ProtocolLog9" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText name="ProtocolLog9" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(81244057493504)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText name="TargetLog10" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText name="TargetLog10" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(81265968537600)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
-                        <ITCafe.Gameplay.UI.Custom.TypingText char-interval="0.025" name="EqualityLog11" class="main-menu__subtitle">
+                        </ITCafe.UI.Custom.TypingText>
+                        <ITCafe.UI.Custom.TypingText char-interval="0.025" name="EqualityLog11" class="main-menu__subtitle">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(80661699354624)"/>
                             </Bindings>
-                        </ITCafe.Gameplay.UI.Custom.TypingText>
+                        </ITCafe.UI.Custom.TypingText>
                         <ui:VisualElement style="flex-direction: row;">
-                            <ITCafe.Gameplay.UI.Custom.TypingText name="SimulationLog12" class="main-menu__subtitle" style="width: auto; margin-right: 0;">
+                            <ITCafe.UI.Custom.TypingText name="SimulationLog12" class="main-menu__subtitle" style="width: auto; margin-right: 0;">
                                 <Bindings>
                                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:cfddd950c6abf524ba3cce34892a09ad" entry="Id(81298566668288)"/>
                                 </Bindings>
-                            </ITCafe.Gameplay.UI.Custom.TypingText>
-                            <ITCafe.Gameplay.UI.Custom.FlashingText initial-delay="0.3" name="KeyLog13" text="_" is-infinite="true" flash-interval="0.5" class="main-menu__subtitle" style="width: auto; margin-left: 0; padding-left: 0;"/>
+                            </ITCafe.UI.Custom.TypingText>
+                            <ITCafe.UI.Custom.FlashingText initial-delay="0.3" name="KeyLog13" text="_" is-infinite="true" flash-interval="0.5" class="main-menu__subtitle" style="width: auto; margin-left: 0; padding-left: 0;"/>
                         </ui:VisualElement>
-                    </ITCafe.Gameplay.UI.Custom.AnimatedTextContainer>
+                    </ITCafe.UI.Custom.AnimatedTextContainer>
                 </ui:VisualElement>
                 <ui:VisualElement name="MenuButtons" class="main-menu__buttons">
                     <ui:Button name="PlayButton" focusable="false" class="cafe__control-button cafe__control-button--cyan">

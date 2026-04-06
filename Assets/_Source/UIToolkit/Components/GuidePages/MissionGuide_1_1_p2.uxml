@@ -7,48 +7,48 @@
             </Bindings>
         </ui:Label>
         <ui:VisualElement name="Equation1" class="guide__equation">
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=21300000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=21300000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(10832969728)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="+" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300086&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Sausage">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300086&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Sausage">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(63190466560)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="=" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300034&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_HotDog" is-result="true">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300034&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_HotDog" is-result="true">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(1141852209152)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
         </ui:VisualElement>
         <ui:VisualElement name="Equation2" class="guide__equation">
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=21300000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bread_roll.png?fileID=21300000&amp;guid=0eca8a723e6a02e4fabb85ad764777b4&amp;type=3#bread_roll">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(10832969728)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="+" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300090&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_SteakCooked">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300090&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_SteakCooked">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(518285033472)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="+" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300036&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Salad">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300036&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Salad">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(379138998272)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="=" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger" is-result="true">
+            <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger" is-result="true">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(1657005015040)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

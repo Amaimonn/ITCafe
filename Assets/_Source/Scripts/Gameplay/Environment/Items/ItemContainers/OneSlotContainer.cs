@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ITCafe.Data.Items;
-using ITCafe.Gameplay.Shared;
+using ITCafe.Shared;
 using UnityEngine;
 
 namespace ITCafe.Environment
