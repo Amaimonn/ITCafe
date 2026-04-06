@@ -1,16 +1,16 @@
-#if UNITY_EDITOR
 using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ITCafe.Editor
+namespace ITCafe.Shared.Utils
 {
     public class Screenshoter : MonoBehaviour
     {
+#if UNITY_EDITOR
         [SerializeField] private string _path;
         [SerializeField] private string _imageName = "Screenshot";
-        
+
         private void Update()
         {
             if (Keyboard.current.oKey.wasPressedThisFrame)
@@ -21,6 +21,6 @@ namespace ITCafe.Editor
                 Debug.Log($"Screenshoter: {fileName} Captured");
             }
         }
+#endif
     }
 }
-#endif
