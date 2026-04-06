@@ -6,6 +6,7 @@ using ITCafe.Data.Items;
 using ObservableCollections;
 using System.Threading;
 using DevKit.UI.MVVM.Bases;
+using DevKit.Utils;
 using VContainer;
 
 namespace ITCafe.Gameplay.UI.MVVM

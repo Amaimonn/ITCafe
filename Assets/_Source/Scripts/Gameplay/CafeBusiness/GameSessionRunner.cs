@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.UI.MVVM;
+using DevKit.Utils;
 using ITCafe.Data.Campaign;
 using ITCafe.Gameplay.UI.MVVM;
 using R3;
