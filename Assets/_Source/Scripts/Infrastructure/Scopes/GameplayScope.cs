@@ -18,11 +18,11 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
-using Cursor = UnityEngine.Cursor;
-using Unit = R3.Unit;
 using ITCafe.Data.Settings;
 using ITCafe.Shared;
 using UnityEngine.Rendering;
+using Cursor = UnityEngine.Cursor;
+using Unit = R3.Unit;
 
 namespace ITCafe
 {

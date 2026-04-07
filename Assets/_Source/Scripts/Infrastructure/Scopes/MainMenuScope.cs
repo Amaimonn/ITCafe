@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
-using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using ITCafe.Campaign;
 using ITCafe.Data.Campaign;
