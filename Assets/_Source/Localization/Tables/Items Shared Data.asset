@@ -91,6 +91,10 @@ MonoBehaviour:
     m_Key: tomato_soup
     m_Metadata:
       m_Items: []
+  - m_Id: 17449103351865344
+    m_Key: coffee
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

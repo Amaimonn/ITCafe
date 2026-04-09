@@ -4,8 +4,8 @@ using DevKit.UI.MVVM;
 using DevKit.Utils;
 using Inui.UI.MVVM.Settings;
 using ITCafe.Data.Settings;
-using ITCafe.Gameplay.Shared;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.Shared;
+using ITCafe.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;
 using UnityEngine;
@@ -18,6 +18,7 @@ namespace ITCafe
     {
         [SerializeField] private RootUIBinder _rootUIBinderPrefab;
         [SerializeField] private SettingsView _settingsViewPrefab;
+        [SerializeField] private ConfirmPopUpView _confirmPopUpPrefab;
         [SerializeField] private SerializableLocalizationLoader _rootLocalizationLoader;
         [SerializeField] private SerializableLocalizationLoader _settingsLocalizationLoader;
         [SerializeField] private AudioPlayer _audioPlayer;
@@ -70,7 +71,12 @@ namespace ITCafe
         private void RegisterUI(IContainerBuilder builder)
         {
             builder.RegisterMVVM<SettingsView, SettingsViewModel, SettingsBinder>(_settingsViewPrefab, 
-                Lifetime.Transient);
+                viewModelLifetime: Lifetime.Transient); 
+            
+            // PopUp registration with transient binder
+            builder.RegisterMVVM<ConfirmPopUpView, ConfirmPopUpViewModel>(_confirmPopUpPrefab, 
+                viewModelLifetime: Lifetime.Transient, 
+                binderLifetime: Lifetime.Transient);
         }
 
         private void RegisterAudio(IContainerBuilder builder)

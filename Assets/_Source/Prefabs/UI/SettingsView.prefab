@@ -46,9 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.SettingsView
   _uiAsset: {fileID: 9197481963319205126, guid: 53d537f9a76bcf5448307ee1e09838fb, type: 3}
   _priority: 0
+  _closeButtonName: CloseButton
+  _closeBackgroundName: CloseBackground
   _applyButtonName: ApplyButton
   _cancelChangesButtonName: CancelChangesButton
-  _closeButtonName: CloseButton
   _sectionsContainerName: SectionsContainer
   _tabButtonsContainerName: TabButtonsContainer
   _controlInfoContainerName: ControlInfoContainer
@@ -98,3 +99,8 @@ MonoBehaviour:
     <MaxPitchShift>k__BackingField: 0.1
     <IsPausable>k__BackingField: 1
     <IsSingleton>k__BackingField: 1
+  _confirmSetup:
+    TitleLid: settings_unapplied_popup_title
+    MessageLid: settings_unapplied_popup_message
+    ConfirmTextLid: confirm_button
+    CancelTextLid: cancel_button

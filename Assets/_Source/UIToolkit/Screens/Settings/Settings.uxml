@@ -7,7 +7,7 @@
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss?fileID=7433441132597879392&amp;guid=4db18ea67a6154348b95683aced0b2d5&amp;type=3#DropdownStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/KitSliderStyles.uss?fileID=7433441132597879392&amp;guid=12a4db4e2081dc9439ac9fc3d3f2b791&amp;type=3#KitSliderStyles"/>
-    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="cafe__window-wrapper settings__root" style="flex-grow: 1; align-items: center; justify-content: center;">
+    <ui:VisualElement name="SettingsWrapper" picking-mode="Ignore" class="cafe__window-wrapper settings__root" style="flex-grow: 1; align-items: center; justify-content: center;">
         <ui:VisualElement name="SettingsPanel" class="cafe__root-panel settings__panel" style="flex-grow: 1;">
             <ui:VisualElement name="Header" class="settings__header">
                 <ui:Label class="cafe__view-title" style="flex-shrink: 1;">

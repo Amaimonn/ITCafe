@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Pause/PauseStyles.uss?fileID=7433441132597879392&amp;guid=9e27a021c3203524b84dc5aee746f204&amp;type=3#PauseStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/ButtonStyles.uss?fileID=7433441132597879392&amp;guid=964f234cacc3b8f44a05d83f70a2e7a3&amp;type=3#ButtonStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
-    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="cafe__window-wrapper pause__root" style="flex-grow: 1; transition-duration: 0.13s;">
+    <ui:VisualElement name="PauseWrapper" picking-mode="Ignore" class="cafe__window-wrapper pause__root" style="flex-grow: 1; transition-duration: 0.13s;">
         <ui:VisualElement name="PausePanel" class="cafe__root-panel pause__panel">
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
             <ui:VisualElement name="Header" picking-mode="Ignore" class="pause__header">

@@ -1,17 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
-using DevKit.UI.MVVM.Bases;
 using DevKit.Utils;
 using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Gameplay.CafeBusiness;
 using ITCafe.Data;
 using ITCafe.Data.Campaign;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.UI.MVVM;
 using ITCafe.Player;
 using R3;
 using Unity.Cinemachine;
@@ -20,11 +18,11 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
+using ITCafe.Data.Settings;
+using ITCafe.Shared;
+using UnityEngine.Rendering;
 using Cursor = UnityEngine.Cursor;
 using Unit = R3.Unit;
-using ITCafe.Data.Settings;
-using ITCafe.Gameplay.Shared;
-using UnityEngine.Rendering;
 
 namespace ITCafe
 {
@@ -296,6 +294,13 @@ namespace ITCafe
             var gameplayExitContext = new GameplayExitContext(mainMenuEnterContext);
             var gameplayExitSignal = new Subject<GameplayExitContext>();
 
+            _gameplayEnterContext.CompletionSignal.Subscribe(x =>
+                {
+                    if (x.IsGameCompletion)
+                        mainMenuEnterContext.ShowGameCompleted = true;
+                })
+                .AddTo(_disposables);
+
             exitSignal.Take(1)
                 .Subscribe(_ => gameplayExitSignal.OnNext(gameplayExitContext))
                 .AddTo(_disposables);
@@ -319,7 +324,7 @@ namespace ITCafe
 
                 guideViewModel.OnClosingCompleted += BootOnce;
                 _disposables.Add(Disposable.Create(() => guideViewModel.OnClosingCompleted -= BootOnce));
-                
+
                 void BootOnce()
                 {
                     guideViewModel.OnClosingCompleted -= BootOnce;

@@ -157,5 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: DevKit::DevKit.UI.MVVM.RootUIBinder
   _documentPrefab: {fileID: 3779637004744612711, guid: 2bd360feb00401c4f9821da7213bbe64, type: 3}
+  _panelSettingsAsset: {fileID: 11400000, guid: 783364f0359a7814a8b4dea6f641debf, type: 2}
   _canvasPrefab: {fileID: 623807144093253457, guid: 5f9d81f7cd38ede4c98a9767871a0c72, type: 3}
   _layersRoot: {fileID: 5434373437577383929}
+  _maxUIDocuments: 10
+  _maxCanvases: 10

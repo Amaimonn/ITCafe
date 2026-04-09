@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Credits Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Credits
+  m_TableCollectionNameGuidString: 63329ac585b1d01458e19493fe6acc9f
+  m_Entries:
+  - m_Id: 9314492416
+    m_Key: credits_section_assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835131006976
+    m_Key: credits_subtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 962822397952
+    m_Key: credits_section_develop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1192108220416
+    m_Key: credits_section_thanks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1515665219584
+    m_Key: credits_section_engine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675040382976
+    m_Key: credits_role_single_dev
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2275740213248
+    m_Key: credits_role_sfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369239638016
+    m_Key: credits_role_music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3120573702144
+    m_Key: credits_thank_nikita
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4151424573440
+    m_Key: credits_name_emil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8185065758720
+    m_Key: credits_graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9981729431552
+    m_Key: credits_thank_for_play
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 7209694656588940212
+  references:
+    version: 2
+    RefIds:
+    - rid: 7209694656588940212
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1775301998634

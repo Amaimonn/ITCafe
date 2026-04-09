@@ -1,6 +1,6 @@
 using DevKit.Locator;
-using Flopin.Utils;
-using ITCafe.Gameplay.Shared;
+using ITCafe.Shared.Utils;
+using ITCafe.Shared;
 using ITCafe.Player;
 using UnityEngine;
 

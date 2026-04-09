@@ -1,6 +1,6 @@
 using DevKit.Locator;
 using ITCafe.CafeBusiness;
-using ITCafe.Gameplay.Shared;
+using ITCafe.Shared;
 using ITCafe.Player;
 using UnityEngine;
 

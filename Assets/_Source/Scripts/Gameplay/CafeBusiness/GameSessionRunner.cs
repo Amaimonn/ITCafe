@@ -2,8 +2,9 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.UI.MVVM;
+using DevKit.Utils;
 using ITCafe.Data.Campaign;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.UI.MVVM;
 using R3;
 using UnityEngine;
 
@@ -93,13 +94,10 @@ namespace ITCafe.CafeBusiness
             _gameStatsService.CompleteDay();
 
             var report = _gameStatsService.GetDailyReport();
-            if (report.EarnedStars > 0)
+            _sendResults.OnNext(new CafeMissionResult
             {
-                _sendResults.OnNext(new CafeMissionResult
-                {
-                    Stars = report.EarnedStars
-                });
-            }
+                Stars = report.EarnedStars
+            });
 
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);

@@ -8,16 +8,32 @@ namespace ITCafe.Data.Campaign
         public readonly ReactiveProperty<string> SelectedLocationId;
         public readonly ReactiveProperty<string> SelectedMissionId;
         public readonly ObservableDictionary<string, LocationModel> OpenedLocationsMap;
+        public readonly ReactiveProperty<string> LastLaunchedLocationId;
+        public readonly ReactiveProperty<string> LastLaunchedMissionId;
 
-        public Subject<Unit> OnStateChanged = new();
+        public readonly Subject<Unit> OnStateChanged = new();
 
         public CampaignModel(CampaignState campaignState) : base(campaignState)
         {
-            SelectedLocationId = new ReactiveProperty<string>(campaignState.SelectedLocationId);
-            SelectedLocationId.Skip(1).Subscribe(x => campaignState.SelectedLocationId = x);
+            LastLaunchedLocationId = new ReactiveProperty<string>(campaignState.LastLaunchedLocationId);
+            LastLaunchedLocationId.Subscribe(x => campaignState.LastLaunchedLocationId = x);
             
-            SelectedMissionId = new ReactiveProperty<string>(campaignState.SelectedMissionId);
-            SelectedMissionId.Skip(1).Subscribe(x => campaignState.SelectedMissionId = x);
+            LastLaunchedMissionId = new ReactiveProperty<string>(campaignState.LastLaunchedMissionId);
+            LastLaunchedMissionId.Subscribe(x => campaignState.LastLaunchedMissionId = x);
+            
+            var selectedLocationId = !string.IsNullOrEmpty(campaignState.SelectedLocationId) ?
+                campaignState.SelectedLocationId :
+                campaignState.LastLaunchedLocationId;
+                
+            SelectedLocationId = new ReactiveProperty<string>(selectedLocationId);
+            SelectedLocationId.Subscribe(x => campaignState.SelectedLocationId = x);
+            
+            var selectedMissionId = !string.IsNullOrEmpty(campaignState.SelectedMissionId) ?
+                campaignState.SelectedMissionId :
+                campaignState.LastLaunchedMissionId;
+            
+            SelectedMissionId = new ReactiveProperty<string>(selectedMissionId);
+            SelectedMissionId.Subscribe(x => campaignState.SelectedMissionId = x);
             
             OpenedLocationsMap = new ObservableDictionary<string, LocationModel>();
             foreach (var location in campaignState.Locations)

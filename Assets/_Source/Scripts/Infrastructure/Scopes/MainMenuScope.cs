@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using DevKit.Solutions;
 using DevKit.UI.MVVM;
-using DevKit.UI.MVVM.Bases;
+using DevKit.Utils;
 using ITCafe.Campaign;
 using ITCafe.Data.Campaign;
-using ITCafe.Gameplay.Shared;
-using ITCafe.Gameplay.UI.MVVM;
+using ITCafe.Shared;
+using ITCafe.UI.MVVM;
 using ITCafe.Infrastructure.Saves;
 using R3;
 using UnityEngine;
@@ -20,6 +19,7 @@ namespace ITCafe
         public Observable<MainMenuExitContext> ExitSignal { get; private set; }
 
         [SerializeField] private MainMenuView _mainMenuViewPrefab;
+        [SerializeField] private CreditsView _creditsViewPrefab;
         [SerializeField] private CampaignView _campaignViewPrefab;
         [SerializeField] private SerializableLocalizationLoader _mainMenuLocalizationLoader;
         [SerializeField] private SerializableLocalizationLoader _campaignLocalizationLoader;
@@ -50,9 +50,10 @@ namespace ITCafe
 
         private void RegisterUI(IContainerBuilder builder)
         {
+            builder.RegisterMVVM<CreditsView, CreditsViewModel>(_creditsViewPrefab);
             builder.RegisterMVVM<MainMenuView, MainMenuViewModel>(_mainMenuViewPrefab);
-            builder.RegisterMVVM<CampaignView, CampaignViewModel, CampaignBinder>(_campaignViewPrefab, 
-                Lifetime.Transient);
+            builder.RegisterMVVM<CampaignView, CampaignViewModel, CampaignBinder>(_campaignViewPrefab,
+                viewModelLifetime: Lifetime.Transient);
         }
 
         public IEnumerator BootCoroutine(MainMenuEnterContext mainMenuEnterContext = null)
@@ -66,18 +67,27 @@ namespace ITCafe
             Build();
             yield return new WaitForEndOfFrame();
 
+            // Background music
             var audioPlayer = Container.Resolve<AudioPlayer>();
             audioPlayer.PlaySingletonMusic(_mainMenuMusic, loop: true);
 
+            // Localization
             _mainMenuLocalizationLoader.Init();
             _mainMenuLocalizationLoader.AddTo(_disposables);
             yield return _mainMenuLocalizationLoader.LoadTables();
 
+            // UI
             var rootUIBinder = Container.Resolve<IRootUIBinder>();
             rootUIBinder.ClearViews();
 
             var mainMenuBinder = Container.Resolve<IViewBinder<MainMenuViewModel>>();
             mainMenuBinder.Open();
+
+            if (mainMenuEnterContext is { ShowGameCompleted: true })
+            {
+                var creditsBinder = Container.Resolve<IViewBinder<CreditsViewModel>>();
+                creditsBinder.Open();
+            }
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.START_MISSION_SIGNAL);
             var gameplayEnterContext = new GameplayEnterContext()
@@ -113,8 +123,12 @@ namespace ITCafe
                 var completionSignal = campaignUnlocker.CreateMissionCompletionSignal<CafeMissionResult>(campaignModel,
                     campaignDataModel, saveStateProvider.SaveAll, (result, _) =>
                     {
-                        if (selectedMissionModel.Stars.Value < result.Stars)
-                            selectedMissionModel.Stars.Value = result.Stars;
+                        var starsCount = result.Stars;
+
+                        if (selectedMissionModel.Stars.Value < starsCount)
+                            selectedMissionModel.Stars.Value = starsCount;
+
+                        return starsCount > 0;
                     });
                 gameplayEnterContext.CompletionSignal = completionSignal;
 

@@ -1,3 +1,6 @@
 [submodule "Assets/_Source/Plugins/DevKit"]
 	path = Assets/_Source/Plugins/DevKit
 	url = https://github.com/Amaimonn/DevKit.git
+[submodule "Assets/_Source/Plugins/DevKit.Newtonsoft"]
+	path = Assets/_Source/Plugins/DevKit.Newtonsoft
+	url = https://github.com/Quaximur/DevKit.Newtonsoft.git

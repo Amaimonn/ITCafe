@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Flopin.Utils;
-using ITCafe.Gameplay.Shared;
+using ITCafe.Shared.Utils;
+using ITCafe.Shared;
 using ITCafe.Player;
 using UnityEngine;
 

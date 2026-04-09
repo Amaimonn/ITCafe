@@ -7,17 +7,17 @@
             </Bindings>
         </ui:Label>
         <ui:VisualElement name="Equation1" class="guide__equation">
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient prefix="D:\" image="project://database/Assets/_Source/Art/Images/TrayIcon.png?fileID=21300000&amp;guid=c98bb47a1d3dc7e46bdd6c5f2908574f&amp;type=3#TrayIcon">
+            <ITCafe.UI.Custom.GuideIngredient prefix="D:\" image="project://database/Assets/_Source/Art/Images/TrayIcon.png?fileID=21300000&amp;guid=c98bb47a1d3dc7e46bdd6c5f2908574f&amp;type=3#TrayIcon">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(11303782580224)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="+" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient prefix="$" image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/PSD/Sweet%20and%20Sour%20Chicken.psd?fileID=21300000&amp;guid=005f27d0d7e97b44080dbb37650bb06f&amp;type=3#Sweet and Sour Chicken">
+            <ITCafe.UI.Custom.GuideIngredient prefix="$" image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/PSD/Sweet%20and%20Sour%20Chicken.psd?fileID=21300000&amp;guid=005f27d0d7e97b44080dbb37650bb06f&amp;type=3#Sweet and Sour Chicken">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(12493345914880)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="=" class="guide__operator"/>
             <ui:VisualElement class="guide__ingredient">
                 <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/_Source/Art/Images/TrayIcon.png?fileID=21300000&amp;guid=c98bb47a1d3dc7e46bdd6c5f2908574f&amp;type=3#TrayIcon&quot;);">
@@ -41,17 +41,17 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Equation2" class="guide__equation">
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient prefix="$" image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger">
+            <ITCafe.UI.Custom.GuideIngredient prefix="$" image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(13008797781065728)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="+" class="guide__operator"/>
-            <ITCafe.Gameplay.UI.Custom.GuideIngredient prefix="C:\" image="project://database/Assets/_Source/Art/Images/TrashCanIcon.png?fileID=21300000&amp;guid=eba35aef0142b2546b3ddaaf96693e7b&amp;type=3#TrashCanIcon">
+            <ITCafe.UI.Custom.GuideIngredient prefix="C:\" image="project://database/Assets/_Source/Art/Images/TrashCanIcon.png?fileID=21300000&amp;guid=eba35aef0142b2546b3ddaaf96693e7b&amp;type=3#TrashCanIcon">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(13903475113984)"/>
                 </Bindings>
-            </ITCafe.Gameplay.UI.Custom.GuideIngredient>
+            </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="=" class="guide__operator"/>
             <ui:VisualElement class="guide__ingredient">
                 <ui:VisualElement class="guide__ingredient-icon guide__ingredient-icon--result" style="background-image: url(&quot;project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/burger.png?fileID=21300000&amp;guid=742e68ed61b3a1840b7463a19c36be74&amp;type=3#burger&quot;);">

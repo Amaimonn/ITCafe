@@ -54,7 +54,7 @@ namespace ITCafe.Infrastructure.Saves
         public void SaveAll()
         {
             _saveSystem.Save(SAVE_STATE, _saveState);
-            FLogger.Log<SaveStateProvider>("State was saved");
+            FLogger.LogGood<SaveStateProvider>("State was saved");
         }
     }
 }
