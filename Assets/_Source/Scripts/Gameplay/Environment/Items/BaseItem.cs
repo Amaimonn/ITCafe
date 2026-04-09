@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using ITCafe.Data.Items;
 using ITCafe.Shared.Utils;
-using ITCafe.Shared;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ namespace ITCafe.Environment
     [RequireComponent(typeof(Collider))]
     public abstract class BaseItem : BaseInteractable, IItem
     {
+        public abstract ItemTag Tag { get; }
         public virtual bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
             handler.CanHandle(this, context);
 

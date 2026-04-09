@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using ITCafe.Data.Items;
-using ITCafe.Shared;
 using UnityEngine;
 
 namespace ITCafe.Environment
 {
     public abstract class OneSlotContainer : ContainerItem, ISimpleContainer, IMenuAspect
     {
-        public abstract ItemTag ContainerTag { get; }
         public override IEnumerable<IItem> Items => _currentItems;
 
         [SerializeField, Min(0)] protected float _itemsOffsetY = 0f;
@@ -45,7 +43,7 @@ namespace ITCafe.Environment
         public virtual bool CanBeStored(IItemsContainer container)
         {
             // empty container can`t be stored
-            return HasItem && container is ISimpleContainer { ContainerTag: ItemTag.Tray }; // hardcoded
+            return HasItem && container.Tag == ItemTag.Tray; // hardcoded
         }
 #endregion
 

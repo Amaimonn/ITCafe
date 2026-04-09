@@ -8,7 +8,7 @@ namespace ITCafe.Environment
 {
     public class Tray : ContainerItem, ISimpleContainer
     {
-        public ItemTag ContainerTag => ItemTag.Tray;
+        public override ItemTag Tag => ItemTag.Tray;
         public override IEnumerable<IItem> Items => _currentItems;
         
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;

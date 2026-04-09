@@ -60,7 +60,7 @@ namespace ITCafe.Campaign
             }
 
             // result handling
-            // TIP: don`t use any DATA in lambda, because it will be unloaded that will cause null exception
+            // TIP: don`t use Addressable DATA in lambda, because it will be unloaded that will cause null exception
             actions.Add(result =>
             {
                 var isSuccess = successHandler(result, campaignState);

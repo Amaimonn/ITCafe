@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ITCafe.Data.Items;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace ITCafe.Environment
 {
     public class ItemStub : IItem
     {
+        public ItemTag Tag => throw new System.NotImplementedException();
         public bool CanBeHandled(IItemHandler handler, PlayerContext context) => throw new System.NotImplementedException();
         public void BecomeHandled(IItemHandler handler, PlayerContext context) => throw new System.NotImplementedException();
         
