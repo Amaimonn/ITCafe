@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1979232153940517889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 233791975336059090}
+  m_Layer: 0
+  m_Name: ResultOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &233791975336059090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979232153940517889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0865, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6552392435575950574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6101468974972340094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8737489642630172635}
+  m_Layer: 0
+  m_Name: PlacedOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8737489642630172635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6101468974972340094}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0188, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6552392435575950574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &380506296101254444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +120,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6893060778985535938, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5373375113481213003}
+    - targetCorrespondingSourceObject: {fileID: 6893060778985535938, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8737489642630172635}
+    - targetCorrespondingSourceObject: {fileID: 6893060778985535938, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 233791975336059090}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6116665568967549816, guid: 5845fca4d1cb7634199f5b98cba3efba, type: 3}
       insertIndex: -1
@@ -84,7 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.Appliances.Pot
   _outline: {fileID: 7611277861689135460}
-  _placedTransform: {fileID: 6552392435575950574}
+  _placedTransform: {fileID: 8737489642630172635}
+  _resultTransform: {fileID: 233791975336059090}
   _progressUI: {fileID: 5259612313144229345}
   _placedParticles: {fileID: 0}
   _processingParticles: {fileID: 0}

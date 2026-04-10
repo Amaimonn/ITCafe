@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
+  m_Name: FriedEggInfoSO
+  m_EditorClassIdentifier: 
+  <ItemTag>k__BackingField: 10002
+  <NameLid>k__BackingField: egg_fried
+  <Image>k__BackingField: {fileID: 21300000, guid: a4d937df2f2bc9847bb4978b753e7f46, type: 3}
+  <Prefab>k__BackingField: {fileID: 4845967815554757943, guid: 69ebba2ad4077444187b3b697fecbdb7, type: 3}
+  <MenuItemExtra>k__BackingField: {fileID: 11400000, guid: a981bda69469ce0418a4ee3615a0cb98, type: 2}
