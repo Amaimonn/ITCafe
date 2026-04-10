@@ -14,15 +14,5 @@ namespace ITCafe.Environment.Appliances
 
             return item.CanBeHandled(this, context);
         }
-
-        public override bool CanHandleContainer(IItemsContainer container, PlayerContext context)
-        {
-            return IsBusy && _isReadyResult && container.CanTake(_holdingItem);
-        }
-
-        public override void HandleContainer(IItemsContainer container, PlayerContext context)
-        {
-            Handle(container, context);
-        }
     }
 }

@@ -25,11 +25,6 @@ namespace ITCafe.Environment.Appliances
             return container.CanTake(_coreItem) && CanHandle(container, context);
         }
 
-        public override void HandleContainer(IItemsContainer container, PlayerContext context)
-        {
-            Handle(container, context);
-        }
-
         protected override void SetProcessingResult(IProcessableAspect processable, PlayerContext context)
         {
             _holdingItem = processable.GetResult(_holdingItem, context);

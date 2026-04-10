@@ -83,7 +83,7 @@ namespace ITCafe.Environment.Appliances
 
         public virtual bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
-            return false;
+            return IsBusy && _isReadyResult && container.CanTake(_holdingItem);
         }
 
         public virtual void Handle(IItem item, PlayerContext context)
@@ -96,6 +96,7 @@ namespace ITCafe.Environment.Appliances
 
         public virtual void HandleContainer(IItemsContainer container, PlayerContext context)
         {
+            Handle(container, context);
         }
 #endregion
 
