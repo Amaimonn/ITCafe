@@ -11453,7 +11453,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1322542069}
     m_Modifications:
     - target: {fileID: 5951012663612729984, guid: cdb54e10ab7b2a4468a427e39cc38716, type: 3}
       propertyPath: m_Name
@@ -11489,7 +11489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6475594417537069114, guid: cdb54e10ab7b2a4468a427e39cc38716, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6475594417537069114, guid: cdb54e10ab7b2a4468a427e39cc38716, type: 3}
       propertyPath: m_LocalRotation.y
@@ -11559,6 +11559,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.ItemSpawner
   _outline: {fileID: 784588509}
   _spawningItemTag: 17
+--- !u!4 &784588514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6475594417537069114, guid: cdb54e10ab7b2a4468a427e39cc38716, type: 3}
+  m_PrefabInstance: {fileID: 784588507}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &786355162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20530,6 +20535,7 @@ Transform:
   - {fileID: 1334429196}
   - {fileID: 586934618}
   - {fileID: 120520250}
+  - {fileID: 784588514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1329961281
@@ -37457,22 +37463,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3332808605375188359, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
-      propertyPath: m_Name
-      value: Buns
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498177120944273034, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.945
-      objectReference: {fileID: 0}
-    - target: {fileID: 5253240007905482312, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
-      propertyPath: m_Name
-      value: CoffeeArea1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026888151460819414, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
-      propertyPath: m_Name
-      value: Cube
-      objectReference: {fileID: 0}
     - target: {fileID: 9014402381445437953, guid: ed42b7dbfb7c11244ba3a6e78be1461b, type: 3}
       propertyPath: m_Name
       value: SceneSetupMissionDev
@@ -37802,4 +37792,3 @@ SceneRoots:
   - {fileID: 1374307537}
   - {fileID: 1322542069}
   - {fileID: 829812760}
-  - {fileID: 784588507}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
+  m_Name: BasePizzaRawInfoSO
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
+  <ItemTag>k__BackingField: 21
+  <NameLid>k__BackingField: base_pizza_raw
+  <Image>k__BackingField: {fileID: 21300000, guid: 22534fe1238e2a940ad20f99174954df, type: 3}
+  <Prefab>k__BackingField: {fileID: 6989088671351863974, guid: ddb19f1c4db18894e989f8ee2ad80a14, type: 3}
+  <MenuItemExtra>k__BackingField: {fileID: 0}

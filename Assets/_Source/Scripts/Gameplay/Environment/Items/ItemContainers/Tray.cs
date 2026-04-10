@@ -13,10 +13,12 @@ namespace ITCafe.Environment
         
         [SerializeField, Min(0)] private int _maxItemsCapacity = 4;
         [SerializeField, Min(0)] private float _itemsOffsetY = 0.15f;
+        [SerializeField] private Transform _placedOrigin;
 
         private readonly List<IItem> _currentItems = new();
         private readonly List<IMenuAspect> _currentMenuItems = new();
         private int _currentItemsAmount = 0;
+        private Transform PlacedOrigin => _placedOrigin != null ? _placedOrigin : transform;
 
         public override int GetItemHash()
         {
@@ -44,7 +46,7 @@ namespace ITCafe.Environment
                 return;
             
             item.SetPhysicsEnabled(false);
-            item.transform.SetParent(transform);
+            item.transform.SetParent(PlacedOrigin);
             item.transform.SetLocalPositionAndRotation(new Vector3(0, _currentItemsAmount * _itemsOffsetY, 0),
                 Quaternion.identity);
             item.OnTaken();
