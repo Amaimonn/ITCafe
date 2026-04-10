@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa3cc41f63e487f85d76319558b7b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.GrillProcessable
+  <IsProcessable>k__BackingField: 1
   _handler:
     rid: 7209694774573662294
   _processingTime: 1
@@ -256,11 +257,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800402767766359633}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c45d2d5f13054a95824c5f76218b6f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SliceProcessableAspect
+  <IsProcessable>k__BackingField: 0
   _handler:
     rid: 7209694774573662298
   _processingTime: 1
