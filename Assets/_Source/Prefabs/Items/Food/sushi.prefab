@@ -68,6 +68,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf7c531c50f23b8409d7f264f3008318, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5478054389032781198}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf7c531c50f23b8409d7f264f3008318, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2726734841909182174}
   m_SourcePrefab: {fileID: 100100000, guid: bf7c531c50f23b8409d7f264f3008318, type: 3}
 --- !u!1 &673547638901606034 stripped
 GameObject:
@@ -169,3 +172,25 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &2726734841909182174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673547638901606034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85a3c93f32d43bda727dede91676379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SimpleMenuAspect
+  _info:
+    rid: 7209694799262908511
+  _properContainerTag: 15000
+  references:
+    version: 2
+    RefIds:
+    - rid: 7209694799262908511
+      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
+      data:
+        ItemTag: 10003

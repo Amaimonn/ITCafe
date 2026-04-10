@@ -8,6 +8,7 @@ namespace ITCafe.Data.Items
         Onigiri = 3,
         Fries = 4,
         ChocolateDonut = 5,
+        Waffles = 6,
         Bun = 7,
         // HotDogBun = 8,
         Patty = 9,

@@ -50,6 +50,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d91933c92d6d8c049902b41793e36cb5, type: 2}
     - {fileID: 11400000, guid: 7289bcc889599fb4887668c3bc1d3ee7, type: 2}
     - {fileID: 11400000, guid: 404a1714ade41714ca26754a3a99a271, type: 2}
+    - {fileID: 11400000, guid: 8c05c280ece9932409e3491146543e28, type: 2}
   _recipesCollection:
     _recipes:
     - {fileID: 11400000, guid: ad7a787fd97020448af75cfb4e261cc3, type: 2}
