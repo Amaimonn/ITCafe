@@ -166,6 +166,26 @@ MonoBehaviour:
     m_Localized: CHEESE
     m_Metadata:
       m_Items: []
+  - m_Id: 19676765038444544
+    m_Localized: BOWL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676805131796480
+    m_Localized: GRILL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676881631707136
+    m_Localized: POT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676967652687872
+    m_Localized: PAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19677281428570112
+    m_Localized: OVEN
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
