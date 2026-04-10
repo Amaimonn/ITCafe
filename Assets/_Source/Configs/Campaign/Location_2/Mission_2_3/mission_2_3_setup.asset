@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a6b5d536fb142e6842e7b95489d287c, type: 3}
-  m_Name: mission_2_1_setup
+  m_Name: mission_2_3_setup
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.MissionSetupSO
   <SceneSetupPrefab>k__BackingField: {fileID: 1468748952249590066, guid: 2431f37a7f3e48942a816099c542de69, type: 3}
   _itemInfoCollection:
@@ -23,6 +23,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 597d4cbde23ac2b4cbf15caca9af402b, type: 2}
     - {fileID: 11400000, guid: f74bbd494e416954ea56e3d15d1bd53b, type: 2}
     - {fileID: 11400000, guid: c8392e5adc439d34cb3a2d5ac8d6be87, type: 2}
+    - {fileID: 11400000, guid: 9de114c660c875445a570c0996b53148, type: 2}
+    - {fileID: 11400000, guid: 54ddf9bcc6738e94a84fa73593a59469, type: 2}
+    - {fileID: 11400000, guid: 0b8a8bed45163b2419ba3795442ec304, type: 2}
+    - {fileID: 11400000, guid: 10b9962ab3fca434a9c75cc187e05f59, type: 2}
+    - {fileID: 11400000, guid: 94219ce4b6b690643bca88b04fcf195a, type: 2}
   _recipesCollection:
     _recipes:
     - {fileID: 11400000, guid: 525e407e7b0628d4cb59407234476aba, type: 2}

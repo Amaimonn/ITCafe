@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 219588c04fe961a4881a263a45c254d4, type: 3}
-  m_Name: mission_1_5
+  m_Name: mission_2_3
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Campaign.MissionDataSO
-  <Id>k__BackingField: mission_1_5
-  <DisplayedNumber>k__BackingField: 5
-  <Name>k__BackingField: mission_1_5_name
-  <Description>k__BackingField: mission_1_5_description
+  <Id>k__BackingField: mission_2_3
+  <DisplayedNumber>k__BackingField: 3
+  <Name>k__BackingField: mission_2_3_name
+  <Description>k__BackingField: mission_2_3_description
   <SceneName>k__BackingField: cafe_1
-  <PositionX>k__BackingField: 600
-  <PositionY>k__BackingField: 350
-  _nextMissionIds: []
-  _nextLocationIds:
-  - location_2
+  <PositionX>k__BackingField: 700
+  <PositionY>k__BackingField: 100
+  _nextMissionIds:
+  - mission_2_4
+  _nextLocationIds: []
