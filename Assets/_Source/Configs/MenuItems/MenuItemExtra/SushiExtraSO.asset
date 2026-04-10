@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e9c25874674c028ab4084a20210823, type: 3}
-  m_Name: BurgerExtraSO
+  m_Name: SushiExtraSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.MenuItemExtraSO
   ItemInfo:
-    rid: 7418799248309747788
-  <ComplexityTimeModifier>k__BackingField: 3
-  <Points>k__BackingField: 40
+    rid: 7209694790597738626
+  <ComplexityTimeModifier>k__BackingField: 2
+  <Points>k__BackingField: 20
   references:
     version: 2
     RefIds:
-    - rid: 7418799248309747788
-      type: {class: BurgerItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
+    - rid: 7209694790597738626
+      type: {class: SimpleItemInfo, ns: ITCafe.Data.Items, asm: Assembly-CSharp}
       data:
-        IsDoubleCheese: 0
-        IsDoublePatty: 0
+        ItemTag: 10003

@@ -47,7 +47,7 @@
                 </Bindings>
             </ITCafe.UI.Custom.GuideIngredient>
             <ui:Label text="+" class="guide__operator"/>
-            <ITCafe.UI.Custom.GuideIngredient prefix="C:\" image="project://database/Assets/_Source/Art/Images/TrashCanIcon.png?fileID=21300000&amp;guid=eba35aef0142b2546b3ddaaf96693e7b&amp;type=3#TrashCanIcon">
+            <ITCafe.UI.Custom.GuideIngredient prefix="C:\" image="project://database/Assets/_Source/Art/Images/trash_can_512.png?fileID=21300000&amp;guid=1f366f2a554e7c1489aac42d724b9f4f&amp;type=3#trash_can_512">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(13903475113984)"/>
                 </Bindings>

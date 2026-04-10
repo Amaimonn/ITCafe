@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CheeseInfoSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
   <ItemTag>k__BackingField: 10
-  <NameLid>k__BackingField: 
+  <NameLid>k__BackingField: cheese
   <Image>k__BackingField: {fileID: 21300084, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
   <Prefab>k__BackingField: {fileID: 1886822002625342747, guid: 156c40ea3af380b479efb83c9d43531e, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 0}
