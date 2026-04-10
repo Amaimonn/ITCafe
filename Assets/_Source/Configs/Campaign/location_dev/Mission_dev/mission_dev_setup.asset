@@ -47,6 +47,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e9fb8eadf9a453f4b835b30b569bba5b, type: 2}
     - {fileID: 11400000, guid: 129835e26638cb04f9539dfdc27e8e8c, type: 2}
     - {fileID: 11400000, guid: 9502e7cb10a24624bab9524644fb3165, type: 2}
+    - {fileID: 11400000, guid: d91933c92d6d8c049902b41793e36cb5, type: 2}
+    - {fileID: 11400000, guid: 7289bcc889599fb4887668c3bc1d3ee7, type: 2}
+    - {fileID: 11400000, guid: 404a1714ade41714ca26754a3a99a271, type: 2}
   _recipesCollection:
     _recipes:
     - {fileID: 11400000, guid: ad7a787fd97020448af75cfb4e261cc3, type: 2}
@@ -57,6 +60,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 37d644ad78db6314997badae840e3b0e, type: 2}
     - {fileID: 11400000, guid: 13dc75988c1375b418fc08d5fa082e8d, type: 2}
     - {fileID: 11400000, guid: 2b2efde274718c94280e0d1c0ae7bccf, type: 2}
+    - {fileID: 11400000, guid: 312e46c0e1dd0aa4da9206e98a1ba341, type: 2}
   _guideData:
     _pages:
     - {fileID: 9197481963319205126, guid: 3587e7d115f0e704cac0b28c84f1a0f5, type: 3}

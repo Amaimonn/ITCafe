@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemTag>k__BackingField: 10004
   <NameLid>k__BackingField: ramen
-  <Image>k__BackingField: {fileID: 21300000, guid: a614d278a8433514aa904f216fea232c, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 3c0013a70f08e2142a6f984b7f60317c, type: 3}
   <Prefab>k__BackingField: {fileID: 3124786135051753140, guid: 92ad070fcb44abf4f9948ae60e685f83, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 11400000, guid: 445d4f2702f8aa343bdbaf4d79d65ec1, type: 2}
