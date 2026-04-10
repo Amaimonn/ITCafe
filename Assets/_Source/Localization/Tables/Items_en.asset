@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 63190466560
-    m_Localized: SAUSAGE
+    m_Localized: RAW_SAUSAGE
     m_Metadata:
       m_Items: []
   - m_Id: 120933449728
@@ -39,7 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 518285033472
-    m_Localized: PATTY
+    m_Localized: RAW_PATTY
     m_Metadata:
       m_Items: []
   - m_Id: 803023749120
@@ -96,6 +96,74 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17449103351865344
     m_Localized: COFFEE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672486248579072
+    m_Localized: RAMEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672543509217280
+    m_Localized: PIZZA_MARGHERITA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672824238178304
+    m_Localized: COOKIE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673081952993280
+    m_Localized: SUSHI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673164194906112
+    m_Localized: BACON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673305421316096
+    m_Localized: FRIED_BACON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673698486321152
+    m_Localized: FRIED_PATTY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673774294171648
+    m_Localized: FRIED_SAUSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674053353799680
+    m_Localized: CHOPPED_TOMATO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674395130855424
+    m_Localized: BACON_KEBAB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674549246361600
+    m_Localized: WAFFLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674882555117568
+    m_Localized: PIZZA_BASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19675438786936832
+    m_Localized: FRIED_EGG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19675578713112576
+    m_Localized: NOODLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676071581581312
+    m_Localized: RAMEN_BASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676272874618880
+    m_Localized: TOMATO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676343494115328
+    m_Localized: CHEESE
     m_Metadata:
       m_Items: []
   references:
