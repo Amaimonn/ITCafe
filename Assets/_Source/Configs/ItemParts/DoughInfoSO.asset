@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
-  m_Name: BunInfoSO
+  m_Name: DoughInfoSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
-  <ItemTag>k__BackingField: 7
+  <ItemTag>k__BackingField: 17
   <NameLid>k__BackingField: 
-  <Image>k__BackingField: {fileID: 21300000, guid: 8b85f16c7d17f8948baa5e5628656e34, type: 3}
-  <Prefab>k__BackingField: {fileID: 5272558537197201598, guid: c1144d1dd32b1e84da970a90780a6b03, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: d4f0fa6f17098214a803c3aa1c08d665, type: 3}
+  <Prefab>k__BackingField: {fileID: 7944412936285432445, guid: e93cb0506fe4e684892fc383e2fe878b, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 0}
