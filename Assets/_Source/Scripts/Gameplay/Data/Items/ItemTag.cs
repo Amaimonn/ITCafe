@@ -24,6 +24,7 @@ namespace ITCafe.Data.Items
         Meatloaf = 20,
         BasePizzaRaw = 21,
         HuntersPizzaRaw = 22,
+        RamenRaw = 23,
         Cookie = 30,
 
         // Combinations
@@ -34,9 +35,9 @@ namespace ITCafe.Data.Items
         // Menu Items
         HotDog = 10_000,
         Burger = 10_001,
-        FriedEgg = 10_002,
+        EggFried = 10_002, // also Processed
         Sushi = 10_003,
-        Udon = 10_004,
+        Ramen = 10_004,
         MargheritaPizza = 10_005,
         HuntersPizza = 10_006,
         Salad = 10_007,
@@ -59,6 +60,6 @@ namespace ITCafe.Data.Items
         TomatoSliced = 20_005,
         SalmonSliced = 20_006,
         RiceBoiled = 20_007,
-        MeatloafSliced = 20_008,
+        MeatloafSliced = 20_008
     }
 }
