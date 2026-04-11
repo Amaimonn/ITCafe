@@ -96,7 +96,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Footer" class="main-menu__footer">
-            <ui:Label text="&#169; 2025 Emil Alekseev" class="main-menu__copyright"/>
+            <ui:Label text="&#169; 2026 Emil Alekseev ( -Quaximur)" class="main-menu__copyright"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

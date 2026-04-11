@@ -259,7 +259,7 @@
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .mission__dash {
