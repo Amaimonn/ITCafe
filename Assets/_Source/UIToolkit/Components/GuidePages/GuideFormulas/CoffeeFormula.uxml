@@ -4,7 +4,7 @@
     <ui:Template name="PlasticCupIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PlasticCupIngredient.uxml?fileID=9197481963319205126&amp;guid=a32a30557d062bf4faf6e2110f858d24&amp;type=3#PlasticCupIngredient"/>
     <ui:VisualElement name="CoffeeFormula" class="guide__equation">
         <ui:Instance template="PlasticCupIngredient" name="PlasticCupIngredient"/>
-        <ui:Label text="+" class="guide__operator"/>
+        <ui:Label text="*" class="guide__operator"/>
         <ui:Instance template="CoffeeMachineIngredient" name="CoffeeMachineIngredient"/>
         <ui:Label text="=" class="guide__operator"/>
         <ui:Instance template="CoffeeIngredient" name="CoffeeIngredient"/>

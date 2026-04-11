@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BowlIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BowlIngredient.uxml?fileID=9197481963319205126&amp;guid=9777589d7d5778d4f8ff530fa01f2c9d&amp;type=3#BowlIngredient"/>
+    <ui:Template name="PotIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PotIngredient.uxml?fileID=9197481963319205126&amp;guid=85eab07273d64344c9c8fe3641d84271&amp;type=3#PotIngredient"/>
+    <ui:Template name="TomatoIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/TomatoIngredient.uxml?fileID=9197481963319205126&amp;guid=4815e17abf2f2dd4e98b5b55ad4494f4&amp;type=3#TomatoIngredient"/>
+    <ui:Template name="TomatoSoupIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/TomatoSoupIngredient.uxml?fileID=9197481963319205126&amp;guid=86eda7fb405909b40b876120406a79f8&amp;type=3#TomatoSoupIngredient"/>
+    <ui:VisualElement name="TomatoSoupFormula" class="guide__equation">
+        <ui:Instance template="TomatoIngredient"/>
+        <ui:Label text="*" class="guide__operator"/>
+        <ui:Instance template="PotIngredient" name="PotIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="BowlIngredient" name="BowlIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="TomatoSoupIngredient" name="TomatoSoupIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>
