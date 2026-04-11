@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using DevKit.Utils;
 using R3;
 using ObservableCollections;
 
@@ -39,7 +41,11 @@ namespace ITCafe.Data.Campaign
             foreach (var location in campaignState.Locations)
             {
                 var locationModel = new LocationModel(location);
-                OpenedLocationsMap.Add(location.Id, locationModel);
+                if (!OpenedLocationsMap.TryAdd(location.Id, locationModel))
+                {
+                    FLogger.LogWarning<CampaignModel>($"Failed to add location '{location.Id}' (already exists mb). Overwriting it.");
+                    OpenedLocationsMap[location.Id] = locationModel;
+                }
             }
             OpenedLocationsMap.ObserveAdd()
                 .Subscribe(x => State.Locations.Add(x.Value.Value.State));

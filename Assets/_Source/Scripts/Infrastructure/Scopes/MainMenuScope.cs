@@ -135,7 +135,6 @@ namespace ITCafe
                     campaignDataModel, saveStateProvider.SaveAll, (result, _) =>
                     {
                         var starsCount = result.Stars;
-
                         if (selectedMissionModel.Stars.Value < starsCount)
                             selectedMissionModel.Stars.Value = starsCount;
 

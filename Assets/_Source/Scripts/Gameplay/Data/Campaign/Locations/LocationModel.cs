@@ -10,20 +10,29 @@ namespace ITCafe.Data.Campaign
     {
         public readonly ReactiveProperty<bool> IsCompleted;
         public readonly ObservableDictionary<string, MissionModel> OpenedMissionsMap;
-        
-        public LocationModel(LocationState locationState) : 
+
+        public LocationModel(LocationState locationState) :
             base(locationState)
         {
             IsCompleted = new ReactiveProperty<bool>(State.IsCompleted);
-            IsCompleted.Skip(1).Subscribe(x => State.IsCompleted = x);
+            IsCompleted.Subscribe(x => State.IsCompleted = x);
             
-            var openedMissionsMap = State.OpenedMissions.Select(x =>
+            OpenedMissionsMap = new ObservableDictionary<string, MissionModel>();
+
+            if (State.OpenedMissions != null)
             {
-                FLogger.Log<LocationModel>($"{x.Id} is opened");
-                return new KeyValuePair<string, MissionModel>(x.Id, new MissionModel(x));
-            });
-            
-            OpenedMissionsMap = new ObservableDictionary<string, MissionModel>(openedMissionsMap);
+                foreach (var openedMission in State.OpenedMissions)
+                {
+                    var missionModel = new MissionModel(openedMission);
+                    if (!OpenedMissionsMap.TryAdd(openedMission.Id, missionModel))
+                    {
+                        FLogger.LogWarning<LocationModel>(
+                            $"Failed to add mission '{openedMission.Id}' (already exists mb). Overwriting it.");
+                        OpenedMissionsMap[openedMission.Id] = missionModel;
+                    }
+                }
+            }
+
             OpenedMissionsMap.ObserveAdd()
                 .Subscribe(x => State.OpenedMissions.Add(x.Value.Value.State));
         }

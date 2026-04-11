@@ -40,7 +40,7 @@ namespace ITCafe.Campaign
             var currentLocationIndex = allLocationsData.IndexWhere(x =>
                 x.Id == selectedLocationId);
             var allLocationsDataCount = allLocationsData.Count;
-            
+
             Action openNextLocation = null;
             if (currentLocationIndex < allLocationsDataCount - 1)
             {
@@ -50,12 +50,27 @@ namespace ITCafe.Campaign
 
                 openNextLocation = () =>
                 {
-                    var firstMissionState = new MissionState(nextMissionId, false);
-                    var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
-                    var nextLocationState = new LocationState(nextLocationId, isCompleted: false,
-                        nextLocationOpenedMissions);
+                    var existingLocation = campaignState.Locations.FirstOrDefault(x => x.Id == nextLocationId);
+                    if (existingLocation == null) // location exists (other version migration)
+                    {
+                        var firstMissionState = new MissionState(nextMissionId, false);
+                        var nextLocationOpenedMissions = new List<MissionState>() { firstMissionState };
+                        var nextLocationState = new LocationState(nextLocationId, isCompleted: false,
+                            nextLocationOpenedMissions);
 
-                    campaignState.Locations.Add(nextLocationState);
+                        campaignState.Locations.Add(nextLocationState);
+                    }
+                    else
+                    {
+                        var existingFirstMission =
+                            existingLocation.OpenedMissions.FirstOrDefault(x => x.Id == nextMissionId);
+
+                        if (existingFirstMission == null) // mission exists (other version migration)
+                        {
+                            var firstMissionState = new MissionState(nextMissionId, false);
+                            existingLocation.OpenedMissions.Add(firstMissionState);
+                        }
+                    }
                 };
             }
 
@@ -75,10 +90,15 @@ namespace ITCafe.Campaign
                 if (currentMissionIndex < currentLocationMissionIds.Count - 1) // open next mission
                 {
                     var nextMissionId = currentLocationMissionIds[currentMissionIndex + 1];
-                    var nextMissionState = new MissionState(nextMissionId, false);
-                    var nextMissionModel = new MissionModel(nextMissionState);
+                    
+                    // only if it not already opened (other version migration)
+                    if (!selectedLocationModel.OpenedMissionsMap.ContainsKey(nextMissionId))
+                    {
+                        var nextMissionState = new MissionState(nextMissionId, false);
+                        var nextMissionModel = new MissionModel(nextMissionState);
 
-                    selectedLocationModel.OpenedMissionsMap.Add(nextMissionId, nextMissionModel);
+                        selectedLocationModel.OpenedMissionsMap.Add(nextMissionId, nextMissionModel);
+                    }
                 }
                 else // open next location (+ mission)
                 {
