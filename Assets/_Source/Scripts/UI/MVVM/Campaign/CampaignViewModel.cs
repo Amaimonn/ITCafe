@@ -63,6 +63,9 @@ namespace ITCafe.UI.MVVM
 
         public void SelectLocation(ILocationData locationData)
         {
+            // if (locationData != null && !_openedLocationsMap.ContainsKey(locationData.Id))
+            //     return;
+
             _campaignModel.SelectedLocationId.Value = locationData?.Id;
             _campaignModel.SelectedMissionId.Value = null;
         }

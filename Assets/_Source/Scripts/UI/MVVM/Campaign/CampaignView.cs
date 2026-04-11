@@ -14,6 +14,9 @@ using VContainer;
 
 namespace ITCafe.UI.MVVM
 {
+    /// <summary>
+    /// NOTE: reactive missions/locations opening is not implemented
+    /// </summary>
     public class CampaignView : AttachableToolkitWindow<CampaignViewModel>
     {
         [Header("UI Elements")]
@@ -190,6 +193,7 @@ namespace ITCafe.UI.MVVM
             else
             {
                 FLogger.Log<CampaignView>($"No missions opened for: {locationData.Id}");
+                locationTabButtonContainer.SetEnabled(false);
                 locationTabButtonContainer.AddToClassList(USSConst.LOCKED);
             }
 
@@ -256,6 +260,7 @@ namespace ITCafe.UI.MVVM
             }
             else
             {
+                missionButton.SetEnabled(false);
                 missionButton.AddToClassList(USSConst.LOCKED);
             }
 
