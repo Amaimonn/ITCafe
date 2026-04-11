@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/512/niku_udon.png?fileID=21300000&amp;guid=79eb4f2fc71a93d43904a13be9f76cc5&amp;type=3#niku_udon" name="RamenIngredient">
+        <Bindings>
+            <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(19672486248579072)"/>
+        </Bindings>
+    </ITCafe.UI.Custom.GuideIngredient>
+</ui:UXML>

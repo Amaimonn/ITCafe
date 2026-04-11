@@ -19,6 +19,6 @@ MonoBehaviour:
   <SceneName>k__BackingField: cafe_1
   <PositionX>k__BackingField: 600
   <PositionY>k__BackingField: 350
-  _nextMissionIds:
-  - mission_1_6
-  _nextLocationIds: []
+  _nextMissionIds: []
+  _nextLocationIds:
+  - location_2

@@ -121,6 +121,7 @@ MonoBehaviour:
   _collider: {fileID: 2416437782925125223}
   _rigidbody: {fileID: 2998575008688847846}
   _camera: {fileID: 0}
+  _itemTag: 10009
   _onTakenSfx:
     <AudioClip>k__BackingField: {fileID: 0}
     <IsLoop>k__BackingField: 0

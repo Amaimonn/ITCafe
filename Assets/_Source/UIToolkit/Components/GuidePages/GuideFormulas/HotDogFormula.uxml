@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BunIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BunIngredient.uxml?fileID=9197481963319205126&amp;guid=57bd9e5b538f2e247887ed212c399d68&amp;type=3#BunIngredient"/>
+    <ui:Template name="HotDogIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/HotDogIngredient.uxml?fileID=9197481963319205126&amp;guid=9bb5aa6e6b618f94297921dfd928c6a5&amp;type=3#HotDogIngredient"/>
+    <ui:Template name="SausageFriedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SausageFriedIngredient.uxml?fileID=9197481963319205126&amp;guid=b3da63b8615aaf441b5256be44a9df27&amp;type=3#SausageFriedIngredient"/>
+    <ui:VisualElement name="HotDogFormula" class="guide__equation">
+        <ui:Instance template="BunIngredient" name="BunIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="SausageFriedIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="HotDogIngredient" name="HotDogIngredient">
+            <AttributeOverrides element-name="HotDogIngredient" is-result="true"/>
+        </ui:Instance>
+    </ui:VisualElement>
+</ui:UXML>

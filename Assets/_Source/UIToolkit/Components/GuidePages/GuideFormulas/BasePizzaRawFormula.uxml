@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BasePizzaRawIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BasePizzaRawIngredient.uxml?fileID=9197481963319205126&amp;guid=0be090ada1e34cc44bf35becbbfb60aa&amp;type=3#BasePizzaRawIngredient"/>
+    <ui:Template name="CheeseIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/CheeseIngredient.uxml?fileID=9197481963319205126&amp;guid=ef19b48a09fc2454b8a02bb8f2b62404&amp;type=3#CheeseIngredient"/>
+    <ui:Template name="DoughIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/DoughIngredient.uxml?fileID=9197481963319205126&amp;guid=db162c10e1fa62c4088bd0880b697068&amp;type=3#DoughIngredient"/>
+    <ui:Template name="TomatoSlicedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/TomatoSlicedIngredient.uxml?fileID=9197481963319205126&amp;guid=deed2433b8b970643b045bc7ffc7b3fc&amp;type=3#TomatoSlicedIngredient"/>
+    <ui:VisualElement name="BasePizzaRawFormula" class="guide__equation">
+        <ui:Instance template="DoughIngredient" name="DoughIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="CheeseIngredient" name="CheeseIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="TomatoSlicedIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="BasePizzaRawIngredient" name="BasePizzaRawIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

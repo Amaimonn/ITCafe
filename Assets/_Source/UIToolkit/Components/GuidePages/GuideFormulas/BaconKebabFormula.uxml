@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BaconFriedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconFriedIngredient.uxml?fileID=9197481963319205126&amp;guid=b6214ab1998b212409f98692b0148023&amp;type=3#BaconFriedIngredient"/>
+    <ui:Template name="BaconKebabIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconKebabIngredient.uxml?fileID=9197481963319205126&amp;guid=c180020670951bb48bb7c7bfad4b1ec8&amp;type=3#BaconKebabIngredient"/>
+    <ui:Template name="PattyFriedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PattyFriedIngredient.uxml?fileID=9197481963319205126&amp;guid=cab619b2310926641a2efe25a8e008ab&amp;type=3#PattyFriedIngredient"/>
+    <ui:VisualElement name="BaconKebabFormula" class="guide__equation">
+        <ui:Instance template="BaconFriedIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="PattyFriedIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="BaconKebabIngredient" name="BaconKebabIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

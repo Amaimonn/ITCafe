@@ -61,17 +61,5 @@ namespace ITCafe.UI.MVVM
             _cancelled.OnNext(Unit.Default);
             StartClosing();
         }
-
-        // public override void Dispose()
-        // {
-        //     _title?.Dispose();
-        //     _message?.Dispose();
-        //     _confirmText?.Dispose();
-        //     _cancelText?.Dispose();
-        //     _isConfirmEnabled?.Dispose();
-        //     _confirmed?.Dispose();
-        //     _cancelled?.Dispose();
-        //     base.Dispose();
-        // }
     }
 }

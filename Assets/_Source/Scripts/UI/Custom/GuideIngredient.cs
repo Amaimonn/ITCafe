@@ -58,7 +58,7 @@ namespace ITCafe.UI.Custom
 
         private Sprite _sprite;
         private bool _isResult = false;
-        private string _prefixText = "$";
+        private string _prefixText;
 
         public GuideIngredient()
         {

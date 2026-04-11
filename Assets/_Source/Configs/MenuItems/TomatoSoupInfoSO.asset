@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemTag>k__BackingField: 10008
   <NameLid>k__BackingField: tomato_soup
-  <Image>k__BackingField: {fileID: 21300000, guid: 2984eaff4b0e11f41afa1a59ae9fb891, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: e33f91b7a294545458db880cfafcfad3, type: 3}
   <Prefab>k__BackingField: {fileID: 3947593787520466988, guid: 36a78b932c108984e8858e218545ca79, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 11400000, guid: f8393f453a8fa8848bda75896e3dce62, type: 2}

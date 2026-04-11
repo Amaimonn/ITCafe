@@ -13,6 +13,7 @@ namespace ITCafe.Environment.Appliances
         where T : IProcessableAspect
     {
         [SerializeField] private Transform _placedTransform;
+        [SerializeField] private Transform _resultTransform;
         [SerializeField] private ProcessingProgressWorldUI _progressUI;
 
         [Header("VFX"), Space(4)]
@@ -25,7 +26,10 @@ namespace ITCafe.Environment.Appliances
         [SerializeField] private SfxData _processingSfx;
 
         protected bool IsBusy => _holdingItem != null;
-        protected Vector3 PlacedPosition => _placedTransform.position;
+        protected Vector3 PlacedPosition => PlacedTransformSafe.position;
+        protected Transform PlacedTransformSafe => _placedTransform != null ? _placedTransform : transform;
+        protected Transform ResultTransformSafe => _resultTransform != null ? _resultTransform : _placedTransform;
+        // protected Vector3 ResultPosition => _resultTransform.position;
         protected IItem _holdingItem;
         protected bool _isReadyResult = false;
         protected CancellationTokenSource _cts;
@@ -83,7 +87,7 @@ namespace ITCafe.Environment.Appliances
 
         public virtual bool CanHandleContainer(IItemsContainer container, PlayerContext context)
         {
-            return false;
+            return IsBusy && _isReadyResult && container.CanTake(_holdingItem);
         }
 
         public virtual void Handle(IItem item, PlayerContext context)
@@ -96,6 +100,7 @@ namespace ITCafe.Environment.Appliances
 
         public virtual void HandleContainer(IItemsContainer container, PlayerContext context)
         {
+            Handle(container, context);
         }
 #endregion
 
@@ -104,7 +109,7 @@ namespace ITCafe.Environment.Appliances
             var itemPicker = context.ItemPicker;
 
             itemPicker.Release();
-            item.transform.SetParent(_placedTransform, worldPositionStays: true);
+            item.transform.SetParent(PlacedTransformSafe, worldPositionStays: true);
             item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             _holdingItem = item;
@@ -191,7 +196,12 @@ namespace ITCafe.Environment.Appliances
 
         protected virtual void SetProcessingResult(IProcessableAspect processable, PlayerContext context)
         {
-            _holdingItem = processable.GetResult(_holdingItem, context);
+            var item = processable.GetResult(_holdingItem, context);
+            
+            item.transform.SetParent(ResultTransformSafe, worldPositionStays: true);
+            item.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            
+            _holdingItem = item;
         }
 
         protected virtual void HandOver(PlayerContext context)

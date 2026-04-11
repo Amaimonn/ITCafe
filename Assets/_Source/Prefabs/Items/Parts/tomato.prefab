@@ -68,6 +68,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5028759993301923343, guid: 85938f0c69ec2764089c4ae07951faf6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 626662568972632657}
+    - targetCorrespondingSourceObject: {fileID: 5028759993301923343, guid: 85938f0c69ec2764089c4ae07951faf6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4348125677440172882}
   m_SourcePrefab: {fileID: 100100000, guid: 85938f0c69ec2764089c4ae07951faf6, type: 3}
 --- !u!1 &280155261698827468 stripped
 GameObject:
@@ -135,6 +138,7 @@ MonoBehaviour:
   _collider: {fileID: 9193245149806443649}
   _rigidbody: {fileID: -3695228084831274627}
   _camera: {fileID: 0}
+  _itemTag: 16
   _onTakenSfx:
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 46df4b6eded942f4f98c6203898922f2, type: 3}
     <IsLoop>k__BackingField: 0
@@ -146,7 +150,6 @@ MonoBehaviour:
     <MaxPitchShift>k__BackingField: 0.1
     <IsPausable>k__BackingField: 1
     <IsSingleton>k__BackingField: 0
-  _itemTag: 16
 --- !u!114 &626662568972632657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +173,75 @@ MonoBehaviour:
       data:
         _creationTag: 10008
         _shouldDestroySourceItem: 1
+--- !u!114 &4348125677440172882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280155261698827468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45d2d5f13054a95824c5f76218b6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SliceProcessableAspect
+  _handler:
+    rid: 7209694790597738582
+  _processingTime: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7209694790597738582
+      type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _resultTag: 20005
+        _onTagChanged:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 7584345964329611237}
+              m_TargetAssemblyTypeName: ITCafe.Environment.SimpleItemPart, Assembly-CSharp
+              m_MethodName: SetTag
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _onProcessed:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 4541674066766770643}
+              m_TargetAssemblyTypeName: UnityEngine.MeshFilter, UnityEngine
+              m_MethodName: set_mesh
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 3301885043010431249, guid: 59ec72c0f63004042b0ce461221b06ac, type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Mesh, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 9193245149806443649}
+              m_TargetAssemblyTypeName: UnityEngine.MeshCollider, UnityEngine
+              m_MethodName: set_sharedMesh
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 3301885043010431249, guid: 59ec72c0f63004042b0ce461221b06ac, type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Mesh, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+--- !u!33 &4541674066766770643 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 8731835002239296272, guid: 85938f0c69ec2764089c4ae07951faf6, type: 3}
+  m_PrefabInstance: {fileID: 5056118702470533827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &9193245149806443649 stripped
 MeshCollider:
   m_CorrespondingSourceObject: {fileID: 4160770710475419202, guid: 85938f0c69ec2764089c4ae07951faf6, type: 3}

@@ -88,6 +88,17 @@ namespace ITCafe
                 var creditsBinder = Container.Resolve<IViewBinder<CreditsViewModel>>();
                 creditsBinder.Open();
             }
+            else
+            {
+                var campaignState = Container.Resolve<ISaveStateProvider>().SaveState.CampaignState;
+
+                if (!string.IsNullOrEmpty(campaignState.SelectedMissionId) &&
+                    !string.IsNullOrEmpty(campaignState.SelectedLocationId))
+                {
+                    var campaignBinder = Container.Resolve<IViewBinder<CampaignViewModel>>();
+                    campaignBinder.Open();
+                }
+            }
 
             var exitSignal = Container.Resolve<Subject<Unit>>(Constants.START_MISSION_SIGNAL);
             var gameplayEnterContext = new GameplayEnterContext()

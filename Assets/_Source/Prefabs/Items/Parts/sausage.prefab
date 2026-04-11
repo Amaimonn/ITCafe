@@ -72,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2596905523559583450, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1830692721979432334}
+    - targetCorrespondingSourceObject: {fileID: 2596905523559583450, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5855496695131462632}
   m_SourcePrefab: {fileID: 100100000, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
 --- !u!1 &800402767766359633 stripped
 GameObject:
@@ -94,6 +97,7 @@ MonoBehaviour:
   _collider: {fileID: 8509613224646810238}
   _rigidbody: {fileID: 8482382184614581242}
   _camera: {fileID: 0}
+  _itemTag: 11
   _onTakenSfx:
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 46df4b6eded942f4f98c6203898922f2, type: 3}
     <IsLoop>k__BackingField: 0
@@ -105,7 +109,6 @@ MonoBehaviour:
     <MaxPitchShift>k__BackingField: 0.1
     <IsPausable>k__BackingField: 1
     <IsSingleton>k__BackingField: 0
-  _itemTag: 11
 --- !u!114 &6054842270045804578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,13 +166,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa3cc41f63e487f85d76319558b7b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.GrillProcessable
+  <IsProcessable>k__BackingField: 1
   _handler:
-    rid: 2693439952508944470
+    rid: 7209694774573662294
   _processingTime: 1
   references:
     version: 2
     RefIds:
-    - rid: 2693439952508944470
+    - rid: 7209694774573662294
+      type: {class: SwitchTwoTagProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _firstTag: 11
+        _firstHandler:
+          rid: 7209694774573662295
+        _secondTag: 20002
+        _secondHandler:
+          rid: 7209694774573662296
+    - rid: 7209694774573662295
       type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
       data:
         _resultTag: 20001
@@ -203,9 +216,168 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7209694774573662296
+      type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _resultTag: 20003
+        _onTagChanged:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 820053120016887875}
+              m_TargetAssemblyTypeName: ITCafe.Environment.SimpleItemPart, Assembly-CSharp
+              m_MethodName: SetTag
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _onProcessed:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1160633907307851652}
+              m_TargetAssemblyTypeName: UnityEngine.MeshRenderer, UnityEngine
+              m_MethodName: set_material
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 2100000, guid: fba1ebb6d22ea4844aa382b3d4a537f9, type: 2}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+--- !u!114 &5855496695131462632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800402767766359633}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45d2d5f13054a95824c5f76218b6f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.SliceProcessableAspect
+  <IsProcessable>k__BackingField: 0
+  _handler:
+    rid: 7209694774573662298
+  _processingTime: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7209694774573662298
+      type: {class: SwitchTwoTagProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _firstTag: 11
+        _firstHandler:
+          rid: 7209694774573662299
+        _secondTag: 20001
+        _secondHandler:
+          rid: 7209694774573662300
+    - rid: 7209694774573662299
+      type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _resultTag: 20002
+        _onTagChanged:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 820053120016887875}
+              m_TargetAssemblyTypeName: ITCafe.Environment.SimpleItemPart, Assembly-CSharp
+              m_MethodName: SetTag
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _onProcessed:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8509613224646810238}
+              m_TargetAssemblyTypeName: UnityEngine.MeshCollider, UnityEngine
+              m_MethodName: set_sharedMesh
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 2532420148448897484, guid: be7a40b8700fd754faa49f39420d02ab, type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Mesh, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 4035103401884474190}
+              m_TargetAssemblyTypeName: UnityEngine.MeshFilter, UnityEngine
+              m_MethodName: set_mesh
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: -6480228251646151280, guid: 601422f08d730974ba9474adf89a2fd5, type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Mesh, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7209694774573662300
+      type: {class: CallMethodProcessing, ns: ITCafe.Environment, asm: Assembly-CSharp}
+      data:
+        _resultTag: 20003
+        _onTagChanged:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 820053120016887875}
+              m_TargetAssemblyTypeName: ITCafe.Environment.SimpleItemPart, Assembly-CSharp
+              m_MethodName: SetTag
+              m_Mode: 0
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        _onProcessed:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8509613224646810238}
+              m_TargetAssemblyTypeName: UnityEngine.MeshCollider, UnityEngine
+              m_MethodName: set_sharedMesh
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 2532420148448897484, guid: be7a40b8700fd754faa49f39420d02ab, type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Mesh, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 4035103401884474190}
+              m_TargetAssemblyTypeName: UnityEngine.MeshFilter, UnityEngine
+              m_MethodName: set_mesh
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: -6480228251646151280, guid: 601422f08d730974ba9474adf89a2fd5, type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Mesh, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!23 &1160633907307851652 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4542711045791903503, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
+  m_PrefabInstance: {fileID: 3391656659522732171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &4035103401884474190 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 1796378701546101701, guid: e41b9cce28c2aa542abacad6d2c5af47, type: 3}
   m_PrefabInstance: {fileID: 3391656659522732171}
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &8509613224646810238 stripped

@@ -51,7 +51,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outline: {fileID: 2509794350985328882}
   _spawningItemTag: 11
-  _itemPrefab: {fileID: 800402767766359633, guid: 113a3d0bc03745d4f89467846a40a932, type: 3}
 --- !u!114 &2509794350985328882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,8 +88,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.45570374, y: 0.07716298, z: 0.2840163}
-  m_Center: {x: -0.009590149, y: 0.038811266, z: -0.027991861}
+  m_Size: {x: 0.47782755, y: 0.045653045, z: 0.20155402}
+  m_Center: {x: -0.009254932, y: 0.023056298, z: -0.041065164}
 --- !u!1001 &3394713466100114678
 PrefabInstance:
   m_ObjectHideFlags: 0

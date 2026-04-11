@@ -9,7 +9,6 @@ namespace ITCafe.Environment
 {
     public abstract class ItemPartBase : PickUpItem, ICraftPart, IItemHandler
     {
-        public abstract ItemTag Tag { get; }
         public virtual bool IsCombination => false;
         public IReadOnlyDictionary<ItemTag, int> PartsAmountMap => _partsAmountMap;
 

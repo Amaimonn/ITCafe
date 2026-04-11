@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48489457fcc2794abe416a4abf2dab5, type: 3}
+  m_Name: RamenInfoSO
+  m_EditorClassIdentifier: 
+  <ItemTag>k__BackingField: 10004
+  <NameLid>k__BackingField: ramen
+  <Image>k__BackingField: {fileID: 21300000, guid: 3c0013a70f08e2142a6f984b7f60317c, type: 3}
+  <Prefab>k__BackingField: {fileID: 3124786135051753140, guid: 92ad070fcb44abf4f9948ae60e685f83, type: 3}
+  <MenuItemExtra>k__BackingField: {fileID: 11400000, guid: 445d4f2702f8aa343bdbaf4d79d65ec1, type: 2}

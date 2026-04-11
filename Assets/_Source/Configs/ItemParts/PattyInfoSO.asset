@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PattyInfoSO
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Items.ItemInfoSO
   <ItemTag>k__BackingField: 9
+  <NameLid>k__BackingField: patty
   <Image>k__BackingField: {fileID: 21300106, guid: 37607ec1aab56e349af84a980f685a4b, type: 3}
   <Prefab>k__BackingField: {fileID: 9143675695500297735, guid: 58c1f18cc05319f4d891664ae99c60e6, type: 3}
   <MenuItemExtra>k__BackingField: {fileID: 0}

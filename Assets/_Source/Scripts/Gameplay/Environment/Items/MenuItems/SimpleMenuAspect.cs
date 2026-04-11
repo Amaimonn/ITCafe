@@ -18,8 +18,7 @@ namespace ITCafe.Environment
 
         public bool CanBeStored(IItemsContainer container)
         {
-            return container is ISimpleContainer simpleContainer &&
-                   simpleContainer.ContainerTag == _properContainerTag;
+            return container.Tag == _properContainerTag;
         }
     }
 }

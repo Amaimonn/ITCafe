@@ -4,6 +4,6 @@ namespace ITCafe.Environment
 {
     public class Bowl : OneSlotContainer
     {
-        public override ItemTag ContainerTag => ItemTag.Bowl;
+        public override ItemTag Tag => ItemTag.Bowl;
     }
 }

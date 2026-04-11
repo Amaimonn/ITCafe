@@ -51,6 +51,37 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &693461088082409885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5522680325613494594}
+  m_Layer: 0
+  m_Name: PlacedOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5522680325613494594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693461088082409885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7880928742872168703}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985056052073100185
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +206,7 @@ Transform:
   - {fileID: 7326682913672884504}
   - {fileID: 2927817140592992960}
   - {fileID: 8636301618501174680}
+  - {fileID: 5522680325613494594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4772221758678019888
@@ -190,7 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Environment.Appliances.Grill
   _outline: {fileID: 188437155310287669}
-  _placedTransform: {fileID: 7880928742872168703}
+  _placedTransform: {fileID: 5522680325613494594}
+  _resultTransform: {fileID: 5522680325613494594}
   _progressUI: {fileID: 7476660312178350258}
   _placedParticles: {fileID: 3717704606219983658}
   _processingParticles: {fileID: 0}

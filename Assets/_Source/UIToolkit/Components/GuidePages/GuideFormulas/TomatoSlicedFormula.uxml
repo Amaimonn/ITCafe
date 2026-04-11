@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SlicerIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SlicerIngredient.uxml?fileID=9197481963319205126&amp;guid=46051c00fa92a4041851b9879029943f&amp;type=3#SlicerIngredient"/>
+    <ui:Template name="TomatoIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/TomatoIngredient.uxml?fileID=9197481963319205126&amp;guid=4815e17abf2f2dd4e98b5b55ad4494f4&amp;type=3#TomatoIngredient"/>
+    <ui:Template name="TomatoSlicedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/TomatoSlicedIngredient.uxml?fileID=9197481963319205126&amp;guid=deed2433b8b970643b045bc7ffc7b3fc&amp;type=3#TomatoSlicedIngredient"/>
+    <ui:VisualElement name="TomatoSlicedFormula" class="guide__equation">
+        <ui:Instance template="TomatoIngredient" name="TomatoIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="SlicerIngredient" name="SlicerIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="TomatoSlicedIngredient" name="TomatoSlicedIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -12,24 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b5d536fb142e6842e7b95489d287c, type: 3}
   m_Name: mission_1_1_setup
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.MissionSetupSO
-  <SceneSetupPrefab>k__BackingField: {fileID: 9014402381445437953, guid: 9a5e4fb577d66074db5daebd5a9049b0, type: 3}
+  <SceneSetupPrefab>k__BackingField: {fileID: 9014402381445437953, guid: 40da2d571c196af499fe8e50259cde42, type: 3}
   _itemInfoCollection:
     _allInfo:
     - {fileID: 11400000, guid: d00f05d886091ae4aa5533adb74ed66c, type: 2}
     - {fileID: 11400000, guid: 508621c06fc55474f93daf82dc1f4f6b, type: 2}
     - {fileID: 11400000, guid: ea12c0ed59455f647821b87cc09d19b9, type: 2}
     - {fileID: 11400000, guid: 9a8ecf186e6784d49a3383abd9509288, type: 2}
+    - {fileID: 11400000, guid: 1e7190ffd5ecd334ebd243077d3c968b, type: 2}
     - {fileID: 11400000, guid: 823b1b2f7c53bd34da3a6863c80db1e9, type: 2}
     - {fileID: 11400000, guid: 2625e1aab4cf84f42a99e309cbf25341, type: 2}
-    - {fileID: 11400000, guid: fde18f057d61bf04cb637bb2a5f341e2, type: 2}
+    - {fileID: 11400000, guid: 642d7b92ee4178141b85d09d45fdf627, type: 2}
   _recipesCollection:
     _recipes:
     - {fileID: 11400000, guid: ad7a787fd97020448af75cfb4e261cc3, type: 2}
   _guideData:
     _pages:
     - {fileID: 9197481963319205126, guid: 3587e7d115f0e704cac0b28c84f1a0f5, type: 3}
-    - {fileID: 9197481963319205126, guid: 0c80686e8ca3fc9419d8ca36b3768a38, type: 3}
     - {fileID: 9197481963319205126, guid: 0862e48722f2c914a997c9594489ca8f, type: 3}
+    - {fileID: 9197481963319205126, guid: 0c80686e8ca3fc9419d8ca36b3768a38, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: 64000000c80000002c01000090010000f4010000

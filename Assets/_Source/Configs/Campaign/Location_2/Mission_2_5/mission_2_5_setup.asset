@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6b5d536fb142e6842e7b95489d287c, type: 3}
+  m_Name: mission_2_5_setup
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.MissionSetupSO
+  <SceneSetupPrefab>k__BackingField: {fileID: 9014402381445437953, guid: 37ffca67824e7f24fa54faf884693b76, type: 3}
+  _itemInfoCollection:
+    _allInfo:
+    - {fileID: 11400000, guid: d00f05d886091ae4aa5533adb74ed66c, type: 2}
+    - {fileID: 11400000, guid: 508621c06fc55474f93daf82dc1f4f6b, type: 2}
+    - {fileID: 11400000, guid: fde18f057d61bf04cb637bb2a5f341e2, type: 2}
+    - {fileID: 11400000, guid: f74bbd494e416954ea56e3d15d1bd53b, type: 2}
+    - {fileID: 11400000, guid: 77a23c4804682344a840e8a6780d5377, type: 2}
+    - {fileID: 11400000, guid: 597d4cbde23ac2b4cbf15caca9af402b, type: 2}
+    - {fileID: 11400000, guid: c8392e5adc439d34cb3a2d5ac8d6be87, type: 2}
+    - {fileID: 11400000, guid: 9de114c660c875445a570c0996b53148, type: 2}
+    - {fileID: 11400000, guid: 54ddf9bcc6738e94a84fa73593a59469, type: 2}
+    - {fileID: 11400000, guid: 9502e7cb10a24624bab9524644fb3165, type: 2}
+    - {fileID: 11400000, guid: 10b9962ab3fca434a9c75cc187e05f59, type: 2}
+    - {fileID: 11400000, guid: 60b6d03bee301ea4cb39f95a0c295cf3, type: 2}
+    - {fileID: 11400000, guid: 94219ce4b6b690643bca88b04fcf195a, type: 2}
+    - {fileID: 11400000, guid: 2a2027cddc7c12d41baf86f330697f87, type: 2}
+    - {fileID: 11400000, guid: f6c531cd7a92e9f4fb3eb1933d6eca36, type: 2}
+    - {fileID: 11400000, guid: 58fe4cfcbacaa6f49804441f1339f309, type: 2}
+    - {fileID: 11400000, guid: 5f2dc66f9cd8a5c439fb4c410fc33096, type: 2}
+    - {fileID: 11400000, guid: 89e077b529cc5d34799834576a66f3c6, type: 2}
+  _recipesCollection:
+    _recipes:
+    - {fileID: 11400000, guid: 525e407e7b0628d4cb59407234476aba, type: 2}
+    - {fileID: 11400000, guid: b37a2108a84e1694b8d1552782d911cc, type: 2}
+    - {fileID: 11400000, guid: 37d644ad78db6314997badae840e3b0e, type: 2}
+    - {fileID: 11400000, guid: 13dc75988c1375b418fc08d5fa082e8d, type: 2}
+    - {fileID: 11400000, guid: 2b2efde274718c94280e0d1c0ae7bccf, type: 2}
+  _guideData:
+    _pages:
+    - {fileID: 9197481963319205126, guid: 8bc1c13fd14fa9e4b83b0f4e12000ecc, type: 3}
+    - {fileID: 9197481963319205126, guid: cd7525bbd504a2744a5c40ac97170ab2, type: 3}
+  _missionEvaluation:
+    <StarEvaluations>k__BackingField:
+      _lockedItems: 64000000c80000002c01000090010000f4010000
+  _localeTableCollection:
+    <TableReferences>k__BackingField:
+      _lockedItems: []
+    _tables: []

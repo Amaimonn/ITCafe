@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ITCafe.Data.Items;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace ITCafe.Environment
 {
     public interface IItem : IInteractable, ICompositeComponent
     {
+        public ItemTag Tag { get; }
         public bool CanBeHandled(IItemHandler handler, PlayerContext context);
         public void BecomeHandled(IItemHandler handler, PlayerContext context);
         public Transform transform { get; }

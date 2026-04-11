@@ -6,7 +6,7 @@ namespace ITCafe.Environment
 {
     public abstract class BaseProcessableAspect : MonoBehaviour, IProcessableAspect
     {
-        public bool IsProcessable { get; private set; } = true;
+        [field: SerializeField] public bool IsProcessable { get; set; } = true;
         public float ProcessingTime => _processingTime;
 
         [RealizationSelector(typeof(IProcessingHandler)), SerializeReference] 

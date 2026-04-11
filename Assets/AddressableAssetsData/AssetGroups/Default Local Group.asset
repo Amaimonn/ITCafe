@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 7bc64339ac30628409e4e353cab0f0fc
   m_SerializeEntries:
+  - m_GUID: 00d0b3926b19d704bb91af71798523d9
+    m_Address: mission_2_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 052faaac586de48259a63d0c4782560b
     m_Address: Assets/_Source/Settings/PlayerActionMap.inputactions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0802823a2be697044a69e0da46629277
+    m_Address: mission_2_3_setup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -90,8 +100,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a5c1f8dbbe253cf47aba597f88ae803f
-    m_Address: mission_1_6
+  - m_GUID: a62a9c407b56a1e468bfd0c120ba1ebf
+    m_Address: mission_2_2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -105,6 +115,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b092f7517f4aad14abf4ff7fca47a835
+    m_Address: mission_2_4_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c22c67d2feed90048a67b8d55dceec25
     m_Address: mission_1_2
     m_ReadOnly: 0
@@ -112,11 +127,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c530ce46a74c30e46b11215cf3d9cd20
     m_Address: vcontainer_settings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c598e1b3e0a120d419d45c73146d5804
-    m_Address: mission_1_6_setup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -130,13 +140,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db04e0c0973ad214e950070b2e03558a
+    m_Address: mission_2_5_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eda17f6b448da7d488943b734989e267
     m_Address: mission_1_5_setup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0431a4a1a95ec14ca68eebe9e05d1bb
+    m_Address: mission_2_2_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f220926c3c92bc94f9a10e22db0b5a0a
     m_Address: settings_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f906ef3f17e3b9041925c2a063771a37
+    m_Address: mission_2_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f98b62a540b170747904f5b5d5cdbaa6
+    m_Address: mission_2_5
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

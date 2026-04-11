@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemInfo:
     rid: 7418799248309747788
   <ComplexityTimeModifier>k__BackingField: 3
-  <Points>k__BackingField: 30
+  <Points>k__BackingField: 40
   references:
     version: 2
     RefIds:

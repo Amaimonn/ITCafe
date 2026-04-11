@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="RamenFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/RamenFormula.uxml?fileID=9197481963319205126&amp;guid=8329051af9f6ea14fa2e08480e6bd365&amp;type=3#RamenFormula"/>
+    <ui:Template name="RamenRawFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/RamenRawFormula.uxml?fileID=9197481963319205126&amp;guid=1f1d11f21e24bac45bb83a83ec4a4211&amp;type=3#RamenRawFormula"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <ui:VisualElement name="Page" class="guide__page">
+        <ui:Label class="guide__page-title">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:ef7264d5a5094f744afcb1837e0f1e34" entry="Id(14023507705856)"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Instance template="RamenRawFormula" name="RamenRawFormula"/>
+        <ui:Instance template="RamenFormula" name="RamenFormula"/>
+    </ui:VisualElement>
+</ui:UXML>
