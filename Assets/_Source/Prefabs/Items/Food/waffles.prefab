@@ -104,7 +104,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _itemTag: 6
   _onTakenSfx:
-    <AudioClip>k__BackingField: {fileID: 0}
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 46df4b6eded942f4f98c6203898922f2, type: 3}
     <IsLoop>k__BackingField: 0
     <VolumeScale>k__BackingField: 1
     <SpacialBlend>k__BackingField: 1
