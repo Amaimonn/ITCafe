@@ -36,7 +36,7 @@ MonoBehaviour:
     - {fileID: 9197481963319205126, guid: 42c59feef42a75b4c9f8dd167a200894, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
-      _lockedItems: 64000000c80000002c01000090010000f4010000
+      _lockedItems: c80000002c01000090010000f401000058020000
   _localeTableCollection:
     <TableReferences>k__BackingField:
       _lockedItems: []
