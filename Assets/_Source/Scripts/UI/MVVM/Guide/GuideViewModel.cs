@@ -22,7 +22,7 @@ namespace ITCafe.UI.MVVM
         {
             _currentGuide = new ReactiveProperty<IGuideData>(guideData);
             _pagesCount = new ReactiveProperty<int>(guideData.Pages.Count);
-            _isNextEnabled = new ReactiveProperty<bool>(_pagesCount.Value > 0);
+            _isNextEnabled = new ReactiveProperty<bool>(_pagesCount.Value > 1);
         }
 
         public void GoNextPage()
