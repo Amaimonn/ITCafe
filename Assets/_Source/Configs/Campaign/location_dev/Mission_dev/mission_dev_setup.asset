@@ -64,10 +64,22 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 312e46c0e1dd0aa4da9206e98a1ba341, type: 2}
   _guideData:
     _pages:
-    - {fileID: 9197481963319205126, guid: 3587e7d115f0e704cac0b28c84f1a0f5, type: 3}
     - {fileID: 9197481963319205126, guid: 0862e48722f2c914a997c9594489ca8f, type: 3}
+    - {fileID: 9197481963319205126, guid: 3587e7d115f0e704cac0b28c84f1a0f5, type: 3}
     - {fileID: 9197481963319205126, guid: 0c80686e8ca3fc9419d8ca36b3768a38, type: 3}
     - {fileID: 9197481963319205126, guid: 57a4dd8682a42f74a8e33bed5023c3ab, type: 3}
+    - {fileID: 9197481963319205126, guid: 564419237fbfa4049ac5d81104200ff6, type: 3}
+    - {fileID: 9197481963319205126, guid: a9b2238d3641a9d429e75e5adf3cc291, type: 3}
+    - {fileID: 9197481963319205126, guid: 3ed0fadb960d5a048952b6bd07eb76ef, type: 3}
+    - {fileID: 9197481963319205126, guid: 9459b2cf2a61b69449a61fc192856cce, type: 3}
+    - {fileID: 9197481963319205126, guid: 662e1574745207542a3ff6a13eae0bcd, type: 3}
+    - {fileID: 9197481963319205126, guid: 47a5a9010bf403f4185059856be69707, type: 3}
+    - {fileID: 9197481963319205126, guid: 34b9c965cdfca494aafad433eb50505f, type: 3}
+    - {fileID: 9197481963319205126, guid: 42c59feef42a75b4c9f8dd167a200894, type: 3}
+    - {fileID: 9197481963319205126, guid: 5600ce50352dfc34281da89b374b6503, type: 3}
+    - {fileID: 9197481963319205126, guid: e045f889018cbbe44a6a65894554907f, type: 3}
+    - {fileID: 9197481963319205126, guid: 8bc1c13fd14fa9e4b83b0f4e12000ecc, type: 3}
+    - {fileID: 9197481963319205126, guid: cd7525bbd504a2744a5c40ac97170ab2, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: 64000000c80000002c01000090010000f4010000

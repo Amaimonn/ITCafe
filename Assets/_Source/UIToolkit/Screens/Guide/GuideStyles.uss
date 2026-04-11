@@ -12,7 +12,6 @@
     width: 800px;
     flex-direction: column;
     position: relative;
-    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
     height: auto;
 }
 
@@ -73,7 +72,7 @@
 .guide__content-area {
     flex-direction: column;
     min-height: 300px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     height: 700px;
 }
 
@@ -94,6 +93,10 @@
     border-bottom-width: 1px;
     margin-top: 0;
     padding-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .guide__equation {
@@ -106,13 +109,21 @@
     border-radius: 3px;
     border-color: rgba(0, 184, 148, 0.2);
     border-width: 1px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
 
 .guide__ingredient {
     flex-direction: column;
     align-items: center;
     margin: 0 8px;
-    min-width: 100px;
+    min-width: 160px;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .guide__ingredient-icon {
@@ -120,9 +131,9 @@
     background-color: rgba(45, 65, 90, 0.8);
     border-color: rgb(70, 170, 200);
     border-width: 1px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     aspect-ratio: 1;
-    width: 72px;
+    width: 80px;
 }
 
 .guide__ingredient-icon--result {
@@ -134,6 +145,7 @@
 
 .guide__ingredient-labels-container {
     flex-direction: row;
+    justify-content: center;
 }
 
 .guide__ingredient-label {
@@ -150,6 +162,7 @@
     padding-left: 0;
     padding-top: 0;
     margin-top: 0;
+    position: relative;
 }
 
 .guide__ingredient-label--result {
@@ -254,7 +267,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     height: 30px;
 }
 

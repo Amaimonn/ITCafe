@@ -76,6 +76,22 @@ Button {
     background-size: 100% 100%;
 }
 
+.cafe__root-panel--no-chroma {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    width: 100%;
+    height: 100%;
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: rgba(20, 25, 45, 0.94);
+    background-image: url("project://database/Assets/_Source/Art/Images/white_gradient_fade.png?fileID=2800000&guid=9a27966530d26424683ef0ecc05a7437&type=3#white_gradient_fade");
+    -unity-background-image-tint-color: rgba(0, 184, 148, 0.08);
+    background-size: 100% 100%;
+}
+
 .cafe__view-title {
     font-size: 32px;
     color: rgb(0, 184, 148);

@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BowlIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BowlIngredient.uxml?fileID=9197481963319205126&amp;guid=9777589d7d5778d4f8ff530fa01f2c9d&amp;type=3#BowlIngredient"/>
     <ui:Template name="PotIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PotIngredient.uxml?fileID=9197481963319205126&amp;guid=85eab07273d64344c9c8fe3641d84271&amp;type=3#PotIngredient"/>
     <ui:Template name="RamenIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/RamenIngredient.uxml?fileID=9197481963319205126&amp;guid=ad37e62938e444548b0b442abe8efcb2&amp;type=3#RamenIngredient"/>
     <ui:Template name="RamenRawIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/RamenRawIngredient.uxml?fileID=9197481963319205126&amp;guid=91dce8543ca741a45909165430f921cb&amp;type=3#RamenRawIngredient"/>
@@ -6,6 +7,8 @@
         <ui:Instance template="RamenRawIngredient"/>
         <ui:Label text="*" class="guide__operator"/>
         <ui:Instance template="PotIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="BowlIngredient"/>
         <ui:Label text="=" class="guide__operator"/>
         <ui:Instance template="RamenIngredient" name="RamenIngredient"/>
     </ui:VisualElement>
