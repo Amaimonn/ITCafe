@@ -1,6 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="GrillIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/GrillIngredient.uxml?fileID=9197481963319205126&amp;guid=fe38e92ba7cd7e840a1c4f027cc46c5e&amp;type=3#GrillIngredient"/>
-    <ui:Template name="PanIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PanIngredient.uxml?fileID=9197481963319205126&amp;guid=8f59d15b1ddd2cd4f8e519a246d4b7be&amp;type=3#PanIngredient"/>
+    <ui:Template name="PanGrillFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/PanGrillFormula.uxml?fileID=9197481963319205126&amp;guid=299b66391b51373428c1a853230a54a1&amp;type=3#PanGrillFormula"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
     <ui:VisualElement name="Page" class="guide__page">
         <ui:Label class="guide__page-title">
@@ -8,10 +7,6 @@
                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:ef7264d5a5094f744afcb1837e0f1e34" entry="Id(18468597530624)"/>
             </Bindings>
         </ui:Label>
-        <ui:VisualElement name="PanGrillFormula" class="guide__equation">
-            <ui:Instance template="PanIngredient" name="PanIngredient"/>
-            <ui:Label text="=" class="guide__operator"/>
-            <ui:Instance template="GrillIngredient"/>
-        </ui:VisualElement>
+        <ui:Instance template="PanGrillFormula" name="PanGrillFormula"/>
     </ui:VisualElement>
 </ui:UXML>

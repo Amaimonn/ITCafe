@@ -1,0 +1,20 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="CoffeeFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/CoffeeFormula.uxml?fileID=9197481963319205126&amp;guid=b77c7cf7a93d22a4c8aa3fb0dd04940d&amp;type=3#CoffeeFormula"/>
+    <ui:Template name="EggFriedFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/EggFriedFormula.uxml?fileID=9197481963319205126&amp;guid=bc041141dbbded24d965e4170c20ea07&amp;type=3#EggFriedFormula"/>
+    <ui:Template name="SalmonSlicedFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/SalmonSlicedFormula.uxml?fileID=9197481963319205126&amp;guid=f57f01ad5f9d6354c8a121dd03de9f36&amp;type=3#SalmonSlicedFormula"/>
+    <ui:Template name="SushiFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/SushiFormula.uxml?fileID=9197481963319205126&amp;guid=836dd2025499f704b986f853474870f4&amp;type=3#SushiFormula"/>
+    <ui:Template name="TomatoSoupFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/TomatoSoupFormula.uxml?fileID=9197481963319205126&amp;guid=96db4c00dd6a01a49bec665184ef0f1b&amp;type=3#TomatoSoupFormula"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <ui:VisualElement name="Page" class="guide__page">
+        <ui:Label class="guide__page-title">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:ef7264d5a5094f744afcb1837e0f1e34" entry="Id(14023507705856)"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Instance template="SalmonSlicedFormula" name="SalmonSlicedFormula"/>
+        <ui:Instance template="SushiFormula" name="SushiFormula"/>
+        <ui:Instance template="CoffeeFormula" name="CoffeeFormula"/>
+        <ui:Instance template="TomatoSoupFormula" name="TomatoSoupFormula"/>
+        <ui:Instance template="EggFriedFormula" name="EggFriedFormula"/>
+    </ui:VisualElement>
+</ui:UXML>

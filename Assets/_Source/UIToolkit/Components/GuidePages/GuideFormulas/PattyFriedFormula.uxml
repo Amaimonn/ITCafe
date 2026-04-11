@@ -7,8 +7,6 @@
         <ui:Label text="*" class="guide__operator"/>
         <ui:Instance template="GrillIngredient" name="GrillIngredient"/>
         <ui:Label text="=" class="guide__operator"/>
-        <ui:Instance template="PattyFriedIngredient" name="PattyFriedIngredient">
-            <AttributeOverrides element-name="PattyFriedIngredient" is-result="true"/>
-        </ui:Instance>
+        <ui:Instance template="PattyFriedIngredient"/>
     </ui:VisualElement>
 </ui:UXML>
