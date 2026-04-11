@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using DevKit.Utils;
+using ITCafe.CafeBusiness;
 using ITCafe.Data.Items;
 using ITCafe.Player;
 
@@ -8,7 +9,6 @@ namespace ITCafe.Environment
 {
     public abstract class ItemPartBase : PickUpItem, ICraftPart, IItemHandler
     {
-        public abstract ItemTag Tag { get; }
         public virtual bool IsCombination => false;
         public IReadOnlyDictionary<ItemTag, int> PartsAmountMap => _partsAmountMap;
 
@@ -44,8 +44,10 @@ namespace ITCafe.Environment
 
             var itemPicker = context.ItemPicker;
             itemPicker.Release();
+            
             var craftedItem = craftService.Craft(craftRequest);
             context.ItemPicker.Take(craftedItem);
+            
             Destroy(item.transform.gameObject);
             Destroy(gameObject);
         }
@@ -57,19 +59,23 @@ namespace ITCafe.Environment
 #region IItemPart
         public virtual bool CanBeUsedWith(ICraftPart craftPart)
         {
-            return true; // TODO: Check in service
+            return true; // special condition
         }
 #endregion
 
         /// <summary>
-        /// Attention: override this for Combined items to use the tag map instead.
-        /// Call after data changes.
+        /// Caution: override this for Combined items to use the tag map instead.
+        /// Call it after data is changed.
         /// </summary>
         protected virtual void RecalculateItemHash()
         {
         }
 
 #region IEquatableItem
+        /// <summary>
+        /// Used for caching in <see cref="CraftService"/>
+        /// </summary>
+        /// <returns></returns>
         public int GetItemHash()
         {
             return ItemHashCode;

@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using DevKit.Utils;
 using ITCafe.Data.Items;
-using ITCafe.Gameplay.Data;
 using UnityEngine;
 using UnityEngine.UIElements;
+using VContainer;
 
 namespace ITCafe.Environment
 {
@@ -16,11 +17,17 @@ namespace ITCafe.Environment
 
         [SerializeField] private Transform _uiHolder;
         [SerializeField] private UIDocument _uiDocument;
-        [SerializeField] private AllCraftIconsSO _craftIconsSO;
 
+        private IReadOnlyDictionary<ItemTag, ItemInfoSO> _allItemInfoMap;
         private VisualElement _iconsContainer;
         private Transform _lookAtTarget;
-
+        
+        [Inject]
+        private void Construct([Key(Constants.ALL_ITEMS_MAP)] IReadOnlyDictionary<ItemTag, ItemInfoSO> allItemInfoMap)
+        {
+            _allItemInfoMap = allItemInfoMap;
+        }
+        
         protected override void OnInit()
         {
             _lookAtTarget = Camera.main.transform;
@@ -29,12 +36,11 @@ namespace ITCafe.Environment
             _iconsContainer = root.Q<VisualElement>("ImagesContainer");
             _iconsContainer.Clear();
             
-            var iconsMap = _craftIconsSO.CraftIconsMap;
             foreach (var (partTag, amount) in _partsAmountMap)
             {
-                if (iconsMap.TryGetValue(partTag, out var icon))
+                if (_allItemInfoMap.TryGetValue(partTag, out var itemInfoSO) && itemInfoSO.Image != null)
                 {
-                    AddIcons(icon, amount);
+                    AddIcons(itemInfoSO.Image, amount);
                 }
                 else
                 {

@@ -1,5 +1,5 @@
 using ITCafe.Environment;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 
 namespace ITCafe.CafeBusiness
 {

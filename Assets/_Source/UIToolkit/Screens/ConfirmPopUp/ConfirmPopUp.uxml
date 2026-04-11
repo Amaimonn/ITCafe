@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/ConfirmPopUp/ConfirmPopUpStyles.uss?fileID=7433441132597879392&amp;guid=18b566a3af63fea478331f94100faf3d&amp;type=3#ConfirmPopUpStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/ButtonStyles.uss?fileID=7433441132597879392&amp;guid=964f234cacc3b8f44a05d83f70a2e7a3&amp;type=3#ButtonStyles"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
+    <ui:VisualElement name="CloseBackground" class="cafe__window-wrapper confirm-popup__root" style="flex-grow: 1;">
+        <ui:VisualElement name="ConfirmPanel" class="cafe__root-panel confirm-popup__panel">
+            <ui:VisualElement name="Header" picking-mode="Ignore" class="confirm-popup__header">
+                <ui:Label text="CONFIRM ACTION" name="TitleLabel" class="cafe__view-title confirm-popup__title"/>
+                <ui:VisualElement name="TitleAccent" class="confirm-popup__title-accent"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Body" class="confirm-popup__body">
+                <ui:Label text="Are you sure you want to continue?" name="MessageLabel" class="confirm-popup__message"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Footer" class="confirm-popup__footer">
+                <ui:Button name="CancelButton" text="CANCEL" focusable="false" class="cafe__control-button cafe__control-button--blue confirm-popup__button"/>
+                <ui:Button name="ConfirmButton" text="CONFIRM" focusable="false" class="cafe__control-button cafe__control-button--red confirm-popup__button"/>
+            </ui:VisualElement>
+            <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -9,7 +9,7 @@ namespace ITCafe.Player
 {
     public class Interactor : MonoBehaviour
     {
-        public Observable<IInteractable> CurrentTarget => _target;
+        public Observable<IInteractable> CurrentTarget => _currentTarget;
         public Observable<bool> CanInteract => _canInteract;
         public Observable<IItem> OnItemInteracted => _onItemInteracted;
 
@@ -20,7 +20,7 @@ namespace ITCafe.Player
 
         private readonly Subject<IItem> _onItemInteracted = new();
         private readonly ReactiveProperty<bool> _canInteract = new(false);
-        private readonly ReactiveProperty<IInteractable> _target = new();
+        private readonly ReactiveProperty<IInteractable> _currentTarget = new();
         [Inject] private readonly PlayerContext _playerContext;
         [Inject] private readonly InputService _inputService;
 
@@ -30,8 +30,10 @@ namespace ITCafe.Player
         public void Init()
         {
             _onInteract = OnInteract; //_inputService.MediateAction(_interactAction, OnInteract);
-            var inputEntry = new InputEntry(() => _interactAction.action.started += _onInteract,
-                () => _interactAction.action.started -= _onInteract, 90);
+            
+            var interactAction = _interactAction.action;
+            var inputEntry = new InputEntry(() => interactAction.started += _onInteract,
+                () => interactAction.started -= _onInteract, 90);
             _interactSubscription = _inputService.MakeOrderedSub(HashCode.Combine(_interactAction.action, "started"),
                 inputEntry);
         }
@@ -62,10 +64,10 @@ namespace ITCafe.Player
 
         private void InteractWithTarget()
         {
-            if (_target.Value != null)
+            if (_currentTarget.Value != null)
             {
-                _target.Value.Interact(_playerContext);
-                if (_target.Value is IItem item)
+                _currentTarget.Value.Interact(_playerContext);
+                if (_currentTarget.Value is IItem item)
                     _onItemInteracted.OnNext(item);
             }
         }
@@ -76,24 +78,15 @@ namespace ITCafe.Player
             Debug.DrawRay(ray.origin, ray.direction * _interactDistance, Color.red, 0.5f);
 
             if (Physics.Raycast(ray, out var hit, _interactDistance, _interactableLayers) &&
-                hit.collider.TryGetComponent<IInteractable>(out var item))
+                hit.collider.TryGetComponent<IInteractable>(out var interactable))
             {
-                var canInteract = item.CanInteract(_playerContext);
+                var canInteract = interactable.CanInteract(_playerContext);
                 _canInteract.Value = canInteract;
 
-                if (_target.Value != item)
-                {
-                    if (canInteract)
-                    {
-                        ChangeFocus(item);
-                    }
-                    else
-                        RemoveFocus();
-                }
+                if (_currentTarget.Value != interactable && canInteract)
+                    ChangeFocus(interactable);
                 else if (!canInteract)
-                {
                     RemoveFocus();
-                }
             }
             else
             {
@@ -104,18 +97,18 @@ namespace ITCafe.Player
 
         private void RemoveFocus()
         {
-            if (_target.Value != null)
+            if (_currentTarget.Value != null)
             {
-                _target.Value.UnFocus();
-                _target.Value = null;
+                _currentTarget.Value.UnFocus();
+                _currentTarget.Value = null;
             }
         }
 
         private void ChangeFocus(IInteractable item)
         {
-            _target.Value?.UnFocus();
+            _currentTarget.Value?.UnFocus();
             item.Focus();
-            _target.Value = item;
+            _currentTarget.Value = item;
         }
     }
 }

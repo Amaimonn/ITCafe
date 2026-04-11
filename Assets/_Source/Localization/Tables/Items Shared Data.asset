@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Items Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Items
+  m_TableCollectionNameGuidString: 23938b79a94419e4288a63376a542af8
+  m_Entries:
+  - m_Id: 120933449728
+    m_Key: chocolate_donut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 269055295488
+    m_Key: onigiri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10832969728
+    m_Key: bun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63190466560
+    m_Key: sausage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379138998272
+    m_Key: lettuce
+    m_Metadata:
+      m_Items: []
+  - m_Id: 518285033472
+    m_Key: patty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 803023749120
+    m_Key: rice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856907972608
+    m_Key: egg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 908044926976
+    m_Key: salmon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 996217585664
+    m_Key: salmon_sliced
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1141852209152
+    m_Key: hotdog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1657005015040
+    m_Key: burger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1706770432000
+    m_Key: pizza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11303782580224
+    m_Key: tray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11345213915136
+    m_Key: plate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12493345914880
+    m_Key: dish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13903475113984
+    m_Key: trash_can
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8077890464907264
+    m_Key: fries
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8077956135124992
+    m_Key: tomato_soup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17449103351865344
+    m_Key: coffee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676071581581312
+    m_Key: ramen_raw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672486248579072
+    m_Key: ramen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672543509217280
+    m_Key: margherita_pizza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672824238178304
+    m_Key: cookie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673081952993280
+    m_Key: sushi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673164194906112
+    m_Key: bacon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673305421316096
+    m_Key: bacon_fried
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673698486321152
+    m_Key: patty_fried
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673774294171648
+    m_Key: sausage_fried
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674053353799680
+    m_Key: tomato_sliced
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674395130855424
+    m_Key: bacon_kebab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674549246361600
+    m_Key: waffles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674882555117568
+    m_Key: base_pizza_raw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19675438786936832
+    m_Key: egg_fried
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19675578713112576
+    m_Key: noodles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676272874618880
+    m_Key: tomato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676343494115328
+    m_Key: cheese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676765038444544
+    m_Key: bowl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676805131796480
+    m_Key: grill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676881631707136
+    m_Key: pot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676967652687872
+    m_Key: pan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19677281428570112
+    m_Key: oven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19898726268141568
+    m_Key: slicer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19900907348164608
+    m_Key: dough
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19906244600004608
+    m_Key: plastic_cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19906553544048640
+    m_Key: coffee_machine
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2693439899669365329
+  references:
+    version: 2
+    RefIds:
+    - rid: 2693439899669365329
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1771155043625

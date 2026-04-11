@@ -1,0 +1,329 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation2
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Duplicate Asset Isolation2
+  m_GUID: 171f53d4fca5b50429b2ad445d8676e3
+  m_SerializeEntries:
+  - m_GUID: 0406db5a14f94604a8c57ccfbc9f3b46
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesUnlit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e9295898209fcc49872cc7e1d920114
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Oven_02.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0eca8a723e6a02e4fabb85ad764777b4
+    m_Address: Assets/ERA_Adventures/150+ Food Icon Pack/256/bread_roll.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 192a78c433210fc46b6ec7e361e03d8f
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/SausageFriedFormula.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e6c0cc5f2cb9ed4f863b8e3ff79954f
+    m_Address: Assets/_Source/Art/Audio/SFX/UI/ui_cancel_nomagician.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 220d57995f2c6f64a91ea95f38b30b6d
+    m_Address: Assets/_Source/UIToolkit/Components/ProcessingProgress/ProcessingProgress.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2445d8be479690a458ce571010679a5b
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/BaconKebabFormula.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 289987698da06b74e9620f3f9c1da15d
+    m_Address: Assets/Free Hyper Casual Street Food Pack/Models/F_Europe_Bakery_Waffles.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cd0b6746f13668489972b19fbcdd6a7
+    m_Address: Assets/_Source/Art/Materials/TransparentMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ef05889c7e401c469f111431c43b5cb
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Cup_03.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30c5e465dc21c534bada8d020bae91f4
+    m_Address: Assets/Food Pack-Demo/Materials/Base color.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37607ec1aab56e349af84a980f685a4b
+    m_Address: Assets/FREE Food Pack/Textures/FoodIcons_Atlas.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3aa7d5fa50409204e90b00203f8c9855
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Egg.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 460174267326b684088c3b228c5248a6
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Bun.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46ba9bcf9297e3b439bfc505c6641610
+    m_Address: Assets/_Source/Art/Images/sausage_raw_512.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b982beffd057ef498ce21ac5656eaba
+    m_Address: Assets/_Source/Art/Materials/SparkParticlesMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4d2e5b1ff7779444fb877670a13dc75e
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Knife_04.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5178871e3fe050548be507b5314115ec
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/PattyFriedFormula.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57a4dd8682a42f74a8e33bed5023c3ab
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/CookingGuide_1_2.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57bd9e5b538f2e247887ed212c399d68
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BunIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5814447278a4c574f9cde2acfa6b7661
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 592a41a4bdb9b544c997a8826a57b112
+    m_Address: Assets/_Source/Art/Images/sausage_fried_512.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59d7934043ff72648a863aeb0aecd606
+    m_Address: Assets/Food Pack-Demo/Texture/Texture.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d86040cef03de045aac9d05ec03f3c3
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Bowel_01.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7462926e1bd5eda44b84e7f345d3841d
+    m_Address: Assets/_Source/UIToolkit/CommonWorldSettings.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 817914876f409b74da15ec2f61eabd89
+    m_Address: Assets/_Source/Art/Images/noodles_512.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8268b9032c6ed5a4db1649a65f33dd59
+    m_Address: Assets/_Source/Art/Shaders/UIGlitch.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86900e546c2cb31478f5b1f15b1ba6d8
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Tomato.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d2bb70cbf9db8d4da26e15b26e74248
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/SimpleLit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d5145642bf79d8468a78b40fcf92489
+    m_Address: Assets/_Source/Art/Audio/SFX/Interaction/Appliances/alex_jauk-food-cooking-in-oil-178795.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9bb5aa6e6b618f94297921dfd928c6a5
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/HotDogIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2dbe02c0cda32748a11c7714f395ecc
+    m_Address: Assets/_Source/Art/Audio/SFX/Interaction/Appliances/saucepan_boiling_freesound_community.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a75fa985fa373644a85d8a649cb617bd
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Pot_05.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a875c72e8753a53429b809631837d5aa
+    m_Address: Assets/_Source/Art/Images/grill_512.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9b2fe35a167c904693b59a94f5d74c8
+    m_Address: Assets/Food Pack-Demo/Mesh/Salmon.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af8001a8dfaf8a541bdcf0cc307629de
+    m_Address: Assets/_Source/Art/Shaders/GlitchFilter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b01aa993b46d60a48b94958020e63f14
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/HotDogFormula.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1f400d3e94603349b0a2f98ef47ef9d
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/BaconFriedFormula.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3da63b8615aaf441b5256be44a9df27
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SausageFriedIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6214ab1998b212409f98692b0148023
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconFriedIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6658bce81b8ce34a84645cf49392ace
+    m_Address: Assets/ERA_Adventures/150+ Food Icon Pack/256/bacon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9e31184105779448b29b447971df1ea
+    m_Address: Assets/_Source/Art/Audio/SFX/UI/ui_button_click_immersivecontrol_denielcz.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c180020670951bb48bb7c7bfad4b1ec8
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconKebabIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3b142db176a8aa4b9424e9aee6d560e
+    m_Address: Assets/_Source/Art/Materials/NoodlesMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4c43f60a267bbd4b98c98370907381f
+    m_Address: Assets/_Source/Art/Images/bacon_kebab_512.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c64d4d945dfd2b5408ed88902d87bace
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Cheese.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8383b5813e56c240bff5ac4c8394f4f
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SausageIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cab619b2310926641a2efe25a8e008ab
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PattyFriedIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfdaffb3301205a4f98c76660bdd3f78
+    m_Address: Assets/_Source/Art/Models/block_134.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d853e2a8625a2e242bddc2dcc05c0688
+    m_Address: Assets/_Source/Art/Audio/SFX/Interaction/Appliances/dragon-studio-coffee-pouring-into-a-cup-467478.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d97b4cac52cd54a498efa06ac8658835
+    m_Address: Assets/_Source/Art/Materials/UIGlitchMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de25594e1cb8efe459c8e2967beff6cd
+    m_Address: Assets/Food Pack-Demo/Mesh/Cookies.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea7da191f2cf5eb40811367efb81c18b
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Rice.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f34296e98fd69894dabce3d006694310
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Pan_03.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f79c0f77f29ce0141a4cbd3867ed0f57
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PattyIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7a36aafea962f840b77c29aef6e7f42
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Cooked
+      Steak.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f98eff440ecc0a1489fa332256aa63ba
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_CuttingPlate.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fca00a616d3ada246bb528a66dbd1dd7
+    m_Address: Assets/_Source/Art/Images/bacon_raw_512.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd3d7e4af9378aa4080f76127b9e1f4c
+    m_Address: Assets/_Source/Art/Images/Primitives/outlined_little_spark.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe38e92ba7cd7e840a1c4f027cc46c5e
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/GrillIngredient.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff73ac4762d3b11488401e4f93261478
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_MiniStove.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f6de04e4207be0240bbd8b774ef10265, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d722f8390e8259c4495d466c0e8f6fca, type: 2}
+    - {fileID: 11400000, guid: a677dcf1edcc5224a97aa2bb307cc212, type: 2}

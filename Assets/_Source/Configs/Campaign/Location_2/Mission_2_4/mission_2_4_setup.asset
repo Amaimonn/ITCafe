@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6b5d536fb142e6842e7b95489d287c, type: 3}
+  m_Name: mission_2_4_setup
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Data.MissionSetupSO
+  <SceneSetupPrefab>k__BackingField: {fileID: 9014402381445437953, guid: 1abd66f0bb71f91499e172195343aada, type: 3}
+  _itemInfoCollection:
+    _allInfo:
+    - {fileID: 11400000, guid: d00f05d886091ae4aa5533adb74ed66c, type: 2}
+    - {fileID: 11400000, guid: 508621c06fc55474f93daf82dc1f4f6b, type: 2}
+    - {fileID: 11400000, guid: 9de114c660c875445a570c0996b53148, type: 2}
+    - {fileID: 11400000, guid: 54ddf9bcc6738e94a84fa73593a59469, type: 2}
+    - {fileID: 11400000, guid: 77a23c4804682344a840e8a6780d5377, type: 2}
+    - {fileID: 11400000, guid: 597d4cbde23ac2b4cbf15caca9af402b, type: 2}
+    - {fileID: 11400000, guid: f74bbd494e416954ea56e3d15d1bd53b, type: 2}
+    - {fileID: 11400000, guid: c8392e5adc439d34cb3a2d5ac8d6be87, type: 2}
+    - {fileID: 11400000, guid: 10b9962ab3fca434a9c75cc187e05f59, type: 2}
+    - {fileID: 11400000, guid: 60b6d03bee301ea4cb39f95a0c295cf3, type: 2}
+    - {fileID: 11400000, guid: 94219ce4b6b690643bca88b04fcf195a, type: 2}
+  _recipesCollection:
+    _recipes:
+    - {fileID: 11400000, guid: 525e407e7b0628d4cb59407234476aba, type: 2}
+  _guideData:
+    _pages:
+    - {fileID: 9197481963319205126, guid: 5600ce50352dfc34281da89b374b6503, type: 3}
+    - {fileID: 9197481963319205126, guid: e045f889018cbbe44a6a65894554907f, type: 3}
+  _missionEvaluation:
+    <StarEvaluations>k__BackingField:
+      _lockedItems: c80000002c01000090010000f401000058020000
+  _localeTableCollection:
+    <TableReferences>k__BackingField:
+      _lockedItems: []
+    _tables: []

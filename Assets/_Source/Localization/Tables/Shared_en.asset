@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Shared_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8881dbb907ad6df439a3f2a44ed2bdc7, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 39123410944
+    m_Localized: // SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10650322460672
+    m_Localized: APPLY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10673886060544
+    m_Localized: CANCEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2857639791812608
+    m_Localized: Day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13008797781065728
+    m_Localized: ITEM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13009348648370176
+    m_Localized: DELETION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13010248632762368
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193451826642944
+    m_Localized: CONFIRM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193654306668544
+    m_Localized: Close the Settings?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31193557267251200
+    m_Localized: All unapplied changes will be lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31222875762589696
+    m_Localized: Mission progress will be lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31223564756713472
+    m_Localized: Exit to Main Menu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31224380745973760
+    m_Localized: Restart the mission?
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

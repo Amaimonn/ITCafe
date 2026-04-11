@@ -1,21 +1,31 @@
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using UnityEngine;
 
 namespace ITCafe
 {
     public static class Constants
     {
+        public const int STAR_COUNT = 5;
+        public const int SESSION_DURATION_SECONDS = 150;
+        public const int MAX_ORDER_SIZE = 3;
+
 #region Outline config
         public const float OUTLINE_WIDTH = 7f;
-        public static Color OUTLINE_COLOR = new(1f, 10.6283679f, 0.45f, 1);
+        public readonly static Color OUTLINE_COLOR = new(1f, 10.6283679f, 0.45f, 1);
 #endregion
 
 #region Registration Keys
         public const string CLIENT_SEATS = nameof(CLIENT_SEATS);
         public const string CLIENT_ORDER_PLACES = nameof(CLIENT_ORDER_PLACES);
+        public const string MENU_ITEMS_MAP = nameof(MENU_ITEMS_MAP);
+        public const string MENU_ITEMS_HASH_MAP = nameof(MENU_ITEMS_HASH_MAP);
+        public const string ALL_ITEMS_MAP = nameof(ALL_ITEMS_MAP);
+        public const string SETTINGS_DATA_LOCALE_LOADER = nameof(SETTINGS_DATA_LOCALE_LOADER);
+        public const string CAMPAIGN_DATA_LOCALE_LOADER = nameof(CAMPAIGN_DATA_LOCALE_LOADER);
 #endregion
 
 #region Scene signals
+        public const string START_MISSION_SIGNAL = nameof(START_MISSION_SIGNAL);
         public const string MAIN_MENU_EXIT_SIGNAL = nameof(MAIN_MENU_EXIT_SIGNAL);
         public const string GAMEPLAY_EXIT_SIGNAL = nameof(GAMEPLAY_EXIT_SIGNAL);
         public const string RESTART_GAMEPLAY_SIGNAL = nameof(RESTART_GAMEPLAY_SIGNAL);
@@ -27,6 +37,23 @@ namespace ITCafe
         [ItemKey] public const string HOT_DOG = nameof(HOT_DOG);
         [ItemKey] public const string DONUT = nameof(DONUT);
         [ItemKey] public const string FRIES = nameof(FRIES);
+#endregion
+
+#region Addressables Paths
+        public const string ALL_LOCATIONS_DATA_PATH = "all_locations_data";
+        public const string SETTINGS_DATA_PATH = "settings_data";
+#endregion
+
+#region Localization Tables
+        public const string SHARED_TABLE = "Shared";
+        public const string MAIN_MENU_TABLE = "MainMenu";
+        public const string GAMEPLAY_TABLE = "Gameplay";
+        
+        public const string SETTINGS_DATA_TABLE = "SettingsData";
+        public const string LOCATIONS_DATA_TABLE = "LocationsData";
+        public const string MISSIONS_DATA_TABLE = "MissionsData";
+        
+        public const string ITEMS_TABLE = "Items";
 #endregion
     }
 }

@@ -1,0 +1,36 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <ui:VisualElement name="Page1" class="guide__page" style="display: flex;">
+        <ui:Label class="guide__page-title">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:43f6092c1e2012144b74546092a145ca" entry="Id(689030955008)"/>
+            </Bindings>
+        </ui:Label>
+        <ui:VisualElement name="ControlsGrid" class="guide__controls-grid">
+            <ui:VisualElement name="Control1" class="guide__control-item">
+                <ui:Label text="WASD" class="guide__control-key"/>
+                <ui:Label class="guide__control-desc">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:43f6092c1e2012144b74546092a145ca" entry="Id(1341668851712)"/>
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+            <ui:VisualElement name="Control2" class="guide__control-item">
+                <ui:Label text="&#1051;&#1050;&#1052;" class="guide__control-key"/>
+                <ui:Label class="guide__control-desc">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:43f6092c1e2012144b74546092a145ca" entry="Id(1613841432576)"/>
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+            <ui:VisualElement name="Control4" class="guide__control-item">
+                <ui:Label text="ESC" class="guide__control-key"/>
+                <ui:Label class="guide__control-desc">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:43f6092c1e2012144b74546092a145ca" entry="Id(1819291025408)"/>
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

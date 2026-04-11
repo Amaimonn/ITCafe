@@ -206,3 +206,7 @@
     flex-grow: 1;
     justify-content: center;
 }
+
+.main-menu__log-error {
+    color: rgb(230, 72, 86);
+}

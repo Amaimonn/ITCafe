@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/fried_egg.png?fileID=21300000&amp;guid=a4d937df2f2bc9847bb4978b753e7f46&amp;type=3#fried_egg" name="EggFriedIngredient">
+        <Bindings>
+            <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(19675438786936832)"/>
+        </Bindings>
+    </ITCafe.UI.Custom.GuideIngredient>
+</ui:UXML>

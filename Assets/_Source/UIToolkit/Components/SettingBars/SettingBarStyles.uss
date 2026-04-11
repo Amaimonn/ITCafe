@@ -1,0 +1,58 @@
+.settings__bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 8px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.settings__bar:hover {
+    border-color: rgb(0, 184, 148);
+}
+
+.settings__bar-label {
+    font-size: var(--control-font-size);
+    color: rgb(180, 220, 210);
+    -unity-text-align: middle-left;
+    flex-grow: 1;
+    margin-right: 15px;
+    min-width: 120px;
+    width: 120px;
+}
+
+.settings__dropdown {
+    width: 340px;
+    height: 40px;
+    overflow: visible;
+}
+
+.settings__slider {
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 398px;
+}
+
+.settings__slider .unity-base-slider__dragger {
+    width: 10px;
+    height: 40px;
+    margin-top: -20px;
+}
+
+.settings__toggle {
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+    overflow: visible;
+}
+
+.settings__toggle .unity-toggle__checkmark {
+    width: 40px;
+    height: 40px;
+}

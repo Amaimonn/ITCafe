@@ -1,12 +1,21 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Pause/PauseStyles.uss?fileID=7433441132597879392&amp;guid=9e27a021c3203524b84dc5aee746f204&amp;type=3#PauseStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/ButtonStyles.uss?fileID=7433441132597879392&amp;guid=964f234cacc3b8f44a05d83f70a2e7a3&amp;type=3#ButtonStyles"/>
-    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="pause__root" style="flex-grow: 1; transition-duration: 0.13s;">
-        <ui:VisualElement name="PauseContainer" class="pause__container">
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
+    <ui:VisualElement name="PauseWrapper" picking-mode="Ignore" class="cafe__window-wrapper pause__root" style="flex-grow: 1; transition-duration: 0.13s;">
+        <ui:VisualElement name="PausePanel" class="cafe__root-panel pause__panel">
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
             <ui:VisualElement name="Header" picking-mode="Ignore" class="pause__header">
-                <ui:Label text="// &#1055;&#1040;&#1059;&#1047;&#1040;" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__view-title"/>
-                <ui:Label text="&#1054;&#1057;&#1058;&#1040;&#1053;&#1054;&#1042;&#1050;&#1040;_&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1067;" class="cafe__view-subtitle"/>
+                <ui:Label enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__view-title">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:4560ee17220845546a2f441414a0527b" entry="Id(802197471232)"/>
+                    </Bindings>
+                </ui:Label>
+                <ui:Label class="cafe__view-subtitle">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:4560ee17220845546a2f441414a0527b" entry="Id(837760974848)"/>
+                    </Bindings>
+                </ui:Label>
             </ui:VisualElement>
             <ui:VisualElement name="StatsPanel" class="pause__stats-panel" style="display: none;">
                 <ui:Label text="CURRENT_SESSION_DATA" class="pause__stats-title"/>
@@ -30,10 +39,26 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ActionsContainer" class="pause__actions">
-                <ui:Button name="ResumeButton" text="&#1042;&#1054;&#1047;&#1054;&#1041;&#1053;&#1054;&#1042;&#1048;&#1058;&#1068;_&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1059;" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button cafe__control-button--cyan"/>
-                <ui:Button name="RestartButton" text="&#1055;&#1045;&#1056;&#1045;&#1047;&#1040;&#1055;&#1059;&#1057;&#1050;_&#1057;&#1052;&#1045;&#1053;&#1067;" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button--blue cafe__control-button"/>
-                <ui:Button name="SettingsButton" text="&#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;_&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1067;" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button cafe__control-button--gold"/>
-                <ui:Button name="ExitButton" text="&#1042;&#1067;&#1061;&#1054;&#1044;_&#1053;&#1040;_&#1052;&#1069;&#1049;&#1053;&#1060;&#1056;&#1045;&#1049;&#1052;" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button cafe__control-button--red"/>
+                <ui:Button name="ResumeButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button cafe__control-button--cyan" style="margin-top: 0;">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:4560ee17220845546a2f441414a0527b" entry="Id(64637501440)"/>
+                    </Bindings>
+                </ui:Button>
+                <ui:Button name="RestartButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button--blue cafe__control-button">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:4560ee17220845546a2f441414a0527b" entry="Id(6412173312)"/>
+                    </Bindings>
+                </ui:Button>
+                <ui:Button name="SettingsButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button cafe__control-button--gold">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:4560ee17220845546a2f441414a0527b" entry="Id(148469055488)"/>
+                    </Bindings>
+                </ui:Button>
+                <ui:Button name="ExitButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" class="cafe__control-button cafe__control-button--red" style="margin-bottom: 0;">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:4560ee17220845546a2f441414a0527b" entry="Id(333660160000)"/>
+                    </Bindings>
+                </ui:Button>
             </ui:VisualElement>
             <ui:VisualElement name="Footer" class="pause__footer">
                 <ui:Label text="IT_CAFE" class="pause__version"/>

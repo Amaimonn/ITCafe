@@ -113,6 +113,7 @@ Material:
     - _PixelSnap: 1
     - _QueueOffset: 0
     - _RGBShift: 0.001
+    - _RGBShiftPixels: 1
     - _ReceiveShadows: 1
     - _Sharpness: 1
     - _ShiftIntensity: 1

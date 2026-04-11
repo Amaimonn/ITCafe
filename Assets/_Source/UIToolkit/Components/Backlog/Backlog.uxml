@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="OrderPreview" src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreview.uxml?fileID=9197481963319205126&amp;guid=65f009e64710281458e0438bb57f3876&amp;type=3#OrderPreview"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/HUD/HUDStyles.uss?fileID=7433441132597879392&amp;guid=fa2de8381462ab242aca63d0f98fc09f&amp;type=3#HUDStyles"/>
+    <ui:VisualElement name="Backlog" class="hud__widget-panel hud__orders-panel">
+        <ui:Label class="hud__widget-title" style="font-size: 18px;">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:5d73c7b9fa74f5a4ca178ee718c45d24" entry="Id(9008308224)"/>
+            </Bindings>
+        </ui:Label>
+        <ui:VisualElement name="OrdersContainer" style="flex-direction: column; align-self: center;">
+            <ui:Instance template="OrderPreview" name="OrderPreview"/>
+            <ui:Instance template="OrderPreview" name="OrderPreview"/>
+            <ui:Instance template="OrderPreview" name="OrderPreview"/>
+            <ui:Instance template="OrderPreview" name="OrderPreview"/>
+            <ui:Instance template="OrderPreview" name="OrderPreview"/>
+            <ui:Instance template="OrderPreview" name="OrderPreview"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

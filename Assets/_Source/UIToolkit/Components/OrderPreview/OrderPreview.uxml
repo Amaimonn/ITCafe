@@ -1,6 +1,16 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="OrderCloud" src="project://database/Assets/_Source/UIToolkit/Screens/OrderCloud.uxml?fileID=9197481963319205126&amp;guid=da5dc0fa48c689f4cac16aaaa749a313&amp;type=3#OrderCloud"/>
-    <ui:VisualElement name="OrderPreview" class="hud__order">
-        <ui:Instance template="OrderCloud"/>
+    <ui:Template name="FoodItem" src="project://database/Assets/_Source/UIToolkit/Components/FoodItem/FoodItem.uxml?fileID=9197481963319205126&amp;guid=f194e611b13afd44e9f4d16a70752027&amp;type=3#FoodItem"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Components/OrderPreview/OrderPreviewStyles.uss?fileID=7433441132597879392&amp;guid=752dcc774e209dd4d8de842b4be3c7b8&amp;type=3#OrderPreviewStyles"/>
+    <ui:VisualElement name="OrderPreviewWrapper" class="hud__order" style="flex-grow: 1; margin-bottom: 8px;">
+        <ui:VisualElement name="OrderPreview" style="align-items: center; width: 180px;">
+            <ui:VisualElement name="FoodContainer" class="order-preview__food-container">
+                <ui:Instance template="FoodItem" name="FoodItem"/>
+                <ui:Instance template="FoodItem" name="FoodItem"/>
+                <ui:Instance template="FoodItem" name="FoodItem"/>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; height: 8px; margin-top: 1px; border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; border-left-color: rgb(183, 183, 183); border-right-color: rgb(183, 183, 183); border-top-color: rgb(183, 183, 183); border-bottom-color: rgb(183, 183, 183); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: rgb(157, 157, 157); width: 100%;">
+                <ui:VisualElement name="RemainingTimeNormalized" style="flex-grow: 1; background-color: rgb(146, 255, 46); scale: 1 1; width: 100%;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

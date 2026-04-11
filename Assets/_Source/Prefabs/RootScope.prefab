@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 449196077387730041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5948914132670158826
@@ -50,3 +51,82 @@ MonoBehaviour:
   autoInjectGameObjects: []
   _rootUIBinderPrefab: {fileID: 3832630466738670075, guid: f2729c5fdc5086b4f834599b68eba00f, type: 3}
   _settingsViewPrefab: {fileID: 1776532671631055006, guid: 5740bb8e3034eaa4b94fe3e14bc73db0, type: 3}
+  _confirmPopUpPrefab: {fileID: 590647180292677885, guid: 820884195745cb24b90bd41efa7da854, type: 3}
+  _rootLocalizationLoader:
+    _tableCollectionSO: {fileID: 11400000, guid: ce3c32f061b37dc42b52433dd3cf68bd, type: 2}
+  _settingsLocalizationLoader:
+    _tableCollectionSO: {fileID: 11400000, guid: 1058dc49b50b5534690472a41e7fc7b8, type: 2}
+  _audioPlayer: {fileID: 1641458190807918530}
+--- !u!1001 &591521618422934015
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1697565614430736554}
+    m_Modifications:
+    - target: {fileID: 949382799325107279, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+--- !u!4 &449196077387730041 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1012848898464671110, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+  m_PrefabInstance: {fileID: 591521618422934015}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1641458190807918530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2229880225822592573, guid: 8a2589945280efc468060dfe9879bb39, type: 3}
+  m_PrefabInstance: {fileID: 591521618422934015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e92e36c5e7463cb87ba8718c460d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.Shared.AudioPlayer

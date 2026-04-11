@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="SalmonIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SalmonIngredient.uxml?fileID=9197481963319205126&amp;guid=63036877e9f6b824899d265ca01fd525&amp;type=3#SalmonIngredient"/>
+    <ui:Template name="SalmonSlicedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SalmonSlicedIngredient.uxml?fileID=9197481963319205126&amp;guid=08a9d4ed137e0cb44b0f927b1b1b2bd0&amp;type=3#SalmonSlicedIngredient"/>
+    <ui:Template name="SlicerIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SlicerIngredient.uxml?fileID=9197481963319205126&amp;guid=46051c00fa92a4041851b9879029943f&amp;type=3#SlicerIngredient"/>
+    <ui:VisualElement name="SalmonSlicedFormula" class="guide__equation">
+        <ui:Instance template="SalmonIngredient" name="SalmonIngredient"/>
+        <ui:Label text="*" class="guide__operator"/>
+        <ui:Instance template="SlicerIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="SalmonSlicedIngredient" name="SalmonSlicedIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

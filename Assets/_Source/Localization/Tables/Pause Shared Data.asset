@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Pause Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Pause
+  m_TableCollectionNameGuidString: 4560ee17220845546a2f441414a0527b
+  m_Entries:
+  - m_Id: 64637501440
+    m_Key: resume_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6412173312
+    m_Key: restart_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 148469055488
+    m_Key: settings_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333660160000
+    m_Key: exit_button
+    m_Metadata:
+      m_Items: []
+  - m_Id: 802197471232
+    m_Key: pause_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 837760974848
+    m_Key: pause_subtitle
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8792218763754733653
+  references:
+    version: 2
+    RefIds:
+    - rid: 8792218763754733653
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1768744683131

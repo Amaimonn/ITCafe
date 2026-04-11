@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Items_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 23938b79a94419e4288a63376a542af8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10832969728
+    m_Localized: BUN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63190466560
+    m_Localized: RAW_SAUSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 120933449728
+    m_Localized: CHOCOLATE_DONUT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 269055295488
+    m_Localized: ONIGIRI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379138998272
+    m_Localized: LETTUCE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 518285033472
+    m_Localized: RAW_PATTY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 803023749120
+    m_Localized: RICE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856907972608
+    m_Localized: EGG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 908044926976
+    m_Localized: SALMON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 996217585664
+    m_Localized: SALMON_FILLET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1141852209152
+    m_Localized: HOT_DOG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1657005015040
+    m_Localized: BURGER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1706770432000
+    m_Localized: PIZZA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11303782580224
+    m_Localized: TRAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11345213915136
+    m_Localized: PLATE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12493345914880
+    m_Localized: DISH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13903475113984
+    m_Localized: TRASH_CAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8077890464907264
+    m_Localized: FRIES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8077956135124992
+    m_Localized: TOMATO_SOUP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17449103351865344
+    m_Localized: COFFEE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672486248579072
+    m_Localized: RAMEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672543509217280
+    m_Localized: PIZZA_MARGHERITA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19672824238178304
+    m_Localized: COOKIE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673081952993280
+    m_Localized: SUSHI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673164194906112
+    m_Localized: BACON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673305421316096
+    m_Localized: FRIED_BACON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673698486321152
+    m_Localized: FRIED_PATTY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19673774294171648
+    m_Localized: FRIED_SAUSAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674053353799680
+    m_Localized: CHOPPED_TOMATO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674395130855424
+    m_Localized: BACON_KEBAB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674549246361600
+    m_Localized: WAFFLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19674882555117568
+    m_Localized: PIZZA_BASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19675438786936832
+    m_Localized: FRIED_EGG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19675578713112576
+    m_Localized: NOODLES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676071581581312
+    m_Localized: RAMEN_BASE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676272874618880
+    m_Localized: TOMATO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676343494115328
+    m_Localized: CHEESE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676765038444544
+    m_Localized: BOWL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676805131796480
+    m_Localized: GRILL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676881631707136
+    m_Localized: POT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19676967652687872
+    m_Localized: PAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19677281428570112
+    m_Localized: OVEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19898726268141568
+    m_Localized: SLICING
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19900907348164608
+    m_Localized: DOUGH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19906244600004608
+    m_Localized: PLASTIC_CUP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19906553544048640
+    m_Localized: COFFEE_MACHINE
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

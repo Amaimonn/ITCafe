@@ -2,7 +2,9 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.UI.MVVM;
-using ITCafe.Gameplay.UI.MVVM;
+using DevKit.Utils;
+using ITCafe.Data.Campaign;
+using ITCafe.UI.MVVM;
 using R3;
 using UnityEngine;
 
@@ -12,31 +14,34 @@ namespace ITCafe.CafeBusiness
     {
         public Observable<Unit> OnCompleted => _onCompleted;
 
-        private readonly WorkProgressService _workProgressService;
+        private readonly GameStatsService _gameStatsService;
         private readonly HUDViewModel _hudViewModel;
         private readonly ClientsRunner _clientsRunner;
         private readonly IViewBinder<ResultsViewModel> _resultsBinder;
         private readonly InputService _inputService;
+        private readonly Subject<CafeMissionResult> _sendResults;
 
         private readonly Subject<Unit> _onCompleted = new();
         private CancellationTokenSource _cts;
-        private const int SESSION_DURATION_SECONDS = 300;
-        private int _remainingSeconds = SESSION_DURATION_SECONDS;
+        private int _remainingSeconds = Constants.SESSION_DURATION_SECONDS;
 
-        public GameSessionRunner(WorkProgressService workProgressService,
+        public GameSessionRunner(GameStatsService gameStatsService,
             HUDViewModel hudViewModel,
             ClientsRunner clientsRunner,
             IViewBinder<ResultsViewModel> resultsBinder,
-            InputService inputService)
+            InputService inputService,
+            Subject<CafeMissionResult> sendResults)
         {
-            _workProgressService = workProgressService;
+            _gameStatsService = gameStatsService;
             _hudViewModel = hudViewModel;
             _clientsRunner = clientsRunner;
             _resultsBinder = resultsBinder;
             _inputService = inputService;
+            _sendResults = sendResults;
         }
 
-        public async UniTaskVoid RunSessionAsync(CancellationToken token)
+        public async UniTaskVoid RunSessionAsync(int sessionDurationSeconds = Constants.SESSION_DURATION_SECONDS,
+            CancellationToken token = default)
         {
             _cts = new();
             using var linkedTokenSource = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, token);
@@ -45,18 +50,19 @@ namespace ITCafe.CafeBusiness
             {
                 Debug.Log($"[{nameof(GameSessionRunner)}]: Running game session");
                 _clientsRunner.RunClientsLifeCycleAsync(linkedTokenSource.Token).Forget();
-                
+
+                _remainingSeconds = sessionDurationSeconds;
                 _hudViewModel.SetRemainingSeconds(_remainingSeconds);
-                float remainingTime = SESSION_DURATION_SECONDS;
+                float remainingTime = sessionDurationSeconds;
                 var displayedSeconds = _remainingSeconds;
-                
+
                 while (remainingTime > 0)
                 {
                     await UniTask.Yield(cancellationToken: linkedTokenSource.Token);
-                    
+
                     remainingTime -= Time.deltaTime;
                     _remainingSeconds = Mathf.CeilToInt(remainingTime);
-                    
+
                     if (_remainingSeconds != displayedSeconds)
                     {
                         if (_remainingSeconds < 0)
@@ -83,9 +89,15 @@ namespace ITCafe.CafeBusiness
             Dispose();
             _clientsRunner.Dispose();
 
-            _workProgressService.SetTotalTime(
-                TimeSpan.FromSeconds(SESSION_DURATION_SECONDS - _remainingSeconds));
-            _workProgressService.CompleteDay();
+            _gameStatsService.SetTotalTime(
+                TimeSpan.FromSeconds(Constants.SESSION_DURATION_SECONDS - _remainingSeconds));
+            _gameStatsService.CompleteDay();
+
+            var report = _gameStatsService.GetDailyReport();
+            _sendResults.OnNext(new CafeMissionResult
+            {
+                Stars = report.EarnedStars
+            });
 
             _resultsBinder.Open();
             _inputService.SetInputEnabled(false);

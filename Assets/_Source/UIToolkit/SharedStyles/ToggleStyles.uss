@@ -13,6 +13,12 @@
     border-radius: var(--control-radius);
 }
 
+.unity-toggle .unity-toggle__input:disabled .unity-toggle__checkmark {
+    background-color: var(--control-bg);
+    border-color: var(--control-border-color);
+    opacity: 0.5;
+} 
+
 .unity-toggle .unity-toggle__input:enabled:hover > .unity-toggle__checkmark {
     border-color: var(--control-border-color);
     background-color: var(--control-bg-hover);
@@ -30,7 +36,6 @@
     -unity-text-align: middle-right;
     font-size: var(--control-font-size);
     padding-right: 20px;
-    -unity-text-align: middle-left;
 }
 
 .unity-toggle .unity-toggle__input {

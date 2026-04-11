@@ -45,5 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiAsset: {fileID: 9197481963319205126, guid: 7d6f3d7d6ce0b7d46bfa58a0aa0e116b, type: 3}
+  _priority: 0
   _playButtonName: PlayButton
   _exitButtonName: ExitButton
+  _settingsButtonName: SettingsButton
+  _animatedTerminalName: AnimatedTerminal
+  _buttonClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: b9e31184105779448b29b447971df1ea, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 1
+    <IsSingleton>k__BackingField: 1

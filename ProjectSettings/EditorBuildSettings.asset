@@ -5,12 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/_Source/Scenes/MainMenu.unity
+  - enabled: 0
+    path: Assets/_Source/Scenes/main_menu.unity
     guid: 80feb6d236fd7d6408bcdb9fecbd99f3
-  - enabled: 1
-    path: Assets/_Source/Scenes/CoffeeShopInteriorDAY.unity
+  - enabled: 0
+    path: Assets/_Source/Scenes/cafe_1.unity
     guid: 79b77b99f469ac04cb13088d83ea956d
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 3c11aa28adb6e9942b11fbf365445d12, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: e761c63843b9ff24399d05eda2da00cc, type: 2}
   m_UseUCBPForAssetBundles: 0

@@ -5,6 +5,8 @@
 @import url("/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss");
 @import url("/Assets/_Source/UIToolkit/SharedStyles/KitSliderStyles.uss");
 @import url("/Assets/_Source/UIToolkit/SharedStyles/ToggleStyles.uss");
+@import url("/Assets/_Source/UIToolkit/SharedStyles/ScrollViewStyles.uss");
+
 
 
 

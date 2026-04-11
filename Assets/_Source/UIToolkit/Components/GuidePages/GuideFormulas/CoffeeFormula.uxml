@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="CoffeeIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/CoffeeIngredient.uxml?fileID=9197481963319205126&amp;guid=96ae4d3cfdd5cd94f83e4cf74b972050&amp;type=3#CoffeeIngredient"/>
+    <ui:Template name="CoffeeMachineIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/CoffeeMachineIngredient.uxml?fileID=9197481963319205126&amp;guid=d4bad47f4e064384bbb27a354a847cc4&amp;type=3#CoffeeMachineIngredient"/>
+    <ui:Template name="PlasticCupIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PlasticCupIngredient.uxml?fileID=9197481963319205126&amp;guid=a32a30557d062bf4faf6e2110f858d24&amp;type=3#PlasticCupIngredient"/>
+    <ui:VisualElement name="CoffeeFormula" class="guide__equation">
+        <ui:Instance template="PlasticCupIngredient" name="PlasticCupIngredient"/>
+        <ui:Label text="*" class="guide__operator"/>
+        <ui:Instance template="CoffeeMachineIngredient" name="CoffeeMachineIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="CoffeeIngredient" name="CoffeeIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/ERA_Adventures/150+%20Food%20Icon%20Pack/256/bacon.png?fileID=21300000&amp;guid=b6658bce81b8ce34a84645cf49392ace&amp;type=3#bacon" name="BaconFriedIngredient">
+        <Bindings>
+            <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(19673305421316096)"/>
+        </Bindings>
+    </ITCafe.UI.Custom.GuideIngredient>
+</ui:UXML>

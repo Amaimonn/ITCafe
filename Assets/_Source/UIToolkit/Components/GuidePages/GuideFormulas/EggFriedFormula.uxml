@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="EggFriedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/EggFriedIngredient.uxml?fileID=9197481963319205126&amp;guid=4d82f499f9f90bc43821787283db8d34&amp;type=3#EggFriedIngredient"/>
+    <ui:Template name="EggIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/EggIngredient.uxml?fileID=9197481963319205126&amp;guid=2fd0c131acf7e314bbb07ab287848ffc&amp;type=3#EggIngredient"/>
+    <ui:Template name="PanIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PanIngredient.uxml?fileID=9197481963319205126&amp;guid=8f59d15b1ddd2cd4f8e519a246d4b7be&amp;type=3#PanIngredient"/>
+    <ui:VisualElement name="EggFriedFormula" class="guide__equation">
+        <ui:Instance template="EggIngredient" name="EggIngredient"/>
+        <ui:Label text="*" class="guide__operator"/>
+        <ui:Instance template="PanIngredient" name="PanIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="EggFriedIngredient" name="EggFriedIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

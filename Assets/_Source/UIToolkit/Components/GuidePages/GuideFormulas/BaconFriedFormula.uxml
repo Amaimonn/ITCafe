@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BaconFriedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconFriedIngredient.uxml?fileID=9197481963319205126&amp;guid=b6214ab1998b212409f98692b0148023&amp;type=3#BaconFriedIngredient"/>
+    <ui:Template name="BaconIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BaconIngredient.uxml?fileID=9197481963319205126&amp;guid=5814447278a4c574f9cde2acfa6b7661&amp;type=3#BaconIngredient"/>
+    <ui:Template name="GrillIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/GrillIngredient.uxml?fileID=9197481963319205126&amp;guid=fe38e92ba7cd7e840a1c4f027cc46c5e&amp;type=3#GrillIngredient"/>
+    <ui:VisualElement name="BaconFriedFormula" class="guide__equation">
+        <ui:Instance template="BaconIngredient" name="BaconIngredient"/>
+        <ui:Label text="*" class="guide__operator"/>
+        <ui:Instance template="GrillIngredient" name="GrillIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="BaconFriedIngredient" name="BaconFriedIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

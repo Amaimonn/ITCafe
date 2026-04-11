@@ -2,21 +2,35 @@ using System;
 using DevKit.Saves;
 using UnityEngine;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data.Settings
 {
     [Serializable]
     public class SettingsState : IVersioned
     {
-        public int Version
-        {
-            get => _version;
-            set => _version = value;
-        }
+        public int Version { get; set; } = 2;
 
-        public bool VSync;
-        public int FPS;
-        [Range(1, 100)] public int Sensitivity;
-
-        [SerializeField] private int _version = 1;
+        // Sound settings
+        [Range(0, 100)] public int MusicVolume = 80;
+        [Range(0, 100)] public int SfxVolume = 80;
+        
+        // Input settings
+        [Range(1, 100)] public int Sensitivity = 50;
+        
+        // Video settings
+        public bool VSync = false;
+        public int FPS = -1;
+        [Range(0, 100)] public int Brightness = 30;
+        public bool IsPostProcessingEnabled = true;
+        public bool IsBloomEnabled = true;
+        public bool IsFilmGrainEnabled = true;
+        public bool IsChromaticAberrationEnabled = true;
+        public bool IsAntiAliasingEnabled = true;
+        // public int QualityPreset = 2;
+        public int ScreenWidth = Display.main.systemWidth;
+        public int ScreenHeight = Display.main.systemHeight;
+        public bool Fullscreen = true;
+        
+        // Language settings
+        public string Language = "en";
     }
 }

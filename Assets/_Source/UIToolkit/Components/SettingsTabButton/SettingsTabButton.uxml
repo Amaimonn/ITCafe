@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Components/SettingsTabButton/SettingsTabButtonStyles.uss?fileID=7433441132597879392&amp;guid=81f5efe76d9a7fb429f9fa913db23151&amp;type=3#SettingsTabButtonStyles"/>
+    <ui:Button text="Video" class="cafe__control-button settings__tab-button"/>
+</ui:UXML>

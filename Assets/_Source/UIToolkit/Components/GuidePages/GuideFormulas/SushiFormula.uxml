@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="RiceIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/RiceIngredient.uxml?fileID=9197481963319205126&amp;guid=d4694dbf7edb60d4295b3d3442a1622f&amp;type=3#RiceIngredient"/>
+    <ui:Template name="SalmonSlicedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SalmonSlicedIngredient.uxml?fileID=9197481963319205126&amp;guid=08a9d4ed137e0cb44b0f927b1b1b2bd0&amp;type=3#SalmonSlicedIngredient"/>
+    <ui:Template name="SushiIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/SushiIngredient.uxml?fileID=9197481963319205126&amp;guid=ea7888439d7259c459aadfe1512b2a4d&amp;type=3#SushiIngredient"/>
+    <ui:VisualElement name="SushiFormula" class="guide__equation">
+        <ui:Instance template="SalmonSlicedIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="RiceIngredient" name="RiceIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="SushiIngredient" name="SushiIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

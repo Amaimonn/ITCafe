@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/_Source/Art/Images/grill_512.png?fileID=21300000&amp;guid=a875c72e8753a53429b809631837d5aa&amp;type=3#grill_512" name="GrillIngredient">
+        <Bindings>
+            <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(19676805131796480)"/>
+        </Bindings>
+    </ITCafe.UI.Custom.GuideIngredient>
+</ui:UXML>

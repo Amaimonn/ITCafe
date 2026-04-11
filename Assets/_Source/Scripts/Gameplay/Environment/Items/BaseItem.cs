@@ -1,4 +1,7 @@
-using Flopin.Utils;
+using System;
+using System.Collections.Generic;
+using ITCafe.Data.Items;
+using ITCafe.Shared.Utils;
 using ITCafe.Player;
 using UnityEngine;
 
@@ -7,13 +10,19 @@ namespace ITCafe.Environment
     [RequireComponent(typeof(Collider))]
     public abstract class BaseItem : BaseInteractable, IItem
     {
-        public virtual bool CanBeHandled(IItemHandler handler, PlayerContext context) => handler.CanHandle(this, context);
+        public abstract ItemTag Tag { get; }
+        public virtual bool CanBeHandled(IItemHandler handler, PlayerContext context) =>
+            handler.CanHandle(this, context);
+
         public virtual void BecomeHandled(IItemHandler handler, PlayerContext context) => handler.Handle(this, context);
+        
         public Vector3 CenterOffset { get; private set; }
 
         [SerializeField] protected Collider _collider;
         [SerializeField] protected Rigidbody _rigidbody;
         [SerializeField] protected Camera _camera;
+        
+        Dictionary<Type, object> IItem.CachedComponentsMap { get; } = new();
 
 #region MonoBehaviour
         protected override void OnValidate()
@@ -37,15 +46,19 @@ namespace ITCafe.Environment
             base.Awake();
             if (!TryGetComponent<Renderer>(out var renderer))
                 renderer = GetComponentInChildren<Renderer>();
-           
+
             CenterOffset = transform.InverseTransformPoint(renderer.bounds.center);
         }
 #endregion
-
+        
         public virtual void Drop()
         {
             SetPhysicsEnabled(true);
             _rigidbody.AddForce(_camera.transform.forward * 1.2f, ForceMode.Impulse);
+        }
+
+        public virtual void OnTaken()
+        {
         }
 
         public void SetPhysicsEnabled(bool isEnabled)

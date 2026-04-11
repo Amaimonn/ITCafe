@@ -3,12 +3,14 @@
     --cyan-bg-hover: rgba(0, 184, 148, 0.4);
     --cyan-bg-active: rgba(0, 184, 148, 0.5);
     --cyan-border: rgb(0, 184, 148);
+    --cyan-border-plus: rgb(5, 189, 150);
     --cyan-border-hover: rgb(0, 224, 178);
     --cyan-border-active: rgb(0, 255, 200);
     --blue-bg: rgba(70, 170, 200, 0.48);
     --blue-bg-hover: rgba(70, 170, 200, 0.3);
     --blue-bg-active: rgba(70, 170, 200, 0.4);
     --blue-border: rgb(70, 170, 200);
+    --blue-border-plus: rgb(75, 175, 202);
     --blue-border-hover: rgb(100, 200, 230);
     --blue-border-active: rgb(100, 200, 230);
     --blue-color: rgb(180, 220, 240);
@@ -16,6 +18,7 @@
     --red-bg-hover: rgba(231, 76, 60, 0.35);
     --red-bg-active: rgba(231, 76, 60, 0.45);
     --red-border: rgb(231, 76, 60);
+    --red-border-plus: rgb(236, 82, 62);
     --red-border-hover: rgb(255, 100, 80);
     --red-border-active: rgb(255, 100, 80);
     --red-color: rgb(255, 180, 170);
@@ -23,6 +26,7 @@
     --gold-bg-hover: rgba(241, 196, 15, 0.35);
     --gold-bg-active: rgba(241, 196, 15, 0.55);
     --gold-border: rgb(241, 196, 15);
+    --gold-border-plus: rgb(246, 201, 17);
     --gold-border-hover: rgb(255, 221, 87);
     --gold-border-active: rgb(255, 238, 153);
     --gold-color: rgb(255, 245, 200);
@@ -32,28 +36,92 @@
     --control-border-color: rgba(70, 170, 200, 0.8);
     --control-bg: rgb(20, 25, 40);
     --control-bg-hover: rgb(30, 37, 60);
-    --control-font-size: 16px;
+    --control-font-size: 20px;
+    --description-font-size: 18px;
 }
 
 Label {
     letter-spacing: 2px;
+    font-size: 20px;
 }
 
 Button {
     letter-spacing: 2px;
 }
 
+.cafe__window-wrapper {
+    background-color: rgba(10, 15, 30, 0.94);
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.cafe__root-panel {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    width: 100%;
+    height: 100%;
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 4px;
+    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
+    background-color: rgba(20, 25, 45, 0.94);
+    background-image: url("project://database/Assets/_Source/Art/Images/white_gradient_fade.png?fileID=2800000&guid=9a27966530d26424683ef0ecc05a7437&type=3#white_gradient_fade");
+    -unity-background-image-tint-color: rgba(0, 184, 148, 0.08);
+    background-size: 100% 100%;
+}
+
+.cafe__root-panel--no-chroma {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    width: 100%;
+    height: 100%;
+    border-color: rgb(0, 184, 148);
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: rgba(20, 25, 45, 0.94);
+    background-image: url("project://database/Assets/_Source/Art/Images/white_gradient_fade.png?fileID=2800000&guid=9a27966530d26424683ef0ecc05a7437&type=3#white_gradient_fade");
+    -unity-background-image-tint-color: rgba(0, 184, 148, 0.08);
+    background-size: 100% 100%;
+}
+
 .cafe__view-title {
-    font-size: 28px;
+    font-size: 32px;
     color: rgb(0, 184, 148);
     -unity-font-style: bold;
     -unity-text-align: middle-left;
     letter-spacing: 3px;
+    margin: 0;
+    padding: 0;
 }
 
 .cafe__view-subtitle {
-    font-size: 14px;
+    font-size: 20px;
     color: rgb(120, 200, 180);
     -unity-text-align: middle-left;
     letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+}
+
+.cafe__widget-panel {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
 }

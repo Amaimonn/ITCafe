@@ -45,10 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiAsset: {fileID: 9197481963319205126, guid: f1347106c76b55f4c8bb9795c0fe1a8a, type: 3}
+  _priority: 0
   _timerName: Timer
-  _pointsLabelName: PointsLabel
   _ordersContainerName: OrdersContainer
+  _scoreLabelName: ScoreValue
   _ordersTakenValueName: OrderValue
   _ordersCompletedValueName: SatisfactionValue
   _ordersFailedValueName: FailedValue
   _orderAsset: {fileID: 9197481963319205126, guid: 65f009e64710281458e0438bb57f3876, type: 3}
+  _foodContainerName: FoodContainer
+  _foodItemAsset: {fileID: 9197481963319205126, guid: f194e611b13afd44e9f4d16a70752027, type: 3}
+  _foodImageName: FoodImage
+  _foodLabelName: FoodName

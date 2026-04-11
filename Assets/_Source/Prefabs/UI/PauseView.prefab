@@ -45,7 +45,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Gameplay.UI.MVVM.PauseView
   _uiAsset: {fileID: 9197481963319205126, guid: f85d0c28b5352d247b37e4bd6814e1d4, type: 3}
+  _priority: 0
   _resumeButtonName: ResumeButton
   _closeButtonName: CloseButton
   _restartButtonName: RestartButton
+  _settingsButtonName: SettingsButton
   _exitButtonName: ExitButton
+  _buttonClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: b9e31184105779448b29b447971df1ea, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 0
+    <IsSingleton>k__BackingField: 1
+  _closeClickSfx:
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 1e6c0cc5f2cb9ed4f863b8e3ff79954f, type: 3}
+    <IsLoop>k__BackingField: 0
+    <VolumeScale>k__BackingField: 1
+    <SpacialBlend>k__BackingField: 1
+    <Pitch>k__BackingField: 1
+    <PitchShift>k__BackingField: 1
+    <MinPitchShift>k__BackingField: -0.1
+    <MaxPitchShift>k__BackingField: 0.1
+    <IsPausable>k__BackingField: 0
+    <IsSingleton>k__BackingField: 1
+  _restartPopUpSetup:
+    TitleLid: restart_popup_title
+    MessageLid: mission_progress_popup_message
+    ConfirmTextLid: confirm_button
+    CancelTextLid: cancel_button
+  _exitPopUpSetup:
+    TitleLid: session_exit_popup_title
+    MessageLid: mission_progress_popup_message
+    ConfirmTextLid: confirm_button
+    CancelTextLid: cancel_button

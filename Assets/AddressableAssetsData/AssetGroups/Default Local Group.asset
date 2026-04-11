@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 7bc64339ac30628409e4e353cab0f0fc
+  m_SerializeEntries:
+  - m_GUID: 00d0b3926b19d704bb91af71798523d9
+    m_Address: mission_2_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 052faaac586de48259a63d0c4782560b
+    m_Address: Assets/_Source/Settings/PlayerActionMap.inputactions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0802823a2be697044a69e0da46629277
+    m_Address: mission_2_3_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14c27e20fdde5c3449d489945931f197
+    m_Address: mission_2_1_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f5e7422d45158d45802854e5b80bdde
+    m_Address: mission_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e4b4ed17d76ddd47889ea0ef82757f3
+    m_Address: mission_1_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 338ed021b1d18fb48afecfa12018999c
+    m_Address: location_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 402b0ab171c93fd4a8ebf69386e9d150
+    m_Address: mission_2_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4484dee8d90447d4eb9584ad942a4ac0
+    m_Address: all_locations_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54488c11f6ab92c46847c880baf0c009
+    m_Address: mission_1_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6897d832f5c137e4e8af1519a752a754
+    m_Address: mission_1_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6fb88c531eb49c4448d386f48744a7df
+    m_Address: mission_1_2_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79b77b99f469ac04cb13088d83ea956d
+    m_Address: scenes/cafe_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80feb6d236fd7d6408bcdb9fecbd99f3
+    m_Address: scenes/main_menu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89b0046f5b264d44fac6220c0328a72e
+    m_Address: mission_1_4_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93b2bd02ed33c1a46ab7ea36bae4ce7a
+    m_Address: scenes/gap
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62a9c407b56a1e468bfd0c120ba1ebf
+    m_Address: mission_2_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9f41ec6220cfa3489d27f415884019c
+    m_Address: location_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b092f7517f4aad14abf4ff7fca47a835
+    m_Address: mission_2_4_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c22c67d2feed90048a67b8d55dceec25
+    m_Address: mission_1_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c530ce46a74c30e46b11215cf3d9cd20
+    m_Address: vcontainer_settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c92916324d803bf4593734abb8105dd6
+    m_Address: mission_1_3_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf5f52feba1d24142b1742b6da4eeaec
+    m_Address: mission_1_1_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db04e0c0973ad214e950070b2e03558a
+    m_Address: mission_2_5_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eda17f6b448da7d488943b734989e267
+    m_Address: mission_1_5_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0431a4a1a95ec14ca68eebe9e05d1bb
+    m_Address: mission_2_2_setup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f220926c3c92bc94f9a10e22db0b5a0a
+    m_Address: settings_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f906ef3f17e3b9041925c2a063771a37
+    m_Address: mission_2_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f98b62a540b170747904f5b5d5cdbaa6
+    m_Address: mission_2_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f6de04e4207be0240bbd8b774ef10265, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5ddde1bcb4fe24440adf24670b1df6bc, type: 2}
+    - {fileID: 11400000, guid: fd53ad5ec5b0ba244af78347ed7f8efe, type: 2}

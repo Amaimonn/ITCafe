@@ -1,0 +1,278 @@
+.campaign__root {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 30, 0.98);
+    -unity-text-align: middle-center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.campaign__panel {
+    flex-direction: column;
+    background-image: url("project://database/Assets/_Source/Art/Images/grid_pattern.png?fileID=2800000&guid=8681e5a794b7ca744ade56c7a1c6a872&type=3#grid_pattern");
+    -unity-slice-type: tiled;
+    -unity-slice-scale: 0.3px;
+    -unity-slice-left: 32;
+    -unity-slice-top: 32;
+    -unity-slice-right: 32;
+    -unity-slice-bottom: 32;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.03);
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.campaign__header {
+    flex-direction: column;
+    margin-bottom: 25px;
+    border-bottom-color: rgba(0, 184, 148, 0.3);
+    border-bottom-width: 1px;
+    width: 320px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.campaign__container {
+    flex-direction: row;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.campaign__info-section {
+    flex-direction: column;
+    background-color: rgba(15, 20, 35, 0.6);
+    border-color: rgba(70, 170, 200, 0.2);
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.campaign__locations-section {
+    flex-shrink: 0;
+}
+
+.campaign__missions-section {
+    flex-grow: 0;
+    width: 600px;
+    height: 500px;
+    max-width: 600px;
+    min-width: 600px;
+}
+
+.campaign__section-title {
+    color: rgb(0, 184, 148);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom-color: rgba(70, 170, 200, 0.2);
+    border-bottom-width: 1px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.campaign__missions-header {
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.campaign__loading-indicator {
+    flex-direction: row;
+    background-color: rgba(70, 170, 200, 0.2);
+    border-color: rgb(70, 170, 200);
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 20px;
+}
+
+.campaign__locations-tabs {
+    flex-direction: column;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.campaign__location-tab {
+    flex-direction: row;
+    background-color: rgba(25, 30, 45, 0.8);
+    border-color: rgb(70, 170, 200);
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.campaign__location-tab:hover {
+    background-color: rgba(70, 170, 200, 0.2);
+    border-color: rgb(100, 200, 230);
+}
+
+.campaign__location-tab:active {
+    background-color: rgba(70, 170, 200, 0.3);
+    border-color: rgb(120, 220, 255);
+}
+
+.campaign__location-tab.selected {
+    background-color: rgba(0, 184, 148, 0.3);
+    border-color: rgb(0, 224, 178);
+}
+
+.campaign__location-tab.locked {
+    opacity: 0.6;
+    background-color: rgba(60, 70, 90, 0.5);
+    border-color: rgb(80, 100, 120);
+}
+
+.campaign__location-tab.locked:hover {
+    background-color: rgba(60, 70, 90, 0.6);
+    border-color: rgb(100, 120, 140);
+}
+
+.campaign__location-name {
+    font-size: 24px;
+    color: rgb(180, 220, 210);
+    -unity-text-align: middle-left;
+    flex-grow: 1;
+}
+
+.campaign__location-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgb(70, 170, 200);
+}
+
+.campaign__location-status.completed {
+    background-color: rgb(0, 184, 148);
+}
+
+.campaign__location-status.locked {
+    background-color: rgb(120, 140, 160);
+}
+
+.campaign__missions-scrollview {
+    flex-grow: 1;
+}
+
+.campaign__missions-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+.campaign__mission-details {
+    flex-direction: column;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.campaign__mission-title {
+    font-size: 28px;
+    color: rgb(0, 184, 148);
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom-color: rgba(70, 170, 200, 0.2);
+    border-bottom-width: 1px;
+}
+
+.campaign__mission-scrollview {
+    flex-grow: 1;
+    background-color: rgba(10, 15, 25, 0.4);
+    border-color: rgba(70, 170, 200, 0.3);
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.campaign__mission-description {
+    font-size: var(--description-font-size);
+    color: rgb(180, 220, 210);
+    -unity-text-align: upper-left;
+    white-space: normal;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.campaign__mission-stats {
+    flex-direction: column;
+    padding-top: 15px;
+    border-top-color: rgba(70, 170, 200, 0.2);
+    border-top-width: 1px;
+}
+
+.campaign__actions {
+    flex-direction: row;
+    padding-top: 25px;
+    border-top-color: rgba(0, 184, 148, 0.3);
+    border-top-width: 1px;
+    justify-content: flex-end;
+}
+
+.campaign__button--primary:active {
+    background-color: rgba(0, 184, 148, 0.5);
+    border-color: rgb(0, 255, 200);
+}
+
+.campaign__button--primary:disabled {
+    opacity: 0.5;
+    background-color: rgba(60, 70, 90, 0.3);
+    border-color: rgb(80, 100, 120);
+    color: rgb(140, 160, 180);
+}
+
+.campaign__button--secondary {
+    background-color: rgba(45, 52, 74, 0.8);
+    border-color: rgb(70, 170, 200);
+    color: rgb(180, 220, 240);
+    margin-right: 20px;
+}
+
+.campaign__button--secondary:hover {
+    background-color: rgba(70, 170, 200, 0.3);
+    border-color: rgb(100, 200, 230);
+}
+
+.campaign__button--secondary:active {
+    background-color: rgba(70, 170, 200, 0.4);
+    border-color: rgb(120, 220, 255);
+}
+
+.campaign__map {
+    flex-grow: 1;
+    align-self: center;
+    opacity: 0;
+}
+
+.campaign__map.enabled {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+}
+
+.blur-glow {
+    background-image: url("project://database/Assets/_Source/Art/Images/faded_circle.png?fileID=2800000&guid=1a1c427b85481354ba928914ada5f2eb&type=3#faded_circle");
+}

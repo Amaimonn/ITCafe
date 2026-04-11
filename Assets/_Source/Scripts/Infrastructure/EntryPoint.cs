@@ -1,6 +1,8 @@
 using System.Collections;
 using DevKit.Utils;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Localization.Settings;
 using VContainer;
 using VContainer.Unity;
 
@@ -19,24 +21,44 @@ namespace ITCafe
 
         private void Run()
         {
-            var vContainerSettings = Resources.Load<VContainerSettings>("VContainerSettings"); 
-            var instanceProperty = typeof(VContainerSettings).GetProperty("Instance");
-            instanceProperty.SetValue(null, vContainerSettings);
-            
-            var rootScope = vContainerSettings.GetOrCreateRootLifetimeScopeInstance();
-            rootScope.Build();
-            
-            var rootContainer = rootScope.Container;
-            var monoHook = rootContainer.Resolve<MonoBehaviourHook>();
-            var loadingScreen = rootContainer.Resolve<LoadingScreen>();
+            var loadingScreenPrefab = Resources.Load<LoadingScreen>("loading_screen");
+            var loadingScreen = Object.Instantiate(loadingScreenPrefab);
             loadingScreen.Show();
-            
-            monoHook.StartCoroutine(LoadEntryScene());
-            
+
+            var monoHook = new GameObject("EntryMonoHook").AddComponent<MonoBehaviourHook>();
+            Object.DontDestroyOnLoad(monoHook);
+
+            monoHook.StartCoroutine(EntryCoroutine());
+
             return;
 
-            IEnumerator LoadEntryScene()
+            IEnumerator EntryCoroutine()
             {
+                var vContainerSettingsHandle = Addressables.LoadAssetAsync<VContainerSettings>("vcontainer_settings");
+                yield return vContainerSettingsHandle;
+
+                var vContainerSettings = vContainerSettingsHandle.Result;
+                var instanceProperty = typeof(VContainerSettings).GetProperty("Instance");
+                instanceProperty.SetValue(null, vContainerSettings);
+
+                var rootScope = vContainerSettings.GetOrCreateRootLifetimeScopeInstance();
+                using (LifetimeScope.Enqueue(builder =>
+                   {
+                       builder.RegisterInstance(monoHook);
+                       builder.RegisterInstance(loadingScreen);
+                   }))
+                {
+                    rootScope.Build();
+                }
+                
+                yield return LocalizationSettings.InitializationOperation;
+                
+                var rootContainer = rootScope.Container;
+                var localizationLoader = rootContainer.Resolve<ILocalizationLoader>();
+                
+                localizationLoader.Init();
+                yield return localizationLoader.LoadTables();
+                
                 var sceneLoader = rootContainer.Resolve<SceneLoader>();
 
                 yield return sceneLoader.LoadStartScene();

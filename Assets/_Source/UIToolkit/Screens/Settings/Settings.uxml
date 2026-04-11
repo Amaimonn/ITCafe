@@ -1,39 +1,63 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="DropdownBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/DropdownBar.uxml?fileID=9197481963319205126&amp;guid=cc934e3d2ffcc634a910e2af88bc8d9a&amp;type=3#DropdownBar"/>
+    <ui:Template name="KitSliderIntBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/KitSliderIntBar.uxml?fileID=9197481963319205126&amp;guid=25b67a6a10ede5f47b17cf020d88acd3&amp;type=3#KitSliderIntBar"/>
+    <ui:Template name="SettingsTabButton" src="project://database/Assets/_Source/UIToolkit/Components/SettingsTabButton/SettingsTabButton.uxml?fileID=9197481963319205126&amp;guid=b2905de1abc05464ca8152b75774639c&amp;type=3#SettingsTabButton"/>
+    <ui:Template name="ToggleBar" src="project://database/Assets/_Source/UIToolkit/Components/SettingBars/ToggleBar.uxml?fileID=9197481963319205126&amp;guid=8e2eff4da41bc864cb5b084b38950082&amp;type=3#ToggleBar"/>
     <Style src="project://database/Assets/_Source/UIToolkit/Screens/Settings/SettingsStyles.uss?fileID=7433441132597879392&amp;guid=30f779d9fb6fcbd4dbb865b56c1d47a6&amp;type=3#SettingsStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/DropdownStyles.uss?fileID=7433441132597879392&amp;guid=4db18ea67a6154348b95683aced0b2d5&amp;type=3#DropdownStyles"/>
     <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/GlobalStyles.uss?fileID=7433441132597879392&amp;guid=8eda350a2ce341b0a6b97cc6e36588f0&amp;type=3#GlobalStyles"/>
-    <ui:VisualElement name="RootWrapper" picking-mode="Ignore" class="settings__root" style="flex-grow: 1;">
-        <ui:VisualElement name="SettingsPanel" class="settings__panel">
+    <Style src="project://database/Assets/_Source/UIToolkit/SharedStyles/KitSliderStyles.uss?fileID=7433441132597879392&amp;guid=12a4db4e2081dc9439ac9fc3d3f2b791&amp;type=3#KitSliderStyles"/>
+    <ui:VisualElement name="SettingsWrapper" picking-mode="Ignore" class="cafe__window-wrapper settings__root" style="flex-grow: 1; align-items: center; justify-content: center;">
+        <ui:VisualElement name="SettingsPanel" class="cafe__root-panel settings__panel" style="flex-grow: 1;">
             <ui:VisualElement name="Header" class="settings__header">
-                <ui:Label text="// &#1053;&#1040;&#1057;&#1058;&#1056;&#1054;&#1049;&#1050;&#1048;" class="cafe__view-title"/>
-                <ui:Label text="&#1050;&#1054;&#1053;&#1060;&#1048;&#1043;&#1059;&#1056;&#1040;&#1062;&#1048;&#1071;_&#1057;&#1048;&#1057;&#1058;&#1045;&#1052;&#1067;" class="cafe__view-subtitle"/>
+                <ui:Label class="cafe__view-title" style="flex-shrink: 1;">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(39123410944)"/>
+                    </Bindings>
+                </ui:Label>
             </ui:VisualElement>
             <ui:Button name="CloseButton" text="&#215;" focusable="false" class="cafe__close-button"/>
-            <ui:VisualElement name="SectionsContainer" class="settings__sections">
-                <ui:VisualElement name="GeneralSection" class="settings__section">
-                    <ui:VisualElement name="SensitivityBar" class="settings__bar">
-                        <ui:Label text="&#1063;&#1059;&#1042;&#1057;&#1058;&#1042;&#1048;&#1058;&#1045;&#1051;&#1068;&#1053;&#1054;&#1057;&#1058;&#1068;_&#1042;&#1047;&#1043;&#1051;&#1071;&#1044;&#1040;" class="settings__bar-label"/>
-                        <ui:VisualElement name="SensitivityControl" class="settings__control">
-                            <DevKit.UITK.KitSliderInt show-readonly-value="true" high-value="100" value="1" low-value="1" name="SensitivitySlider" class="settings__slider"/>
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="FPSBar" class="settings__bar">
-                        <ui:Label text="FPS" class="settings__bar-label"/>
-                        <ui:VisualElement name="FPSControl" class="settings__control">
-                            <ui:DropdownField name="FPSDropdown" choices="60,120,180,&#1052;&#1072;&#1082;&#1089;&#1080;&#1084;&#1091;&#1084;" value="60" focusable="false" index="-1" class="settings__dropdown"/>
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement name="VSyncBar" class="settings__bar">
-                        <ui:Label text="&#1042;&#1045;&#1056;&#1058;&#1048;&#1050;&#1040;&#1051;&#1068;&#1053;&#1040;&#1071;_&#1057;&#1048;&#1053;&#1061;&#1056;&#1054;&#1053;&#1048;&#1047;&#1040;&#1062;&#1048;&#1071;" class="settings__bar-label"/>
-                        <ui:VisualElement name="VSyncControl" class="settings__control">
-                            <ui:Toggle name="VSyncToggle" focusable="false" class="settings__toggle"/>
-                        </ui:VisualElement>
+            <ui:VisualElement name="TabButtonsContainer" style="flex-direction: row; justify-content: center; margin-bottom: 20px; flex-shrink: 0; height: 40px;">
+                <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
+                <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
+                <ui:Instance template="SettingsTabButton" name="SettingsTabButton"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="SettingsContent" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="SectionsContainer" class="cafe__widget-panel settings__sections" style="flex-grow: 1; padding-left: 0;">
+                    <ui:ScrollView class="settings__section cafe__scroll-view">
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="DropdownBar"/>
+                        <ui:Instance template="ToggleBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                        <ui:Instance template="KitSliderIntBar"/>
+                    </ui:ScrollView>
+                </ui:VisualElement>
+                <ui:VisualElement name="SettingInfo" class="cafe__widget-panel settings__info-panel">
+                    <ui:VisualElement name="ControlInfoContainer" style="flex-grow: 1;">
+                        <ui:Label text="Label" class="settings__info-title"/>
+                        <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam " class="settings__info-description"/>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="ActionsContainer" class="settings__actions">
-                <ui:Button name="CancelChangesButton" text="&#1054;&#1058;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="cafe__control-button cafe__control-button--red settings__button" style="margin-bottom: 0;"/>
-                <ui:Button name="ApplyButton" text="&#1055;&#1056;&#1048;&#1052;&#1045;&#1053;&#1048;&#1058;&#1068;" focusable="false" class="settings__button cafe__control-button cafe__control-button--cyan"/>
+            <ui:VisualElement name="ActionsContainer" class="settings__actions" style="margin-top: 20px;">
+                <ui:Button name="ApplyButton" focusable="false" class="cafe__control-button cafe__control-button--cyan settings__button">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(10650322460672)"/>
+                    </Bindings>
+                </ui:Button>
+                <ui:Button name="CancelChangesButton" focusable="false" class="cafe__control-button cafe__control-button--red settings__button" style="margin-left: 20px;">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(10673886060544)"/>
+                    </Bindings>
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

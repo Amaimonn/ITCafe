@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="GrillIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/GrillIngredient.uxml?fileID=9197481963319205126&amp;guid=fe38e92ba7cd7e840a1c4f027cc46c5e&amp;type=3#GrillIngredient"/>
+    <ui:Template name="PanIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PanIngredient.uxml?fileID=9197481963319205126&amp;guid=8f59d15b1ddd2cd4f8e519a246d4b7be&amp;type=3#PanIngredient"/>
+    <ui:VisualElement name="PanGrillFormula" class="guide__equation">
+        <ui:Instance template="PanIngredient" name="PanIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="GrillIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,18 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BunIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BunIngredient.uxml?fileID=9197481963319205126&amp;guid=57bd9e5b538f2e247887ed212c399d68&amp;type=3#BunIngredient"/>
+    <ui:Template name="BurgerIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BurgerIngredient.uxml?fileID=9197481963319205126&amp;guid=7d89202616f01e44d948c6490ebae405&amp;type=3#BurgerIngredient"/>
+    <ui:Template name="PattyFriedIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PattyFriedIngredient.uxml?fileID=9197481963319205126&amp;guid=cab619b2310926641a2efe25a8e008ab&amp;type=3#PattyFriedIngredient"/>
+    <ui:VisualElement name="BurgerFormula" class="guide__equation">
+        <ui:Instance template="BunIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="PattyFriedIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/FREE%20Food%20Pack/Textures/FoodIcons_Atlas.png?fileID=21300036&amp;guid=37607ec1aab56e349af84a980f685a4b&amp;type=3#Food_Salad" name="LettuceIngredient">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(379138998272)"/>
+            </Bindings>
+        </ITCafe.UI.Custom.GuideIngredient>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="BurgerIngredient" name="BurgerIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

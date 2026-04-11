@@ -3,7 +3,7 @@ using System.Linq;
 using DevKit.Utils;
 using ITCafe.Data.Items;
 using ITCafe.Environment;
-using ITCafe.Gameplay.Data;
+using ITCafe.Data;
 using ITCafe.Player;
 
 namespace ITCafe.CafeBusiness
@@ -15,14 +15,14 @@ namespace ITCafe.CafeBusiness
     /// </summary>
     public class CraftService : ICraftService
     {
-        private readonly IEnumerable<RecipeSO> _recipes;
+        private readonly IEnumerable<IRecipeData> _recipes;
         private readonly IItemsCreator _itemsCreator;
-        private readonly Dictionary<RecipeSO, ItemTag[]> _recipeOrderedMap;
-        private Dictionary<ItemTag, List<RecipeSO>> _firstEntryRecipeMap;
+        private readonly Dictionary<IRecipeData, ItemTag[]> _recipeOrderedMap;
+        private Dictionary<ItemTag, List<IRecipeData>> _firstEntryRecipeMap;
 
         private readonly CraftCache _craftCache = new();
 
-        public CraftService(IEnumerable<RecipeSO> recipes, IItemsCreator itemsCreator)
+        public CraftService(IEnumerable<IRecipeData> recipes, IItemsCreator itemsCreator)
         {
             _recipes = recipes;
             _itemsCreator = itemsCreator;
@@ -120,12 +120,12 @@ namespace ITCafe.CafeBusiness
         {
             var itemPart1 = request.CraftPart1;
             var itemPart2 = request.CraftPart2;
-            var recipe = request.Recipe;
+            var recipe = request.RecipeData;
 
             var tags = GetTagsFromParts(itemPart1, itemPart2);
             IItem craftedItem;
 
-            if (tags.Count == recipe.RequiredParts.Length)
+            if (tags.Count == recipe.RequiredParts.Count)
             {
                 craftedItem = _itemsCreator.Get(recipe.FinalTag);
             }
@@ -141,14 +141,14 @@ namespace ITCafe.CafeBusiness
 
         private void BuildFirstEntryRecipeMap()
         {
-            _firstEntryRecipeMap = new Dictionary<ItemTag, List<RecipeSO>>();
+            _firstEntryRecipeMap = new Dictionary<ItemTag, List<IRecipeData>>();
 
             foreach (var recipe in _recipes)
             {
                 foreach (var tag in recipe.RequiredParts)
                 {
                     if (!_firstEntryRecipeMap.ContainsKey(tag))
-                        _firstEntryRecipeMap[tag] = new List<RecipeSO> { recipe };
+                        _firstEntryRecipeMap[tag] = new List<IRecipeData> { recipe };
                     else
                         _firstEntryRecipeMap[tag].Add(recipe);
                 }

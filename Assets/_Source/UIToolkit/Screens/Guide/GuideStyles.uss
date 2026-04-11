@@ -8,20 +8,11 @@
     padding: 30px 20px;
 }
 
-.guide__terminal {
-    width: 500px;
+.guide__panel {
+    width: 800px;
     flex-direction: column;
-    background-color: rgba(15, 20, 35, 0.98);
-    border-color: rgb(0, 184, 148);
-    border-width: 1px;
-    border-radius: 4px;
-    padding: 20px;
     position: relative;
-    border-left-color: var(--cyan-border);
-    border-right-color: var(--cyan-border);
-    border-top-color: var(--cyan-border);
-    border-bottom-color: var(--cyan-border);
-    filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
+    height: auto;
 }
 
 .guide__header {
@@ -81,13 +72,13 @@
 .guide__content-area {
     flex-direction: column;
     min-height: 300px;
-    margin-bottom: 15px;
-    height: 500px;
+    margin-bottom: 5px;
+    height: 700px;
 }
 
 .guide__page {
     flex-direction: column;
-    height: 500px;
+    height: 700px;
 }
 
 .guide__page-title {
@@ -102,11 +93,15 @@
     border-bottom-width: 1px;
     margin-top: 0;
     padding-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .guide__equation {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin: 15px 0;
     padding: 12px;
@@ -114,13 +109,21 @@
     border-radius: 3px;
     border-color: rgba(0, 184, 148, 0.2);
     border-width: 1px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
 
 .guide__ingredient {
     flex-direction: column;
     align-items: center;
     margin: 0 8px;
-    min-width: 70px;
+    min-width: 160px;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .guide__ingredient-icon {
@@ -128,9 +131,9 @@
     background-color: rgba(45, 65, 90, 0.8);
     border-color: rgb(70, 170, 200);
     border-width: 1px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     aspect-ratio: 1;
-    width: 72px;
+    width: 80px;
 }
 
 .guide__ingredient-icon--result {
@@ -140,10 +143,15 @@
     border-width: 2px;
 }
 
+.guide__ingredient-labels-container {
+    flex-direction: row;
+    justify-content: center;
+}
+
 .guide__ingredient-label {
     font-size: 14px;
     color: rgb(180, 220, 240);
-    -unity-text-align: middle-center;
+    -unity-text-align: middle-left;
     -unity-font-style: bold;
     letter-spacing: 0.5px;
     margin-right: 0;
@@ -154,6 +162,7 @@
     padding-left: 0;
     padding-top: 0;
     margin-top: 0;
+    position: relative;
 }
 
 .guide__ingredient-label--result {
@@ -258,7 +267,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     height: 30px;
 }
 

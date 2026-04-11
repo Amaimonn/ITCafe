@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca283d6cc5cd58841acd80e34cb31e81, type: 3}
+  m_Name: Resolution
+  m_EditorClassIdentifier: Assembly-CSharp::ITCafe.Data.Settings.OptionsSettingDataSO
+  <Label>k__BackingField: resolution
+  <Description>k__BackingField: resolution_description
+  <WarningText>k__BackingField: 
+  <Options>k__BackingField:
+  - default
+  - 1366x768
+  - 1600x900
+  - 1920x1080
+  - 1920x1200
+  - 2560x1440
+  - 2560x1600
+  - 3440x1440
+  - 3840x2160
+  <OverrideDisplayOptions>k__BackingField: []

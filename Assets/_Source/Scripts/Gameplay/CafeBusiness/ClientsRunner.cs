@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DevKit.Solutions;
-using ITCafe.Gameplay.UI.MVVM;
+using DevKit.Utils;
+using ITCafe.UI.MVVM;
 using R3;
 using UnityEngine;
 using VContainer;
@@ -15,24 +16,25 @@ namespace ITCafe.CafeBusiness
     {
         private readonly IFactory<ClientCharacter> _clientsFactory;
         private readonly TableService _tableService;
-        private readonly WorkProgressService _progressService;
+        private readonly GameStatsService _gameStatsService;
         private readonly HUDViewModel _hudViewModel;
         
         private readonly Dictionary<Transform, bool> _orderAvailabilityMap;
         private readonly int _maxActiveClients = 6;
+        private readonly int _clientsDelayMS = 2500; // TODO: mission Config
         private CancellationTokenSource _cts;
         private int _currentActiveClients = 0;
 
         public ClientsRunner(
             IFactory<ClientCharacter> clientsFactory,
             TableService tableService,
-            WorkProgressService progressService,
+            GameStatsService gameStatsService,
             [Key(Constants.CLIENT_ORDER_PLACES)] IEnumerable<Transform> clientOrderPoints,
             HUDViewModel hudViewModel)
         {
             _clientsFactory = clientsFactory;
             _tableService = tableService;
-            _progressService = progressService;
+            _gameStatsService = gameStatsService;
             _hudViewModel = hudViewModel;
             _orderAvailabilityMap = clientOrderPoints.ToDictionary(x => x, _ => true);
         }
@@ -46,7 +48,7 @@ namespace ITCafe.CafeBusiness
 
             try
             {
-                await UniTask.Delay(1000, cancellationToken: linkedTokenSource.Token);
+                await UniTask.Delay(1000, cancellationToken: linkedTokenSource.Token); // initial delay
 
                 while (!token.IsCancellationRequested)
                 {
@@ -60,7 +62,7 @@ namespace ITCafe.CafeBusiness
                                 client.transform.SetPositionAndRotation(orderTransform.position,
                                     orderTransform.rotation);
                                 _orderAvailabilityMap[orderTransform] = false;
-                                _progressService.RegisterClient(client);
+                                _gameStatsService.RegisterClient(client);
                                 _currentActiveClients++;
 
                                 // TODO: Watch out for client subscription this time
@@ -85,7 +87,7 @@ namespace ITCafe.CafeBusiness
                         Debug.Log($"[{nameof(ClientsRunner)}]: No free table available");
                     }
 
-                    await UniTask.Delay(2500, cancellationToken: linkedTokenSource.Token);
+                    await UniTask.Delay(_clientsDelayMS, cancellationToken: linkedTokenSource.Token);
                 }
             }
             catch (OperationCanceledException) when (token.IsCancellationRequested)

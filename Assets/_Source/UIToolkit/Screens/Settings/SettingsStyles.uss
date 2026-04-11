@@ -1,62 +1,24 @@
 .settings__root {
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(10, 15, 30, 0.85);
-    justify-content: center;
-    align-items: center;
     padding: 30px 20px;
+    padding-top: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    padding-left: 60px;
+    background-color: rgba(10, 15, 30, 0.78);
 }
 
 .settings__panel {
-    width: auto;
     flex-direction: column;
-    background-color: rgba(20, 25, 45, 0.95);
-    border-color: rgb(0, 184, 148);
-    border-width: 1px;
-    border-radius: 4px;
     padding: 25px;
-    position: relative;
-    border-left-color: rgb(0, 255, 205);
-    border-right-color: rgb(0, 255, 205);
-    border-top-color: rgb(0, 255, 205);
-    border-bottom-color: rgb(0, 255, 205);
     padding-top: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
+    max-width: 1920px;
+    max-height: 1200px;
+    background-color: rgba(20, 25, 45, 0.78);
     filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
-}
-
-.settings__close-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 28px;
-    height: 28px;
-    background-color: transparent;
-    border-color: rgb(100, 120, 140);
-    border-width: 1px;
-    border-radius: 3px;
-    color: rgb(160, 180, 200);
-    font-size: 18px;
-    -unity-font-style: bold;
-    -unity-text-align: middle-center;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 2px;
-}
-
-.settings__close-button:hover {
-    background-color: rgba(231, 76, 60, 0.2);
-    border-color: rgb(231, 76, 60);
-    color: rgb(255, 150, 140);
-}
-
-.settings__close-button:active {
-    background-color: rgba(231, 76, 60, 0.3);
-    border-color: rgb(255, 100, 80);
-    color: rgb(255, 180, 170);
 }
 
 .settings__header {
@@ -68,61 +30,22 @@
     padding-right: 40px;
 }
 
-.settings__title {
-    font-size: 22px;
-    color: rgb(0, 184, 148);
-    -unity-font-style: bold;
-    -unity-text-align: middle-left;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-}
-
-.settings__subtitle {
-    font-size: 11px;
-    color: rgb(120, 200, 180);
-    -unity-text-align: middle-left;
-    letter-spacing: 1px;
-}
-
 .settings__sections {
     flex-direction: column;
-    margin-bottom: 20px;
+    flex-grow: 1;
+    width: 600px;
 }
 
 .settings__section {
     flex-direction: column;
-    background-color: rgba(15, 20, 35, 0.6);
-    border-color: rgba(70, 170, 200, 0.2);
-    border-width: 1px;
-    border-radius: 3px;
-    padding: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-.settings__bar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    margin: 10px 0;
-    padding: 8px 0;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    background-color: rgba(0, 0, 0, 0.08);
-    padding-right: 3px;
-    padding-left: 3px;
-}
-
-.settings__bar-label {
-    font-size: var(--control-font-size);
-    color: rgb(180, 220, 210);
-    -unity-text-align: middle-left;
-    letter-spacing: 0.5px;
     flex-grow: 1;
-    margin-right: 15px;
-    min-width: 320px;
+}
+
+.settings__section .unity-scroll-view__content-container {
+    padding-left: 20px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 .settings__control {
@@ -131,25 +54,14 @@
     min-width: 180px;
 }
 
-.settings__slider {
-    flex-grow: 1;
-    flex-shrink: 1;
-    width: 238px;
-}
-
-.settings__toggle {
-    margin: 0;
-    padding: 0;
-    align-self: flex-end;
-}
-
 .settings__actions {
-    flex-direction: column-reverse;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     padding-top: 20px;
     border-top-color: rgba(0, 184, 148, 0.3);
     border-top-width: 1px;
+    flex-direction: row;
+    flex-shrink: 0;
 }
 
 .settings__button {
@@ -157,6 +69,10 @@
     height: 40px;
     border-width: 1px;
     border-radius: 3px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
 }
 
 .settings__button--primary {
@@ -198,6 +114,57 @@
     color: rgb(140, 160, 180);
 }
 
-.settings__dropdown {
-    width: 100%;
+.settings__widget-panel {
+    background-color: rgba(15, 20, 35, 0.6);
+    border-color: rgba(70, 170, 200, 0.2);
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+.settings__info-panel {
+    flex-grow: 1;
+    width: 400px;
+    margin-left: 20px;
+    background-image: url("project://database/Assets/_Source/Art/Images/cel_settings_icon.png?fileID=2800000&guid=72f6471196767924bbd46269f37c3bf6&type=3#cel_settings_icon");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgba(132, 165, 255, 0.04);
+}
+
+.settings__info-entry {
+}
+
+.settings__info-description {
+    color: rgb(255, 255, 255);
+    white-space: normal;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.settings__info-warning {
+    color: rgb(255, 132, 34);
+    white-space: normal;
+}
+
+.settings__info-title {
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 24px;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }

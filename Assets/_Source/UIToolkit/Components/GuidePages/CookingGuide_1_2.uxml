@@ -1,0 +1,20 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BaconFriedFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/BaconFriedFormula.uxml?fileID=9197481963319205126&amp;guid=b1f400d3e94603349b0a2f98ef47ef9d&amp;type=3#BaconFriedFormula"/>
+    <ui:Template name="BaconKebabFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/BaconKebabFormula.uxml?fileID=9197481963319205126&amp;guid=2445d8be479690a458ce571010679a5b&amp;type=3#BaconKebabFormula"/>
+    <ui:Template name="HotDogFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/HotDogFormula.uxml?fileID=9197481963319205126&amp;guid=b01aa993b46d60a48b94958020e63f14&amp;type=3#HotDogFormula"/>
+    <ui:Template name="PattyFriedFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/PattyFriedFormula.uxml?fileID=9197481963319205126&amp;guid=5178871e3fe050548be507b5314115ec&amp;type=3#PattyFriedFormula"/>
+    <ui:Template name="SausageFriedFormula" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideFormulas/SausageFriedFormula.uxml?fileID=9197481963319205126&amp;guid=192a78c433210fc46b6ec7e361e03d8f&amp;type=3#SausageFriedFormula"/>
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss?fileID=7433441132597879392&amp;guid=b912658e683dfe343b364fe9f49b209c&amp;type=3#GuideStyles"/>
+    <ui:VisualElement name="Page" class="guide__page">
+        <ui:Label class="guide__page-title">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:ef7264d5a5094f744afcb1837e0f1e34" entry="Id(14023507705856)"/>
+            </Bindings>
+        </ui:Label>
+        <ui:Instance template="SausageFriedFormula" name="SausageFriedFormula"/>
+        <ui:Instance template="HotDogFormula" name="HotDogFormula"/>
+        <ui:Instance template="PattyFriedFormula" name="PattyFriedFormula"/>
+        <ui:Instance template="BaconFriedFormula" name="BaconFriedFormula"/>
+        <ui:Instance template="BaconKebabFormula" name="BaconKebabFormula"/>
+    </ui:VisualElement>
+</ui:UXML>

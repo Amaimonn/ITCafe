@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: MainMenu_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: cfddd950c6abf524ba3cce34892a09ad, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 8228167680
+    m_Localized: PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69997682688
+    m_Localized: SETTINGS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 161924243456
+    m_Localized: EXIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79785513443328
+    m_Localized: '[ EVENT LOG INITIALIZATION ]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80661699354624
+    m_Localized: ===========================================
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80916931141632
+    m_Localized: 'USER: IT_STUDENT'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 80990092386304
+    m_Localized: 'STATUS: **ZERO COMMERCIAL EXPERIENCE**'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81021759381504
+    m_Localized: -----------------------------------------------------------------------------------
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81060946763776
+    m_Localized: '>> ANALYZING CAREER PATH...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81196431171584
+    m_Localized: ' **ERROR 404: PATH NOT FOUND**'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81221831876608
+    m_Localized: '>> RECONFIGURING PARAMETERS...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81244057493504
+    m_Localized: '>> FALLBACK PROTOCOL ACTIVATED: **CAFE**'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81265968537600
+    m_Localized: '>> OBJECTIVE: SURVIVE. EARN. UPGRADE.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81298566668288
+    m_Localized: '[ AWAITING SIMULATION... ]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2844207994765312
+    m_Localized: // CAMPAIGN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2844307093585920
+    m_Localized: MISSION_MAP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845315374907392
+    m_Localized: TIME_MODULES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845483511971840
+    m_Localized: MISSION_INFO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2845802618814464
+    m_Localized: START_MISSION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30398571017658368
+    m_Localized: CREDITS
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

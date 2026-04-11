@@ -1,6 +1,7 @@
 .unity-popup-field {
     padding: 0;
     margin: 0;
+    -unity-text-align: middle-left;
 }
 
 .unity-base-popup-field__input {
@@ -19,12 +20,18 @@
 .unity-base-popup-field__text {
     color: var(--blue-color);
     font-size: var(--control-font-size);
-    -unity-text-align: upper-center;
+    -unity-text-align: middle-center;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
     margin-right: 0;
+}
+
+.unity-popup-field:disabled > .unity-base-popup-field__input {
+    background-color: var(--control-bg-hover);
+    border-color: var(--control-border-color);
+    opacity: 0.85;
 }
 
 .unity-popup-field:enabled:hover > .unity-base-popup-field__input {
@@ -62,6 +69,8 @@
     font-size: var(--control-font-size);
     transition: all 0.1s ease-out;
 }
+
+
 
 .unity-base-dropdown__label {
     margin: 0;

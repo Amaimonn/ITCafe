@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Duplicate Asset Isolation
+  m_GUID: d316a4d6817cf774690496b0018d641f
+  m_SerializeEntries:
+  - m_GUID: 036455e1217523c49ac17adce37d972c
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_French
+      Fries.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31321ba15b8f8eb4c954353edc038b1d
+    m_Address: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3587e7d115f0e704cac0b28c84f1a0f5
+    m_Address: Assets/_Source/UIToolkit/Components/GuidePages/Page1.uxml
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36e335017ad71d54fbb10842863188ae
+    m_Address: Packages/com.unity.render-pipelines.core/Runtime/RenderPipelineResources/FallbackShader.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b21e4f3421eb6349afd4402b8197574
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Dough.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c10c99db55200040aa6f38ceb3ef33a
+    m_Address: Assets/_Source/UIToolkit/Screens/OrderCloudStyles.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44921bbf175be50469073789ac922d7a
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Textures/PandaMat.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c386b13666f4f46b55a6e0eeb4e47a
+    m_Address: Assets/UI Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78c657e38e5e41a7a041ee5bc9d0f07f
+    m_Address: Assets/_Source/Art/Shaders/UIChroma.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fe7446b24aafb446b08236a3feb7f6a
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Susage.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ff312420ed65474da93634aceceefc1
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Chopped
+      Lettuce.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92680b794337db845b868f78cc960077
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Food_Seared
+      Ground Beef.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 933532a4fcc9baf4fa0491de14d08ed7
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9866fda0e61a7904087eb0ec5ab17e03
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Materials/Panda
+      Mat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 986b983aeb42d49439992efefa846d9a
+    m_Address: Assets/Free Hyper Casual Street Food Pack/Textures/streetFood_BC.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a179958414ddf2419a4078d105cc4b7
+    m_Address: Assets/Free Hyper Casual Street Food Pack/Models/F_Asia_Onigiri.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1d1d7d16b265a44b85768ec30574e69
+    m_Address: Assets/Pandazole_Ultimate_Pack/Pandazole Kitchen Food/Models/Prop_Tray.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9117f15d2285b04abdcc136ad8f4c80
+    m_Address: Assets/_Source/Art/Shaders/ChromaFilter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b912658e683dfe343b364fe9f49b209c
+    m_Address: Assets/_Source/UIToolkit/Screens/Guide/GuideStyles.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c84b208b0012fa146a72c06e2d7e1198
+    m_Address: Assets/Free Hyper Casual Street Food Pack/Models/F_Europe_Bakery_Donut_Chocolate.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d590bfc333245a441b0115395b26c85a
+    m_Address: Assets/Free Hyper Casual Street Food Pack/Materials/streetFood.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6e9a19c3678ded42a3bc431ebef7dbd
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Utils/FallbackError.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f6de04e4207be0240bbd8b774ef10265, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6ff1a2c0c7fb0f747b2f88f83b57114b, type: 2}
+    - {fileID: 11400000, guid: b45be1027090d0842ae7d96e7f281dfa, type: 2}

@@ -2,11 +2,12 @@ namespace ITCafe
 {
     public abstract class SceneContext
     {
-        public string SceneName { get; }
+        public string SceneTag { get; }
+        public string ToSceneName { get; set; }
 
-        public SceneContext(string sceneName)
+        public SceneContext(string sceneTag)
         {
-            SceneName = sceneName;
+            SceneTag = sceneTag;
         }
     }
 }

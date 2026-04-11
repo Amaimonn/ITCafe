@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ITCafe.UI.Custom.GuideIngredient image="project://database/Assets/_Source/Art/Images/plastic_cup_512.png?fileID=21300000&amp;guid=c8fd85326d0c4cb4e9b971d1e8426ff9&amp;type=3#plastic_cup_512" name="PlasticCupIngredient">
+        <Bindings>
+            <UnityEngine.Localization.LocalizedString property="Text" table="GUID:23938b79a94419e4288a63376a542af8" entry="Id(19906244600004608)"/>
+        </Bindings>
+    </ITCafe.UI.Custom.GuideIngredient>
+</ui:UXML>

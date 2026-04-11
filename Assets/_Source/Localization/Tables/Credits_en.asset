@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Credits_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 63329ac585b1d01458e19493fe6acc9f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9314492416
+    m_Localized: '[ ASSETS ]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835131006976
+    m_Localized: // SYSTEM CREDITS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 962822397952
+    m_Localized: '[ DEVELOPMENT ]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1192108220416
+    m_Localized: '[ SPECIAL THANKS ]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1515665219584
+    m_Localized: '[ GAME ENGINE ]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1675040382976
+    m_Localized: PROGRAMMER / DESIGNER / UI ARTIST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2369239638016
+    m_Localized: MUSIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2275740213248
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3120573702144
+    m_Localized: Nurlygayanov Nikita
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4151424573440
+    m_Localized: Alekseev Emil (- Quaximur)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8185065758720
+    m_Localized: GRAPHICS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9981729431552
+    m_Localized: // THANK YOU FOR PLAYING //
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

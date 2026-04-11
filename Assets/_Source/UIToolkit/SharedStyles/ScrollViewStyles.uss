@@ -1,0 +1,82 @@
+.cafe__scroll-view .unity-scroller--vertical {
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 10px;
+}
+
+.cafe__scroll-view .unity-scroller__low-button:enabled {
+    display: none;
+}
+
+.cafe__scroll-view .unity-scroller__low-button:disabled {
+    display: none;
+}
+
+.cafe__scroll-view .unity-scroller__high-button:enabled {
+    display: none;
+}
+
+.cafe__scroll-view .unity-scroller__high-button:disabled {
+    display: none;
+}
+
+.cafe__scroll-view .unity-base-slider--vertical {
+    margin: 0;
+    width: 10px;
+    min-width: 10px;
+    overflow: visible;
+}
+
+.cafe__scroll-view .unity-base-slider--vertical:enabled {
+
+}
+
+.cafe__scroll-view .unity-base-slider--vertical:disabled {
+
+}
+
+.cafe__scroll-view .unity-base-slider--vertical:enabled .unity-base-slider__dragger {
+    background-color: rgba(70, 170, 200, 0.45);
+    border-radius: 2px;
+    width: 100%;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    left: auto;
+}
+
+.cafe__scroll-view .unity-base-slider--vertical:disabled .unity-base-slider__dragger {
+    background-color: rgba(70, 170, 200, 0.45);
+    border-radius: 2px;
+    width: 100%;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    left: auto;
+}
+
+.cafe__scroll-view .unity-base-slider--vertical:enabled:hover .unity-base-slider__dragger {
+
+}
+
+.cafe__scroll-view .unity-scroller--vertical:enabled .unity-base-slider__tracker {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.cafe__scroll-view .unity-scroller--vertical:disabled .unity-base-slider__tracker {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.cafe__scroll-view .unity-scroll-view--vertical.unity-scroll-view--scroll > .unity-scroll-view__content-and-vertical-scroll-container > .unity-scroll-view__content-viewport > .unity-scroll-view__content-container {
+    /*overflow override (prev: scrollview)*/
+}

@@ -1,4 +1,4 @@
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     public abstract class Model<T>
     {

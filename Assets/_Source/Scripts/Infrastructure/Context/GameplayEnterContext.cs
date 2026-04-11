@@ -1,3 +1,6 @@
+using ITCafe.Data.Campaign;
+using R3;
+
 namespace ITCafe
 {
     /// <summary>
@@ -5,6 +8,10 @@ namespace ITCafe
     /// </summary>
     public class GameplayEnterContext : SceneContext
     {
+        public string LocationId { get; set; }
+        public string MissionId { get; set; }
+        public Subject<CafeMissionResult> CompletionSignal { get; set; }
+        
         public GameplayEnterContext() : base(Scenes.GAMEPLAY)
         {
         }

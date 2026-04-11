@@ -38,6 +38,7 @@ Shader "UI Toolkit/UICrt"
             
             #include "UnityCG.cginc"
             #include "UnityUIEFilter.cginc"
+            #include "Filters.cginc"
 
             sampler2D _MainTex;
             float4 _Tint;
@@ -76,10 +77,9 @@ Shader "UI Toolkit/UICrt"
             fixed4 frag(v2f i) : SV_Target
             {
                 float4 uvRect = GetFilterUVRect(i.rectIndex);
-                float2 uv = (i.uv - uvRect.xy) / uvRect.zw;
-                float2 texUV = i.uv;
+                float2 uv = NormalizeUVs(i.uv, uvRect);
 
-                fixed4 col = tex2D(_MainTex, texUV);
+                fixed4 col = tex2D(_MainTex, i.uv);
 
                 float time = _Time.y;
 

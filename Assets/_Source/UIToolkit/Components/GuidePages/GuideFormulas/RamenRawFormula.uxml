@@ -1,0 +1,15 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="EggIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/EggIngredient.uxml?fileID=9197481963319205126&amp;guid=2fd0c131acf7e314bbb07ab287848ffc&amp;type=3#EggIngredient"/>
+    <ui:Template name="NoodlesIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/NoodlesIngredient.uxml?fileID=9197481963319205126&amp;guid=435aa8395bcc6db44a3e8045bcb6071b&amp;type=3#NoodlesIngredient"/>
+    <ui:Template name="PattyIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/PattyIngredient.uxml?fileID=9197481963319205126&amp;guid=f79c0f77f29ce0141a4cbd3867ed0f57&amp;type=3#PattyIngredient"/>
+    <ui:Template name="RamenRawIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/RamenRawIngredient.uxml?fileID=9197481963319205126&amp;guid=91dce8543ca741a45909165430f921cb&amp;type=3#RamenRawIngredient"/>
+    <ui:VisualElement name="RamenRawFormula" class="guide__equation">
+        <ui:Instance template="NoodlesIngredient" name="NoodlesIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="PattyIngredient" name="PattyIngredient"/>
+        <ui:Label text="+" class="guide__operator"/>
+        <ui:Instance template="EggIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="RamenRawIngredient" name="RamenRawIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>

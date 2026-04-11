@@ -6,6 +6,7 @@ namespace ITCafe.Player
     public class EmptyHandsState : ItemPickerState
     {
         private readonly PlayerContext _playerContext;
+        
         public EmptyHandsState(IItemPicker picker, PlayerContext playerContext) : base(picker)
         {
             _playerContext = playerContext;
@@ -13,7 +14,7 @@ namespace ITCafe.Player
 
         public override bool CanTake(IItem item)
         {
-            return item != null;
+            return item != null; // if item has IMenuAspect -> additional check mb
         }
 
         public override void Take(IItem item)
@@ -21,6 +22,7 @@ namespace ITCafe.Player
             Debug.Log($"Taking item {item.transform.name} with empty hands");
             item.transform.parent = _picker.HoldingPoint;
             item.transform.SetLocalPositionAndRotation(-item.CenterOffset, Quaternion.identity);
+            item.OnTaken();
             _picker.SetCurrentItem(item);
             
             if (item is IItemHandler handler)

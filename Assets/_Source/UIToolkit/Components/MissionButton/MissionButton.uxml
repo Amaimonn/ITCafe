@@ -1,0 +1,18 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Components/MissionButton/MissionButtonStyles.uss?fileID=7433441132597879392&amp;guid=134a3e52f4df19d40998c0612de465e6&amp;type=3#MissionButtonStyles"/>
+    <ui:VisualElement name="MissionButtonWrapper" picking-mode="Ignore" class="mission__wrapper">
+        <ui:Button name="MissionButton" focusable="false" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" display-tooltip-when-elided="false" triple-click-selects-line="false" class="mission__button">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center;">
+                <ui:Label name="MissionNumber" text="0" class="mission__number"/>
+                <ui:Label text="" name="DashLabel" class="mission__dash"/>
+                <ui:Label name="LevelLabel" class="mission__level-label">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:8881dbb907ad6df439a3f2a44ed2bdc7" entry="Id(2857639791812608)"/>
+                    </Bindings>
+                </ui:Label>
+            </ui:VisualElement>
+            <ui:Label text="-" name="MissionName" class="mission__name"/>
+        </ui:Button>
+        <ui:VisualElement name="StarsColumn" picking-mode="Ignore" class="mission__stars"/>
+    </ui:VisualElement>
+</ui:UXML>

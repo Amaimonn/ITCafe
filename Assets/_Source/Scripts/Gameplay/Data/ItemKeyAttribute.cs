@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ITCafe.Gameplay.Data
+namespace ITCafe.Data
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class ItemKeyAttribute : PropertyAttribute

@@ -11,7 +11,7 @@ namespace ITCafe
         public Observable<Unit> OnFinished => _onFinished;
         public Observable<float> OverlayFillProgress => _overlayFillProgress;
 
-        [SerializeField] private GameObject _loadingGameObject;
+        [SerializeField] private GameObject _loadingRoot;
         [SerializeField] private Image _overlayImage;
         [SerializeField] private GameObject _loadingStub;
         [SerializeField] private GameObject _loadingText;
@@ -38,7 +38,7 @@ namespace ITCafe
                 yield return ShowCoroutine();
         }
         
-        public IEnumerator HideWithInstantlyCoroutine(bool isInstant)
+        public IEnumerator HideWithInstantCoroutine(bool isInstant)
         {
             if (isInstant)
                 Hide();
@@ -48,43 +48,50 @@ namespace ITCafe
         
         public void Show()
         {
-            _loadingGameObject.SetActive(true);
-            _loadingText.SetActive(true);
-            _loadingStub.SetActive(true);
+            _loadingRoot.SetActive(true);
+            SetActiveTextSafe(true);
+            SetActiveStubSafe(true);
 
             SetOverlayFillProgress(1);
+            
             _onStarted.OnNext(Unit.Default);
         }
 
         public void Hide()
         {
-            _loadingStub.SetActive(false);
-            _loadingText.SetActive(false);
-            _loadingGameObject.SetActive(false);
+            _loadingRoot.SetActive(false);
+            SetActiveStubSafe(false);
+            SetActiveTextSafe(false);
+            
             SetOverlayFillProgress(0);
+            
             _onFinished.OnNext(Unit.Default);
         }
 
         public IEnumerator ShowCoroutine()
         {
             _onStarted.OnNext(Unit.Default);
-            _loadingGameObject.SetActive(true);
+            _loadingRoot.SetActive(true);
 
             while (_overlayFillProgress.Value < 1)
             {
                 var currentProgress = _overlayFillProgress.Value + Time.unscaledDeltaTime / _overlayFillSeconds;
+                
                 if (currentProgress > 1)
                     currentProgress = 1;
+                
                 SetOverlayFillProgress(currentProgress);
                 yield return null;
             }
 
-            _loadingStub.SetActive(true);
+            SetActiveStubSafe(true);
+            SetActiveTextSafe(true);
         }
 
         public IEnumerator HideCoroutine()
         {
-            _loadingStub.SetActive(false);
+            SetActiveStubSafe(false);
+            SetActiveTextSafe(false);
 
             while (_overlayFillProgress.Value > 0)
             {
@@ -95,7 +102,7 @@ namespace ITCafe
                 yield return null;
             }
 
-            _loadingGameObject.SetActive(false);
+            _loadingRoot.SetActive(false);
             _onFinished.OnNext(Unit.Default);
         }
 
@@ -103,6 +110,18 @@ namespace ITCafe
         {
             _overlayFillProgress.Value = progress;
             _overlayImage.material.SetFloat(_overlayProgressProperty, _overlayFillProgress.Value);
+        }
+
+        private void SetActiveTextSafe(bool isActive)
+        {
+            if (_loadingText != null)
+                _loadingText.SetActive(isActive);
+        }
+        
+        private void SetActiveStubSafe(bool isActive)
+        {
+            if (_loadingStub != null)
+                _loadingStub.SetActive(isActive);
         }
     }
 }

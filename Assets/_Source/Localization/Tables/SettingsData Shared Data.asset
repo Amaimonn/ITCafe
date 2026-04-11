@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: SettingsData Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: SettingsData
+  m_TableCollectionNameGuidString: 0b2fae151df161a4b847f22893f2a3f1
+  m_Entries:
+  - m_Id: 13445767495680
+    m_Key: sensitivity_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13407217647616
+    m_Key: sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13126841008128
+    m_Key: resolution_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13186681143296
+    m_Key: resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13174010150912
+    m_Key: quality_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13161708257280
+    m_Key: quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13150895341568
+    m_Key: post_processing_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13138207571968
+    m_Key: post_processing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13115407335424
+    m_Key: music_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13106024677376
+    m_Key: music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13093060083712
+    m_Key: language_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13082599489536
+    m_Key: language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13069362266112
+    m_Key: full_screen_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13060000579584
+    m_Key: full_screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13046230679552
+    m_Key: fps_warning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13036323733504
+    m_Key: fps_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13025745698816
+    m_Key: fps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13009245306880
+    m_Key: film_grain_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12983253204992
+    m_Key: film_grain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12809793568768
+    m_Key: brightness_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12796560539648
+    m_Key: brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12738653978624
+    m_Key: bloom_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12717963476992
+    m_Key: bloom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12679174553600
+    m_Key: anti_aliasing_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12663060037632
+    m_Key: anti_aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13600889634816
+    m_Key: sfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13610528145408
+    m_Key: sfx_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13623052337152
+    m_Key: vsync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13631600328704
+    m_Key: vsync_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 417871384674304
+    m_Key: video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 418253196361728
+    m_Key: audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 424488067006464
+    m_Key: max
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428831319130112
+    m_Key: default
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2653607311835136
+    m_Key: pp_disabled_warning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13151856539860992
+    m_Key: chromatic_aberration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13152012823822336
+    m_Key: chromatic_aberration_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13154555436072960
+    m_Key: input
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8792218580496416840
+  references:
+    version: 2
+    RefIds:
+    - rid: 8792218580496416840
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1768044700052

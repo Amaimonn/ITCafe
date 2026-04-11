@@ -3,6 +3,9 @@ using DevKit.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using R3;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace ITCafe
 {
@@ -27,10 +30,15 @@ namespace ITCafe
         {
             var currentScene = SceneManager.GetActiveScene().name;
 #if UNITY_EDITOR
-            if (currentScene == Scenes.MAIN_MENU)
-                yield return LoadMainMenu(showLoadingImmediately: true);
-            else if (currentScene == Scenes.GAMEPLAY)
-                yield return LoadGameplay(immediateLoading: true);
+            switch (currentScene)
+            {
+                case Scenes.MAIN_MENU:
+                    yield return LoadMainMenu(showLoadingImmediately: true);
+                    break;
+                case Scenes.GAMEPLAY_1:
+                    yield return LoadGameplay(immediateLoading: true);
+                    break;
+            }
 #else
             yield return LoadMainMenu(showLoadingImmediately: true);
 #endif
@@ -40,18 +48,21 @@ namespace ITCafe
             bool showLoadingImmediately = false)
         {
             yield return _loadingScreen.ShowWithInstantCoroutine(showLoadingImmediately);
-            
+
             var startTime = Time.time;
             _onLoadingStarted.OnNext(Unit.Default);
 
+            yield return LoadSceneAsync(Scenes.GAP);
             yield return LoadSceneAsync(Scenes.MAIN_MENU);
-            
+
             _onLoadingFinished.OnNext(Unit.Default);
 
             Debug.Log("Main menu scene loaded");
 
             var mainMenuBootstrap = Object.FindAnyObjectByType<MainMenuScope>();
-            var exitMainMenuSignal = mainMenuBootstrap.Boot(mainMenuEnterContext);
+            yield return mainMenuBootstrap.BootCoroutine(mainMenuEnterContext);
+
+            var exitMainMenuSignal = mainMenuBootstrap.ExitSignal;
 
             exitMainMenuSignal.Take(1).Subscribe(mainMenuExitContext =>
             {
@@ -69,17 +80,21 @@ namespace ITCafe
             var startTime = Time.time;
             _onLoadingStarted.OnNext(Unit.Default);
 
-            yield return LoadSceneAsync(Scenes.GAMEPLAY);
+            yield return LoadSceneAsync(Scenes.GAP);
+            yield return LoadSceneAsync(gameplayEnterContext == null ? Scenes.GAMEPLAY_1 : 
+                gameplayEnterContext.ToSceneName);
 
             Debug.Log("Gameplay scene loaded");
 
             var gameplayBootstrap = Object.FindAnyObjectByType<GameplayScope>();
-            var gameplayExitSignal = gameplayBootstrap.Boot(gameplayEnterContext);
+            yield return gameplayBootstrap.BootCoroutine(gameplayEnterContext);
+
+            var gameplayExitSignal = gameplayBootstrap.ExitSignal;
 
             gameplayExitSignal.Take(1).Subscribe(gameplayExitContext =>
             {
                 var enterContext = gameplayExitContext.EnterContext;
-                switch (enterContext.SceneName)
+                switch (enterContext.SceneTag)
                 {
                     case Scenes.MAIN_MENU:
                         _monoHook.StartCoroutine(LoadMainMenu((MainMenuEnterContext)enterContext));
@@ -95,15 +110,18 @@ namespace ITCafe
             });
 
             _onLoadingFinished.OnNext(Unit.Default);
-            
+
             yield return GetRemainFakeLoadTime(startTime);
             yield return _loadingScreen.HideCoroutine();
         }
 
-
-        private IEnumerator LoadSceneAsync(string sceneName, LoadSceneMode mode = LoadSceneMode.Single)
+        private AsyncOperationHandle<SceneInstance> LoadSceneAsync(string sceneName,
+            LoadSceneMode loadMode = LoadSceneMode.Single)
         {
-            yield return SceneManager.LoadSceneAsync(sceneName, mode);
+            var handle = Addressables.LoadSceneAsync($"scenes/{sceneName}", loadMode, activateOnLoad: true);
+            handle.Destroyed += _ => FLogger.LogGood<SceneLoader>($"Scene {sceneName} was unloaded");
+
+            return handle;
         }
 
         private IEnumerator GetRemainFakeLoadTime(float startTime)

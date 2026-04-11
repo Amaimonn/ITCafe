@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Source/UIToolkit/Screens/Campaign/CampaignStyles.uss?fileID=7433441132597879392&amp;guid=26467cc07a5cb7a47951e51c8fce3b94&amp;type=3#CampaignStyles"/>
+    <ui:VisualElement name="StarElement" picking-mode="Ignore" class="campaign__mission-star" style="flex-grow: 0;"/>
+</ui:UXML>
