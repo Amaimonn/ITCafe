@@ -183,6 +183,14 @@ MonoBehaviour:
     m_Key: oven
     m_Metadata:
       m_Items: []
+  - m_Id: 19898726268141568
+    m_Key: slicer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19900907348164608
+    m_Key: dough
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

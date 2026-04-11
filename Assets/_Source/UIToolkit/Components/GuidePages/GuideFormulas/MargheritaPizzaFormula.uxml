@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BasePizzaRawIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/BasePizzaRawIngredient.uxml?fileID=9197481963319205126&amp;guid=0be090ada1e34cc44bf35becbbfb60aa&amp;type=3#BasePizzaRawIngredient"/>
+    <ui:Template name="MargheritaPizzaIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/MargheritaPizzaIngredient.uxml?fileID=9197481963319205126&amp;guid=6938c9f3d1ba6624ebbb4db230925a62&amp;type=3#MargheritaPizzaIngredient"/>
+    <ui:Template name="OvenIngredient" src="project://database/Assets/_Source/UIToolkit/Components/GuidePages/GuideIngredients/OvenIngredient.uxml?fileID=9197481963319205126&amp;guid=8aea01d1f19a0334b85c3ca2f35883c9&amp;type=3#OvenIngredient"/>
+    <ui:VisualElement name="MargheritaPizzaFormula" class="guide__equation">
+        <ui:Instance template="BasePizzaRawIngredient"/>
+        <ui:Label text="*" class="guide__operator"/>
+        <ui:Instance template="OvenIngredient" name="OvenIngredient"/>
+        <ui:Label text="=" class="guide__operator"/>
+        <ui:Instance template="MargheritaPizzaIngredient" name="MargheritaPizzaIngredient"/>
+    </ui:VisualElement>
+</ui:UXML>
