@@ -191,6 +191,14 @@ MonoBehaviour:
     m_Key: dough
     m_Metadata:
       m_Items: []
+  - m_Id: 19906244600004608
+    m_Key: plastic_cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19906553544048640
+    m_Key: coffee_machine
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
