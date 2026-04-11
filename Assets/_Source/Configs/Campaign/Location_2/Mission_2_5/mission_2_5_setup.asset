@@ -26,6 +26,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 54ddf9bcc6738e94a84fa73593a59469, type: 2}
     - {fileID: 11400000, guid: 9502e7cb10a24624bab9524644fb3165, type: 2}
     - {fileID: 11400000, guid: 10b9962ab3fca434a9c75cc187e05f59, type: 2}
+    - {fileID: 11400000, guid: 0b8a8bed45163b2419ba3795442ec304, type: 2}
     - {fileID: 11400000, guid: 60b6d03bee301ea4cb39f95a0c295cf3, type: 2}
     - {fileID: 11400000, guid: 94219ce4b6b690643bca88b04fcf195a, type: 2}
     - {fileID: 11400000, guid: 2a2027cddc7c12d41baf86f330697f87, type: 2}
@@ -33,6 +34,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 58fe4cfcbacaa6f49804441f1339f309, type: 2}
     - {fileID: 11400000, guid: 5f2dc66f9cd8a5c439fb4c410fc33096, type: 2}
     - {fileID: 11400000, guid: 89e077b529cc5d34799834576a66f3c6, type: 2}
+    - {fileID: 11400000, guid: e9fb8eadf9a453f4b835b30b569bba5b, type: 2}
+    - {fileID: 11400000, guid: 129835e26638cb04f9539dfdc27e8e8c, type: 2}
   _recipesCollection:
     _recipes:
     - {fileID: 11400000, guid: 525e407e7b0628d4cb59407234476aba, type: 2}
