@@ -66,6 +66,10 @@ MonoBehaviour:
     m_Localized: // THANK YOU FOR PLAYING //
     m_Metadata:
       m_Items: []
+  - m_Id: 2669932272812032
+    m_Localized: Rodion
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

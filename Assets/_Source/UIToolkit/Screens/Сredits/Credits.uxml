@@ -35,6 +35,11 @@
                     <ui:VisualElement class="credits__entry">
                         <ui:Label class="credits__name">
                             <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(2669932272812032)"/>
+                            </Bindings>
+                        </ui:Label>
+                        <ui:Label class="credits__name">
+                            <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:63329ac585b1d01458e19493fe6acc9f" entry="Id(3120573702144)"/>
                             </Bindings>
                         </ui:Label>
