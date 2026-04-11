@@ -65,8 +65,9 @@ MonoBehaviour:
   _guideData:
     _pages:
     - {fileID: 9197481963319205126, guid: 3587e7d115f0e704cac0b28c84f1a0f5, type: 3}
-    - {fileID: 9197481963319205126, guid: 0c80686e8ca3fc9419d8ca36b3768a38, type: 3}
     - {fileID: 9197481963319205126, guid: 0862e48722f2c914a997c9594489ca8f, type: 3}
+    - {fileID: 9197481963319205126, guid: 0c80686e8ca3fc9419d8ca36b3768a38, type: 3}
+    - {fileID: 9197481963319205126, guid: 57a4dd8682a42f74a8e33bed5023c3ab, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: 64000000c80000002c01000090010000f4010000

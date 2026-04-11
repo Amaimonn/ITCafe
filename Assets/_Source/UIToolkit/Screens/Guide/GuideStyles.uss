@@ -9,7 +9,7 @@
 }
 
 .guide__panel {
-    width: 500px;
+    width: 800px;
     flex-direction: column;
     position: relative;
     filter: filter(url("project://database/Assets/_Source/Art/Shaders/ChromaFilter.asset?fileID=11400000&guid=b9117f15d2285b04abdcc136ad8f4c80&type=2#ChromaFilter"));
@@ -74,12 +74,12 @@
     flex-direction: column;
     min-height: 300px;
     margin-bottom: 15px;
-    height: 500px;
+    height: 700px;
 }
 
 .guide__page {
     flex-direction: column;
-    height: 500px;
+    height: 700px;
 }
 
 .guide__page-title {
@@ -112,7 +112,7 @@
     flex-direction: column;
     align-items: center;
     margin: 0 8px;
-    min-width: 70px;
+    min-width: 100px;
 }
 
 .guide__ingredient-icon {
@@ -139,7 +139,7 @@
 .guide__ingredient-label {
     font-size: 14px;
     color: rgb(180, 220, 240);
-    -unity-text-align: middle-center;
+    -unity-text-align: middle-left;
     -unity-font-style: bold;
     letter-spacing: 0.5px;
     margin-right: 0;
