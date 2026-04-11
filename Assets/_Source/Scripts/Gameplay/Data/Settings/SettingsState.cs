@@ -19,7 +19,7 @@ namespace ITCafe.Data.Settings
         // Video settings
         public bool VSync = false;
         public int FPS = -1;
-        [Range(0, 100)] public int Brightness = 50;
+        [Range(0, 100)] public int Brightness = 30;
         public bool IsPostProcessingEnabled = true;
         public bool IsBloomEnabled = true;
         public bool IsFilmGrainEnabled = true;
