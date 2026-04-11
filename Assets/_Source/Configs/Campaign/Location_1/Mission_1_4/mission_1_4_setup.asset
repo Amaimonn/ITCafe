@@ -25,6 +25,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 89e077b529cc5d34799834576a66f3c6, type: 2}
     - {fileID: 11400000, guid: 4a4c346adf3ba6844bca240328f3d632, type: 2}
     - {fileID: 11400000, guid: 9a8ecf186e6784d49a3383abd9509288, type: 2}
+    - {fileID: 11400000, guid: 1e7190ffd5ecd334ebd243077d3c968b, type: 2}
     - {fileID: 11400000, guid: 823b1b2f7c53bd34da3a6863c80db1e9, type: 2}
   _recipesCollection:
     _recipes:
@@ -32,7 +33,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7b44f8b11cab11346a68e3dd3d6eb98a, type: 2}
     - {fileID: 11400000, guid: ad7a787fd97020448af75cfb4e261cc3, type: 2}
   _guideData:
-    _pages: []
+    _pages:
+    - {fileID: 9197481963319205126, guid: a9b2238d3641a9d429e75e5adf3cc291, type: 3}
+    - {fileID: 9197481963319205126, guid: 3ed0fadb960d5a048952b6bd07eb76ef, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: af0000005e0100000d020000bc02000039030000

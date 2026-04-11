@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 89e077b529cc5d34799834576a66f3c6, type: 2}
     - {fileID: 11400000, guid: 4a4c346adf3ba6844bca240328f3d632, type: 2}
     - {fileID: 11400000, guid: 9a8ecf186e6784d49a3383abd9509288, type: 2}
+    - {fileID: 11400000, guid: 1e7190ffd5ecd334ebd243077d3c968b, type: 2}
     - {fileID: 11400000, guid: 823b1b2f7c53bd34da3a6863c80db1e9, type: 2}
     - {fileID: 11400000, guid: 2625e1aab4cf84f42a99e309cbf25341, type: 2}
     - {fileID: 11400000, guid: 642d7b92ee4178141b85d09d45fdf627, type: 2}
@@ -41,7 +42,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7056a558eb54046489f56cb4a23ef780, type: 2}
     - {fileID: 11400000, guid: 312e46c0e1dd0aa4da9206e98a1ba341, type: 2}
   _guideData:
-    _pages: []
+    _pages:
+    - {fileID: 9197481963319205126, guid: 9459b2cf2a61b69449a61fc192856cce, type: 3}
+    - {fileID: 9197481963319205126, guid: 662e1574745207542a3ff6a13eae0bcd, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: c8000000900100005802000020030000e8030000

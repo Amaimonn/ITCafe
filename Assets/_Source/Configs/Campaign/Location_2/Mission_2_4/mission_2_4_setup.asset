@@ -30,7 +30,9 @@ MonoBehaviour:
     _recipes:
     - {fileID: 11400000, guid: 525e407e7b0628d4cb59407234476aba, type: 2}
   _guideData:
-    _pages: []
+    _pages:
+    - {fileID: 9197481963319205126, guid: 5600ce50352dfc34281da89b374b6503, type: 3}
+    - {fileID: 9197481963319205126, guid: e045f889018cbbe44a6a65894554907f, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: 64000000c80000002c01000090010000f4010000

@@ -41,7 +41,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 13dc75988c1375b418fc08d5fa082e8d, type: 2}
     - {fileID: 11400000, guid: 2b2efde274718c94280e0d1c0ae7bccf, type: 2}
   _guideData:
-    _pages: []
+    _pages:
+    - {fileID: 9197481963319205126, guid: 8bc1c13fd14fa9e4b83b0f4e12000ecc, type: 3}
+    - {fileID: 9197481963319205126, guid: cd7525bbd504a2744a5c40ac97170ab2, type: 3}
   _missionEvaluation:
     <StarEvaluations>k__BackingField:
       _lockedItems: 64000000c80000002c01000090010000f4010000
